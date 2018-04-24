@@ -1,1 +1,1 @@
-# mux-video-sdk-node
+# mux-node-sdk
