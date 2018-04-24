@@ -12,14 +12,18 @@
   "author": "Mux <help@mux.com> (https://mux.com/)",
   "main": "lib/mux.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha ./test/**/*.spec.js",
+    "test:unit": "mocha ./test/**/*.spec.js -g ^Unit::",
+    "test:int": "mocha ./test/**/*.spec.js -g ^Integration::"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "chai": "^4.1.2",
     "eslint": "^4.19.1",
     "mocha": "^5.1.1"
   },
   "devDependencies": {
+    "dotenv": "^5.0.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.9.0"
   }
