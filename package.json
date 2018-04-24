@@ -1,4 +1,16 @@
 {
+  "name": "mux-node",
+  "version": "1.0.0",
+  "description": "Mux API wrapper",
+  "keywords": [
+    "mux",
+    "video",
+    "video encoding",
+    "api"
+  ],
+  "private": true,
+  "author": "Mux <help@mux.com> (https://mux.com/)",
+  "main": "lib/mux.js",
   "dependencies": {
     "axios": "^0.18.0",
     "eslint": "^4.19.1"
