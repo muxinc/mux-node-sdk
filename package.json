@@ -11,9 +11,13 @@
   "private": true,
   "author": "Mux <help@mux.com> (https://mux.com/)",
   "main": "lib/mux.js",
+  "scripts": {
+    "test": "mocha"
+  },
   "dependencies": {
     "axios": "^0.18.0",
-    "eslint": "^4.19.1"
+    "eslint": "^4.19.1",
+    "mocha": "^5.1.1"
   },
   "devDependencies": {
     "eslint-config-airbnb-base": "^12.1.0",
