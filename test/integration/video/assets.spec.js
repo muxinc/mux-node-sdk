@@ -1,232 +1,193 @@
 require('dotenv').config();
 const { expect } = require('chai');
 const should = require('chai').should();
-const Assets = require('../../../lib/video/resources/Assets');
+const Mux = require('../../../lib/mux');
 
 const TEST_VIDEO = 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';
 
 describe('Integration::Assets', () => {
-  const asset = new Assets({
-    apiKey: process.env.MUX_ACCESS_TOKEN,
-    secret: process.env.MUX_SECRET,
-  });
+  const muxVideo = new Mux.Video(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);
+  let testAsset;
+
+  before(() => (
+    muxVideo.assets.create({ input: TEST_VIDEO })
+      .then((res) => {
+        const { data } = res;
+        should.exist(data);
+        expect(res.status).to.equal(201);
+        testAsset = data;
+      })
+      .catch((err) => {
+        expect(err).to.equal(undefined);
+      })
+  ));
+
+  after(() => (
+    muxVideo.assets.deleteAsset(testAsset.data.id)
+      .then((res) => {
+        const { data } = res;
+        should.exist(data);
+        expect(res.status).to.equal(204);
+      })
+      .catch((err) => {
+        expect(err).to.equal(undefined);
+      })
+  ));
 
   describe('assets.create', () => {
-    it('creates an asset when given an input', (done) => {
-      asset.create({ input: TEST_VIDEO })
+    it('creates an asset when given an input', () => (
+      muxVideo.assets.create({ input: TEST_VIDEO })
         .then((res) => {
           const { data } = res;
           should.exist(data);
           expect(res.status).to.equal(201);
-          done();
         })
         .catch((err) => {
           expect(err).to.equal(undefined);
-          done();
-        });
-    });
-
-    it('fails to create an asset when not given an input', (done) => {
-      asset.create({})
-        .then((res) => {
-          const { data } = res;
-          should.not.exist(data);
-          done();
         })
-        .catch((err) => {
-          should.exist(err);
-          done();
-        });
-    });
+    ));
 
     // @TODO: this could potentially be a unit test with mocked api calls
-    it('fails to create an asset when not given params', (done) => {
-      asset.create()
+    it('fails to create an asset when not given params', () => (
+      muxVideo.assets.create()
         .then((res) => {
           const { data } = res;
           should.not.exist(data);
-          done();
         })
         .catch((err) => {
           should.exist(err);
           // @TODO: test to make sure api call was not made.
-          done();
-        });
-    });
+        })
+    ));
   });
 
   describe('assets.deleteAsset', () => {
-    it('deletes an asset', (done) => {
-      asset.create({ input: TEST_VIDEO })
+    it('deletes an asset', () => (
+      muxVideo.assets.create({ input: TEST_VIDEO })
         .then((res) => {
           const { data } = res;
           should.exist(data);
-          expect(res.status).to.equal(201);
-          return asset.deleteAsset(data.data.id);
+          return muxVideo.assets.deleteAsset(data.data.id);
         })
         .then((res) => {
           const { data } = res;
           should.exist(data);
           expect(res.status).to.equal(204);
-          done();
         })
         .catch((err) => {
           expect(err).to.equal(undefined);
-          done();
-        });
-    });
+        })
+    ));
 
-    it('fails to delete an asset when not given an incorrect assetId', (done) => {
-      asset.deleteAsset('somefakeid')
+    it('fails to delete an asset when not given an incorrect assetId', () => (
+      muxVideo.assets.deleteAsset('somefakeid')
         .then((res) => {
           const { data } = res;
           should.not.exist(data);
-          done();
         })
         .catch((err) => {
           should.exist(err);
-          done();
-        });
-    });
+        })
+    ));
 
     // @TODO: this could potentially be a unit test with mocked api calls
-    it('fails to delete an asset when not given an assetId', (done) => {
-      asset.deleteAsset()
+    it('fails to delete an asset when not given an assetId', () => (
+      muxVideo.assets.deleteAsset()
         .then((res) => {
           const { data } = res;
           should.not.exist(data);
-          done();
         })
         .catch((err) => {
           should.exist(err);
-          done();
-        });
-    });
+        })
+    ));
   });
 
   describe('assets.get', () => {
-    it('gets an asset', (done) => {
-      asset.create({ input: TEST_VIDEO })
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(201);
-          return asset.get(data.data.id);
-        })
+    it('gets an asset', () => (
+      muxVideo.assets.get(testAsset.data.id)
         .then((res) => {
           const { data } = res;
           should.exist(data);
           expect(res.status).to.equal(200);
-          return asset.deleteAsset(data.data.id);
-        })
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(204);
-          done();
         })
         .catch((err) => {
           expect(err).to.equal(undefined);
-          done();
-        });
-    });
+        })
+    ));
 
-    it('fails to get an asset when not given an incorrect assetId', (done) => {
-      asset.get('somefakeid')
+    it('fails to get an asset when not given an incorrect assetId', () => (
+      muxVideo.assets.get('somefakeid')
         .then((res) => {
           const { data } = res;
           should.not.exist(data);
-          done();
         })
         .catch((err) => {
           should.exist(err);
-          done();
-        });
-    });
+        })
+    ));
 
     // @TODO: this could potentially be a unit test with mocked api calls
-    it('fails to get an asset when not given an assetId', (done) => {
-      asset.get()
+    it('fails to get an asset when not given an assetId', () => (
+      muxVideo.assets.get()
         .then((res) => {
           const { data } = res;
           should.not.exist(data);
-          done();
         })
         .catch((err) => {
           should.exist(err);
-          done();
-        });
-    });
+        })
+    ));
   });
 
-  describe.skip('assets.inputInfo', () => {
-    it('gets input-info for an asset', (done) => {
-      asset.create({ input: TEST_VIDEO })
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(201);
-          return asset.inputInfo(data.data.id);
-        })
+  describe('assets.inputInfo', () => {
+    it('gets input-info for an asset', () => (
+      muxVideo.assets.inputInfo(testAsset.data.id)
         .then((res) => {
           const { data } = res;
           should.exist(data);
           expect(res.status).to.equal(200);
-          return asset.deleteAsset(data.data.id);
-        })
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(204);
-          done();
         })
         .catch((err) => {
-          expect(err).to.equal(undefined);
-          done();
-        });
-    });
+          expect(err.response.status).to.equal(412); // This will 412 if the asset is not yet ready
+        })
+    ));
 
-    it('fails to get an asset when not given an incorrect assetId', (done) => {
-      asset.inputInfo('somefakeid')
+    it('fails to get an asset when not given an incorrect assetId', () => (
+      muxVideo.assets.inputInfo('somefakeid')
         .then((res) => {
           const { data } = res;
           should.not.exist(data);
-          done();
         })
         .catch((err) => {
           should.exist(err);
-          done();
-        });
-    });
+        })
+    ));
 
     // @TODO: this could potentially be a unit test with mocked api calls
-    it('fails to get an asset when not given an assetId', (done) => {
-      asset.inputInfo()
+    it('fails to get an asset when not given an assetId', () => (
+      muxVideo.assets.inputInfo()
         .then((res) => {
           const { data } = res;
           should.not.exist(data);
-          done();
         })
         .catch((err) => {
           should.exist(err);
-          done();
-        });
-    });
+        })
+    ));
   });
 
   describe('assets.list', () => {
-    it('lists all assets for an environment', (done) => {
-      asset.list()
+    it('lists all assets for an environment', () => (
+      muxVideo.assets.list()
         .then((res) => {
           const { data } = res;
           should.exist(data);
           expect(res.status).to.equal(200);
-          done();
         })
         .catch((err) => {
           expect(err).to.equal(undefined);
-          done();
-        });
-    });
+        })
+    ));
   });
 });
