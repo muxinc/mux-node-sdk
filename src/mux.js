@@ -6,7 +6,7 @@
 const video = require('./video/video');
 
 /**
- *
+ * Mux Object
  * @type {{Video: Video}}
  */
 const Mux = {
