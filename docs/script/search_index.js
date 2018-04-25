@@ -24,164 +24,164 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber8",
+    "assets src/video/resources/assets.js~assets,assets",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber9",
     "Integration::Assets",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber37",
-    "Integration::Assets assets.create",
+    "assets.create src/video/resources/assets.js~assets#create,assets.create",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber39",
+    "Integration::Assets Assets.create",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber38",
-    "Integration::Assets assets.create creates an asset when given an input",
+    "assets.create src/video/resources/assets.js~assets#create,assets.create",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber41",
+    "Integration::Assets Assets.create creates an asset when given an input",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber51",
-    "Integration::Assets assets.create fails to create an asset when not given params",
+    "assets.create src/video/resources/assets.js~assets#create,assets.create",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber55",
+    "Integration::Assets Assets.create fails to create an asset when not given params",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber106",
-    "Integration::Assets assets.get",
+    "assets.get src/video/resources/assets.js~assets#get,assets.get",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber115",
+    "Integration::Assets Assets.get",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber131",
-    "Integration::Assets assets.get fails to get an asset when not given an assetId",
-    "test"
-  ],
-  [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber119",
-    "Integration::Assets assets.get fails to get an asset when not given an incorrect assetId",
-    "test"
-  ],
-  [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber107",
-    "Integration::Assets assets.get gets an asset",
-    "test"
-  ],
-  [
-    "",
+    "assets.get src/video/resources/assets.js~assets#get,assets.get",
     "test-file/test/integration/video/assets.spec.js.html#lineNumber143",
-    "Integration::Assets assets.inputInfo",
+    "Integration::Assets Assets.get fails to get an asset when not given an assetId",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber168",
-    "Integration::Assets assets.inputInfo fails to get an asset when not given an assetId",
+    "assets.get src/video/resources/assets.js~assets#get,assets.get",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber130",
+    "Integration::Assets Assets.get fails to get an asset when not given an incorrect assetId",
     "test"
   ],
   [
-    "",
+    "assets.get src/video/resources/assets.js~assets#get,assets.get",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber117",
+    "Integration::Assets Assets.get gets an asset",
+    "test"
+  ],
+  [
+    "assets.inputinfo src/video/resources/assets.js~assets#inputinfo,assets.inputinfo",
     "test-file/test/integration/video/assets.spec.js.html#lineNumber156",
-    "Integration::Assets assets.inputInfo fails to get an asset when not given an incorrect assetId",
+    "Integration::Assets Assets.inputInfo",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber144",
-    "Integration::Assets assets.inputInfo gets input-info for an asset",
+    "assets.inputinfo src/video/resources/assets.js~assets#inputinfo,assets.inputinfo",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber184",
+    "Integration::Assets Assets.inputInfo fails to get an asset when not given an assetId",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber180",
-    "Integration::Assets assets.list",
+    "assets.inputinfo src/video/resources/assets.js~assets#inputinfo,assets.inputinfo",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber171",
+    "Integration::Assets Assets.inputInfo fails to get an asset when not given an incorrect assetId",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber181",
-    "Integration::Assets assets.list lists all assets for an environment",
+    "assets.inputinfo src/video/resources/assets.js~assets#inputinfo,assets.inputinfo",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber158",
+    "Integration::Assets Assets.inputInfo gets input-info for an asset",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber65",
+    "assets.list src/video/resources/assets.js~assets#list,assets.list",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber197",
+    "Integration::Assets Assets.list",
+    "test"
+  ],
+  [
+    "assets.list src/video/resources/assets.js~assets#list,assets.list",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber199",
+    "Integration::Assets Assets.list lists all assets for an environment",
+    "test"
+  ],
+  [
+    "assets.deleteasset src/video/resources/assets.js~assets#deleteasset,assets.deleteasset",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber71",
     "Integration::Assets deletes an asset",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber94",
+    "assets.deleteasset src/video/resources/assets.js~assets#deleteasset,assets.deleteasset",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber102",
     "Integration::Assets fails to delete an asset when not given an assetId",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/assets.spec.js.html#lineNumber82",
+    "assets.deleteasset src/video/resources/assets.js~assets#deleteasset,assets.deleteasset",
+    "test-file/test/integration/video/assets.spec.js.html#lineNumber89",
     "Integration::Assets fails to delete an asset when not given an incorrect assetId",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber8",
+    "playbackids src/video/resources/playbackids.js~playbackids,playbackids",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber9",
     "Integration::PlaybackIds",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber37",
-    "Integration::PlaybackIds playbackIds.create",
+    "playbackids.create src/video/resources/playbackids.js~playbackids#create,playbackids.create",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber39",
+    "Integration::PlaybackIds PlaybackIds.create",
     "test"
   ],
   [
     "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber38",
-    "Integration::PlaybackIds playbackIds.create creates playbackIds for an asset",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber40",
+    "Integration::PlaybackIds PlaybackIds.create creates playbackIds for an asset",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber83",
+    "playbackids.deleteplaybackid src/video/resources/playbackids.js~playbackids#deleteplaybackid,playbackids.deleteplaybackid",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber87",
     "Integration::PlaybackIds playbackIds.deletePlaybackId",
     "test"
   ],
   [
     "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber84",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber88",
     "Integration::PlaybackIds playbackIds.deletePlaybackId deletes playbackIds for an asset",
     "test"
   ],
   [
     "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber103",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber107",
     "Integration::PlaybackIds playbackIds.deletePlaybackId fails to delete a playbackId for an asset when not given an asset ID or a playback Id",
     "test"
   ],
   [
     "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber114",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber118",
     "Integration::PlaybackIds playbackIds.deletePlaybackId fails to get playbackIds for an asset when not given a playback ID",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber51",
+    "playbackids.get src/video/resources/playbackids.js~playbackids#get,playbackids.get",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber54",
     "Integration::PlaybackIds playbackIds.get",
     "test"
   ],
   [
     "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber71",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber74",
     "Integration::PlaybackIds playbackIds.get fails to get playbackIds for an asset when not given an asset ID",
     "test"
   ],
   [
     "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber52",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber55",
     "Integration::PlaybackIds playbackIds.get gets playbackIds for an asset",
     "test"
   ],

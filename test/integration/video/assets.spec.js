@@ -5,6 +5,7 @@ const Mux = require('../../../src/mux');
 
 const TEST_VIDEO = 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';
 
+/** @test {Assets} */
 describe('Integration::Assets', () => {
   const muxVideo = new Mux.Video(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);
   let testAsset;
@@ -34,7 +35,9 @@ describe('Integration::Assets', () => {
   //     })
   // ));
 
-  describe('assets.create', () => {
+  /** @test {Assets.create} */
+  describe('Assets.create', () => {
+    /** @test {Assets.create} */
     it('creates an asset when given an input', () => (
       muxVideo.assets.create({ input: TEST_VIDEO })
         .then((res) => {
@@ -48,6 +51,7 @@ describe('Integration::Assets', () => {
     ));
 
     // @TODO: this could potentially be a unit test with mocked api calls
+    /** @test {Assets.create} */
     it('fails to create an asset when not given params', () => (
       muxVideo.assets.create()
         .then((res) => {
@@ -61,7 +65,9 @@ describe('Integration::Assets', () => {
     ));
   });
 
-  describe.skip('assets.deleteAsset', () => {
+  /** @test {Assets.deleteAsset} */
+  describe.skip('Assets.deleteAsset', () => {
+    /** @test {Assets.deleteAsset} */
     it('deletes an asset', () => (
       muxVideo.assets.create({ input: TEST_VIDEO })
         .then((res) => {
@@ -79,6 +85,7 @@ describe('Integration::Assets', () => {
         })
     ));
 
+    /** @test {Assets.deleteAsset} */
     it('fails to delete an asset when not given an incorrect assetId', () => (
       muxVideo.assets.deleteAsset('somefakeid')
         .then((res) => {
@@ -91,6 +98,7 @@ describe('Integration::Assets', () => {
     ));
 
     // @TODO: this could potentially be a unit test with mocked api calls
+    /** @test {Assets.deleteAsset} */
     it('fails to delete an asset when not given an assetId', () => (
       muxVideo.assets.deleteAsset()
         .then((res) => {
@@ -103,7 +111,9 @@ describe('Integration::Assets', () => {
     ));
   });
 
-  describe('assets.get', () => {
+  /** @test {Assets.get} */
+  describe('Assets.get', () => {
+    /** @test {Assets.get} */
     it('gets an asset', () => (
       muxVideo.assets.get(testAsset.data.id)
         .then((res) => {
@@ -116,6 +126,7 @@ describe('Integration::Assets', () => {
         })
     ));
 
+    /** @test {Assets.get} */
     it('fails to get an asset when not given an incorrect assetId', () => (
       muxVideo.assets.get('somefakeid')
         .then((res) => {
@@ -128,6 +139,7 @@ describe('Integration::Assets', () => {
     ));
 
     // @TODO: this could potentially be a unit test with mocked api calls
+    /** @test {Assets.get} */
     it('fails to get an asset when not given an assetId', () => (
       muxVideo.assets.get()
         .then((res) => {
@@ -140,7 +152,9 @@ describe('Integration::Assets', () => {
     ));
   });
 
-  describe('assets.inputInfo', () => {
+  /** @test {Assets.inputInfo} */
+  describe('Assets.inputInfo', () => {
+    /** @test {Assets.inputInfo} */
     it('gets input-info for an asset', () => (
       muxVideo.assets.inputInfo(testAsset.data.id)
         .then((res) => {
@@ -153,6 +167,7 @@ describe('Integration::Assets', () => {
         })
     ));
 
+    /** @test {Assets.inputInfo} */
     it('fails to get an asset when not given an incorrect assetId', () => (
       muxVideo.assets.inputInfo('somefakeid')
         .then((res) => {
@@ -165,6 +180,7 @@ describe('Integration::Assets', () => {
     ));
 
     // @TODO: this could potentially be a unit test with mocked api calls
+    /** @test {Assets.inputInfo} */
     it('fails to get an asset when not given an assetId', () => (
       muxVideo.assets.inputInfo()
         .then((res) => {
@@ -177,7 +193,9 @@ describe('Integration::Assets', () => {
     ));
   });
 
-  describe('assets.list', () => {
+  /** @test {Assets.list} */
+  describe('Assets.list', () => {
+    /** @test {Assets.list} */
     it('lists all assets for an environment', () => (
       muxVideo.assets.list()
         .then((res) => {

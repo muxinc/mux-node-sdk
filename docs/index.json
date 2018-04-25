@@ -578,7 +578,7 @@
     "__docId__": 49,
     "kind": "file",
     "name": "src/mux.js",
-    "content": "/*!\n * mux\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst video = require('./video/video');\n\n/**\n *\n * @type {{Video: Video}}\n */\nconst Mux = {\n  Video: video,\n};\n\nexport default Mux;\n",
+    "content": "/*!\n * mux\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst video = require('./video/video');\n\n/**\n * Mux Object\n * @type {{Video: Video}}\n */\nconst Mux = {\n  Video: video,\n};\n\nexport default Mux;\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-video-sdk-node/src/mux.js",
     "access": "public",
@@ -617,7 +617,7 @@
     "export": true,
     "importPath": "mux-node/src/mux.js",
     "importStyle": "Mux",
-    "description": "",
+    "description": "Mux Object",
     "lineNumber": 12,
     "type": {
       "nullable": null,
@@ -1361,7 +1361,7 @@
   {
     "kind": "manualIndex",
     "globalIndex": true,
-    "content": "# Mux Node SDK\n\n",
+    "content": "# Mux Node SDK\n\nThe official NodeJS Mux SDK wrapper.\n\n## Installation\n```\nnpm install @mux/mux-node\n```\nor\n```\nyarn add @mux/mux-node\n```\n\n## Usage\n\n```\nconst Mux = require('mux-node');\nconst MuxVideo = new Mux.video(${MUX-API-KEY}, ${MUX-SECRET});\n```\n```\n// Create an asset\n MuxVideo.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' });\n```\n",
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-video-sdk-node/manual/index.md",
     "name": "./manual/index.md",
     "static": true,
@@ -1386,7 +1386,7 @@
     "__docId__": 80,
     "kind": "testFile",
     "name": "test/integration/video/assets.spec.js",
-    "content": "require('dotenv').config();\nconst { expect } = require('chai');\nconst should = require('chai').should();\nconst Mux = require('../../../src/mux');\n\nconst TEST_VIDEO = 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';\n\ndescribe('Integration::Assets', () => {\n  const muxVideo = new Mux.Video(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);\n  let testAsset;\n\n  before(() => (\n    muxVideo.assets.create({ input: TEST_VIDEO })\n      .then((res) => {\n        const { data } = res;\n        should.exist(data);\n        expect(res.status).to.equal(201);\n        testAsset = data;\n      })\n      .catch((err) => {\n        expect(err).to.equal(undefined);\n      })\n  ));\n\n  // after(() => (\n  //   muxVideo.assets.deleteAsset(testAsset.data.id)\n  //     .then((res) => {\n  //       const { data } = res;\n  //       should.exist(data);\n  //       expect(res.status).to.equal(204);\n  //     })\n  //     .catch((err) => {\n  //       expect(err).to.equal(undefined);\n  //     })\n  // ));\n\n  describe('assets.create', () => {\n    it('creates an asset when given an input', () => (\n      muxVideo.assets.create({ input: TEST_VIDEO })\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(201);\n        })\n        .catch((err) => {\n          expect(err).to.equal(undefined);\n        })\n    ));\n\n    // @TODO: this could potentially be a unit test with mocked api calls\n    it('fails to create an asset when not given params', () => (\n      muxVideo.assets.create()\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n          // @TODO: test to make sure api call was not made.\n        })\n    ));\n  });\n\n  describe.skip('assets.deleteAsset', () => {\n    it('deletes an asset', () => (\n      muxVideo.assets.create({ input: TEST_VIDEO })\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          return muxVideo.assets.deleteAsset(data.data.id);\n        })\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(204);\n        })\n        .catch((err) => {\n          expect(err).to.equal(undefined);\n        })\n    ));\n\n    it('fails to delete an asset when not given an incorrect assetId', () => (\n      muxVideo.assets.deleteAsset('somefakeid')\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n\n    // @TODO: this could potentially be a unit test with mocked api calls\n    it('fails to delete an asset when not given an assetId', () => (\n      muxVideo.assets.deleteAsset()\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n  });\n\n  describe('assets.get', () => {\n    it('gets an asset', () => (\n      muxVideo.assets.get(testAsset.data.id)\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(200);\n        })\n        .catch((err) => {\n          expect(err).to.equal(undefined);\n        })\n    ));\n\n    it('fails to get an asset when not given an incorrect assetId', () => (\n      muxVideo.assets.get('somefakeid')\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n\n    // @TODO: this could potentially be a unit test with mocked api calls\n    it('fails to get an asset when not given an assetId', () => (\n      muxVideo.assets.get()\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n  });\n\n  describe('assets.inputInfo', () => {\n    it('gets input-info for an asset', () => (\n      muxVideo.assets.inputInfo(testAsset.data.id)\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(200);\n        })\n        .catch((err) => {\n          expect(err.response.status).to.equal(412); // This will 412 if the asset is not yet ready\n        })\n    ));\n\n    it('fails to get an asset when not given an incorrect assetId', () => (\n      muxVideo.assets.inputInfo('somefakeid')\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n\n    // @TODO: this could potentially be a unit test with mocked api calls\n    it('fails to get an asset when not given an assetId', () => (\n      muxVideo.assets.inputInfo()\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n  });\n\n  describe('assets.list', () => {\n    it('lists all assets for an environment', () => (\n      muxVideo.assets.list()\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(200);\n        })\n        .catch((err) => {\n          expect(err).to.equal(undefined);\n        })\n    ));\n  });\n});\n",
+    "content": "require('dotenv').config();\nconst { expect } = require('chai');\nconst should = require('chai').should();\nconst Mux = require('../../../src/mux');\n\nconst TEST_VIDEO = 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';\n\n/** @test {Assets} */\ndescribe('Integration::Assets', () => {\n  const muxVideo = new Mux.Video(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);\n  let testAsset;\n\n  before(() => (\n    muxVideo.assets.create({ input: TEST_VIDEO })\n      .then((res) => {\n        const { data } = res;\n        should.exist(data);\n        expect(res.status).to.equal(201);\n        testAsset = data;\n      })\n      .catch((err) => {\n        expect(err).to.equal(undefined);\n      })\n  ));\n\n  // after(() => (\n  //   muxVideo.assets.deleteAsset(testAsset.data.id)\n  //     .then((res) => {\n  //       const { data } = res;\n  //       should.exist(data);\n  //       expect(res.status).to.equal(204);\n  //     })\n  //     .catch((err) => {\n  //       expect(err).to.equal(undefined);\n  //     })\n  // ));\n\n  /** @test {Assets.create} */\n  describe('Assets.create', () => {\n    /** @test {Assets.create} */\n    it('creates an asset when given an input', () => (\n      muxVideo.assets.create({ input: TEST_VIDEO })\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(201);\n        })\n        .catch((err) => {\n          expect(err).to.equal(undefined);\n        })\n    ));\n\n    // @TODO: this could potentially be a unit test with mocked api calls\n    /** @test {Assets.create} */\n    it('fails to create an asset when not given params', () => (\n      muxVideo.assets.create()\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n          // @TODO: test to make sure api call was not made.\n        })\n    ));\n  });\n\n  /** @test {Assets.deleteAsset} */\n  describe.skip('Assets.deleteAsset', () => {\n    /** @test {Assets.deleteAsset} */\n    it('deletes an asset', () => (\n      muxVideo.assets.create({ input: TEST_VIDEO })\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          return muxVideo.assets.deleteAsset(data.data.id);\n        })\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(204);\n        })\n        .catch((err) => {\n          expect(err).to.equal(undefined);\n        })\n    ));\n\n    /** @test {Assets.deleteAsset} */\n    it('fails to delete an asset when not given an incorrect assetId', () => (\n      muxVideo.assets.deleteAsset('somefakeid')\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n\n    // @TODO: this could potentially be a unit test with mocked api calls\n    /** @test {Assets.deleteAsset} */\n    it('fails to delete an asset when not given an assetId', () => (\n      muxVideo.assets.deleteAsset()\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n  });\n\n  /** @test {Assets.get} */\n  describe('Assets.get', () => {\n    /** @test {Assets.get} */\n    it('gets an asset', () => (\n      muxVideo.assets.get(testAsset.data.id)\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(200);\n        })\n        .catch((err) => {\n          expect(err).to.equal(undefined);\n        })\n    ));\n\n    /** @test {Assets.get} */\n    it('fails to get an asset when not given an incorrect assetId', () => (\n      muxVideo.assets.get('somefakeid')\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n\n    // @TODO: this could potentially be a unit test with mocked api calls\n    /** @test {Assets.get} */\n    it('fails to get an asset when not given an assetId', () => (\n      muxVideo.assets.get()\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n  });\n\n  /** @test {Assets.inputInfo} */\n  describe('Assets.inputInfo', () => {\n    /** @test {Assets.inputInfo} */\n    it('gets input-info for an asset', () => (\n      muxVideo.assets.inputInfo(testAsset.data.id)\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(200);\n        })\n        .catch((err) => {\n          expect(err.response.status).to.equal(412); // This will 412 if the asset is not yet ready\n        })\n    ));\n\n    /** @test {Assets.inputInfo} */\n    it('fails to get an asset when not given an incorrect assetId', () => (\n      muxVideo.assets.inputInfo('somefakeid')\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n\n    // @TODO: this could potentially be a unit test with mocked api calls\n    /** @test {Assets.inputInfo} */\n    it('fails to get an asset when not given an assetId', () => (\n      muxVideo.assets.inputInfo()\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n  });\n\n  /** @test {Assets.list} */\n  describe('Assets.list', () => {\n    /** @test {Assets.list} */\n    it('lists all assets for an environment', () => (\n      muxVideo.assets.list()\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(200);\n        })\n        .catch((err) => {\n          expect(err).to.equal(undefined);\n        })\n    ));\n  });\n});\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-video-sdk-node/test/integration/video/assets.spec.js",
     "access": null,
@@ -1404,7 +1404,10 @@
     "longname": "test/integration/video/assets.spec.js~describe0",
     "access": null,
     "description": "Integration::Assets",
-    "lineNumber": 8
+    "lineNumber": 9,
+    "testTargets": [
+      "Assets"
+    ]
   },
   {
     "__docId__": 82,
@@ -1416,8 +1419,11 @@
     "static": true,
     "longname": "test/integration/video/assets.spec.js~describe0.describe1",
     "access": null,
-    "description": "assets.create",
-    "lineNumber": 37
+    "description": "Assets.create",
+    "lineNumber": 39,
+    "testTargets": [
+      "Assets.create"
+    ]
   },
   {
     "__docId__": 83,
@@ -1430,7 +1436,10 @@
     "longname": "test/integration/video/assets.spec.js~describe0.describe1.it2",
     "access": null,
     "description": "creates an asset when given an input",
-    "lineNumber": 38
+    "lineNumber": 41,
+    "testTargets": [
+      "Assets.create"
+    ]
   },
   {
     "__docId__": 84,
@@ -1443,7 +1452,10 @@
     "longname": "test/integration/video/assets.spec.js~describe0.describe1.it3",
     "access": null,
     "description": "fails to create an asset when not given params",
-    "lineNumber": 51
+    "lineNumber": 55,
+    "testTargets": [
+      "Assets.create"
+    ]
   },
   {
     "__docId__": 85,
@@ -1456,7 +1468,10 @@
     "longname": "test/integration/video/assets.spec.js~describe0.it4",
     "access": null,
     "description": "deletes an asset",
-    "lineNumber": 65
+    "lineNumber": 71,
+    "testTargets": [
+      "Assets.deleteAsset"
+    ]
   },
   {
     "__docId__": 86,
@@ -1469,7 +1484,10 @@
     "longname": "test/integration/video/assets.spec.js~describe0.it5",
     "access": null,
     "description": "fails to delete an asset when not given an incorrect assetId",
-    "lineNumber": 82
+    "lineNumber": 89,
+    "testTargets": [
+      "Assets.deleteAsset"
+    ]
   },
   {
     "__docId__": 87,
@@ -1482,7 +1500,10 @@
     "longname": "test/integration/video/assets.spec.js~describe0.it6",
     "access": null,
     "description": "fails to delete an asset when not given an assetId",
-    "lineNumber": 94
+    "lineNumber": 102,
+    "testTargets": [
+      "Assets.deleteAsset"
+    ]
   },
   {
     "__docId__": 88,
@@ -1494,8 +1515,11 @@
     "static": true,
     "longname": "test/integration/video/assets.spec.js~describe0.describe7",
     "access": null,
-    "description": "assets.get",
-    "lineNumber": 106
+    "description": "Assets.get",
+    "lineNumber": 115,
+    "testTargets": [
+      "Assets.get"
+    ]
   },
   {
     "__docId__": 89,
@@ -1508,7 +1532,10 @@
     "longname": "test/integration/video/assets.spec.js~describe0.describe7.it8",
     "access": null,
     "description": "gets an asset",
-    "lineNumber": 107
+    "lineNumber": 117,
+    "testTargets": [
+      "Assets.get"
+    ]
   },
   {
     "__docId__": 90,
@@ -1521,7 +1548,10 @@
     "longname": "test/integration/video/assets.spec.js~describe0.describe7.it9",
     "access": null,
     "description": "fails to get an asset when not given an incorrect assetId",
-    "lineNumber": 119
+    "lineNumber": 130,
+    "testTargets": [
+      "Assets.get"
+    ]
   },
   {
     "__docId__": 91,
@@ -1534,7 +1564,10 @@
     "longname": "test/integration/video/assets.spec.js~describe0.describe7.it10",
     "access": null,
     "description": "fails to get an asset when not given an assetId",
-    "lineNumber": 131
+    "lineNumber": 143,
+    "testTargets": [
+      "Assets.get"
+    ]
   },
   {
     "__docId__": 92,
@@ -1546,8 +1579,11 @@
     "static": true,
     "longname": "test/integration/video/assets.spec.js~describe0.describe11",
     "access": null,
-    "description": "assets.inputInfo",
-    "lineNumber": 143
+    "description": "Assets.inputInfo",
+    "lineNumber": 156,
+    "testTargets": [
+      "Assets.inputInfo"
+    ]
   },
   {
     "__docId__": 93,
@@ -1560,7 +1596,10 @@
     "longname": "test/integration/video/assets.spec.js~describe0.describe11.it12",
     "access": null,
     "description": "gets input-info for an asset",
-    "lineNumber": 144
+    "lineNumber": 158,
+    "testTargets": [
+      "Assets.inputInfo"
+    ]
   },
   {
     "__docId__": 94,
@@ -1573,7 +1612,10 @@
     "longname": "test/integration/video/assets.spec.js~describe0.describe11.it13",
     "access": null,
     "description": "fails to get an asset when not given an incorrect assetId",
-    "lineNumber": 156
+    "lineNumber": 171,
+    "testTargets": [
+      "Assets.inputInfo"
+    ]
   },
   {
     "__docId__": 95,
@@ -1586,7 +1628,10 @@
     "longname": "test/integration/video/assets.spec.js~describe0.describe11.it14",
     "access": null,
     "description": "fails to get an asset when not given an assetId",
-    "lineNumber": 168
+    "lineNumber": 184,
+    "testTargets": [
+      "Assets.inputInfo"
+    ]
   },
   {
     "__docId__": 96,
@@ -1598,8 +1643,11 @@
     "static": true,
     "longname": "test/integration/video/assets.spec.js~describe0.describe15",
     "access": null,
-    "description": "assets.list",
-    "lineNumber": 180
+    "description": "Assets.list",
+    "lineNumber": 197,
+    "testTargets": [
+      "Assets.list"
+    ]
   },
   {
     "__docId__": 97,
@@ -1612,13 +1660,16 @@
     "longname": "test/integration/video/assets.spec.js~describe0.describe15.it16",
     "access": null,
     "description": "lists all assets for an environment",
-    "lineNumber": 181
+    "lineNumber": 199,
+    "testTargets": [
+      "Assets.list"
+    ]
   },
   {
     "__docId__": 98,
     "kind": "testFile",
     "name": "test/integration/video/playbackIds.spec.js",
-    "content": "require('dotenv').config();\nconst { expect } = require('chai');\nconst should = require('chai').should();\nconst Mux = require('../../../src/mux');\n\nconst TEST_VIDEO = 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';\n\ndescribe('Integration::PlaybackIds', () => {\n  const muxVideo = new Mux.Video(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);\n  let testAsset;\n\n  before(() => (\n    muxVideo.assets.create({ input: TEST_VIDEO })\n      .then((res) => {\n        const { data } = res;\n        should.exist(data);\n        expect(res.status).to.equal(201);\n        testAsset = data;\n      })\n      .catch((err) => {\n        expect(err).to.equal(undefined);\n      })\n  ));\n\n  // after(() => (\n  //   muxVideo.assets.deleteAsset(testAsset.data.id)\n  //     .then((res) => {\n  //       const { data } = res;\n  //       should.exist(data);\n  //       expect(res.status).to.equal(204);\n  //     })\n  //     .catch((err) => {\n  //       expect(err).to.equal(undefined);\n  //     })\n  // ));\n\n  describe('playbackIds.create', () => {\n    it('creates playbackIds for an asset', () => (\n      muxVideo.playbackIds.create(testAsset.data.id)\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(201);\n        })\n        .catch((err) => {\n          expect(err).to.equal(undefined);\n        })\n    ));\n  });\n\n  describe('playbackIds.get', () => {\n    it('gets playbackIds for an asset', () => (\n      muxVideo.playbackIds.create(testAsset.data.id)\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(201);\n          return muxVideo.playbackIds.get(testAsset.data.id, data.data.id);\n        })\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(200);\n        })\n        .catch((err) => {\n          expect(err).to.equal(undefined);\n        })\n    ));\n\n    // @TODO: this could potentially be a unit test with mocked api calls\n    it('fails to get playbackIds for an asset when not given an asset ID', () => (\n      muxVideo.playbackIds.get()\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n  });\n\n  describe('playbackIds.deletePlaybackId', () => {\n    it('deletes playbackIds for an asset', () => (\n      muxVideo.playbackIds.create(testAsset.data.id)\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(201);\n          return muxVideo.playbackIds.deletePlaybackId(testAsset.data.id, data.data.id);\n        })\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(204);\n        })\n        .catch((err) => {\n          expect(err).to.equal(undefined);\n        })\n    ));\n\n    // @TODO: this could potentially be a unit test with mocked api calls\n    it('fails to delete a playbackId for an asset when not given an asset ID or a playback Id', () => (\n      muxVideo.playbackIds.deletePlaybackId()\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n\n    it('fails to get playbackIds for an asset when not given a playback ID', () => (\n      muxVideo.playbackIds.deletePlaybackId(testAsset.data.id)\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n  });\n});\n",
+    "content": "require('dotenv').config();\nconst { expect } = require('chai');\nconst should = require('chai').should();\nconst Mux = require('../../../src/mux');\n\nconst TEST_VIDEO = 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';\n\n/** @test {PlaybackIds} */\ndescribe('Integration::PlaybackIds', () => {\n  const muxVideo = new Mux.Video(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);\n  let testAsset;\n\n  before(() => (\n    muxVideo.assets.create({ input: TEST_VIDEO })\n      .then((res) => {\n        const { data } = res;\n        should.exist(data);\n        expect(res.status).to.equal(201);\n        testAsset = data;\n      })\n      .catch((err) => {\n        expect(err).to.equal(undefined);\n      })\n  ));\n\n  // after(() => (\n  //   muxVideo.assets.deleteAsset(testAsset.data.id)\n  //     .then((res) => {\n  //       const { data } = res;\n  //       should.exist(data);\n  //       expect(res.status).to.equal(204);\n  //     })\n  //     .catch((err) => {\n  //       expect(err).to.equal(undefined);\n  //     })\n  // ));\n\n  /** @test {PlaybackIds.create} */\n  describe('PlaybackIds.create', () => {\n    it('creates playbackIds for an asset', () => (\n      muxVideo.playbackIds.create(testAsset.data.id)\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(201);\n        })\n        .catch((err) => {\n          expect(err).to.equal(undefined);\n        })\n    ));\n  });\n\n  /** @test {PlaybackIds.get} */\n  describe('playbackIds.get', () => {\n    it('gets playbackIds for an asset', () => (\n      muxVideo.playbackIds.create(testAsset.data.id)\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(201);\n          return muxVideo.playbackIds.get(testAsset.data.id, data.data.id);\n        })\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(200);\n        })\n        .catch((err) => {\n          expect(err).to.equal(undefined);\n        })\n    ));\n\n    // @TODO: this could potentially be a unit test with mocked api calls\n    it('fails to get playbackIds for an asset when not given an asset ID', () => (\n      muxVideo.playbackIds.get()\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n  });\n\n  /** @test {PlaybackIds.deletePlaybackId} */\n  describe('playbackIds.deletePlaybackId', () => {\n    it('deletes playbackIds for an asset', () => (\n      muxVideo.playbackIds.create(testAsset.data.id)\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(201);\n          return muxVideo.playbackIds.deletePlaybackId(testAsset.data.id, data.data.id);\n        })\n        .then((res) => {\n          const { data } = res;\n          should.exist(data);\n          expect(res.status).to.equal(204);\n        })\n        .catch((err) => {\n          expect(err).to.equal(undefined);\n        })\n    ));\n\n    // @TODO: this could potentially be a unit test with mocked api calls\n    it('fails to delete a playbackId for an asset when not given an asset ID or a playback Id', () => (\n      muxVideo.playbackIds.deletePlaybackId()\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n\n    it('fails to get playbackIds for an asset when not given a playback ID', () => (\n      muxVideo.playbackIds.deletePlaybackId(testAsset.data.id)\n        .then((res) => {\n          const { data } = res;\n          should.not.exist(data);\n        })\n        .catch((err) => {\n          should.exist(err);\n        })\n    ));\n  });\n});\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-video-sdk-node/test/integration/video/playbackIds.spec.js",
     "access": null,
@@ -1636,7 +1687,10 @@
     "longname": "test/integration/video/playbackIds.spec.js~describe17",
     "access": null,
     "description": "Integration::PlaybackIds",
-    "lineNumber": 8
+    "lineNumber": 9,
+    "testTargets": [
+      "PlaybackIds"
+    ]
   },
   {
     "__docId__": 100,
@@ -1648,8 +1702,11 @@
     "static": true,
     "longname": "test/integration/video/playbackIds.spec.js~describe17.describe18",
     "access": null,
-    "description": "playbackIds.create",
-    "lineNumber": 37
+    "description": "PlaybackIds.create",
+    "lineNumber": 39,
+    "testTargets": [
+      "PlaybackIds.create"
+    ]
   },
   {
     "__docId__": 101,
@@ -1662,7 +1719,7 @@
     "longname": "test/integration/video/playbackIds.spec.js~describe17.describe18.it19",
     "access": null,
     "description": "creates playbackIds for an asset",
-    "lineNumber": 38
+    "lineNumber": 40
   },
   {
     "__docId__": 102,
@@ -1675,7 +1732,10 @@
     "longname": "test/integration/video/playbackIds.spec.js~describe17.describe20",
     "access": null,
     "description": "playbackIds.get",
-    "lineNumber": 51
+    "lineNumber": 54,
+    "testTargets": [
+      "PlaybackIds.get"
+    ]
   },
   {
     "__docId__": 103,
@@ -1688,7 +1748,7 @@
     "longname": "test/integration/video/playbackIds.spec.js~describe17.describe20.it21",
     "access": null,
     "description": "gets playbackIds for an asset",
-    "lineNumber": 52
+    "lineNumber": 55
   },
   {
     "__docId__": 104,
@@ -1701,7 +1761,7 @@
     "longname": "test/integration/video/playbackIds.spec.js~describe17.describe20.it22",
     "access": null,
     "description": "fails to get playbackIds for an asset when not given an asset ID",
-    "lineNumber": 71
+    "lineNumber": 74
   },
   {
     "__docId__": 105,
@@ -1714,7 +1774,10 @@
     "longname": "test/integration/video/playbackIds.spec.js~describe17.describe23",
     "access": null,
     "description": "playbackIds.deletePlaybackId",
-    "lineNumber": 83
+    "lineNumber": 87,
+    "testTargets": [
+      "PlaybackIds.deletePlaybackId"
+    ]
   },
   {
     "__docId__": 106,
@@ -1727,7 +1790,7 @@
     "longname": "test/integration/video/playbackIds.spec.js~describe17.describe23.it24",
     "access": null,
     "description": "deletes playbackIds for an asset",
-    "lineNumber": 84
+    "lineNumber": 88
   },
   {
     "__docId__": 107,
@@ -1740,7 +1803,7 @@
     "longname": "test/integration/video/playbackIds.spec.js~describe17.describe23.it25",
     "access": null,
     "description": "fails to delete a playbackId for an asset when not given an asset ID or a playback Id",
-    "lineNumber": 103
+    "lineNumber": 107
   },
   {
     "__docId__": 108,
@@ -1753,7 +1816,7 @@
     "longname": "test/integration/video/playbackIds.spec.js~describe17.describe23.it26",
     "access": null,
     "description": "fails to get playbackIds for an asset when not given a playback ID",
-    "lineNumber": 114
+    "lineNumber": 118
   },
   {
     "__docId__": 109,

@@ -45,6 +45,7 @@ const Mux = require(&apos;../../../src/mux&apos;);
 
 const TEST_VIDEO = &apos;https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4&apos;;
 
+/** @test {Assets} */
 describe(&apos;Integration::Assets&apos;, () =&gt; {
   const muxVideo = new Mux.Video(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);
   let testAsset;
@@ -74,7 +75,9 @@ describe(&apos;Integration::Assets&apos;, () =&gt; {
   //     })
   // ));
 
-  describe(&apos;assets.create&apos;, () =&gt; {
+  /** @test {Assets.create} */
+  describe(&apos;Assets.create&apos;, () =&gt; {
+    /** @test {Assets.create} */
     it(&apos;creates an asset when given an input&apos;, () =&gt; (
       muxVideo.assets.create({ input: TEST_VIDEO })
         .then((res) =&gt; {
@@ -88,6 +91,7 @@ describe(&apos;Integration::Assets&apos;, () =&gt; {
     ));
 
     // @TODO: this could potentially be a unit test with mocked api calls
+    /** @test {Assets.create} */
     it(&apos;fails to create an asset when not given params&apos;, () =&gt; (
       muxVideo.assets.create()
         .then((res) =&gt; {
@@ -101,7 +105,9 @@ describe(&apos;Integration::Assets&apos;, () =&gt; {
     ));
   });
 
-  describe.skip(&apos;assets.deleteAsset&apos;, () =&gt; {
+  /** @test {Assets.deleteAsset} */
+  describe.skip(&apos;Assets.deleteAsset&apos;, () =&gt; {
+    /** @test {Assets.deleteAsset} */
     it(&apos;deletes an asset&apos;, () =&gt; (
       muxVideo.assets.create({ input: TEST_VIDEO })
         .then((res) =&gt; {
@@ -119,6 +125,7 @@ describe(&apos;Integration::Assets&apos;, () =&gt; {
         })
     ));
 
+    /** @test {Assets.deleteAsset} */
     it(&apos;fails to delete an asset when not given an incorrect assetId&apos;, () =&gt; (
       muxVideo.assets.deleteAsset(&apos;somefakeid&apos;)
         .then((res) =&gt; {
@@ -131,6 +138,7 @@ describe(&apos;Integration::Assets&apos;, () =&gt; {
     ));
 
     // @TODO: this could potentially be a unit test with mocked api calls
+    /** @test {Assets.deleteAsset} */
     it(&apos;fails to delete an asset when not given an assetId&apos;, () =&gt; (
       muxVideo.assets.deleteAsset()
         .then((res) =&gt; {
@@ -143,7 +151,9 @@ describe(&apos;Integration::Assets&apos;, () =&gt; {
     ));
   });
 
-  describe(&apos;assets.get&apos;, () =&gt; {
+  /** @test {Assets.get} */
+  describe(&apos;Assets.get&apos;, () =&gt; {
+    /** @test {Assets.get} */
     it(&apos;gets an asset&apos;, () =&gt; (
       muxVideo.assets.get(testAsset.data.id)
         .then((res) =&gt; {
@@ -156,6 +166,7 @@ describe(&apos;Integration::Assets&apos;, () =&gt; {
         })
     ));
 
+    /** @test {Assets.get} */
     it(&apos;fails to get an asset when not given an incorrect assetId&apos;, () =&gt; (
       muxVideo.assets.get(&apos;somefakeid&apos;)
         .then((res) =&gt; {
@@ -168,6 +179,7 @@ describe(&apos;Integration::Assets&apos;, () =&gt; {
     ));
 
     // @TODO: this could potentially be a unit test with mocked api calls
+    /** @test {Assets.get} */
     it(&apos;fails to get an asset when not given an assetId&apos;, () =&gt; (
       muxVideo.assets.get()
         .then((res) =&gt; {
@@ -180,7 +192,9 @@ describe(&apos;Integration::Assets&apos;, () =&gt; {
     ));
   });
 
-  describe(&apos;assets.inputInfo&apos;, () =&gt; {
+  /** @test {Assets.inputInfo} */
+  describe(&apos;Assets.inputInfo&apos;, () =&gt; {
+    /** @test {Assets.inputInfo} */
     it(&apos;gets input-info for an asset&apos;, () =&gt; (
       muxVideo.assets.inputInfo(testAsset.data.id)
         .then((res) =&gt; {
@@ -193,6 +207,7 @@ describe(&apos;Integration::Assets&apos;, () =&gt; {
         })
     ));
 
+    /** @test {Assets.inputInfo} */
     it(&apos;fails to get an asset when not given an incorrect assetId&apos;, () =&gt; (
       muxVideo.assets.inputInfo(&apos;somefakeid&apos;)
         .then((res) =&gt; {
@@ -205,6 +220,7 @@ describe(&apos;Integration::Assets&apos;, () =&gt; {
     ));
 
     // @TODO: this could potentially be a unit test with mocked api calls
+    /** @test {Assets.inputInfo} */
     it(&apos;fails to get an asset when not given an assetId&apos;, () =&gt; (
       muxVideo.assets.inputInfo()
         .then((res) =&gt; {
@@ -217,7 +233,9 @@ describe(&apos;Integration::Assets&apos;, () =&gt; {
     ));
   });
 
-  describe(&apos;assets.list&apos;, () =&gt; {
+  /** @test {Assets.list} */
+  describe(&apos;Assets.list&apos;, () =&gt; {
+    /** @test {Assets.list} */
     it(&apos;lists all assets for an environment&apos;, () =&gt; (
       muxVideo.assets.list()
         .then((res) =&gt; {

@@ -45,6 +45,7 @@ const Mux = require(&apos;../../../src/mux&apos;);
 
 const TEST_VIDEO = &apos;https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4&apos;;
 
+/** @test {PlaybackIds} */
 describe(&apos;Integration::PlaybackIds&apos;, () =&gt; {
   const muxVideo = new Mux.Video(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);
   let testAsset;
@@ -74,7 +75,8 @@ describe(&apos;Integration::PlaybackIds&apos;, () =&gt; {
   //     })
   // ));
 
-  describe(&apos;playbackIds.create&apos;, () =&gt; {
+  /** @test {PlaybackIds.create} */
+  describe(&apos;PlaybackIds.create&apos;, () =&gt; {
     it(&apos;creates playbackIds for an asset&apos;, () =&gt; (
       muxVideo.playbackIds.create(testAsset.data.id)
         .then((res) =&gt; {
@@ -88,6 +90,7 @@ describe(&apos;Integration::PlaybackIds&apos;, () =&gt; {
     ));
   });
 
+  /** @test {PlaybackIds.get} */
   describe(&apos;playbackIds.get&apos;, () =&gt; {
     it(&apos;gets playbackIds for an asset&apos;, () =&gt; (
       muxVideo.playbackIds.create(testAsset.data.id)
@@ -120,6 +123,7 @@ describe(&apos;Integration::PlaybackIds&apos;, () =&gt; {
     ));
   });
 
+  /** @test {PlaybackIds.deletePlaybackId} */
   describe(&apos;playbackIds.deletePlaybackId&apos;, () =&gt; {
     it(&apos;deletes playbackIds for an asset&apos;, () =&gt; (
       muxVideo.playbackIds.create(testAsset.data.id)
