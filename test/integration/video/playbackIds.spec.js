@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { expect } = require('chai');
 const should = require('chai').should();
-const Mux = require('../../../lib/mux');
+const Mux = require('../../../src/mux');
 
 const TEST_VIDEO = 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';
 

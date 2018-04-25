@@ -13,4 +13,4 @@ const Mux = {
   Video: video,
 };
 
-module.exports = Mux;
+export default Mux;

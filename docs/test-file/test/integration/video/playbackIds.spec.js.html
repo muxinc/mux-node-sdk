@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">test/integration/video/playbackIds.spec.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Mux">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video">video</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/video.js~Video.html">Video</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/Assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/video/resources/PlaybackIds.js~PlaybackIds.html">PlaybackIds</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/integration/video/playbackIds.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">require(&apos;dotenv&apos;).config();
+const { expect } = require(&apos;chai&apos;);
+const should = require(&apos;chai&apos;).should();
+const Mux = require(&apos;../../../src/mux&apos;);
+
+const TEST_VIDEO = &apos;https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4&apos;;
+
+describe(&apos;Integration::PlaybackIds&apos;, () =&gt; {
+  const muxVideo = new Mux.Video(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);
+  let testAsset;
+
+  before(() =&gt; (
+    muxVideo.assets.create({ input: TEST_VIDEO })
+      .then((res) =&gt; {
+        const { data } = res;
+        should.exist(data);
+        expect(res.status).to.equal(201);
+        testAsset = data;
+      })
+      .catch((err) =&gt; {
+        expect(err).to.equal(undefined);
+      })
+  ));
+
+  // after(() =&gt; (
+  //   muxVideo.assets.deleteAsset(testAsset.data.id)
+  //     .then((res) =&gt; {
+  //       const { data } = res;
+  //       should.exist(data);
+  //       expect(res.status).to.equal(204);
+  //     })
+  //     .catch((err) =&gt; {
+  //       expect(err).to.equal(undefined);
+  //     })
+  // ));
+
+  describe(&apos;playbackIds.create&apos;, () =&gt; {
+    it(&apos;creates playbackIds for an asset&apos;, () =&gt; (
+      muxVideo.playbackIds.create(testAsset.data.id)
+        .then((res) =&gt; {
+          const { data } = res;
+          should.exist(data);
+          expect(res.status).to.equal(201);
+        })
+        .catch((err) =&gt; {
+          expect(err).to.equal(undefined);
+        })
+    ));
+  });
+
+  describe(&apos;playbackIds.get&apos;, () =&gt; {
+    it(&apos;gets playbackIds for an asset&apos;, () =&gt; (
+      muxVideo.playbackIds.create(testAsset.data.id)
+        .then((res) =&gt; {
+          const { data } = res;
+          should.exist(data);
+          expect(res.status).to.equal(201);
+          return muxVideo.playbackIds.get(testAsset.data.id, data.data.id);
+        })
+        .then((res) =&gt; {
+          const { data } = res;
+          should.exist(data);
+          expect(res.status).to.equal(200);
+        })
+        .catch((err) =&gt; {
+          expect(err).to.equal(undefined);
+        })
+    ));
+
+    // @TODO: this could potentially be a unit test with mocked api calls
+    it(&apos;fails to get playbackIds for an asset when not given an asset ID&apos;, () =&gt; (
+      muxVideo.playbackIds.get()
+        .then((res) =&gt; {
+          const { data } = res;
+          should.not.exist(data);
+        })
+        .catch((err) =&gt; {
+          should.exist(err);
+        })
+    ));
+  });
+
+  describe(&apos;playbackIds.deletePlaybackId&apos;, () =&gt; {
+    it(&apos;deletes playbackIds for an asset&apos;, () =&gt; (
+      muxVideo.playbackIds.create(testAsset.data.id)
+        .then((res) =&gt; {
+          const { data } = res;
+          should.exist(data);
+          expect(res.status).to.equal(201);
+          return muxVideo.playbackIds.deletePlaybackId(testAsset.data.id, data.data.id);
+        })
+        .then((res) =&gt; {
+          const { data } = res;
+          should.exist(data);
+          expect(res.status).to.equal(204);
+        })
+        .catch((err) =&gt; {
+          expect(err).to.equal(undefined);
+        })
+    ));
+
+    // @TODO: this could potentially be a unit test with mocked api calls
+    it(&apos;fails to delete a playbackId for an asset when not given an asset ID or a playback Id&apos;, () =&gt; (
+      muxVideo.playbackIds.deletePlaybackId()
+        .then((res) =&gt; {
+          const { data } = res;
+          should.not.exist(data);
+        })
+        .catch((err) =&gt; {
+          should.exist(err);
+        })
+    ));
+
+    it(&apos;fails to get playbackIds for an asset when not given a playback ID&apos;, () =&gt; (
+      muxVideo.playbackIds.deletePlaybackId(testAsset.data.id)
+        .then((res) =&gt; {
+          const { data } = res;
+          should.not.exist(data);
+        })
+        .catch((err) =&gt; {
+          should.exist(err);
+        })
+    ));
+  });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
