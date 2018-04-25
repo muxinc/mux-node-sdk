@@ -19,5 +19,5 @@ const MuxVideo = new Mux.video(${MUX-API-KEY}, ${MUX-SECRET});
 ```
 ```
 // Create an asset
- MuxVideo.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' });
+MuxVideo.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' });
 ```
