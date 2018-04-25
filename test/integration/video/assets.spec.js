@@ -22,17 +22,17 @@ describe('Integration::Assets', () => {
       })
   ));
 
-  after(() => (
-    muxVideo.assets.deleteAsset(testAsset.data.id)
-      .then((res) => {
-        const { data } = res;
-        should.exist(data);
-        expect(res.status).to.equal(204);
-      })
-      .catch((err) => {
-        expect(err).to.equal(undefined);
-      })
-  ));
+  // after(() => (
+  //   muxVideo.assets.deleteAsset(testAsset.data.id)
+  //     .then((res) => {
+  //       const { data } = res;
+  //       should.exist(data);
+  //       expect(res.status).to.equal(204);
+  //     })
+  //     .catch((err) => {
+  //       expect(err).to.equal(undefined);
+  //     })
+  // ));
 
   describe('assets.create', () => {
     it('creates an asset when given an input', () => (
@@ -61,7 +61,7 @@ describe('Integration::Assets', () => {
     ));
   });
 
-  describe('assets.deleteAsset', () => {
+  describe.skip('assets.deleteAsset', () => {
     it('deletes an asset', () => (
       muxVideo.assets.create({ input: TEST_VIDEO })
         .then((res) => {
