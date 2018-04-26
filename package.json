@@ -12,9 +12,9 @@
   "author": "Mux <help@mux.com> (https://mux.com/)",
   "main": "lib/mux.js",
   "scripts": {
-    "test": "mocha ./test/**/*.spec.js",
-    "test:unit": "mocha ./test/**/**/**/*.spec.js -g ^Unit::",
-    "test:int": "mocha ./test/**/**/*.spec.js -g ^Integration::"
+    "test": "mocha --recursive ./test/ -g ^Unit::",
+    "test:unit": "mocha --recursive ./test/ -g ^Unit::",
+    "test:int": "mocha --recursive ./test/ -g ^Integration::"
   },
   "dependencies": {
     "axios": "^0.18.0"

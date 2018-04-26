@@ -42,7 +42,7 @@ describe('Unit::PlaybackIds', () => {
     });
 
     /** @test {PlaybackIds.create} */
-    it('creates a playbackId', () => {
+    it('makes a POST request to create a playbackId', () => {
       testPlaybackIds.create('assetid', { policy: 'public' });
       expect(api.post.calledOnce);
     });
