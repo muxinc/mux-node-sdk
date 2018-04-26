@@ -9,7 +9,7 @@ const PlaybackIds = require('./resources/PlaybackIds');
 /**
  *
  */
-export default class Video {
+class Video {
   /**
    *
    * @param apiKey
@@ -24,12 +24,9 @@ export default class Video {
       throw new Error('API secret key must be provided');
     }
 
-    const config = {
-      apiKey,
-      secret,
-    };
-
-    this.assets = new Assets(config);
-    this.playbackIds = new PlaybackIds(config);
+    this.assets = new Assets(apiKey, secret);
+    this.playbackIds = new PlaybackIds(apiKey, secret);
   }
 }
+
+module.exports = Video;

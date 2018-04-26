@@ -77,6 +77,7 @@ describe(&apos;Integration::PlaybackIds&apos;, () =&gt; {
 
   /** @test {PlaybackIds.create} */
   describe(&apos;PlaybackIds.create&apos;, () =&gt; {
+    /** @test {PlaybackIds.create} */
     it(&apos;creates playbackIds for an asset&apos;, () =&gt; (
       muxVideo.playbackIds.create(testAsset.data.id)
         .then((res) =&gt; {
@@ -92,6 +93,7 @@ describe(&apos;Integration::PlaybackIds&apos;, () =&gt; {
 
   /** @test {PlaybackIds.get} */
   describe(&apos;playbackIds.get&apos;, () =&gt; {
+    /** @test {PlaybackIds.get} */
     it(&apos;gets playbackIds for an asset&apos;, () =&gt; (
       muxVideo.playbackIds.create(testAsset.data.id)
         .then((res) =&gt; {
@@ -111,6 +113,7 @@ describe(&apos;Integration::PlaybackIds&apos;, () =&gt; {
     ));
 
     // @TODO: this could potentially be a unit test with mocked api calls
+    /** @test {PlaybackIds.get} */
     it(&apos;fails to get playbackIds for an asset when not given an asset ID&apos;, () =&gt; (
       muxVideo.playbackIds.get()
         .then((res) =&gt; {
@@ -125,6 +128,7 @@ describe(&apos;Integration::PlaybackIds&apos;, () =&gt; {
 
   /** @test {PlaybackIds.deletePlaybackId} */
   describe(&apos;playbackIds.deletePlaybackId&apos;, () =&gt; {
+    /** @test {PlaybackIds.deletePlaybackId} */
     it(&apos;deletes playbackIds for an asset&apos;, () =&gt; (
       muxVideo.playbackIds.create(testAsset.data.id)
         .then((res) =&gt; {
@@ -144,6 +148,7 @@ describe(&apos;Integration::PlaybackIds&apos;, () =&gt; {
     ));
 
     // @TODO: this could potentially be a unit test with mocked api calls
+    /** @test {PlaybackIds.deletePlaybackId} */
     it(&apos;fails to delete a playbackId for an asset when not given an asset ID or a playback Id&apos;, () =&gt; (
       muxVideo.playbackIds.deletePlaybackId()
         .then((res) =&gt; {
@@ -155,6 +160,7 @@ describe(&apos;Integration::PlaybackIds&apos;, () =&gt; {
         })
     ));
 
+    /** @test {PlaybackIds.deletePlaybackId} */
     it(&apos;fails to get playbackIds for an asset when not given a playback ID&apos;, () =&gt; (
       muxVideo.playbackIds.deletePlaybackId(testAsset.data.id)
         .then((res) =&gt; {

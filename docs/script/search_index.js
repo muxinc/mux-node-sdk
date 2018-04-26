@@ -138,51 +138,225 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber40",
+    "playbackids.create src/video/resources/playbackids.js~playbackids#create,playbackids.create",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber41",
     "Integration::PlaybackIds PlaybackIds.create creates playbackIds for an asset",
     "test"
   ],
   [
     "playbackids.deleteplaybackid src/video/resources/playbackids.js~playbackids#deleteplaybackid,playbackids.deleteplaybackid",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber87",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber90",
     "Integration::PlaybackIds playbackIds.deletePlaybackId",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber88",
+    "playbackids.deleteplaybackid src/video/resources/playbackids.js~playbackids#deleteplaybackid,playbackids.deleteplaybackid",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber92",
     "Integration::PlaybackIds playbackIds.deletePlaybackId deletes playbackIds for an asset",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber107",
+    "playbackids.deleteplaybackid src/video/resources/playbackids.js~playbackids#deleteplaybackid,playbackids.deleteplaybackid",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber112",
     "Integration::PlaybackIds playbackIds.deletePlaybackId fails to delete a playbackId for an asset when not given an asset ID or a playback Id",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber118",
+    "playbackids.deleteplaybackid src/video/resources/playbackids.js~playbackids#deleteplaybackid,playbackids.deleteplaybackid",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber124",
     "Integration::PlaybackIds playbackIds.deletePlaybackId fails to get playbackIds for an asset when not given a playback ID",
     "test"
   ],
   [
     "playbackids.get src/video/resources/playbackids.js~playbackids#get,playbackids.get",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber54",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber55",
     "Integration::PlaybackIds playbackIds.get",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber74",
+    "playbackids.get src/video/resources/playbackids.js~playbackids#get,playbackids.get",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber77",
     "Integration::PlaybackIds playbackIds.get fails to get playbackIds for an asset when not given an asset ID",
     "test"
   ],
   [
-    "",
-    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber55",
+    "playbackids.get src/video/resources/playbackids.js~playbackids#get,playbackids.get",
+    "test-file/test/integration/video/playbackIds.spec.js.html#lineNumber57",
     "Integration::PlaybackIds playbackIds.get gets playbackIds for an asset",
+    "test"
+  ],
+  [
+    "assets src/video/resources/assets.js~assets,assets",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber9",
+    "Unit::Assets",
+    "test"
+  ],
+  [
+    "assets src/video/resources/assets.js~assets,assets",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber17",
+    "Unit::Assets Assets",
+    "test"
+  ],
+  [
+    "assets src/video/resources/assets.js~assets,assets",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber25",
+    "Unit::Assets Assets creates a new Assets instance",
+    "test"
+  ],
+  [
+    "assets src/video/resources/assets.js~assets,assets",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber22",
+    "Unit::Assets Assets throws an error if a secret key is not given",
+    "test"
+  ],
+  [
+    "assets src/video/resources/assets.js~assets,assets",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber19",
+    "Unit::Assets Assets throws an error if an api key is not given",
+    "test"
+  ],
+  [
+    "assets.create src/video/resources/assets.js~assets#create,assets.create",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber29",
+    "Unit::Assets Assets.create",
+    "test"
+  ],
+  [
+    "assets.create src/video/resources/assets.js~assets#create,assets.create",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber31",
+    "Unit::Assets Assets.create creates an asset",
+    "test"
+  ],
+  [
+    "assets.create src/video/resources/assets.js~assets#create,assets.create",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber34",
+    "Unit::Assets Assets.create throws an error if no asset params are given",
+    "test"
+  ],
+  [
+    "assets.deleteasset src/video/resources/assets.js~assets#deleteasset,assets.deleteasset",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber47",
+    "Unit::Assets Assets.deleteAsset",
+    "test"
+  ],
+  [
+    "assets.deleteasset src/video/resources/assets.js~assets#deleteasset,assets.deleteasset",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber49",
+    "Unit::Assets Assets.deleteAsset deletes an asset",
+    "test"
+  ],
+  [
+    "assets.deleteasset src/video/resources/assets.js~assets#deleteasset,assets.deleteasset",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber52",
+    "Unit::Assets Assets.deleteAsset throws an error when an asset id is not given",
+    "test"
+  ],
+  [
+    "assets.get src/video/resources/assets.js~assets#get,assets.get",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber38",
+    "Unit::Assets Assets.get",
+    "test"
+  ],
+  [
+    "assets.get src/video/resources/assets.js~assets#get,assets.get",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber40",
+    "Unit::Assets Assets.get gets an asset",
+    "test"
+  ],
+  [
+    "assets.get src/video/resources/assets.js~assets#get,assets.get",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber43",
+    "Unit::Assets Assets.get throws an error when an asset id is not given",
+    "test"
+  ],
+  [
+    "assets.inputinfo src/video/resources/assets.js~assets#inputinfo,assets.inputinfo",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber56",
+    "Unit::Assets Assets.inputInfo",
+    "test"
+  ],
+  [
+    "assets.inputinfo src/video/resources/assets.js~assets#inputinfo,assets.inputinfo",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber58",
+    "Unit::Assets Assets.inputInfo gets input info for an asset",
+    "test"
+  ],
+  [
+    "assets.inputinfo src/video/resources/assets.js~assets#inputinfo,assets.inputinfo",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber61",
+    "Unit::Assets Assets.inputInfo throws an error when an asset id is not given",
+    "test"
+  ],
+  [
+    "assets.list src/video/resources/assets.js~assets#list,assets.list",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber65",
+    "Unit::Assets Assets.list",
+    "test"
+  ],
+  [
+    "assets.list src/video/resources/assets.js~assets#list,assets.list",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber67",
+    "Unit::Assets Assets.list lists all assets for an environment",
+    "test"
+  ],
+  [
+    "playbackids src/video/resources/playbackids.js~playbackids,playbackids",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber9",
+    "Unit::PlaybackIds",
+    "test"
+  ],
+  [
+    "playbackids src/video/resources/playbackids.js~playbackids,playbackids",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber17",
+    "Unit::PlaybackIds PlaybackIds",
+    "test"
+  ],
+  [
+    "playbackids src/video/resources/playbackids.js~playbackids,playbackids",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber25",
+    "Unit::PlaybackIds PlaybackIds creates a new PlaybackIds instance",
+    "test"
+  ],
+  [
+    "playbackids src/video/resources/playbackids.js~playbackids,playbackids",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber22",
+    "Unit::PlaybackIds PlaybackIds throws an error if a secret key is not given",
+    "test"
+  ],
+  [
+    "playbackids src/video/resources/playbackids.js~playbackids,playbackids",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber19",
+    "Unit::PlaybackIds PlaybackIds throws an error if an api key is not given",
+    "test"
+  ],
+  [
+    "playbackids.create src/video/resources/playbackids.js~playbackids#create,playbackids.create",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber29",
+    "Unit::PlaybackIds PlaybackIds.create",
+    "test"
+  ],
+  [
+    "playbackids.create src/video/resources/playbackids.js~playbackids#create,playbackids.create",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber32",
+    "Unit::PlaybackIds PlaybackIds.create creates a playbackId",
+    "test"
+  ],
+  [
+    "playbackids.create src/video/resources/playbackids.js~playbackids#create,playbackids.create",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber35",
+    "Unit::PlaybackIds PlaybackIds.create throws an error if a playbackId is not given",
+    "test"
+  ],
+  [
+    "playbackids.deleteplaybackids playbackids.deleteplaybackids,playbackids.deleteplaybackids",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber39",
+    "Unit::PlaybackIds PlaybackIds.deletePlaybackIds",
+    "test"
+  ],
+  [
+    "playbackids.get src/video/resources/playbackids.js~playbackids#get,playbackids.get",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber42",
+    "Unit::PlaybackIds PlaybackIds.get",
     "test"
   ],
   [
@@ -600,15 +774,27 @@ window.esdocSearchIndex = [
     "testFile"
   ],
   [
-    "test/unit/video/assets.spec.js",
-    "test-file/test/unit/video/assets.spec.js.html",
-    "test/unit/video/assets.spec.js",
+    "test/unit/mux.spec.js",
+    "test-file/test/unit/mux.spec.js.html",
+    "test/unit/mux.spec.js",
     "testFile"
   ],
   [
-    "test/unit/video/playbackids.spec.js",
-    "test-file/test/unit/video/playbackIds.spec.js.html",
-    "test/unit/video/playbackIds.spec.js",
+    "test/unit/video/resources/assets.spec.js",
+    "test-file/test/unit/video/resources/assets.spec.js.html",
+    "test/unit/video/resources/assets.spec.js",
+    "testFile"
+  ],
+  [
+    "test/unit/video/resources/playbackids.spec.js",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html",
+    "test/unit/video/resources/playbackIds.spec.js",
+    "testFile"
+  ],
+  [
+    "test/unit/video/video.spec.js",
+    "test-file/test/unit/video/video.spec.js.html",
+    "test/unit/video/video.spec.js",
     "testFile"
   ]
 ]

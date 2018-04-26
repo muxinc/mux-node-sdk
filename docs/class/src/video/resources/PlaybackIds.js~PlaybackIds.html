@@ -84,6 +84,11 @@
     <ul>
       
     <li data-ice="test"><span><a href="test-file/test/integration/video/playbackIds.spec.js.html#lineNumber9">Integration::PlaybackIds</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber9">Unit::PlaybackIds</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber17">Unit::PlaybackIds PlaybackIds</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber19">Unit::PlaybackIds PlaybackIds throws an error if an api key is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber22">Unit::PlaybackIds PlaybackIds throws an error if a secret key is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber25">Unit::PlaybackIds PlaybackIds creates a new PlaybackIds instance</a></span></li>
 </ul>
   </div>
 
@@ -181,7 +186,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/video/resources/PlaybackIds.js~PlaybackIds.html#instance-method-create">create</a></span></span><span class="code" data-ice="signature">(assetId: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/video/resources/PlaybackIds.js~PlaybackIds.html#instance-method-create">create</a></span></span><span class="code" data-ice="signature">(assetId: <span>*</span>, params: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -378,11 +383,11 @@
     
     
     
-    <span class="code" data-ice="name">create</span><span class="code" data-ice="signature">(assetId: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">create</span><span class="code" data-ice="signature">(assetId: <span>*</span>, params: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/video/resources/PlaybackIds.js.html#lineNumber43">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/video/resources/PlaybackIds.js.html#lineNumber44">source</a></span></span>
     </span>
   </h3>
 
@@ -403,6 +408,12 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">assetId</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">params</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
@@ -441,6 +452,10 @@
     <ul>
       
     <li data-ice="test"><span><a href="test-file/test/integration/video/playbackIds.spec.js.html#lineNumber39">Integration::PlaybackIds PlaybackIds.create</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber29">Unit::PlaybackIds PlaybackIds.create</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/playbackIds.spec.js.html#lineNumber41">Integration::PlaybackIds PlaybackIds.create creates playbackIds for an asset</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber32">Unit::PlaybackIds PlaybackIds.create creates a playbackId</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber35">Unit::PlaybackIds PlaybackIds.create throws an error if a playbackId is not given</a></span></li>
 </ul>
   </div>
 
@@ -459,7 +474,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/video/resources/PlaybackIds.js.html#lineNumber73">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/video/resources/PlaybackIds.js.html#lineNumber78">source</a></span></span>
     </span>
   </h3>
 
@@ -523,7 +538,10 @@
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/integration/video/playbackIds.spec.js.html#lineNumber87">Integration::PlaybackIds playbackIds.deletePlaybackId</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/integration/video/playbackIds.spec.js.html#lineNumber90">Integration::PlaybackIds playbackIds.deletePlaybackId</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/playbackIds.spec.js.html#lineNumber92">Integration::PlaybackIds playbackIds.deletePlaybackId deletes playbackIds for an asset</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/playbackIds.spec.js.html#lineNumber112">Integration::PlaybackIds playbackIds.deletePlaybackId fails to delete a playbackId for an asset when not given an asset ID or a playback Id</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/playbackIds.spec.js.html#lineNumber124">Integration::PlaybackIds playbackIds.deletePlaybackId fails to get playbackIds for an asset when not given a playback ID</a></span></li>
 </ul>
   </div>
 
@@ -542,7 +560,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/video/resources/PlaybackIds.js.html#lineNumber56">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/video/resources/PlaybackIds.js.html#lineNumber61">source</a></span></span>
     </span>
   </h3>
 
@@ -606,7 +624,10 @@
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/integration/video/playbackIds.spec.js.html#lineNumber54">Integration::PlaybackIds playbackIds.get</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/integration/video/playbackIds.spec.js.html#lineNumber55">Integration::PlaybackIds playbackIds.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber42">Unit::PlaybackIds PlaybackIds.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/playbackIds.spec.js.html#lineNumber57">Integration::PlaybackIds playbackIds.get gets playbackIds for an asset</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/playbackIds.spec.js.html#lineNumber77">Integration::PlaybackIds playbackIds.get fails to get playbackIds for an asset when not given an asset ID</a></span></li>
 </ul>
   </div>
 

@@ -3,7 +3,7 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-const { post, get, del } = require('../../utils/api');
+const api = require('../../utils/api');
 
 const PATH = '/video/v1/assets';
 const buildBasePath = assetId => `${PATH}/${assetId}`;
@@ -11,24 +11,25 @@ const buildBasePath = assetId => `${PATH}/${assetId}`;
 /**
  * Assets Class
  */
-export default class Assets {
+class Assets {
   /**
    *
-   * @param config
+   * @param apiKey
+   * @param secret
    */
-  constructor(config) {
-    if (typeof config.apiKey === 'undefined') {
+  constructor(apiKey, secret) {
+    if (typeof apiKey === 'undefined') {
       throw new Error('API key must be provided.');
     }
 
-    if (typeof config.secret === 'undefined') {
+    if (typeof secret === 'undefined') {
       throw new Error('API secret key must be provided');
     }
 
     this.requestOptions = {
       auth: {
-        username: config.apiKey,
-        password: config.secret,
+        username: apiKey,
+        password: secret,
       },
     };
   }
@@ -42,7 +43,7 @@ export default class Assets {
     if (!params) {
       return Promise.reject(new Error('Params are required for creating an asset'));
     }
-    return post(PATH, params, this.requestOptions);
+    return api.post(PATH, params, this.requestOptions);
   }
 
   /**
@@ -54,7 +55,7 @@ export default class Assets {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required to delete an asset'));
     }
-    return del(buildBasePath(assetId), this.requestOptions);
+    return api.del(buildBasePath(assetId), this.requestOptions);
   }
 
   /**
@@ -66,7 +67,7 @@ export default class Assets {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required to get an asset'));
     }
-    return get(buildBasePath(assetId), this.requestOptions);
+    return api.get(buildBasePath(assetId), this.requestOptions);
   }
 
   /**
@@ -78,7 +79,7 @@ export default class Assets {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required to get input-info'));
     }
-    return get(`${buildBasePath(assetId)}/input-info`, this.requestOptions);
+    return api.get(`${buildBasePath(assetId)}/input-info`, this.requestOptions);
   }
 
   /**
@@ -86,6 +87,8 @@ export default class Assets {
    * @returns {*}
    */
   list() {
-    return get(PATH, this.requestOptions);
+    return api.get(PATH, this.requestOptions);
   }
 }
+
+module.exports = Assets;

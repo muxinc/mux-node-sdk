@@ -49,20 +49,6 @@ describe('Integration::Assets', () => {
           expect(err).to.equal(undefined);
         })
     ));
-
-    // @TODO: this could potentially be a unit test with mocked api calls
-    /** @test {Assets.create} */
-    it('fails to create an asset when not given params', () => (
-      muxVideo.assets.create()
-        .then((res) => {
-          const { data } = res;
-          should.not.exist(data);
-        })
-        .catch((err) => {
-          should.exist(err);
-          // @TODO: test to make sure api call was not made.
-        })
-    ));
   });
 
   /** @test {Assets.deleteAsset} */
@@ -88,19 +74,6 @@ describe('Integration::Assets', () => {
     /** @test {Assets.deleteAsset} */
     it('fails to delete an asset when not given an incorrect assetId', () => (
       muxVideo.assets.deleteAsset('somefakeid')
-        .then((res) => {
-          const { data } = res;
-          should.not.exist(data);
-        })
-        .catch((err) => {
-          should.exist(err);
-        })
-    ));
-
-    // @TODO: this could potentially be a unit test with mocked api calls
-    /** @test {Assets.deleteAsset} */
-    it('fails to delete an asset when not given an assetId', () => (
-      muxVideo.assets.deleteAsset()
         .then((res) => {
           const { data } = res;
           should.not.exist(data);
@@ -137,19 +110,6 @@ describe('Integration::Assets', () => {
           should.exist(err);
         })
     ));
-
-    // @TODO: this could potentially be a unit test with mocked api calls
-    /** @test {Assets.get} */
-    it('fails to get an asset when not given an assetId', () => (
-      muxVideo.assets.get()
-        .then((res) => {
-          const { data } = res;
-          should.not.exist(data);
-        })
-        .catch((err) => {
-          should.exist(err);
-        })
-    ));
   });
 
   /** @test {Assets.inputInfo} */
@@ -170,19 +130,6 @@ describe('Integration::Assets', () => {
     /** @test {Assets.inputInfo} */
     it('fails to get an asset when not given an incorrect assetId', () => (
       muxVideo.assets.inputInfo('somefakeid')
-        .then((res) => {
-          const { data } = res;
-          should.not.exist(data);
-        })
-        .catch((err) => {
-          should.exist(err);
-        })
-    ));
-
-    // @TODO: this could potentially be a unit test with mocked api calls
-    /** @test {Assets.inputInfo} */
-    it('fails to get an asset when not given an assetId', () => (
-      muxVideo.assets.inputInfo()
         .then((res) => {
           const { data } = res;
           should.not.exist(data);

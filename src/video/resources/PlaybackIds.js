@@ -13,24 +13,25 @@ const buildBasePath = assetId => `/video/v1/assets/${assetId}/playback-ids`;
  * const PlaybackIds = new PlaybackIds(config);
  * @interface
  */
-export default class PlaybackIds {
+class PlaybackIds {
   /**
-   * this is constructor description.
-   * @param {Object} config.
+   *
+   * @param apiKey
+   * @param secret
    */
-  constructor(config) {
-    if (typeof config.apiKey === 'undefined') {
+  constructor(apiKey, secret) {
+    if (typeof apiKey === 'undefined') {
       throw new Error('API key must be provided.');
     }
 
-    if (typeof config.secret === 'undefined') {
+    if (typeof secret === 'undefined') {
       throw new Error('API secret key must be provided');
     }
 
     this.requestOptions = {
       auth: {
-        username: config.apiKey,
-        password: config.secret,
+        username: apiKey,
+        password: secret,
       },
     };
   }
@@ -87,3 +88,5 @@ export default class PlaybackIds {
   }
 }
 
+
+module.exports = PlaybackIds;

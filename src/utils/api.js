@@ -62,7 +62,7 @@ const put = (url, body, options) => {
   return makeRequest(url, requestOptions);
 };
 
-export {
+module.exports = {
   get,
   post,
   put,
