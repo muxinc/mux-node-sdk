@@ -38,11 +38,16 @@ export default class PlaybackIds {
   /**
    *
    * @param assetId
+   * @param params
    * @returns {*}
    */
-  create(assetId) {
+  create(assetId, params) {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required to create a playbackId'));
+    }
+
+    if (!params) {
+      return Promise.reject(new Error('PlaybackId params are required'));
     }
     return post(buildBasePath(assetId), { policy: 'public' }, this.requestOptions);
   }

@@ -13,10 +13,26 @@ describe('Unit::PlaybackIds', () => {
 
   after(() => {});
 
+  /** @test {PlaybackIds} */
+  describe('PlaybackIds', () => {
+    /** @test {PlaybackIds} */
+    it('throws an error if an api key is not given', () => {});
+
+    /** @test {PlaybackIds} */
+    it('throws an error if a secret key is not given', () => {});
+
+    /** @test {PlaybackIds} */
+    it('creates a new PlaybackIds instance', () => {});
+  });
+
   /** @test {PlaybackIds.create} */
   describe('PlaybackIds.create', () => {
 
-    it('', () => {});
+    /** @test {PlaybackIds.create} */
+    it('creates a playbackId', () => {});
+
+    /** @test {PlaybackIds.create} */
+    it('throws an error if a playbackId is not given', () => {});
   });
 
   /** @test {PlaybackIds.deletePlaybackIds} */
