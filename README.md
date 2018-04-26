@@ -3,7 +3,7 @@
 The official NodeJS Mux SDK wrapper.
 
 This library is intended to provide convenience methods for the Mux API for applications written in server-side Javascript.
-__Please note__ that this package uses Mux access tokens and secret keys and intended to be used in server-side code only.
+__Please note__ that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.
 
 ## Documentation
 
@@ -22,7 +22,7 @@ yarn add @mux/mux-node
 To start, you will need a Mux access token and secret for your Mux environment. For more information on where to get
 an access token, visit the Mux Getting Started Guide https://docs.mux.com/docs
 
-Require the 'mux-node' npm module and create a new video instance.
+Require the `mux-node` npm module and create a new video instance.
 ```
 const Mux = require('mux-node');
 const MuxVideo = new Mux.video(accessToken, secret);
