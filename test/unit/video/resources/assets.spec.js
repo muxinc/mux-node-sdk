@@ -1,10 +1,6 @@
 require('dotenv').config();
-
-// Test frameworks
-const chai = require('chai');
-const expect = chai.expect;
+const expect = require('chai').expect;
 const sinon = require('sinon');
-
 const Assets = require('../../../../src/video/resources/Assets');
 const api = require('../../../../src/utils/api');
 
