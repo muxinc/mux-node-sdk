@@ -16,9 +16,6 @@ const buildBasePath = assetId => `${PATH}/${assetId}`;
  *
  * // Create an asset
  * MuxVideo.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
- *
- * // Create a playback Id for an asset
- * MuxVideo.playbackIds.create('assetId', { policy: 'public' });
  */
 class Assets {
   /**
@@ -62,6 +59,8 @@ class Assets {
    *
    * // Create an asset
    * MuxVideo.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
+   *
+   * @see https://docs.mux.com/v1/reference#create-an-asset
    */
   create(params) {
     if (!params) {
@@ -80,6 +79,8 @@ class Assets {
    *
    * // Delete an asset
    * MuxVideo.assets.deleteAsset(assetId);
+   *
+   * @see https://docs.mux.com/v1/reference#delete-an-asset
    */
   deleteAsset(assetId) {
     if (!assetId) {
@@ -98,6 +99,8 @@ class Assets {
    *
    * // Get an asset
    * MuxVideo.assets.get(assetId);
+   *
+   * @see https://docs.mux.com/v1/reference#retrieve-an-asset
    */
   get(assetId) {
     if (!assetId) {
@@ -116,6 +119,8 @@ class Assets {
    *
    * // Get input info for an asset
    * MuxVideo.assets.inputInfo(assetId);
+   *
+   * @see https://docs.mux.com/v1/reference#retrieve-asset-input-info
    */
   inputInfo(assetId) {
     if (!assetId) {
@@ -133,6 +138,8 @@ class Assets {
    *
    * // List all assets for a Mux Environment
    * MuxVideo.assets.list();
+   *
+   * @see https://docs.mux.com/v1/reference#list-assets
    */
   list() {
     return api.get(PATH, this.requestOptions);
