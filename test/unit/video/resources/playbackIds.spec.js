@@ -42,7 +42,7 @@ describe('Unit::PlaybackIds', () => {
     });
 
     /** @test {PlaybackIds.create} */
-    it('makes a POST request to create a playbackId', () => {
+    it('makes a POST request to create a playback ID', () => {
       testPlaybackIds.create('assetid', { policy: 'public' });
       expect(api.post.calledOnce);
     });
@@ -55,7 +55,7 @@ describe('Unit::PlaybackIds', () => {
         })
         .catch((err) => {
           expect(err).to.exist;
-          expect(err.message).to.equal('An asset ID is required to create a playbackId');
+          expect(err.message).to.equal('An asset ID is required to create a playback ID');
         })
     ));
 
@@ -67,7 +67,7 @@ describe('Unit::PlaybackIds', () => {
         })
         .catch((err) => {
           expect(err).to.exist;
-          expect(err.message).to.equal('PlaybackId params are required');
+          expect(err.message).to.equal('Playback ID params are required');
         })
     ));
   });
@@ -83,7 +83,7 @@ describe('Unit::PlaybackIds', () => {
     });
 
     /** @test {PlaybackIds.deletePlaybackId} */
-    it('makes a DELETE request to delete a playbackId', () => {
+    it('makes a DELETE request to delete a playback ID', () => {
       testPlaybackIds.deletePlaybackId('assetid', { policy: 'public' });
       expect(api.del.calledOnce);
     });
@@ -96,7 +96,7 @@ describe('Unit::PlaybackIds', () => {
         })
         .catch((err) => {
           expect(err).to.exist;
-          expect(err.message).to.equal('An asset ID is required to delete a playbackId');
+          expect(err.message).to.equal('An asset ID is required to delete a playback ID');
         })
     ));
 
@@ -108,7 +108,7 @@ describe('Unit::PlaybackIds', () => {
         })
         .catch((err) => {
           expect(err).to.exist;
-          expect(err.message).to.equal('A playbackId is required to delete a playbackId');
+          expect(err.message).to.equal('A playback ID is required to delete a playback ID');
         })
     ));
   });
@@ -137,7 +137,7 @@ describe('Unit::PlaybackIds', () => {
         })
         .catch((err) => {
           expect(err).to.exist;
-          expect(err.message).to.equal('An asset ID is required to get a playbackId');
+          expect(err.message).to.equal('An asset ID is required to get a playback ID');
         })
     ));
 
@@ -149,7 +149,7 @@ describe('Unit::PlaybackIds', () => {
         })
         .catch((err) => {
           expect(err).to.exist;
-          expect(err.message).to.equal('A playbackId is required to get a playbackId');
+          expect(err.message).to.equal('A playback ID is required to get a playback ID');
         })
     ));
   });

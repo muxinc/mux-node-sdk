@@ -114,11 +114,11 @@ class PlaybackIds {
    */
   deletePlaybackId(assetId, playbackId) {
     if (!assetId) {
-      return Promise.reject(new Error('An asset ID is required to delete a playbackId'));
+      return Promise.reject(new Error('An asset ID is required to delete a playback ID'));
     }
 
     if (!playbackId) {
-      return Promise.reject(new Error('A playback ID is required to delete a playbackId'));
+      return Promise.reject(new Error('A playback ID is required to delete a playback ID'));
     }
     return api.del(`${buildBasePath(assetId)}/${playbackId}`, this.requestOptions);
   }
