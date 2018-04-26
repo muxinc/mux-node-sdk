@@ -48,13 +48,13 @@ Run unit tests: `npm test` or `npm run test:unit`
 
 Run integration tests: `npm run test:int`
 
+__Note__: this will require you to configure the `MUX_ACCESS_TOKEN` and `MUX_SECRET` environment variables with your Mux access token and secret.
+
+
 To generate the ESDocs, run:
 ```
 ./node_modules/.bin/esdoc
 open ./docs/index.html
 ```
-
-__Note__: this will require you to configure the `MUX_ACCESS_TOKEN` and `MUX_SECRET` environment variables with your Mux access token and secret.
-
 
 
