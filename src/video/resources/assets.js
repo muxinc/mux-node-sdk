@@ -1,5 +1,5 @@
 /*!
- * mux
+ * Mux Assets
  * Copyright(c) 2018 Mux Inc.
  */
 
@@ -22,6 +22,7 @@ const buildBasePath = assetId => `${PATH}/${assetId}`;
  */
 class Assets {
   /**
+   * @ignore
    * Assets Constructor
    *
    * @param {string} accessToken - Mux API Access Token
@@ -38,6 +39,7 @@ class Assets {
     }
 
     /**
+     *  @ignore
      *  @type {Object} requestOptions - The HTTP request options for Mux Assets
      *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)
      *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)
@@ -53,7 +55,7 @@ class Assets {
   /**
    * Creates a Mux asset with the specified JSON parameters
    * @param {Object} params - Asset JSON parameters (e.g input)
-   * @returns {Promise}
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
    * const MuxVideo = new Mux.Video(accessToken, secret);
@@ -69,9 +71,15 @@ class Assets {
   }
 
   /**
+   * Deletes a Mux asset
+   * @param {string} assetId - The ID for the asset intended for deletion
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
-   * @param {string} assetId
-   * @returns {Promise}
+   * @example
+   * const MuxVideo = new Mux.Video(accessToken, secret);
+   *
+   * // Delete an asset
+   * MuxVideo.assets.deleteAsset(assetId);
    */
   deleteAsset(assetId) {
     if (!assetId) {
@@ -81,9 +89,15 @@ class Assets {
   }
 
   /**
+   * Get an asset
+   * @param {string} assetId - The ID for the asset
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
-   * @param {string} assetId
-   * @returns {*}
+   * @example
+   * const MuxVideo = new Mux.Video(accessToken, secret);
+   *
+   * // Get an asset
+   * MuxVideo.assets.get(assetId);
    */
   get(assetId) {
     if (!assetId) {
@@ -93,9 +107,15 @@ class Assets {
   }
 
   /**
+   * Get input info for an asset
+   * @param {string} assetId - The ID for the asset
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
-   * @param {string} assetId
-   * @returns {Promise}
+   * @example
+   * const MuxVideo = new Mux.Video(accessToken, secret);
+   *
+   * // Get input info for an asset
+   * MuxVideo.assets.inputInfo(assetId);
    */
   inputInfo(assetId) {
     if (!assetId) {
@@ -105,8 +125,14 @@ class Assets {
   }
 
   /**
+   * List all assets for a Mux Environment (tied to your access token)
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
-   * @returns {Promise}
+   * @example
+   * const MuxVideo = new Mux.Video(accessToken, secret);
+   *
+   * // List all assets for a Mux Environment
+   * MuxVideo.assets.list();
    */
   list() {
     return api.get(PATH, this.requestOptions);

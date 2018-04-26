@@ -7,6 +7,7 @@ const Assets = require('./resources/assets');
 const PlaybackIds = require('./resources/playbackIds');
 
 /**
+ * @ignore
  * Video Class - Provides access to the Mux Video API
  *
  * @example
