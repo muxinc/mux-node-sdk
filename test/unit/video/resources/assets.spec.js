@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { expect } = require('chai');
 const sinon = require('sinon');
-const Assets = require('../../../../src/video/resources/Assets');
+const Assets = require('../../../../src/video/resources/assets');
 const api = require('../../../../src/utils/api');
 
 /** @test {Assets} */

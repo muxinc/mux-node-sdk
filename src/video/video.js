@@ -3,8 +3,8 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-const Assets = require('./resources/Assets');
-const PlaybackIds = require('./resources/PlaybackIds');
+const Assets = require('./resources/assets');
+const PlaybackIds = require('./resources/playbackIds');
 
 /**
  *

@@ -1,8 +1,8 @@
 require('dotenv').config();
 const { expect } = require('chai');
 const Video = require('../../../src/video/video');
-const Assets = require('../../../src/video/resources/Assets');
-const PlaybackIds = require('../../../src/video/resources/PlaybackIds');
+const Assets = require('../../../src/video/resources/assets');
+const PlaybackIds = require('../../../src/video/resources/playbackIds');
 
 /** @test {Video} */
 describe('Unit::Video', () => {

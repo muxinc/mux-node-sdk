@@ -6,7 +6,7 @@ const Video = require('../../src/video/video');
 /** @test {Mux} */
 describe('Unit::Mux', () => {
   /** @test {Mux} */
-  describe('Assets', () => {
+  describe('Mux', () => {
     /** @test {Mux} */
     it('exposes Mux Video and Data', () => {
       expect(Mux.Video).to.equal(Video);

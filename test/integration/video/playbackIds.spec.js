@@ -23,23 +23,23 @@ describe('Integration::PlaybackIds', () => {
       })
   ));
 
-  // after(() => (
-  //   muxVideo.assets.deleteAsset(testAsset.data.id)
-  //     .then((res) => {
-  //       const { data } = res;
-  //       should.exist(data);
-  //       expect(res.status).to.equal(204);
-  //     })
-  //     .catch((err) => {
-  //       expect(err).to.equal(undefined);
-  //     })
-  // ));
+  after(() => (
+    muxVideo.assets.deleteAsset(testAsset.data.id)
+      .then((res) => {
+        const { data } = res;
+        should.exist(data);
+        expect(res.status).to.equal(204);
+      })
+      .catch((err) => {
+        expect(err).to.equal(undefined);
+      })
+  ));
 
   /** @test {PlaybackIds.create} */
   describe('PlaybackIds.create', () => {
     /** @test {PlaybackIds.create} */
     it('creates playbackIds for an asset', () => (
-      muxVideo.playbackIds.create(testAsset.data.id)
+      muxVideo.playbackIds.create(testAsset.data.id, { policy: 'public' })
         .then((res) => {
           const { data } = res;
           should.exist(data);
@@ -55,7 +55,7 @@ describe('Integration::PlaybackIds', () => {
   describe('playbackIds.get', () => {
     /** @test {PlaybackIds.get} */
     it('gets playbackIds for an asset', () => (
-      muxVideo.playbackIds.create(testAsset.data.id)
+      muxVideo.playbackIds.create(testAsset.data.id, { policy: 'public' })
         .then((res) => {
           const { data } = res;
           should.exist(data);
@@ -71,26 +71,13 @@ describe('Integration::PlaybackIds', () => {
           expect(err).to.equal(undefined);
         })
     ));
-
-    // @TODO: this could potentially be a unit test with mocked api calls
-    /** @test {PlaybackIds.get} */
-    it('fails to get playbackIds for an asset when not given an asset ID', () => (
-      muxVideo.playbackIds.get()
-        .then((res) => {
-          const { data } = res;
-          should.not.exist(data);
-        })
-        .catch((err) => {
-          should.exist(err);
-        })
-    ));
   });
 
   /** @test {PlaybackIds.deletePlaybackId} */
   describe('playbackIds.deletePlaybackId', () => {
     /** @test {PlaybackIds.deletePlaybackId} */
     it('deletes playbackIds for an asset', () => (
-      muxVideo.playbackIds.create(testAsset.data.id)
+      muxVideo.playbackIds.create(testAsset.data.id, { policy: 'public' })
         .then((res) => {
           const { data } = res;
           should.exist(data);
@@ -104,19 +91,6 @@ describe('Integration::PlaybackIds', () => {
         })
         .catch((err) => {
           expect(err).to.equal(undefined);
-        })
-    ));
-
-    // @TODO: this could potentially be a unit test with mocked api calls
-    /** @test {PlaybackIds.deletePlaybackId} */
-    it('fails to delete a playbackId for an asset when not given an asset ID or a playback Id', () => (
-      muxVideo.playbackIds.deletePlaybackId()
-        .then((res) => {
-          const { data } = res;
-          should.not.exist(data);
-        })
-        .catch((err) => {
-          should.exist(err);
         })
     ));
 
