@@ -3,7 +3,7 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-const { get, del, post } = require('../../utils/api');
+const api = require('../../utils/api');
 
 const buildBasePath = assetId => `/video/v1/assets/${assetId}/playback-ids`;
 
@@ -50,7 +50,7 @@ class PlaybackIds {
     if (!params) {
       return Promise.reject(new Error('PlaybackId params are required'));
     }
-    return post(buildBasePath(assetId), { policy: 'public' }, this.requestOptions);
+    return api.post(buildBasePath(assetId), params, this.requestOptions);
   }
 
   /**
@@ -67,7 +67,7 @@ class PlaybackIds {
     if (!playbackId) {
       return Promise.reject(new Error('A playbackId is required to get a playbackId'));
     }
-    return get(`${buildBasePath(assetId)}/${playbackId}`, this.requestOptions);
+    return api.get(`${buildBasePath(assetId)}/${playbackId}`, this.requestOptions);
   }
 
   /**
@@ -84,7 +84,7 @@ class PlaybackIds {
     if (!playbackId) {
       return Promise.reject(new Error('A playbackId is required to delete a playbackId'));
     }
-    return del(`${buildBasePath(assetId)}/${playbackId}`, this.requestOptions);
+    return api.del(`${buildBasePath(assetId)}/${playbackId}`, this.requestOptions);
   }
 }
 
