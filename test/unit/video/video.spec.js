@@ -13,7 +13,7 @@ describe('Unit::Video', () => {
   describe('Video', () => {
     /** @test {Video} */
     it('throws an error if an api key is not given', () => {
-      expect(() => new Video()).to.throw('API key must be provided.');
+      expect(() => new Video()).to.throw('API Access Token must be provided.');
     });
 
     /** @test {Video} */

@@ -16,12 +16,12 @@ const buildBasePath = assetId => `/video/v1/assets/${assetId}/playback-ids`;
 class PlaybackIds {
   /**
    *
-   * @param apiKey
+   * @param accessToken
    * @param secret
    */
-  constructor(apiKey, secret) {
-    if (typeof apiKey === 'undefined') {
-      throw new Error('API key must be provided.');
+  constructor(accessToken, secret) {
+    if (typeof accessToken === 'undefined') {
+      throw new Error('API Access Token must be provided.');
     }
 
     if (typeof secret === 'undefined') {
@@ -30,7 +30,7 @@ class PlaybackIds {
 
     this.requestOptions = {
       auth: {
-        username: apiKey,
+        username: accessToken,
         password: secret,
       },
     };

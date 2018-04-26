@@ -14,7 +14,7 @@ describe('Unit::Assets', () => {
   describe('Assets', () => {
     /** @test {Assets} */
     it('throws an error if an api key is not given', () => {
-      expect(() => new Assets()).to.throw('API key must be provided.');
+      expect(() => new Assets()).to.throw('API Access Token must be provided.');
     });
 
     /** @test {Assets} */

@@ -7,25 +7,39 @@ const Assets = require('./resources/assets');
 const PlaybackIds = require('./resources/playbackIds');
 
 /**
+ * Video Class - Provides access to the Mux Video API
  *
+ * @example
+ * const MuxVideo = new Mux.Video(accessToken, secret);
+ *
+ * // Create an asset
+ * MuxVideo.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
+ *
+ * // Create a playback Id for an asset
+ * MuxVideo.playbackIds.create('assetId', { policy: 'public' });
  */
 class Video {
   /**
+   * Video Constructor
    *
-   * @param apiKey
-   * @param secret
+   * @param {string} accessToken - Mux API Access Token
+   * @param {string} secret - Mux API secret
+   * @constructor
    */
-  constructor(apiKey, secret) {
-    if (typeof apiKey === 'undefined') {
-      throw new Error('API key must be provided.');
+  constructor(accessToken, secret) {
+    if (typeof accessToken === 'undefined') {
+      throw new Error('API Access Token must be provided.');
     }
 
     if (typeof secret === 'undefined') {
       throw new Error('API secret key must be provided');
     }
 
-    this.assets = new Assets(apiKey, secret);
-    this.playbackIds = new PlaybackIds(apiKey, secret);
+    /** @type {Assets} */
+    this.assets = new Assets(accessToken, secret);
+
+    /** @type {PlaybackIds} */
+    this.playbackIds = new PlaybackIds(accessToken, secret);
   }
 }
 

@@ -14,7 +14,7 @@ describe('Unit::PlaybackIds', () => {
   describe('PlaybackIds', () => {
     /** @test {PlaybackIds} */
     it('throws an error if an api key is not given', () => {
-      expect(() => new PlaybackIds()).to.throw('API key must be provided.');
+      expect(() => new PlaybackIds()).to.throw('API Access Token must be provided.');
     });
 
     /** @test {PlaybackIds} */
