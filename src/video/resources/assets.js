@@ -5,7 +5,15 @@
 
 const api = require('../../utils/api');
 
+/**
+ * @private Base asset path for the Mux API
+ * */
 const PATH = '/video/v1/assets';
+
+/**
+ * @private
+ * Build the base asset path for the Mux API
+ * */
 const buildBasePath = assetId => `${PATH}/${assetId}`;
 
 /**

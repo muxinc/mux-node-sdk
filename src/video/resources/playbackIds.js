@@ -5,6 +5,10 @@
 
 const api = require('../../utils/api');
 
+/**
+ * @private
+ * Base playback ID path for the Mux API
+ * */
 const buildBasePath = assetId => `/video/v1/assets/${assetId}/playback-ids`;
 
 /**
