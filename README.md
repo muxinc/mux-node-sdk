@@ -22,7 +22,9 @@ yarn add @mux/mux-node
 To start, you will need a Mux access token and secret for your Mux environment. For more information on where to get
 an access token, visit the Mux Getting Started guide https://docs.mux.com/docs
 
-Require the `@mux/mux-node` npm module and create a new video instance.
+Require the `@mux/mux-node` npm module and create a Mux instance. Your Mux instance will have `Data` and `Video` properties
+that will allow you to access the Mux Data and Video APIs.
+
 ```
 const Mux = require('@mux/mux-node');
 const muxClient = new Mux(accessToken, secret);
