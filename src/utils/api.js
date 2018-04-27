@@ -23,10 +23,11 @@ const makeRequest = (url, options) => (
 /**
  *
  * @param url
+ * @param queryParams
  * @param options
  */
-const get = (url, options) => {
-  const requestOptions = { method: 'get', ...options };
+const get = (url, queryParams, options) => {
+  const requestOptions = { method: 'get', params: queryParams, ...options };
   return makeRequest(url, requestOptions);
 };
 

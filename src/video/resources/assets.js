@@ -118,7 +118,7 @@ class Assets {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required to get an asset'));
     }
-    return api.get(buildBasePath(assetId), this.requestOptions);
+    return api.get(buildBasePath(assetId), {}, this.requestOptions);
   }
 
   /**
@@ -139,7 +139,7 @@ class Assets {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required to get input-info'));
     }
-    return api.get(`${buildBasePath(assetId)}/input-info`, this.requestOptions);
+    return api.get(`${buildBasePath(assetId)}/input-info`, {}, this.requestOptions);
   }
 
   /**

@@ -102,7 +102,7 @@ class PlaybackIds {
     if (!playbackId) {
       return Promise.reject(new Error('A playback ID is required to get a playback ID'));
     }
-    return api.get(`${buildBasePath(assetId)}/${playbackId}`, this.requestOptions);
+    return api.get(`${buildBasePath(assetId)}/${playbackId}`, {}, this.requestOptions);
   }
 
   /**

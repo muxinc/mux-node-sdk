@@ -30,7 +30,7 @@ class Data {
       throw new Error('API secret key must be provided');
     }
 
-    this.Metrics = new Metrics(accessToken, secret);
+    this.metrics = new Metrics(accessToken, secret);
   }
 }
 
