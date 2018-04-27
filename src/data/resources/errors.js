@@ -55,7 +55,7 @@ class Errors {
   /**
    * Returns a list of playback errors
    *
-   * @param {Object} queryParams -
+   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example

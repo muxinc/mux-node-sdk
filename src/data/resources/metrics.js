@@ -18,7 +18,7 @@ const PATH = '/data/v1/metrics';
  * const { Data } = muxClient;
  *
  * // List all of the values across every breakdown for a specific metric
- * Data.metrics.breakdown('aggregate_startup_time', queryParams);
+ * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'operating_system' });
  */
 class Metrics {
   /**
@@ -57,6 +57,7 @@ class Metrics {
    *
    * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#breakdown-get for a list of all metric ids
    * @param {Object} queryParams - example: {group_by: 'browser'}
+   * NOTE: the group_by query parameter is required
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
@@ -64,7 +65,7 @@ class Metrics {
    * const { Data } = muxClient;
    *
    * // List all of the values across every breakdown for a specific metric
-   * Data.metrics.breakdown('aggregate_startup_time', {group_by: 'browser'});
+   * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
    *
    * @see https://api-docs.mux.com/#breakdown-get
    */
@@ -73,9 +74,9 @@ class Metrics {
   }
 
   /**
-   * List the breakdown values for a specific metric
+   * List all of the values across every breakdown for a specific metric
    *
-   * @param {Object} queryParams -
+   * @param {Object} [queryParams] - example { timeframe: '24:hours', dimension: 'cdn' }
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
@@ -96,7 +97,7 @@ class Metrics {
    * breakdowns sorted by how much they negatively impact a specific metric.
    *
    * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#breakdown-get for a list of all metric ids
-   * @param {Object} queryParams -
+   * @param {Object} [queryParams] - example { measurement: 'median', order_direction: 'desc' }
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
@@ -117,7 +118,7 @@ class Metrics {
    * watch time, and the Mux Global metric value for the metric.
    *
    * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#overall-get for a list of all metric ids
-   * @param {Object} queryParams -
+   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
@@ -137,7 +138,7 @@ class Metrics {
    * Returns timeseries data for a specific metric
    *
    * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#timeseries for a list of all metric ids
-   * @param {Object} queryParams -
+   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example

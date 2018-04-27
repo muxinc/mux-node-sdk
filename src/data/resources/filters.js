@@ -56,7 +56,7 @@ class Filters {
    * Lists the values for a filter along with a total count of related views
    *
    * @param {string} filterId - The filter name/id for see https://api-docs.mux.com/#filter-get-1 for a list of all filter ids
-   * @param {Object} queryParams -
+   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example

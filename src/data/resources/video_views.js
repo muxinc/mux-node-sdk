@@ -57,7 +57,8 @@ class VideoViews {
    * Returns a list of video views for a property that occurred within the specified timeframe.
    * Results are ordered by view_end, according to what you provide for order_direction.
    *
-   * @param {Object} queryParams -
+   * @param {Object} queryParams - example { viewer_id: 'ABCD1234', timeframe: ['7:days'], filters: ['operating_system:windows'] }
+   * NOTE: the viewer_id query parameter is required
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
