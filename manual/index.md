@@ -2,7 +2,7 @@
 
 The official NodeJS Mux SDK wrapper.
 
-This library is intended to provide convenience methods for the Mux API for applications written in server-side Javascript.
+This library is intended to provide Mux API convenience methods for applications written in server-side Javascript.
 __Please note__ that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.
 
 ## Documentation
@@ -20,15 +20,15 @@ yarn add @mux/mux-node
 
 ## Usage
 To start, you will need a Mux access token and secret for your Mux environment. For more information on where to get
-an access token, visit the Mux Getting Started Guide https://docs.mux.com/docs
+an access token, visit the Mux Getting Started guide https://docs.mux.com/docs
 
 Require the `@mux/mux-node` npm module and create a new video instance.
 ```
 const Mux = require('@mux/mux-node');
 const muxClient = new Mux(accessToken, secret);
-const { Video } = muxClient;
+const { Video, Data } = muxClient;
 ```
-As an example, you can create a Mux asset and playback ID by using the below functions on your video instance.
+As an example, you can create a Mux asset and playback ID by using the below functions on your Video instance.
 ```
 // Create an asset
 Video.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' });
@@ -39,7 +39,14 @@ Video.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-vi
 Video.playbackIds.create(assetId, { policy: 'public' });
 ```
 
-Every function will return a chainable promise
+You access the Mux Data API in the same way by using your Data instance. For example, you can list all of the
+values across every breakdown for the `aggregate_startup_time` metric by using the below function.
+
+```
+Data.metrics.breakdown('aggregate_startup_time', queryParams);
+```
+
+Every function will return a chainable [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 See the [Mux-Node docs] for a list of all available functions.
 

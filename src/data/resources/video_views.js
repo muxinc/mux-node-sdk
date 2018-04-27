@@ -17,7 +17,8 @@ const PATH = '/data/v1/video-views';
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;
  *
- * // List all of the values across every breakdown for a specific metric
+ * // Returns a list of video views for a property that occurred within the specified timeframe.
+ * // Results are ordered by view_end, according to what you provide for order_direction.
  * Data.videoViews.list({order_direction: 'asc'});
  */
 class VideoViews {
