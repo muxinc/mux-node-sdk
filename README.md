@@ -1,8 +1,7 @@
 # Mux Node SDK
 
-The official NodeJS Mux SDK wrapper.
-
 This library is intended to provide Mux API convenience methods for applications written in server-side Javascript.
+
 __Please note__ that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.
 
 ## Documentation
@@ -41,7 +40,7 @@ Video.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-vi
 Video.playbackIds.create(assetId, { policy: 'public' });
 ```
 
-You access the Mux Data API in the same way by using your Data instance. For example, you can list all of the
+You can access the Mux Data API in the same way by using your Data instance. For example, you can list all of the
 values across every breakdown for the `aggregate_startup_time` metric by using the below function.
 
 ```
