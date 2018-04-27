@@ -35,10 +35,15 @@ class Data {
       throw new Error('API secret key must be provided');
     }
 
+    /** @type {Metrics} */
     this.metrics = new Metrics(accessToken, secret);
+    /** @type {Errors} */
     this.errors = new Errors(accessToken, secret);
+    /** @type {Filters} */
     this.filters = new Filters(accessToken, secret);
+    /** @type {Exports} */
     this.exports = new Exports(accessToken, secret);
+    /** @type {VideoViews} */
     this.videoViews = new VideoViews(accessToken, secret);
   }
 }

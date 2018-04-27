@@ -11,15 +11,20 @@ const Data = require('./data/data');
  *
  * @type {Video}
  * @property {Video} Mux.Video provides access to the Mux Video API
+ * @type {Data}
+ * @property {Data} Mux.Data provides access to the Mux Data API
  * @example
  * const muxClient = new Mux(accessToken, secret);
- * const { Video } = muxClient;
+ * const { Video, Data } = muxClient;
  *
  * // Create an asset
  * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
  *
  * // Create a playback Id for an asset
  * Video.playbackIds.create(assetId, { policy: 'public' });
+ *
+ * // List all of the values across every breakdown for the `aggregate_startup_time` metric
+ * Data.metrics.breakdown('aggregate_startup_time', {group_by: 'browser'});
  */
 class Mux {
   /**
