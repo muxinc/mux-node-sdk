@@ -4,6 +4,7 @@
  */
 
 const Video = require('./video/video');
+const Data = require('./data/data');
 
 /**
  * Mux Class - Provides access to the Mux Video and Mux Data API
@@ -39,6 +40,8 @@ class Mux {
 
     /** @type {Video} */
     this.Video = new Video(accessToken, secret);
+    /** @type {Data} */
+    this.Data = new Data(accessToken, secret);
   }
 }
 

@@ -64,7 +64,7 @@ class VideoViews {
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
-   * // Lists the available video view exports along with URLs to retrieve them
+   * //Returns a list of video views for a property that occurred within the specified timeframe.
    * Data.videoViews.list({order_direction: 'asc'});
    *
    * @see https://api-docs.mux.com/#video-view-get-1
@@ -83,7 +83,7 @@ class VideoViews {
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
-   * // Lists the available video view exports along with URLs to retrieve them
+   * //Returns the details for a single video view
    * Data.videoViews.get('ABCD1234');
    *
    * @see https://api-docs.mux.com/#video-view-get-1

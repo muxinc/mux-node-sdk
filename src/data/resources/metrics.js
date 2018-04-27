@@ -56,7 +56,7 @@ class Metrics {
    * List the breakdown values for a specific metric
    *
    * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#breakdown-get for a list of all metric ids
-   * @param {Object} queryParams -
+   * @param {Object} queryParams - example: {group_by: 'browser'}
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
@@ -64,7 +64,7 @@ class Metrics {
    * const { Data } = muxClient;
    *
    * // List all of the values across every breakdown for a specific metric
-   * Data.metrics.breakdown('aggregate_startup_time', queryParams);
+   * Data.metrics.breakdown('aggregate_startup_time', {group_by: 'browser'});
    *
    * @see https://api-docs.mux.com/#breakdown-get
    */
@@ -88,7 +88,7 @@ class Metrics {
    * @see https://api-docs.mux.com/#comparison-get
    */
   comparison(queryParams) {
-    return api.get(`${PATH}/comparision`, queryParams, this.requestOptions);
+    return api.get(`${PATH}/comparison`, queryParams, this.requestOptions);
   }
 
   /**
@@ -109,7 +109,7 @@ class Metrics {
    * @see https://api-docs.mux.com/#insight-get
    */
   insights(metricId, queryParams) {
-    return api.get(`${PATH}/insights`, queryParams, this.requestOptions);
+    return api.get(`${PATH}/${metricId}/insights`, queryParams, this.requestOptions);
   }
 
   /**
@@ -130,7 +130,7 @@ class Metrics {
    * @see https://api-docs.mux.com/#overall-get
    */
   overall(metricId, queryParams) {
-    return api.get(`${PATH}/overall`, queryParams, this.requestOptions);
+    return api.get(`${PATH}/${metricId}/overall`, queryParams, this.requestOptions);
   }
 
   /**
@@ -150,7 +150,7 @@ class Metrics {
    * @see https://api-docs.mux.com/#timeseries
    */
   timeseries(metricId, queryParams) {
-    return api.get(`${PATH}/timeseries`, queryParams, this.requestOptions);
+    return api.get(`${PATH}/${metricId}/timeseries`, queryParams, this.requestOptions);
   }
 }
 
