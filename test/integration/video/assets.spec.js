@@ -7,11 +7,12 @@ const TEST_VIDEO = 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.
 
 /** @test {Assets} */
 describe('Integration::Assets', () => {
-  const muxVideo = new Mux.Video(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);
+  const muxClient = new Mux(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);
+  const { Video } = muxClient;
   let testAsset;
 
   before(() => (
-    muxVideo.assets.create({ input: TEST_VIDEO })
+    Video.assets.create({ input: TEST_VIDEO })
       .then((res) => {
         const { data } = res;
         should.exist(data);
@@ -24,7 +25,7 @@ describe('Integration::Assets', () => {
   ));
 
   after(() => (
-    muxVideo.assets.deleteAsset(testAsset.data.id)
+    Video.assets.deleteAsset(testAsset.data.id)
       .then((res) => {
         const { data } = res;
         should.exist(data);
@@ -39,7 +40,7 @@ describe('Integration::Assets', () => {
   describe('Assets.create', () => {
     /** @test {Assets.create} */
     it('creates an asset when given an input', () => (
-      muxVideo.assets.create({ input: TEST_VIDEO })
+      Video.assets.create({ input: TEST_VIDEO })
         .then((res) => {
           const { data } = res;
           should.exist(data);
@@ -55,11 +56,11 @@ describe('Integration::Assets', () => {
   describe('Assets.deleteAsset', () => {
     /** @test {Assets.deleteAsset} */
     it('deletes an asset', () => (
-      muxVideo.assets.create({ input: TEST_VIDEO })
+      Video.assets.create({ input: TEST_VIDEO })
         .then((res) => {
           const { data } = res;
           should.exist(data);
-          return muxVideo.assets.deleteAsset(data.data.id);
+          return Video.assets.deleteAsset(data.data.id);
         })
         .then((res) => {
           const { data } = res;
@@ -73,7 +74,7 @@ describe('Integration::Assets', () => {
 
     /** @test {Assets.deleteAsset} */
     it('fails to delete an asset when not given an incorrect assetId', () => (
-      muxVideo.assets.deleteAsset('somefakeid')
+      Video.assets.deleteAsset('somefakeid')
         .then((res) => {
           const { data } = res;
           should.not.exist(data);
@@ -88,7 +89,7 @@ describe('Integration::Assets', () => {
   describe('Assets.get', () => {
     /** @test {Assets.get} */
     it('gets an asset', () => (
-      muxVideo.assets.get(testAsset.data.id)
+      Video.assets.get(testAsset.data.id)
         .then((res) => {
           const { data } = res;
           should.exist(data);
@@ -101,7 +102,7 @@ describe('Integration::Assets', () => {
 
     /** @test {Assets.get} */
     it('fails to get an asset when not given an incorrect assetId', () => (
-      muxVideo.assets.get('somefakeid')
+      Video.assets.get('somefakeid')
         .then((res) => {
           const { data } = res;
           should.not.exist(data);
@@ -116,7 +117,7 @@ describe('Integration::Assets', () => {
   describe('Assets.inputInfo', () => {
     /** @test {Assets.inputInfo} */
     it('gets input-info for an asset', () => (
-      muxVideo.assets.inputInfo(testAsset.data.id)
+      Video.assets.inputInfo(testAsset.data.id)
         .then((res) => {
           const { data } = res;
           should.exist(data);
@@ -129,7 +130,7 @@ describe('Integration::Assets', () => {
 
     /** @test {Assets.inputInfo} */
     it('fails to get an asset when not given an incorrect assetId', () => (
-      muxVideo.assets.inputInfo('somefakeid')
+      Video.assets.inputInfo('somefakeid')
         .then((res) => {
           const { data } = res;
           should.not.exist(data);
@@ -144,7 +145,7 @@ describe('Integration::Assets', () => {
   describe('Assets.list', () => {
     /** @test {Assets.list} */
     it('lists all assets for an environment', () => (
-      muxVideo.assets.list()
+      Video.assets.list()
         .then((res) => {
           const { data } = res;
           should.exist(data);

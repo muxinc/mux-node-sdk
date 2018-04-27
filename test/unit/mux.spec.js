@@ -1,7 +1,6 @@
-require('dotenv').config();
 const { expect } = require('chai');
 const Mux = require('../../src/mux');
-const Video = require('../../src/video/video');
+const MuxVideo = require('../../src/video/video');
 
 /** @test {Mux} */
 describe('Unit::Mux', () => {
@@ -9,7 +8,9 @@ describe('Unit::Mux', () => {
   describe('Mux', () => {
     /** @test {Mux} */
     it('exposes Mux Video and Data', () => {
-      expect(Mux.Video).to.equal(Video);
+      const muxClient = new Mux('testKey', 'testSecret');
+      const { Video } = muxClient;
+      expect(Video).to.to.be.an.instanceof(MuxVideo);
     });
   });
 });

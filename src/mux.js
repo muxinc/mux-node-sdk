@@ -3,7 +3,7 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-const video = require('./video/video');
+const Video = require('./video/video');
 
 /**
  * Mux Class - Provides access to the Mux Video and Mux Data API
@@ -11,20 +11,28 @@ const video = require('./video/video');
  * @type {Video}
  * @property {Video} Mux.Video provides access to the Mux Video API
  * @example
- * const MuxVideo = new Mux.Video(accessToken, secret);
+ * const muxClient = new Mux(accessToken, secret);
+ * const { Video } = muxClient;
  *
  * // Create an asset
- * MuxVideo.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
+ * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
  *
  * // Create a playback Id for an asset
- * MuxVideo.playbackIds.create('assetId', { policy: 'public' });
+ * Video.playbackIds.create('assetId', { policy: 'public' });
  */
 class Mux {
-  /**
-   * Provides access to the Mux Video API
-   * @type {Video}
-   */
-  static get Video() { return video; }
+  constructor(accessToken, secret) {
+    if (typeof accessToken === 'undefined') {
+      throw new Error('API Access Token must be provided.');
+    }
+
+    if (typeof secret === 'undefined') {
+      throw new Error('API secret key must be provided');
+    }
+
+    /** @type {Video} */
+    this.Video = new Video(accessToken, secret);
+  }
 }
 
 module.exports = Mux;

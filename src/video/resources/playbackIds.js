@@ -15,10 +15,11 @@ const buildBasePath = assetId => `/video/v1/assets/${assetId}/playback-ids`;
  * PlaybackIds Class - Provides access to the Mux Video PlaybackIds API
  *
  * @example
- * const MuxVideo = new Mux.Video(accessToken, secret);
+ * const muxClient = new Mux(accessToken, secret);
+ * const { Video } = muxClient;
  *
  * // Create a playback Id for an asset
- * MuxVideo.playbackIds.create('assetId', { policy: 'public' });
+ * Video.playbackIds.create('assetId', { policy: 'public' });
  */
 class PlaybackIds {
   /**
@@ -59,10 +60,11 @@ class PlaybackIds {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const MuxVideo = new Mux.Video(accessToken, secret);
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
    *
    * // Create a playback Id for an asset
-   * MuxVideo.playbackIds.create('assetId', { policy: 'public' });
+   * Video.playbackIds.create('assetId', { policy: 'public' });
    *
    * @see https://docs.mux.com/v1/reference#add-an-asset-playback-id
    */
@@ -84,10 +86,11 @@ class PlaybackIds {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const MuxVideo = new Mux.Video(accessToken, secret);
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
    *
    * // Get an asset
-   * MuxVideo.playbackIds.get(assetId, playbackId);
+   * Video.playbackIds.get(assetId, playbackId);
    *
    * @see https://docs.mux.com/v1/reference#retrieve-an-asset-playback-id
    */
@@ -109,10 +112,11 @@ class PlaybackIds {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const MuxVideo = new Mux.Video(accessToken, secret);
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
    *
    * // Delete a playback ID
-   * MuxVideo.playbackIds.deletePlaybackId(assetId, playbackId);
+   * Video.playbackIds.deletePlaybackId(assetId, playbackId);
    *
    * @see https://docs.mux.com/v1/reference#delete-an-asset-playback-id
    */

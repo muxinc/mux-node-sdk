@@ -20,10 +20,11 @@ const buildBasePath = assetId => `${PATH}/${assetId}`;
  * Assets Class - Provides access to the Mux Video Assets API
  *
  * @example
- * const MuxVideo = new Mux.Video(accessToken, secret);
+ * const muxClient = new Mux(accessToken, secret);
+ * const { Video } = muxClient;
  *
  * // Create an asset
- * MuxVideo.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
+ * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
  */
 class Assets {
   /**
@@ -63,10 +64,11 @@ class Assets {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const MuxVideo = new Mux.Video(accessToken, secret);
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
    *
    * // Create an asset
-   * MuxVideo.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
+   * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
    *
    * @see https://docs.mux.com/v1/reference#create-an-asset
    */
@@ -83,10 +85,11 @@ class Assets {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const MuxVideo = new Mux.Video(accessToken, secret);
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
    *
    * // Delete an asset
-   * MuxVideo.assets.deleteAsset(assetId);
+   * Video.assets.deleteAsset(assetId);
    *
    * @see https://docs.mux.com/v1/reference#delete-an-asset
    */
@@ -103,10 +106,11 @@ class Assets {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const MuxVideo = new Mux.Video(accessToken, secret);
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
    *
    * // Get an asset
-   * MuxVideo.assets.get(assetId);
+   * Video.assets.get(assetId);
    *
    * @see https://docs.mux.com/v1/reference#retrieve-an-asset
    */
@@ -123,10 +127,11 @@ class Assets {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const MuxVideo = new Mux.Video(accessToken, secret);
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
    *
    * // Get input info for an asset
-   * MuxVideo.assets.inputInfo(assetId);
+   * Video.assets.inputInfo(assetId);
    *
    * @see https://docs.mux.com/v1/reference#retrieve-asset-input-info
    */
@@ -142,10 +147,11 @@ class Assets {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const MuxVideo = new Mux.Video(accessToken, secret);
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
    *
    * // List all assets for a Mux Environment
-   * MuxVideo.assets.list();
+   * Video.assets.list();
    *
    * @see https://docs.mux.com/v1/reference#list-assets
    */

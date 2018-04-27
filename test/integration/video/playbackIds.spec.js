@@ -7,11 +7,12 @@ const TEST_VIDEO = 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.
 
 /** @test {PlaybackIds} */
 describe('Integration::PlaybackIds', () => {
-  const muxVideo = new Mux.Video(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);
+  const muxClient = new Mux(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);
+  const { Video } = muxClient;
   let testAsset;
 
   before(() => (
-    muxVideo.assets.create({ input: TEST_VIDEO })
+    Video.assets.create({ input: TEST_VIDEO })
       .then((res) => {
         const { data } = res;
         should.exist(data);
@@ -24,7 +25,7 @@ describe('Integration::PlaybackIds', () => {
   ));
 
   after(() => (
-    muxVideo.assets.deleteAsset(testAsset.data.id)
+    Video.assets.deleteAsset(testAsset.data.id)
       .then((res) => {
         const { data } = res;
         should.exist(data);
@@ -39,7 +40,7 @@ describe('Integration::PlaybackIds', () => {
   describe('PlaybackIds.create', () => {
     /** @test {PlaybackIds.create} */
     it('creates playbackIds for an asset', () => (
-      muxVideo.playbackIds.create(testAsset.data.id, { policy: 'public' })
+      Video.playbackIds.create(testAsset.data.id, { policy: 'public' })
         .then((res) => {
           const { data } = res;
           should.exist(data);
@@ -55,12 +56,12 @@ describe('Integration::PlaybackIds', () => {
   describe('playbackIds.get', () => {
     /** @test {PlaybackIds.get} */
     it('gets playbackIds for an asset', () => (
-      muxVideo.playbackIds.create(testAsset.data.id, { policy: 'public' })
+      Video.playbackIds.create(testAsset.data.id, { policy: 'public' })
         .then((res) => {
           const { data } = res;
           should.exist(data);
           expect(res.status).to.equal(201);
-          return muxVideo.playbackIds.get(testAsset.data.id, data.data.id);
+          return Video.playbackIds.get(testAsset.data.id, data.data.id);
         })
         .then((res) => {
           const { data } = res;
@@ -77,12 +78,12 @@ describe('Integration::PlaybackIds', () => {
   describe('playbackIds.deletePlaybackId', () => {
     /** @test {PlaybackIds.deletePlaybackId} */
     it('deletes playbackIds for an asset', () => (
-      muxVideo.playbackIds.create(testAsset.data.id, { policy: 'public' })
+      Video.playbackIds.create(testAsset.data.id, { policy: 'public' })
         .then((res) => {
           const { data } = res;
           should.exist(data);
           expect(res.status).to.equal(201);
-          return muxVideo.playbackIds.deletePlaybackId(testAsset.data.id, data.data.id);
+          return Video.playbackIds.deletePlaybackId(testAsset.data.id, data.data.id);
         })
         .then((res) => {
           const { data } = res;
@@ -96,7 +97,7 @@ describe('Integration::PlaybackIds', () => {
 
     /** @test {PlaybackIds.deletePlaybackId} */
     it('fails to get playbackIds for an asset when not given a playback ID', () => (
-      muxVideo.playbackIds.deletePlaybackId(testAsset.data.id)
+      Video.playbackIds.deletePlaybackId(testAsset.data.id)
         .then((res) => {
           const { data } = res;
           should.not.exist(data);

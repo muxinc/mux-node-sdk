@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { expect } = require('chai');
 const sinon = require('sinon');
 const PlaybackIds = require('../../../../src/video/resources/playbackIds');

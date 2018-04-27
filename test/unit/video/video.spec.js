@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { expect } = require('chai');
 const Video = require('../../../src/video/video');
 const Assets = require('../../../src/video/resources/assets');

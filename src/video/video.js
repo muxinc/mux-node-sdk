@@ -11,13 +11,14 @@ const PlaybackIds = require('./resources/playbackIds');
  * Video Class - Provides access to the Mux Video API
  *
  * @example
- * const MuxVideo = new Mux.Video(accessToken, secret);
+ * const muxClient = new Mux(accessToken, secret);
+ * const { Video } = muxClient;
  *
  * // Create an asset
- * MuxVideo.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
+ * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
  *
  * // Create a playback Id for an asset
- * MuxVideo.playbackIds.create('assetId', { policy: 'public' });
+ * Video.playbackIds.create('assetId', { policy: 'public' });
  */
 class Video {
   /**
