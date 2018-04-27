@@ -21,6 +21,13 @@ const Video = require('./video/video');
  * Video.playbackIds.create('assetId', { policy: 'public' });
  */
 class Mux {
+  /**
+   * Mux Constructor
+   *
+   * @param {string} accessToken - Mux API Access Token
+   * @param {string} secret - Mux API secret
+   * @constructor
+   */
   constructor(accessToken, secret) {
     if (typeof accessToken === 'undefined') {
       throw new Error('API Access Token must be provided.');

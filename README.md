@@ -2,7 +2,7 @@
 
 The official NodeJS Mux SDK wrapper.
 
-This library is intended to provide convenience methods for the Mux API for applications written in server-side Javascript.
+This library is intended to provide Mux API convenience methods for applications written in server-side Javascript.
 __Please note__ that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.
 
 ## Documentation
