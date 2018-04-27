@@ -18,7 +18,7 @@ const Video = require('./video/video');
  * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
  *
  * // Create a playback Id for an asset
- * Video.playbackIds.create('assetId', { policy: 'public' });
+ * Video.playbackIds.create(assetId, { policy: 'public' });
  */
 class Mux {
   /**

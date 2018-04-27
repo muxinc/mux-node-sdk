@@ -1,9 +1,14 @@
 /*!
- * mux
+ * Mux Data
  * Copyright(c) 2018 Mux Inc.
  */
 
 const Metrics = require('../../src/data/resources/metrics');
+const Errors = require('../../src/data/resources/errors');
+const Filters = require('../../src/data/resources/filters');
+const Exports = require('../../src/data/resources/exports');
+const VideoViews = require('../../src/data/resources/video_views');
+
 /**
  * @ignore
  * Data Class - Provides access to the Mux Data API
@@ -31,6 +36,10 @@ class Data {
     }
 
     this.metrics = new Metrics(accessToken, secret);
+    this.errors = new Errors(accessToken, secret);
+    this.filters = new Filters(accessToken, secret);
+    this.exports = new Exports(accessToken, secret);
+    this.videoViews = new VideoViews(accessToken, secret);
   }
 }
 

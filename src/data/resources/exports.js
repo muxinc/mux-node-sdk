@@ -1,19 +1,23 @@
+/*!
+ * Mux Exports
+ * Copyright(c) 2018 Mux Inc.
+ */
 
 const api = require('../../utils/api');
 
 /**
- * @private Base asset path for the Mux API
+ * @private Base exports path for the Mux API
  * */
 const PATH = '/data/v1/exports';
 
 /**
- * Exports Class
+ * Exports Class - Provides access to the Mux Data Exports API
  *
  * @example
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;
  *
- * // List all of the values across every breakdown for a specific metric
+ * // Lists the available video view exports along with URLs to retrieve them
  * Data.exports.list();
  */
 class Exports {
@@ -49,7 +53,17 @@ class Exports {
   }
 
   /**
+   * Lists the available video view exports along with URLs to retrieve them
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Data } = muxClient;
+   *
+   * // Lists the available video view exports along with URLs to retrieve them
+   * Data.exports.list();
+   *
+   * @see https://api-docs.mux.com/#export-get
    */
   list() {
     return api.get(PATH, {}, this.requestOptions);

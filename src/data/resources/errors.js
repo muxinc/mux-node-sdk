@@ -1,29 +1,29 @@
 /*!
- * Mux Video Views
+ * Mux Errors
  * Copyright(c) 2018 Mux Inc.
  */
 
 const api = require('../../utils/api');
 
 /**
- * @private Base exports path for the Mux API
+ * @private Base errors path for the Mux API
  * */
-const PATH = '/data/v1/video-views';
+const PATH = '/data/v1/errors';
 
 /**
- * VideoViews Class - Provides access to the Mux Data Video Views API
+ * Errors Class - Provides access to the Mux Data Errors API
  *
  * @example
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;
  *
- * // List all of the values across every breakdown for a specific metric
- * Data.videoViews.list({order_direction: 'asc'});
+ * // Returns a list of playback errors
+ * Data.errors.list({filters: ['operating_system:windows']});
  */
-class VideoViews {
+class Errors {
   /**
    * @ignore
-   * VideoViews Constructor
+   * Errors Constructor
    *
    * @param {string} accessToken - Mux API Access Token
    * @param {string} secret - Mux API Access Token secret
@@ -53,8 +53,7 @@ class VideoViews {
   }
 
   /**
-   * Returns a list of video views for a property that occurred within the specified timeframe.
-   * Results are ordered by view_end, according to what you provide for order_direction.
+   * Returns a list of playback errors
    *
    * @param {Object} queryParams -
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
@@ -64,32 +63,13 @@ class VideoViews {
    * const { Data } = muxClient;
    *
    * // Lists the available video view exports along with URLs to retrieve them
-   * Data.videoViews.list({order_direction: 'asc'});
+   * Data.errors.list({filters: ['operating_system:windows']});
    *
-   * @see https://api-docs.mux.com/#video-view-get-1
+   * @see https://api-docs.mux.com/#view-error
    */
   list(queryParams) {
     return api.get(PATH, queryParams, this.requestOptions);
   }
-
-  /**
-   * Returns the details for a single video view
-   *
-   * @param {string} videoViewId - The ID for the video view
-   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
-   *
-   * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Data } = muxClient;
-   *
-   * // Lists the available video view exports along with URLs to retrieve them
-   * Data.videoViews.get('ABCD1234');
-   *
-   * @see https://api-docs.mux.com/#video-view-get-1
-   */
-  get(videoViewId) {
-    return api.get(`${PATH}/${videoViewId}`, {}, this.requestOptions);
-  }
 }
 
-module.exports = VideoViews;
+module.exports = Errors;

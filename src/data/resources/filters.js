@@ -1,25 +1,29 @@
+/*!
+ * Mux Filters
+ * Copyright(c) 2018 Mux Inc.
+ */
 
 const api = require('../../utils/api');
 
 /**
- * @private Base asset path for the Mux API
+ * @private Base filters path for the Mux API
  * */
 const PATH = '/data/v1/filters';
 
 /**
- * Filters Class
+ * Filters Class - Provides access to the Mux Data Filters API
  *
  * @example
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;
  *
- * // List all of the values across every breakdown for a specific metric
+ * // Lists all the filters broken out into basic and advanced
  * Data.filters.list();
  */
 class Filters {
   /**
    * @ignore
-   * Exports Constructor
+   * Filters Constructor
    *
    * @param {string} accessToken - Mux API Access Token
    * @param {string} secret - Mux API Access Token secret
@@ -49,16 +53,37 @@ class Filters {
   }
 
   /**
+   * Lists the values for a filter along with a total count of related views
    *
-   * @param filterId
-   * @param queryParams
+   * @param {string} filterId - The filter name/id for see https://api-docs.mux.com/#filter-get-1 for a list of all filter ids
+   * @param {Object} queryParams -
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Data } = muxClient;
+   *
+   * // Lists the values for a filter along with a total count of related views
+   * Data.filters.get('browser', queryParams);
+   *
+   * @see https://api-docs.mux.com/#filter-get-1
    */
   get(filterId, queryParams) {
     return api.get(`${PATH}/${filterId}`, queryParams, this.requestOptions);
   }
 
   /**
+   * Lists all the filters broken out into basic and advanced
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Data } = muxClient;
+   *
+   * // Lists the available video view exports along with URLs to retrieve them
+   * Data.filters.list();
+   *
+   * @see https://api-docs.mux.com/#filter-get
    */
   list() {
     return api.get(PATH, {}, this.requestOptions);
