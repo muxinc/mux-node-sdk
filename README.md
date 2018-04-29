@@ -44,7 +44,7 @@ You can access the Mux Data API in the same way by using your Data instance. For
 values across every breakdown for the `aggregate_startup_time` metric by using the below function.
 
 ```
-Data.metrics.breakdown('aggregate_startup_time', {group_by: 'browser'});
+Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
 ```
 
 Every function will return a chainable [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).

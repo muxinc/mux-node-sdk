@@ -1,9 +1,12 @@
 const axios = require('axios');
 
 /**
+ * @ignore
+ * Mux API request
  *
- * @param url
- * @param options
+ * @param {string} url - Specific Mux url
+ * @param {Object} options - request options
+ * @returns {Promise}
  */
 const makeRequest = (url, options) => (
   axios.request({
@@ -21,10 +24,13 @@ const makeRequest = (url, options) => (
 );
 
 /**
+ * @ignore
+ * HTTP GET request to the Mux API
  *
- * @param url
- * @param queryParams
- * @param options
+ * @param {string} url - Specific Mux url
+ * @param {Object} queryParams - request query parameters
+ * @param {Object} options - request options
+ * @returns {Promise}
  */
 const get = (url, queryParams, options) => {
   const requestOptions = { method: 'get', params: queryParams, ...options };
@@ -32,10 +38,13 @@ const get = (url, queryParams, options) => {
 };
 
 /**
+ * @ignore
+ * HTTP POST request to the Mux API
  *
- * @param url
- * @param body
- * @param options
+ * @param {string} url - Specific Mux url
+ * @param {Object} body - POST body
+ * @param {Object} options - request options
+ * @returns {Promise}
  */
 const post = (url, body, options) => {
   const requestOptions = { method: 'post', data: body, ...options };
@@ -43,9 +52,11 @@ const post = (url, body, options) => {
 };
 
 /**
+ * @ignore
  *
- * @param url
- * @param options
+ * @param {string} url - Specific Mux url
+ * @param {Object} options - request options
+ * @returns {Promise}
  */
 const del = (url, options) => {
   const requestOptions = { method: 'delete', ...options };
@@ -53,10 +64,13 @@ const del = (url, options) => {
 };
 
 /**
+ * @ignore
+ * HTTP PUT request to the Mux API
  *
- * @param url
- * @param body
- * @param options
+ * @param {string} url - Specific Mux url
+ * @param {Object} body - PUT body
+ * @param {Object} options - request options
+ * @returns {Promise}
  */
 const put = (url, body, options) => {
   const requestOptions = { method: 'put', data: body, ...options };

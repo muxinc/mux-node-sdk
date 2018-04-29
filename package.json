@@ -7,7 +7,8 @@
     "video",
     "video encoding",
     "video transcoding",
-    "api"
+    "api",
+    "video analytics"
   ],
   "private": true,
   "author": "Mux <help@mux.com> (https://mux.com/)",
@@ -32,6 +33,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
     "mocha": "^5.1.1",
+    "moxios": "^0.4.0",
     "sinon": "^4.5.0"
   }
 }
