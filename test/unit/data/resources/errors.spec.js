@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const moxios = require('moxios');
 const sinon = require('sinon');
-const Errors = require('../../../src/data/resources/errors');
+const Errors = require('../../../../src/data/resources/errors');
 
 /** @test {Errors} */
 describe('Unit::Errors', () => {

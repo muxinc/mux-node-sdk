@@ -24,7 +24,7 @@ const Data = require('./data/data');
  * Video.playbackIds.create(assetId, { policy: 'public' });
  *
  * // List all of the values across every breakdown for the `aggregate_startup_time` metric
- * Data.metrics.breakdown('aggregate_startup_time', {group_by: 'browser'});
+ * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
  */
 class Mux {
   /**
@@ -45,6 +45,7 @@ class Mux {
 
     /** @type {Video} */
     this.Video = new Video(accessToken, secret);
+
     /** @type {Data} */
     this.Data = new Data(accessToken, secret);
   }

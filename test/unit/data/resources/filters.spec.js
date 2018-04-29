@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const moxios = require('moxios');
 const sinon = require('sinon');
-const Filters = require('../../../src/data/resources/filters');
+const Filters = require('../../../../src/data/resources/filters');
 
 /** @test {Filters} */
 describe('Unit::Filters', () => {

@@ -13,7 +13,7 @@ describe('Unit::api', () => {
     moxios.uninstall();
   });
 
-  /** @test {api} */
+  /** @test {api.get} */
   describe('api.get', () => {
     /** @test {api.get} */
     it('makes a get request', (done) => {
@@ -33,6 +33,7 @@ describe('Unit::api', () => {
     });
   });
 
+  /** @test {api.post} */
   describe('api.post', () => {
     /** @test {api.post} */
     it('makes a post request', (done) => {
@@ -52,6 +53,7 @@ describe('Unit::api', () => {
     });
   });
 
+  /** @test {api.put} */
   describe('api.put', () => {
     /** @test {api.put} */
     it('makes a put request', (done) => {
@@ -71,6 +73,7 @@ describe('Unit::api', () => {
     });
   });
 
+  /** @test {api.del} */
   describe('api.del', () => {
     /** @test {api.del} */
     it('makes a delete request', (done) => {

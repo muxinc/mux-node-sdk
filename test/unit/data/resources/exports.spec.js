@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const moxios = require('moxios');
 const sinon = require('sinon');
-const Exports = require('../../../src/data/resources/exports');
+const Exports = require('../../../../src/data/resources/exports');
 
 /** @test {Exports} */
 describe('Unit::Exports', () => {

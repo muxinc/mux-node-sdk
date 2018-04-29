@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const moxios = require('moxios');
 const sinon = require('sinon');
-const Metrics = require('../../../src/data/resources/metrics');
+const Metrics = require('../../../../src/data/resources/metrics');
 
 /** @test {Metrics} */
 describe('Unit::Metrics', () => {
