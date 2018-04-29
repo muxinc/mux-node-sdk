@@ -18,7 +18,12 @@ const Data = require('./data/data');
  * const { Video, Data } = muxClient;
  *
  * // Create an asset
+ * let assetId;
  * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
+ *   .then((res) => {
+ *     const { data } = res.data;
+ *     assetId = data.id;
+ *   });
  *
  * // Create a playback Id for an asset
  * Video.playbackIds.create(assetId, { policy: 'public' });
