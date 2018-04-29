@@ -1,8 +1,10 @@
 # Mux Node SDK
 
-This library is intended to provide Mux API convenience methods for applications written in server-side Javascript.
+Official Mux API wrapper for Node projects.
 
-__Please note__ that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.
+This library is intended to provide Mux API convenience methods for applications written in server-side Javascript. __Please note__ that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.
+
+Not familiar with Mux? Check out https://mux.com/ for more information.
 
 ## Documentation
 
@@ -32,7 +34,12 @@ const { Video, Data } = muxClient;
 As an example, you can create a Mux asset and playback ID by using the below functions on your Video instance.
 ```
 // Create an asset
-Video.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' });
+let assetId;
+Video.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' })
+  .then((res) => {
+    const { data } = res.data;
+    assetId = data.id;
+  });
 ```
 
 ```
