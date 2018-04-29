@@ -4,7 +4,7 @@ const sinon = require('sinon');
 const Metrics = require('../../../src/data/resources/metrics');
 
 /** @test {Metrics} */
-describe.only('Unit::Metrics', () => {
+describe('Unit::Metrics', () => {
   const testApiKey = 'testKey';
   const testSecret = 'testSecret';
   const metricsInstance = new Metrics(testApiKey, testSecret);

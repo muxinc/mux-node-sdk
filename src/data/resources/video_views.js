@@ -58,7 +58,7 @@ class VideoViews {
    * Results are ordered by view_end, according to what you provide for order_direction.
    *
    * @param {Object} queryParams - example { viewer_id: 'ABCD1234', timeframe: ['7:days'], filters: ['operating_system:windows'] }
-   * NOTE: the viewer_id query parameter is required
+   * NOTE: the view
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example

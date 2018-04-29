@@ -4,7 +4,7 @@ const sinon = require('sinon');
 const api = require('../../../src/utils/api');
 
 /** @test {api} */
-describe.only('Unit::api', () => {
+describe('Unit::api', () => {
   beforeEach(() => {
     moxios.install();
   });
