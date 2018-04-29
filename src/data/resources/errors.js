@@ -17,7 +17,7 @@ const PATH = '/data/v1/errors';
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;
  *
- * // Returns a list of playback errors
+ * // Returns a list of playback errors filtered by the windows operating system
  * Data.errors.list({ filters: ['operating_system:windows'] });
  */
 class Errors {
@@ -62,10 +62,10 @@ class Errors {
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
-   * // Lists the available video view exports along with URLs to retrieve them
+   * // Returns a list of playback errors filtered by the windows operating system
    * Data.errors.list({ filters: ['operating_system:windows'] });
    *
-   * @see https://api-docs.mux.com/#view-error
+   * @see https://api-docs.mux.com/#view-error-get
    */
   list(queryParams) {
     return api.get(PATH, queryParams, this.requestOptions);

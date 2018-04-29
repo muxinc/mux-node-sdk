@@ -17,7 +17,7 @@ const PATH = '/data/v1/metrics';
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;
  *
- * // List all of the values across every breakdown for a specific metric
+ * // List all of the values across every breakdown for a specific metric grouped by operating system
  * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'operating_system' });
  */
 class Metrics {
@@ -64,7 +64,7 @@ class Metrics {
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
-   * // List all of the values across every breakdown for a specific metric
+   * // List all of the values across every breakdown for a specific metric grouped by browser
    * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
    *
    * @see https://api-docs.mux.com/#breakdown-get
@@ -76,15 +76,16 @@ class Metrics {
   /**
    * List all of the values across every breakdown for a specific metric
    *
-   * @param {Object} [queryParams] - example { timeframe: '24:hours', dimension: 'cdn' }
+   * @param {Object} queryParams - example { value: 'safari', timeframe: '24:hours', dimension: 'cdn' }
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
-   * // List the breakdown values for a specific metric
-   * Data.metrics.comparison(queryParams);
+   * // List the breakdown values for a specific metric within the last 24 hours
+   * Data.metrics.comparison({ value: 'safari', timeframe: '24:hours', dimension: 'cdn' });
+   * Note: the value query parameter is required
    *
    * @see https://api-docs.mux.com/#comparison-get
    */
@@ -104,8 +105,8 @@ class Metrics {
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
-   * // Get a list of insights for a metric
-   * Data.metrics.insights('aggregate_startup_time', queryParams);
+   * // Get a list of insights for a metric measured by median and ordered descending
+   * Data.metrics.insights('aggregate_startup_time', { measurement: 'median', order_direction: 'desc' });
    *
    * @see https://api-docs.mux.com/#insight-get
    */
@@ -125,8 +126,8 @@ class Metrics {
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
-   * // Get the overall value for a specific metric
-   * Data.metrics.overall('aggregate_startup_time', queryParams);
+   * // Get the overall value for a specific metric within the past 7 days
+   * Data.metrics.overall('aggregate_startup_time', { timeframe: ['7:days'] });
    *
    * @see https://api-docs.mux.com/#overall-get
    */
@@ -145,8 +146,8 @@ class Metrics {
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
-   * // Get timeseries data for a specific metric
-   * Data.metrics.timeseries('aggregate_startup_time', queryParams);
+   * // Get timeseries data for a specific metric within the past 7 days
+   * Data.metrics.timeseries('aggregate_startup_time', { timeframe: ['7:days'] });
    *
    * @see https://api-docs.mux.com/#timeseries
    */

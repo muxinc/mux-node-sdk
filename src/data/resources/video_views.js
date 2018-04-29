@@ -65,8 +65,9 @@ class VideoViews {
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
-   * //Returns a list of video views for a property that occurred within the specified timeframe.
-   * Data.videoViews.list({order_direction: 'asc'});
+   * // Returns a list of video views for a property that occurred within the specified timeframe.
+   * Data.videoViews.list({ viewer_id: 'ABCD1234', timeframe: ['7:days'], order_direction: 'asc' });
+   * Note: the viewer_id query parameter is required
    *
    * @see https://api-docs.mux.com/#video-view-get-1
    */

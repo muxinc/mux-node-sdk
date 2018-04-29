@@ -64,7 +64,7 @@ class Filters {
    * const { Data } = muxClient;
    *
    * // Lists the values for a filter along with a total count of related views
-   * Data.filters.get('browser', queryParams);
+   * Data.filters.get('browser', { timeframe: ['7:days'] });
    *
    * @see https://api-docs.mux.com/#filter-get-1
    */
