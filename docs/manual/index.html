@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../">
+  <title data-ice="title">Manual | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container manual-root manual-index" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div class="manual-toc-root">
+  
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    </ul>
+  </div>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div class="github-markdown">
+  <div class="manual-user-index" data-ice="manualUserIndex"><h1 id="mux-node-sdk">Mux Node SDK</h1><p>Official Mux API wrapper for Node projects.</p>
+<p>This library is intended to provide Mux API convenience methods for applications written in server-side Javascript. <strong>Please note</strong> that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.</p>
+<p>Not familiar with Mux? Check out <a href="https://mux.com/">https://mux.com/</a> for more information.</p>
+<h2 id="documentation">Documentation</h2><p>See the [Mux-Node docs]</p>
+<h2 id="installation">Installation</h2><pre><code><code class="source-code prettyprint">npm install @mux/mux-node --save</code>
+</code></pre><p>or</p>
+<pre><code><code class="source-code prettyprint">yarn add @mux/mux-node</code>
+</code></pre><h2 id="usage">Usage</h2><p>To start, you will need a Mux access token and secret for your Mux environment. For more information on where to get
+an access token, visit the Mux Getting Started guide <a href="https://docs.mux.com/docs">https://docs.mux.com/docs</a></p>
+<p>Require the <code>@mux/mux-node</code> npm module and create a Mux instance. Your Mux instance will have <code>Data</code> and <code>Video</code> properties
+that will allow you to access the Mux Data and Video APIs.</p>
+<pre><code><code class="source-code prettyprint">const Mux = require(&apos;@mux/mux-node&apos;);
+const muxClient = new Mux(accessToken, secret);
+const { Video, Data } = muxClient;</code>
+</code></pre><p>As an example, you can create a Mux asset and playback ID by using the below functions on your Video instance.</p>
+<pre><code><code class="source-code prettyprint">// Create an asset
+let assetId;
+Video.assets.create({ input: &apos;https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4&apos; })
+  .then((res) =&gt; {
+    const { data } = res.data;
+    assetId = data.id;
+  });</code>
+</code></pre><pre><code><code class="source-code prettyprint">// Create a playback ID for an asset
+Video.playbackIds.create(assetId, { policy: &apos;public&apos; });</code>
+</code></pre><p>You can access the Mux Data API in the same way by using your Data instance. For example, you can list all of the
+values across every breakdown for the <code>aggregate_startup_time</code> metric by using the below function.</p>
+<pre><code><code class="source-code prettyprint">Data.metrics.breakdown(&apos;aggregate_startup_time&apos;, { group_by: &apos;browser&apos; });</code>
+</code></pre><p>Every function will return a chainable <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>.
+See the [Mux-Node docs] for a list of all available functions.</p>
+<h2 id="development">Development</h2><p>Run unit tests: <code>npm test</code> or <code>npm run test:unit</code></p>
+<p>Run integration tests: <code>npm run test:int</code></p>
+<p><strong>Note</strong>: running the integration tests will require you to configure the <code>MUX_ACCESS_TOKEN</code> and <code>MUX_SECRET</code> environment variables with your Mux access token and secret.</p>
+<p>To generate the ESDocs, run:</p>
+<pre><code><code class="source-code prettyprint">./node_modules/.bin/esdoc
+open ./docs/index.html</code>
+</code></pre></div>
+
+  
+
+  <div class="manual-cards">
+    
+  </div>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

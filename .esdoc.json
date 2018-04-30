@@ -13,7 +13,7 @@
         "unexportedIdentifier": {"enable": false},
         "typeInference": {"enable": true},
         "brand": {
-          "logo": "./src/assets/mux-logol@2x.png",
+          "logo": "./src/assets/logo.png",
           "title": "MUX",
           "description": "Mux Node SDK",
           "repository": "https://github.com/muxinc/mux-node-sdk",
@@ -22,7 +22,6 @@
         "manual": {
           "index": "./manual/index.md",
           "globalIndex": true,
-          "asset": "./manual/asset",
           "files": [
             "./manual/overview.md"
           ]

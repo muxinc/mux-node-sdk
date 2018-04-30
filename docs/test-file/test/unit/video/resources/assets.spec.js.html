@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">test/unit/video/resources/assets.spec.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/playbackIds.js~PlaybackIds.html">PlaybackIds</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/unit/video/resources/assets.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
+const sinon = require(&apos;sinon&apos;);
+const Assets = require(&apos;../../../../src/video/resources/assets&apos;);
+const api = require(&apos;../../../../src/utils/api&apos;);
+
+/** @test {Assets} */
+describe(&apos;Unit::Assets&apos;, () =&gt; {
+  const testApiKey = &apos;testApiKey&apos;;
+  const testSecret = &apos;testSecret&apos;;
+  const testAssets = new Assets(testApiKey, testSecret);
+
+  /** @test {Assets} */
+  describe(&apos;Assets&apos;, () =&gt; {
+    /** @test {Assets} */
+    it(&apos;throws an error if an api key is not given&apos;, () =&gt; {
+      expect(() =&gt; new Assets()).to.throw(&apos;API Access Token must be provided.&apos;);
+    });
+
+    /** @test {Assets} */
+    it(&apos;throws an error if a secret key is not given&apos;, () =&gt; {
+      expect(() =&gt; new Assets(&apos;testKey&apos;)).to.throw(&apos;API secret key must be provided&apos;);
+    });
+
+    /** @test {Assets} */
+    it(&apos;creates a new Assets instance&apos;, () =&gt; {
+      const TestAssets = new Assets(testApiKey, testSecret);
+      expect(() =&gt; new Assets(testApiKey, testSecret)).to.not.throw();
+      expect(TestAssets.requestOptions.auth.username).to.equal(testApiKey);
+      expect(TestAssets.requestOptions.auth.password).to.equal(testSecret);
+    });
+  });
+
+  /** @test {Assets.create} */
+  describe(&apos;Assets.create&apos;, () =&gt; {
+    before(() =&gt; {
+      sinon.stub(api, &apos;post&apos;);
+    });
+
+    after(() =&gt; {
+      api.post.restore();
+    });
+
+    /** @test {Assets.create} */
+    it(&apos;makes a POST request to create an asset&apos;, () =&gt; {
+      testAssets.create({ input: &apos;http://test.mov&apos; });
+      expect(api.post.calledOnce);
+    });
+
+    /** @test {Assets.create} */
+    it(&apos;throws an error if no asset params are given&apos;, () =&gt; (
+      testAssets.create()
+        .then((res) =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch((err) =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(&apos;Params are required for creating an asset&apos;);
+        })
+    ));
+  });
+
+  /** @test {Assets.get} */
+  describe(&apos;Assets.get&apos;, () =&gt; {
+    before(() =&gt; {
+      sinon.stub(api, &apos;get&apos;);
+    });
+
+    after(() =&gt; {
+      api.get.restore();
+    });
+
+    /** @test {Assets.get} */
+    it(&apos;makes a GET request to get an asset&apos;, () =&gt; {
+      testAssets.get(&apos;somefakeasset&apos;);
+      expect(api.get.calledOnce);
+    });
+
+    /** @test {Assets.get} */
+    it(&apos;throws an error when an asset id is not given&apos;, () =&gt; (
+      testAssets.get()
+        .then((res) =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch((err) =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(&apos;An asset ID is required to get an asset&apos;);
+        })
+    ));
+  });
+
+  /** @test {Assets.deleteAsset} */
+  describe(&apos;Assets.deleteAsset&apos;, () =&gt; {
+    before(() =&gt; {
+      sinon.stub(api, &apos;del&apos;);
+    });
+
+    after(() =&gt; {
+      api.del.restore();
+    });
+
+    /** @test {Assets.deleteAsset} */
+    it(&apos;makes a DELETE request to delete an asset&apos;, () =&gt; {
+      testAssets.deleteAsset(&apos;somefakeasset&apos;);
+      expect(api.del.calledOnce);
+    });
+
+    /** @test {Assets.deleteAsset} */
+    it(&apos;throws an error when an asset id is not given&apos;, () =&gt; (
+      testAssets.deleteAsset()
+        .then((res) =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch((err) =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(&apos;An asset ID is required to delete an asset&apos;);
+        })
+    ));
+  });
+
+  /** @test {Assets.inputInfo} */
+  describe(&apos;Assets.inputInfo&apos;, () =&gt; {
+    before(() =&gt; {
+      sinon.stub(api, &apos;get&apos;);
+    });
+
+    after(() =&gt; {
+      api.get.restore();
+    });
+
+    /** @test {Assets.inputInfo} */
+    it(&apos;makes a GET rquest to get input info for an asset&apos;, () =&gt; {
+      testAssets.inputInfo(&apos;somefakeasset&apos;);
+      expect(api.get.calledOnce);
+    });
+
+    /** @test {Assets.inputInfo} */
+    it(&apos;throws an error when an asset id is not given&apos;, () =&gt; (
+      testAssets.inputInfo()
+        .then((res) =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch((err) =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(&apos;An asset ID is required to get input-info&apos;);
+        })
+    ));
+  });
+
+  /** @test {Assets.list} */
+  describe(&apos;Assets.list&apos;, () =&gt; {
+    before(() =&gt; {
+      sinon.stub(api, &apos;get&apos;);
+    });
+
+    after(() =&gt; {
+      api.get.restore();
+    });
+
+    /** @test {Assets.list} */
+    it(&apos;makes a GET request to lists all assets for an environment&apos;, () =&gt; {
+      testAssets.list();
+      expect(api.get.calledOnce);
+    });
+  });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

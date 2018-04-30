@@ -1,6 +1,6 @@
 {
-  "name": "mux-node",
-  "version": "1.0.0",
+  "name": "@mux/mux-node",
+  "version": "1.0.0-beta.0",
   "description": "Mux API wrapper",
   "keywords": [
     "mux",
@@ -12,11 +12,15 @@
   ],
   "private": true,
   "author": "Mux <help@mux.com> (https://mux.com/)",
-  "main": "lib/mux.js",
+  "main": "src/mux.js",
+  "engines": {
+    "node": ">=10"
+  },
+  "license": "MIT",
   "scripts": {
-    "test": "mocha --recursive ./test/ -g ^Unit::",
-    "test:unit": "mocha --recursive ./test/ -g ^Unit::",
-    "test:int": "mocha --recursive ./test/ -g ^Integration::"
+    "test": "mocha --recursive ./test/unit",
+    "test:unit": "mocha --recursive ./test/unit",
+    "test:int": "mocha --recursive ./test/integration"
   },
   "dependencies": {
     "axios": "^0.18.0"
@@ -35,5 +39,13 @@
     "mocha": "^5.1.1",
     "moxios": "^0.4.0",
     "sinon": "^4.5.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muxinc/mux-node-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/muxinc/mux-node-sdk/issues"
+  },
+  "homepage": "https://github.com/muxinc/mux-node-sdk#readme"
 }
