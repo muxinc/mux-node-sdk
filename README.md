@@ -1,4 +1,4 @@
-# Mux Node SDK https://muxinc.github.io/mux-node-sdk
+# Mux Node SDK
 
 Official Mux API wrapper for Node projects.
 
