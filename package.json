@@ -10,7 +10,6 @@
     "api",
     "video analytics"
   ],
-  "private": true,
   "author": "Mux <help@mux.com> (https://mux.com/)",
   "main": "src/mux.js",
   "engines": {
