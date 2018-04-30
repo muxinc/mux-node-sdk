@@ -8,7 +8,7 @@ Not familiar with Mux? Check out https://mux.com/ for more information.
 
 ## Documentation
 
-See the [Mux-Node docs]
+See the [Mux-Node docs (https://muxinc.github.io/mux-node-sdk)]
 
 ## Installation
 ```
@@ -55,7 +55,7 @@ Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
 ```
 
 Every function will return a chainable [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
-See the [Mux-Node docs] for a list of all available functions.
+See the [Mux-Node docs (https://muxinc.github.io/mux-node-sdk/identifiers.html)] for a list of all available functions.
 
 ## Development
 
