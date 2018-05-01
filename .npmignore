@@ -7,3 +7,6 @@ test
 
 #assets
 src/assets
+
+#lock files
+yarn.lock
