@@ -2,7 +2,6 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const moxios = require('moxios');
 const Assets = require('../../../../src/video/resources/assets');
-const api = require('../../../../src/utils/api');
 
 /** @test {Assets} */
 describe('Unit::Assets', () => {
@@ -53,7 +52,6 @@ describe('Unit::Assets', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(api.post.calledOnce);
         expect(onFulfilled.getCall(0).args[0].data).to.equal('create');
         done();
       });
@@ -86,7 +84,6 @@ describe('Unit::Assets', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(api.get.calledOnce);
         expect(onFulfilled.getCall(0).args[0].data).to.equal('asset');
         done();
       });
@@ -119,7 +116,6 @@ describe('Unit::Assets', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(api.del.calledOnce);
         expect(onFulfilled.getCall(0).args[0].data).to.equal('delete asset');
         done();
       });
@@ -152,7 +148,6 @@ describe('Unit::Assets', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(api.get.calledOnce);
         expect(onFulfilled.getCall(0).args[0].data).to.equal('input info');
         done();
       });
@@ -185,7 +180,6 @@ describe('Unit::Assets', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(api.get.calledOnce);
         expect(onFulfilled.getCall(0).args[0].data).to.equal('list');
         done();
       });
