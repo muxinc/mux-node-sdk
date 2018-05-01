@@ -90,6 +90,9 @@ class Metrics {
    * @see https://api-docs.mux.com/#comparison-get
    */
   comparison(queryParams) {
+    if (!queryParams || (queryParams && !queryParams.value)) {
+      throw new Error('The value query parameter is required for comparing metrics');
+    }
     return api.get(`${PATH}/comparison`, queryParams, this.requestOptions);
   }
 
@@ -111,6 +114,9 @@ class Metrics {
    * @see https://api-docs.mux.com/#insight-get
    */
   insights(metricId, queryParams) {
+    if (!metricId) {
+      throw new Error('A metric Id is required for insight metrics.');
+    }
     return api.get(`${PATH}/${metricId}/insights`, queryParams, this.requestOptions);
   }
 
@@ -132,6 +138,9 @@ class Metrics {
    * @see https://api-docs.mux.com/#overall-get
    */
   overall(metricId, queryParams) {
+    if (!metricId) {
+      throw new Error('A metric Id is required for overall metrics.');
+    }
     return api.get(`${PATH}/${metricId}/overall`, queryParams, this.requestOptions);
   }
 
@@ -152,6 +161,9 @@ class Metrics {
    * @see https://api-docs.mux.com/#timeseries
    */
   timeseries(metricId, queryParams) {
+    if (!metricId) {
+      throw new Error('A metric Id is required for timeseries metrics.');
+    }
     return api.get(`${PATH}/${metricId}/timeseries`, queryParams, this.requestOptions);
   }
 }
