@@ -43,6 +43,7 @@ describe('Unit::VideoViews', () => {
     /** @test {VideoViews.list} */
     it('throws an error if the viewer_id query parameter is not provided', () => {
       expect(() => videoViewsInstance.list()).to.throw('The viewer_id query parameter is required for listing video views.');
+      expect(() => videoViewsInstance.list({})).to.throw('The viewer_id query parameter is required for listing video views.');
     });
 
     it('makes a get request to the Mux data video-views route', (done) => {
