@@ -28,7 +28,7 @@ describe('Integration::Metrics', () => {
   describe('Metrics.comparision', () => {
     /** @test {Metrics.comparision} */
     it('Lists the breakdown values for a specific metric', () => (
-      Data.metrics.comparison({ dimension: 'browser' })
+      Data.metrics.comparison({ value: 'Safari', dimension: 'browser' })
         .then((res) => {
           const { data } = res;
           should.exist(data);
