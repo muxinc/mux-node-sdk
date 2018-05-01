@@ -61,6 +61,11 @@ describe('Unit::Filters', () => {
   /** @test {Filters.get} */
   describe('Filters.get', () => {
     /** @test {Filters.get} */
+    it('throws an error if a filter Id is not provided', () => {
+      expect(() => filtersInstance.get()).to.throw('Filter Id is required to get filter information.');
+    });
+
+    /** @test {Filters.get} */
     it('makes a get request to the Mux data filters route', (done) => {
       moxios.stubRequest('https://api.mux.com/data/v1/filters/someFilter', {
         status: 200,

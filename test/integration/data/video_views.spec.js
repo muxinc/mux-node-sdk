@@ -12,7 +12,7 @@ describe('Integration::VideoViews', () => {
   describe('VideoViews.list', () => {
     /** @test {VideoViews.list} */
     it('Returns a list of video views for a property that occurred within the specified timeframe', () => (
-      Data.videoViews.list({ order_direction: 'asc' })
+      Data.videoViews.list({ viewer_id: 'test', order_direction: 'asc' })
         .then((res) => {
           const { data } = res;
           should.exist(data);
