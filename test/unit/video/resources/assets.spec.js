@@ -41,18 +41,22 @@ describe('Unit::Assets', () => {
 
   /** @test {Assets.create} */
   describe('Assets.create', () => {
-    before(() => {
-      sinon.stub(api, 'post');
-    });
-
-    after(() => {
-      api.post.restore();
-    });
-
     /** @test {Assets.create} */
-    it('makes a POST request to create an asset', () => {
-      testAssets.create({ input: 'http://test.mov' });
-      expect(api.post.calledOnce);
+    it('makes a POST request to create an asset', (done) => {
+      moxios.stubRequest('https://api.mux.com/video/v1/assets', {
+        status: 200,
+        responseText: 'create',
+      });
+
+      const onFulfilled = sinon.spy();
+      testAssets.create({ input: 'test' })
+        .then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(api.post.calledOnce);
+        expect(onFulfilled.getCall(0).args[0].data).to.equal('create');
+        done();
+      });
     });
 
     /** @test {Assets.create} */

@@ -1,10 +1,18 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
+const moxios = require('moxios');
 const PlaybackIds = require('../../../../src/video/resources/playbackIds');
-const api = require('../../../../src/utils/api');
 
 /** @test {PlaybackIds} */
 describe('Unit::PlaybackIds', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
   const testApiKey = 'testApiKey';
   const testSecret = 'testSecret';
   const testPlaybackIds = new PlaybackIds(testApiKey, testSecret);
@@ -32,18 +40,21 @@ describe('Unit::PlaybackIds', () => {
 
   /** @test {PlaybackIds.create} */
   describe('PlaybackIds.create', () => {
-    before(() => {
-      sinon.stub(api, 'post');
-    });
-
-    after(() => {
-      api.post.restore();
-    });
-
     /** @test {PlaybackIds.create} */
-    it('makes a POST request to create a playback ID', () => {
-      testPlaybackIds.create('assetid', { policy: 'public' });
-      expect(api.post.calledOnce);
+    it('makes a POST request to create a Playback Id for an asset', (done) => {
+      moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset/playback-ids', {
+        status: 200,
+        responseText: 'create',
+      });
+
+      const onFulfilled = sinon.spy();
+      testPlaybackIds.create('testAsset', { policy: 'public' })
+        .then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].data).to.equal('create');
+        done();
+      });
     });
 
     /** @test {PlaybackIds.create} */
@@ -73,18 +84,21 @@ describe('Unit::PlaybackIds', () => {
 
   /** @test {PlaybackIds.deletePlaybackId} */
   describe('PlaybackIds.deletePlaybackId', () => {
-    before(() => {
-      sinon.stub(api, 'del');
-    });
-
-    after(() => {
-      api.del.restore();
-    });
-
     /** @test {PlaybackIds.deletePlaybackId} */
-    it('makes a DELETE request to delete a playback ID', () => {
-      testPlaybackIds.deletePlaybackId('assetid', { policy: 'public' });
-      expect(api.del.calledOnce);
+    it('makes a DELETE request to delete a Playback Id for an asset', (done) => {
+      moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset/playback-ids/testPlaybackId', {
+        status: 200,
+        responseText: 'delete',
+      });
+
+      const onFulfilled = sinon.spy();
+      testPlaybackIds.deletePlaybackId('testAsset', 'testPlaybackId')
+        .then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].data).to.equal('delete');
+        done();
+      });
     });
 
     /** @test {PlaybackIds.deletePlaybackId} */
@@ -114,18 +128,21 @@ describe('Unit::PlaybackIds', () => {
 
   /** @test {PlaybackIds.get} */
   describe('PlaybackIds.get', () => {
-    before(() => {
-      sinon.stub(api, 'get');
-    });
-
-    after(() => {
-      api.get.restore();
-    });
-
     /** @test {PlaybackIds.get} */
-    it('makes a GET request to delete a playbackId', () => {
-      testPlaybackIds.get('assetid', 'playbackId');
-      expect(api.del.calledOnce);
+    it('makes a GET request to get a Playback Id for an asset', (done) => {
+      moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset/playback-ids/testPlaybackId', {
+        status: 200,
+        responseText: 'get',
+      });
+
+      const onFulfilled = sinon.spy();
+      testPlaybackIds.get('testAsset', 'testPlaybackId')
+        .then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].data).to.equal('get');
+        done();
+      });
     });
 
     /** @test {PlaybackIds.get} */
