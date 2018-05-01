@@ -61,14 +61,19 @@ describe('Unit::Metrics', () => {
   /** @test {Metrics.comparison} */
   describe('Metrics.comparison', () => {
     /** @test {Metrics.comparison} */
+    it('throws an error if the value query parameter is not provided', () => {
+      expect(() => metricsInstance.comparison()).to.throw('The value query parameter is required for comparing metrics');
+    });
+
+    /** @test {Metrics.comparison} */
     it('makes a get request to the Mux data comparision route', (done) => {
-      moxios.stubRequest('https://api.mux.com/data/v1/metrics/comparison', {
+      moxios.stubRequest('https://api.mux.com/data/v1/metrics/comparison?value=abc123', {
         status: 200,
         responseText: 'comparison',
       });
 
       const onFulfilled = sinon.spy();
-      metricsInstance.comparison({})
+      metricsInstance.comparison({ value: 'abc123' })
         .then(onFulfilled);
 
       return moxios.wait(() => {

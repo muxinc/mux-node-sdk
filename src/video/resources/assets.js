@@ -156,7 +156,7 @@ class Assets {
    * @see https://docs.mux.com/v1/reference#list-assets
    */
   list() {
-    return api.get(PATH, this.requestOptions);
+    return api.get(PATH, {}, this.requestOptions);
   }
 }
 

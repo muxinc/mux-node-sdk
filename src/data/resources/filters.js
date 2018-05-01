@@ -69,6 +69,9 @@ class Filters {
    * @see https://api-docs.mux.com/#filter-get-1
    */
   get(filterId, queryParams) {
+    if (!filterId) {
+      throw new Error('Filter Id is required to get filter information.');
+    }
     return api.get(`${PATH}/${filterId}`, queryParams, this.requestOptions);
   }
 
