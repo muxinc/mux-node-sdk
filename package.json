@@ -13,7 +13,7 @@
   "author": "Mux <help@mux.com> (https://mux.com/)",
   "main": "src/mux.js",
   "engines": {
-    "node": ">=8"
+    "node": ">=8.9.0"
   },
   "license": "MIT",
   "scripts": {
