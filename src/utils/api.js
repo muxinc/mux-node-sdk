@@ -9,7 +9,7 @@ const axios = require('axios');
  * @returns {Promise}
  */
 const makeRequest = (url, options) => (
-  axios.request({
+  axios.request(Object.assign({
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
@@ -18,9 +18,8 @@ const makeRequest = (url, options) => (
     url,
     baseURL: 'https://api.mux.com',
     mode: 'cors',
-    withCredentials: false,
-    ...options,
-  })
+    withCredentials: false
+  }, options)
 );
 
 /**
