@@ -19,7 +19,7 @@ const makeRequest = (url, options) => (
     baseURL: 'https://api.mux.com',
     mode: 'cors',
     withCredentials: false
-  }, options)
+  }, options))
 );
 
 /**
