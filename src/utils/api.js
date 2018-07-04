@@ -46,7 +46,7 @@ const get = (url, queryParams, options) => {
  * @returns {Promise}
  */
 const post = (url, body, options) => {
-  const requestOptions = { method: 'post', data: body, ...options };
+  const requestOptions = Objet.assign({ method: 'post', data: body }, options);
   return makeRequest(url, requestOptions);
 };
 
@@ -58,7 +58,7 @@ const post = (url, body, options) => {
  * @returns {Promise}
  */
 const del = (url, options) => {
-  const requestOptions = { method: 'delete', ...options };
+  const requestOptions = Object.assign({ method: 'delete' }, options);
   return makeRequest(url, requestOptions);
 };
 
@@ -72,7 +72,7 @@ const del = (url, options) => {
  * @returns {Promise}
  */
 const put = (url, body, options) => {
-  const requestOptions = { method: 'put', data: body, ...options };
+  const requestOptions = Object.assign({ method: 'put', data: body }, options);
   return makeRequest(url, requestOptions);
 };
 
