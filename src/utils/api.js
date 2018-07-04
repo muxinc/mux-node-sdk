@@ -32,7 +32,7 @@ const makeRequest = (url, options) => (
  * @returns {Promise}
  */
 const get = (url, queryParams, options) => {
-  const requestOptions = { method: 'get', params: queryParams, ...options };
+  const requestOptions = Object.assign({ method: 'get', params: queryParams }, options);
   return makeRequest(url, requestOptions);
 };
 
