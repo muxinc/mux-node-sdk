@@ -10,3 +10,13 @@ src/assets
 
 #lock files
 yarn.lock
+
+#private files
+.env
+
+#ide configs
+.idea
+.editorconfig
+
+#linters
+.eslintrc*
