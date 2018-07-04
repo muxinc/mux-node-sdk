@@ -9,7 +9,7 @@ const axios = require('axios');
  * @returns {Promise}
  */
 const makeRequest = (url, options) => (
-  axios.request({
+  axios.request(Object.assign({
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
@@ -18,9 +18,8 @@ const makeRequest = (url, options) => (
     url,
     baseURL: 'https://api.mux.com',
     mode: 'cors',
-    withCredentials: false,
-    ...options,
-  })
+    withCredentials: false
+  }, options))
 );
 
 /**
@@ -33,7 +32,7 @@ const makeRequest = (url, options) => (
  * @returns {Promise}
  */
 const get = (url, queryParams, options) => {
-  const requestOptions = { method: 'get', params: queryParams, ...options };
+  const requestOptions = Object.assign({ method: 'get', params: queryParams }, options);
   return makeRequest(url, requestOptions);
 };
 
@@ -47,7 +46,7 @@ const get = (url, queryParams, options) => {
  * @returns {Promise}
  */
 const post = (url, body, options) => {
-  const requestOptions = { method: 'post', data: body, ...options };
+  const requestOptions = Object.assign({ method: 'post', data: body }, options);
   return makeRequest(url, requestOptions);
 };
 
@@ -59,7 +58,7 @@ const post = (url, body, options) => {
  * @returns {Promise}
  */
 const del = (url, options) => {
-  const requestOptions = { method: 'delete', ...options };
+  const requestOptions = Object.assign({ method: 'delete' }, options);
   return makeRequest(url, requestOptions);
 };
 
@@ -73,7 +72,7 @@ const del = (url, options) => {
  * @returns {Promise}
  */
 const put = (url, body, options) => {
-  const requestOptions = { method: 'put', data: body, ...options };
+  const requestOptions = Object.assign({ method: 'put', data: body }, options);
   return makeRequest(url, requestOptions);
 };
 
