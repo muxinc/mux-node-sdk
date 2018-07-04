@@ -46,7 +46,7 @@ const get = (url, queryParams, options) => {
  * @returns {Promise}
  */
 const post = (url, body, options) => {
-  const requestOptions = Objet.assign({ method: 'post', data: body }, options);
+  const requestOptions = Object.assign({ method: 'post', data: body }, options);
   return makeRequest(url, requestOptions);
 };
 
