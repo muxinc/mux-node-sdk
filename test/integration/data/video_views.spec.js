@@ -28,7 +28,7 @@ describe('Integration::VideoViews', () => {
   describe('VideoViews.get', () => {
     /** @test {VideoViews.get} */
     it('Returns the details for a single video view', () => (
-      Data.videoViews.get('Jp95ZdDtM59p6eHEPoSd9oFBDdC8LljVlRWo')
+      Data.videoViews.get(process.env.MUX_VIDEO_VIEW_ID)
         .then((res) => {
           const { data } = res;
           should.exist(data);

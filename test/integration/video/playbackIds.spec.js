@@ -25,7 +25,7 @@ describe('Integration::PlaybackIds', () => {
   ));
 
   after(() => (
-    Video.assets.deleteAsset(testAsset.data.id)
+    Video.assets.remove(testAsset.data.id)
       .then((res) => {
         const { data } = res;
         should.exist(data);
