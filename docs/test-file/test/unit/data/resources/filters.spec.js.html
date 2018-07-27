@@ -105,6 +105,11 @@ describe(&apos;Unit::Filters&apos;, () =&gt; {
   /** @test {Filters.get} */
   describe(&apos;Filters.get&apos;, () =&gt; {
     /** @test {Filters.get} */
+    it(&apos;throws an error if a filter Id is not provided&apos;, () =&gt; {
+      expect(() =&gt; filtersInstance.get()).to.throw(&apos;Filter Id is required to get filter information.&apos;);
+    });
+
+    /** @test {Filters.get} */
     it(&apos;makes a get request to the Mux data filters route&apos;, (done) =&gt; {
       moxios.stubRequest(&apos;https://api.mux.com/data/v1/filters/someFilter&apos;, {
         status: 200,

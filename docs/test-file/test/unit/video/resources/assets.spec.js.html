@@ -44,14 +44,22 @@
 <div class="content" data-ice="content"><h1 data-ice="title">test/unit/video/resources/assets.spec.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
 const sinon = require(&apos;sinon&apos;);
+const moxios = require(&apos;moxios&apos;);
 const Assets = require(&apos;../../../../src/video/resources/assets&apos;);
-const api = require(&apos;../../../../src/utils/api&apos;);
 
 /** @test {Assets} */
 describe(&apos;Unit::Assets&apos;, () =&gt; {
   const testApiKey = &apos;testApiKey&apos;;
   const testSecret = &apos;testSecret&apos;;
   const testAssets = new Assets(testApiKey, testSecret);
+
+  beforeEach(() =&gt; {
+    moxios.install();
+  });
+
+  afterEach(() =&gt; {
+    moxios.uninstall();
+  });
 
   /** @test {Assets} */
   describe(&apos;Assets&apos;, () =&gt; {
@@ -76,18 +84,21 @@ describe(&apos;Unit::Assets&apos;, () =&gt; {
 
   /** @test {Assets.create} */
   describe(&apos;Assets.create&apos;, () =&gt; {
-    before(() =&gt; {
-      sinon.stub(api, &apos;post&apos;);
-    });
-
-    after(() =&gt; {
-      api.post.restore();
-    });
-
     /** @test {Assets.create} */
-    it(&apos;makes a POST request to create an asset&apos;, () =&gt; {
-      testAssets.create({ input: &apos;http://test.mov&apos; });
-      expect(api.post.calledOnce);
+    it(&apos;makes a POST request to create an asset&apos;, (done) =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/assets&apos;, {
+        status: 200,
+        responseText: &apos;create&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testAssets.create({ input: &apos;test&apos; })
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].data).to.equal(&apos;create&apos;);
+        done();
+      });
     });
 
     /** @test {Assets.create} */
@@ -105,18 +116,21 @@ describe(&apos;Unit::Assets&apos;, () =&gt; {
 
   /** @test {Assets.get} */
   describe(&apos;Assets.get&apos;, () =&gt; {
-    before(() =&gt; {
-      sinon.stub(api, &apos;get&apos;);
-    });
-
-    after(() =&gt; {
-      api.get.restore();
-    });
-
     /** @test {Assets.get} */
-    it(&apos;makes a GET request to get an asset&apos;, () =&gt; {
-      testAssets.get(&apos;somefakeasset&apos;);
-      expect(api.get.calledOnce);
+    it(&apos;makes a GET request to get an asset&apos;, (done) =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/assets/testAsset&apos;, {
+        status: 200,
+        responseText: &apos;asset&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testAssets.get(&apos;testAsset&apos;)
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].data).to.equal(&apos;asset&apos;);
+        done();
+      });
     });
 
     /** @test {Assets.get} */
@@ -132,25 +146,28 @@ describe(&apos;Unit::Assets&apos;, () =&gt; {
     ));
   });
 
-  /** @test {Assets.deleteAsset} */
-  describe(&apos;Assets.deleteAsset&apos;, () =&gt; {
-    before(() =&gt; {
-      sinon.stub(api, &apos;del&apos;);
+  /** @test {Assets.remove} */
+  describe(&apos;Assets.remove&apos;, () =&gt; {
+    /** @test {Assets.remove} */
+    it(&apos;makes a DELETE request to delete an asset&apos;, (done) =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/assets/testAsset&apos;, {
+        status: 200,
+        responseText: &apos;delete asset&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testAssets.remove(&apos;testAsset&apos;)
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].data).to.equal(&apos;delete asset&apos;);
+        done();
+      });
     });
 
-    after(() =&gt; {
-      api.del.restore();
-    });
-
-    /** @test {Assets.deleteAsset} */
-    it(&apos;makes a DELETE request to delete an asset&apos;, () =&gt; {
-      testAssets.deleteAsset(&apos;somefakeasset&apos;);
-      expect(api.del.calledOnce);
-    });
-
-    /** @test {Assets.deleteAsset} */
+    /** @test {Assets.remove} */
     it(&apos;throws an error when an asset id is not given&apos;, () =&gt; (
-      testAssets.deleteAsset()
+      testAssets.remove()
         .then((res) =&gt; {
           expect(res).to.not.exist;
         })
@@ -163,18 +180,21 @@ describe(&apos;Unit::Assets&apos;, () =&gt; {
 
   /** @test {Assets.inputInfo} */
   describe(&apos;Assets.inputInfo&apos;, () =&gt; {
-    before(() =&gt; {
-      sinon.stub(api, &apos;get&apos;);
-    });
-
-    after(() =&gt; {
-      api.get.restore();
-    });
-
     /** @test {Assets.inputInfo} */
-    it(&apos;makes a GET rquest to get input info for an asset&apos;, () =&gt; {
-      testAssets.inputInfo(&apos;somefakeasset&apos;);
-      expect(api.get.calledOnce);
+    it(&apos;makes a GET request to get input info for an asset&apos;, (done) =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/assets/testAsset/input-info&apos;, {
+        status: 200,
+        responseText: &apos;input info&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testAssets.inputInfo(&apos;testAsset&apos;)
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].data).to.equal(&apos;input info&apos;);
+        done();
+      });
     });
 
     /** @test {Assets.inputInfo} */
@@ -192,18 +212,37 @@ describe(&apos;Unit::Assets&apos;, () =&gt; {
 
   /** @test {Assets.list} */
   describe(&apos;Assets.list&apos;, () =&gt; {
-    before(() =&gt; {
-      sinon.stub(api, &apos;get&apos;);
-    });
-
-    after(() =&gt; {
-      api.get.restore();
-    });
-
     /** @test {Assets.list} */
-    it(&apos;makes a GET request to lists all assets for an environment&apos;, () =&gt; {
-      testAssets.list();
-      expect(api.get.calledOnce);
+    it(&apos;makes a GET request to list all assets&apos;, (done) =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/assets&apos;, {
+        status: 200,
+        responseText: &apos;list&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testAssets.list()
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].data).to.equal(&apos;list&apos;);
+        done();
+      });
+    });
+
+    it(&apos;makes a GET request to list 100 assets offset by 2 pages&apos;, (done) =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/assets?limit=100&amp;page=2&apos;, {
+        status: 200,
+        responseText: &apos;list&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testAssets.list({limit: 100, page: 2})
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].data).to.equal(&apos;list&apos;);
+        done();
+      });
     });
   });
 });

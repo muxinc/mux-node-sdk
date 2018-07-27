@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../../">
-  <title data-ice="title">src/data/resources/filters.js | MUX</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/utils/api.js | MUX</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -41,103 +41,91 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/data/resources/filters.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*!
- * Mux Filters
- * Copyright(c) 2018 Mux Inc.
- */
-
-const api = require(&apos;../../utils/api&apos;);
+<div class="content" data-ice="content"><h1 data-ice="title">src/utils/api.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const axios = require(&apos;axios&apos;);
 
 /**
- * @private Base filters path for the Mux API
- * */
-const PATH = &apos;/data/v1/filters&apos;;
+ * @ignore
+ * Mux API request
+ *
+ * @param {string} url - Specific Mux url
+ * @param {Object} options - request options
+ * @returns {Promise}
+ */
+const makeRequest = (url, options) =&gt; (
+  axios.request(Object.assign({
+    method: &apos;get&apos;,
+    headers: {
+      &apos;Content-Type&apos;: &apos;application/json&apos;,
+      Accept: &apos;application/json&apos;,
+    },
+    url,
+    baseURL: &apos;https://api.mux.com&apos;,
+    mode: &apos;cors&apos;,
+    withCredentials: false
+  }, options))
+);
 
 /**
- * Filters Class - Provides access to the Mux Data Filters API
+ * @ignore
+ * HTTP GET request to the Mux API
  *
- * @example
- * const muxClient = new Mux(accessToken, secret);
- * const { Data } = muxClient;
- *
- * // Lists all the filters broken out into basic and advanced
- * Data.filters.list();
+ * @param {string} url - Specific Mux url
+ * @param {Object} queryParams - request query parameters
+ * @param {Object} options - request options
+ * @returns {Promise}
  */
-class Filters {
-  /**
-   * @ignore
-   * Filters Constructor
-   *
-   * @param {string} accessToken - Mux API Access Token
-   * @param {string} secret - Mux API Access Token secret
-   * @constructor
-   */
-  constructor(accessToken, secret) {
-    if (typeof accessToken === &apos;undefined&apos;) {
-      throw new Error(&apos;API Access Token must be provided.&apos;);
-    }
+const get = (url, queryParams, options) =&gt; {
+  const requestOptions = Object.assign({ method: &apos;get&apos;, params: queryParams }, options);
+  return makeRequest(url, requestOptions);
+};
 
-    if (typeof secret === &apos;undefined&apos;) {
-      throw new Error(&apos;API secret key must be provided&apos;);
-    }
+/**
+ * @ignore
+ * HTTP POST request to the Mux API
+ *
+ * @param {string} url - Specific Mux url
+ * @param {Object} body - POST body
+ * @param {Object} options - request options
+ * @returns {Promise}
+ */
+const post = (url, body, options) =&gt; {
+  const requestOptions = Object.assign({ method: &apos;post&apos;, data: body }, options);
+  return makeRequest(url, requestOptions);
+};
 
-    /**
-     *  @ignore
-     *  @type {Object} requestOptions - The HTTP request options for Mux Assets
-     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)
-     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)
-     * */
-    this.requestOptions = {
-      auth: {
-        username: accessToken,
-        password: secret,
-      },
-    };
-  }
+/**
+ * @ignore
+ *
+ * @param {string} url - Specific Mux url
+ * @param {Object} options - request options
+ * @returns {Promise}
+ */
+const del = (url, options) =&gt; {
+  const requestOptions = Object.assign({ method: &apos;delete&apos; }, options);
+  return makeRequest(url, requestOptions);
+};
 
-  /**
-   * Lists the values for a filter along with a total count of related views
-   *
-   * @param {string} filterId - The filter name/id for see https://api-docs.mux.com/#filter-get-1 for a list of all filter ids
-   * @param {Object} [queryParams] - example { timeframe: [&apos;7:days&apos;], filters: [&apos;operating_system:windows&apos;] }
-   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
-   *
-   * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Data } = muxClient;
-   *
-   * // Lists the values for a filter along with a total count of related views
-   * Data.filters.get(&apos;browser&apos;, { timeframe: [&apos;7:days&apos;] });
-   *
-   * @see https://api-docs.mux.com/#filter-get-1
-   */
-  get(filterId, queryParams) {
-    if (!filterId) {
-      throw new Error(&apos;Filter Id is required to get filter information.&apos;);
-    }
-    return api.get(`${PATH}/${filterId}`, queryParams, this.requestOptions);
-  }
+/**
+ * @ignore
+ * HTTP PUT request to the Mux API
+ *
+ * @param {string} url - Specific Mux url
+ * @param {Object} body - PUT body
+ * @param {Object} options - request options
+ * @returns {Promise}
+ */
+const put = (url, body, options) =&gt; {
+  const requestOptions = Object.assign({ method: &apos;put&apos;, data: body }, options);
+  return makeRequest(url, requestOptions);
+};
 
-  /**
-   * Lists all the filters broken out into basic and advanced
-   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
-   *
-   * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Data } = muxClient;
-   *
-   * // Lists the available video view exports along with URLs to retrieve them
-   * Data.filters.list();
-   *
-   * @see https://api-docs.mux.com/#filter-get
-   */
-  list() {
-    return api.get(PATH, {}, this.requestOptions);
-  }
-}
-
-module.exports = Filters;
+module.exports = {
+  get,
+  post,
+  put,
+  del,
+};
 </code></pre>
 
 </div>

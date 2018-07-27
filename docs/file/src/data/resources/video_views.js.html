@@ -102,7 +102,7 @@ class VideoViews {
    * Results are ordered by view_end, according to what you provide for order_direction.
    *
    * @param {Object} queryParams - example { viewer_id: &apos;ABCD1234&apos;, timeframe: [&apos;7:days&apos;], filters: [&apos;operating_system:windows&apos;] }
-   * NOTE: the view
+   * NOTE: the viewer_id query parameter is required
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
@@ -116,6 +116,9 @@ class VideoViews {
    * @see https://api-docs.mux.com/#video-view-get-1
    */
   list(queryParams) {
+    if (!queryParams || (queryParams &amp;&amp; !queryParams.viewer_id)) {
+      throw new Error(&apos;The viewer_id query parameter is required for listing video views.&apos;);
+    }
     return api.get(PATH, queryParams, this.requestOptions);
   }
 
@@ -135,6 +138,9 @@ class VideoViews {
    * @see https://api-docs.mux.com/#video-view-get-1
    */
   get(videoViewId) {
+    if (!videoViewId) {
+      throw new Error(&apos;A video view Id is required for video view details.&apos;);
+    }
     return api.get(`${PATH}/${videoViewId}`, {}, this.requestOptions);
   }
 }

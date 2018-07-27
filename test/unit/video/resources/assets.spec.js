@@ -102,9 +102,9 @@ describe('Unit::Assets', () => {
     ));
   });
 
-  /** @test {Assets.deleteAsset} */
-  describe('Assets.deleteAsset', () => {
-    /** @test {Assets.deleteAsset} */
+  /** @test {Assets.remove} */
+  describe('Assets.remove', () => {
+    /** @test {Assets.remove} */
     it('makes a DELETE request to delete an asset', (done) => {
       moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset', {
         status: 200,
@@ -112,7 +112,7 @@ describe('Unit::Assets', () => {
       });
 
       const onFulfilled = sinon.spy();
-      testAssets.deleteAsset('testAsset')
+      testAssets.remove('testAsset')
         .then(onFulfilled);
 
       return moxios.wait(() => {
@@ -121,9 +121,9 @@ describe('Unit::Assets', () => {
       });
     });
 
-    /** @test {Assets.deleteAsset} */
+    /** @test {Assets.remove} */
     it('throws an error when an asset id is not given', () => (
-      testAssets.deleteAsset()
+      testAssets.remove()
         .then((res) => {
           expect(res).to.not.exist;
         })
@@ -177,6 +177,22 @@ describe('Unit::Assets', () => {
 
       const onFulfilled = sinon.spy();
       testAssets.list()
+        .then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].data).to.equal('list');
+        done();
+      });
+    });
+
+    it('makes a GET request to list 100 assets offset by 2 pages', (done) => {
+      moxios.stubRequest('https://api.mux.com/video/v1/assets?limit=100&page=2', {
+        status: 200,
+        responseText: 'list',
+      });
+
+      const onFulfilled = sinon.spy();
+      testAssets.list({limit: 100, page: 2})
         .then(onFulfilled);
 
       return moxios.wait(() => {

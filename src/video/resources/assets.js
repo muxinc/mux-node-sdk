@@ -89,11 +89,11 @@ class Assets {
    * const { Video } = muxClient;
    *
    * // Delete an asset
-   * Video.assets.deleteAsset(assetId);
+   * Video.assets.remove(assetId);
    *
    * @see https://docs.mux.com/v1/reference#delete-an-asset
    */
-  deleteAsset(assetId) {
+  remove(assetId) {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required to delete an asset'));
     }
@@ -155,8 +155,8 @@ class Assets {
    *
    * @see https://docs.mux.com/v1/reference#list-assets
    */
-  list() {
-    return api.get(PATH, {}, this.requestOptions);
+  list(queryParams) {
+    return api.get(PATH, queryParams, this.requestOptions);
   }
 }
 

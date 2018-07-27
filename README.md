@@ -26,13 +26,13 @@ an access token, visit the Mux Getting Started guide https://docs.mux.com/docs
 Require the `@mux/mux-node` npm module and create a Mux instance. Your Mux instance will have `Data` and `Video` properties
 that will allow you to access the Mux Data and Video APIs.
 
-```
+```javascript
 const Mux = require('@mux/mux-node');
 const muxClient = new Mux(accessToken, secret);
 const { Video, Data } = muxClient;
 ```
 As an example, you can create a Mux asset and playback ID by using the below functions on your Video instance.
-```
+```javascript
 // Create an asset
 let assetId;
 Video.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' })
@@ -42,7 +42,7 @@ Video.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-vi
   });
 ```
 
-```
+```javascript
 // Create a playback ID for an asset
 Video.playbackIds.create(assetId, { policy: 'public' });
 ```
@@ -50,7 +50,7 @@ Video.playbackIds.create(assetId, { policy: 'public' });
 You can access the Mux Data API in the same way by using your Data instance. For example, you can list all of the
 values across every breakdown for the `aggregate_startup_time` metric by using the below function.
 
-```
+```javascript
 Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
 ```
 

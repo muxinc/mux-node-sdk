@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 63,
-  "actualCount": 63,
+  "expectCount": 68,
+  "actualCount": 68,
   "files": {
     "src/data/data.js": {
       "expectCount": 7,
@@ -36,6 +36,11 @@
     "src/mux.js": {
       "expectCount": 4,
       "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/utils/api.js": {
+      "expectCount": 5,
+      "actualCount": 5,
       "undocumentLines": []
     },
     "src/video/resources/assets.js": {

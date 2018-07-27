@@ -1078,7 +1078,7 @@
     "__docId__": 68,
     "kind": "file",
     "name": "src/data/resources/filters.js",
-    "content": "/*!\n * Mux Filters\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private Base filters path for the Mux API\n * */\nconst PATH = '/data/v1/filters';\n\n/**\n * Filters Class - Provides access to the Mux Data Filters API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Data } = muxClient;\n *\n * // Lists all the filters broken out into basic and advanced\n * Data.filters.list();\n */\nclass Filters {\n  /**\n   * @ignore\n   * Filters Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Assets\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * Lists the values for a filter along with a total count of related views\n   *\n   * @param {string} filterId - The filter name/id for see https://api-docs.mux.com/#filter-get-1 for a list of all filter ids\n   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // Lists the values for a filter along with a total count of related views\n   * Data.filters.get('browser', { timeframe: ['7:days'] });\n   *\n   * @see https://api-docs.mux.com/#filter-get-1\n   */\n  get(filterId, queryParams) {\n    return api.get(`${PATH}/${filterId}`, queryParams, this.requestOptions);\n  }\n\n  /**\n   * Lists all the filters broken out into basic and advanced\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // Lists the available video view exports along with URLs to retrieve them\n   * Data.filters.list();\n   *\n   * @see https://api-docs.mux.com/#filter-get\n   */\n  list() {\n    return api.get(PATH, {}, this.requestOptions);\n  }\n}\n\nmodule.exports = Filters;\n",
+    "content": "/*!\n * Mux Filters\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private Base filters path for the Mux API\n * */\nconst PATH = '/data/v1/filters';\n\n/**\n * Filters Class - Provides access to the Mux Data Filters API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Data } = muxClient;\n *\n * // Lists all the filters broken out into basic and advanced\n * Data.filters.list();\n */\nclass Filters {\n  /**\n   * @ignore\n   * Filters Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Assets\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * Lists the values for a filter along with a total count of related views\n   *\n   * @param {string} filterId - The filter name/id for see https://api-docs.mux.com/#filter-get-1 for a list of all filter ids\n   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // Lists the values for a filter along with a total count of related views\n   * Data.filters.get('browser', { timeframe: ['7:days'] });\n   *\n   * @see https://api-docs.mux.com/#filter-get-1\n   */\n  get(filterId, queryParams) {\n    if (!filterId) {\n      throw new Error('Filter Id is required to get filter information.');\n    }\n    return api.get(`${PATH}/${filterId}`, queryParams, this.requestOptions);\n  }\n\n  /**\n   * Lists all the filters broken out into basic and advanced\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // Lists the available video view exports along with URLs to retrieve them\n   * Data.filters.list();\n   *\n   * @see https://api-docs.mux.com/#filter-get\n   */\n  list() {\n    return api.get(PATH, {}, this.requestOptions);\n  }\n}\n\nmodule.exports = Filters;\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/src/data/resources/filters.js",
     "access": "public",
@@ -1279,7 +1279,7 @@
     "see": [
       "https://api-docs.mux.com/#filter-get"
     ],
-    "lineNumber": 88,
+    "lineNumber": 91,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1300,7 +1300,7 @@
     "__docId__": 75,
     "kind": "file",
     "name": "src/data/resources/metrics.js",
-    "content": "/*!\n * Mux Metrics\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private Base metrics path for the Mux API\n * */\nconst PATH = '/data/v1/metrics';\n\n/**\n * Metrics Class - Provides access to the Mux Data Metrics API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Data } = muxClient;\n *\n * // List all of the values across every breakdown for a specific metric grouped by operating system\n * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'operating_system' });\n */\nclass Metrics {\n  /**\n   * @ignore\n   * Metrics Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Assets\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * List the breakdown values for a specific metric\n   *\n   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#breakdown-get for a list of all metric ids\n   * @param {Object} queryParams - example: {group_by: 'browser'}\n   * NOTE: the group_by query parameter is required\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // List all of the values across every breakdown for a specific metric grouped by browser\n   * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });\n   *\n   * @see https://api-docs.mux.com/#breakdown-get\n   */\n  breakdown(metricId, queryParams) {\n    return api.get(`${PATH}/${metricId}/breakdown`, queryParams, this.requestOptions);\n  }\n\n  /**\n   * List all of the values across every breakdown for a specific metric\n   *\n   * @param {Object} queryParams - example { value: 'safari', timeframe: '24:hours', dimension: 'cdn' }\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // List the breakdown values for a specific metric within the last 24 hours\n   * Data.metrics.comparison({ value: 'safari', timeframe: '24:hours', dimension: 'cdn' });\n   * Note: the value query parameter is required\n   *\n   * @see https://api-docs.mux.com/#comparison-get\n   */\n  comparison(queryParams) {\n    return api.get(`${PATH}/comparison`, queryParams, this.requestOptions);\n  }\n\n  /**\n   * Returns a list of insights for a metric. These are the worst performing values across all\n   * breakdowns sorted by how much they negatively impact a specific metric.\n   *\n   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#breakdown-get for a list of all metric ids\n   * @param {Object} [queryParams] - example { measurement: 'median', order_direction: 'desc' }\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // Get a list of insights for a metric measured by median and ordered descending\n   * Data.metrics.insights('aggregate_startup_time', { measurement: 'median', order_direction: 'desc' });\n   *\n   * @see https://api-docs.mux.com/#insight-get\n   */\n  insights(metricId, queryParams) {\n    return api.get(`${PATH}/${metricId}/insights`, queryParams, this.requestOptions);\n  }\n\n  /**\n   * Returns the overall value for a specific metric, as well as the total view count,\n   * watch time, and the Mux Global metric value for the metric.\n   *\n   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#overall-get for a list of all metric ids\n   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // Get the overall value for a specific metric within the past 7 days\n   * Data.metrics.overall('aggregate_startup_time', { timeframe: ['7:days'] });\n   *\n   * @see https://api-docs.mux.com/#overall-get\n   */\n  overall(metricId, queryParams) {\n    return api.get(`${PATH}/${metricId}/overall`, queryParams, this.requestOptions);\n  }\n\n  /**\n   * Returns timeseries data for a specific metric\n   *\n   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#timeseries for a list of all metric ids\n   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // Get timeseries data for a specific metric within the past 7 days\n   * Data.metrics.timeseries('aggregate_startup_time', { timeframe: ['7:days'] });\n   *\n   * @see https://api-docs.mux.com/#timeseries\n   */\n  timeseries(metricId, queryParams) {\n    return api.get(`${PATH}/${metricId}/timeseries`, queryParams, this.requestOptions);\n  }\n}\n\nmodule.exports = Metrics;\n",
+    "content": "/*!\n * Mux Metrics\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private Base metrics path for the Mux API\n * */\nconst PATH = '/data/v1/metrics';\n\n/**\n * Metrics Class - Provides access to the Mux Data Metrics API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Data } = muxClient;\n *\n * // List all of the values across every breakdown for a specific metric grouped by operating system\n * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'operating_system' });\n */\nclass Metrics {\n  /**\n   * @ignore\n   * Metrics Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Assets\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * List the breakdown values for a specific metric\n   *\n   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#breakdown-get for a list of all metric ids\n   * @param {Object} queryParams - example: {group_by: 'browser'}\n   * NOTE: the group_by query parameter is required\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // List all of the values across every breakdown for a specific metric grouped by browser\n   * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });\n   *\n   * @see https://api-docs.mux.com/#breakdown-get\n   */\n  breakdown(metricId, queryParams) {\n    return api.get(`${PATH}/${metricId}/breakdown`, queryParams, this.requestOptions);\n  }\n\n  /**\n   * List all of the values across every breakdown for a specific metric\n   *\n   * @param {Object} queryParams - example { value: 'safari', timeframe: '24:hours', dimension: 'cdn' }\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // List the breakdown values for a specific metric within the last 24 hours\n   * Data.metrics.comparison({ value: 'safari', timeframe: '24:hours', dimension: 'cdn' });\n   * Note: the value query parameter is required\n   *\n   * @see https://api-docs.mux.com/#comparison-get\n   */\n  comparison(queryParams) {\n    if (!queryParams || (queryParams && !queryParams.value)) {\n      throw new Error('The value query parameter is required for comparing metrics');\n    }\n    return api.get(`${PATH}/comparison`, queryParams, this.requestOptions);\n  }\n\n  /**\n   * Returns a list of insights for a metric. These are the worst performing values across all\n   * breakdowns sorted by how much they negatively impact a specific metric.\n   *\n   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#breakdown-get for a list of all metric ids\n   * @param {Object} [queryParams] - example { measurement: 'median', order_direction: 'desc' }\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // Get a list of insights for a metric measured by median and ordered descending\n   * Data.metrics.insights('aggregate_startup_time', { measurement: 'median', order_direction: 'desc' });\n   *\n   * @see https://api-docs.mux.com/#insight-get\n   */\n  insights(metricId, queryParams) {\n    if (!metricId) {\n      throw new Error('A metric Id is required for insight metrics.');\n    }\n    return api.get(`${PATH}/${metricId}/insights`, queryParams, this.requestOptions);\n  }\n\n  /**\n   * Returns the overall value for a specific metric, as well as the total view count,\n   * watch time, and the Mux Global metric value for the metric.\n   *\n   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#overall-get for a list of all metric ids\n   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // Get the overall value for a specific metric within the past 7 days\n   * Data.metrics.overall('aggregate_startup_time', { timeframe: ['7:days'] });\n   *\n   * @see https://api-docs.mux.com/#overall-get\n   */\n  overall(metricId, queryParams) {\n    if (!metricId) {\n      throw new Error('A metric Id is required for overall metrics.');\n    }\n    return api.get(`${PATH}/${metricId}/overall`, queryParams, this.requestOptions);\n  }\n\n  /**\n   * Returns timeseries data for a specific metric\n   *\n   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#timeseries for a list of all metric ids\n   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // Get timeseries data for a specific metric within the past 7 days\n   * Data.metrics.timeseries('aggregate_startup_time', { timeframe: ['7:days'] });\n   *\n   * @see https://api-docs.mux.com/#timeseries\n   */\n  timeseries(metricId, queryParams) {\n    if (!metricId) {\n      throw new Error('A metric Id is required for timeseries metrics.');\n    }\n    return api.get(`${PATH}/${metricId}/timeseries`, queryParams, this.requestOptions);\n  }\n}\n\nmodule.exports = Metrics;\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/src/data/resources/metrics.js",
     "access": "public",
@@ -1546,7 +1546,7 @@
     "see": [
       "https://api-docs.mux.com/#insight-get"
     ],
-    "lineNumber": 113,
+    "lineNumber": 116,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1601,7 +1601,7 @@
     "see": [
       "https://api-docs.mux.com/#overall-get"
     ],
-    "lineNumber": 134,
+    "lineNumber": 140,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1656,7 +1656,7 @@
     "see": [
       "https://api-docs.mux.com/#timeseries"
     ],
-    "lineNumber": 154,
+    "lineNumber": 163,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1698,7 +1698,7 @@
     "__docId__": 85,
     "kind": "file",
     "name": "src/data/resources/video_views.js",
-    "content": "/*!\n * Mux Video Views\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private Base exports path for the Mux API\n * */\nconst PATH = '/data/v1/video-views';\n\n/**\n * VideoViews Class - Provides access to the Mux Data Video Views API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Data } = muxClient;\n *\n * // Returns a list of video views for a property that occurred within the specified timeframe.\n * // Results are ordered by view_end, according to what you provide for order_direction.\n * Data.videoViews.list({order_direction: 'asc'});\n */\nclass VideoViews {\n  /**\n   * @ignore\n   * VideoViews Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Assets\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * Returns a list of video views for a property that occurred within the specified timeframe.\n   * Results are ordered by view_end, according to what you provide for order_direction.\n   *\n   * @param {Object} queryParams - example { viewer_id: 'ABCD1234', timeframe: ['7:days'], filters: ['operating_system:windows'] }\n   * NOTE: the view\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // Returns a list of video views for a property that occurred within the specified timeframe.\n   * Data.videoViews.list({ viewer_id: 'ABCD1234', timeframe: ['7:days'], order_direction: 'asc' });\n   * Note: the viewer_id query parameter is required\n   *\n   * @see https://api-docs.mux.com/#video-view-get-1\n   */\n  list(queryParams) {\n    return api.get(PATH, queryParams, this.requestOptions);\n  }\n\n  /**\n   * Returns the details for a single video view\n   *\n   * @param {string} videoViewId - The ID for the video view\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * //Returns the details for a single video view\n   * Data.videoViews.get('ABCD1234');\n   *\n   * @see https://api-docs.mux.com/#video-view-get-1\n   */\n  get(videoViewId) {\n    return api.get(`${PATH}/${videoViewId}`, {}, this.requestOptions);\n  }\n}\n\nmodule.exports = VideoViews;\n",
+    "content": "/*!\n * Mux Video Views\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private Base exports path for the Mux API\n * */\nconst PATH = '/data/v1/video-views';\n\n/**\n * VideoViews Class - Provides access to the Mux Data Video Views API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Data } = muxClient;\n *\n * // Returns a list of video views for a property that occurred within the specified timeframe.\n * // Results are ordered by view_end, according to what you provide for order_direction.\n * Data.videoViews.list({order_direction: 'asc'});\n */\nclass VideoViews {\n  /**\n   * @ignore\n   * VideoViews Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Assets\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * Returns a list of video views for a property that occurred within the specified timeframe.\n   * Results are ordered by view_end, according to what you provide for order_direction.\n   *\n   * @param {Object} queryParams - example { viewer_id: 'ABCD1234', timeframe: ['7:days'], filters: ['operating_system:windows'] }\n   * NOTE: the viewer_id query parameter is required\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * // Returns a list of video views for a property that occurred within the specified timeframe.\n   * Data.videoViews.list({ viewer_id: 'ABCD1234', timeframe: ['7:days'], order_direction: 'asc' });\n   * Note: the viewer_id query parameter is required\n   *\n   * @see https://api-docs.mux.com/#video-view-get-1\n   */\n  list(queryParams) {\n    if (!queryParams || (queryParams && !queryParams.viewer_id)) {\n      throw new Error('The viewer_id query parameter is required for listing video views.');\n    }\n    return api.get(PATH, queryParams, this.requestOptions);\n  }\n\n  /**\n   * Returns the details for a single video view\n   *\n   * @param {string} videoViewId - The ID for the video view\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Data } = muxClient;\n   *\n   * //Returns the details for a single video view\n   * Data.videoViews.get('ABCD1234');\n   *\n   * @see https://api-docs.mux.com/#video-view-get-1\n   */\n  get(videoViewId) {\n    if (!videoViewId) {\n      throw new Error('A video view Id is required for video view details.');\n    }\n    return api.get(`${PATH}/${videoViewId}`, {}, this.requestOptions);\n  }\n}\n\nmodule.exports = VideoViews;\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/src/data/resources/video_views.js",
     "access": "public",
@@ -1860,7 +1860,7 @@
         "spread": false,
         "optional": false,
         "name": "queryParams",
-        "description": "example { viewer_id: 'ABCD1234', timeframe: ['7:days'], filters: ['operating_system:windows'] }\nNOTE: the view"
+        "description": "example { viewer_id: 'ABCD1234', timeframe: ['7:days'], filters: ['operating_system:windows'] }\nNOTE: the viewer_id query parameter is required"
       }
     ],
     "return": {
@@ -1889,7 +1889,7 @@
     "see": [
       "https://api-docs.mux.com/#video-view-get-1"
     ],
-    "lineNumber": 93,
+    "lineNumber": 96,
     "unknown": [
       {
         "tagName": "@returns",
@@ -2058,8 +2058,314 @@
   {
     "__docId__": 97,
     "kind": "file",
+    "name": "src/utils/api.js",
+    "content": "const axios = require('axios');\n\n/**\n * @ignore\n * Mux API request\n *\n * @param {string} url - Specific Mux url\n * @param {Object} options - request options\n * @returns {Promise}\n */\nconst makeRequest = (url, options) => (\n  axios.request(Object.assign({\n    method: 'get',\n    headers: {\n      'Content-Type': 'application/json',\n      Accept: 'application/json',\n    },\n    url,\n    baseURL: 'https://api.mux.com',\n    mode: 'cors',\n    withCredentials: false\n  }, options))\n);\n\n/**\n * @ignore\n * HTTP GET request to the Mux API\n *\n * @param {string} url - Specific Mux url\n * @param {Object} queryParams - request query parameters\n * @param {Object} options - request options\n * @returns {Promise}\n */\nconst get = (url, queryParams, options) => {\n  const requestOptions = Object.assign({ method: 'get', params: queryParams }, options);\n  return makeRequest(url, requestOptions);\n};\n\n/**\n * @ignore\n * HTTP POST request to the Mux API\n *\n * @param {string} url - Specific Mux url\n * @param {Object} body - POST body\n * @param {Object} options - request options\n * @returns {Promise}\n */\nconst post = (url, body, options) => {\n  const requestOptions = Object.assign({ method: 'post', data: body }, options);\n  return makeRequest(url, requestOptions);\n};\n\n/**\n * @ignore\n *\n * @param {string} url - Specific Mux url\n * @param {Object} options - request options\n * @returns {Promise}\n */\nconst del = (url, options) => {\n  const requestOptions = Object.assign({ method: 'delete' }, options);\n  return makeRequest(url, requestOptions);\n};\n\n/**\n * @ignore\n * HTTP PUT request to the Mux API\n *\n * @param {string} url - Specific Mux url\n * @param {Object} body - PUT body\n * @param {Object} options - request options\n * @returns {Promise}\n */\nconst put = (url, body, options) => {\n  const requestOptions = Object.assign({ method: 'put', data: body }, options);\n  return makeRequest(url, requestOptions);\n};\n\nmodule.exports = {\n  get,\n  post,\n  put,\n  del,\n};\n",
+    "static": true,
+    "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/src/utils/api.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 98,
+    "kind": "function",
+    "name": "makeRequest",
+    "memberof": "src/utils/api.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/api.js~makeRequest",
+    "access": "public",
+    "export": false,
+    "importPath": "@mux/mux-node/src/utils/api.js",
+    "importStyle": null,
+    "description": "",
+    "lineNumber": 11,
+    "ignore": true,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Promise}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "url",
+        "description": "Specific Mux url"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": "request options"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 99,
+    "kind": "function",
+    "name": "get",
+    "memberof": "src/utils/api.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/api.js~get",
+    "access": "public",
+    "export": true,
+    "importPath": "@mux/mux-node/src/utils/api.js",
+    "importStyle": "{get}",
+    "description": "",
+    "lineNumber": 34,
+    "ignore": true,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Promise}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "url",
+        "description": "Specific Mux url"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "queryParams",
+        "description": "request query parameters"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": "request options"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 100,
+    "kind": "function",
+    "name": "post",
+    "memberof": "src/utils/api.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/api.js~post",
+    "access": "public",
+    "export": true,
+    "importPath": "@mux/mux-node/src/utils/api.js",
+    "importStyle": "{post}",
+    "description": "",
+    "lineNumber": 48,
+    "ignore": true,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Promise}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "url",
+        "description": "Specific Mux url"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "body",
+        "description": "POST body"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": "request options"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 101,
+    "kind": "function",
+    "name": "put",
+    "memberof": "src/utils/api.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/api.js~put",
+    "access": "public",
+    "export": true,
+    "importPath": "@mux/mux-node/src/utils/api.js",
+    "importStyle": "{put}",
+    "description": "",
+    "lineNumber": 74,
+    "ignore": true,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Promise}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "url",
+        "description": "Specific Mux url"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "body",
+        "description": "PUT body"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": "request options"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 102,
+    "kind": "function",
+    "name": "del",
+    "memberof": "src/utils/api.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/utils/api.js~del",
+    "access": "public",
+    "export": true,
+    "importPath": "@mux/mux-node/src/utils/api.js",
+    "importStyle": "{del}",
+    "description": "",
+    "lineNumber": 60,
+    "ignore": true,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Promise}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "url",
+        "description": "Specific Mux url"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": "request options"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Promise"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 103,
+    "kind": "file",
     "name": "src/video/resources/assets.js",
-    "content": "/*!\n * Mux Assets\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private Base asset path for the Mux API\n * */\nconst PATH = '/video/v1/assets';\n\n/**\n * @private\n * Build the base asset path for the Mux API\n * */\nconst buildBasePath = assetId => `${PATH}/${assetId}`;\n\n/**\n * Assets Class - Provides access to the Mux Video Assets API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Video } = muxClient;\n *\n * // Create an asset\n * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});\n */\nclass Assets {\n  /**\n   * @ignore\n   * Assets Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Assets\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * Creates a Mux asset with the specified JSON parameters\n   * @param {Object} params - Asset JSON parameters (e.g input)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Create an asset\n   * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});\n   *\n   * @see https://docs.mux.com/v1/reference#create-an-asset\n   */\n  create(params) {\n    if (!params) {\n      return Promise.reject(new Error('Params are required for creating an asset'));\n    }\n    return api.post(PATH, params, this.requestOptions);\n  }\n\n  /**\n   * Deletes a Mux asset\n   * @param {string} assetId - The ID for the asset intended for deletion\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Delete an asset\n   * Video.assets.deleteAsset(assetId);\n   *\n   * @see https://docs.mux.com/v1/reference#delete-an-asset\n   */\n  deleteAsset(assetId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to delete an asset'));\n    }\n    return api.del(buildBasePath(assetId), this.requestOptions);\n  }\n\n  /**\n   * Get an asset\n   * @param {string} assetId - The ID for the asset\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Get an asset\n   * Video.assets.get(assetId);\n   *\n   * @see https://docs.mux.com/v1/reference#retrieve-an-asset\n   */\n  get(assetId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to get an asset'));\n    }\n    return api.get(buildBasePath(assetId), {}, this.requestOptions);\n  }\n\n  /**\n   * Get input info for an asset\n   * @param {string} assetId - The ID for the asset\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Get input info for an asset\n   * Video.assets.inputInfo(assetId);\n   *\n   * @see https://docs.mux.com/v1/reference#retrieve-asset-input-info\n   */\n  inputInfo(assetId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to get input-info'));\n    }\n    return api.get(`${buildBasePath(assetId)}/input-info`, {}, this.requestOptions);\n  }\n\n  /**\n   * List all assets for a Mux Environment (tied to your access token)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // List all assets for a Mux Environment\n   * Video.assets.list();\n   *\n   * @see https://docs.mux.com/v1/reference#list-assets\n   */\n  list() {\n    return api.get(PATH, this.requestOptions);\n  }\n}\n\nmodule.exports = Assets;\n",
+    "content": "/*!\n * Mux Assets\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private Base asset path for the Mux API\n * */\nconst PATH = '/video/v1/assets';\n\n/**\n * @private\n * Build the base asset path for the Mux API\n * */\nconst buildBasePath = assetId => `${PATH}/${assetId}`;\n\n/**\n * Assets Class - Provides access to the Mux Video Assets API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Video } = muxClient;\n *\n * // Create an asset\n * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});\n */\nclass Assets {\n  /**\n   * @ignore\n   * Assets Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Assets\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * Creates a Mux asset with the specified JSON parameters\n   * @param {Object} params - Asset JSON parameters (e.g input)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Create an asset\n   * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});\n   *\n   * @see https://docs.mux.com/v1/reference#create-an-asset\n   */\n  create(params) {\n    if (!params) {\n      return Promise.reject(new Error('Params are required for creating an asset'));\n    }\n    return api.post(PATH, params, this.requestOptions);\n  }\n\n  /**\n   * Deletes a Mux asset\n   * @param {string} assetId - The ID for the asset intended for deletion\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Delete an asset\n   * Video.assets.remove(assetId);\n   *\n   * @see https://docs.mux.com/v1/reference#delete-an-asset\n   */\n  remove(assetId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to delete an asset'));\n    }\n    return api.del(buildBasePath(assetId), this.requestOptions);\n  }\n\n  /**\n   * Get an asset\n   * @param {string} assetId - The ID for the asset\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Get an asset\n   * Video.assets.get(assetId);\n   *\n   * @see https://docs.mux.com/v1/reference#retrieve-an-asset\n   */\n  get(assetId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to get an asset'));\n    }\n    return api.get(buildBasePath(assetId), {}, this.requestOptions);\n  }\n\n  /**\n   * Get input info for an asset\n   * @param {string} assetId - The ID for the asset\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Get input info for an asset\n   * Video.assets.inputInfo(assetId);\n   *\n   * @see https://docs.mux.com/v1/reference#retrieve-asset-input-info\n   */\n  inputInfo(assetId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to get input-info'));\n    }\n    return api.get(`${buildBasePath(assetId)}/input-info`, {}, this.requestOptions);\n  }\n\n  /**\n   * List all assets for a Mux Environment (tied to your access token)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // List all assets for a Mux Environment\n   * Video.assets.list();\n   *\n   * @see https://docs.mux.com/v1/reference#list-assets\n   */\n  list(queryParams) {\n    return api.get(PATH, queryParams, this.requestOptions);\n  }\n}\n\nmodule.exports = Assets;\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/src/video/resources/assets.js",
     "access": "public",
@@ -2067,7 +2373,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 98,
+    "__docId__": 104,
     "kind": "variable",
     "name": "PATH",
     "memberof": "src/video/resources/assets.js",
@@ -2087,7 +2393,7 @@
     "ignore": true
   },
   {
-    "__docId__": 99,
+    "__docId__": 105,
     "kind": "function",
     "name": "buildBasePath",
     "memberof": "src/video/resources/assets.js",
@@ -2113,7 +2419,7 @@
     "ignore": true
   },
   {
-    "__docId__": 100,
+    "__docId__": 106,
     "kind": "class",
     "name": "Assets",
     "memberof": "src/video/resources/assets.js",
@@ -2131,7 +2437,7 @@
     "interface": false
   },
   {
-    "__docId__": 101,
+    "__docId__": 107,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/video/resources/assets.js~Assets",
@@ -2173,7 +2479,7 @@
     ]
   },
   {
-    "__docId__": 102,
+    "__docId__": 108,
     "kind": "member",
     "name": "requestOptions",
     "memberof": "src/video/resources/assets.js~Assets",
@@ -2215,7 +2521,7 @@
     }
   },
   {
-    "__docId__": 103,
+    "__docId__": 109,
     "kind": "method",
     "name": "create",
     "memberof": "src/video/resources/assets.js~Assets",
@@ -2260,18 +2566,18 @@
     }
   },
   {
-    "__docId__": 104,
+    "__docId__": 110,
     "kind": "method",
-    "name": "deleteAsset",
+    "name": "remove",
     "memberof": "src/video/resources/assets.js~Assets",
     "generator": false,
     "async": false,
     "static": false,
-    "longname": "src/video/resources/assets.js~Assets#deleteAsset",
+    "longname": "src/video/resources/assets.js~Assets#remove",
     "access": "public",
     "description": "Deletes a Mux asset",
     "examples": [
-      "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Delete an asset\nVideo.assets.deleteAsset(assetId);"
+      "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Delete an asset\nVideo.assets.remove(assetId);"
     ],
     "see": [
       "https://docs.mux.com/v1/reference#delete-an-asset"
@@ -2305,7 +2611,7 @@
     }
   },
   {
-    "__docId__": 105,
+    "__docId__": 111,
     "kind": "method",
     "name": "get",
     "memberof": "src/video/resources/assets.js~Assets",
@@ -2350,7 +2656,7 @@
     }
   },
   {
-    "__docId__": 106,
+    "__docId__": 112,
     "kind": "method",
     "name": "inputInfo",
     "memberof": "src/video/resources/assets.js~Assets",
@@ -2395,7 +2701,7 @@
     }
   },
   {
-    "__docId__": 107,
+    "__docId__": 113,
     "kind": "method",
     "name": "list",
     "memberof": "src/video/resources/assets.js~Assets",
@@ -2426,10 +2732,17 @@
       "spread": false,
       "description": "Returns a resolved Promise with a response from the Mux API"
     },
-    "params": []
+    "params": [
+      {
+        "name": "queryParams",
+        "types": [
+          "*"
+        ]
+      }
+    ]
   },
   {
-    "__docId__": 108,
+    "__docId__": 114,
     "kind": "file",
     "name": "src/video/resources/playbackIds.js",
     "content": "/*!\n * PlaybackIds\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private\n * Base playback ID path for the Mux API\n * */\nconst buildBasePath = assetId => `/video/v1/assets/${assetId}/playback-ids`;\n\n/**\n * PlaybackIds Class - Provides access to the Mux Video PlaybackIds API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Video } = muxClient;\n *\n * // Create a playback Id for an asset\n * Video.playbackIds.create('assetId', { policy: 'public' });\n */\nclass PlaybackIds {\n  /**\n   * @ignore\n   * PlaybackIds Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Assets\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * Creates a playback ID for a Mux asset with the specified JSON parameters\n   * @param {string} assetId - Asset ID for the asset to create the playback ID for\n   * @param {Object} params - Playback ID JSON parameters (e.g policy)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Create a playback Id for an asset\n   * Video.playbackIds.create('assetId', { policy: 'public' });\n   *\n   * @see https://docs.mux.com/v1/reference#add-an-asset-playback-id\n   */\n  create(assetId, params) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to create a playback ID'));\n    }\n\n    if (!params) {\n      return Promise.reject(new Error('Playback ID params are required'));\n    }\n    return api.post(buildBasePath(assetId), params, this.requestOptions);\n  }\n\n  /**\n   * Get a playbackId\n   * @param {string} assetId - The ID for the asset\n   * @param {string} playbackId - The ID for the playback ID to get the playback ID information for\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Get an asset\n   * Video.playbackIds.get(assetId, playbackId);\n   *\n   * @see https://docs.mux.com/v1/reference#retrieve-an-asset-playback-id\n   */\n  get(assetId, playbackId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to get a playback ID'));\n    }\n\n    if (!playbackId) {\n      return Promise.reject(new Error('A playback ID is required to get a playback ID'));\n    }\n    return api.get(`${buildBasePath(assetId)}/${playbackId}`, {}, this.requestOptions);\n  }\n\n  /**\n   * Deletes a playback ID\n   * @param {string} assetId - The ID for the asset\n   * @param {string} playbackId - The ID for the playback ID to get the playback ID information for\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Delete a playback ID\n   * Video.playbackIds.deletePlaybackId(assetId, playbackId);\n   *\n   * @see https://docs.mux.com/v1/reference#delete-an-asset-playback-id\n   */\n  deletePlaybackId(assetId, playbackId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to delete a playback ID'));\n    }\n\n    if (!playbackId) {\n      return Promise.reject(new Error('A playback ID is required to delete a playback ID'));\n    }\n    return api.del(`${buildBasePath(assetId)}/${playbackId}`, this.requestOptions);\n  }\n}\n\n\nmodule.exports = PlaybackIds;\n",
@@ -2440,7 +2753,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 109,
+    "__docId__": 115,
     "kind": "function",
     "name": "buildBasePath",
     "memberof": "src/video/resources/playbackIds.js",
@@ -2466,7 +2779,7 @@
     "ignore": true
   },
   {
-    "__docId__": 110,
+    "__docId__": 116,
     "kind": "class",
     "name": "PlaybackIds",
     "memberof": "src/video/resources/playbackIds.js",
@@ -2484,7 +2797,7 @@
     "interface": false
   },
   {
-    "__docId__": 111,
+    "__docId__": 117,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/video/resources/playbackIds.js~PlaybackIds",
@@ -2526,7 +2839,7 @@
     ]
   },
   {
-    "__docId__": 112,
+    "__docId__": 118,
     "kind": "member",
     "name": "requestOptions",
     "memberof": "src/video/resources/playbackIds.js~PlaybackIds",
@@ -2568,7 +2881,7 @@
     }
   },
   {
-    "__docId__": 113,
+    "__docId__": 119,
     "kind": "method",
     "name": "create",
     "memberof": "src/video/resources/playbackIds.js~PlaybackIds",
@@ -2623,7 +2936,7 @@
     }
   },
   {
-    "__docId__": 114,
+    "__docId__": 120,
     "kind": "method",
     "name": "get",
     "memberof": "src/video/resources/playbackIds.js~PlaybackIds",
@@ -2678,7 +2991,7 @@
     }
   },
   {
-    "__docId__": 115,
+    "__docId__": 121,
     "kind": "method",
     "name": "deletePlaybackId",
     "memberof": "src/video/resources/playbackIds.js~PlaybackIds",
@@ -2733,7 +3046,7 @@
     }
   },
   {
-    "__docId__": 116,
+    "__docId__": 122,
     "kind": "file",
     "name": "src/video/video.js",
     "content": "/*!\n * Mux Video\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst Assets = require('./resources/assets');\nconst PlaybackIds = require('./resources/playbackIds');\n\n/**\n * @ignore\n * Video Class - Provides access to the Mux Video API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Video } = muxClient;\n *\n * // Create an asset\n * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});\n *\n * // Create a playback Id for an asset\n * Video.playbackIds.create('assetId', { policy: 'public' });\n */\nclass Video {\n  /**\n   * Video Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /** @type {Assets} */\n    this.assets = new Assets(accessToken, secret);\n\n    /** @type {PlaybackIds} */\n    this.playbackIds = new PlaybackIds(accessToken, secret);\n  }\n}\n\nmodule.exports = Video;\n",
@@ -2744,7 +3057,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 117,
+    "__docId__": 123,
     "kind": "class",
     "name": "Video",
     "memberof": "src/video/video.js",
@@ -2763,7 +3076,7 @@
     "interface": false
   },
   {
-    "__docId__": 118,
+    "__docId__": 124,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/video/video.js~Video",
@@ -2804,7 +3117,7 @@
     ]
   },
   {
-    "__docId__": 119,
+    "__docId__": 125,
     "kind": "member",
     "name": "assets",
     "memberof": "src/video/video.js~Video",
@@ -2823,7 +3136,7 @@
     }
   },
   {
-    "__docId__": 120,
+    "__docId__": 126,
     "kind": "member",
     "name": "playbackIds",
     "memberof": "src/video/video.js~Video",
@@ -2843,7 +3156,7 @@
   },
   {
     "kind": "index",
-    "content": "# Mux Node SDK\n\nOfficial Mux API wrapper for Node projects.\n\nThis library is intended to provide Mux API convenience methods for applications written in server-side Javascript. __Please note__ that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.\n\nNot familiar with Mux? Check out https://mux.com/ for more information.\n\n## Documentation\n\nSee the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk)\n\n## Installation\n```\nnpm install @mux/mux-node --save\n```\nor\n```\nyarn add @mux/mux-node\n```\n\n## Usage\nTo start, you will need a Mux access token and secret for your Mux environment. For more information on where to get\nan access token, visit the Mux Getting Started guide https://docs.mux.com/docs\n\nRequire the `@mux/mux-node` npm module and create a Mux instance. Your Mux instance will have `Data` and `Video` properties\nthat will allow you to access the Mux Data and Video APIs.\n\n```\nconst Mux = require('@mux/mux-node');\nconst muxClient = new Mux(accessToken, secret);\nconst { Video, Data } = muxClient;\n```\nAs an example, you can create a Mux asset and playback ID by using the below functions on your Video instance.\n```\n// Create an asset\nlet assetId;\nVideo.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' })\n  .then((res) => {\n    const { data } = res.data;\n    assetId = data.id;\n  });\n```\n\n```\n// Create a playback ID for an asset\nVideo.playbackIds.create(assetId, { policy: 'public' });\n```\n\nYou can access the Mux Data API in the same way by using your Data instance. For example, you can list all of the\nvalues across every breakdown for the `aggregate_startup_time` metric by using the below function.\n\n```\nData.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });\n```\n\nEvery function will return a chainable [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).\nSee the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk/identifiers.html) for a list of all available functions.\n\n## Development\n\nRun unit tests: `npm test` or `npm run test:unit`\n\nRun integration tests: `npm run test:int`\n\n__Note__: running the integration tests will require you to configure the `MUX_ACCESS_TOKEN` and `MUX_SECRET` environment variables with your Mux access token and secret.\n\n\nTo generate the ESDocs, run:\n```\n./node_modules/.bin/esdoc\nopen ./docs/index.html\n```\n\n\n",
+    "content": "# Mux Node SDK\n\nOfficial Mux API wrapper for Node projects.\n\nThis library is intended to provide Mux API convenience methods for applications written in server-side Javascript. __Please note__ that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.\n\nNot familiar with Mux? Check out https://mux.com/ for more information.\n\n## Documentation\n\nSee the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk)\n\n## Installation\n```\nnpm install @mux/mux-node --save\n```\nor\n```\nyarn add @mux/mux-node\n```\n\n## Usage\nTo start, you will need a Mux access token and secret for your Mux environment. For more information on where to get\nan access token, visit the Mux Getting Started guide https://docs.mux.com/docs\n\nRequire the `@mux/mux-node` npm module and create a Mux instance. Your Mux instance will have `Data` and `Video` properties\nthat will allow you to access the Mux Data and Video APIs.\n\n```javascript\nconst Mux = require('@mux/mux-node');\nconst muxClient = new Mux(accessToken, secret);\nconst { Video, Data } = muxClient;\n```\nAs an example, you can create a Mux asset and playback ID by using the below functions on your Video instance.\n```javascript\n// Create an asset\nlet assetId;\nVideo.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' })\n  .then((res) => {\n    const { data } = res.data;\n    assetId = data.id;\n  });\n```\n\n```javascript\n// Create a playback ID for an asset\nVideo.playbackIds.create(assetId, { policy: 'public' });\n```\n\nYou can access the Mux Data API in the same way by using your Data instance. For example, you can list all of the\nvalues across every breakdown for the `aggregate_startup_time` metric by using the below function.\n\n```javascript\nData.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });\n```\n\nEvery function will return a chainable [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).\nSee the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk/identifiers.html) for a list of all available functions.\n\n## Development\n\nRun unit tests: `npm test` or `npm run test:unit`\n\nRun integration tests: `npm run test:int`\n\n__Note__: running the integration tests will require you to configure the `MUX_ACCESS_TOKEN` and `MUX_SECRET` environment variables with your Mux access token and secret.\n\n\nTo generate the ESDocs, run:\n```\n./node_modules/.bin/esdoc\nopen ./docs/index.html\n```\n\n\n",
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/README.md",
     "name": "./README.md",
     "static": true,
@@ -2851,7 +3164,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"@mux/mux-node\",\n  \"version\": \"1.0.0-beta.0\",\n  \"description\": \"Mux API wrapper\",\n  \"keywords\": [\n    \"mux\",\n    \"video\",\n    \"video encoding\",\n    \"video transcoding\",\n    \"api\",\n    \"video analytics\"\n  ],\n  \"private\": true,\n  \"author\": \"Mux <help@mux.com> (https://mux.com/)\",\n  \"main\": \"src/mux.js\",\n  \"engines\": {\n    \"node\": \">=10\"\n  },\n  \"license\": \"MIT\",\n  \"scripts\": {\n    \"test\": \"mocha --recursive ./test/unit\",\n    \"test:unit\": \"mocha --recursive ./test/unit\",\n    \"test:int\": \"mocha --recursive ./test/integration\"\n  },\n  \"dependencies\": {\n    \"axios\": \"^0.18.0\"\n  },\n  \"devDependencies\": {\n    \"chai\": \"^4.1.2\",\n    \"dotenv\": \"^5.0.1\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-node\": \"^1.0.3\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.19.1\",\n    \"eslint-config-airbnb-base\": \"^12.1.0\",\n    \"eslint-plugin-chai-friendly\": \"^0.4.1\",\n    \"eslint-plugin-import\": \"^2.9.0\",\n    \"eslint-plugin-node\": \"^6.0.1\",\n    \"mocha\": \"^5.1.1\",\n    \"moxios\": \"^0.4.0\",\n    \"sinon\": \"^4.5.0\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/muxinc/mux-node-sdk.git\"\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/muxinc/mux-node-sdk/issues\"\n  },\n  \"homepage\": \"https://github.com/muxinc/mux-node-sdk#readme\"\n}\n",
+    "content": "{\n  \"name\": \"@mux/mux-node\",\n  \"version\": \"1.0.0-beta.7\",\n  \"description\": \"Mux API wrapper\",\n  \"keywords\": [\n    \"mux\",\n    \"video\",\n    \"video encoding\",\n    \"video transcoding\",\n    \"api\",\n    \"video analytics\"\n  ],\n  \"author\": \"Mux <help@mux.com> (https://mux.com/)\",\n  \"main\": \"src/mux.js\",\n  \"engines\": {\n    \"node\": \">=8\"\n  },\n  \"license\": \"MIT\",\n  \"scripts\": {\n    \"test\": \"mocha --recursive ./test/unit\",\n    \"test:unit\": \"mocha --recursive ./test/unit\",\n    \"test:int\": \"mocha --recursive ./test/integration\"\n  },\n  \"dependencies\": {\n    \"axios\": \"^0.18.0\"\n  },\n  \"devDependencies\": {\n    \"chai\": \"^4.1.2\",\n    \"dotenv\": \"^5.0.1\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-node\": \"^1.0.3\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.19.1\",\n    \"eslint-config-airbnb-base\": \"^12.1.0\",\n    \"eslint-plugin-chai-friendly\": \"^0.4.1\",\n    \"eslint-plugin-import\": \"^2.9.0\",\n    \"eslint-plugin-node\": \"^6.0.1\",\n    \"mocha\": \"^5.1.1\",\n    \"moxios\": \"^0.4.0\",\n    \"sinon\": \"^4.5.0\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/muxinc/mux-node-sdk.git\"\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/muxinc/mux-node-sdk/issues\"\n  },\n  \"homepage\": \"https://github.com/muxinc/mux-node-sdk#readme\"\n}\n",
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/package.json",
     "name": "package.json",
     "static": true,
@@ -2875,7 +3188,7 @@
     "access": "public"
   },
   {
-    "__docId__": 121,
+    "__docId__": 127,
     "kind": "testFile",
     "name": "test/unit/data/data.spec.js",
     "content": "const { expect } = require('chai');\nconst Data = require('../../../src/data/data');\nconst Metrics = require('../../../src/data/resources/metrics');\nconst Filters = require('../../../src/data/resources/filters');\nconst Errors = require('../../../src/data/resources/errors');\nconst VideoViews = require('../../../src/data/resources/video_views');\nconst Exports = require('../../../src/data/resources/exports');\n\n/** @test {Data} */\ndescribe('Unit::Data', () => {\n  const testApiKey = 'testApiKey';\n  const testSecret = 'testSecret';\n\n  /** @test {Data} */\n  describe('Data', () => {\n    /** @test {Data} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new Data()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {Data} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new Data(testApiKey)).to.throw('API secret key must be provided');\n    });\n\n    /** @test {Data} */\n    it('creates a new Data instance', () => {\n      const TestData = new Data(testApiKey, testSecret);\n      expect(() => new Data(testApiKey, testSecret)).to.not.throw();\n      expect(TestData.metrics).to.be.an.instanceof(Metrics);\n      expect(TestData.errors).to.be.an.instanceof(Errors);\n      expect(TestData.exports).to.be.an.instanceof(Exports);\n      expect(TestData.videoViews).to.be.an.instanceof(VideoViews);\n      expect(TestData.filters).to.be.an.instanceof(Filters);\n    });\n  });\n});\n",
@@ -2886,7 +3199,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 122,
+    "__docId__": 128,
     "kind": "test",
     "name": "describe0",
     "testId": 0,
@@ -2902,7 +3215,7 @@
     ]
   },
   {
-    "__docId__": 123,
+    "__docId__": 129,
     "kind": "test",
     "name": "describe1",
     "testId": 1,
@@ -2918,7 +3231,7 @@
     ]
   },
   {
-    "__docId__": 124,
+    "__docId__": 130,
     "kind": "test",
     "name": "it2",
     "testId": 2,
@@ -2934,7 +3247,7 @@
     ]
   },
   {
-    "__docId__": 125,
+    "__docId__": 131,
     "kind": "test",
     "name": "it3",
     "testId": 3,
@@ -2950,7 +3263,7 @@
     ]
   },
   {
-    "__docId__": 126,
+    "__docId__": 132,
     "kind": "test",
     "name": "it4",
     "testId": 4,
@@ -2966,7 +3279,7 @@
     ]
   },
   {
-    "__docId__": 127,
+    "__docId__": 133,
     "kind": "testFile",
     "name": "test/unit/data/resources/errors.spec.js",
     "content": "const { expect } = require('chai');\nconst moxios = require('moxios');\nconst sinon = require('sinon');\nconst Errors = require('../../../../src/data/resources/errors');\n\n/** @test {Errors} */\ndescribe('Unit::Errors', () => {\n  const testApiKey = 'testKey';\n  const testSecret = 'testSecret';\n  const errorsInstance = new Errors(testApiKey, testSecret);\n\n  beforeEach(() => {\n    moxios.install();\n  });\n\n  afterEach(() => {\n    moxios.uninstall();\n  });\n\n  /** @test {Errors} */\n  describe('Errors', () => {\n    /** @test {Errors} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new Errors()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {Errors} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new Errors(testApiKey)).to.throw('API secret key must be provided');\n    });\n\n    /** @test {Errors} */\n    it('creates a new Errors instance', () => {\n      const TestErrors = new Errors(testApiKey, testSecret);\n      expect(() => new Errors(testApiKey, testSecret)).to.not.throw();\n      expect(TestErrors.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestErrors.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {Errors.list} */\n  describe('Errors.list', () => {\n    /** @test {Errors.list} */\n    it('makes a get request to the Mux data errors route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/errors', {\n        status: 200,\n        responseText: 'errors',\n      });\n\n      const onFulfilled = sinon.spy();\n      errorsInstance.list({})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('errors');\n        done();\n      });\n    });\n  });\n});\n",
@@ -2977,7 +3290,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 128,
+    "__docId__": 134,
     "kind": "test",
     "name": "describe5",
     "testId": 5,
@@ -2993,7 +3306,7 @@
     ]
   },
   {
-    "__docId__": 129,
+    "__docId__": 135,
     "kind": "test",
     "name": "describe6",
     "testId": 6,
@@ -3009,7 +3322,7 @@
     ]
   },
   {
-    "__docId__": 130,
+    "__docId__": 136,
     "kind": "test",
     "name": "it7",
     "testId": 7,
@@ -3025,7 +3338,7 @@
     ]
   },
   {
-    "__docId__": 131,
+    "__docId__": 137,
     "kind": "test",
     "name": "it8",
     "testId": 8,
@@ -3041,7 +3354,7 @@
     ]
   },
   {
-    "__docId__": 132,
+    "__docId__": 138,
     "kind": "test",
     "name": "it9",
     "testId": 9,
@@ -3057,7 +3370,7 @@
     ]
   },
   {
-    "__docId__": 133,
+    "__docId__": 139,
     "kind": "test",
     "name": "describe10",
     "testId": 10,
@@ -3073,7 +3386,7 @@
     ]
   },
   {
-    "__docId__": 134,
+    "__docId__": 140,
     "kind": "test",
     "name": "it11",
     "testId": 11,
@@ -3089,7 +3402,7 @@
     ]
   },
   {
-    "__docId__": 135,
+    "__docId__": 141,
     "kind": "testFile",
     "name": "test/unit/data/resources/exports.spec.js",
     "content": "const { expect } = require('chai');\nconst moxios = require('moxios');\nconst sinon = require('sinon');\nconst Exports = require('../../../../src/data/resources/exports');\n\n/** @test {Exports} */\ndescribe('Unit::Exports', () => {\n  const testApiKey = 'testKey';\n  const testSecret = 'testSecret';\n  const exportsInstance = new Exports(testApiKey, testSecret);\n\n  beforeEach(() => {\n    moxios.install();\n  });\n\n  afterEach(() => {\n    moxios.uninstall();\n  });\n\n  /** @test {Exports} */\n  describe('Exports', () => {\n    /** @test {Exports} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new Exports()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {Exports} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new Exports(testApiKey)).to.throw('API secret key must be provided');\n    });\n\n    /** @test {Exports} */\n    it('creates a new Exports instance', () => {\n      const TestExports = new Exports(testApiKey, testSecret);\n      expect(() => new Exports(testApiKey, testSecret)).to.not.throw();\n      expect(TestExports.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestExports.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {Exports.list} */\n  describe('Exports.list', () => {\n    /** @test {Exports.list} */\n    it('makes a get request to the Mux data exports route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/exports', {\n        status: 200,\n        responseText: 'exports',\n      });\n\n      const onFulfilled = sinon.spy();\n      exportsInstance.list({})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('exports');\n        done();\n      });\n    });\n  });\n});\n",
@@ -3100,7 +3413,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 136,
+    "__docId__": 142,
     "kind": "test",
     "name": "describe12",
     "testId": 12,
@@ -3116,7 +3429,7 @@
     ]
   },
   {
-    "__docId__": 137,
+    "__docId__": 143,
     "kind": "test",
     "name": "describe13",
     "testId": 13,
@@ -3132,7 +3445,7 @@
     ]
   },
   {
-    "__docId__": 138,
+    "__docId__": 144,
     "kind": "test",
     "name": "it14",
     "testId": 14,
@@ -3148,7 +3461,7 @@
     ]
   },
   {
-    "__docId__": 139,
+    "__docId__": 145,
     "kind": "test",
     "name": "it15",
     "testId": 15,
@@ -3164,7 +3477,7 @@
     ]
   },
   {
-    "__docId__": 140,
+    "__docId__": 146,
     "kind": "test",
     "name": "it16",
     "testId": 16,
@@ -3180,7 +3493,7 @@
     ]
   },
   {
-    "__docId__": 141,
+    "__docId__": 147,
     "kind": "test",
     "name": "describe17",
     "testId": 17,
@@ -3196,7 +3509,7 @@
     ]
   },
   {
-    "__docId__": 142,
+    "__docId__": 148,
     "kind": "test",
     "name": "it18",
     "testId": 18,
@@ -3212,10 +3525,10 @@
     ]
   },
   {
-    "__docId__": 143,
+    "__docId__": 149,
     "kind": "testFile",
     "name": "test/unit/data/resources/filters.spec.js",
-    "content": "const { expect } = require('chai');\nconst moxios = require('moxios');\nconst sinon = require('sinon');\nconst Filters = require('../../../../src/data/resources/filters');\n\n/** @test {Filters} */\ndescribe('Unit::Filters', () => {\n  const testApiKey = 'testKey';\n  const testSecret = 'testSecret';\n  const filtersInstance = new Filters(testApiKey, testSecret);\n\n  beforeEach(() => {\n    moxios.install();\n  });\n\n  afterEach(() => {\n    moxios.uninstall();\n  });\n\n  /** @test {Filters} */\n  describe('Filters', () => {\n    /** @test {Filters} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new Filters()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {Filters} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new Filters(testApiKey)).to.throw('API secret key must be provided');\n    });\n\n    /** @test {Filters} */\n    it('creates a new Filters instance', () => {\n      const TestFilters = new Filters(testApiKey, testSecret);\n      expect(() => new Filters(testApiKey, testSecret)).to.not.throw();\n      expect(TestFilters.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestFilters.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {Filters.list} */\n  describe('Filters.list', () => {\n    /** @test {Filters.list} */\n    it('makes a get request to the Mux data filters route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/filters', {\n        status: 200,\n        responseText: 'filters',\n      });\n\n      const onFulfilled = sinon.spy();\n      filtersInstance.list({})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('filters');\n        done();\n      });\n    });\n  });\n\n  /** @test {Filters.get} */\n  describe('Filters.get', () => {\n    /** @test {Filters.get} */\n    it('makes a get request to the Mux data filters route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/filters/someFilter', {\n        status: 200,\n        responseText: 'filters',\n      });\n\n      const onFulfilled = sinon.spy();\n      filtersInstance.get('someFilter', {})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('filters');\n        done();\n      });\n    });\n  });\n});\n",
+    "content": "const { expect } = require('chai');\nconst moxios = require('moxios');\nconst sinon = require('sinon');\nconst Filters = require('../../../../src/data/resources/filters');\n\n/** @test {Filters} */\ndescribe('Unit::Filters', () => {\n  const testApiKey = 'testKey';\n  const testSecret = 'testSecret';\n  const filtersInstance = new Filters(testApiKey, testSecret);\n\n  beforeEach(() => {\n    moxios.install();\n  });\n\n  afterEach(() => {\n    moxios.uninstall();\n  });\n\n  /** @test {Filters} */\n  describe('Filters', () => {\n    /** @test {Filters} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new Filters()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {Filters} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new Filters(testApiKey)).to.throw('API secret key must be provided');\n    });\n\n    /** @test {Filters} */\n    it('creates a new Filters instance', () => {\n      const TestFilters = new Filters(testApiKey, testSecret);\n      expect(() => new Filters(testApiKey, testSecret)).to.not.throw();\n      expect(TestFilters.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestFilters.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {Filters.list} */\n  describe('Filters.list', () => {\n    /** @test {Filters.list} */\n    it('makes a get request to the Mux data filters route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/filters', {\n        status: 200,\n        responseText: 'filters',\n      });\n\n      const onFulfilled = sinon.spy();\n      filtersInstance.list({})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('filters');\n        done();\n      });\n    });\n  });\n\n  /** @test {Filters.get} */\n  describe('Filters.get', () => {\n    /** @test {Filters.get} */\n    it('throws an error if a filter Id is not provided', () => {\n      expect(() => filtersInstance.get()).to.throw('Filter Id is required to get filter information.');\n    });\n\n    /** @test {Filters.get} */\n    it('makes a get request to the Mux data filters route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/filters/someFilter', {\n        status: 200,\n        responseText: 'filters',\n      });\n\n      const onFulfilled = sinon.spy();\n      filtersInstance.get('someFilter', {})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('filters');\n        done();\n      });\n    });\n  });\n});\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/test/unit/data/resources/filters.spec.js",
     "access": null,
@@ -3223,7 +3536,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 144,
+    "__docId__": 150,
     "kind": "test",
     "name": "describe19",
     "testId": 19,
@@ -3239,7 +3552,7 @@
     ]
   },
   {
-    "__docId__": 145,
+    "__docId__": 151,
     "kind": "test",
     "name": "describe20",
     "testId": 20,
@@ -3255,7 +3568,7 @@
     ]
   },
   {
-    "__docId__": 146,
+    "__docId__": 152,
     "kind": "test",
     "name": "it21",
     "testId": 21,
@@ -3271,7 +3584,7 @@
     ]
   },
   {
-    "__docId__": 147,
+    "__docId__": 153,
     "kind": "test",
     "name": "it22",
     "testId": 22,
@@ -3287,7 +3600,7 @@
     ]
   },
   {
-    "__docId__": 148,
+    "__docId__": 154,
     "kind": "test",
     "name": "it23",
     "testId": 23,
@@ -3303,7 +3616,7 @@
     ]
   },
   {
-    "__docId__": 149,
+    "__docId__": 155,
     "kind": "test",
     "name": "describe24",
     "testId": 24,
@@ -3319,7 +3632,7 @@
     ]
   },
   {
-    "__docId__": 150,
+    "__docId__": 156,
     "kind": "test",
     "name": "it25",
     "testId": 25,
@@ -3335,7 +3648,7 @@
     ]
   },
   {
-    "__docId__": 151,
+    "__docId__": 157,
     "kind": "test",
     "name": "describe26",
     "testId": 26,
@@ -3351,7 +3664,7 @@
     ]
   },
   {
-    "__docId__": 152,
+    "__docId__": 158,
     "kind": "test",
     "name": "it27",
     "testId": 27,
@@ -3360,17 +3673,33 @@
     "static": true,
     "longname": "test/unit/data/resources/filters.spec.js~describe19.describe26.it27",
     "access": null,
-    "description": "makes a get request to the Mux data filters route",
+    "description": "throws an error if a filter Id is not provided",
     "lineNumber": 64,
     "testTargets": [
       "Filters.get"
     ]
   },
   {
-    "__docId__": 153,
+    "__docId__": 159,
+    "kind": "test",
+    "name": "it28",
+    "testId": 28,
+    "memberof": "test/unit/data/resources/filters.spec.js~describe19.describe26",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/data/resources/filters.spec.js~describe19.describe26.it28",
+    "access": null,
+    "description": "makes a get request to the Mux data filters route",
+    "lineNumber": 69,
+    "testTargets": [
+      "Filters.get"
+    ]
+  },
+  {
+    "__docId__": 160,
     "kind": "testFile",
     "name": "test/unit/data/resources/metrics.spec.js",
-    "content": "const { expect } = require('chai');\nconst moxios = require('moxios');\nconst sinon = require('sinon');\nconst Metrics = require('../../../../src/data/resources/metrics');\n\n/** @test {Metrics} */\ndescribe('Unit::Metrics', () => {\n  const testApiKey = 'testKey';\n  const testSecret = 'testSecret';\n  const metricsInstance = new Metrics(testApiKey, testSecret);\n\n  beforeEach(() => {\n    moxios.install();\n  });\n\n  afterEach(() => {\n    moxios.uninstall();\n  });\n\n  /** @test {Metrics} */\n  describe('Metrics', () => {\n    /** @test {Metrics} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new Metrics()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {Metrics} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new Metrics(testApiKey)).to.throw('API secret key must be provided');\n    });\n\n    /** @test {Metrics} */\n    it('creates a new Metrics instance', () => {\n      const TestMetrics = new Metrics(testApiKey, testSecret);\n      expect(() => new Metrics(testApiKey, testSecret)).to.not.throw();\n      expect(TestMetrics.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestMetrics.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {Metrics.breakdown} */\n  describe('Metrics.breakdown', () => {\n    /** @test {Metrics.breakdown} */\n    it('makes a get request to the Mux data breakdown route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/metrics/testMetric/breakdown', {\n        status: 200,\n        responseText: 'breakdown',\n      });\n\n      const onFulfilled = sinon.spy();\n      metricsInstance.breakdown('testMetric', {})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('breakdown');\n        done();\n      });\n    });\n  });\n\n  /** @test {Metrics.comparison} */\n  describe('Metrics.comparison', () => {\n    /** @test {Metrics.comparison} */\n    it('makes a get request to the Mux data comparision route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/metrics/comparison', {\n        status: 200,\n        responseText: 'comparison',\n      });\n\n      const onFulfilled = sinon.spy();\n      metricsInstance.comparison({})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('comparison');\n        done();\n      });\n    });\n  });\n\n  /** @test {Metrics.insights} */\n  describe('Metrics.insights', () => {\n    /** @test {Metrics.insights} */\n    it('makes a get request to the Mux data insights route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/metrics/testMetric/insights', {\n        status: 200,\n        responseText: 'insights',\n      });\n\n      const onFulfilled = sinon.spy();\n      metricsInstance.insights('testMetric')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('insights');\n        done();\n      });\n    });\n  });\n\n  /** @test {Metrics.overall} */\n  describe('Metrics.overall', () => {\n    /** @test {Metrics.overall} */\n    it('makes a get request to the Mux data overall route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/metrics/testMetric/overall', {\n        status: 200,\n        responseText: 'overall',\n      });\n\n      const onFulfilled = sinon.spy();\n      metricsInstance.overall('testMetric', {})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('overall');\n        done();\n      });\n    });\n  });\n\n  /** @test {Metrics.timeseries} */\n  describe('Metrics.timeseries', () => {\n    /** @test {Metrics.timeseries} */\n    it('makes a get request to the Mux data timeseries route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/metrics/testMetric/timeseries', {\n        status: 200,\n        responseText: 'timeseries',\n      });\n\n      const onFulfilled = sinon.spy();\n      metricsInstance.timeseries('testMetric', {})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('timeseries');\n        done();\n      });\n    });\n  });\n});\n",
+    "content": "const { expect } = require('chai');\nconst moxios = require('moxios');\nconst sinon = require('sinon');\nconst Metrics = require('../../../../src/data/resources/metrics');\n\n/** @test {Metrics} */\ndescribe('Unit::Metrics', () => {\n  const testApiKey = 'testKey';\n  const testSecret = 'testSecret';\n  const metricsInstance = new Metrics(testApiKey, testSecret);\n\n  beforeEach(() => {\n    moxios.install();\n  });\n\n  afterEach(() => {\n    moxios.uninstall();\n  });\n\n  /** @test {Metrics} */\n  describe('Metrics', () => {\n    /** @test {Metrics} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new Metrics()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {Metrics} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new Metrics(testApiKey)).to.throw('API secret key must be provided');\n    });\n\n    /** @test {Metrics} */\n    it('creates a new Metrics instance', () => {\n      const TestMetrics = new Metrics(testApiKey, testSecret);\n      expect(() => new Metrics(testApiKey, testSecret)).to.not.throw();\n      expect(TestMetrics.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestMetrics.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {Metrics.breakdown} */\n  describe('Metrics.breakdown', () => {\n    /** @test {Metrics.breakdown} */\n    it('makes a get request to the Mux data breakdown route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/metrics/testMetric/breakdown', {\n        status: 200,\n        responseText: 'breakdown',\n      });\n\n      const onFulfilled = sinon.spy();\n      metricsInstance.breakdown('testMetric', {})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('breakdown');\n        done();\n      });\n    });\n  });\n\n  /** @test {Metrics.comparison} */\n  describe('Metrics.comparison', () => {\n    /** @test {Metrics.comparison} */\n    it('throws an error if the value query parameter is not provided', () => {\n      expect(() => metricsInstance.comparison()).to.throw('The value query parameter is required for comparing metrics');\n      expect(() => metricsInstance.comparison({})).to.throw('The value query parameter is required for comparing metrics');\n    });\n\n    /** @test {Metrics.comparison} */\n    it('makes a get request to the Mux data comparision route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/metrics/comparison?value=abc123', {\n        status: 200,\n        responseText: 'comparison',\n      });\n\n      const onFulfilled = sinon.spy();\n      metricsInstance.comparison({ value: 'abc123' })\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('comparison');\n        done();\n      });\n    });\n  });\n\n  /** @test {Metrics.insights} */\n  describe('Metrics.insights', () => {\n    /** @test {Metrics.insights} */\n    it('throws an error if a metric Id is not provided', () => {\n      expect(() => metricsInstance.insights()).to.throw('A metric Id is required for insight metrics.');\n    });\n\n    /** @test {Metrics.insights} */\n    it('makes a get request to the Mux data insights route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/metrics/testMetric/insights', {\n        status: 200,\n        responseText: 'insights',\n      });\n\n      const onFulfilled = sinon.spy();\n      metricsInstance.insights('testMetric')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('insights');\n        done();\n      });\n    });\n  });\n\n  /** @test {Metrics.overall} */\n  describe('Metrics.overall', () => {\n    /** @test {Metrics.overall} */\n    it('throws an error if a metric Id is not provided', () => {\n      expect(() => metricsInstance.overall()).to.throw('A metric Id is required for overall metrics.');\n    });\n\n    /** @test {Metrics.overall} */\n    it('makes a get request to the Mux data overall route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/metrics/testMetric/overall', {\n        status: 200,\n        responseText: 'overall',\n      });\n\n      const onFulfilled = sinon.spy();\n      metricsInstance.overall('testMetric', {})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('overall');\n        done();\n      });\n    });\n  });\n\n  /** @test {Metrics.timeseries} */\n  describe('Metrics.timeseries', () => {\n    /** @test {Metrics.timeseries} */\n    it('throws an error if a metric Id is not provided', () => {\n      expect(() => metricsInstance.timeseries()).to.throw('A metric Id is required for timeseries metrics.');\n    });\n\n    /** @test {Metrics.timeseries} */\n    it('makes a get request to the Mux data timeseries route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/metrics/testMetric/timeseries', {\n        status: 200,\n        responseText: 'timeseries',\n      });\n\n      const onFulfilled = sinon.spy();\n      metricsInstance.timeseries('testMetric', {})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('timeseries');\n        done();\n      });\n    });\n  });\n});\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/test/unit/data/resources/metrics.spec.js",
     "access": null,
@@ -3378,14 +3707,14 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 154,
+    "__docId__": 161,
     "kind": "test",
-    "name": "describe28",
-    "testId": 28,
+    "name": "describe29",
+    "testId": 29,
     "memberof": "test/unit/data/resources/metrics.spec.js",
     "testDepth": 0,
     "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28",
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29",
     "access": null,
     "description": "Unit::Metrics",
     "lineNumber": 7,
@@ -3394,14 +3723,14 @@
     ]
   },
   {
-    "__docId__": 155,
+    "__docId__": 162,
     "kind": "test",
-    "name": "describe29",
-    "testId": 29,
-    "memberof": "test/unit/data/resources/metrics.spec.js~describe28",
+    "name": "describe30",
+    "testId": 30,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28.describe29",
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe30",
     "access": null,
     "description": "Metrics",
     "lineNumber": 21,
@@ -3410,14 +3739,14 @@
     ]
   },
   {
-    "__docId__": 156,
+    "__docId__": 163,
     "kind": "test",
-    "name": "it30",
-    "testId": 30,
-    "memberof": "test/unit/data/resources/metrics.spec.js~describe28.describe29",
+    "name": "it31",
+    "testId": 31,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29.describe30",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28.describe29.it30",
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe30.it31",
     "access": null,
     "description": "throws an error if an api key is not given",
     "lineNumber": 23,
@@ -3426,14 +3755,14 @@
     ]
   },
   {
-    "__docId__": 157,
+    "__docId__": 164,
     "kind": "test",
-    "name": "it31",
-    "testId": 31,
-    "memberof": "test/unit/data/resources/metrics.spec.js~describe28.describe29",
+    "name": "it32",
+    "testId": 32,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29.describe30",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28.describe29.it31",
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe30.it32",
     "access": null,
     "description": "throws an error if a secret key is not given",
     "lineNumber": 28,
@@ -3442,14 +3771,14 @@
     ]
   },
   {
-    "__docId__": 158,
+    "__docId__": 165,
     "kind": "test",
-    "name": "it32",
-    "testId": 32,
-    "memberof": "test/unit/data/resources/metrics.spec.js~describe28.describe29",
+    "name": "it33",
+    "testId": 33,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29.describe30",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28.describe29.it32",
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe30.it33",
     "access": null,
     "description": "creates a new Metrics instance",
     "lineNumber": 33,
@@ -3458,14 +3787,14 @@
     ]
   },
   {
-    "__docId__": 159,
+    "__docId__": 166,
     "kind": "test",
-    "name": "describe33",
-    "testId": 33,
-    "memberof": "test/unit/data/resources/metrics.spec.js~describe28",
+    "name": "describe34",
+    "testId": 34,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28.describe33",
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe34",
     "access": null,
     "description": "Metrics.breakdown",
     "lineNumber": 42,
@@ -3474,14 +3803,14 @@
     ]
   },
   {
-    "__docId__": 160,
+    "__docId__": 167,
     "kind": "test",
-    "name": "it34",
-    "testId": 34,
-    "memberof": "test/unit/data/resources/metrics.spec.js~describe28.describe33",
+    "name": "it35",
+    "testId": 35,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29.describe34",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28.describe33.it34",
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe34.it35",
     "access": null,
     "description": "makes a get request to the Mux data breakdown route",
     "lineNumber": 44,
@@ -3490,14 +3819,14 @@
     ]
   },
   {
-    "__docId__": 161,
+    "__docId__": 168,
     "kind": "test",
-    "name": "describe35",
-    "testId": 35,
-    "memberof": "test/unit/data/resources/metrics.spec.js~describe28",
+    "name": "describe36",
+    "testId": 36,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28.describe35",
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe36",
     "access": null,
     "description": "Metrics.comparison",
     "lineNumber": 62,
@@ -3506,122 +3835,186 @@
     ]
   },
   {
-    "__docId__": 162,
+    "__docId__": 169,
     "kind": "test",
-    "name": "it36",
-    "testId": 36,
-    "memberof": "test/unit/data/resources/metrics.spec.js~describe28.describe35",
+    "name": "it37",
+    "testId": 37,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29.describe36",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28.describe35.it36",
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe36.it37",
     "access": null,
-    "description": "makes a get request to the Mux data comparision route",
+    "description": "throws an error if the value query parameter is not provided",
     "lineNumber": 64,
     "testTargets": [
       "Metrics.comparison"
     ]
   },
   {
-    "__docId__": 163,
-    "kind": "test",
-    "name": "describe37",
-    "testId": 37,
-    "memberof": "test/unit/data/resources/metrics.spec.js~describe28",
-    "testDepth": 1,
-    "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28.describe37",
-    "access": null,
-    "description": "Metrics.insights",
-    "lineNumber": 82,
-    "testTargets": [
-      "Metrics.insights"
-    ]
-  },
-  {
-    "__docId__": 164,
+    "__docId__": 170,
     "kind": "test",
     "name": "it38",
     "testId": 38,
-    "memberof": "test/unit/data/resources/metrics.spec.js~describe28.describe37",
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29.describe36",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28.describe37.it38",
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe36.it38",
     "access": null,
-    "description": "makes a get request to the Mux data insights route",
-    "lineNumber": 84,
+    "description": "makes a get request to the Mux data comparision route",
+    "lineNumber": 70,
+    "testTargets": [
+      "Metrics.comparison"
+    ]
+  },
+  {
+    "__docId__": 171,
+    "kind": "test",
+    "name": "describe39",
+    "testId": 39,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29",
+    "testDepth": 1,
+    "static": true,
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe39",
+    "access": null,
+    "description": "Metrics.insights",
+    "lineNumber": 88,
     "testTargets": [
       "Metrics.insights"
     ]
   },
   {
-    "__docId__": 165,
-    "kind": "test",
-    "name": "describe39",
-    "testId": 39,
-    "memberof": "test/unit/data/resources/metrics.spec.js~describe28",
-    "testDepth": 1,
-    "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28.describe39",
-    "access": null,
-    "description": "Metrics.overall",
-    "lineNumber": 102,
-    "testTargets": [
-      "Metrics.overall"
-    ]
-  },
-  {
-    "__docId__": 166,
+    "__docId__": 172,
     "kind": "test",
     "name": "it40",
     "testId": 40,
-    "memberof": "test/unit/data/resources/metrics.spec.js~describe28.describe39",
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29.describe39",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28.describe39.it40",
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe39.it40",
     "access": null,
-    "description": "makes a get request to the Mux data overall route",
-    "lineNumber": 104,
+    "description": "throws an error if a metric Id is not provided",
+    "lineNumber": 90,
+    "testTargets": [
+      "Metrics.insights"
+    ]
+  },
+  {
+    "__docId__": 173,
+    "kind": "test",
+    "name": "it41",
+    "testId": 41,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29.describe39",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe39.it41",
+    "access": null,
+    "description": "makes a get request to the Mux data insights route",
+    "lineNumber": 95,
+    "testTargets": [
+      "Metrics.insights"
+    ]
+  },
+  {
+    "__docId__": 174,
+    "kind": "test",
+    "name": "describe42",
+    "testId": 42,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29",
+    "testDepth": 1,
+    "static": true,
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe42",
+    "access": null,
+    "description": "Metrics.overall",
+    "lineNumber": 113,
     "testTargets": [
       "Metrics.overall"
     ]
   },
   {
-    "__docId__": 167,
+    "__docId__": 175,
     "kind": "test",
-    "name": "describe41",
-    "testId": 41,
-    "memberof": "test/unit/data/resources/metrics.spec.js~describe28",
-    "testDepth": 1,
-    "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28.describe41",
-    "access": null,
-    "description": "Metrics.timeseries",
-    "lineNumber": 122,
-    "testTargets": [
-      "Metrics.timeseries"
-    ]
-  },
-  {
-    "__docId__": 168,
-    "kind": "test",
-    "name": "it42",
-    "testId": 42,
-    "memberof": "test/unit/data/resources/metrics.spec.js~describe28.describe41",
+    "name": "it43",
+    "testId": 43,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29.describe42",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/data/resources/metrics.spec.js~describe28.describe41.it42",
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe42.it43",
     "access": null,
-    "description": "makes a get request to the Mux data timeseries route",
-    "lineNumber": 124,
+    "description": "throws an error if a metric Id is not provided",
+    "lineNumber": 115,
+    "testTargets": [
+      "Metrics.overall"
+    ]
+  },
+  {
+    "__docId__": 176,
+    "kind": "test",
+    "name": "it44",
+    "testId": 44,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29.describe42",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe42.it44",
+    "access": null,
+    "description": "makes a get request to the Mux data overall route",
+    "lineNumber": 120,
+    "testTargets": [
+      "Metrics.overall"
+    ]
+  },
+  {
+    "__docId__": 177,
+    "kind": "test",
+    "name": "describe45",
+    "testId": 45,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29",
+    "testDepth": 1,
+    "static": true,
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe45",
+    "access": null,
+    "description": "Metrics.timeseries",
+    "lineNumber": 138,
     "testTargets": [
       "Metrics.timeseries"
     ]
   },
   {
-    "__docId__": 169,
+    "__docId__": 178,
+    "kind": "test",
+    "name": "it46",
+    "testId": 46,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29.describe45",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe45.it46",
+    "access": null,
+    "description": "throws an error if a metric Id is not provided",
+    "lineNumber": 140,
+    "testTargets": [
+      "Metrics.timeseries"
+    ]
+  },
+  {
+    "__docId__": 179,
+    "kind": "test",
+    "name": "it47",
+    "testId": 47,
+    "memberof": "test/unit/data/resources/metrics.spec.js~describe29.describe45",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/data/resources/metrics.spec.js~describe29.describe45.it47",
+    "access": null,
+    "description": "makes a get request to the Mux data timeseries route",
+    "lineNumber": 145,
+    "testTargets": [
+      "Metrics.timeseries"
+    ]
+  },
+  {
+    "__docId__": 180,
     "kind": "testFile",
     "name": "test/unit/data/resources/video_ views.spec.js",
-    "content": "const { expect } = require('chai');\nconst moxios = require('moxios');\nconst sinon = require('sinon');\nconst VideoViews = require('../../../../src/data/resources/video_views');\n\n/** @test {VideoViews} */\ndescribe('Unit::VideoViews', () => {\n  const testApiKey = 'testKey';\n  const testSecret = 'testSecret';\n  const videoViewsInstance = new VideoViews(testApiKey, testSecret);\n\n  beforeEach(() => {\n    moxios.install();\n  });\n\n  afterEach(() => {\n    moxios.uninstall();\n  });\n\n  /** @test {VideoViews} */\n  describe('VideoViews', () => {\n    /** @test {VideoViews} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new VideoViews()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {VideoViews} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new VideoViews(testApiKey)).to.throw('API secret key must be provided');\n    });\n\n    /** @test {VideoViews} */\n    it('creates a new VideoViews instance', () => {\n      const TestVideoViews = new VideoViews(testApiKey, testSecret);\n      expect(() => new VideoViews(testApiKey, testSecret)).to.not.throw();\n      expect(TestVideoViews.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestVideoViews.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {VideoViews.list} */\n  describe('VideoViews.list', () => {\n    /** @test {VideoViews.list} */\n    it('makes a get request to the Mux data video-views route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/video-views', {\n        status: 200,\n        responseText: 'video views',\n      });\n\n      const onFulfilled = sinon.spy();\n      videoViewsInstance.list({})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('video views');\n        done();\n      });\n    });\n  });\n\n  /** @test {VideoViews.get} */\n  describe('VideoViews.get', () => {\n    /** @test {VideoViews.get} */\n    it('makes a get request to the Mux data video-views route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/video-views/someView', {\n        status: 200,\n        responseText: 'video views',\n      });\n\n      const onFulfilled = sinon.spy();\n      videoViewsInstance.get('someView')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('video views');\n        done();\n      });\n    });\n  });\n});\n",
+    "content": "const { expect } = require('chai');\nconst moxios = require('moxios');\nconst sinon = require('sinon');\nconst VideoViews = require('../../../../src/data/resources/video_views');\n\n/** @test {VideoViews} */\ndescribe('Unit::VideoViews', () => {\n  const testApiKey = 'testKey';\n  const testSecret = 'testSecret';\n  const videoViewsInstance = new VideoViews(testApiKey, testSecret);\n\n  beforeEach(() => {\n    moxios.install();\n  });\n\n  afterEach(() => {\n    moxios.uninstall();\n  });\n\n  /** @test {VideoViews} */\n  describe('VideoViews', () => {\n    /** @test {VideoViews} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new VideoViews()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {VideoViews} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new VideoViews(testApiKey)).to.throw('API secret key must be provided');\n    });\n\n    /** @test {VideoViews} */\n    it('creates a new VideoViews instance', () => {\n      const TestVideoViews = new VideoViews(testApiKey, testSecret);\n      expect(() => new VideoViews(testApiKey, testSecret)).to.not.throw();\n      expect(TestVideoViews.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestVideoViews.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {VideoViews.list} */\n  describe('VideoViews.list', () => {\n    /** @test {VideoViews.list} */\n    it('throws an error if the viewer_id query parameter is not provided', () => {\n      expect(() => videoViewsInstance.list()).to.throw('The viewer_id query parameter is required for listing video views.');\n      expect(() => videoViewsInstance.list({})).to.throw('The viewer_id query parameter is required for listing video views.');\n    });\n\n    it('makes a get request to the Mux data video-views route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/video-views?viewer_id=abc123', {\n        status: 200,\n        responseText: 'video views',\n      });\n\n      const onFulfilled = sinon.spy();\n      videoViewsInstance.list({ viewer_id: 'abc123' })\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('video views');\n        done();\n      });\n    });\n  });\n\n  /** @test {VideoViews.get} */\n  describe('VideoViews.get', () => {\n    /** @test {VideoViews.get} */\n    it('makes a get request to the Mux data video-views route', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1/video-views/someView', {\n        status: 200,\n        responseText: 'video views',\n      });\n\n      const onFulfilled = sinon.spy();\n      videoViewsInstance.get('someView')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('video views');\n        done();\n      });\n    });\n  });\n});\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/test/unit/data/resources/video_ views.spec.js",
     "access": null,
@@ -3629,14 +4022,14 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 170,
+    "__docId__": 181,
     "kind": "test",
-    "name": "describe43",
-    "testId": 43,
+    "name": "describe48",
+    "testId": 48,
     "memberof": "test/unit/data/resources/video_ views.spec.js",
     "testDepth": 0,
     "static": true,
-    "longname": "test/unit/data/resources/video_ views.spec.js~describe43",
+    "longname": "test/unit/data/resources/video_ views.spec.js~describe48",
     "access": null,
     "description": "Unit::VideoViews",
     "lineNumber": 7,
@@ -3645,14 +4038,14 @@
     ]
   },
   {
-    "__docId__": 171,
+    "__docId__": 182,
     "kind": "test",
-    "name": "describe44",
-    "testId": 44,
-    "memberof": "test/unit/data/resources/video_ views.spec.js~describe43",
+    "name": "describe49",
+    "testId": 49,
+    "memberof": "test/unit/data/resources/video_ views.spec.js~describe48",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/data/resources/video_ views.spec.js~describe43.describe44",
+    "longname": "test/unit/data/resources/video_ views.spec.js~describe48.describe49",
     "access": null,
     "description": "VideoViews",
     "lineNumber": 21,
@@ -3661,14 +4054,14 @@
     ]
   },
   {
-    "__docId__": 172,
+    "__docId__": 183,
     "kind": "test",
-    "name": "it45",
-    "testId": 45,
-    "memberof": "test/unit/data/resources/video_ views.spec.js~describe43.describe44",
+    "name": "it50",
+    "testId": 50,
+    "memberof": "test/unit/data/resources/video_ views.spec.js~describe48.describe49",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/data/resources/video_ views.spec.js~describe43.describe44.it45",
+    "longname": "test/unit/data/resources/video_ views.spec.js~describe48.describe49.it50",
     "access": null,
     "description": "throws an error if an api key is not given",
     "lineNumber": 23,
@@ -3677,14 +4070,14 @@
     ]
   },
   {
-    "__docId__": 173,
+    "__docId__": 184,
     "kind": "test",
-    "name": "it46",
-    "testId": 46,
-    "memberof": "test/unit/data/resources/video_ views.spec.js~describe43.describe44",
+    "name": "it51",
+    "testId": 51,
+    "memberof": "test/unit/data/resources/video_ views.spec.js~describe48.describe49",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/data/resources/video_ views.spec.js~describe43.describe44.it46",
+    "longname": "test/unit/data/resources/video_ views.spec.js~describe48.describe49.it51",
     "access": null,
     "description": "throws an error if a secret key is not given",
     "lineNumber": 28,
@@ -3693,14 +4086,14 @@
     ]
   },
   {
-    "__docId__": 174,
+    "__docId__": 185,
     "kind": "test",
-    "name": "it47",
-    "testId": 47,
-    "memberof": "test/unit/data/resources/video_ views.spec.js~describe43.describe44",
+    "name": "it52",
+    "testId": 52,
+    "memberof": "test/unit/data/resources/video_ views.spec.js~describe48.describe49",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/data/resources/video_ views.spec.js~describe43.describe44.it47",
+    "longname": "test/unit/data/resources/video_ views.spec.js~describe48.describe49.it52",
     "access": null,
     "description": "creates a new VideoViews instance",
     "lineNumber": 33,
@@ -3709,14 +4102,14 @@
     ]
   },
   {
-    "__docId__": 175,
+    "__docId__": 186,
     "kind": "test",
-    "name": "describe48",
-    "testId": 48,
-    "memberof": "test/unit/data/resources/video_ views.spec.js~describe43",
+    "name": "describe53",
+    "testId": 53,
+    "memberof": "test/unit/data/resources/video_ views.spec.js~describe48",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/data/resources/video_ views.spec.js~describe43.describe48",
+    "longname": "test/unit/data/resources/video_ views.spec.js~describe48.describe53",
     "access": null,
     "description": "VideoViews.list",
     "lineNumber": 42,
@@ -3725,58 +4118,71 @@
     ]
   },
   {
-    "__docId__": 176,
+    "__docId__": 187,
     "kind": "test",
-    "name": "it49",
-    "testId": 49,
-    "memberof": "test/unit/data/resources/video_ views.spec.js~describe43.describe48",
+    "name": "it54",
+    "testId": 54,
+    "memberof": "test/unit/data/resources/video_ views.spec.js~describe48.describe53",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/data/resources/video_ views.spec.js~describe43.describe48.it49",
+    "longname": "test/unit/data/resources/video_ views.spec.js~describe48.describe53.it54",
     "access": null,
-    "description": "makes a get request to the Mux data video-views route",
+    "description": "throws an error if the viewer_id query parameter is not provided",
     "lineNumber": 44,
     "testTargets": [
       "VideoViews.list"
     ]
   },
   {
-    "__docId__": 177,
+    "__docId__": 188,
     "kind": "test",
-    "name": "describe50",
-    "testId": 50,
-    "memberof": "test/unit/data/resources/video_ views.spec.js~describe43",
-    "testDepth": 1,
-    "static": true,
-    "longname": "test/unit/data/resources/video_ views.spec.js~describe43.describe50",
-    "access": null,
-    "description": "VideoViews.get",
-    "lineNumber": 62,
-    "testTargets": [
-      "VideoViews.get"
-    ]
-  },
-  {
-    "__docId__": 178,
-    "kind": "test",
-    "name": "it51",
-    "testId": 51,
-    "memberof": "test/unit/data/resources/video_ views.spec.js~describe43.describe50",
+    "name": "it55",
+    "testId": 55,
+    "memberof": "test/unit/data/resources/video_ views.spec.js~describe48.describe53",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/data/resources/video_ views.spec.js~describe43.describe50.it51",
+    "longname": "test/unit/data/resources/video_ views.spec.js~describe48.describe53.it55",
     "access": null,
     "description": "makes a get request to the Mux data video-views route",
-    "lineNumber": 64,
+    "lineNumber": 49
+  },
+  {
+    "__docId__": 189,
+    "kind": "test",
+    "name": "describe56",
+    "testId": 56,
+    "memberof": "test/unit/data/resources/video_ views.spec.js~describe48",
+    "testDepth": 1,
+    "static": true,
+    "longname": "test/unit/data/resources/video_ views.spec.js~describe48.describe56",
+    "access": null,
+    "description": "VideoViews.get",
+    "lineNumber": 67,
     "testTargets": [
       "VideoViews.get"
     ]
   },
   {
-    "__docId__": 179,
+    "__docId__": 190,
+    "kind": "test",
+    "name": "it57",
+    "testId": 57,
+    "memberof": "test/unit/data/resources/video_ views.spec.js~describe48.describe56",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/data/resources/video_ views.spec.js~describe48.describe56.it57",
+    "access": null,
+    "description": "makes a get request to the Mux data video-views route",
+    "lineNumber": 69,
+    "testTargets": [
+      "VideoViews.get"
+    ]
+  },
+  {
+    "__docId__": 191,
     "kind": "testFile",
     "name": "test/unit/mux.spec.js",
-    "content": "const { expect } = require('chai');\nconst Mux = require('../../src/mux');\nconst MuxVideo = require('../../src/video/video');\n\n/** @test {Mux} */\ndescribe('Unit::Mux', () => {\n  /** @test {Mux} */\n  describe('Mux', () => {\n    /** @test {Mux} */\n    it('exposes Mux Video and Data', () => {\n      const muxClient = new Mux('testKey', 'testSecret');\n      const { Video } = muxClient;\n      expect(Video).to.to.be.an.instanceof(MuxVideo);\n    });\n  });\n});\n",
+    "content": "const { expect } = require('chai');\nconst Mux = require('../../src/mux');\nconst MuxVideo = require('../../src/video/video');\nconst MuxData = require('../../src/data/data');\n\n/** @test {Mux} */\ndescribe('Unit::Mux', () => {\n  /** @test {Mux} */\n  describe('Mux', () => {\n    /** @test {Mux} */\n    it('exposes Mux Video and Data', () => {\n      const muxClient = new Mux('testKey', 'testSecret');\n      const { Video, Data } = muxClient;\n      expect(Video).to.to.be.an.instanceof(MuxVideo);\n      expect(Data).to.to.be.an.instanceof(MuxData);\n    });\n  });\n});\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/test/unit/mux.spec.js",
     "access": null,
@@ -3784,55 +4190,55 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 180,
+    "__docId__": 192,
     "kind": "test",
-    "name": "describe52",
-    "testId": 52,
+    "name": "describe58",
+    "testId": 58,
     "memberof": "test/unit/mux.spec.js",
     "testDepth": 0,
     "static": true,
-    "longname": "test/unit/mux.spec.js~describe52",
+    "longname": "test/unit/mux.spec.js~describe58",
     "access": null,
     "description": "Unit::Mux",
-    "lineNumber": 6,
+    "lineNumber": 7,
     "testTargets": [
       "Mux"
     ]
   },
   {
-    "__docId__": 181,
+    "__docId__": 193,
     "kind": "test",
-    "name": "describe53",
-    "testId": 53,
-    "memberof": "test/unit/mux.spec.js~describe52",
+    "name": "describe59",
+    "testId": 59,
+    "memberof": "test/unit/mux.spec.js~describe58",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/mux.spec.js~describe52.describe53",
+    "longname": "test/unit/mux.spec.js~describe58.describe59",
     "access": null,
     "description": "Mux",
-    "lineNumber": 8,
+    "lineNumber": 9,
     "testTargets": [
       "Mux"
     ]
   },
   {
-    "__docId__": 182,
+    "__docId__": 194,
     "kind": "test",
-    "name": "it54",
-    "testId": 54,
-    "memberof": "test/unit/mux.spec.js~describe52.describe53",
+    "name": "it60",
+    "testId": 60,
+    "memberof": "test/unit/mux.spec.js~describe58.describe59",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/mux.spec.js~describe52.describe53.it54",
+    "longname": "test/unit/mux.spec.js~describe58.describe59.it60",
     "access": null,
     "description": "exposes Mux Video and Data",
-    "lineNumber": 10,
+    "lineNumber": 11,
     "testTargets": [
       "Mux"
     ]
   },
   {
-    "__docId__": 183,
+    "__docId__": 195,
     "kind": "testFile",
     "name": "test/unit/utils/api.spec.js",
     "content": "const { expect } = require('chai');\nconst moxios = require('moxios');\nconst sinon = require('sinon');\nconst api = require('../../../src/utils/api');\n\n/** @test {api} */\ndescribe('Unit::api', () => {\n  beforeEach(() => {\n    moxios.install();\n  });\n\n  afterEach(() => {\n    moxios.uninstall();\n  });\n\n  /** @test {api.get} */\n  describe('api.get', () => {\n    /** @test {api.get} */\n    it('makes a get request', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1', {\n        status: 200,\n        responseText: 'success',\n      });\n\n      const onFulfilled = sinon.spy();\n      api.get('/data/v1', {}, {})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('success');\n        done();\n      });\n    });\n  });\n\n  /** @test {api.post} */\n  describe('api.post', () => {\n    /** @test {api.post} */\n    it('makes a post request', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1', {\n        status: 200,\n        responseText: 'success',\n      });\n\n      const onFulfilled = sinon.spy();\n      api.post('/data/v1', {}, {})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('success');\n        done();\n      });\n    });\n  });\n\n  /** @test {api.put} */\n  describe('api.put', () => {\n    /** @test {api.put} */\n    it('makes a put request', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1', {\n        status: 200,\n        responseText: 'success',\n      });\n\n      const onFulfilled = sinon.spy();\n      api.put('/data/v1', {}, {})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('success');\n        done();\n      });\n    });\n  });\n\n  /** @test {api.del} */\n  describe('api.del', () => {\n    /** @test {api.del} */\n    it('makes a delete request', (done) => {\n      moxios.stubRequest('https://api.mux.com/data/v1', {\n        status: 200,\n        responseText: 'success',\n      });\n\n      const onFulfilled = sinon.spy();\n      api.del('/data/v1', {})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('success');\n        done();\n      });\n    });\n  });\n});\n",
@@ -3843,14 +4249,14 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 184,
+    "__docId__": 196,
     "kind": "test",
-    "name": "describe55",
-    "testId": 55,
+    "name": "describe61",
+    "testId": 61,
     "memberof": "test/unit/utils/api.spec.js",
     "testDepth": 0,
     "static": true,
-    "longname": "test/unit/utils/api.spec.js~describe55",
+    "longname": "test/unit/utils/api.spec.js~describe61",
     "access": null,
     "description": "Unit::api",
     "lineNumber": 7,
@@ -3859,14 +4265,14 @@
     ]
   },
   {
-    "__docId__": 185,
+    "__docId__": 197,
     "kind": "test",
-    "name": "describe56",
-    "testId": 56,
-    "memberof": "test/unit/utils/api.spec.js~describe55",
+    "name": "describe62",
+    "testId": 62,
+    "memberof": "test/unit/utils/api.spec.js~describe61",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/utils/api.spec.js~describe55.describe56",
+    "longname": "test/unit/utils/api.spec.js~describe61.describe62",
     "access": null,
     "description": "api.get",
     "lineNumber": 17,
@@ -3875,14 +4281,14 @@
     ]
   },
   {
-    "__docId__": 186,
+    "__docId__": 198,
     "kind": "test",
-    "name": "it57",
-    "testId": 57,
-    "memberof": "test/unit/utils/api.spec.js~describe55.describe56",
+    "name": "it63",
+    "testId": 63,
+    "memberof": "test/unit/utils/api.spec.js~describe61.describe62",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/utils/api.spec.js~describe55.describe56.it57",
+    "longname": "test/unit/utils/api.spec.js~describe61.describe62.it63",
     "access": null,
     "description": "makes a get request",
     "lineNumber": 19,
@@ -3891,14 +4297,14 @@
     ]
   },
   {
-    "__docId__": 187,
+    "__docId__": 199,
     "kind": "test",
-    "name": "describe58",
-    "testId": 58,
-    "memberof": "test/unit/utils/api.spec.js~describe55",
+    "name": "describe64",
+    "testId": 64,
+    "memberof": "test/unit/utils/api.spec.js~describe61",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/utils/api.spec.js~describe55.describe58",
+    "longname": "test/unit/utils/api.spec.js~describe61.describe64",
     "access": null,
     "description": "api.post",
     "lineNumber": 37,
@@ -3907,14 +4313,14 @@
     ]
   },
   {
-    "__docId__": 188,
+    "__docId__": 200,
     "kind": "test",
-    "name": "it59",
-    "testId": 59,
-    "memberof": "test/unit/utils/api.spec.js~describe55.describe58",
+    "name": "it65",
+    "testId": 65,
+    "memberof": "test/unit/utils/api.spec.js~describe61.describe64",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/utils/api.spec.js~describe55.describe58.it59",
+    "longname": "test/unit/utils/api.spec.js~describe61.describe64.it65",
     "access": null,
     "description": "makes a post request",
     "lineNumber": 39,
@@ -3923,14 +4329,14 @@
     ]
   },
   {
-    "__docId__": 189,
+    "__docId__": 201,
     "kind": "test",
-    "name": "describe60",
-    "testId": 60,
-    "memberof": "test/unit/utils/api.spec.js~describe55",
+    "name": "describe66",
+    "testId": 66,
+    "memberof": "test/unit/utils/api.spec.js~describe61",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/utils/api.spec.js~describe55.describe60",
+    "longname": "test/unit/utils/api.spec.js~describe61.describe66",
     "access": null,
     "description": "api.put",
     "lineNumber": 57,
@@ -3939,14 +4345,14 @@
     ]
   },
   {
-    "__docId__": 190,
+    "__docId__": 202,
     "kind": "test",
-    "name": "it61",
-    "testId": 61,
-    "memberof": "test/unit/utils/api.spec.js~describe55.describe60",
+    "name": "it67",
+    "testId": 67,
+    "memberof": "test/unit/utils/api.spec.js~describe61.describe66",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/utils/api.spec.js~describe55.describe60.it61",
+    "longname": "test/unit/utils/api.spec.js~describe61.describe66.it67",
     "access": null,
     "description": "makes a put request",
     "lineNumber": 59,
@@ -3955,14 +4361,14 @@
     ]
   },
   {
-    "__docId__": 191,
+    "__docId__": 203,
     "kind": "test",
-    "name": "describe62",
-    "testId": 62,
-    "memberof": "test/unit/utils/api.spec.js~describe55",
+    "name": "describe68",
+    "testId": 68,
+    "memberof": "test/unit/utils/api.spec.js~describe61",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/utils/api.spec.js~describe55.describe62",
+    "longname": "test/unit/utils/api.spec.js~describe61.describe68",
     "access": null,
     "description": "api.del",
     "lineNumber": 77,
@@ -3971,14 +4377,14 @@
     ]
   },
   {
-    "__docId__": 192,
+    "__docId__": 204,
     "kind": "test",
-    "name": "it63",
-    "testId": 63,
-    "memberof": "test/unit/utils/api.spec.js~describe55.describe62",
+    "name": "it69",
+    "testId": 69,
+    "memberof": "test/unit/utils/api.spec.js~describe61.describe68",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/utils/api.spec.js~describe55.describe62.it63",
+    "longname": "test/unit/utils/api.spec.js~describe61.describe68.it69",
     "access": null,
     "description": "makes a delete request",
     "lineNumber": 79,
@@ -3987,10 +4393,10 @@
     ]
   },
   {
-    "__docId__": 193,
+    "__docId__": 205,
     "kind": "testFile",
     "name": "test/unit/video/resources/assets.spec.js",
-    "content": "const { expect } = require('chai');\nconst sinon = require('sinon');\nconst Assets = require('../../../../src/video/resources/assets');\nconst api = require('../../../../src/utils/api');\n\n/** @test {Assets} */\ndescribe('Unit::Assets', () => {\n  const testApiKey = 'testApiKey';\n  const testSecret = 'testSecret';\n  const testAssets = new Assets(testApiKey, testSecret);\n\n  /** @test {Assets} */\n  describe('Assets', () => {\n    /** @test {Assets} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new Assets()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {Assets} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new Assets('testKey')).to.throw('API secret key must be provided');\n    });\n\n    /** @test {Assets} */\n    it('creates a new Assets instance', () => {\n      const TestAssets = new Assets(testApiKey, testSecret);\n      expect(() => new Assets(testApiKey, testSecret)).to.not.throw();\n      expect(TestAssets.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestAssets.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {Assets.create} */\n  describe('Assets.create', () => {\n    before(() => {\n      sinon.stub(api, 'post');\n    });\n\n    after(() => {\n      api.post.restore();\n    });\n\n    /** @test {Assets.create} */\n    it('makes a POST request to create an asset', () => {\n      testAssets.create({ input: 'http://test.mov' });\n      expect(api.post.calledOnce);\n    });\n\n    /** @test {Assets.create} */\n    it('throws an error if no asset params are given', () => (\n      testAssets.create()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('Params are required for creating an asset');\n        })\n    ));\n  });\n\n  /** @test {Assets.get} */\n  describe('Assets.get', () => {\n    before(() => {\n      sinon.stub(api, 'get');\n    });\n\n    after(() => {\n      api.get.restore();\n    });\n\n    /** @test {Assets.get} */\n    it('makes a GET request to get an asset', () => {\n      testAssets.get('somefakeasset');\n      expect(api.get.calledOnce);\n    });\n\n    /** @test {Assets.get} */\n    it('throws an error when an asset id is not given', () => (\n      testAssets.get()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to get an asset');\n        })\n    ));\n  });\n\n  /** @test {Assets.deleteAsset} */\n  describe('Assets.deleteAsset', () => {\n    before(() => {\n      sinon.stub(api, 'del');\n    });\n\n    after(() => {\n      api.del.restore();\n    });\n\n    /** @test {Assets.deleteAsset} */\n    it('makes a DELETE request to delete an asset', () => {\n      testAssets.deleteAsset('somefakeasset');\n      expect(api.del.calledOnce);\n    });\n\n    /** @test {Assets.deleteAsset} */\n    it('throws an error when an asset id is not given', () => (\n      testAssets.deleteAsset()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to delete an asset');\n        })\n    ));\n  });\n\n  /** @test {Assets.inputInfo} */\n  describe('Assets.inputInfo', () => {\n    before(() => {\n      sinon.stub(api, 'get');\n    });\n\n    after(() => {\n      api.get.restore();\n    });\n\n    /** @test {Assets.inputInfo} */\n    it('makes a GET rquest to get input info for an asset', () => {\n      testAssets.inputInfo('somefakeasset');\n      expect(api.get.calledOnce);\n    });\n\n    /** @test {Assets.inputInfo} */\n    it('throws an error when an asset id is not given', () => (\n      testAssets.inputInfo()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to get input-info');\n        })\n    ));\n  });\n\n  /** @test {Assets.list} */\n  describe('Assets.list', () => {\n    before(() => {\n      sinon.stub(api, 'get');\n    });\n\n    after(() => {\n      api.get.restore();\n    });\n\n    /** @test {Assets.list} */\n    it('makes a GET request to lists all assets for an environment', () => {\n      testAssets.list();\n      expect(api.get.calledOnce);\n    });\n  });\n});\n",
+    "content": "const { expect } = require('chai');\nconst sinon = require('sinon');\nconst moxios = require('moxios');\nconst Assets = require('../../../../src/video/resources/assets');\n\n/** @test {Assets} */\ndescribe('Unit::Assets', () => {\n  const testApiKey = 'testApiKey';\n  const testSecret = 'testSecret';\n  const testAssets = new Assets(testApiKey, testSecret);\n\n  beforeEach(() => {\n    moxios.install();\n  });\n\n  afterEach(() => {\n    moxios.uninstall();\n  });\n\n  /** @test {Assets} */\n  describe('Assets', () => {\n    /** @test {Assets} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new Assets()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {Assets} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new Assets('testKey')).to.throw('API secret key must be provided');\n    });\n\n    /** @test {Assets} */\n    it('creates a new Assets instance', () => {\n      const TestAssets = new Assets(testApiKey, testSecret);\n      expect(() => new Assets(testApiKey, testSecret)).to.not.throw();\n      expect(TestAssets.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestAssets.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {Assets.create} */\n  describe('Assets.create', () => {\n    /** @test {Assets.create} */\n    it('makes a POST request to create an asset', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/assets', {\n        status: 200,\n        responseText: 'create',\n      });\n\n      const onFulfilled = sinon.spy();\n      testAssets.create({ input: 'test' })\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('create');\n        done();\n      });\n    });\n\n    /** @test {Assets.create} */\n    it('throws an error if no asset params are given', () => (\n      testAssets.create()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('Params are required for creating an asset');\n        })\n    ));\n  });\n\n  /** @test {Assets.get} */\n  describe('Assets.get', () => {\n    /** @test {Assets.get} */\n    it('makes a GET request to get an asset', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset', {\n        status: 200,\n        responseText: 'asset',\n      });\n\n      const onFulfilled = sinon.spy();\n      testAssets.get('testAsset')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('asset');\n        done();\n      });\n    });\n\n    /** @test {Assets.get} */\n    it('throws an error when an asset id is not given', () => (\n      testAssets.get()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to get an asset');\n        })\n    ));\n  });\n\n  /** @test {Assets.remove} */\n  describe('Assets.remove', () => {\n    /** @test {Assets.remove} */\n    it('makes a DELETE request to delete an asset', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset', {\n        status: 200,\n        responseText: 'delete asset',\n      });\n\n      const onFulfilled = sinon.spy();\n      testAssets.remove('testAsset')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('delete asset');\n        done();\n      });\n    });\n\n    /** @test {Assets.remove} */\n    it('throws an error when an asset id is not given', () => (\n      testAssets.remove()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to delete an asset');\n        })\n    ));\n  });\n\n  /** @test {Assets.inputInfo} */\n  describe('Assets.inputInfo', () => {\n    /** @test {Assets.inputInfo} */\n    it('makes a GET request to get input info for an asset', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset/input-info', {\n        status: 200,\n        responseText: 'input info',\n      });\n\n      const onFulfilled = sinon.spy();\n      testAssets.inputInfo('testAsset')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('input info');\n        done();\n      });\n    });\n\n    /** @test {Assets.inputInfo} */\n    it('throws an error when an asset id is not given', () => (\n      testAssets.inputInfo()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to get input-info');\n        })\n    ));\n  });\n\n  /** @test {Assets.list} */\n  describe('Assets.list', () => {\n    /** @test {Assets.list} */\n    it('makes a GET request to list all assets', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/assets', {\n        status: 200,\n        responseText: 'list',\n      });\n\n      const onFulfilled = sinon.spy();\n      testAssets.list()\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('list');\n        done();\n      });\n    });\n\n    it('makes a GET request to list 100 assets offset by 2 pages', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/assets?limit=100&page=2', {\n        status: 200,\n        responseText: 'list',\n      });\n\n      const onFulfilled = sinon.spy();\n      testAssets.list({limit: 100, page: 2})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('list');\n        done();\n      });\n    });\n  });\n});\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/test/unit/video/resources/assets.spec.js",
     "access": null,
@@ -3998,14 +4404,14 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 194,
+    "__docId__": 206,
     "kind": "test",
-    "name": "describe64",
-    "testId": 64,
+    "name": "describe70",
+    "testId": 70,
     "memberof": "test/unit/video/resources/assets.spec.js",
     "testDepth": 0,
     "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64",
+    "longname": "test/unit/video/resources/assets.spec.js~describe70",
     "access": null,
     "description": "Unit::Assets",
     "lineNumber": 7,
@@ -4014,94 +4420,94 @@
     ]
   },
   {
-    "__docId__": 195,
+    "__docId__": 207,
     "kind": "test",
-    "name": "describe65",
-    "testId": 65,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64",
+    "name": "describe71",
+    "testId": 71,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe65",
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe71",
     "access": null,
     "description": "Assets",
-    "lineNumber": 13,
+    "lineNumber": 21,
     "testTargets": [
       "Assets"
     ]
   },
   {
-    "__docId__": 196,
+    "__docId__": 208,
     "kind": "test",
-    "name": "it66",
-    "testId": 66,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64.describe65",
+    "name": "it72",
+    "testId": 72,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70.describe71",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe65.it66",
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe71.it72",
     "access": null,
     "description": "throws an error if an api key is not given",
-    "lineNumber": 15,
+    "lineNumber": 23,
     "testTargets": [
       "Assets"
     ]
   },
   {
-    "__docId__": 197,
+    "__docId__": 209,
     "kind": "test",
-    "name": "it67",
-    "testId": 67,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64.describe65",
+    "name": "it73",
+    "testId": 73,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70.describe71",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe65.it67",
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe71.it73",
     "access": null,
     "description": "throws an error if a secret key is not given",
-    "lineNumber": 20,
+    "lineNumber": 28,
     "testTargets": [
       "Assets"
     ]
   },
   {
-    "__docId__": 198,
+    "__docId__": 210,
     "kind": "test",
-    "name": "it68",
-    "testId": 68,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64.describe65",
+    "name": "it74",
+    "testId": 74,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70.describe71",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe65.it68",
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe71.it74",
     "access": null,
     "description": "creates a new Assets instance",
-    "lineNumber": 25,
+    "lineNumber": 33,
     "testTargets": [
       "Assets"
     ]
   },
   {
-    "__docId__": 199,
+    "__docId__": 211,
     "kind": "test",
-    "name": "describe69",
-    "testId": 69,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64",
+    "name": "describe75",
+    "testId": 75,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe69",
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe75",
     "access": null,
     "description": "Assets.create",
-    "lineNumber": 34,
+    "lineNumber": 42,
     "testTargets": [
       "Assets.create"
     ]
   },
   {
-    "__docId__": 200,
+    "__docId__": 212,
     "kind": "test",
-    "name": "it70",
-    "testId": 70,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64.describe69",
+    "name": "it76",
+    "testId": 76,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70.describe75",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe69.it70",
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe75.it76",
     "access": null,
     "description": "makes a POST request to create an asset",
     "lineNumber": 44,
@@ -4110,202 +4516,215 @@
     ]
   },
   {
-    "__docId__": 201,
+    "__docId__": 213,
     "kind": "test",
-    "name": "it71",
-    "testId": 71,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64.describe69",
+    "name": "it77",
+    "testId": 77,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70.describe75",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe69.it71",
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe75.it77",
     "access": null,
     "description": "throws an error if no asset params are given",
-    "lineNumber": 50,
+    "lineNumber": 61,
     "testTargets": [
       "Assets.create"
     ]
   },
   {
-    "__docId__": 202,
-    "kind": "test",
-    "name": "describe72",
-    "testId": 72,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64",
-    "testDepth": 1,
-    "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe72",
-    "access": null,
-    "description": "Assets.get",
-    "lineNumber": 63,
-    "testTargets": [
-      "Assets.get"
-    ]
-  },
-  {
-    "__docId__": 203,
-    "kind": "test",
-    "name": "it73",
-    "testId": 73,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64.describe72",
-    "testDepth": 2,
-    "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe72.it73",
-    "access": null,
-    "description": "makes a GET request to get an asset",
-    "lineNumber": 73,
-    "testTargets": [
-      "Assets.get"
-    ]
-  },
-  {
-    "__docId__": 204,
-    "kind": "test",
-    "name": "it74",
-    "testId": 74,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64.describe72",
-    "testDepth": 2,
-    "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe72.it74",
-    "access": null,
-    "description": "throws an error when an asset id is not given",
-    "lineNumber": 79,
-    "testTargets": [
-      "Assets.get"
-    ]
-  },
-  {
-    "__docId__": 205,
-    "kind": "test",
-    "name": "describe75",
-    "testId": 75,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64",
-    "testDepth": 1,
-    "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe75",
-    "access": null,
-    "description": "Assets.deleteAsset",
-    "lineNumber": 92,
-    "testTargets": [
-      "Assets.deleteAsset"
-    ]
-  },
-  {
-    "__docId__": 206,
-    "kind": "test",
-    "name": "it76",
-    "testId": 76,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64.describe75",
-    "testDepth": 2,
-    "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe75.it76",
-    "access": null,
-    "description": "makes a DELETE request to delete an asset",
-    "lineNumber": 102,
-    "testTargets": [
-      "Assets.deleteAsset"
-    ]
-  },
-  {
-    "__docId__": 207,
-    "kind": "test",
-    "name": "it77",
-    "testId": 77,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64.describe75",
-    "testDepth": 2,
-    "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe75.it77",
-    "access": null,
-    "description": "throws an error when an asset id is not given",
-    "lineNumber": 108,
-    "testTargets": [
-      "Assets.deleteAsset"
-    ]
-  },
-  {
-    "__docId__": 208,
+    "__docId__": 214,
     "kind": "test",
     "name": "describe78",
     "testId": 78,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64",
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe78",
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe78",
     "access": null,
-    "description": "Assets.inputInfo",
-    "lineNumber": 121,
+    "description": "Assets.get",
+    "lineNumber": 74,
     "testTargets": [
-      "Assets.inputInfo"
+      "Assets.get"
     ]
   },
   {
-    "__docId__": 209,
+    "__docId__": 215,
     "kind": "test",
     "name": "it79",
     "testId": 79,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64.describe78",
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70.describe78",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe78.it79",
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe78.it79",
     "access": null,
-    "description": "makes a GET rquest to get input info for an asset",
-    "lineNumber": 131,
+    "description": "makes a GET request to get an asset",
+    "lineNumber": 76,
     "testTargets": [
-      "Assets.inputInfo"
+      "Assets.get"
     ]
   },
   {
-    "__docId__": 210,
+    "__docId__": 216,
     "kind": "test",
     "name": "it80",
     "testId": 80,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64.describe78",
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70.describe78",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe78.it80",
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe78.it80",
     "access": null,
     "description": "throws an error when an asset id is not given",
-    "lineNumber": 137,
+    "lineNumber": 93,
+    "testTargets": [
+      "Assets.get"
+    ]
+  },
+  {
+    "__docId__": 217,
+    "kind": "test",
+    "name": "describe81",
+    "testId": 81,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70",
+    "testDepth": 1,
+    "static": true,
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe81",
+    "access": null,
+    "description": "Assets.remove",
+    "lineNumber": 106,
+    "testTargets": [
+      "Assets.remove"
+    ]
+  },
+  {
+    "__docId__": 218,
+    "kind": "test",
+    "name": "it82",
+    "testId": 82,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70.describe81",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe81.it82",
+    "access": null,
+    "description": "makes a DELETE request to delete an asset",
+    "lineNumber": 108,
+    "testTargets": [
+      "Assets.remove"
+    ]
+  },
+  {
+    "__docId__": 219,
+    "kind": "test",
+    "name": "it83",
+    "testId": 83,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70.describe81",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe81.it83",
+    "access": null,
+    "description": "throws an error when an asset id is not given",
+    "lineNumber": 125,
+    "testTargets": [
+      "Assets.remove"
+    ]
+  },
+  {
+    "__docId__": 220,
+    "kind": "test",
+    "name": "describe84",
+    "testId": 84,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70",
+    "testDepth": 1,
+    "static": true,
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe84",
+    "access": null,
+    "description": "Assets.inputInfo",
+    "lineNumber": 138,
     "testTargets": [
       "Assets.inputInfo"
     ]
   },
   {
-    "__docId__": 211,
+    "__docId__": 221,
     "kind": "test",
-    "name": "describe81",
-    "testId": 81,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64",
-    "testDepth": 1,
-    "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe81",
-    "access": null,
-    "description": "Assets.list",
-    "lineNumber": 150,
-    "testTargets": [
-      "Assets.list"
-    ]
-  },
-  {
-    "__docId__": 212,
-    "kind": "test",
-    "name": "it82",
-    "testId": 82,
-    "memberof": "test/unit/video/resources/assets.spec.js~describe64.describe81",
+    "name": "it85",
+    "testId": 85,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70.describe84",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/assets.spec.js~describe64.describe81.it82",
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe84.it85",
     "access": null,
-    "description": "makes a GET request to lists all assets for an environment",
-    "lineNumber": 160,
+    "description": "makes a GET request to get input info for an asset",
+    "lineNumber": 140,
+    "testTargets": [
+      "Assets.inputInfo"
+    ]
+  },
+  {
+    "__docId__": 222,
+    "kind": "test",
+    "name": "it86",
+    "testId": 86,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70.describe84",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe84.it86",
+    "access": null,
+    "description": "throws an error when an asset id is not given",
+    "lineNumber": 157,
+    "testTargets": [
+      "Assets.inputInfo"
+    ]
+  },
+  {
+    "__docId__": 223,
+    "kind": "test",
+    "name": "describe87",
+    "testId": 87,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70",
+    "testDepth": 1,
+    "static": true,
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe87",
+    "access": null,
+    "description": "Assets.list",
+    "lineNumber": 170,
     "testTargets": [
       "Assets.list"
     ]
   },
   {
-    "__docId__": 213,
+    "__docId__": 224,
+    "kind": "test",
+    "name": "it88",
+    "testId": 88,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70.describe87",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe87.it88",
+    "access": null,
+    "description": "makes a GET request to list all assets",
+    "lineNumber": 172,
+    "testTargets": [
+      "Assets.list"
+    ]
+  },
+  {
+    "__docId__": 225,
+    "kind": "test",
+    "name": "it89",
+    "testId": 89,
+    "memberof": "test/unit/video/resources/assets.spec.js~describe70.describe87",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/assets.spec.js~describe70.describe87.it89",
+    "access": null,
+    "description": "makes a GET request to list 100 assets offset by 2 pages",
+    "lineNumber": 188
+  },
+  {
+    "__docId__": 226,
     "kind": "testFile",
     "name": "test/unit/video/resources/playbackIds.spec.js",
-    "content": "const { expect } = require('chai');\nconst sinon = require('sinon');\nconst PlaybackIds = require('../../../../src/video/resources/playbackIds');\nconst api = require('../../../../src/utils/api');\n\n/** @test {PlaybackIds} */\ndescribe('Unit::PlaybackIds', () => {\n  const testApiKey = 'testApiKey';\n  const testSecret = 'testSecret';\n  const testPlaybackIds = new PlaybackIds(testApiKey, testSecret);\n\n  /** @test {PlaybackIds} */\n  describe('PlaybackIds', () => {\n    /** @test {PlaybackIds} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new PlaybackIds()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {PlaybackIds} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new PlaybackIds('testKey')).to.throw('API secret key must be provided');\n    });\n\n    /** @test {PlaybackIds} */\n    it('creates a new PlaybackIds instance', () => {\n      const TestPlaybackIds = new PlaybackIds(testApiKey, testSecret);\n      expect(() => new PlaybackIds(testApiKey, testSecret)).to.not.throw();\n      expect(TestPlaybackIds.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestPlaybackIds.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {PlaybackIds.create} */\n  describe('PlaybackIds.create', () => {\n    before(() => {\n      sinon.stub(api, 'post');\n    });\n\n    after(() => {\n      api.post.restore();\n    });\n\n    /** @test {PlaybackIds.create} */\n    it('makes a POST request to create a playback ID', () => {\n      testPlaybackIds.create('assetid', { policy: 'public' });\n      expect(api.post.calledOnce);\n    });\n\n    /** @test {PlaybackIds.create} */\n    it('throws an error if an asset id is not given', () => (\n      testPlaybackIds.create()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to create a playback ID');\n        })\n    ));\n\n    /** @test {PlaybackIds.create} */\n    it('throws an error if playbackId params are not given', () => (\n      testPlaybackIds.create('assetid')\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('Playback ID params are required');\n        })\n    ));\n  });\n\n  /** @test {PlaybackIds.deletePlaybackId} */\n  describe('PlaybackIds.deletePlaybackId', () => {\n    before(() => {\n      sinon.stub(api, 'del');\n    });\n\n    after(() => {\n      api.del.restore();\n    });\n\n    /** @test {PlaybackIds.deletePlaybackId} */\n    it('makes a DELETE request to delete a playback ID', () => {\n      testPlaybackIds.deletePlaybackId('assetid', { policy: 'public' });\n      expect(api.del.calledOnce);\n    });\n\n    /** @test {PlaybackIds.deletePlaybackId} */\n    it('throws an error if an asset id is not given', () => (\n      testPlaybackIds.deletePlaybackId()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to delete a playback ID');\n        })\n    ));\n\n    /** @test {PlaybackIds.deletePlaybackId} */\n    it('throws an error if playbackId params are not given', () => (\n      testPlaybackIds.deletePlaybackId('assetid')\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A playback ID is required to delete a playback ID');\n        })\n    ));\n  });\n\n  /** @test {PlaybackIds.get} */\n  describe('PlaybackIds.get', () => {\n    before(() => {\n      sinon.stub(api, 'get');\n    });\n\n    after(() => {\n      api.get.restore();\n    });\n\n    /** @test {PlaybackIds.get} */\n    it('makes a GET request to delete a playbackId', () => {\n      testPlaybackIds.get('assetid', 'playbackId');\n      expect(api.del.calledOnce);\n    });\n\n    /** @test {PlaybackIds.get} */\n    it('throws an error if an asset id is not given', () => (\n      testPlaybackIds.get()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to get a playback ID');\n        })\n    ));\n\n    /** @test {PlaybackIds.get} */\n    it('throws an error if playbackId params are not given', () => (\n      testPlaybackIds.get('assetid')\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A playback ID is required to get a playback ID');\n        })\n    ));\n  });\n});\n",
+    "content": "const { expect } = require('chai');\nconst sinon = require('sinon');\nconst moxios = require('moxios');\nconst PlaybackIds = require('../../../../src/video/resources/playbackIds');\n\n/** @test {PlaybackIds} */\ndescribe('Unit::PlaybackIds', () => {\n  beforeEach(() => {\n    moxios.install();\n  });\n\n  afterEach(() => {\n    moxios.uninstall();\n  });\n\n  const testApiKey = 'testApiKey';\n  const testSecret = 'testSecret';\n  const testPlaybackIds = new PlaybackIds(testApiKey, testSecret);\n\n  /** @test {PlaybackIds} */\n  describe('PlaybackIds', () => {\n    /** @test {PlaybackIds} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new PlaybackIds()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {PlaybackIds} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new PlaybackIds('testKey')).to.throw('API secret key must be provided');\n    });\n\n    /** @test {PlaybackIds} */\n    it('creates a new PlaybackIds instance', () => {\n      const TestPlaybackIds = new PlaybackIds(testApiKey, testSecret);\n      expect(() => new PlaybackIds(testApiKey, testSecret)).to.not.throw();\n      expect(TestPlaybackIds.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestPlaybackIds.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {PlaybackIds.create} */\n  describe('PlaybackIds.create', () => {\n    /** @test {PlaybackIds.create} */\n    it('makes a POST request to create a Playback Id for an asset', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset/playback-ids', {\n        status: 200,\n        responseText: 'create',\n      });\n\n      const onFulfilled = sinon.spy();\n      testPlaybackIds.create('testAsset', { policy: 'public' })\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('create');\n        done();\n      });\n    });\n\n    /** @test {PlaybackIds.create} */\n    it('throws an error if an asset id is not given', () => (\n      testPlaybackIds.create()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to create a playback ID');\n        })\n    ));\n\n    /** @test {PlaybackIds.create} */\n    it('throws an error if playbackId params are not given', () => (\n      testPlaybackIds.create('assetid')\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('Playback ID params are required');\n        })\n    ));\n  });\n\n  /** @test {PlaybackIds.deletePlaybackId} */\n  describe('PlaybackIds.deletePlaybackId', () => {\n    /** @test {PlaybackIds.deletePlaybackId} */\n    it('makes a DELETE request to delete a Playback Id for an asset', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset/playback-ids/testPlaybackId', {\n        status: 200,\n        responseText: 'delete',\n      });\n\n      const onFulfilled = sinon.spy();\n      testPlaybackIds.deletePlaybackId('testAsset', 'testPlaybackId')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('delete');\n        done();\n      });\n    });\n\n    /** @test {PlaybackIds.deletePlaybackId} */\n    it('throws an error if an asset id is not given', () => (\n      testPlaybackIds.deletePlaybackId()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to delete a playback ID');\n        })\n    ));\n\n    /** @test {PlaybackIds.deletePlaybackId} */\n    it('throws an error if playbackId params are not given', () => (\n      testPlaybackIds.deletePlaybackId('assetid')\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A playback ID is required to delete a playback ID');\n        })\n    ));\n  });\n\n  /** @test {PlaybackIds.get} */\n  describe('PlaybackIds.get', () => {\n    /** @test {PlaybackIds.get} */\n    it('makes a GET request to get a Playback Id for an asset', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset/playback-ids/testPlaybackId', {\n        status: 200,\n        responseText: 'get',\n      });\n\n      const onFulfilled = sinon.spy();\n      testPlaybackIds.get('testAsset', 'testPlaybackId')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('get');\n        done();\n      });\n    });\n\n    /** @test {PlaybackIds.get} */\n    it('throws an error if an asset id is not given', () => (\n      testPlaybackIds.get()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to get a playback ID');\n        })\n    ));\n\n    /** @test {PlaybackIds.get} */\n    it('throws an error if playbackId params are not given', () => (\n      testPlaybackIds.get('assetid')\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A playback ID is required to get a playback ID');\n        })\n    ));\n  });\n});\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/test/unit/video/resources/playbackIds.spec.js",
     "access": null,
@@ -4313,14 +4732,14 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 214,
+    "__docId__": 227,
     "kind": "test",
-    "name": "describe83",
-    "testId": 83,
+    "name": "describe90",
+    "testId": 90,
     "memberof": "test/unit/video/resources/playbackIds.spec.js",
     "testDepth": 0,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90",
     "access": null,
     "description": "Unit::PlaybackIds",
     "lineNumber": 7,
@@ -4329,263 +4748,263 @@
     ]
   },
   {
-    "__docId__": 215,
+    "__docId__": 228,
     "kind": "test",
-    "name": "describe84",
-    "testId": 84,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83",
+    "name": "describe91",
+    "testId": 91,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe84",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe91",
     "access": null,
     "description": "PlaybackIds",
-    "lineNumber": 13,
+    "lineNumber": 21,
     "testTargets": [
       "PlaybackIds"
     ]
   },
   {
-    "__docId__": 216,
+    "__docId__": 229,
     "kind": "test",
-    "name": "it85",
-    "testId": 85,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83.describe84",
+    "name": "it92",
+    "testId": 92,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90.describe91",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe84.it85",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe91.it92",
     "access": null,
     "description": "throws an error if an api key is not given",
-    "lineNumber": 15,
+    "lineNumber": 23,
     "testTargets": [
       "PlaybackIds"
     ]
   },
   {
-    "__docId__": 217,
+    "__docId__": 230,
     "kind": "test",
-    "name": "it86",
-    "testId": 86,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83.describe84",
+    "name": "it93",
+    "testId": 93,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90.describe91",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe84.it86",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe91.it93",
     "access": null,
     "description": "throws an error if a secret key is not given",
-    "lineNumber": 20,
+    "lineNumber": 28,
     "testTargets": [
       "PlaybackIds"
     ]
   },
   {
-    "__docId__": 218,
+    "__docId__": 231,
     "kind": "test",
-    "name": "it87",
-    "testId": 87,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83.describe84",
+    "name": "it94",
+    "testId": 94,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90.describe91",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe84.it87",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe91.it94",
     "access": null,
     "description": "creates a new PlaybackIds instance",
-    "lineNumber": 25,
+    "lineNumber": 33,
     "testTargets": [
       "PlaybackIds"
     ]
   },
   {
-    "__docId__": 219,
+    "__docId__": 232,
     "kind": "test",
-    "name": "describe88",
-    "testId": 88,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83",
+    "name": "describe95",
+    "testId": 95,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe88",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe95",
     "access": null,
     "description": "PlaybackIds.create",
-    "lineNumber": 34,
+    "lineNumber": 42,
     "testTargets": [
       "PlaybackIds.create"
     ]
   },
   {
-    "__docId__": 220,
+    "__docId__": 233,
     "kind": "test",
-    "name": "it89",
-    "testId": 89,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83.describe88",
+    "name": "it96",
+    "testId": 96,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90.describe95",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe88.it89",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe95.it96",
     "access": null,
-    "description": "makes a POST request to create a playback ID",
+    "description": "makes a POST request to create a Playback Id for an asset",
     "lineNumber": 44,
     "testTargets": [
       "PlaybackIds.create"
     ]
   },
   {
-    "__docId__": 221,
-    "kind": "test",
-    "name": "it90",
-    "testId": 90,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83.describe88",
-    "testDepth": 2,
-    "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe88.it90",
-    "access": null,
-    "description": "throws an error if an asset id is not given",
-    "lineNumber": 50,
-    "testTargets": [
-      "PlaybackIds.create"
-    ]
-  },
-  {
-    "__docId__": 222,
-    "kind": "test",
-    "name": "it91",
-    "testId": 91,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83.describe88",
-    "testDepth": 2,
-    "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe88.it91",
-    "access": null,
-    "description": "throws an error if playbackId params are not given",
-    "lineNumber": 62,
-    "testTargets": [
-      "PlaybackIds.create"
-    ]
-  },
-  {
-    "__docId__": 223,
-    "kind": "test",
-    "name": "describe92",
-    "testId": 92,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83",
-    "testDepth": 1,
-    "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe92",
-    "access": null,
-    "description": "PlaybackIds.deletePlaybackId",
-    "lineNumber": 75,
-    "testTargets": [
-      "PlaybackIds.deletePlaybackId"
-    ]
-  },
-  {
-    "__docId__": 224,
-    "kind": "test",
-    "name": "it93",
-    "testId": 93,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83.describe92",
-    "testDepth": 2,
-    "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe92.it93",
-    "access": null,
-    "description": "makes a DELETE request to delete a playback ID",
-    "lineNumber": 85,
-    "testTargets": [
-      "PlaybackIds.deletePlaybackId"
-    ]
-  },
-  {
-    "__docId__": 225,
-    "kind": "test",
-    "name": "it94",
-    "testId": 94,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83.describe92",
-    "testDepth": 2,
-    "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe92.it94",
-    "access": null,
-    "description": "throws an error if an asset id is not given",
-    "lineNumber": 91,
-    "testTargets": [
-      "PlaybackIds.deletePlaybackId"
-    ]
-  },
-  {
-    "__docId__": 226,
-    "kind": "test",
-    "name": "it95",
-    "testId": 95,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83.describe92",
-    "testDepth": 2,
-    "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe92.it95",
-    "access": null,
-    "description": "throws an error if playbackId params are not given",
-    "lineNumber": 103,
-    "testTargets": [
-      "PlaybackIds.deletePlaybackId"
-    ]
-  },
-  {
-    "__docId__": 227,
-    "kind": "test",
-    "name": "describe96",
-    "testId": 96,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83",
-    "testDepth": 1,
-    "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe96",
-    "access": null,
-    "description": "PlaybackIds.get",
-    "lineNumber": 116,
-    "testTargets": [
-      "PlaybackIds.get"
-    ]
-  },
-  {
-    "__docId__": 228,
+    "__docId__": 234,
     "kind": "test",
     "name": "it97",
     "testId": 97,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83.describe96",
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90.describe95",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe96.it97",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe95.it97",
     "access": null,
-    "description": "makes a GET request to delete a playbackId",
-    "lineNumber": 126,
+    "description": "throws an error if an asset id is not given",
+    "lineNumber": 61,
+    "testTargets": [
+      "PlaybackIds.create"
+    ]
+  },
+  {
+    "__docId__": 235,
+    "kind": "test",
+    "name": "it98",
+    "testId": 98,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90.describe95",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe95.it98",
+    "access": null,
+    "description": "throws an error if playbackId params are not given",
+    "lineNumber": 73,
+    "testTargets": [
+      "PlaybackIds.create"
+    ]
+  },
+  {
+    "__docId__": 236,
+    "kind": "test",
+    "name": "describe99",
+    "testId": 99,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90",
+    "testDepth": 1,
+    "static": true,
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe99",
+    "access": null,
+    "description": "PlaybackIds.deletePlaybackId",
+    "lineNumber": 86,
+    "testTargets": [
+      "PlaybackIds.deletePlaybackId"
+    ]
+  },
+  {
+    "__docId__": 237,
+    "kind": "test",
+    "name": "it100",
+    "testId": 100,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90.describe99",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe99.it100",
+    "access": null,
+    "description": "makes a DELETE request to delete a Playback Id for an asset",
+    "lineNumber": 88,
+    "testTargets": [
+      "PlaybackIds.deletePlaybackId"
+    ]
+  },
+  {
+    "__docId__": 238,
+    "kind": "test",
+    "name": "it101",
+    "testId": 101,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90.describe99",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe99.it101",
+    "access": null,
+    "description": "throws an error if an asset id is not given",
+    "lineNumber": 105,
+    "testTargets": [
+      "PlaybackIds.deletePlaybackId"
+    ]
+  },
+  {
+    "__docId__": 239,
+    "kind": "test",
+    "name": "it102",
+    "testId": 102,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90.describe99",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe99.it102",
+    "access": null,
+    "description": "throws an error if playbackId params are not given",
+    "lineNumber": 117,
+    "testTargets": [
+      "PlaybackIds.deletePlaybackId"
+    ]
+  },
+  {
+    "__docId__": 240,
+    "kind": "test",
+    "name": "describe103",
+    "testId": 103,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90",
+    "testDepth": 1,
+    "static": true,
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe103",
+    "access": null,
+    "description": "PlaybackIds.get",
+    "lineNumber": 130,
     "testTargets": [
       "PlaybackIds.get"
     ]
   },
   {
-    "__docId__": 229,
+    "__docId__": 241,
     "kind": "test",
-    "name": "it98",
-    "testId": 98,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83.describe96",
+    "name": "it104",
+    "testId": 104,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90.describe103",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe96.it98",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe103.it104",
     "access": null,
-    "description": "throws an error if an asset id is not given",
+    "description": "makes a GET request to get a Playback Id for an asset",
     "lineNumber": 132,
     "testTargets": [
       "PlaybackIds.get"
     ]
   },
   {
-    "__docId__": 230,
+    "__docId__": 242,
     "kind": "test",
-    "name": "it99",
-    "testId": 99,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe83.describe96",
+    "name": "it105",
+    "testId": 105,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90.describe103",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe83.describe96.it99",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe103.it105",
     "access": null,
-    "description": "throws an error if playbackId params are not given",
-    "lineNumber": 144,
+    "description": "throws an error if an asset id is not given",
+    "lineNumber": 149,
     "testTargets": [
       "PlaybackIds.get"
     ]
   },
   {
-    "__docId__": 231,
+    "__docId__": 243,
+    "kind": "test",
+    "name": "it106",
+    "testId": 106,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe90.describe103",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe90.describe103.it106",
+    "access": null,
+    "description": "throws an error if playbackId params are not given",
+    "lineNumber": 161,
+    "testTargets": [
+      "PlaybackIds.get"
+    ]
+  },
+  {
+    "__docId__": 244,
     "kind": "testFile",
     "name": "test/unit/video/video.spec.js",
     "content": "const { expect } = require('chai');\nconst Video = require('../../../src/video/video');\nconst Assets = require('../../../src/video/resources/assets');\nconst PlaybackIds = require('../../../src/video/resources/playbackIds');\n\n/** @test {Video} */\ndescribe('Unit::Video', () => {\n  const testApiKey = 'testApiKey';\n  const testSecret = 'testSecret';\n\n  /** @test {Video} */\n  describe('Video', () => {\n    /** @test {Video} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new Video()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {Video} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new Video('testKey')).to.throw('API secret key must be provided');\n    });\n\n    /** @test {Video} */\n    it('creates a new Video instance', () => {\n      const TestVideo = new Video(testApiKey, testSecret);\n      expect(() => new Video(testApiKey, testSecret)).to.not.throw();\n      expect(TestVideo.assets).to.be.an.instanceof(Assets);\n      expect(TestVideo.playbackIds).to.be.an.instanceof(PlaybackIds);\n    });\n  });\n});\n",
@@ -4596,14 +5015,14 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 232,
+    "__docId__": 245,
     "kind": "test",
-    "name": "describe100",
-    "testId": 100,
+    "name": "describe107",
+    "testId": 107,
     "memberof": "test/unit/video/video.spec.js",
     "testDepth": 0,
     "static": true,
-    "longname": "test/unit/video/video.spec.js~describe100",
+    "longname": "test/unit/video/video.spec.js~describe107",
     "access": null,
     "description": "Unit::Video",
     "lineNumber": 7,
@@ -4612,14 +5031,14 @@
     ]
   },
   {
-    "__docId__": 233,
+    "__docId__": 246,
     "kind": "test",
-    "name": "describe101",
-    "testId": 101,
-    "memberof": "test/unit/video/video.spec.js~describe100",
+    "name": "describe108",
+    "testId": 108,
+    "memberof": "test/unit/video/video.spec.js~describe107",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/video/video.spec.js~describe100.describe101",
+    "longname": "test/unit/video/video.spec.js~describe107.describe108",
     "access": null,
     "description": "Video",
     "lineNumber": 12,
@@ -4628,14 +5047,14 @@
     ]
   },
   {
-    "__docId__": 234,
+    "__docId__": 247,
     "kind": "test",
-    "name": "it102",
-    "testId": 102,
-    "memberof": "test/unit/video/video.spec.js~describe100.describe101",
+    "name": "it109",
+    "testId": 109,
+    "memberof": "test/unit/video/video.spec.js~describe107.describe108",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/video.spec.js~describe100.describe101.it102",
+    "longname": "test/unit/video/video.spec.js~describe107.describe108.it109",
     "access": null,
     "description": "throws an error if an api key is not given",
     "lineNumber": 14,
@@ -4644,14 +5063,14 @@
     ]
   },
   {
-    "__docId__": 235,
+    "__docId__": 248,
     "kind": "test",
-    "name": "it103",
-    "testId": 103,
-    "memberof": "test/unit/video/video.spec.js~describe100.describe101",
+    "name": "it110",
+    "testId": 110,
+    "memberof": "test/unit/video/video.spec.js~describe107.describe108",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/video.spec.js~describe100.describe101.it103",
+    "longname": "test/unit/video/video.spec.js~describe107.describe108.it110",
     "access": null,
     "description": "throws an error if a secret key is not given",
     "lineNumber": 19,
@@ -4660,14 +5079,14 @@
     ]
   },
   {
-    "__docId__": 236,
+    "__docId__": 249,
     "kind": "test",
-    "name": "it104",
-    "testId": 104,
-    "memberof": "test/unit/video/video.spec.js~describe100.describe101",
+    "name": "it111",
+    "testId": 111,
+    "memberof": "test/unit/video/video.spec.js~describe107.describe108",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/video.spec.js~describe100.describe101.it104",
+    "longname": "test/unit/video/video.spec.js~describe107.describe108.it111",
     "access": null,
     "description": "creates a new Video instance",
     "lineNumber": 24,
