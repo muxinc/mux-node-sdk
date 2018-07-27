@@ -44,11 +44,19 @@
 <div class="content" data-ice="content"><h1 data-ice="title">test/unit/video/resources/playbackIds.spec.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
 const sinon = require(&apos;sinon&apos;);
+const moxios = require(&apos;moxios&apos;);
 const PlaybackIds = require(&apos;../../../../src/video/resources/playbackIds&apos;);
-const api = require(&apos;../../../../src/utils/api&apos;);
 
 /** @test {PlaybackIds} */
 describe(&apos;Unit::PlaybackIds&apos;, () =&gt; {
+  beforeEach(() =&gt; {
+    moxios.install();
+  });
+
+  afterEach(() =&gt; {
+    moxios.uninstall();
+  });
+
   const testApiKey = &apos;testApiKey&apos;;
   const testSecret = &apos;testSecret&apos;;
   const testPlaybackIds = new PlaybackIds(testApiKey, testSecret);
@@ -76,18 +84,21 @@ describe(&apos;Unit::PlaybackIds&apos;, () =&gt; {
 
   /** @test {PlaybackIds.create} */
   describe(&apos;PlaybackIds.create&apos;, () =&gt; {
-    before(() =&gt; {
-      sinon.stub(api, &apos;post&apos;);
-    });
-
-    after(() =&gt; {
-      api.post.restore();
-    });
-
     /** @test {PlaybackIds.create} */
-    it(&apos;makes a POST request to create a playback ID&apos;, () =&gt; {
-      testPlaybackIds.create(&apos;assetid&apos;, { policy: &apos;public&apos; });
-      expect(api.post.calledOnce);
+    it(&apos;makes a POST request to create a Playback Id for an asset&apos;, (done) =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/assets/testAsset/playback-ids&apos;, {
+        status: 200,
+        responseText: &apos;create&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testPlaybackIds.create(&apos;testAsset&apos;, { policy: &apos;public&apos; })
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].data).to.equal(&apos;create&apos;);
+        done();
+      });
     });
 
     /** @test {PlaybackIds.create} */
@@ -117,18 +128,21 @@ describe(&apos;Unit::PlaybackIds&apos;, () =&gt; {
 
   /** @test {PlaybackIds.deletePlaybackId} */
   describe(&apos;PlaybackIds.deletePlaybackId&apos;, () =&gt; {
-    before(() =&gt; {
-      sinon.stub(api, &apos;del&apos;);
-    });
-
-    after(() =&gt; {
-      api.del.restore();
-    });
-
     /** @test {PlaybackIds.deletePlaybackId} */
-    it(&apos;makes a DELETE request to delete a playback ID&apos;, () =&gt; {
-      testPlaybackIds.deletePlaybackId(&apos;assetid&apos;, { policy: &apos;public&apos; });
-      expect(api.del.calledOnce);
+    it(&apos;makes a DELETE request to delete a Playback Id for an asset&apos;, (done) =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/assets/testAsset/playback-ids/testPlaybackId&apos;, {
+        status: 200,
+        responseText: &apos;delete&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testPlaybackIds.deletePlaybackId(&apos;testAsset&apos;, &apos;testPlaybackId&apos;)
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].data).to.equal(&apos;delete&apos;);
+        done();
+      });
     });
 
     /** @test {PlaybackIds.deletePlaybackId} */
@@ -158,18 +172,21 @@ describe(&apos;Unit::PlaybackIds&apos;, () =&gt; {
 
   /** @test {PlaybackIds.get} */
   describe(&apos;PlaybackIds.get&apos;, () =&gt; {
-    before(() =&gt; {
-      sinon.stub(api, &apos;get&apos;);
-    });
-
-    after(() =&gt; {
-      api.get.restore();
-    });
-
     /** @test {PlaybackIds.get} */
-    it(&apos;makes a GET request to delete a playbackId&apos;, () =&gt; {
-      testPlaybackIds.get(&apos;assetid&apos;, &apos;playbackId&apos;);
-      expect(api.del.calledOnce);
+    it(&apos;makes a GET request to get a Playback Id for an asset&apos;, (done) =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/assets/testAsset/playback-ids/testPlaybackId&apos;, {
+        status: 200,
+        responseText: &apos;get&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testPlaybackIds.get(&apos;testAsset&apos;, &apos;testPlaybackId&apos;)
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].data).to.equal(&apos;get&apos;);
+        done();
+      });
     });
 
     /** @test {PlaybackIds.get} */

@@ -45,6 +45,7 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
 const Mux = require(&apos;../../src/mux&apos;);
 const MuxVideo = require(&apos;../../src/video/video&apos;);
+const MuxData = require(&apos;../../src/data/data&apos;);
 
 /** @test {Mux} */
 describe(&apos;Unit::Mux&apos;, () =&gt; {
@@ -53,8 +54,9 @@ describe(&apos;Unit::Mux&apos;, () =&gt; {
     /** @test {Mux} */
     it(&apos;exposes Mux Video and Data&apos;, () =&gt; {
       const muxClient = new Mux(&apos;testKey&apos;, &apos;testSecret&apos;);
-      const { Video } = muxClient;
+      const { Video, Data } = muxClient;
       expect(Video).to.to.be.an.instanceof(MuxVideo);
+      expect(Data).to.to.be.an.instanceof(MuxData);
     });
   });
 });

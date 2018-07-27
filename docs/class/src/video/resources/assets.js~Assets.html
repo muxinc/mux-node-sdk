@@ -92,10 +92,10 @@ Video.assets.create({input: &apos;https://storage.googleapis.com/muxdemofiles/mu
     <ul>
       
     <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber7">Unit::Assets</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber13">Unit::Assets Assets</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber15">Unit::Assets Assets throws an error if an api key is not given</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber20">Unit::Assets Assets throws an error if a secret key is not given</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber25">Unit::Assets Assets creates a new Assets instance</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber21">Unit::Assets Assets</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber23">Unit::Assets Assets throws an error if an api key is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber28">Unit::Assets Assets throws an error if a secret key is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber33">Unit::Assets Assets creates a new Assets instance</a></span></li>
 </ul>
   </div>
 
@@ -131,35 +131,6 @@ Video.assets.create({input: &apos;https://storage.googleapis.com/muxdemofiles/mu
         
         
         <div data-ice="description"><p>Creates a Mux asset with the specified JSON parameters</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html#instance-method-deleteAsset">deleteAsset</a></span></span><span class="code" data-ice="signature">(assetId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Deletes a Mux asset</p>
 </div>
       </div>
     </td>
@@ -240,13 +211,42 @@ Video.assets.create({input: &apos;https://storage.googleapis.com/muxdemofiles/mu
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html#instance-method-list">list</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html#instance-method-list">list</a></span></span><span class="code" data-ice="signature">(queryParams: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
         </p>
       </div>
       <div>
         
         
         <div data-ice="description"><p>List all assets for a Mux Environment (tied to your access token)</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html#instance-method-remove">remove</a></span></span><span class="code" data-ice="signature">(assetId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Deletes a Mux asset</p>
 </div>
       </div>
     </td>
@@ -351,106 +351,13 @@ Video.assets.create({input: &apos;https://storage.googleapis.com/muxdemofiles/mu
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber34">Unit::Assets Assets.create</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber42">Unit::Assets Assets.create</a></span></li>
 <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber44">Unit::Assets Assets.create makes a POST request to create an asset</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber50">Unit::Assets Assets.create throws an error if no asset params are given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber61">Unit::Assets Assets.create throws an error if no asset params are given</a></span></li>
 </ul>
   </div>
 
   <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/v1/reference#create-an-asset">https://docs.mux.com/v1/reference#create-an-asset</a></span></li></ul></div>
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-deleteAsset">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">deleteAsset</span><span class="code" data-ice="signature">(assetId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/video/resources/assets.js.html#lineNumber96">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Deletes a Mux asset</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">assetId</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>The ID for the asset intended for deletion</p>
-</td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>Returns a resolved Promise with a response from the Mux API</p>
-</td>
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  <div data-ice="example">
-    <h4>Example:</h4>
-    
-  <div class="example-doc" data-ice="exampleDoc">
-      
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">const muxClient = new Mux(accessToken, secret);
-const { Video } = muxClient;
-
-// Delete an asset
-Video.assets.deleteAsset(assetId);</code></pre>
-    </div>
-</div>
-
-  <div data-ice="tests">
-    <h4>Test:</h4>
-    <ul>
-      
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber92">Unit::Assets Assets.deleteAsset</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber102">Unit::Assets Assets.deleteAsset makes a DELETE request to delete an asset</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber108">Unit::Assets Assets.deleteAsset throws an error when an asset id is not given</a></span></li>
-</ul>
-  </div>
-
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/v1/reference#delete-an-asset">https://docs.mux.com/v1/reference#delete-an-asset</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -537,9 +444,9 @@ Video.assets.get(assetId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber63">Unit::Assets Assets.get</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber73">Unit::Assets Assets.get makes a GET request to get an asset</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber79">Unit::Assets Assets.get throws an error when an asset id is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber74">Unit::Assets Assets.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber76">Unit::Assets Assets.get makes a GET request to get an asset</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber93">Unit::Assets Assets.get throws an error when an asset id is not given</a></span></li>
 </ul>
   </div>
 
@@ -630,9 +537,9 @@ Video.assets.inputInfo(assetId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber121">Unit::Assets Assets.inputInfo</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber131">Unit::Assets Assets.inputInfo makes a GET rquest to get input info for an asset</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber137">Unit::Assets Assets.inputInfo throws an error when an asset id is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber138">Unit::Assets Assets.inputInfo</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber140">Unit::Assets Assets.inputInfo makes a GET request to get input info for an asset</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber157">Unit::Assets Assets.inputInfo throws an error when an asset id is not given</a></span></li>
 </ul>
   </div>
 
@@ -647,7 +554,7 @@ Video.assets.inputInfo(assetId);</code></pre>
     
     
     
-    <span class="code" data-ice="name">list</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="code" data-ice="name">list</span><span class="code" data-ice="signature">(queryParams: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
     <span class="right-info">
       
       
@@ -663,7 +570,23 @@ Video.assets.inputInfo(assetId);</code></pre>
 
   
 
-  <div data-ice="properties">
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">queryParams</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
 </div>
 
   <div class="return-params" data-ice="returnParams">
@@ -706,12 +629,105 @@ Video.assets.list();</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber150">Unit::Assets Assets.list</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber160">Unit::Assets Assets.list makes a GET request to lists all assets for an environment</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber170">Unit::Assets Assets.list</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber172">Unit::Assets Assets.list makes a GET request to list all assets</a></span></li>
 </ul>
   </div>
 
   <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/v1/reference#list-assets">https://docs.mux.com/v1/reference#list-assets</a></span></li></ul></div>
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-remove">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">remove</span><span class="code" data-ice="signature">(assetId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/video/resources/assets.js.html#lineNumber96">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Deletes a Mux asset</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">assetId</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The ID for the asset intended for deletion</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns a resolved Promise with a response from the Mux API</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">const muxClient = new Mux(accessToken, secret);
+const { Video } = muxClient;
+
+// Delete an asset
+Video.assets.remove(assetId);</code></pre>
+    </div>
+</div>
+
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber106">Unit::Assets Assets.remove</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber108">Unit::Assets Assets.remove makes a DELETE request to delete an asset</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber125">Unit::Assets Assets.remove throws an error when an asset id is not given</a></span></li>
+</ul>
+  </div>
+
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/v1/reference#delete-an-asset">https://docs.mux.com/v1/reference#delete-an-asset</a></span></li></ul></div>
   
 </div>
 </div>

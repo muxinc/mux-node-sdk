@@ -85,14 +85,19 @@ describe(&apos;Unit::VideoViews&apos;, () =&gt; {
   /** @test {VideoViews.list} */
   describe(&apos;VideoViews.list&apos;, () =&gt; {
     /** @test {VideoViews.list} */
+    it(&apos;throws an error if the viewer_id query parameter is not provided&apos;, () =&gt; {
+      expect(() =&gt; videoViewsInstance.list()).to.throw(&apos;The viewer_id query parameter is required for listing video views.&apos;);
+      expect(() =&gt; videoViewsInstance.list({})).to.throw(&apos;The viewer_id query parameter is required for listing video views.&apos;);
+    });
+
     it(&apos;makes a get request to the Mux data video-views route&apos;, (done) =&gt; {
-      moxios.stubRequest(&apos;https://api.mux.com/data/v1/video-views&apos;, {
+      moxios.stubRequest(&apos;https://api.mux.com/data/v1/video-views?viewer_id=abc123&apos;, {
         status: 200,
         responseText: &apos;video views&apos;,
       });
 
       const onFulfilled = sinon.spy();
-      videoViewsInstance.list({})
+      videoViewsInstance.list({ viewer_id: &apos;abc123&apos; })
         .then(onFulfilled);
 
       return moxios.wait(() =&gt; {

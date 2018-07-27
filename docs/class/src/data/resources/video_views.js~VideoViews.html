@@ -193,7 +193,7 @@ Data.videoViews.list({order_direction: &apos;asc&apos;});</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/data/resources/video_views.js.html#lineNumber93">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/data/resources/video_views.js.html#lineNumber96">source</a></span></span>
     </span>
   </h3>
 
@@ -265,8 +265,8 @@ Data.videoViews.get(&apos;ABCD1234&apos;);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_ views.spec.js.html#lineNumber62">Unit::VideoViews VideoViews.get</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_ views.spec.js.html#lineNumber64">Unit::VideoViews VideoViews.get makes a get request to the Mux data video-views route</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_ views.spec.js.html#lineNumber67">Unit::VideoViews VideoViews.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_ views.spec.js.html#lineNumber69">Unit::VideoViews VideoViews.get makes a get request to the Mux data video-views route</a></span></li>
 </ul>
   </div>
 
@@ -311,7 +311,7 @@ Results are ordered by view_end, according to what you provide for order_directi
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>example { viewer_id: &apos;ABCD1234&apos;, timeframe: [&apos;7:days&apos;], filters: [&apos;operating_system:windows&apos;] }
-NOTE: the view</p>
+NOTE: the viewer_id query parameter is required</p>
 </td>
     </tr>
 </tbody>
@@ -361,7 +361,7 @@ Note: the viewer_id query parameter is required</code></pre>
     <ul>
       
     <li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_ views.spec.js.html#lineNumber42">Unit::VideoViews VideoViews.list</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_ views.spec.js.html#lineNumber44">Unit::VideoViews VideoViews.list makes a get request to the Mux data video-views route</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_ views.spec.js.html#lineNumber44">Unit::VideoViews VideoViews.list throws an error if the viewer_id query parameter is not provided</a></span></li>
 </ul>
   </div>
 
