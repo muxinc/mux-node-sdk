@@ -5,6 +5,7 @@
 
 const Assets = require('./resources/assets');
 const PlaybackIds = require('./resources/playbackIds');
+const LiveStreams = require('./resources/liveStreams');
 
 /**
  * @ignore
@@ -42,6 +43,9 @@ class Video {
 
     /** @type {PlaybackIds} */
     this.playbackIds = new PlaybackIds(accessToken, secret);
+
+    /** @type {LiveStreams} */
+    this.liveStreams = new LiveStreams(accessToken, secret);
   }
 }
 
