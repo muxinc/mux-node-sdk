@@ -24,6 +24,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "@mux/mux-node/src/video/resources/livestreams.js~livestreams",
+    "class/src/video/resources/liveStreams.js~LiveStreams.html",
+    "<span>LiveStreams</span> <span class=\"search-result-import-path\">@mux/mux-node/src/video/resources/liveStreams.js</span>",
+    "class"
+  ],
+  [
     "@mux/mux-node/src/data/resources/metrics.js~metrics",
     "class/src/data/resources/metrics.js~Metrics.html",
     "<span>Metrics</span> <span class=\"search-result-import-path\">@mux/mux-node/src/data/resources/metrics.js</span>",
@@ -339,6 +345,180 @@ window.esdocSearchIndex = [
     "filters.list src/data/resources/filters.js~filters#list,filters.list",
     "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber44",
     "Unit::Filters Filters.list makes a get request to the Mux data filters route",
+    "test"
+  ],
+  [
+    "livestreams src/video/resources/livestreams.js~livestreams,livestreams",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber7",
+    "Unit::LiveStreams",
+    "test"
+  ],
+  [
+    "livestreams src/video/resources/livestreams.js~livestreams,livestreams",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber21",
+    "Unit::LiveStreams LiveStreams",
+    "test"
+  ],
+  [
+    "livestreams src/video/resources/livestreams.js~livestreams,livestreams",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber33",
+    "Unit::LiveStreams LiveStreams creates a new LiveStreams instance",
+    "test"
+  ],
+  [
+    "livestreams src/video/resources/livestreams.js~livestreams,livestreams",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber28",
+    "Unit::LiveStreams LiveStreams throws an error if a secret key is not given",
+    "test"
+  ],
+  [
+    "livestreams src/video/resources/livestreams.js~livestreams,livestreams",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber23",
+    "Unit::LiveStreams LiveStreams throws an error if an api key is not given",
+    "test"
+  ],
+  [
+    "livestreams.create src/video/resources/livestreams.js~livestreams#create,livestreams.create",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber42",
+    "Unit::LiveStreams LiveStreams.create",
+    "test"
+  ],
+  [
+    "livestreams.create src/video/resources/livestreams.js~livestreams#create,livestreams.create",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber44",
+    "Unit::LiveStreams LiveStreams.create makes a POST request to create a LiveStream asset",
+    "test"
+  ],
+  [
+    "livestreams.createplaybackid src/video/resources/livestreams.js~livestreams#createplaybackid,livestreams.createplaybackid",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber226",
+    "Unit::LiveStreams LiveStreams.createPlaybackId",
+    "test"
+  ],
+  [
+    "livestreams.createplaybackid src/video/resources/livestreams.js~livestreams#createplaybackid,livestreams.createplaybackid",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber228",
+    "Unit::LiveStreams LiveStreams.createPlaybackId makes a POST request to create a playback ID for a live stream",
+    "test"
+  ],
+  [
+    "livestreams.createplaybackid src/video/resources/livestreams.js~livestreams#createplaybackid,livestreams.createplaybackid",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber245",
+    "Unit::LiveStreams LiveStreams.createPlaybackId throws an error if a Live Stream ID is not given",
+    "test"
+  ],
+  [
+    "livestreams.deleteplaybackid src/video/resources/livestreams.js~livestreams#deleteplaybackid,livestreams.deleteplaybackid",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber258",
+    "Unit::LiveStreams LiveStreams.deletePlaybackId",
+    "test"
+  ],
+  [
+    "livestreams.deleteplaybackid src/video/resources/livestreams.js~livestreams#deleteplaybackid,livestreams.deleteplaybackid",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber260",
+    "Unit::LiveStreams LiveStreams.deletePlaybackId makes a DELETE request to delete a playback ID for a live stream",
+    "test"
+  ],
+  [
+    "livestreams.deleteplaybackid src/video/resources/livestreams.js~livestreams#deleteplaybackid,livestreams.deleteplaybackid",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber277",
+    "Unit::LiveStreams LiveStreams.deletePlaybackId throws an error if a Live Stream ID is not given",
+    "test"
+  ],
+  [
+    "livestreams.deleteplaybackid src/video/resources/livestreams.js~livestreams#deleteplaybackid,livestreams.deleteplaybackid",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber289",
+    "Unit::LiveStreams LiveStreams.deletePlaybackId throws an error if a playback id is not given",
+    "test"
+  ],
+  [
+    "livestreams.get src/video/resources/livestreams.js~livestreams#get,livestreams.get",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber130",
+    "Unit::LiveStreams LiveStreams.get",
+    "test"
+  ],
+  [
+    "livestreams.get src/video/resources/livestreams.js~livestreams#get,livestreams.get",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber132",
+    "Unit::LiveStreams LiveStreams.get makes a GET request to get a live stream",
+    "test"
+  ],
+  [
+    "livestreams.get src/video/resources/livestreams.js~livestreams#get,livestreams.get",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber149",
+    "Unit::LiveStreams LiveStreams.get throws an error when a live stream id is not given",
+    "test"
+  ],
+  [
+    "livestreams.list src/video/resources/livestreams.js~livestreams#list,livestreams.list",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber94",
+    "Unit::LiveStreams LiveStreams.list",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber112",
+    "Unit::LiveStreams LiveStreams.list makes a GET request to list 100 live streams offset by 2 pages",
+    "test"
+  ],
+  [
+    "livestreams.list src/video/resources/livestreams.js~livestreams#list,livestreams.list",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber96",
+    "Unit::LiveStreams LiveStreams.list makes a GET request to list all live streams",
+    "test"
+  ],
+  [
+    "livestreams.remove src/video/resources/livestreams.js~livestreams#remove,livestreams.remove",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber62",
+    "Unit::LiveStreams LiveStreams.remove",
+    "test"
+  ],
+  [
+    "livestreams.remove src/video/resources/livestreams.js~livestreams#remove,livestreams.remove",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber64",
+    "Unit::LiveStreams LiveStreams.remove makes a DELETE request to delete a live stream",
+    "test"
+  ],
+  [
+    "livestreams.remove src/video/resources/livestreams.js~livestreams#remove,livestreams.remove",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber81",
+    "Unit::LiveStreams LiveStreams.remove throws an error when a live stream id is not given",
+    "test"
+  ],
+  [
+    "livestreams.resetstreamkey src/video/resources/livestreams.js~livestreams#resetstreamkey,livestreams.resetstreamkey",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber194",
+    "Unit::LiveStreams LiveStreams.resetStreamKey",
+    "test"
+  ],
+  [
+    "livestreams.resetstreamkey src/video/resources/livestreams.js~livestreams#resetstreamkey,livestreams.resetstreamkey",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber196",
+    "Unit::LiveStreams LiveStreams.resetStreamKey makes a POST request to reset a live stream key",
+    "test"
+  ],
+  [
+    "livestreams.resetstreamkey src/video/resources/livestreams.js~livestreams#resetstreamkey,livestreams.resetstreamkey",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber213",
+    "Unit::LiveStreams LiveStreams.resetStreamKey throws an error when a live stream id is not given",
+    "test"
+  ],
+  [
+    "livestreams.signalcomplete src/video/resources/livestreams.js~livestreams#signalcomplete,livestreams.signalcomplete",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber162",
+    "Unit::LiveStreams LiveStreams.signalComplete",
+    "test"
+  ],
+  [
+    "livestreams.signalcomplete src/video/resources/livestreams.js~livestreams#signalcomplete,livestreams.signalcomplete",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber164",
+    "Unit::LiveStreams LiveStreams.signalComplete makes a PUT request to signal a live stream is complete",
+    "test"
+  ],
+  [
+    "livestreams.signalcomplete src/video/resources/livestreams.js~livestreams#signalcomplete,livestreams.signalcomplete",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber181",
+    "Unit::LiveStreams LiveStreams.signalComplete throws an error when a live stream id is not given",
     "test"
   ],
   [
@@ -1170,6 +1350,60 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/video/resources/livestreams.js",
+    "file/src/video/resources/liveStreams.js.html",
+    "src/video/resources/liveStreams.js",
+    "file"
+  ],
+  [
+    "src/video/resources/livestreams.js~livestreams#create",
+    "class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-create",
+    "src/video/resources/liveStreams.js~LiveStreams#create",
+    "method"
+  ],
+  [
+    "src/video/resources/livestreams.js~livestreams#createplaybackid",
+    "class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-createPlaybackId",
+    "src/video/resources/liveStreams.js~LiveStreams#createPlaybackId",
+    "method"
+  ],
+  [
+    "src/video/resources/livestreams.js~livestreams#deleteplaybackid",
+    "class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-deletePlaybackId",
+    "src/video/resources/liveStreams.js~LiveStreams#deletePlaybackId",
+    "method"
+  ],
+  [
+    "src/video/resources/livestreams.js~livestreams#get",
+    "class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-get",
+    "src/video/resources/liveStreams.js~LiveStreams#get",
+    "method"
+  ],
+  [
+    "src/video/resources/livestreams.js~livestreams#list",
+    "class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-list",
+    "src/video/resources/liveStreams.js~LiveStreams#list",
+    "method"
+  ],
+  [
+    "src/video/resources/livestreams.js~livestreams#remove",
+    "class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-remove",
+    "src/video/resources/liveStreams.js~LiveStreams#remove",
+    "method"
+  ],
+  [
+    "src/video/resources/livestreams.js~livestreams#resetstreamkey",
+    "class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-resetStreamKey",
+    "src/video/resources/liveStreams.js~LiveStreams#resetStreamKey",
+    "method"
+  ],
+  [
+    "src/video/resources/livestreams.js~livestreams#signalcomplete",
+    "class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-signalComplete",
+    "src/video/resources/liveStreams.js~LiveStreams#signalComplete",
+    "method"
+  ],
+  [
     "src/video/resources/playbackids.js",
     "file/src/video/resources/playbackIds.js.html",
     "src/video/resources/playbackIds.js",
@@ -1251,6 +1485,12 @@ window.esdocSearchIndex = [
     "test/unit/video/resources/assets.spec.js",
     "test-file/test/unit/video/resources/assets.spec.js.html",
     "test/unit/video/resources/assets.spec.js",
+    "testFile"
+  ],
+  [
+    "test/unit/video/resources/livestreams.spec.js",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html",
+    "test/unit/video/resources/liveStreams.spec.js",
     "testFile"
   ],
   [

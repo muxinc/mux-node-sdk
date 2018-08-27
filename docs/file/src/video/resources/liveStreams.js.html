@@ -1,20 +1,65 @@
-/*!
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/video/resources/liveStreams.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/playbackIds.js~PlaybackIds.html">PlaybackIds</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/video/resources/liveStreams.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*!
  * Mux Live Streams
  * Copyright(c) 2018 Mux Inc.
  */
 
-const api = require('../../utils/api');
+const api = require(&apos;../../utils/api&apos;);
 
 /**
  * @private Base live stream path for the Mux API
  * */
-const PATH = '/video/v1/live-streams';
+const PATH = &apos;/video/v1/live-streams&apos;;
 
 /**
  * @private
  * Build the base live stream path for the Mux API
  * */
-const buildBasePath = liveStreamId => `${PATH}/${liveStreamId}`;
+const buildBasePath = liveStreamId =&gt; `${PATH}/${liveStreamId}`;
 
 /**
  * Live Streams Class - Provides access to the Mux Video Live Streams API
@@ -25,7 +70,7 @@ const buildBasePath = liveStreamId => `${PATH}/${liveStreamId}`;
  * const { Video } = muxClient;
  *
  * // Create a live stream
- * Video.liveStreams.create({ playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } });
+ * Video.liveStreams.create({ playback_policy: &apos;public&apos;, new_asset_settings: { playback_policy: &apos;public&apos; } });
  */
 class LiveStreams {
   /**
@@ -37,12 +82,12 @@ class LiveStreams {
    * @constructor
    */
   constructor(accessToken, secret) {
-    if (typeof accessToken === 'undefined') {
-      throw new Error('API Access Token must be provided.');
+    if (typeof accessToken === &apos;undefined&apos;) {
+      throw new Error(&apos;API Access Token must be provided.&apos;);
     }
 
-    if (typeof secret === 'undefined') {
-      throw new Error('API secret key must be provided');
+    if (typeof secret === &apos;undefined&apos;) {
+      throw new Error(&apos;API secret key must be provided&apos;);
     }
 
     /**
@@ -69,7 +114,7 @@ class LiveStreams {
    * const { Video } = muxClient;
    *
    * // Create a live stream
-   * Video.liveStreams.create({ playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } });
+   * Video.liveStreams.create({ playback_policy: &apos;public&apos;, new_asset_settings: { playback_policy: &apos;public&apos; } });
    *
    * @see https://docs.mux.com/v1-beta/reference#create-a-live-streams
    */
@@ -93,7 +138,7 @@ class LiveStreams {
    */
   remove(liveStreamId) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A live stream ID is required to delete a live stream'));
+      return Promise.reject(new Error(&apos;A live stream ID is required to delete a live stream&apos;));
     }
     return api.del(buildBasePath(liveStreamId), this.requestOptions);
   }
@@ -114,7 +159,7 @@ class LiveStreams {
    */
   get(liveStreamId) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A live stream ID is required to get a live stream'));
+      return Promise.reject(new Error(&apos;A live stream ID is required to get a live stream&apos;));
     }
     return api.get(buildBasePath(liveStreamId), {}, this.requestOptions);
   }
@@ -152,7 +197,7 @@ class LiveStreams {
    */
   signalComplete(liveStreamId) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A Live Stream ID is required to signal a stream is complete'));
+      return Promise.reject(new Error(&apos;A Live Stream ID is required to signal a stream is complete&apos;));
     }
     return api.put(`${buildBasePath(liveStreamId)}/complete`, {}, this.requestOptions);
   }
@@ -173,7 +218,7 @@ class LiveStreams {
    */
   resetStreamKey(liveStreamId) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A Live Stream ID is required to reset a live stream key'));
+      return Promise.reject(new Error(&apos;A Live Stream ID is required to reset a live stream key&apos;));
     }
     return api.post(`${buildBasePath(liveStreamId)}/reset-stream-key`, {}, this.requestOptions);
   }
@@ -189,13 +234,13 @@ class LiveStreams {
    * const { Video } = muxClient;
    *
    * // Create a live stream playback ID
-   * Video.liveStreams.createPlaybackId(liveStreamId, { policy: 'public' });
+   * Video.liveStreams.createPlaybackId(liveStreamId, { policy: &apos;public&apos; });
    *
    * @see https://docs.mux.com/v1-beta/reference#add-a-live-stream-playback-id
    */
   createPlaybackId(liveStreamId, params) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A Live Stream ID is required to create a live stream playback ID'));
+      return Promise.reject(new Error(&apos;A Live Stream ID is required to create a live stream playback ID&apos;));
     }
     return api.post(`${buildBasePath(liveStreamId)}/playback-ids`, params, this.requestOptions);
   }
@@ -211,20 +256,37 @@ class LiveStreams {
    * const { Video } = muxClient;
    *
    * // Delete a live stream playback ID
-   * Video.liveStreams.deletePlaybackId(liveStreamId, { policy: 'public' });
+   * Video.liveStreams.deletePlaybackId(liveStreamId, { policy: &apos;public&apos; });
    *
    * @see https://docs.mux.com/v1-beta/reference#delete-a-live-stream-playback-id
    */
   deletePlaybackId(liveStreamId, playbackId) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A Live Stream ID is required to delete a live stream playback ID'));
+      return Promise.reject(new Error(&apos;A Live Stream ID is required to delete a live stream playback ID&apos;));
     }
 
     if (!playbackId) {
-      return Promise.reject(new Error('A live stream playback ID is required to delete a live stream playback ID'));
+      return Promise.reject(new Error(&apos;A live stream playback ID is required to delete a live stream playback ID&apos;));
     }
     return api.del(`${buildBasePath(liveStreamId)}/playback-ids/${playbackId}`, this.requestOptions);
   }
 }
 
 module.exports = LiveStreams;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
