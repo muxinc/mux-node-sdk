@@ -73,9 +73,6 @@ class LiveStreams {
    * @see https://docs.mux.com/v1-beta/reference#create-a-live-streams
    */
   create(params) {
-    if (!params) {
-      return Promise.reject(new Error('Params are required for creating a live stream'));
-    }
     return api.post(PATH, params, this.requestOptions);
   }
 
@@ -140,7 +137,7 @@ class LiveStreams {
 
   /**
    * Signal a live stream is finished
-   * @param {string} liveStreamId - The ID for the liveStream
+   * @param {string} liveStreamId - The ID for the live stream
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
@@ -154,14 +151,14 @@ class LiveStreams {
    */
   signalComplete(liveStreamId) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A Live Stream ID is required to signal stream complete'));
+      return Promise.reject(new Error('A Live Stream ID is required to signal a stream is complete'));
     }
     return api.put(`${buildBasePath(liveStreamId)}/complete`, {}, this.requestOptions);
   }
 
   /**
-   * Reset a stream key 
-   * @param {string} liveStreamId - The ID for the liveStream
+   * Reset a stream key
+   * @param {string} liveStreamId - The ID for the live stream
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
@@ -175,14 +172,14 @@ class LiveStreams {
    */
   resetStreamKey(liveStreamId) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A Live Stream ID is required to reset stream key'));
+      return Promise.reject(new Error('A Live Stream ID is required to reset a live stream key'));
     }
     return api.post(`${buildBasePath(liveStreamId)}/reset-stream-key`, {}, this.requestOptions);
   }
 
   /**
    * Create a live stream playback id
-   * @param {string} liveStreamId - The ID for the liveStream
+   * @param {string} liveStreamId - The ID for the live stream
    * @param {Object} params - Live Stream JSON parameters (e.g playback_policy)
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
@@ -197,14 +194,16 @@ class LiveStreams {
    */
   createPlaybackId(liveStreamId, params) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A Live Stream ID is required to create playback id'));
+      return Promise.reject(new Error('A Live Stream ID is required to create a live stream playback ID'));
     }
     return api.post(`${buildBasePath(liveStreamId)}/playback-ids`, params, this.requestOptions);
   }
 
   /**
    * Delete a live stream playback ID
-   * @param {string} liveStreamId - The ID for the liveStream
+   * @param {string} liveStreamId - The ID for the live stream
+   * @param {string} playbackId - The ID for the live stream playback ID to delete
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
    * const muxClient = new Mux(accessToken, secret);
@@ -217,10 +216,14 @@ class LiveStreams {
    */
   deletePlaybackId(liveStreamId, playbackId) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A Live Stream ID is required to create playback id'));
+      return Promise.reject(new Error('A Live Stream ID is required to delete a live stream playback ID'));
     }
-    return api.delete(`${buildBasePath(liveStreamId)}/playback-ids/${playbackId}`, this.requestOptions);
-  }  
+
+    if (!playbackId) {
+      return Promise.reject(new Error('A live stream playback ID is required to delete a live stream playback ID'));
+    }
+    return api.del(`${buildBasePath(liveStreamId)}/playback-ids/${playbackId}`, this.requestOptions);
+  }
 }
 
 module.exports = LiveStreams;
