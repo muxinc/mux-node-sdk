@@ -24,7 +24,7 @@ const buildBasePath = liveStreamId => `${PATH}/${liveStreamId}`;
  * const { Video } = muxClient;
  *
  * // Create a live stream
- * Video.liveStreams.create({ "playback_policy": "public", "new_asset_settings": { "playback_policy": "public" } });
+ * Video.liveStreams.create({ playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } });
  */
 class LiveStreams {
   /**
@@ -68,7 +68,7 @@ class LiveStreams {
    * const { Video } = muxClient;
    *
    * // Create a live stream
-   * Video.liveStreams.create({ "playback_policy": "public", "new_asset_settings": { "playback_policy": "public" } });
+   * Video.liveStreams.create({ playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } });
    *
    * @see https://docs.mux.com/v1-beta/reference#create-a-live-streams
    */
@@ -188,7 +188,7 @@ class LiveStreams {
    * const { Video } = muxClient;
    *
    * // Create a live stream playback ID
-   * Video.liveStreams.createPlaybackId(liveStreamId, { "policy": "public" });
+   * Video.liveStreams.createPlaybackId(liveStreamId, { policy: 'public' });
    *
    * @see https://docs.mux.com/v1-beta/reference#add-a-live-stream-playback-id
    */
@@ -210,7 +210,7 @@ class LiveStreams {
    * const { Video } = muxClient;
    *
    * // Delete a live stream playback ID
-   * Video.liveStreams.deletePlaybackId(liveStreamId, { "policy": "public" });
+   * Video.liveStreams.deletePlaybackId(liveStreamId, { policy: 'public' });
    *
    * @see https://docs.mux.com/v1-beta/reference#delete-a-live-stream-playback-id
    */
