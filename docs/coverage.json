@@ -1,7 +1,7 @@
 {
   "coverage": "100%",
-  "expectCount": 68,
-  "actualCount": 68,
+  "expectCount": 82,
+  "actualCount": 82,
   "files": {
     "src/data/data.js": {
       "expectCount": 7,
@@ -48,14 +48,19 @@
       "actualCount": 10,
       "undocumentLines": []
     },
+    "src/video/resources/liveStreams.js": {
+      "expectCount": 13,
+      "actualCount": 13,
+      "undocumentLines": []
+    },
     "src/video/resources/playbackIds.js": {
       "expectCount": 7,
       "actualCount": 7,
       "undocumentLines": []
     },
     "src/video/video.js": {
-      "expectCount": 4,
-      "actualCount": 4,
+      "expectCount": 5,
+      "actualCount": 5,
       "undocumentLines": []
     }
   }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../../">
-  <title data-ice="title">src/video/resources/assets.js | MUX</title>
+  <title data-ice="title">src/video/resources/liveStreams.js | MUX</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -42,39 +42,40 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/video/resources/assets.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/video/resources/liveStreams.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*!
- * Mux Assets
+ * Mux Live Streams
  * Copyright(c) 2018 Mux Inc.
  */
 
 const api = require(&apos;../../utils/api&apos;);
 
 /**
- * @private Base asset path for the Mux API
+ * @private Base live stream path for the Mux API
  * */
-const PATH = &apos;/video/v1/assets&apos;;
+const PATH = &apos;/video/v1/live-streams&apos;;
 
 /**
  * @private
- * Build the base asset path for the Mux API
+ * Build the base live stream path for the Mux API
  * */
-const buildBasePath = assetId =&gt; `${PATH}/${assetId}`;
+const buildBasePath = liveStreamId =&gt; `${PATH}/${liveStreamId}`;
 
 /**
- * Assets Class - Provides access to the Mux Video Assets API
+ * Live Streams Class - Provides access to the Mux Video Live Streams API
+ * @experimental - This is currently in beta
  *
  * @example
  * const muxClient = new Mux(accessToken, secret);
  * const { Video } = muxClient;
  *
- * // Create an asset
- * Video.assets.create({input: &apos;https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4&apos;});
+ * // Create a live stream
+ * Video.liveStreams.create({ playback_policy: &apos;public&apos;, new_asset_settings: { playback_policy: &apos;public&apos; } });
  */
-class Assets {
+class LiveStreams {
   /**
    * @ignore
-   * Assets Constructor
+   * LiveStreams Constructor
    *
    * @param {string} accessToken - Mux API Access Token
    * @param {string} secret - Mux API Access Token secret
@@ -91,7 +92,7 @@ class Assets {
 
     /**
      *  @ignore
-     *  @type {Object} requestOptions - The HTTP request options for Mux Assets
+     *  @type {Object} requestOptions - The HTTP request options for Mux Live Streams
      *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)
      *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)
      * */
@@ -104,108 +105,174 @@ class Assets {
   }
 
   /**
-   * Creates a Mux asset with the specified JSON parameters
-   * @param {Object} params - Asset JSON parameters (e.g input)
+   * Creates a Mux live stream with the specified JSON parameters
+   * @param {Object} params - Live Stream JSON parameters (e.g playback_policy)
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
    * const muxClient = new Mux(accessToken, secret);
    * const { Video } = muxClient;
    *
-   * // Create an asset
-   * Video.assets.create({input: &apos;https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4&apos;});
+   * // Create a live stream
+   * Video.liveStreams.create({ playback_policy: &apos;public&apos;, new_asset_settings: { playback_policy: &apos;public&apos; } });
    *
-   * @see https://docs.mux.com/v1/reference#create-an-asset
+   * @see https://docs.mux.com/v1-beta/reference#create-a-live-streams
    */
   create(params) {
-    if (!params) {
-      return Promise.reject(new Error(&apos;Params are required for creating an asset&apos;));
-    }
     return api.post(PATH, params, this.requestOptions);
   }
 
   /**
-   * Deletes a Mux asset
-   * @param {string} assetId - The ID for the asset intended for deletion
+   * Deletes a Mux Live Stream
+   * @param {string} liveStreamId - The ID for the live stream intended for deletion
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
    * const muxClient = new Mux(accessToken, secret);
    * const { Video } = muxClient;
    *
-   * // Delete an asset
-   * Video.assets.remove(assetId);
+   * // Delete a mux live stream
+   * Video.liveStreams.remove(liveStreamId);
    *
-   * @see https://docs.mux.com/v1/reference#delete-an-asset
+   * @see https://docs.mux.com/v1-beta/reference#delete-a-live-stream
    */
-  remove(assetId) {
-    if (!assetId) {
-      return Promise.reject(new Error(&apos;An asset ID is required to delete an asset&apos;));
+  remove(liveStreamId) {
+    if (!liveStreamId) {
+      return Promise.reject(new Error(&apos;A live stream ID is required to delete a live stream&apos;));
     }
-    return api.del(buildBasePath(assetId), this.requestOptions);
+    return api.del(buildBasePath(liveStreamId), this.requestOptions);
   }
 
   /**
-   * Get an asset
-   * @param {string} assetId - The ID for the asset
+   * Get an Live Stream
+   * @param {string} liveStreamId - The ID for the live stream
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
    * const muxClient = new Mux(accessToken, secret);
    * const { Video } = muxClient;
    *
-   * // Get an asset
-   * Video.assets.get(assetId);
+   * // Get a live stream
+   * Video.liveStreams.get(liveStreamId);
    *
-   * @see https://docs.mux.com/v1/reference#retrieve-an-asset
+   * @see https://docs.mux.com/v1-beta/reference#retrieve-a-live-stream
    */
-  get(assetId) {
-    if (!assetId) {
-      return Promise.reject(new Error(&apos;An asset ID is required to get an asset&apos;));
+  get(liveStreamId) {
+    if (!liveStreamId) {
+      return Promise.reject(new Error(&apos;A live stream ID is required to get a live stream&apos;));
     }
-    return api.get(buildBasePath(assetId), {}, this.requestOptions);
+    return api.get(buildBasePath(liveStreamId), {}, this.requestOptions);
   }
 
   /**
-   * Get input info for an asset
-   * @param {string} assetId - The ID for the asset
+   * List all live streams for a Mux Environment (tied to your access token)
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
    * const muxClient = new Mux(accessToken, secret);
    * const { Video } = muxClient;
    *
-   * // Get input info for an asset
-   * Video.assets.inputInfo(assetId);
+   * // List all live streams for a Mux Environment
+   * Video.liveStreams.list();
    *
-   * @see https://docs.mux.com/v1/reference#retrieve-asset-input-info
-   */
-  inputInfo(assetId) {
-    if (!assetId) {
-      return Promise.reject(new Error(&apos;An asset ID is required to get input-info&apos;));
-    }
-    return api.get(`${buildBasePath(assetId)}/input-info`, {}, this.requestOptions);
-  }
-
-  /**
-   * List all assets for a Mux Environment (tied to your access token)
-   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
-   *
-   * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
-   *
-   * // List all assets for a Mux Environment
-   * Video.assets.list();
-   *
-   * @see https://docs.mux.com/v1/reference#list-assets
+   * @see https://docs.mux.com/v1-beta/reference#list-live-streams
    */
   list(queryParams) {
     return api.get(PATH, queryParams, this.requestOptions);
   }
+
+  /**
+   * Signal a live stream is finished
+   * @param {string} liveStreamId - The ID for the live stream
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
+   *
+   * // Signal a live stream is finished
+   * Video.liveStreams.signalComplete(liveStreamId);
+   *
+   * @see https://docs.mux.com/v1-beta/reference#signal-live-stream-complete
+   */
+  signalComplete(liveStreamId) {
+    if (!liveStreamId) {
+      return Promise.reject(new Error(&apos;A Live Stream ID is required to signal a stream is complete&apos;));
+    }
+    return api.put(`${buildBasePath(liveStreamId)}/complete`, {}, this.requestOptions);
+  }
+
+  /**
+   * Reset a stream key
+   * @param {string} liveStreamId - The ID for the live stream
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
+   *
+   * // Reset a live stream key if you want to immediately stop the current stream key from working and create a new stream key that can be used for future broadcasts.
+   * Video.liveStreams.resetStreamKey(liveStreamId);
+   *
+   * @see https://docs.mux.com/v1-beta/reference#reset-a-stream-key
+   */
+  resetStreamKey(liveStreamId) {
+    if (!liveStreamId) {
+      return Promise.reject(new Error(&apos;A Live Stream ID is required to reset a live stream key&apos;));
+    }
+    return api.post(`${buildBasePath(liveStreamId)}/reset-stream-key`, {}, this.requestOptions);
+  }
+
+  /**
+   * Create a live stream playback id
+   * @param {string} liveStreamId - The ID for the live stream
+   * @param {Object} params - Live Stream JSON parameters (e.g playback_policy)
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
+   *
+   * // Create a live stream playback ID
+   * Video.liveStreams.createPlaybackId(liveStreamId, { policy: &apos;public&apos; });
+   *
+   * @see https://docs.mux.com/v1-beta/reference#add-a-live-stream-playback-id
+   */
+  createPlaybackId(liveStreamId, params) {
+    if (!liveStreamId) {
+      return Promise.reject(new Error(&apos;A Live Stream ID is required to create a live stream playback ID&apos;));
+    }
+    return api.post(`${buildBasePath(liveStreamId)}/playback-ids`, params, this.requestOptions);
+  }
+
+  /**
+   * Delete a live stream playback ID
+   * @param {string} liveStreamId - The ID for the live stream
+   * @param {string} playbackId - The ID for the live stream playback ID to delete
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
+   *
+   * // Delete a live stream playback ID
+   * Video.liveStreams.deletePlaybackId(liveStreamId, { policy: &apos;public&apos; });
+   *
+   * @see https://docs.mux.com/v1-beta/reference#delete-a-live-stream-playback-id
+   */
+  deletePlaybackId(liveStreamId, playbackId) {
+    if (!liveStreamId) {
+      return Promise.reject(new Error(&apos;A Live Stream ID is required to delete a live stream playback ID&apos;));
+    }
+
+    if (!playbackId) {
+      return Promise.reject(new Error(&apos;A live stream playback ID is required to delete a live stream playback ID&apos;));
+    }
+    return api.del(`${buildBasePath(liveStreamId)}/playback-ids/${playbackId}`, this.requestOptions);
+  }
 }
 
-module.exports = Assets;
+module.exports = LiveStreams;
 </code></pre>
 
 </div>

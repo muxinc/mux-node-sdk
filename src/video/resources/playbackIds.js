@@ -108,7 +108,7 @@ class PlaybackIds {
   /**
    * Deletes a playback ID
    * @param {string} assetId - The ID for the asset
-   * @param {string} playbackId - The ID for the playback ID to get the playback ID information for
+   * @param {string} playbackId - The ID for the playback ID to delete
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
