@@ -3,8 +3,6 @@ const { expect } = require('chai');
 const should = require('chai').should();
 const Mux = require('../../../src/mux');
 
-const TEST_VIDEO = 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';
-
 /** @test {LiveStreams} */
 describe('Integration::LiveStreams', () => {
   const muxClient = new Mux(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);
