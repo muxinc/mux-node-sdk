@@ -19,6 +19,12 @@ or
 yarn add @mux/mux-node
 ```
 
+## Releases
+ The latest **stable** release is `1.0.0`
+
+ The latest release is `1.1.0-beta1`, which includes the beta Live Stream feature.
+
+
 ## Usage
 To start, you will need a Mux access token and secret for your Mux environment. For more information on where to get
 an access token, visit the Mux Getting Started guide https://docs.mux.com/docs
