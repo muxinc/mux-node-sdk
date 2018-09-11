@@ -50,6 +50,30 @@ describe('Integration::PlaybackIds', () => {
           expect(err).to.equal(undefined);
         })
     ));
+
+    /** @test {PlaybackIds.create} */
+    it('throws an error if an Asset ID is not given', () => (
+      Video.playbackIds.create()
+        .then((res) => {
+          expect(res).to.not.exist;
+        })
+        .catch((err) => {
+          expect(err).to.exist;
+          expect(err.message).to.equal('An asset ID is required to create a playback ID');
+        })
+    ));
+
+    /** @test {PlaybackIds.create} */
+    it('throws an error if params are not given', () => (
+      Video.playbackIds.create(testAsset.data.id)
+        .then((res) => {
+          expect(res).to.not.exist;
+        })
+        .catch((err) => {
+          expect(err).to.exist;
+          expect(err.message).to.equal('Playback ID params are required');
+        })
+    ));
   });
 
   /** @test {PlaybackIds.get} */
@@ -96,7 +120,7 @@ describe('Integration::PlaybackIds', () => {
     ));
 
     /** @test {PlaybackIds.deletePlaybackId} */
-    it('fails to get playbackIds for an asset when not given a playback ID', () => (
+    it('fails to delete playbackIds for an asset when not given a playback ID', () => (
       Video.playbackIds.deletePlaybackId(testAsset.data.id)
         .then((res) => {
           const { data } = res;

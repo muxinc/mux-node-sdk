@@ -70,7 +70,7 @@ class Assets {
    * // Create an asset
    * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
    *
-   * @see https://docs.mux.com/v1/reference#create-an-asset
+   * @see https://docs.mux.com/reference#create-an-asset
    */
   create(params) {
     if (!params) {
@@ -91,7 +91,7 @@ class Assets {
    * // Delete an asset
    * Video.assets.remove(assetId);
    *
-   * @see https://docs.mux.com/v1/reference#delete-an-asset
+   * @see https://docs.mux.com/reference#delete-an-asset
    */
   remove(assetId) {
     if (!assetId) {
@@ -112,7 +112,7 @@ class Assets {
    * // Get an asset
    * Video.assets.get(assetId);
    *
-   * @see https://docs.mux.com/v1/reference#retrieve-an-asset
+   * @see https://docs.mux.com/reference#retrieve-an-asset
    */
   get(assetId) {
     if (!assetId) {
@@ -133,7 +133,7 @@ class Assets {
    * // Get input info for an asset
    * Video.assets.inputInfo(assetId);
    *
-   * @see https://docs.mux.com/v1/reference#retrieve-asset-input-info
+   * @see https://docs.mux.com/reference#retrieve-asset-input-info
    */
   inputInfo(assetId) {
     if (!assetId) {
@@ -153,7 +153,7 @@ class Assets {
    * // List all assets for a Mux Environment
    * Video.assets.list();
    *
-   * @see https://docs.mux.com/v1/reference#list-assets
+   * @see https://docs.mux.com/reference#list-assets
    */
   list(queryParams) {
     return api.get(PATH, queryParams, this.requestOptions);

@@ -288,6 +288,18 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
 
     /** @test {LiveStreams.createPlaybackId} */
     it(&apos;throws an error if a Live Stream ID is not given&apos;, () =&gt; (
+      testLiveStreams.createPlaybackId(&apos;testLiveStream&apos;)
+        .then((res) =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch((err) =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(&apos;A playback policy is required to create a live stream playback ID&apos;);
+        })
+    ));
+
+    /** @test {LiveStreams.createPlaybackId} */
+    it(&apos;throws an error if params are not given&apos;, () =&gt; (
       testLiveStreams.createPlaybackId()
         .then((res) =&gt; {
           expect(res).to.not.exist;

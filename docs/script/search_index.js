@@ -408,26 +408,32 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
+    "livestreams.createplaybackid src/video/resources/livestreams.js~livestreams#createplaybackid,livestreams.createplaybackid",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber257",
+    "Unit::LiveStreams LiveStreams.createPlaybackId throws an error if params are not given",
+    "test"
+  ],
+  [
     "livestreams.deleteplaybackid src/video/resources/livestreams.js~livestreams#deleteplaybackid,livestreams.deleteplaybackid",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber258",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber270",
     "Unit::LiveStreams LiveStreams.deletePlaybackId",
     "test"
   ],
   [
     "livestreams.deleteplaybackid src/video/resources/livestreams.js~livestreams#deleteplaybackid,livestreams.deleteplaybackid",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber260",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber272",
     "Unit::LiveStreams LiveStreams.deletePlaybackId makes a DELETE request to delete a playback ID for a live stream",
     "test"
   ],
   [
     "livestreams.deleteplaybackid src/video/resources/livestreams.js~livestreams#deleteplaybackid,livestreams.deleteplaybackid",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber277",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber289",
     "Unit::LiveStreams LiveStreams.deletePlaybackId throws an error if a Live Stream ID is not given",
     "test"
   ],
   [
     "livestreams.deleteplaybackid src/video/resources/livestreams.js~livestreams#deleteplaybackid,livestreams.deleteplaybackid",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber289",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber301",
     "Unit::LiveStreams LiveStreams.deletePlaybackId throws an error if a playback id is not given",
     "test"
   ],

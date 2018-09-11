@@ -18,7 +18,6 @@ const buildBasePath = liveStreamId => `${PATH}/${liveStreamId}`;
 
 /**
  * Live Streams Class - Provides access to the Mux Video Live Streams API
- * @experimental - This is currently in beta
  *
  * @example
  * const muxClient = new Mux(accessToken, secret);
@@ -71,7 +70,7 @@ class LiveStreams {
    * // Create a live stream
    * Video.liveStreams.create({ playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } });
    *
-   * @see https://docs.mux.com/v1-beta/reference#create-a-live-streams
+   * @see https://docs.mux.com/reference#create-a-live-stream
    */
   create(params) {
     return api.post(PATH, params, this.requestOptions);
@@ -89,7 +88,7 @@ class LiveStreams {
    * // Delete a mux live stream
    * Video.liveStreams.remove(liveStreamId);
    *
-   * @see https://docs.mux.com/v1-beta/reference#delete-a-live-stream
+   * @see https://docs.mux.com/reference#delete-a-live-stream
    */
   remove(liveStreamId) {
     if (!liveStreamId) {
@@ -110,7 +109,7 @@ class LiveStreams {
    * // Get a live stream
    * Video.liveStreams.get(liveStreamId);
    *
-   * @see https://docs.mux.com/v1-beta/reference#retrieve-a-live-stream
+   * @see https://docs.mux.com/reference#retrieve-a-live-stream
    */
   get(liveStreamId) {
     if (!liveStreamId) {
@@ -130,7 +129,7 @@ class LiveStreams {
    * // List all live streams for a Mux Environment
    * Video.liveStreams.list();
    *
-   * @see https://docs.mux.com/v1-beta/reference#list-live-streams
+   * @see https://docs.mux.com/reference#list-live-streams
    */
   list(queryParams) {
     return api.get(PATH, queryParams, this.requestOptions);
@@ -148,7 +147,7 @@ class LiveStreams {
    * // Signal a live stream is finished
    * Video.liveStreams.signalComplete(liveStreamId);
    *
-   * @see https://docs.mux.com/v1-beta/reference#signal-live-stream-complete
+   * @see https://docs.mux.com/reference#signal-live-stream-complete
    */
   signalComplete(liveStreamId) {
     if (!liveStreamId) {
@@ -169,7 +168,7 @@ class LiveStreams {
    * // Reset a live stream key if you want to immediately stop the current stream key from working and create a new stream key that can be used for future broadcasts.
    * Video.liveStreams.resetStreamKey(liveStreamId);
    *
-   * @see https://docs.mux.com/v1-beta/reference#reset-a-stream-key
+   * @see https://docs.mux.com/reference#reset-a-stream-key
    */
   resetStreamKey(liveStreamId) {
     if (!liveStreamId) {
@@ -191,11 +190,15 @@ class LiveStreams {
    * // Create a live stream playback ID
    * Video.liveStreams.createPlaybackId(liveStreamId, { policy: 'public' });
    *
-   * @see https://docs.mux.com/v1-beta/reference#add-a-live-stream-playback-id
+   * @see https://docs.mux.com/reference#add-a-live-stream-playback-id
    */
   createPlaybackId(liveStreamId, params) {
     if (!liveStreamId) {
       return Promise.reject(new Error('A Live Stream ID is required to create a live stream playback ID'));
+    }
+
+    if (!params) {
+      return Promise.reject(new Error('A playback policy is required to create a live stream playback ID'));
     }
     return api.post(`${buildBasePath(liveStreamId)}/playback-ids`, params, this.requestOptions);
   }
@@ -213,7 +216,7 @@ class LiveStreams {
    * // Delete a live stream playback ID
    * Video.liveStreams.deletePlaybackId(liveStreamId, { policy: 'public' });
    *
-   * @see https://docs.mux.com/v1-beta/reference#delete-a-live-stream-playback-id
+   * @see https://docs.mux.com/reference#delete-a-live-stream-playback-id
    */
   deletePlaybackId(liveStreamId, playbackId) {
     if (!liveStreamId) {

@@ -2365,7 +2365,7 @@
     "__docId__": 103,
     "kind": "file",
     "name": "src/video/resources/assets.js",
-    "content": "/*!\n * Mux Assets\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private Base asset path for the Mux API\n * */\nconst PATH = '/video/v1/assets';\n\n/**\n * @private\n * Build the base asset path for the Mux API\n * */\nconst buildBasePath = assetId => `${PATH}/${assetId}`;\n\n/**\n * Assets Class - Provides access to the Mux Video Assets API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Video } = muxClient;\n *\n * // Create an asset\n * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});\n */\nclass Assets {\n  /**\n   * @ignore\n   * Assets Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Assets\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * Creates a Mux asset with the specified JSON parameters\n   * @param {Object} params - Asset JSON parameters (e.g input)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Create an asset\n   * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});\n   *\n   * @see https://docs.mux.com/v1/reference#create-an-asset\n   */\n  create(params) {\n    if (!params) {\n      return Promise.reject(new Error('Params are required for creating an asset'));\n    }\n    return api.post(PATH, params, this.requestOptions);\n  }\n\n  /**\n   * Deletes a Mux asset\n   * @param {string} assetId - The ID for the asset intended for deletion\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Delete an asset\n   * Video.assets.remove(assetId);\n   *\n   * @see https://docs.mux.com/v1/reference#delete-an-asset\n   */\n  remove(assetId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to delete an asset'));\n    }\n    return api.del(buildBasePath(assetId), this.requestOptions);\n  }\n\n  /**\n   * Get an asset\n   * @param {string} assetId - The ID for the asset\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Get an asset\n   * Video.assets.get(assetId);\n   *\n   * @see https://docs.mux.com/v1/reference#retrieve-an-asset\n   */\n  get(assetId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to get an asset'));\n    }\n    return api.get(buildBasePath(assetId), {}, this.requestOptions);\n  }\n\n  /**\n   * Get input info for an asset\n   * @param {string} assetId - The ID for the asset\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Get input info for an asset\n   * Video.assets.inputInfo(assetId);\n   *\n   * @see https://docs.mux.com/v1/reference#retrieve-asset-input-info\n   */\n  inputInfo(assetId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to get input-info'));\n    }\n    return api.get(`${buildBasePath(assetId)}/input-info`, {}, this.requestOptions);\n  }\n\n  /**\n   * List all assets for a Mux Environment (tied to your access token)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // List all assets for a Mux Environment\n   * Video.assets.list();\n   *\n   * @see https://docs.mux.com/v1/reference#list-assets\n   */\n  list(queryParams) {\n    return api.get(PATH, queryParams, this.requestOptions);\n  }\n}\n\nmodule.exports = Assets;\n",
+    "content": "/*!\n * Mux Assets\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private Base asset path for the Mux API\n * */\nconst PATH = '/video/v1/assets';\n\n/**\n * @private\n * Build the base asset path for the Mux API\n * */\nconst buildBasePath = assetId => `${PATH}/${assetId}`;\n\n/**\n * Assets Class - Provides access to the Mux Video Assets API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Video } = muxClient;\n *\n * // Create an asset\n * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});\n */\nclass Assets {\n  /**\n   * @ignore\n   * Assets Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Assets\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * Creates a Mux asset with the specified JSON parameters\n   * @param {Object} params - Asset JSON parameters (e.g input)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Create an asset\n   * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});\n   *\n   * @see https://docs.mux.com/reference#create-an-asset\n   */\n  create(params) {\n    if (!params) {\n      return Promise.reject(new Error('Params are required for creating an asset'));\n    }\n    return api.post(PATH, params, this.requestOptions);\n  }\n\n  /**\n   * Deletes a Mux asset\n   * @param {string} assetId - The ID for the asset intended for deletion\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Delete an asset\n   * Video.assets.remove(assetId);\n   *\n   * @see https://docs.mux.com/reference#delete-an-asset\n   */\n  remove(assetId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to delete an asset'));\n    }\n    return api.del(buildBasePath(assetId), this.requestOptions);\n  }\n\n  /**\n   * Get an asset\n   * @param {string} assetId - The ID for the asset\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Get an asset\n   * Video.assets.get(assetId);\n   *\n   * @see https://docs.mux.com/reference#retrieve-an-asset\n   */\n  get(assetId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to get an asset'));\n    }\n    return api.get(buildBasePath(assetId), {}, this.requestOptions);\n  }\n\n  /**\n   * Get input info for an asset\n   * @param {string} assetId - The ID for the asset\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Get input info for an asset\n   * Video.assets.inputInfo(assetId);\n   *\n   * @see https://docs.mux.com/reference#retrieve-asset-input-info\n   */\n  inputInfo(assetId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to get input-info'));\n    }\n    return api.get(`${buildBasePath(assetId)}/input-info`, {}, this.requestOptions);\n  }\n\n  /**\n   * List all assets for a Mux Environment (tied to your access token)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // List all assets for a Mux Environment\n   * Video.assets.list();\n   *\n   * @see https://docs.mux.com/reference#list-assets\n   */\n  list(queryParams) {\n    return api.get(PATH, queryParams, this.requestOptions);\n  }\n}\n\nmodule.exports = Assets;\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/src/video/resources/assets.js",
     "access": "public",
@@ -2535,7 +2535,7 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Create an asset\nVideo.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});"
     ],
     "see": [
-      "https://docs.mux.com/v1/reference#create-an-asset"
+      "https://docs.mux.com/reference#create-an-asset"
     ],
     "lineNumber": 75,
     "unknown": [
@@ -2580,7 +2580,7 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Delete an asset\nVideo.assets.remove(assetId);"
     ],
     "see": [
-      "https://docs.mux.com/v1/reference#delete-an-asset"
+      "https://docs.mux.com/reference#delete-an-asset"
     ],
     "lineNumber": 96,
     "unknown": [
@@ -2625,7 +2625,7 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Get an asset\nVideo.assets.get(assetId);"
     ],
     "see": [
-      "https://docs.mux.com/v1/reference#retrieve-an-asset"
+      "https://docs.mux.com/reference#retrieve-an-asset"
     ],
     "lineNumber": 117,
     "unknown": [
@@ -2670,7 +2670,7 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Get input info for an asset\nVideo.assets.inputInfo(assetId);"
     ],
     "see": [
-      "https://docs.mux.com/v1/reference#retrieve-asset-input-info"
+      "https://docs.mux.com/reference#retrieve-asset-input-info"
     ],
     "lineNumber": 138,
     "unknown": [
@@ -2715,7 +2715,7 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// List all assets for a Mux Environment\nVideo.assets.list();"
     ],
     "see": [
-      "https://docs.mux.com/v1/reference#list-assets"
+      "https://docs.mux.com/reference#list-assets"
     ],
     "lineNumber": 158,
     "unknown": [
@@ -2745,7 +2745,7 @@
     "__docId__": 114,
     "kind": "file",
     "name": "src/video/resources/liveStreams.js",
-    "content": "/*!\n * Mux Live Streams\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private Base live stream path for the Mux API\n * */\nconst PATH = '/video/v1/live-streams';\n\n/**\n * @private\n * Build the base live stream path for the Mux API\n * */\nconst buildBasePath = liveStreamId => `${PATH}/${liveStreamId}`;\n\n/**\n * Live Streams Class - Provides access to the Mux Video Live Streams API\n * @experimental - This is currently in beta\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Video } = muxClient;\n *\n * // Create a live stream\n * Video.liveStreams.create({ playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } });\n */\nclass LiveStreams {\n  /**\n   * @ignore\n   * LiveStreams Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Live Streams\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * Creates a Mux live stream with the specified JSON parameters\n   * @param {Object} params - Live Stream JSON parameters (e.g playback_policy)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Create a live stream\n   * Video.liveStreams.create({ playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } });\n   *\n   * @see https://docs.mux.com/v1-beta/reference#create-a-live-streams\n   */\n  create(params) {\n    return api.post(PATH, params, this.requestOptions);\n  }\n\n  /**\n   * Deletes a Mux Live Stream\n   * @param {string} liveStreamId - The ID for the live stream intended for deletion\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Delete a mux live stream\n   * Video.liveStreams.remove(liveStreamId);\n   *\n   * @see https://docs.mux.com/v1-beta/reference#delete-a-live-stream\n   */\n  remove(liveStreamId) {\n    if (!liveStreamId) {\n      return Promise.reject(new Error('A live stream ID is required to delete a live stream'));\n    }\n    return api.del(buildBasePath(liveStreamId), this.requestOptions);\n  }\n\n  /**\n   * Get an Live Stream\n   * @param {string} liveStreamId - The ID for the live stream\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Get a live stream\n   * Video.liveStreams.get(liveStreamId);\n   *\n   * @see https://docs.mux.com/v1-beta/reference#retrieve-a-live-stream\n   */\n  get(liveStreamId) {\n    if (!liveStreamId) {\n      return Promise.reject(new Error('A live stream ID is required to get a live stream'));\n    }\n    return api.get(buildBasePath(liveStreamId), {}, this.requestOptions);\n  }\n\n  /**\n   * List all live streams for a Mux Environment (tied to your access token)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // List all live streams for a Mux Environment\n   * Video.liveStreams.list();\n   *\n   * @see https://docs.mux.com/v1-beta/reference#list-live-streams\n   */\n  list(queryParams) {\n    return api.get(PATH, queryParams, this.requestOptions);\n  }\n\n  /**\n   * Signal a live stream is finished\n   * @param {string} liveStreamId - The ID for the live stream\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Signal a live stream is finished\n   * Video.liveStreams.signalComplete(liveStreamId);\n   *\n   * @see https://docs.mux.com/v1-beta/reference#signal-live-stream-complete\n   */\n  signalComplete(liveStreamId) {\n    if (!liveStreamId) {\n      return Promise.reject(new Error('A Live Stream ID is required to signal a stream is complete'));\n    }\n    return api.put(`${buildBasePath(liveStreamId)}/complete`, {}, this.requestOptions);\n  }\n\n  /**\n   * Reset a stream key\n   * @param {string} liveStreamId - The ID for the live stream\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Reset a live stream key if you want to immediately stop the current stream key from working and create a new stream key that can be used for future broadcasts.\n   * Video.liveStreams.resetStreamKey(liveStreamId);\n   *\n   * @see https://docs.mux.com/v1-beta/reference#reset-a-stream-key\n   */\n  resetStreamKey(liveStreamId) {\n    if (!liveStreamId) {\n      return Promise.reject(new Error('A Live Stream ID is required to reset a live stream key'));\n    }\n    return api.post(`${buildBasePath(liveStreamId)}/reset-stream-key`, {}, this.requestOptions);\n  }\n\n  /**\n   * Create a live stream playback id\n   * @param {string} liveStreamId - The ID for the live stream\n   * @param {Object} params - Live Stream JSON parameters (e.g playback_policy)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Create a live stream playback ID\n   * Video.liveStreams.createPlaybackId(liveStreamId, { policy: 'public' });\n   *\n   * @see https://docs.mux.com/v1-beta/reference#add-a-live-stream-playback-id\n   */\n  createPlaybackId(liveStreamId, params) {\n    if (!liveStreamId) {\n      return Promise.reject(new Error('A Live Stream ID is required to create a live stream playback ID'));\n    }\n    return api.post(`${buildBasePath(liveStreamId)}/playback-ids`, params, this.requestOptions);\n  }\n\n  /**\n   * Delete a live stream playback ID\n   * @param {string} liveStreamId - The ID for the live stream\n   * @param {string} playbackId - The ID for the live stream playback ID to delete\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Delete a live stream playback ID\n   * Video.liveStreams.deletePlaybackId(liveStreamId, { policy: 'public' });\n   *\n   * @see https://docs.mux.com/v1-beta/reference#delete-a-live-stream-playback-id\n   */\n  deletePlaybackId(liveStreamId, playbackId) {\n    if (!liveStreamId) {\n      return Promise.reject(new Error('A Live Stream ID is required to delete a live stream playback ID'));\n    }\n\n    if (!playbackId) {\n      return Promise.reject(new Error('A live stream playback ID is required to delete a live stream playback ID'));\n    }\n    return api.del(`${buildBasePath(liveStreamId)}/playback-ids/${playbackId}`, this.requestOptions);\n  }\n}\n\nmodule.exports = LiveStreams;\n",
+    "content": "/*!\n * Mux Live Streams\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private Base live stream path for the Mux API\n * */\nconst PATH = '/video/v1/live-streams';\n\n/**\n * @private\n * Build the base live stream path for the Mux API\n * */\nconst buildBasePath = liveStreamId => `${PATH}/${liveStreamId}`;\n\n/**\n * Live Streams Class - Provides access to the Mux Video Live Streams API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Video } = muxClient;\n *\n * // Create a live stream\n * Video.liveStreams.create({ playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } });\n */\nclass LiveStreams {\n  /**\n   * @ignore\n   * LiveStreams Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Live Streams\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * Creates a Mux live stream with the specified JSON parameters\n   * @param {Object} params - Live Stream JSON parameters (e.g playback_policy)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Create a live stream\n   * Video.liveStreams.create({ playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } });\n   *\n   * @see https://docs.mux.com/reference#create-a-live-stream\n   */\n  create(params) {\n    return api.post(PATH, params, this.requestOptions);\n  }\n\n  /**\n   * Deletes a Mux Live Stream\n   * @param {string} liveStreamId - The ID for the live stream intended for deletion\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Delete a mux live stream\n   * Video.liveStreams.remove(liveStreamId);\n   *\n   * @see https://docs.mux.com/reference#delete-a-live-stream\n   */\n  remove(liveStreamId) {\n    if (!liveStreamId) {\n      return Promise.reject(new Error('A live stream ID is required to delete a live stream'));\n    }\n    return api.del(buildBasePath(liveStreamId), this.requestOptions);\n  }\n\n  /**\n   * Get an Live Stream\n   * @param {string} liveStreamId - The ID for the live stream\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Get a live stream\n   * Video.liveStreams.get(liveStreamId);\n   *\n   * @see https://docs.mux.com/reference#retrieve-a-live-stream\n   */\n  get(liveStreamId) {\n    if (!liveStreamId) {\n      return Promise.reject(new Error('A live stream ID is required to get a live stream'));\n    }\n    return api.get(buildBasePath(liveStreamId), {}, this.requestOptions);\n  }\n\n  /**\n   * List all live streams for a Mux Environment (tied to your access token)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // List all live streams for a Mux Environment\n   * Video.liveStreams.list();\n   *\n   * @see https://docs.mux.com/reference#list-live-streams\n   */\n  list(queryParams) {\n    return api.get(PATH, queryParams, this.requestOptions);\n  }\n\n  /**\n   * Signal a live stream is finished\n   * @param {string} liveStreamId - The ID for the live stream\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Signal a live stream is finished\n   * Video.liveStreams.signalComplete(liveStreamId);\n   *\n   * @see https://docs.mux.com/reference#signal-live-stream-complete\n   */\n  signalComplete(liveStreamId) {\n    if (!liveStreamId) {\n      return Promise.reject(new Error('A Live Stream ID is required to signal a stream is complete'));\n    }\n    return api.put(`${buildBasePath(liveStreamId)}/complete`, {}, this.requestOptions);\n  }\n\n  /**\n   * Reset a stream key\n   * @param {string} liveStreamId - The ID for the live stream\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Reset a live stream key if you want to immediately stop the current stream key from working and create a new stream key that can be used for future broadcasts.\n   * Video.liveStreams.resetStreamKey(liveStreamId);\n   *\n   * @see https://docs.mux.com/reference#reset-a-stream-key\n   */\n  resetStreamKey(liveStreamId) {\n    if (!liveStreamId) {\n      return Promise.reject(new Error('A Live Stream ID is required to reset a live stream key'));\n    }\n    return api.post(`${buildBasePath(liveStreamId)}/reset-stream-key`, {}, this.requestOptions);\n  }\n\n  /**\n   * Create a live stream playback id\n   * @param {string} liveStreamId - The ID for the live stream\n   * @param {Object} params - Live Stream JSON parameters (e.g playback_policy)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Create a live stream playback ID\n   * Video.liveStreams.createPlaybackId(liveStreamId, { policy: 'public' });\n   *\n   * @see https://docs.mux.com/reference#add-a-live-stream-playback-id\n   */\n  createPlaybackId(liveStreamId, params) {\n    if (!liveStreamId) {\n      return Promise.reject(new Error('A Live Stream ID is required to create a live stream playback ID'));\n    }\n\n    if (!params) {\n      return Promise.reject(new Error('A playback policy is required to create a live stream playback ID'));\n    }\n    return api.post(`${buildBasePath(liveStreamId)}/playback-ids`, params, this.requestOptions);\n  }\n\n  /**\n   * Delete a live stream playback ID\n   * @param {string} liveStreamId - The ID for the live stream\n   * @param {string} playbackId - The ID for the live stream playback ID to delete\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Delete a live stream playback ID\n   * Video.liveStreams.deletePlaybackId(liveStreamId, { policy: 'public' });\n   *\n   * @see https://docs.mux.com/reference#delete-a-live-stream-playback-id\n   */\n  deletePlaybackId(liveStreamId, playbackId) {\n    if (!liveStreamId) {\n      return Promise.reject(new Error('A Live Stream ID is required to delete a live stream playback ID'));\n    }\n\n    if (!playbackId) {\n      return Promise.reject(new Error('A live stream playback ID is required to delete a live stream playback ID'));\n    }\n    return api.del(`${buildBasePath(liveStreamId)}/playback-ids/${playbackId}`, this.requestOptions);\n  }\n}\n\nmodule.exports = LiveStreams;\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/src/video/resources/liveStreams.js",
     "access": "public",
@@ -2813,8 +2813,7 @@
     "examples": [
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Create a live stream\nVideo.liveStreams.create({ playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } });"
     ],
-    "lineNumber": 30,
-    "experimental": "- This is currently in beta",
+    "lineNumber": 29,
     "interface": false
   },
   {
@@ -2828,7 +2827,7 @@
     "longname": "src/video/resources/liveStreams.js~LiveStreams#constructor",
     "access": "public",
     "description": "",
-    "lineNumber": 39,
+    "lineNumber": 38,
     "ignore": true,
     "unknown": [
       {
@@ -2868,7 +2867,7 @@
     "longname": "src/video/resources/liveStreams.js~LiveStreams#requestOptions",
     "access": "public",
     "description": "",
-    "lineNumber": 54,
+    "lineNumber": 53,
     "ignore": true,
     "properties": [
       {
@@ -2916,9 +2915,9 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Create a live stream\nVideo.liveStreams.create({ playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } });"
     ],
     "see": [
-      "https://docs.mux.com/v1-beta/reference#create-a-live-streams"
+      "https://docs.mux.com/reference#create-a-live-stream"
     ],
-    "lineNumber": 76,
+    "lineNumber": 75,
     "unknown": [
       {
         "tagName": "@returns",
@@ -2961,9 +2960,9 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Delete a mux live stream\nVideo.liveStreams.remove(liveStreamId);"
     ],
     "see": [
-      "https://docs.mux.com/v1-beta/reference#delete-a-live-stream"
+      "https://docs.mux.com/reference#delete-a-live-stream"
     ],
-    "lineNumber": 94,
+    "lineNumber": 93,
     "unknown": [
       {
         "tagName": "@returns",
@@ -3006,9 +3005,9 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Get a live stream\nVideo.liveStreams.get(liveStreamId);"
     ],
     "see": [
-      "https://docs.mux.com/v1-beta/reference#retrieve-a-live-stream"
+      "https://docs.mux.com/reference#retrieve-a-live-stream"
     ],
-    "lineNumber": 115,
+    "lineNumber": 114,
     "unknown": [
       {
         "tagName": "@returns",
@@ -3051,9 +3050,9 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// List all live streams for a Mux Environment\nVideo.liveStreams.list();"
     ],
     "see": [
-      "https://docs.mux.com/v1-beta/reference#list-live-streams"
+      "https://docs.mux.com/reference#list-live-streams"
     ],
-    "lineNumber": 135,
+    "lineNumber": 134,
     "unknown": [
       {
         "tagName": "@returns",
@@ -3092,9 +3091,9 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Signal a live stream is finished\nVideo.liveStreams.signalComplete(liveStreamId);"
     ],
     "see": [
-      "https://docs.mux.com/v1-beta/reference#signal-live-stream-complete"
+      "https://docs.mux.com/reference#signal-live-stream-complete"
     ],
-    "lineNumber": 153,
+    "lineNumber": 152,
     "unknown": [
       {
         "tagName": "@returns",
@@ -3137,9 +3136,9 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Reset a live stream key if you want to immediately stop the current stream key from working and create a new stream key that can be used for future broadcasts.\nVideo.liveStreams.resetStreamKey(liveStreamId);"
     ],
     "see": [
-      "https://docs.mux.com/v1-beta/reference#reset-a-stream-key"
+      "https://docs.mux.com/reference#reset-a-stream-key"
     ],
-    "lineNumber": 174,
+    "lineNumber": 173,
     "unknown": [
       {
         "tagName": "@returns",
@@ -3182,9 +3181,9 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Create a live stream playback ID\nVideo.liveStreams.createPlaybackId(liveStreamId, { policy: 'public' });"
     ],
     "see": [
-      "https://docs.mux.com/v1-beta/reference#add-a-live-stream-playback-id"
+      "https://docs.mux.com/reference#add-a-live-stream-playback-id"
     ],
-    "lineNumber": 196,
+    "lineNumber": 195,
     "unknown": [
       {
         "tagName": "@returns",
@@ -3237,9 +3236,9 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Delete a live stream playback ID\nVideo.liveStreams.deletePlaybackId(liveStreamId, { policy: 'public' });"
     ],
     "see": [
-      "https://docs.mux.com/v1-beta/reference#delete-a-live-stream-playback-id"
+      "https://docs.mux.com/reference#delete-a-live-stream-playback-id"
     ],
-    "lineNumber": 218,
+    "lineNumber": 221,
     "unknown": [
       {
         "tagName": "@returns",
@@ -3281,7 +3280,7 @@
     "__docId__": 128,
     "kind": "file",
     "name": "src/video/resources/playbackIds.js",
-    "content": "/*!\n * PlaybackIds\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private\n * Base playback ID path for the Mux API\n * */\nconst buildBasePath = assetId => `/video/v1/assets/${assetId}/playback-ids`;\n\n/**\n * PlaybackIds Class - Provides access to the Mux Video PlaybackIds API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Video } = muxClient;\n *\n * // Create a playback Id for an asset\n * Video.playbackIds.create('assetId', { policy: 'public' });\n */\nclass PlaybackIds {\n  /**\n   * @ignore\n   * PlaybackIds Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Assets\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * Creates a playback ID for a Mux asset with the specified JSON parameters\n   * @param {string} assetId - Asset ID for the asset to create the playback ID for\n   * @param {Object} params - Playback ID JSON parameters (e.g policy)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Create a playback Id for an asset\n   * Video.playbackIds.create('assetId', { policy: 'public' });\n   *\n   * @see https://docs.mux.com/v1/reference#add-an-asset-playback-id\n   */\n  create(assetId, params) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to create a playback ID'));\n    }\n\n    if (!params) {\n      return Promise.reject(new Error('Playback ID params are required'));\n    }\n    return api.post(buildBasePath(assetId), params, this.requestOptions);\n  }\n\n  /**\n   * Get a playbackId\n   * @param {string} assetId - The ID for the asset\n   * @param {string} playbackId - The ID for the playback ID to get the playback ID information for\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Get an asset\n   * Video.playbackIds.get(assetId, playbackId);\n   *\n   * @see https://docs.mux.com/v1/reference#retrieve-an-asset-playback-id\n   */\n  get(assetId, playbackId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to get a playback ID'));\n    }\n\n    if (!playbackId) {\n      return Promise.reject(new Error('A playback ID is required to get a playback ID'));\n    }\n    return api.get(`${buildBasePath(assetId)}/${playbackId}`, {}, this.requestOptions);\n  }\n\n  /**\n   * Deletes a playback ID\n   * @param {string} assetId - The ID for the asset\n   * @param {string} playbackId - The ID for the playback ID to delete\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Delete a playback ID\n   * Video.playbackIds.deletePlaybackId(assetId, playbackId);\n   *\n   * @see https://docs.mux.com/v1/reference#delete-an-asset-playback-id\n   */\n  deletePlaybackId(assetId, playbackId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to delete a playback ID'));\n    }\n\n    if (!playbackId) {\n      return Promise.reject(new Error('A playback ID is required to delete a playback ID'));\n    }\n    return api.del(`${buildBasePath(assetId)}/${playbackId}`, this.requestOptions);\n  }\n}\n\n\nmodule.exports = PlaybackIds;\n",
+    "content": "/*!\n * PlaybackIds\n * Copyright(c) 2018 Mux Inc.\n */\n\nconst api = require('../../utils/api');\n\n/**\n * @private\n * Base playback ID path for the Mux API\n * */\nconst buildBasePath = assetId => `/video/v1/assets/${assetId}/playback-ids`;\n\n/**\n * PlaybackIds Class - Provides access to the Mux Video PlaybackIds API\n *\n * @example\n * const muxClient = new Mux(accessToken, secret);\n * const { Video } = muxClient;\n *\n * // Create a playback Id for an asset\n * Video.playbackIds.create('assetId', { policy: 'public' });\n */\nclass PlaybackIds {\n  /**\n   * @ignore\n   * PlaybackIds Constructor\n   *\n   * @param {string} accessToken - Mux API Access Token\n   * @param {string} secret - Mux API Access Token secret\n   * @constructor\n   */\n  constructor(accessToken, secret) {\n    if (typeof accessToken === 'undefined') {\n      throw new Error('API Access Token must be provided.');\n    }\n\n    if (typeof secret === 'undefined') {\n      throw new Error('API secret key must be provided');\n    }\n\n    /**\n     *  @ignore\n     *  @type {Object} requestOptions - The HTTP request options for Mux Assets\n     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)\n     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)\n     * */\n    this.requestOptions = {\n      auth: {\n        username: accessToken,\n        password: secret,\n      },\n    };\n  }\n\n  /**\n   * Creates a playback ID for a Mux asset with the specified JSON parameters\n   * @param {string} assetId - Asset ID for the asset to create the playback ID for\n   * @param {Object} params - Playback ID JSON parameters (e.g policy)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Create a playback Id for an asset\n   * Video.playbackIds.create('assetId', { policy: 'public' });\n   *\n   * @see https://docs.mux.com/reference#add-an-asset-playback-id\n   */\n  create(assetId, params) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to create a playback ID'));\n    }\n\n    if (!params) {\n      return Promise.reject(new Error('Playback ID params are required'));\n    }\n    return api.post(buildBasePath(assetId), params, this.requestOptions);\n  }\n\n  /**\n   * Get a playbackId\n   * @param {string} assetId - The ID for the asset\n   * @param {string} playbackId - The ID for the playback ID to get the playback ID information for\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Get an asset\n   * Video.playbackIds.get(assetId, playbackId);\n   *\n   * @see https://docs.mux.com/reference#retrieve-an-asset-playback-id\n   */\n  get(assetId, playbackId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to get a playback ID'));\n    }\n\n    if (!playbackId) {\n      return Promise.reject(new Error('A playback ID is required to get a playback ID'));\n    }\n    return api.get(`${buildBasePath(assetId)}/${playbackId}`, {}, this.requestOptions);\n  }\n\n  /**\n   * Deletes a playback ID\n   * @param {string} assetId - The ID for the asset\n   * @param {string} playbackId - The ID for the playback ID to delete\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const muxClient = new Mux(accessToken, secret);\n   * const { Video } = muxClient;\n   *\n   * // Delete a playback ID\n   * Video.playbackIds.deletePlaybackId(assetId, playbackId);\n   *\n   * @see https://docs.mux.com/reference#delete-an-asset-playback-id\n   */\n  deletePlaybackId(assetId, playbackId) {\n    if (!assetId) {\n      return Promise.reject(new Error('An asset ID is required to delete a playback ID'));\n    }\n\n    if (!playbackId) {\n      return Promise.reject(new Error('A playback ID is required to delete a playback ID'));\n    }\n    return api.del(`${buildBasePath(assetId)}/${playbackId}`, this.requestOptions);\n  }\n}\n\n\nmodule.exports = PlaybackIds;\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/src/video/resources/playbackIds.js",
     "access": "public",
@@ -3431,7 +3430,7 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Create a playback Id for an asset\nVideo.playbackIds.create('assetId', { policy: 'public' });"
     ],
     "see": [
-      "https://docs.mux.com/v1/reference#add-an-asset-playback-id"
+      "https://docs.mux.com/reference#add-an-asset-playback-id"
     ],
     "lineNumber": 71,
     "unknown": [
@@ -3486,7 +3485,7 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Get an asset\nVideo.playbackIds.get(assetId, playbackId);"
     ],
     "see": [
-      "https://docs.mux.com/v1/reference#retrieve-an-asset-playback-id"
+      "https://docs.mux.com/reference#retrieve-an-asset-playback-id"
     ],
     "lineNumber": 97,
     "unknown": [
@@ -3541,7 +3540,7 @@
       "const muxClient = new Mux(accessToken, secret);\nconst { Video } = muxClient;\n\n// Delete a playback ID\nVideo.playbackIds.deletePlaybackId(assetId, playbackId);"
     ],
     "see": [
-      "https://docs.mux.com/v1/reference#delete-an-asset-playback-id"
+      "https://docs.mux.com/reference#delete-an-asset-playback-id"
     ],
     "lineNumber": 123,
     "unknown": [
@@ -3711,7 +3710,7 @@
   },
   {
     "kind": "index",
-    "content": "# Mux Node SDK\n\nOfficial Mux API wrapper for Node projects.\n\nThis library is intended to provide Mux API convenience methods for applications written in server-side Javascript. __Please note__ that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.\n\nNot familiar with Mux? Check out https://mux.com/ for more information.\n\n## Documentation\n\nSee the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk)\n\n## Installation\n```\nnpm install @mux/mux-node --save\n```\nor\n```\nyarn add @mux/mux-node\n```\n\n## Usage\nTo start, you will need a Mux access token and secret for your Mux environment. For more information on where to get\nan access token, visit the Mux Getting Started guide https://docs.mux.com/docs\n\nRequire the `@mux/mux-node` npm module and create a Mux instance. Your Mux instance will have `Data` and `Video` properties\nthat will allow you to access the Mux Data and Video APIs.\n\n```javascript\nconst Mux = require('@mux/mux-node');\nconst muxClient = new Mux(accessToken, secret);\nconst { Video, Data } = muxClient;\n```\nAs an example, you can create a Mux asset and playback ID by using the below functions on your Video instance.\n```javascript\n// Create an asset\nlet assetId;\nVideo.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' })\n  .then((res) => {\n    const { data } = res.data;\n    assetId = data.id;\n  });\n```\n\n```javascript\n// Create a playback ID for an asset\nVideo.playbackIds.create(assetId, { policy: 'public' });\n```\n\nYou can access the Mux Data API in the same way by using your Data instance. For example, you can list all of the\nvalues across every breakdown for the `aggregate_startup_time` metric by using the below function.\n\n```javascript\nData.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });\n```\n\nEvery function will return a chainable [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).\nSee the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk/identifiers.html) for a list of all available functions.\n\n## Development\n\nRun unit tests: `npm test` or `npm run test:unit`\n\nRun integration tests: `npm run test:int`\n\n__Note__: running the integration tests will require you to configure the `MUX_ACCESS_TOKEN` and `MUX_SECRET` environment variables with your Mux access token and secret.\n\n\nTo generate the ESDocs, run:\n```\n./node_modules/.bin/esdoc\nopen ./docs/index.html\n```\n\n\n",
+    "content": "# Mux Node SDK\n\nOfficial Mux API wrapper for Node projects.\n\nThis library is intended to provide Mux API convenience methods for applications written in server-side Javascript. __Please note__ that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.\n\nNot familiar with Mux? Check out https://mux.com/ for more information.\n\n## Documentation\n\nSee the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk)\n\n## Installation\n```\nnpm install @mux/mux-node@1.0.0 --save\n```\nor\n```\nyarn add @mux/mux-node@1.0.0\n```\n\n## Releases\n The latest **stable** release is `1.1.0`\n\n## Usage\nTo start, you will need a Mux access token and secret for your Mux environment. For more information on where to get\nan access token, visit the Mux Getting Started guide https://docs.mux.com/docs\n\nRequire the `@mux/mux-node` npm module and create a Mux instance. Your Mux instance will have `Data` and `Video` properties\nthat will allow you to access the Mux Data and Video APIs.\n\n```javascript\nconst Mux = require('@mux/mux-node');\nconst muxClient = new Mux(accessToken, secret);\nconst { Video, Data } = muxClient;\n```\nAs an example, you can create a Mux asset and playback ID by using the below functions on your Video instance.\n```javascript\n// Create an asset\nlet assetId;\nVideo.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' })\n  .then((res) => {\n    const { data } = res.data;\n    assetId = data.id;\n  });\n```\n\n```javascript\n// Create a playback ID for an asset\nVideo.playbackIds.create(assetId, { policy: 'public' });\n```\n\nYou can access the Mux Data API in the same way by using your Data instance. For example, you can list all of the\nvalues across every breakdown for the `aggregate_startup_time` metric by using the below function.\n\n```javascript\nData.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });\n```\n\nEvery function will return a chainable [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).\nSee the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk/identifiers.html) for a list of all available functions.\n\n## Development\n\nRun unit tests: `npm test` or `npm run test:unit`\n\nRun integration tests: `npm run test:int`\n\n__Note__: running the integration tests will require you to configure the `MUX_ACCESS_TOKEN` and `MUX_SECRET` environment variables with your Mux access token and secret.\n\n\nTo generate the ESDocs, run:\n```\n./node_modules/.bin/esdoc\nopen ./docs/index.html\n```\n\n\n",
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/README.md",
     "name": "./README.md",
     "static": true,
@@ -3719,7 +3718,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"@mux/mux-node\",\n  \"version\": \"1.2.0-beta1\",\n  \"description\": \"Mux API wrapper\",\n  \"keywords\": [\n    \"mux\",\n    \"video\",\n    \"video encoding\",\n    \"video transcoding\",\n    \"api\",\n    \"video analytics\"\n  ],\n  \"author\": \"Mux <help@mux.com> (https://mux.com/)\",\n  \"main\": \"src/mux.js\",\n  \"engines\": {\n    \"node\": \">=8\"\n  },\n  \"license\": \"MIT\",\n  \"scripts\": {\n    \"test\": \"mocha --recursive ./test/unit\",\n    \"test:unit\": \"mocha --recursive ./test/unit\",\n    \"test:int\": \"mocha --recursive ./test/integration\"\n  },\n  \"dependencies\": {\n    \"axios\": \"^0.18.0\"\n  },\n  \"devDependencies\": {\n    \"chai\": \"^4.1.2\",\n    \"dotenv\": \"^5.0.1\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-node\": \"^1.0.3\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.19.1\",\n    \"eslint-config-airbnb-base\": \"^12.1.0\",\n    \"eslint-plugin-chai-friendly\": \"^0.4.1\",\n    \"eslint-plugin-import\": \"^2.9.0\",\n    \"eslint-plugin-node\": \"^6.0.1\",\n    \"mocha\": \"^5.1.1\",\n    \"moxios\": \"^0.4.0\",\n    \"sinon\": \"^4.5.0\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/muxinc/mux-node-sdk.git\"\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/muxinc/mux-node-sdk/issues\"\n  },\n  \"homepage\": \"https://github.com/muxinc/mux-node-sdk#readme\"\n}\n",
+    "content": "{\n  \"name\": \"@mux/mux-node\",\n  \"version\": \"1.1.0\",\n  \"description\": \"Mux API wrapper\",\n  \"keywords\": [\n    \"mux\",\n    \"video\",\n    \"video encoding\",\n    \"video transcoding\",\n    \"api\",\n    \"video analytics\"\n  ],\n  \"author\": \"Mux <help@mux.com> (https://mux.com/)\",\n  \"main\": \"src/mux.js\",\n  \"engines\": {\n    \"node\": \">=8\"\n  },\n  \"license\": \"MIT\",\n  \"scripts\": {\n    \"test\": \"mocha --recursive ./test/unit\",\n    \"test:unit\": \"mocha --recursive ./test/unit\",\n    \"test:int\": \"mocha --recursive ./test/integration\"\n  },\n  \"dependencies\": {\n    \"axios\": \"^0.18.0\"\n  },\n  \"devDependencies\": {\n    \"chai\": \"^4.1.2\",\n    \"dotenv\": \"^5.0.1\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-node\": \"^1.0.3\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^4.19.1\",\n    \"eslint-config-airbnb-base\": \"^12.1.0\",\n    \"eslint-plugin-chai-friendly\": \"^0.4.1\",\n    \"eslint-plugin-import\": \"^2.9.0\",\n    \"eslint-plugin-node\": \"^6.0.1\",\n    \"mocha\": \"^5.1.1\",\n    \"moxios\": \"^0.4.0\",\n    \"sinon\": \"^4.5.0\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/muxinc/mux-node-sdk.git\"\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/muxinc/mux-node-sdk/issues\"\n  },\n  \"homepage\": \"https://github.com/muxinc/mux-node-sdk#readme\"\n}\n",
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/package.json",
     "name": "package.json",
     "static": true,
@@ -5279,7 +5278,7 @@
     "__docId__": 241,
     "kind": "testFile",
     "name": "test/unit/video/resources/liveStreams.spec.js",
-    "content": "const { expect } = require('chai');\nconst sinon = require('sinon');\nconst moxios = require('moxios');\nconst LiveStreams = require('../../../../src/video/resources/liveStreams');\n\n/** @test {LiveStreams} */\ndescribe('Unit::LiveStreams', () => {\n  beforeEach(() => {\n    moxios.install();\n  });\n\n  afterEach(() => {\n    moxios.uninstall();\n  });\n\n  const testApiKey = 'testApiKey';\n  const testSecret = 'testSecret';\n  const testLiveStreams = new LiveStreams(testApiKey, testSecret);\n\n  /** @test {LiveStreams} */\n  describe('LiveStreams', () => {\n    /** @test {LiveStreams} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new LiveStreams()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {LiveStreams} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new LiveStreams('testKey')).to.throw('API secret key must be provided');\n    });\n\n    /** @test {LiveStreams} */\n    it('creates a new LiveStreams instance', () => {\n      const TestLiveStreams = new LiveStreams(testApiKey, testSecret);\n      expect(() => new LiveStreams(testApiKey, testSecret)).to.not.throw();\n      expect(TestLiveStreams.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestLiveStreams.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {LiveStreams.create} */\n  describe('LiveStreams.create', () => {\n    /** @test {LiveStreams.create} */\n    it('makes a POST request to create a LiveStream asset', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams', {\n        status: 200,\n        responseText: 'create',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.create('testLiveStream', { playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } })\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('create');\n        done();\n      });\n    });\n  });\n\n  /** @test {LiveStreams.remove} */\n  describe('LiveStreams.remove', () => {\n    /** @test {LiveStreams.remove} */\n    it('makes a DELETE request to delete a live stream', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams/testLiveStream', {\n        status: 200,\n        responseText: 'delete live stream',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.remove('testLiveStream')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('delete live stream');\n        done();\n      });\n    });\n\n    /** @test {LiveStreams.remove} */\n    it('throws an error when a live stream id is not given', () => (\n      testLiveStreams.remove()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A live stream ID is required to delete a live stream');\n        })\n    ));\n  });\n\n  /** @test {LiveStreams.list} */\n  describe('LiveStreams.list', () => {\n    /** @test {LiveStreams.list} */\n    it('makes a GET request to list all live streams', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams', {\n        status: 200,\n        responseText: 'list',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.list()\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('list');\n        done();\n      });\n    });\n\n    it('makes a GET request to list 100 live streams offset by 2 pages', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams?limit=100&page=2', {\n        status: 200,\n        responseText: 'list',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.list({limit: 100, page: 2})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('list');\n        done();\n      });\n    });\n  });\n\n  /** @test {LiveStreams.get} */\n  describe('LiveStreams.get', () => {\n    /** @test {LiveStreams.get} */\n    it('makes a GET request to get a live stream', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams/testLiveStream', {\n        status: 200,\n        responseText: 'live stream',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.get('testLiveStream')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('live stream');\n        done();\n      });\n    });\n\n    /** @test {LiveStreams.get} */\n    it('throws an error when a live stream id is not given', () => (\n      testLiveStreams.get()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A live stream ID is required to get a live stream');\n        })\n    ));\n  });\n\n  /** @test {LiveStreams.signalComplete} */\n  describe('LiveStreams.signalComplete', () => {\n    /** @test {LiveStreams.signalComplete} */\n    it('makes a PUT request to signal a live stream is complete', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams/testLiveStream/complete', {\n        status: 200,\n        responseText: 'live stream',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.signalComplete('testLiveStream')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('live stream');\n        done();\n      });\n    });\n\n    /** @test {LiveStreams.signalComplete} */\n    it('throws an error when a live stream id is not given', () => (\n      testLiveStreams.signalComplete()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A Live Stream ID is required to signal a stream is complete');\n        })\n    ));\n  });\n\n  /** @test {LiveStreams.resetStreamKey} */\n  describe('LiveStreams.resetStreamKey', () => {\n    /** @test {LiveStreams.resetStreamKey} */\n    it('makes a POST request to reset a live stream key', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams/testLiveStream/reset-stream-key', {\n        status: 200,\n        responseText: 'live stream',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.resetStreamKey('testLiveStream')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('live stream');\n        done();\n      });\n    });\n\n    /** @test {LiveStreams.resetStreamKey} */\n    it('throws an error when a live stream id is not given', () => (\n      testLiveStreams.resetStreamKey()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A Live Stream ID is required to reset a live stream key');\n        })\n    ));\n  });\n\n  /** @test {LiveStreams.createPlaybackId} */\n  describe('LiveStreams.createPlaybackId', () => {\n    /** @test {LiveStreams.createPlaybackId} */\n    it('makes a POST request to create a playback ID for a live stream', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams/testLiveStream/playback-ids', {\n        status: 200,\n        responseText: 'create',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.createPlaybackId('testLiveStream', { policy: 'public' })\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('create');\n        done();\n      });\n    });\n\n    /** @test {LiveStreams.createPlaybackId} */\n    it('throws an error if a Live Stream ID is not given', () => (\n      testLiveStreams.createPlaybackId()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A Live Stream ID is required to create a live stream playback ID');\n        })\n    ));\n  });\n\n  /** @test {LiveStreams.deletePlaybackId} */\n  describe('LiveStreams.deletePlaybackId', () => {\n    /** @test {LiveStreams.deletePlaybackId} */\n    it('makes a DELETE request to delete a playback ID for a live stream', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams/testLiveStream/playback-ids/testPlaybackId', {\n        status: 200,\n        responseText: 'delete',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.deletePlaybackId('testLiveStream', 'testPlaybackId')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('delete');\n        done();\n      });\n    });\n\n    /** @test {LiveStreams.deletePlaybackId} */\n    it('throws an error if a Live Stream ID is not given', () => (\n      testLiveStreams.deletePlaybackId()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A Live Stream ID is required to delete a live stream playback ID');\n        })\n    ));\n\n    /** @test {LiveStreams.deletePlaybackId} */\n    it('throws an error if a playback id is not given', () => (\n      testLiveStreams.deletePlaybackId('liveStreamId')\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A live stream playback ID is required to delete a live stream playback ID');\n        })\n    ));\n  });\n});\n",
+    "content": "const { expect } = require('chai');\nconst sinon = require('sinon');\nconst moxios = require('moxios');\nconst LiveStreams = require('../../../../src/video/resources/liveStreams');\n\n/** @test {LiveStreams} */\ndescribe('Unit::LiveStreams', () => {\n  beforeEach(() => {\n    moxios.install();\n  });\n\n  afterEach(() => {\n    moxios.uninstall();\n  });\n\n  const testApiKey = 'testApiKey';\n  const testSecret = 'testSecret';\n  const testLiveStreams = new LiveStreams(testApiKey, testSecret);\n\n  /** @test {LiveStreams} */\n  describe('LiveStreams', () => {\n    /** @test {LiveStreams} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new LiveStreams()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {LiveStreams} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new LiveStreams('testKey')).to.throw('API secret key must be provided');\n    });\n\n    /** @test {LiveStreams} */\n    it('creates a new LiveStreams instance', () => {\n      const TestLiveStreams = new LiveStreams(testApiKey, testSecret);\n      expect(() => new LiveStreams(testApiKey, testSecret)).to.not.throw();\n      expect(TestLiveStreams.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestLiveStreams.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {LiveStreams.create} */\n  describe('LiveStreams.create', () => {\n    /** @test {LiveStreams.create} */\n    it('makes a POST request to create a LiveStream asset', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams', {\n        status: 200,\n        responseText: 'create',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.create('testLiveStream', { playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } })\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('create');\n        done();\n      });\n    });\n  });\n\n  /** @test {LiveStreams.remove} */\n  describe('LiveStreams.remove', () => {\n    /** @test {LiveStreams.remove} */\n    it('makes a DELETE request to delete a live stream', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams/testLiveStream', {\n        status: 200,\n        responseText: 'delete live stream',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.remove('testLiveStream')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('delete live stream');\n        done();\n      });\n    });\n\n    /** @test {LiveStreams.remove} */\n    it('throws an error when a live stream id is not given', () => (\n      testLiveStreams.remove()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A live stream ID is required to delete a live stream');\n        })\n    ));\n  });\n\n  /** @test {LiveStreams.list} */\n  describe('LiveStreams.list', () => {\n    /** @test {LiveStreams.list} */\n    it('makes a GET request to list all live streams', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams', {\n        status: 200,\n        responseText: 'list',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.list()\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('list');\n        done();\n      });\n    });\n\n    it('makes a GET request to list 100 live streams offset by 2 pages', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams?limit=100&page=2', {\n        status: 200,\n        responseText: 'list',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.list({limit: 100, page: 2})\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('list');\n        done();\n      });\n    });\n  });\n\n  /** @test {LiveStreams.get} */\n  describe('LiveStreams.get', () => {\n    /** @test {LiveStreams.get} */\n    it('makes a GET request to get a live stream', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams/testLiveStream', {\n        status: 200,\n        responseText: 'live stream',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.get('testLiveStream')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('live stream');\n        done();\n      });\n    });\n\n    /** @test {LiveStreams.get} */\n    it('throws an error when a live stream id is not given', () => (\n      testLiveStreams.get()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A live stream ID is required to get a live stream');\n        })\n    ));\n  });\n\n  /** @test {LiveStreams.signalComplete} */\n  describe('LiveStreams.signalComplete', () => {\n    /** @test {LiveStreams.signalComplete} */\n    it('makes a PUT request to signal a live stream is complete', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams/testLiveStream/complete', {\n        status: 200,\n        responseText: 'live stream',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.signalComplete('testLiveStream')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('live stream');\n        done();\n      });\n    });\n\n    /** @test {LiveStreams.signalComplete} */\n    it('throws an error when a live stream id is not given', () => (\n      testLiveStreams.signalComplete()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A Live Stream ID is required to signal a stream is complete');\n        })\n    ));\n  });\n\n  /** @test {LiveStreams.resetStreamKey} */\n  describe('LiveStreams.resetStreamKey', () => {\n    /** @test {LiveStreams.resetStreamKey} */\n    it('makes a POST request to reset a live stream key', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams/testLiveStream/reset-stream-key', {\n        status: 200,\n        responseText: 'live stream',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.resetStreamKey('testLiveStream')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('live stream');\n        done();\n      });\n    });\n\n    /** @test {LiveStreams.resetStreamKey} */\n    it('throws an error when a live stream id is not given', () => (\n      testLiveStreams.resetStreamKey()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A Live Stream ID is required to reset a live stream key');\n        })\n    ));\n  });\n\n  /** @test {LiveStreams.createPlaybackId} */\n  describe('LiveStreams.createPlaybackId', () => {\n    /** @test {LiveStreams.createPlaybackId} */\n    it('makes a POST request to create a playback ID for a live stream', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams/testLiveStream/playback-ids', {\n        status: 200,\n        responseText: 'create',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.createPlaybackId('testLiveStream', { policy: 'public' })\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('create');\n        done();\n      });\n    });\n\n    /** @test {LiveStreams.createPlaybackId} */\n    it('throws an error if a Live Stream ID is not given', () => (\n      testLiveStreams.createPlaybackId('testLiveStream')\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A playback policy is required to create a live stream playback ID');\n        })\n    ));\n\n    /** @test {LiveStreams.createPlaybackId} */\n    it('throws an error if params are not given', () => (\n      testLiveStreams.createPlaybackId()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A Live Stream ID is required to create a live stream playback ID');\n        })\n    ));\n  });\n\n  /** @test {LiveStreams.deletePlaybackId} */\n  describe('LiveStreams.deletePlaybackId', () => {\n    /** @test {LiveStreams.deletePlaybackId} */\n    it('makes a DELETE request to delete a playback ID for a live stream', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/live-streams/testLiveStream/playback-ids/testPlaybackId', {\n        status: 200,\n        responseText: 'delete',\n      });\n\n      const onFulfilled = sinon.spy();\n      testLiveStreams.deletePlaybackId('testLiveStream', 'testPlaybackId')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('delete');\n        done();\n      });\n    });\n\n    /** @test {LiveStreams.deletePlaybackId} */\n    it('throws an error if a Live Stream ID is not given', () => (\n      testLiveStreams.deletePlaybackId()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A Live Stream ID is required to delete a live stream playback ID');\n        })\n    ));\n\n    /** @test {LiveStreams.deletePlaybackId} */\n    it('throws an error if a playback id is not given', () => (\n      testLiveStreams.deletePlaybackId('liveStreamId')\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A live stream playback ID is required to delete a live stream playback ID');\n        })\n    ));\n  });\n});\n",
     "static": true,
     "longname": "/Users/JacquiManzi/Documents/Mux/mux-node-sdk/test/unit/video/resources/liveStreams.spec.js",
     "access": null,
@@ -5686,31 +5685,31 @@
   {
     "__docId__": 267,
     "kind": "test",
-    "name": "describe115",
+    "name": "it115",
     "testId": 115,
-    "memberof": "test/unit/video/resources/liveStreams.spec.js~describe90",
-    "testDepth": 1,
+    "memberof": "test/unit/video/resources/liveStreams.spec.js~describe90.describe112",
+    "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/liveStreams.spec.js~describe90.describe115",
+    "longname": "test/unit/video/resources/liveStreams.spec.js~describe90.describe112.it115",
     "access": null,
-    "description": "LiveStreams.deletePlaybackId",
-    "lineNumber": 258,
+    "description": "throws an error if params are not given",
+    "lineNumber": 257,
     "testTargets": [
-      "LiveStreams.deletePlaybackId"
+      "LiveStreams.createPlaybackId"
     ]
   },
   {
     "__docId__": 268,
     "kind": "test",
-    "name": "it116",
+    "name": "describe116",
     "testId": 116,
-    "memberof": "test/unit/video/resources/liveStreams.spec.js~describe90.describe115",
-    "testDepth": 2,
+    "memberof": "test/unit/video/resources/liveStreams.spec.js~describe90",
+    "testDepth": 1,
     "static": true,
-    "longname": "test/unit/video/resources/liveStreams.spec.js~describe90.describe115.it116",
+    "longname": "test/unit/video/resources/liveStreams.spec.js~describe90.describe116",
     "access": null,
-    "description": "makes a DELETE request to delete a playback ID for a live stream",
-    "lineNumber": 260,
+    "description": "LiveStreams.deletePlaybackId",
+    "lineNumber": 270,
     "testTargets": [
       "LiveStreams.deletePlaybackId"
     ]
@@ -5720,13 +5719,13 @@
     "kind": "test",
     "name": "it117",
     "testId": 117,
-    "memberof": "test/unit/video/resources/liveStreams.spec.js~describe90.describe115",
+    "memberof": "test/unit/video/resources/liveStreams.spec.js~describe90.describe116",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/liveStreams.spec.js~describe90.describe115.it117",
+    "longname": "test/unit/video/resources/liveStreams.spec.js~describe90.describe116.it117",
     "access": null,
-    "description": "throws an error if a Live Stream ID is not given",
-    "lineNumber": 277,
+    "description": "makes a DELETE request to delete a playback ID for a live stream",
+    "lineNumber": 272,
     "testTargets": [
       "LiveStreams.deletePlaybackId"
     ]
@@ -5736,12 +5735,12 @@
     "kind": "test",
     "name": "it118",
     "testId": 118,
-    "memberof": "test/unit/video/resources/liveStreams.spec.js~describe90.describe115",
+    "memberof": "test/unit/video/resources/liveStreams.spec.js~describe90.describe116",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/liveStreams.spec.js~describe90.describe115.it118",
+    "longname": "test/unit/video/resources/liveStreams.spec.js~describe90.describe116.it118",
     "access": null,
-    "description": "throws an error if a playback id is not given",
+    "description": "throws an error if a Live Stream ID is not given",
     "lineNumber": 289,
     "testTargets": [
       "LiveStreams.deletePlaybackId"
@@ -5749,6 +5748,22 @@
   },
   {
     "__docId__": 271,
+    "kind": "test",
+    "name": "it119",
+    "testId": 119,
+    "memberof": "test/unit/video/resources/liveStreams.spec.js~describe90.describe116",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/liveStreams.spec.js~describe90.describe116.it119",
+    "access": null,
+    "description": "throws an error if a playback id is not given",
+    "lineNumber": 301,
+    "testTargets": [
+      "LiveStreams.deletePlaybackId"
+    ]
+  },
+  {
+    "__docId__": 272,
     "kind": "testFile",
     "name": "test/unit/video/resources/playbackIds.spec.js",
     "content": "const { expect } = require('chai');\nconst sinon = require('sinon');\nconst moxios = require('moxios');\nconst PlaybackIds = require('../../../../src/video/resources/playbackIds');\n\n/** @test {PlaybackIds} */\ndescribe('Unit::PlaybackIds', () => {\n  beforeEach(() => {\n    moxios.install();\n  });\n\n  afterEach(() => {\n    moxios.uninstall();\n  });\n\n  const testApiKey = 'testApiKey';\n  const testSecret = 'testSecret';\n  const testPlaybackIds = new PlaybackIds(testApiKey, testSecret);\n\n  /** @test {PlaybackIds} */\n  describe('PlaybackIds', () => {\n    /** @test {PlaybackIds} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new PlaybackIds()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {PlaybackIds} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new PlaybackIds('testKey')).to.throw('API secret key must be provided');\n    });\n\n    /** @test {PlaybackIds} */\n    it('creates a new PlaybackIds instance', () => {\n      const TestPlaybackIds = new PlaybackIds(testApiKey, testSecret);\n      expect(() => new PlaybackIds(testApiKey, testSecret)).to.not.throw();\n      expect(TestPlaybackIds.requestOptions.auth.username).to.equal(testApiKey);\n      expect(TestPlaybackIds.requestOptions.auth.password).to.equal(testSecret);\n    });\n  });\n\n  /** @test {PlaybackIds.create} */\n  describe('PlaybackIds.create', () => {\n    /** @test {PlaybackIds.create} */\n    it('makes a POST request to create a Playback Id for an asset', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset/playback-ids', {\n        status: 200,\n        responseText: 'create',\n      });\n\n      const onFulfilled = sinon.spy();\n      testPlaybackIds.create('testAsset', { policy: 'public' })\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('create');\n        done();\n      });\n    });\n\n    /** @test {PlaybackIds.create} */\n    it('throws an error if an asset id is not given', () => (\n      testPlaybackIds.create()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to create a playback ID');\n        })\n    ));\n\n    /** @test {PlaybackIds.create} */\n    it('throws an error if playbackId params are not given', () => (\n      testPlaybackIds.create('assetid')\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('Playback ID params are required');\n        })\n    ));\n  });\n\n  /** @test {PlaybackIds.deletePlaybackId} */\n  describe('PlaybackIds.deletePlaybackId', () => {\n    /** @test {PlaybackIds.deletePlaybackId} */\n    it('makes a DELETE request to delete a Playback Id for an asset', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset/playback-ids/testPlaybackId', {\n        status: 200,\n        responseText: 'delete',\n      });\n\n      const onFulfilled = sinon.spy();\n      testPlaybackIds.deletePlaybackId('testAsset', 'testPlaybackId')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('delete');\n        done();\n      });\n    });\n\n    /** @test {PlaybackIds.deletePlaybackId} */\n    it('throws an error if an asset id is not given', () => (\n      testPlaybackIds.deletePlaybackId()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to delete a playback ID');\n        })\n    ));\n\n    /** @test {PlaybackIds.deletePlaybackId} */\n    it('throws an error if playbackId params are not given', () => (\n      testPlaybackIds.deletePlaybackId('assetid')\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A playback ID is required to delete a playback ID');\n        })\n    ));\n  });\n\n  /** @test {PlaybackIds.get} */\n  describe('PlaybackIds.get', () => {\n    /** @test {PlaybackIds.get} */\n    it('makes a GET request to get a Playback Id for an asset', (done) => {\n      moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset/playback-ids/testPlaybackId', {\n        status: 200,\n        responseText: 'get',\n      });\n\n      const onFulfilled = sinon.spy();\n      testPlaybackIds.get('testAsset', 'testPlaybackId')\n        .then(onFulfilled);\n\n      return moxios.wait(() => {\n        expect(onFulfilled.getCall(0).args[0].data).to.equal('get');\n        done();\n      });\n    });\n\n    /** @test {PlaybackIds.get} */\n    it('throws an error if an asset id is not given', () => (\n      testPlaybackIds.get()\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('An asset ID is required to get a playback ID');\n        })\n    ));\n\n    /** @test {PlaybackIds.get} */\n    it('throws an error if playbackId params are not given', () => (\n      testPlaybackIds.get('assetid')\n        .then((res) => {\n          expect(res).to.not.exist;\n        })\n        .catch((err) => {\n          expect(err).to.exist;\n          expect(err.message).to.equal('A playback ID is required to get a playback ID');\n        })\n    ));\n  });\n});\n",
@@ -5759,14 +5774,14 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 272,
+    "__docId__": 273,
     "kind": "test",
-    "name": "describe119",
-    "testId": 119,
+    "name": "describe120",
+    "testId": 120,
     "memberof": "test/unit/video/resources/playbackIds.spec.js",
     "testDepth": 0,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120",
     "access": null,
     "description": "Unit::PlaybackIds",
     "lineNumber": 7,
@@ -5775,33 +5790,17 @@
     ]
   },
   {
-    "__docId__": 273,
+    "__docId__": 274,
     "kind": "test",
-    "name": "describe120",
-    "testId": 120,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119",
+    "name": "describe121",
+    "testId": 121,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe120",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe121",
     "access": null,
     "description": "PlaybackIds",
     "lineNumber": 21,
-    "testTargets": [
-      "PlaybackIds"
-    ]
-  },
-  {
-    "__docId__": 274,
-    "kind": "test",
-    "name": "it121",
-    "testId": 121,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119.describe120",
-    "testDepth": 2,
-    "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe120.it121",
-    "access": null,
-    "description": "throws an error if an api key is not given",
-    "lineNumber": 23,
     "testTargets": [
       "PlaybackIds"
     ]
@@ -5811,13 +5810,13 @@
     "kind": "test",
     "name": "it122",
     "testId": 122,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119.describe120",
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120.describe121",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe120.it122",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe121.it122",
     "access": null,
-    "description": "throws an error if a secret key is not given",
-    "lineNumber": 28,
+    "description": "throws an error if an api key is not given",
+    "lineNumber": 23,
     "testTargets": [
       "PlaybackIds"
     ]
@@ -5827,10 +5826,26 @@
     "kind": "test",
     "name": "it123",
     "testId": 123,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119.describe120",
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120.describe121",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe120.it123",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe121.it123",
+    "access": null,
+    "description": "throws an error if a secret key is not given",
+    "lineNumber": 28,
+    "testTargets": [
+      "PlaybackIds"
+    ]
+  },
+  {
+    "__docId__": 277,
+    "kind": "test",
+    "name": "it124",
+    "testId": 124,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120.describe121",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe121.it124",
     "access": null,
     "description": "creates a new PlaybackIds instance",
     "lineNumber": 33,
@@ -5839,33 +5854,17 @@
     ]
   },
   {
-    "__docId__": 277,
+    "__docId__": 278,
     "kind": "test",
-    "name": "describe124",
-    "testId": 124,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119",
+    "name": "describe125",
+    "testId": 125,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe124",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe125",
     "access": null,
     "description": "PlaybackIds.create",
     "lineNumber": 42,
-    "testTargets": [
-      "PlaybackIds.create"
-    ]
-  },
-  {
-    "__docId__": 278,
-    "kind": "test",
-    "name": "it125",
-    "testId": 125,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119.describe124",
-    "testDepth": 2,
-    "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe124.it125",
-    "access": null,
-    "description": "makes a POST request to create a Playback Id for an asset",
-    "lineNumber": 44,
     "testTargets": [
       "PlaybackIds.create"
     ]
@@ -5875,13 +5874,13 @@
     "kind": "test",
     "name": "it126",
     "testId": 126,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119.describe124",
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120.describe125",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe124.it126",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe125.it126",
     "access": null,
-    "description": "throws an error if an asset id is not given",
-    "lineNumber": 61,
+    "description": "makes a POST request to create a Playback Id for an asset",
+    "lineNumber": 44,
     "testTargets": [
       "PlaybackIds.create"
     ]
@@ -5891,10 +5890,26 @@
     "kind": "test",
     "name": "it127",
     "testId": 127,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119.describe124",
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120.describe125",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe124.it127",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe125.it127",
+    "access": null,
+    "description": "throws an error if an asset id is not given",
+    "lineNumber": 61,
+    "testTargets": [
+      "PlaybackIds.create"
+    ]
+  },
+  {
+    "__docId__": 281,
+    "kind": "test",
+    "name": "it128",
+    "testId": 128,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120.describe125",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe125.it128",
     "access": null,
     "description": "throws an error if playbackId params are not given",
     "lineNumber": 73,
@@ -5903,33 +5918,17 @@
     ]
   },
   {
-    "__docId__": 281,
+    "__docId__": 282,
     "kind": "test",
-    "name": "describe128",
-    "testId": 128,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119",
+    "name": "describe129",
+    "testId": 129,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe128",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe129",
     "access": null,
     "description": "PlaybackIds.deletePlaybackId",
     "lineNumber": 86,
-    "testTargets": [
-      "PlaybackIds.deletePlaybackId"
-    ]
-  },
-  {
-    "__docId__": 282,
-    "kind": "test",
-    "name": "it129",
-    "testId": 129,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119.describe128",
-    "testDepth": 2,
-    "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe128.it129",
-    "access": null,
-    "description": "makes a DELETE request to delete a Playback Id for an asset",
-    "lineNumber": 88,
     "testTargets": [
       "PlaybackIds.deletePlaybackId"
     ]
@@ -5939,13 +5938,13 @@
     "kind": "test",
     "name": "it130",
     "testId": 130,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119.describe128",
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120.describe129",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe128.it130",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe129.it130",
     "access": null,
-    "description": "throws an error if an asset id is not given",
-    "lineNumber": 105,
+    "description": "makes a DELETE request to delete a Playback Id for an asset",
+    "lineNumber": 88,
     "testTargets": [
       "PlaybackIds.deletePlaybackId"
     ]
@@ -5955,10 +5954,26 @@
     "kind": "test",
     "name": "it131",
     "testId": 131,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119.describe128",
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120.describe129",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe128.it131",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe129.it131",
+    "access": null,
+    "description": "throws an error if an asset id is not given",
+    "lineNumber": 105,
+    "testTargets": [
+      "PlaybackIds.deletePlaybackId"
+    ]
+  },
+  {
+    "__docId__": 285,
+    "kind": "test",
+    "name": "it132",
+    "testId": 132,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120.describe129",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe129.it132",
     "access": null,
     "description": "throws an error if playbackId params are not given",
     "lineNumber": 117,
@@ -5967,33 +5982,17 @@
     ]
   },
   {
-    "__docId__": 285,
+    "__docId__": 286,
     "kind": "test",
-    "name": "describe132",
-    "testId": 132,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119",
+    "name": "describe133",
+    "testId": 133,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe132",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe133",
     "access": null,
     "description": "PlaybackIds.get",
     "lineNumber": 130,
-    "testTargets": [
-      "PlaybackIds.get"
-    ]
-  },
-  {
-    "__docId__": 286,
-    "kind": "test",
-    "name": "it133",
-    "testId": 133,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119.describe132",
-    "testDepth": 2,
-    "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe132.it133",
-    "access": null,
-    "description": "makes a GET request to get a Playback Id for an asset",
-    "lineNumber": 132,
     "testTargets": [
       "PlaybackIds.get"
     ]
@@ -6003,13 +6002,13 @@
     "kind": "test",
     "name": "it134",
     "testId": 134,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119.describe132",
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120.describe133",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe132.it134",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe133.it134",
     "access": null,
-    "description": "throws an error if an asset id is not given",
-    "lineNumber": 149,
+    "description": "makes a GET request to get a Playback Id for an asset",
+    "lineNumber": 132,
     "testTargets": [
       "PlaybackIds.get"
     ]
@@ -6019,10 +6018,26 @@
     "kind": "test",
     "name": "it135",
     "testId": 135,
-    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe119.describe132",
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120.describe133",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/resources/playbackIds.spec.js~describe119.describe132.it135",
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe133.it135",
+    "access": null,
+    "description": "throws an error if an asset id is not given",
+    "lineNumber": 149,
+    "testTargets": [
+      "PlaybackIds.get"
+    ]
+  },
+  {
+    "__docId__": 289,
+    "kind": "test",
+    "name": "it136",
+    "testId": 136,
+    "memberof": "test/unit/video/resources/playbackIds.spec.js~describe120.describe133",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/resources/playbackIds.spec.js~describe120.describe133.it136",
     "access": null,
     "description": "throws an error if playbackId params are not given",
     "lineNumber": 161,
@@ -6031,7 +6046,7 @@
     ]
   },
   {
-    "__docId__": 289,
+    "__docId__": 290,
     "kind": "testFile",
     "name": "test/unit/video/video.spec.js",
     "content": "const { expect } = require('chai');\nconst Video = require('../../../src/video/video');\nconst Assets = require('../../../src/video/resources/assets');\nconst PlaybackIds = require('../../../src/video/resources/playbackIds');\n\n/** @test {Video} */\ndescribe('Unit::Video', () => {\n  const testApiKey = 'testApiKey';\n  const testSecret = 'testSecret';\n\n  /** @test {Video} */\n  describe('Video', () => {\n    /** @test {Video} */\n    it('throws an error if an api key is not given', () => {\n      expect(() => new Video()).to.throw('API Access Token must be provided.');\n    });\n\n    /** @test {Video} */\n    it('throws an error if a secret key is not given', () => {\n      expect(() => new Video('testKey')).to.throw('API secret key must be provided');\n    });\n\n    /** @test {Video} */\n    it('creates a new Video instance', () => {\n      const TestVideo = new Video(testApiKey, testSecret);\n      expect(() => new Video(testApiKey, testSecret)).to.not.throw();\n      expect(TestVideo.assets).to.be.an.instanceof(Assets);\n      expect(TestVideo.playbackIds).to.be.an.instanceof(PlaybackIds);\n    });\n  });\n});\n",
@@ -6042,14 +6057,14 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 290,
+    "__docId__": 291,
     "kind": "test",
-    "name": "describe136",
-    "testId": 136,
+    "name": "describe137",
+    "testId": 137,
     "memberof": "test/unit/video/video.spec.js",
     "testDepth": 0,
     "static": true,
-    "longname": "test/unit/video/video.spec.js~describe136",
+    "longname": "test/unit/video/video.spec.js~describe137",
     "access": null,
     "description": "Unit::Video",
     "lineNumber": 7,
@@ -6058,33 +6073,17 @@
     ]
   },
   {
-    "__docId__": 291,
+    "__docId__": 292,
     "kind": "test",
-    "name": "describe137",
-    "testId": 137,
-    "memberof": "test/unit/video/video.spec.js~describe136",
+    "name": "describe138",
+    "testId": 138,
+    "memberof": "test/unit/video/video.spec.js~describe137",
     "testDepth": 1,
     "static": true,
-    "longname": "test/unit/video/video.spec.js~describe136.describe137",
+    "longname": "test/unit/video/video.spec.js~describe137.describe138",
     "access": null,
     "description": "Video",
     "lineNumber": 12,
-    "testTargets": [
-      "Video"
-    ]
-  },
-  {
-    "__docId__": 292,
-    "kind": "test",
-    "name": "it138",
-    "testId": 138,
-    "memberof": "test/unit/video/video.spec.js~describe136.describe137",
-    "testDepth": 2,
-    "static": true,
-    "longname": "test/unit/video/video.spec.js~describe136.describe137.it138",
-    "access": null,
-    "description": "throws an error if an api key is not given",
-    "lineNumber": 14,
     "testTargets": [
       "Video"
     ]
@@ -6094,13 +6093,13 @@
     "kind": "test",
     "name": "it139",
     "testId": 139,
-    "memberof": "test/unit/video/video.spec.js~describe136.describe137",
+    "memberof": "test/unit/video/video.spec.js~describe137.describe138",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/video.spec.js~describe136.describe137.it139",
+    "longname": "test/unit/video/video.spec.js~describe137.describe138.it139",
     "access": null,
-    "description": "throws an error if a secret key is not given",
-    "lineNumber": 19,
+    "description": "throws an error if an api key is not given",
+    "lineNumber": 14,
     "testTargets": [
       "Video"
     ]
@@ -6110,10 +6109,26 @@
     "kind": "test",
     "name": "it140",
     "testId": 140,
-    "memberof": "test/unit/video/video.spec.js~describe136.describe137",
+    "memberof": "test/unit/video/video.spec.js~describe137.describe138",
     "testDepth": 2,
     "static": true,
-    "longname": "test/unit/video/video.spec.js~describe136.describe137.it140",
+    "longname": "test/unit/video/video.spec.js~describe137.describe138.it140",
+    "access": null,
+    "description": "throws an error if a secret key is not given",
+    "lineNumber": 19,
+    "testTargets": [
+      "Video"
+    ]
+  },
+  {
+    "__docId__": 295,
+    "kind": "test",
+    "name": "it141",
+    "testId": 141,
+    "memberof": "test/unit/video/video.spec.js~describe137.describe138",
+    "testDepth": 2,
+    "static": true,
+    "longname": "test/unit/video/video.spec.js~describe137.describe138.it141",
     "access": null,
     "description": "creates a new Video instance",
     "lineNumber": 24,

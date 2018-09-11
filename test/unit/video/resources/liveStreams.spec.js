@@ -243,6 +243,18 @@ describe('Unit::LiveStreams', () => {
 
     /** @test {LiveStreams.createPlaybackId} */
     it('throws an error if a Live Stream ID is not given', () => (
+      testLiveStreams.createPlaybackId('testLiveStream')
+        .then((res) => {
+          expect(res).to.not.exist;
+        })
+        .catch((err) => {
+          expect(err).to.exist;
+          expect(err.message).to.equal('A playback policy is required to create a live stream playback ID');
+        })
+    ));
+
+    /** @test {LiveStreams.createPlaybackId} */
+    it('throws an error if params are not given', () => (
       testLiveStreams.createPlaybackId()
         .then((res) => {
           expect(res).to.not.exist;
