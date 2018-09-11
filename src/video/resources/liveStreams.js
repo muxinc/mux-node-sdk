@@ -196,6 +196,10 @@ class LiveStreams {
     if (!liveStreamId) {
       return Promise.reject(new Error('A Live Stream ID is required to create a live stream playback ID'));
     }
+
+    if (!params) {
+      return Promise.reject(new Error('A playback policy is required to create a live stream playback ID'));
+    }
     return api.post(`${buildBasePath(liveStreamId)}/playback-ids`, params, this.requestOptions);
   }
 

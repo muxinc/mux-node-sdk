@@ -236,6 +236,18 @@ describe('Integration::LiveStreams', () => {
           should.exist(err);
         })
     ));
+
+    /** @test {LiveStreams.createPlaybackId} */
+    it('fails to create a playback id if not given a playback policy', () => (
+      Video.liveStreams.createPlaybackId('somefakeid')
+        .then((res) => {
+          const { data } = res;
+          should.not.exist(data);
+        })
+        .catch((err) => {
+          should.exist(err);
+        })
+    ));
   });
 
   /** @test {LiveStreams.deletePlaybackId} */
