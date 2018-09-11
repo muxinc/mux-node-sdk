@@ -66,7 +66,7 @@ class PlaybackIds {
    * // Create a playback Id for an asset
    * Video.playbackIds.create('assetId', { policy: 'public' });
    *
-   * @see https://docs.mux.com/v1/reference#add-an-asset-playback-id
+   * @see https://docs.mux.com/reference#add-an-asset-playback-id
    */
   create(assetId, params) {
     if (!assetId) {
@@ -92,7 +92,7 @@ class PlaybackIds {
    * // Get an asset
    * Video.playbackIds.get(assetId, playbackId);
    *
-   * @see https://docs.mux.com/v1/reference#retrieve-an-asset-playback-id
+   * @see https://docs.mux.com/reference#retrieve-an-asset-playback-id
    */
   get(assetId, playbackId) {
     if (!assetId) {
@@ -118,7 +118,7 @@ class PlaybackIds {
    * // Delete a playback ID
    * Video.playbackIds.deletePlaybackId(assetId, playbackId);
    *
-   * @see https://docs.mux.com/v1/reference#delete-an-asset-playback-id
+   * @see https://docs.mux.com/reference#delete-an-asset-playback-id
    */
   deletePlaybackId(assetId, playbackId) {
     if (!assetId) {

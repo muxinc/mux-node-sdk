@@ -212,21 +212,22 @@ describe('Integration::LiveStreams', () => {
   /** @test {LiveStreams.createPlaybackId} */
   describe('LiveStreams.createPlaybackId', () => {
     /** @test {LiveStreams.createPlaybackId} */
-    it('creates a playback if for a live stream', () => (
-      Video.liveStreams.createPlaybackId(testLiveStream.data.id)
+    it('creates a playback id for a live stream', () => (
+      Video.liveStreams.createPlaybackId(testLiveStream.data.id, { policy: 'public' })
         .then((res) => {
           const { data } = res;
           should.exist(data);
-          expect(res.status).to.equal(200);
+          expect(res.status).to.equal(201);
         })
         .catch((err) => {
+          console.log(err)
           should.not.exist(err);
         })
     ));
 
     /** @test {LiveStreams.createPlaybackId} */
-    it('fails to reset a stream key if given an incorrect live stream id', () => (
-      Video.liveStreams.createPlaybackId('somefakeid')
+    it('fails to create a playback id if given an incorrect live stream id', () => (
+      Video.liveStreams.createPlaybackId('somefakeid', { policy: 'public' })
         .then((res) => {
           const { data } = res;
           should.not.exist(data);
@@ -241,7 +242,7 @@ describe('Integration::LiveStreams', () => {
   describe('LiveStreams.deletePlaybackId', () => {
     /** @test {LiveStreams.deletePlaybackId} */
     it('deletes playbackIds for a live stream', () => (
-      Video.liveStreams.deletePlaybackId(testLiveStream.data.id, { policy: 'public' })
+      Video.liveStreams.createPlaybackId(testLiveStream.data.id, { policy: 'public' })
         .then((res) => {
           const { data } = res;
           should.exist(data);
