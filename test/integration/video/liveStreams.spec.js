@@ -189,7 +189,7 @@ describe('Integration::LiveStreams', () => {
         .then((res) => {
           const { data } = res;
           should.exist(data);
-          expect(res.status).to.equal(200);
+          expect(res.status).to.equal(201);
         })
         .catch((err) => {
           should.not.exist(err);
