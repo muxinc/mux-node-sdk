@@ -20,7 +20,7 @@ yarn add @mux/mux-node
 ```
 
 ## Releases
- The latest **stable** release is `1.1.0`
+ The latest **stable** release is `1.1.1`
 
 ## Usage
 To start, you will need a Mux access token and secret for your Mux environment. For more information on where to get
