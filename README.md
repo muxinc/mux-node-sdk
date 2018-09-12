@@ -12,11 +12,11 @@ See the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk)
 
 ## Installation
 ```
-npm install @mux/mux-node@1.0.0 --save
+npm install @mux/mux-node --save
 ```
 or
 ```
-yarn add @mux/mux-node@1.0.0
+yarn add @mux/mux-node
 ```
 
 ## Releases
