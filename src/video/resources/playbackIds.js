@@ -4,6 +4,7 @@
  */
 
 const api = require('../../utils/api');
+const Base = require('../../base');
 
 /**
  * @private
@@ -21,38 +22,7 @@ const buildBasePath = assetId => `/video/v1/assets/${assetId}/playback-ids`;
  * // Create a playback Id for an asset
  * Video.playbackIds.create('assetId', { policy: 'public' });
  */
-class PlaybackIds {
-  /**
-   * @ignore
-   * PlaybackIds Constructor
-   *
-   * @param {string} accessToken - Mux API Access Token
-   * @param {string} secret - Mux API Access Token secret
-   * @constructor
-   */
-  constructor(accessToken, secret) {
-    if (typeof accessToken === 'undefined') {
-      throw new Error('API Access Token must be provided.');
-    }
-
-    if (typeof secret === 'undefined') {
-      throw new Error('API secret key must be provided');
-    }
-
-    /**
-     *  @ignore
-     *  @type {Object} requestOptions - The HTTP request options for Mux Assets
-     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)
-     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)
-     * */
-    this.requestOptions = {
-      auth: {
-        username: accessToken,
-        password: secret,
-      },
-    };
-  }
-
+class PlaybackIds extends Base {
   /**
    * Creates a playback ID for a Mux asset with the specified JSON parameters
    * @param {string} assetId - Asset ID for the asset to create the playback ID for

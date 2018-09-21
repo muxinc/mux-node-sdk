@@ -4,6 +4,7 @@
  */
 
 const api = require('../../utils/api');
+const Base = require('../../base');
 
 /**
  * @private Base filters path for the Mux API
@@ -20,38 +21,7 @@ const PATH = '/data/v1/filters';
  * // Lists all the filters broken out into basic and advanced
  * Data.filters.list();
  */
-class Filters {
-  /**
-   * @ignore
-   * Filters Constructor
-   *
-   * @param {string} accessToken - Mux API Access Token
-   * @param {string} secret - Mux API Access Token secret
-   * @constructor
-   */
-  constructor(accessToken, secret) {
-    if (typeof accessToken === 'undefined') {
-      throw new Error('API Access Token must be provided.');
-    }
-
-    if (typeof secret === 'undefined') {
-      throw new Error('API secret key must be provided');
-    }
-
-    /**
-     *  @ignore
-     *  @type {Object} requestOptions - The HTTP request options for Mux Assets
-     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)
-     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)
-     * */
-    this.requestOptions = {
-      auth: {
-        username: accessToken,
-        password: secret,
-      },
-    };
-  }
-
+class Filters extends Base {
   /**
    * Lists the values for a filter along with a total count of related views
    *
