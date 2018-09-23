@@ -14,6 +14,7 @@ const PATH = '/data/v1/metrics';
 /**
  * Metrics Class - Provides access to the Mux Data Metrics API
  *
+ * @extends Base
  * @example
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;

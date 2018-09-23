@@ -10,6 +10,7 @@ const LiveStreams = require('./resources/liveStreams');
 
 /**
  * @ignore
+ * @extends Base
  * Video Class - Provides access to the Mux Video API
  *
  * @example

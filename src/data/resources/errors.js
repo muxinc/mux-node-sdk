@@ -13,7 +13,7 @@ const PATH = '/data/v1/errors';
 
 /**
  * Errors Class - Provides access to the Mux Data Errors API
- *
+ * @extends Base
  * @example
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;

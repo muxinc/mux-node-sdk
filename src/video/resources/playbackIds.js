@@ -15,6 +15,7 @@ const buildBasePath = assetId => `/video/v1/assets/${assetId}/playback-ids`;
 /**
  * PlaybackIds Class - Provides access to the Mux Video PlaybackIds API
  *
+ * @extends Base
  * @example
  * const muxClient = new Mux(accessToken, secret);
  * const { Video } = muxClient;

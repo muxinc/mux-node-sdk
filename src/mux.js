@@ -10,6 +10,7 @@ const Data = require('./data/data');
 /**
  * Mux Class - Provides access to the Mux Video and Mux Data API
  *
+ * @extends Base
  * @type {Video}
  * @property {Video} Mux.Video provides access to the Mux Video API
  * @type {Data}

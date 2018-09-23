@@ -20,6 +20,7 @@ const buildBasePath = liveStreamId => `${PATH}/${liveStreamId}`;
 /**
  * Live Streams Class - Provides access to the Mux Video Live Streams API
  *
+ * @extends Base
  * @example
  * const muxClient = new Mux(accessToken, secret);
  * const { Video } = muxClient;

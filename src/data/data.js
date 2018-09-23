@@ -12,6 +12,7 @@ const VideoViews = require('../../src/data/resources/video_views');
 
 /**
  * @ignore
+ * @extends Base
  * Data Class - Provides access to the Mux Data API
  *
  * @example

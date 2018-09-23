@@ -24,6 +24,7 @@ const PATH = '/data/v1/exports';
 class Exports extends Base {
   /**
    * Lists the available video view exports along with URLs to retrieve them
+   * @extends Base
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
