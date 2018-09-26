@@ -4,6 +4,7 @@
  */
 
 const api = require('../../utils/api');
+const Base = require('../../base');
 
 /**
  * @private Base metrics path for the Mux API
@@ -13,6 +14,7 @@ const PATH = '/data/v1/metrics';
 /**
  * Metrics Class - Provides access to the Mux Data Metrics API
  *
+ * @extends Base
  * @example
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;
@@ -20,38 +22,7 @@ const PATH = '/data/v1/metrics';
  * // List all of the values across every breakdown for a specific metric grouped by operating system
  * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'operating_system' });
  */
-class Metrics {
-  /**
-   * @ignore
-   * Metrics Constructor
-   *
-   * @param {string} accessToken - Mux API Access Token
-   * @param {string} secret - Mux API Access Token secret
-   * @constructor
-   */
-  constructor(accessToken, secret) {
-    if (typeof accessToken === 'undefined') {
-      throw new Error('API Access Token must be provided.');
-    }
-
-    if (typeof secret === 'undefined') {
-      throw new Error('API secret key must be provided');
-    }
-
-    /**
-     *  @ignore
-     *  @type {Object} requestOptions - The HTTP request options for Mux Assets
-     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)
-     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)
-     * */
-    this.requestOptions = {
-      auth: {
-        username: accessToken,
-        password: secret,
-      },
-    };
-  }
-
+class Metrics extends Base {
   /**
    * List the breakdown values for a specific metric
    *

@@ -3,12 +3,14 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
+const Base = require('./base');
 const Video = require('./video/video');
 const Data = require('./data/data');
 
 /**
  * Mux Class - Provides access to the Mux Video and Mux Data API
  *
+ * @extends Base
  * @type {Video}
  * @property {Video} Mux.Video provides access to the Mux Video API
  * @type {Data}
@@ -31,7 +33,7 @@ const Data = require('./data/data');
  * // List all of the values across every breakdown for the `aggregate_startup_time` metric
  * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
  */
-class Mux {
+class Mux extends Base {
   /**
    * Mux Constructor
    *
@@ -40,19 +42,13 @@ class Mux {
    * @constructor
    */
   constructor(accessToken, secret) {
-    if (typeof accessToken === 'undefined') {
-      throw new Error('API Access Token must be provided.');
-    }
-
-    if (typeof secret === 'undefined') {
-      throw new Error('API secret key must be provided');
-    }
+    super(accessToken, secret);
 
     /** @type {Video} */
-    this.Video = new Video(accessToken, secret);
+    this.Video = new Video(this);
 
     /** @type {Data} */
-    this.Data = new Data(accessToken, secret);
+    this.Data = new Data(this);
   }
 }
 

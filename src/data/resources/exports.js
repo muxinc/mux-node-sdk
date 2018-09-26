@@ -4,6 +4,7 @@
  */
 
 const api = require('../../utils/api');
+const Base = require('../../base');
 
 /**
  * @private Base exports path for the Mux API
@@ -20,40 +21,10 @@ const PATH = '/data/v1/exports';
  * // Lists the available video view exports along with URLs to retrieve them
  * Data.exports.list();
  */
-class Exports {
-  /**
-   * @ignore
-   * Exports Constructor
-   *
-   * @param {string} accessToken - Mux API Access Token
-   * @param {string} secret - Mux API Access Token secret
-   * @constructor
-   */
-  constructor(accessToken, secret) {
-    if (typeof accessToken === 'undefined') {
-      throw new Error('API Access Token must be provided.');
-    }
-
-    if (typeof secret === 'undefined') {
-      throw new Error('API secret key must be provided');
-    }
-
-    /**
-     *  @ignore
-     *  @type {Object} requestOptions - The HTTP request options for Mux Assets
-     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)
-     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)
-     * */
-    this.requestOptions = {
-      auth: {
-        username: accessToken,
-        password: secret,
-      },
-    };
-  }
-
+class Exports extends Base {
   /**
    * Lists the available video view exports along with URLs to retrieve them
+   * @extends Base
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example

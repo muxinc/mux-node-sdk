@@ -4,6 +4,7 @@
  */
 
 const api = require('../../utils/api');
+const Base = require('../../base');
 
 /**
  * @private Base live stream path for the Mux API
@@ -19,6 +20,7 @@ const buildBasePath = liveStreamId => `${PATH}/${liveStreamId}`;
 /**
  * Live Streams Class - Provides access to the Mux Video Live Streams API
  *
+ * @extends Base
  * @example
  * const muxClient = new Mux(accessToken, secret);
  * const { Video } = muxClient;
@@ -26,38 +28,7 @@ const buildBasePath = liveStreamId => `${PATH}/${liveStreamId}`;
  * // Create a live stream
  * Video.liveStreams.create({ playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } });
  */
-class LiveStreams {
-  /**
-   * @ignore
-   * LiveStreams Constructor
-   *
-   * @param {string} accessToken - Mux API Access Token
-   * @param {string} secret - Mux API Access Token secret
-   * @constructor
-   */
-  constructor(accessToken, secret) {
-    if (typeof accessToken === 'undefined') {
-      throw new Error('API Access Token must be provided.');
-    }
-
-    if (typeof secret === 'undefined') {
-      throw new Error('API secret key must be provided');
-    }
-
-    /**
-     *  @ignore
-     *  @type {Object} requestOptions - The HTTP request options for Mux Live Streams
-     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)
-     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)
-     * */
-    this.requestOptions = {
-      auth: {
-        username: accessToken,
-        password: secret,
-      },
-    };
-  }
-
+class LiveStreams extends Base {
   /**
    * Creates a Mux live stream with the specified JSON parameters
    * @param {Object} params - Live Stream JSON parameters (e.g playback_policy)

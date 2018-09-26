@@ -1,5 +1,7 @@
 # Mux Node SDK
 
+![build status](https://api.travis-ci.org/muxinc/mux-node-sdk.svg?branch=master)
+
 Official Mux API wrapper for Node projects.
 
 This library is intended to provide Mux API convenience methods for applications written in server-side Javascript. __Please note__ that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.
