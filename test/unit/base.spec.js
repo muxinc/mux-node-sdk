@@ -4,8 +4,8 @@ const Base = require('../../src/base');
 /** @test {Mux} */
 describe('Unit::Base', () => {
   afterEach(() => {
-    process.env.MUX_TOKEN_ID = undefined;
-    process.env.MUX_TOKEN_SECRET = undefined;
+    delete process.env.MUX_TOKEN_ID;
+    delete process.env.MUX_TOKEN_SECRET;
   });
 
   /** @test {Base} */
