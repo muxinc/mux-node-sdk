@@ -2,8 +2,6 @@
  * Mux Exports
  * Copyright(c) 2018 Mux Inc.
  */
-
-const api = require('../../utils/api');
 const Base = require('../../base');
 
 /**
@@ -37,7 +35,7 @@ class Exports extends Base {
    * @see https://api-docs.mux.com/#export-get
    */
   list() {
-    return api.get(PATH, {}, this.requestOptions);
+    return this.http.get(PATH);
   }
 }
 

@@ -2,8 +2,6 @@
  * Mux Video Views
  * Copyright(c) 2018 Mux Inc.
  */
-
-const api = require('../../utils/api');
 const Base = require('../../base');
 
 /**
@@ -42,11 +40,11 @@ class VideoViews extends Base {
    *
    * @see https://api-docs.mux.com/#video-view-get-1
    */
-  list(queryParams) {
-    if (!queryParams || (queryParams && !queryParams.viewer_id)) {
+  list(params) {
+    if (!params || (params && !params.viewer_id)) {
       throw new Error('The viewer_id query parameter is required for listing video views.');
     }
-    return api.get(PATH, queryParams, this.requestOptions);
+    return this.http.get(PATH, params);
   }
 
   /**
@@ -68,7 +66,7 @@ class VideoViews extends Base {
     if (!videoViewId) {
       throw new Error('A video view Id is required for video view details.');
     }
-    return api.get(`${PATH}/${videoViewId}`, {}, this.requestOptions);
+    return this.http.get(`${PATH}/${videoViewId}`);
   }
 }
 

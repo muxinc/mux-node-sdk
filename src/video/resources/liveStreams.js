@@ -2,8 +2,6 @@
  * Mux Live Streams
  * Copyright(c) 2018 Mux Inc.
  */
-
-const api = require('../../utils/api');
 const Base = require('../../base');
 
 /**
@@ -26,7 +24,10 @@ const buildBasePath = liveStreamId => `${PATH}/${liveStreamId}`;
  * const { Video } = muxClient;
  *
  * // Create a live stream
- * Video.liveStreams.create({ playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } });
+ * Video.liveStreams.create({
+ *  playback_policy: 'public',
+ *  new_asset_settings: { playback_policy: 'public' }
+ * });
  */
 class LiveStreams extends Base {
   /**
@@ -39,12 +40,15 @@ class LiveStreams extends Base {
    * const { Video } = muxClient;
    *
    * // Create a live stream
-   * Video.liveStreams.create({ playback_policy: 'public', new_asset_settings: { playback_policy: 'public' } });
+   * Video.liveStreams.create({
+   *  playback_policy: 'public',
+   *  new_asset_settings: { playback_policy: 'public' }
+   * });
    *
    * @see https://docs.mux.com/reference#create-a-live-stream
    */
   create(params) {
-    return api.post(PATH, params, this.requestOptions);
+    return this.http.post(PATH, { params });
   }
 
   /**
@@ -65,7 +69,7 @@ class LiveStreams extends Base {
     if (!liveStreamId) {
       return Promise.reject(new Error('A live stream ID is required to delete a live stream'));
     }
-    return api.del(buildBasePath(liveStreamId), this.requestOptions);
+    return this.http.delete(buildBasePath(liveStreamId));
   }
 
   /**
@@ -86,7 +90,7 @@ class LiveStreams extends Base {
     if (!liveStreamId) {
       return Promise.reject(new Error('A live stream ID is required to get a live stream'));
     }
-    return api.get(buildBasePath(liveStreamId), {}, this.requestOptions);
+    return this.http.get(buildBasePath(liveStreamId));
   }
 
   /**
@@ -102,8 +106,8 @@ class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/reference#list-live-streams
    */
-  list(queryParams) {
-    return api.get(PATH, queryParams, this.requestOptions);
+  list(params) {
+    return this.http.get(PATH, { params });
   }
 
   /**
@@ -124,7 +128,7 @@ class LiveStreams extends Base {
     if (!liveStreamId) {
       return Promise.reject(new Error('A Live Stream ID is required to signal a stream is complete'));
     }
-    return api.put(`${buildBasePath(liveStreamId)}/complete`, {}, this.requestOptions);
+    return this.http.put(`${buildBasePath(liveStreamId)}/complete`);
   }
 
   /**
@@ -136,7 +140,8 @@ class LiveStreams extends Base {
    * const muxClient = new Mux(accessToken, secret);
    * const { Video } = muxClient;
    *
-   * // Reset a live stream key if you want to immediately stop the current stream key from working and create a new stream key that can be used for future broadcasts.
+   * // Reset a live stream key if you want to immediately stop the current stream key
+   * // from working and create a new stream key that can be used for future broadcasts.
    * Video.liveStreams.resetStreamKey(liveStreamId);
    *
    * @see https://docs.mux.com/reference#reset-a-stream-key
@@ -145,7 +150,7 @@ class LiveStreams extends Base {
     if (!liveStreamId) {
       return Promise.reject(new Error('A Live Stream ID is required to reset a live stream key'));
     }
-    return api.post(`${buildBasePath(liveStreamId)}/reset-stream-key`, {}, this.requestOptions);
+    return this.http.post(`${buildBasePath(liveStreamId)}/reset-stream-key`);
   }
 
   /**
@@ -171,7 +176,7 @@ class LiveStreams extends Base {
     if (!params) {
       return Promise.reject(new Error('A playback policy is required to create a live stream playback ID'));
     }
-    return api.post(`${buildBasePath(liveStreamId)}/playback-ids`, params, this.requestOptions);
+    return this.http.post(`${buildBasePath(liveStreamId)}/playback-ids`, { params });
   }
 
   /**
@@ -197,7 +202,7 @@ class LiveStreams extends Base {
     if (!playbackId) {
       return Promise.reject(new Error('A live stream playback ID is required to delete a live stream playback ID'));
     }
-    return api.del(`${buildBasePath(liveStreamId)}/playback-ids/${playbackId}`, this.requestOptions);
+    return this.http.delete(`${buildBasePath(liveStreamId)}/playback-ids/${playbackId}`);
   }
 }
 

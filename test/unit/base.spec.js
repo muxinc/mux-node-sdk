@@ -1,11 +1,17 @@
 const { expect } = require('chai');
+const moxios = require('moxios');
 const Base = require('../../src/base');
 
 /** @test {Mux} */
 describe('Unit::Base', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
   afterEach(() => {
     delete process.env.MUX_TOKEN_ID;
     delete process.env.MUX_TOKEN_SECRET;
+    moxios.uninstall();
   });
 
   /** @test {Base} */
@@ -40,13 +46,18 @@ describe('Unit::Base', () => {
       expect(childBase.tokenSecret).to.be.eq(parentBase.tokenSecret);
     });
 
-    it('exposes a requestOptions getter for request authenntication', () => {
-      const baseClient = new Base('testKey', 'testSecret');
-      expect(baseClient.requestOptions).to.be.eql({
-        auth: {
-          username: 'testKey',
-          password: 'testSecret',
-        },
+    describe('http requests', () => {
+      moxios.stubRequest('https://api.mux.com/test/v1/foo', {
+        status: 200,
+        responseText: '{"data": ["something", "very", "fun"]}',
+      });
+
+      it('fire an event on a requests', (done) => {
+        const baseClient = new Base('fancy-new-id', 'fancy-new-secret');
+        baseClient.http.get('/test/v1/foo').then((data) => {
+          expect(data).to.be.eq(['something', 'very', 'fun']);
+          done();
+        });
       });
     });
   });

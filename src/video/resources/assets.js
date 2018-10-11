@@ -2,8 +2,6 @@
  * Mux Assets
  * Copyright(c) 2018 Mux Inc.
  */
-
-const api = require('../../utils/api');
 const Base = require('../../base');
 
 /**
@@ -47,7 +45,8 @@ class Assets extends Base {
     if (!params) {
       return Promise.reject(new Error('Params are required for creating an asset'));
     }
-    return api.post(PATH, params, this.requestOptions);
+
+    return this.http.post(PATH, { params });
   }
 
   /**
@@ -68,7 +67,7 @@ class Assets extends Base {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required to delete an asset'));
     }
-    return api.del(buildBasePath(assetId), this.requestOptions);
+    return this.http.delete(buildBasePath(assetId));
   }
 
   /**
@@ -89,7 +88,7 @@ class Assets extends Base {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required to get an asset'));
     }
-    return api.get(buildBasePath(assetId), {}, this.requestOptions);
+    return this.http.get(buildBasePath(assetId));
   }
 
   /**
@@ -110,7 +109,7 @@ class Assets extends Base {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required to get input-info'));
     }
-    return api.get(`${buildBasePath(assetId)}/input-info`, {}, this.requestOptions);
+    return this.http.get(`${buildBasePath(assetId)}/input-info`);
   }
 
   /**
@@ -126,8 +125,8 @@ class Assets extends Base {
    *
    * @see https://docs.mux.com/reference#list-assets
    */
-  list(queryParams) {
-    return api.get(PATH, queryParams, this.requestOptions);
+  list(params) {
+    return this.http.get(PATH, { params });
   }
 }
 

@@ -2,8 +2,6 @@
  * PlaybackIds
  * Copyright(c) 2018 Mux Inc.
  */
-
-const api = require('../../utils/api');
 const Base = require('../../base');
 
 /**
@@ -47,7 +45,7 @@ class PlaybackIds extends Base {
     if (!params) {
       return Promise.reject(new Error('Playback ID params are required'));
     }
-    return api.post(buildBasePath(assetId), params, this.requestOptions);
+    return this.http.post(buildBasePath(assetId), { params });
   }
 
   /**
@@ -73,7 +71,7 @@ class PlaybackIds extends Base {
     if (!playbackId) {
       return Promise.reject(new Error('A playback ID is required to get a playback ID'));
     }
-    return api.get(`${buildBasePath(assetId)}/${playbackId}`, {}, this.requestOptions);
+    return this.http.get(`${buildBasePath(assetId)}/${playbackId}`);
   }
 
   /**
@@ -99,7 +97,7 @@ class PlaybackIds extends Base {
     if (!playbackId) {
       return Promise.reject(new Error('A playback ID is required to delete a playback ID'));
     }
-    return api.del(`${buildBasePath(assetId)}/${playbackId}`, this.requestOptions);
+    return this.http.delete(`${buildBasePath(assetId)}/${playbackId}`);
   }
 }
 
