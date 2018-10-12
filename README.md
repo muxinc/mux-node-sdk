@@ -39,27 +39,31 @@ const { Video, Data } = muxClient;
 As an example, you can create a Mux asset and playback ID by using the below functions on your Video instance.
 ```javascript
 // Create an asset
-let assetId;
-Video.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' })
-  .then((res) => {
-    const { data } = res.data;
-    assetId = data.id;
-  });
+const asset = await Video.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' });
 ```
 
 ```javascript
 // Create a playback ID for an asset
-Video.playbackIds.create(assetId, { policy: 'public' });
+const playbackId = await Video.playbackIds.create(assetId, { policy: 'public' });
 ```
 
 You can access the Mux Data API in the same way by using your Data instance. For example, you can list all of the
 values across every breakdown for the `aggregate_startup_time` metric by using the below function.
 
 ```javascript
-Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
+const breakdown = await Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
 ```
 
 Every function will return a chainable [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+
+```javascript
+Video.assets.create({
+  input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'
+}).then(asset => {
+  /* Do things with the asset */
+});
+```
+
 See the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk/identifiers.html) for a list of all available functions.
 
 ## Development

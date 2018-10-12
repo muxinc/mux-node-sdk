@@ -17,6 +17,7 @@
   },
   "license": "MIT",
   "scripts": {
+    "docs": "esdoc",
     "test": "mocha --recursive ./test/unit",
     "test:unit": "mocha --recursive ./test/unit",
     "test:int": "mocha --recursive ./test/integration"
