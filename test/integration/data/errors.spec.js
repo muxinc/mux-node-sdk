@@ -10,14 +10,9 @@ describe('Integration::Errors', () => {
   /** @test {Errors.list} */
   describe('Errors.list', () => {
     /** @test {Errors.list} */
-    it('Returns a list of playback errors', () => (
-      Data.errors.list({ filters: ['operating_system:windows'] })
-        .then((errors) => {
-          expect(errors).to.be.an('array');
-        })
-        .catch((err) => {
-          expect(err).to.equal(undefined);
-        })
-    ));
+    it('Returns a list of playback errors', async () => {
+      const errors = await Data.errors.list({ filters: ['operating_system:windows'] });
+      expect(errors).to.be.an('array');
+    });
   });
 });

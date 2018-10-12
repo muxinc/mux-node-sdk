@@ -102,15 +102,15 @@ describe('Integration::Assets', () => {
 
     /** @test {PlaybackIds.create} */
     it('throws an error if an Asset ID is not given', () => (
-      Video.playbackIds.create().catch((err) => {
+      Video.assets.createPlaybackId().catch((err) => {
         expect(err).to.exist;
-        expect(err.message).to.equal('An asset ID is required to create a playback ID');
+        expect(err.message).to.equal('An asset ID is required');
       })
     ));
 
     /** @test {PlaybackIds.create} */
     it('throws an error if params are not given', () => (
-      Video.playbackIds.create(testAsset.id).catch((err) => {
+      Video.assets.createPlaybackId(testAsset.id).catch((err) => {
         expect(err).to.exist;
         expect(err.message).to.equal('Playback ID params are required');
       })
@@ -121,8 +121,8 @@ describe('Integration::Assets', () => {
   describe('Assets.playbackId', () => {
     /** @test {PlaybackIds.get} */
     it('gets playbackIds for an asset', async () => {
-      const { id } = await Video.playbackIds.create(testAsset.id, { policy: 'public' });
-      const playbackId = Video.playbackIds.get(testAsset.id, id);
+      const { id } = await Video.assets.createPlaybackId(testAsset.id, { policy: 'public' });
+      const playbackId = await Video.assets.playbackId(testAsset.id, id);
       expect(playbackId.id).to.equal(id);
       expect(playbackId.policy).to.equal('public');
     });
@@ -132,15 +132,15 @@ describe('Integration::Assets', () => {
   describe('Assets.deletePlaybackId', () => {
     /** @test {Assets.deletePlaybackId} */
     it('deletes playbackIds for an asset', async () => {
-      const playbackId = await Video.playbackIds.create(testAsset.id, { policy: 'public' });
-      await Video.playbackIds.deletePlaybackId(testAsset.id, playbackId.id);
+      const playbackId = await Video.assets.createPlaybackId(testAsset.id, { policy: 'public' });
+      await Video.assets.deletePlaybackId(testAsset.id, playbackId.id);
       const { playback_ids: updatedPlaybackIds } = await Video.assets.get(testAsset.id);
       expect(updatedPlaybackIds).to.not.include(playbackId);
     });
 
     /** @test {Assets.deletePlaybackId} */
     it('fails to delete playbackIds for an asset when not given a playback ID', () => (
-      Video.playbackIds.deletePlaybackId(testAsset.data.id).catch(err => expect(err).to.exist)
+      Video.assets.deletePlaybackId(testAsset.id).catch(err => expect(err).to.exist)
     ));
   });
 });
