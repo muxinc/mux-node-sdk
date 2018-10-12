@@ -8,7 +8,8 @@
     "video encoding",
     "video transcoding",
     "api",
-    "video analytics"
+    "video analytics",
+    "live streaming"
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
   "main": "src/mux.js",

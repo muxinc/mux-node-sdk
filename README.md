@@ -44,7 +44,7 @@ const asset = await Video.assets.create({ input: 'https://storage.googleapis.com
 
 ```javascript
 // Create a playback ID for an asset
-const playbackId = await Video.playbackIds.create(assetId, { policy: 'public' });
+const playbackId = await Video.assets.createPlaybackId(assetId, { policy: 'public' });
 ```
 
 You can access the Mux Data API in the same way by using your Data instance. For example, you can list all of the
@@ -61,6 +61,20 @@ Video.assets.create({
   input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'
 }).then(asset => {
   /* Do things with the asset */
+});
+```
+
+## `request` and `response` events
+
+The SDK returns the `data` key for every object, because in the Mux API that's always the thing you actually want to see. Sometimes, however, it's useful to see more details about the request being made or the full response object. You can listen for `request` and `response` events to get these raw objects.
+
+```javascript
+muxClient.on('request', req => {
+  // Request will contain everything being sent such as `headers, method, base url, etc
+});
+
+muxClient.on('response', res => {
+  // Response will include everything returned from the API, such as status codes/text, headers, etc
 });
 ```
 
@@ -81,4 +95,12 @@ To generate the ESDocs, run:
 open ./docs/index.html
 ```
 
+## Contributing
 
+Find a bug or want to add a useful feature? That'd be amazing! If you'd like to submit a [pull request](https://help.github.com/articles/about-pull-requests/) to the project with changes, please do something along these lines:
+
+1. Fork the project wherever you'd like
+2. Create a meaningful branch name that relates to your contribution. Consider including an issue number if available! `git co -b add-node-lts-support`
+3. Make any changes you'd like in your forked branch.
+4. Add any relevant tests for your changes
+5. Open the pull request! :tada:
