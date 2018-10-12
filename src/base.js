@@ -5,6 +5,7 @@ const EventEmitter = require('events');
 /**
  * Mux Base Class - Simple base class to be extended by all child modules.
  *
+ * @ignore
  * @property {string} tokenId - The ID for the access token.
  * @property {string} tokenSecret - The secret for the access token.
  * @property {Object} requestOptions - The HTTP request options for Mux Assets

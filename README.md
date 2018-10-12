@@ -1,6 +1,6 @@
 # Mux Node SDK
 
-![build status](https://api.travis-ci.org/muxinc/mux-node-sdk.svg?branch=master)
+![build status](https://api.travis-ci.org/muxinc/mux-node-sdk.svg?branch=master) ![npm version](https://badge.fury.io/js/%40mux%2Fmux-node.svg)
 
 Official Mux API wrapper for Node projects.
 
@@ -22,7 +22,9 @@ yarn add @mux/mux-node
 ```
 
 ## Releases
- The latest **stable** release is `1.1.1`
+The latest **stable** release is `1.1.1`
+
+Please keep in mind that master contains edge, so at any point it may be out of sync with what's in the latest stable release. Please consult the [releases](https://github.com/muxinc/mux-node-sdk/releases) page for both stable releases and release candidates.
 
 ## Usage
 To start, you will need a Mux access token and secret for your Mux environment. For more information on where to get
@@ -100,7 +102,7 @@ open ./docs/index.html
 Find a bug or want to add a useful feature? That'd be amazing! If you'd like to submit a [pull request](https://help.github.com/articles/about-pull-requests/) to the project with changes, please do something along these lines:
 
 1. Fork the project wherever you'd like
-2. Create a meaningful branch name that relates to your contribution. Consider including an issue number if available! `git co -b add-node-lts-support`
+2. Create a meaningful branch name that relates to your contribution. Consider including an issue number if available. `git co -b add-node-lts-support`
 3. Make any changes you'd like in your forked branch.
 4. Add any relevant tests for your changes
 5. Open the pull request! :tada:
