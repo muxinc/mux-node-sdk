@@ -17,10 +17,7 @@ class Base extends EventEmitter {
     super();
 
     if (params[0] && params[0].tokenId) {
-      this.tokenId = params[0].tokenId;
-      this.tokenSecret = params[0].tokenSecret;
-      this.http = params[0].http;
-      return this;
+      return Object.assign(this, params[0]);
     }
 
     this.tokenId = params[0] || process.env.MUX_TOKEN_ID;
