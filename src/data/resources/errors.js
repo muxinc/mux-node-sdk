@@ -2,8 +2,6 @@
  * Mux Errors
  * Copyright(c) 2018 Mux Inc.
  */
-
-const api = require('../../utils/api');
 const Base = require('../../base');
 
 /**
@@ -25,7 +23,7 @@ class Errors extends Base {
   /**
    * Returns a list of playback errors
    *
-   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }
+   * @param {Object} [params] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
@@ -37,8 +35,8 @@ class Errors extends Base {
    *
    * @see https://api-docs.mux.com/#view-error-get
    */
-  list(queryParams) {
-    return api.get(PATH, queryParams, this.requestOptions);
+  list(params) {
+    return this.http.get(PATH, { params });
   }
 }
 

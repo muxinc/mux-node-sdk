@@ -10,11 +10,11 @@ describe('Unit::VideoViews', () => {
   const videoViewsInstance = new VideoViews(testApiKey, testSecret);
 
   beforeEach(() => {
-    moxios.install();
+    moxios.install(videoViewsInstance.http);
   });
 
   afterEach(() => {
-    moxios.uninstall();
+    moxios.uninstall(videoViewsInstance.http);
   });
 
   /** @test {VideoViews} */
@@ -33,8 +33,8 @@ describe('Unit::VideoViews', () => {
     it('creates a new VideoViews instance', () => {
       const TestVideoViews = new VideoViews(testApiKey, testSecret);
       expect(() => new VideoViews(testApiKey, testSecret)).to.not.throw();
-      expect(TestVideoViews.requestOptions.auth.username).to.equal(testApiKey);
-      expect(TestVideoViews.requestOptions.auth.password).to.equal(testSecret);
+      expect(TestVideoViews.tokenId).to.equal(testApiKey);
+      expect(TestVideoViews.tokenSecret).to.equal(testSecret);
     });
   });
 
@@ -49,7 +49,7 @@ describe('Unit::VideoViews', () => {
     it('makes a get request to the Mux data video-views route', (done) => {
       moxios.stubRequest('https://api.mux.com/data/v1/video-views?viewer_id=abc123', {
         status: 200,
-        responseText: 'video views',
+        responseText: '{"data": {"video": "views"}}',
       });
 
       const onFulfilled = sinon.spy();
@@ -57,7 +57,7 @@ describe('Unit::VideoViews', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data).to.equal('video views');
+        expect(onFulfilled.getCall(0).args[0].video).to.equal('views');
         done();
       });
     });
@@ -69,7 +69,7 @@ describe('Unit::VideoViews', () => {
     it('makes a get request to the Mux data video-views route', (done) => {
       moxios.stubRequest('https://api.mux.com/data/v1/video-views/someView', {
         status: 200,
-        responseText: 'video views',
+        responseText: '{"data": {"video": "views"}}',
       });
 
       const onFulfilled = sinon.spy();
@@ -77,7 +77,7 @@ describe('Unit::VideoViews', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data).to.equal('video views');
+        expect(onFulfilled.getCall(0).args[0].video).to.equal('views');
         done();
       });
     });

@@ -2,8 +2,6 @@
  * Mux Filters
  * Copyright(c) 2018 Mux Inc.
  */
-
-const api = require('../../utils/api');
 const Base = require('../../base');
 
 /**
@@ -39,11 +37,11 @@ class Filters extends Base {
    *
    * @see https://api-docs.mux.com/#filter-get-1
    */
-  get(filterId, queryParams) {
+  get(filterId, params) {
     if (!filterId) {
       throw new Error('Filter Id is required to get filter information.');
     }
-    return api.get(`${PATH}/${filterId}`, queryParams, this.requestOptions);
+    return this.http.get(`${PATH}/${filterId}`, { params });
   }
 
   /**
@@ -60,7 +58,7 @@ class Filters extends Base {
    * @see https://api-docs.mux.com/#filter-get
    */
   list() {
-    return api.get(PATH, {}, this.requestOptions);
+    return this.http.get(PATH);
   }
 }
 

@@ -1,13 +1,9 @@
 const { expect } = require('chai');
+const moxios = require('moxios');
 const Base = require('../../src/base');
 
 /** @test {Mux} */
 describe('Unit::Base', () => {
-  afterEach(() => {
-    delete process.env.MUX_TOKEN_ID;
-    delete process.env.MUX_TOKEN_SECRET;
-  });
-
   /** @test {Base} */
   describe('Base', () => {
     /** @test {Base} */
@@ -40,13 +36,45 @@ describe('Unit::Base', () => {
       expect(childBase.tokenSecret).to.be.eq(parentBase.tokenSecret);
     });
 
-    it('exposes a requestOptions getter for request authenntication', () => {
-      const baseClient = new Base('testKey', 'testSecret');
-      expect(baseClient.requestOptions).to.be.eql({
-        auth: {
-          username: 'testKey',
-          password: 'testSecret',
-        },
+    describe('http requests', () => {
+      let baseClient;
+
+      beforeEach(() => {
+        baseClient = new Base('fancy-new-id', 'fancy-new-secret');
+        moxios.install(baseClient.http);
+
+        moxios.stubRequest('https://api.mux.com/test/v1/foo', {
+          status: 200,
+          responseText: '{"data": ["something", "very", "fun"]}',
+        });
+      });
+
+      afterEach(() => {
+        delete process.env.MUX_TOKEN_ID;
+        delete process.env.MUX_TOKEN_SECRET;
+        moxios.uninstall(baseClient.http);
+      });
+
+      it('fire an event on a request', (done) => {
+        baseClient.on('request', (req) => {
+          expect(req.auth.username).to.equal('fancy-new-id');
+          expect(req.auth.password).to.equal('fancy-new-secret');
+          expect(req.baseURL).to.equal('https://api.mux.com');
+          expect(req.url).to.equal('/test/v1/foo');
+          done();
+        });
+
+        baseClient.http.get('/test/v1/foo');
+      });
+
+      it('fire an event on a response', (done) => {
+        baseClient.on('response', (res) => {
+          expect(res.status).to.equal(200);
+          expect(res.data).to.eql({ data: ['something', 'very', 'fun'] });
+          done();
+        });
+
+        baseClient.http.get('/test/v1/foo');
       });
     });
   });

@@ -2,8 +2,6 @@
  * Mux Metrics
  * Copyright(c) 2018 Mux Inc.
  */
-
-const api = require('../../utils/api');
 const Base = require('../../base');
 
 /**
@@ -40,8 +38,8 @@ class Metrics extends Base {
    *
    * @see https://api-docs.mux.com/#breakdown-get
    */
-  breakdown(metricId, queryParams) {
-    return api.get(`${PATH}/${metricId}/breakdown`, queryParams, this.requestOptions);
+  breakdown(metricId, params) {
+    return this.http.get(`${PATH}/${metricId}/breakdown`, { params });
   }
 
   /**
@@ -60,11 +58,11 @@ class Metrics extends Base {
    *
    * @see https://api-docs.mux.com/#comparison-get
    */
-  comparison(queryParams) {
-    if (!queryParams || (queryParams && !queryParams.value)) {
+  comparison(params) {
+    if (!params || (params && !params.value)) {
       throw new Error('The value query parameter is required for comparing metrics');
     }
-    return api.get(`${PATH}/comparison`, queryParams, this.requestOptions);
+    return this.http.get(`${PATH}/comparison`, { params });
   }
 
   /**
@@ -84,11 +82,11 @@ class Metrics extends Base {
    *
    * @see https://api-docs.mux.com/#insight-get
    */
-  insights(metricId, queryParams) {
+  insights(metricId, params) {
     if (!metricId) {
       throw new Error('A metric Id is required for insight metrics.');
     }
-    return api.get(`${PATH}/${metricId}/insights`, queryParams, this.requestOptions);
+    return this.http.get(`${PATH}/${metricId}/insights`, { params });
   }
 
   /**
@@ -108,11 +106,11 @@ class Metrics extends Base {
    *
    * @see https://api-docs.mux.com/#overall-get
    */
-  overall(metricId, queryParams) {
+  overall(metricId, params) {
     if (!metricId) {
       throw new Error('A metric Id is required for overall metrics.');
     }
-    return api.get(`${PATH}/${metricId}/overall`, queryParams, this.requestOptions);
+    return this.http.get(`${PATH}/${metricId}/overall`, { params });
   }
 
   /**
@@ -131,11 +129,11 @@ class Metrics extends Base {
    *
    * @see https://api-docs.mux.com/#timeseries
    */
-  timeseries(metricId, queryParams) {
+  timeseries(metricId, params) {
     if (!metricId) {
       throw new Error('A metric Id is required for timeseries metrics.');
     }
-    return api.get(`${PATH}/${metricId}/timeseries`, queryParams, this.requestOptions);
+    return this.http.get(`${PATH}/${metricId}/timeseries`, { params });
   }
 }
 

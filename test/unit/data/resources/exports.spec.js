@@ -10,11 +10,11 @@ describe('Unit::Exports', () => {
   const exportsInstance = new Exports(testApiKey, testSecret);
 
   beforeEach(() => {
-    moxios.install();
+    moxios.install(exportsInstance.http);
   });
 
   afterEach(() => {
-    moxios.uninstall();
+    moxios.uninstall(exportsInstance.http);
   });
 
   /** @test {Exports} */
@@ -33,8 +33,8 @@ describe('Unit::Exports', () => {
     it('creates a new Exports instance', () => {
       const TestExports = new Exports(testApiKey, testSecret);
       expect(() => new Exports(testApiKey, testSecret)).to.not.throw();
-      expect(TestExports.requestOptions.auth.username).to.equal(testApiKey);
-      expect(TestExports.requestOptions.auth.password).to.equal(testSecret);
+      expect(TestExports.tokenId).to.equal(testApiKey);
+      expect(TestExports.tokenSecret).to.equal(testSecret);
     });
   });
 
@@ -44,7 +44,7 @@ describe('Unit::Exports', () => {
     it('makes a get request to the Mux data exports route', (done) => {
       moxios.stubRequest('https://api.mux.com/data/v1/exports', {
         status: 200,
-        responseText: 'exports',
+        responseText: '{"data": {"exports": true}}',
       });
 
       const onFulfilled = sinon.spy();
@@ -52,7 +52,7 @@ describe('Unit::Exports', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data).to.equal('exports');
+        expect(onFulfilled.getCall(0).args[0].exports).to.be.true;
         done();
       });
     });

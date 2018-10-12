@@ -10,11 +10,11 @@ describe('Unit::Metrics', () => {
   const metricsInstance = new Metrics(testApiKey, testSecret);
 
   beforeEach(() => {
-    moxios.install();
+    moxios.install(metricsInstance.http);
   });
 
   afterEach(() => {
-    moxios.uninstall();
+    moxios.uninstall(metricsInstance.http);
   });
 
   /** @test {Metrics} */
@@ -33,8 +33,8 @@ describe('Unit::Metrics', () => {
     it('creates a new Metrics instance', () => {
       const TestMetrics = new Metrics(testApiKey, testSecret);
       expect(() => new Metrics(testApiKey, testSecret)).to.not.throw();
-      expect(TestMetrics.requestOptions.auth.username).to.equal(testApiKey);
-      expect(TestMetrics.requestOptions.auth.password).to.equal(testSecret);
+      expect(TestMetrics.tokenId).to.equal(testApiKey);
+      expect(TestMetrics.tokenSecret).to.equal(testSecret);
     });
   });
 
@@ -44,7 +44,7 @@ describe('Unit::Metrics', () => {
     it('makes a get request to the Mux data breakdown route', (done) => {
       moxios.stubRequest('https://api.mux.com/data/v1/metrics/testMetric/breakdown', {
         status: 200,
-        responseText: 'breakdown',
+        responseText: '{"data": {"breakdown": true}}',
       });
 
       const onFulfilled = sinon.spy();
@@ -52,7 +52,7 @@ describe('Unit::Metrics', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data).to.equal('breakdown');
+        expect(onFulfilled.getCall(0).args[0].breakdown).to.be.true;
         done();
       });
     });
@@ -70,7 +70,7 @@ describe('Unit::Metrics', () => {
     it('makes a get request to the Mux data comparision route', (done) => {
       moxios.stubRequest('https://api.mux.com/data/v1/metrics/comparison?value=abc123', {
         status: 200,
-        responseText: 'comparison',
+        responseText: '{"data": {"comparison": true}}',
       });
 
       const onFulfilled = sinon.spy();
@@ -78,7 +78,7 @@ describe('Unit::Metrics', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data).to.equal('comparison');
+        expect(onFulfilled.getCall(0).args[0].comparison).to.be.true;
         done();
       });
     });
@@ -95,7 +95,7 @@ describe('Unit::Metrics', () => {
     it('makes a get request to the Mux data insights route', (done) => {
       moxios.stubRequest('https://api.mux.com/data/v1/metrics/testMetric/insights', {
         status: 200,
-        responseText: 'insights',
+        responseText: '{"data": {"insights": true}}',
       });
 
       const onFulfilled = sinon.spy();
@@ -103,7 +103,7 @@ describe('Unit::Metrics', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data).to.equal('insights');
+        expect(onFulfilled.getCall(0).args[0].insights).to.be.true;
         done();
       });
     });
@@ -120,7 +120,7 @@ describe('Unit::Metrics', () => {
     it('makes a get request to the Mux data overall route', (done) => {
       moxios.stubRequest('https://api.mux.com/data/v1/metrics/testMetric/overall', {
         status: 200,
-        responseText: 'overall',
+        responseText: '{"data": {"overall": true}}',
       });
 
       const onFulfilled = sinon.spy();
@@ -128,7 +128,7 @@ describe('Unit::Metrics', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data).to.equal('overall');
+        expect(onFulfilled.getCall(0).args[0].overall).to.be.true;
         done();
       });
     });
@@ -145,7 +145,7 @@ describe('Unit::Metrics', () => {
     it('makes a get request to the Mux data timeseries route', (done) => {
       moxios.stubRequest('https://api.mux.com/data/v1/metrics/testMetric/timeseries', {
         status: 200,
-        responseText: 'timeseries',
+        responseText: '{"data": {"timeseries": true}}',
       });
 
       const onFulfilled = sinon.spy();
@@ -153,7 +153,7 @@ describe('Unit::Metrics', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data).to.equal('timeseries');
+        expect(onFulfilled.getCall(0).args[0].timeseries).to.be.true;
         done();
       });
     });

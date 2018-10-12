@@ -1,6 +1,6 @@
 {
   "name": "@mux/mux-node",
-  "version": "1.1.0",
+  "version": "2.0.0-0",
   "description": "Mux API wrapper",
   "keywords": [
     "mux",
@@ -8,7 +8,8 @@
     "video encoding",
     "video transcoding",
     "api",
-    "video analytics"
+    "video analytics",
+    "live streaming"
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
   "main": "src/mux.js",
@@ -17,6 +18,7 @@
   },
   "license": "MIT",
   "scripts": {
+    "docs": "esdoc",
     "test": "mocha --recursive ./test/unit",
     "test:unit": "mocha --recursive ./test/unit",
     "test:int": "mocha --recursive ./test/integration"
