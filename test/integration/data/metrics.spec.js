@@ -1,6 +1,5 @@
 require('dotenv').config();
 const { expect } = require('chai');
-const should = require('chai').should();
 const Mux = require('../../../src/mux');
 
 /** @test {Metrics} */
@@ -13,10 +12,8 @@ describe('Integration::Metrics', () => {
     /** @test {Metrics.breakdown} */
     it('Lists all of the values across every breakdown for a specific metric', () => (
       Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' })
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(200);
+        .then((breakdown) => {
+          expect(breakdown).to.be.an('array');
         })
         .catch((err) => {
           expect(err).to.equal(undefined);
@@ -29,10 +26,8 @@ describe('Integration::Metrics', () => {
     /** @test {Metrics.comparision} */
     it('Lists the breakdown values for a specific metric', () => (
       Data.metrics.comparison({ value: 'Safari', dimension: 'browser' })
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(200);
+        .then((comparison) => {
+          expect(comparison).to.be.an('array');
         })
         .catch((err) => {
           expect(err).to.equal(undefined);
@@ -45,10 +40,8 @@ describe('Integration::Metrics', () => {
     /** @test {Metrics.insights} */
     it('Returns a list of insights for a metric', () => (
       Data.metrics.insights('video_startup_time')
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(200);
+        .then((insights) => {
+          expect(insights).to.be.an('array');
         })
         .catch((err) => {
           expect(err).to.equal(undefined);
@@ -61,10 +54,8 @@ describe('Integration::Metrics', () => {
     /** @test {Metrics.overall} */
     it('Returns the overall value for a specific metric, as well as the total view count, watch time, and the Mux Global metric value for the metric', () => (
       Data.metrics.overall('video_startup_time')
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(200);
+        .then((overall) => {
+          expect(overall).to.be.an('object');
         })
         .catch((err) => {
           expect(err).to.equal(undefined);
@@ -77,10 +68,8 @@ describe('Integration::Metrics', () => {
     /** @test {Metrics.timeseries} */
     it('Returns the overall value for a specific metric, as well as the total view count, watch time, and the Mux Global metric value for the metric', () => (
       Data.metrics.timeseries('video_startup_time')
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(200);
+        .then((timeseries) => {
+          expect(timeseries).to.be.an('array');
         })
         .catch((err) => {
           expect(err).to.equal(undefined);

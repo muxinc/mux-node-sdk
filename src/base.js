@@ -19,6 +19,7 @@ class Base extends EventEmitter {
     if (params[0] && params[0].tokenId) {
       this.tokenId = params[0].tokenId;
       this.tokenSecret = params[0].tokenSecret;
+      this.http = params[0].http;
       return this;
     }
 

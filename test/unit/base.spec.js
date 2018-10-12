@@ -4,16 +4,6 @@ const Base = require('../../src/base');
 
 /** @test {Mux} */
 describe('Unit::Base', () => {
-  beforeEach(() => {
-    moxios.install();
-  });
-
-  afterEach(() => {
-    delete process.env.MUX_TOKEN_ID;
-    delete process.env.MUX_TOKEN_SECRET;
-    moxios.uninstall();
-  });
-
   /** @test {Base} */
   describe('Base', () => {
     /** @test {Base} */
@@ -47,17 +37,44 @@ describe('Unit::Base', () => {
     });
 
     describe('http requests', () => {
-      moxios.stubRequest('https://api.mux.com/test/v1/foo', {
-        status: 200,
-        responseText: '{"data": ["something", "very", "fun"]}',
+      let baseClient;
+
+      beforeEach(() => {
+        baseClient = new Base('fancy-new-id', 'fancy-new-secret');
+        moxios.install(baseClient.http);
+
+        moxios.stubRequest('https://api.mux.com/test/v1/foo', {
+          status: 200,
+          responseText: '{"data": ["something", "very", "fun"]}',
+        });
       });
 
-      it('fire an event on a requests', (done) => {
-        const baseClient = new Base('fancy-new-id', 'fancy-new-secret');
-        baseClient.http.get('/test/v1/foo').then((data) => {
-          expect(data).to.be.eq(['something', 'very', 'fun']);
+      afterEach(() => {
+        delete process.env.MUX_TOKEN_ID;
+        delete process.env.MUX_TOKEN_SECRET;
+        moxios.uninstall(baseClient.http);
+      });
+
+      it('fire an event on a request', (done) => {
+        baseClient.on('request', (req) => {
+          expect(req.auth.username).to.equal('fancy-new-id');
+          expect(req.auth.password).to.equal('fancy-new-secret');
+          expect(req.baseURL).to.equal('https://api.mux.com');
+          expect(req.url).to.equal('/test/v1/foo');
           done();
         });
+
+        baseClient.http.get('/test/v1/foo');
+      });
+
+      it('fire an event on a response', (done) => {
+        baseClient.on('response', (res) => {
+          expect(res.status).to.equal(200);
+          expect(res.data).to.eql({ data: ['something', 'very', 'fun'] });
+          done();
+        });
+
+        baseClient.http.get('/test/v1/foo');
       });
     });
   });

@@ -46,7 +46,7 @@ class Assets extends Base {
       return Promise.reject(new Error('Params are required for creating an asset'));
     }
 
-    return this.http.post(PATH, { params });
+    return this.http.post(PATH, params);
   }
 
   /**
@@ -127,6 +127,84 @@ class Assets extends Base {
    */
   list(params) {
     return this.http.get(PATH, { params });
+  }
+
+  /**
+   * Return an asset playback id
+   * @param {string} assetId - The ID for the asset
+   * @param {string} playbackId - The ID for the playbackId
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
+   *
+   * // Retrieve an asset playbackId
+   * Video.assets.playbackId(assetId, playbackId);
+   *
+   * @see https://docs.mux.com/v1/reference#retrieve-an-asset-playback-id
+   */
+  playbackId(assetId, playbackId) {
+    if (!assetId) {
+      return Promise.reject(new Error('An asset ID is required'));
+    }
+
+    if (!playbackId) {
+      return Promise.reject(new Error('A playback ID is required'));
+    }
+    return this.http.get(`${buildBasePath(assetId)}/playback-ids/${playbackId}`);
+  }
+
+  /**
+   * Create an asset playback id
+   * @param {string} assetId - The ID for the asset
+   * @param {Object} params - Asset JSON parameters (e.g playback_policy)
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
+   *
+   * // Create an asset playback ID
+   * Video.assets.createPlaybackId(assetId, { policy: 'public' });
+   *
+   * @see https://docs.mux.com/v1/reference#add-an-asset-playback-id
+   */
+  createPlaybackId(assetId, params) {
+    if (!assetId) {
+      return Promise.reject(new Error('An asset ID is required'));
+    }
+
+    if (!params) {
+      return Promise.reject(new Error('Playback ID params are required'));
+    }
+    return this.http.post(`${buildBasePath(assetId)}/playback-ids`, params);
+  }
+
+  /**
+   * Delete an asset playback ID
+   * @param {string} assetId - The ID for the asset
+   * @param {string} playbackId - The ID for the asset playback ID to delete
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
+   *
+   * // Delete an asset playback ID
+   * Video.assets.deletePlaybackId(assetId, { policy: 'public' });
+   *
+   * @see https://docs.mux.com/v1/reference#delete-an-asset-playback-id
+   */
+  deletePlaybackId(assetId, playbackId) {
+    if (!assetId) {
+      return Promise.reject(new Error('An asset ID is required'));
+    }
+
+    if (!playbackId) {
+      return Promise.reject(new Error('A playback ID is required'));
+    }
+    return this.http.delete(`${buildBasePath(assetId)}/playback-ids/${playbackId}`);
   }
 }
 

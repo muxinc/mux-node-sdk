@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const Video = require('../../../src/video/video');
 const Assets = require('../../../src/video/resources/assets');
-const PlaybackIds = require('../../../src/video/resources/playbackIds');
+const LiveStreams = require('../../../src/video/resources/liveStreams');
 
 /** @test {Video} */
 describe('Unit::Video', () => {
@@ -25,7 +25,7 @@ describe('Unit::Video', () => {
       const TestVideo = new Video(testApiKey, testSecret);
       expect(() => new Video(testApiKey, testSecret)).to.not.throw();
       expect(TestVideo.assets).to.be.an.instanceof(Assets);
-      expect(TestVideo.playbackIds).to.be.an.instanceof(PlaybackIds);
+      expect(TestVideo.liveStreams).to.be.an.instanceof(LiveStreams);
     });
   });
 });

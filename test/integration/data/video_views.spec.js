@@ -1,6 +1,5 @@
 require('dotenv').config();
 const { expect } = require('chai');
-const should = require('chai').should();
 const Mux = require('../../../src/mux');
 
 /** @test {VideoViews} */
@@ -13,11 +12,7 @@ describe('Integration::VideoViews', () => {
     /** @test {VideoViews.list} */
     it('Returns a list of video views for a property that occurred within the specified timeframe', () => (
       Data.videoViews.list({ viewer_id: 'test', order_direction: 'asc' })
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(200);
-        })
+        .then(views => expect(views).to.be.an('array'))
         .catch((err) => {
           expect(err).to.equal(undefined);
         })
@@ -29,11 +24,7 @@ describe('Integration::VideoViews', () => {
     /** @test {VideoViews.get} */
     it('Returns the details for a single video view', () => (
       Data.videoViews.get(process.env.MUX_VIDEO_VIEW_ID)
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(200);
-        })
+        .then(view => expect(view).to.be.an('object'))
         .catch((err) => {
           expect(err).to.equal(undefined);
         })

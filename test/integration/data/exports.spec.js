@@ -1,6 +1,5 @@
 require('dotenv').config();
 const { expect } = require('chai');
-const should = require('chai').should();
 const Mux = require('../../../src/mux');
 
 /** @test {Exports} */
@@ -13,10 +12,8 @@ describe('Integration::Errors', () => {
     /** @test {Exports.list} */
     it('Lists the available video view exports along with URLs to retrieve them', () => (
       Data.exports.list()
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(200);
+        .then((exports) => {
+          expect(exports).to.be.an('array');
         })
         .catch((err) => {
           expect(err).to.equal(undefined);

@@ -44,7 +44,7 @@ class VideoViews extends Base {
     if (!params || (params && !params.viewer_id)) {
       throw new Error('The viewer_id query parameter is required for listing video views.');
     }
-    return this.http.get(PATH, params);
+    return this.http.get(PATH, { params });
   }
 
   /**

@@ -48,7 +48,7 @@ class LiveStreams extends Base {
    * @see https://docs.mux.com/reference#create-a-live-stream
    */
   create(params) {
-    return this.http.post(PATH, { params });
+    return this.http.post(PATH, params);
   }
 
   /**
@@ -176,7 +176,7 @@ class LiveStreams extends Base {
     if (!params) {
       return Promise.reject(new Error('A playback policy is required to create a live stream playback ID'));
     }
-    return this.http.post(`${buildBasePath(liveStreamId)}/playback-ids`, { params });
+    return this.http.post(`${buildBasePath(liveStreamId)}/playback-ids`, params);
   }
 
   /**
