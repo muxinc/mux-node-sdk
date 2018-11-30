@@ -1,6 +1,8 @@
-/* eslint no-underscore-dangle: ["error", { "allow": ["_tokenId", "_secret"] }] */
+/* eslint no-underscore-dangle: ["error", { "allow": ["_config", "_tokenId", "_secret"] }] */
+
 const axios = require('axios');
 const EventEmitter = require('events');
+const pkg = require('../package.json');
 
 /**
  * Mux Base Class - Simple base class to be extended by all child modules.
@@ -8,6 +10,7 @@ const EventEmitter = require('events');
  * @ignore
  * @property {string} tokenId - The ID for the access token.
  * @property {string} tokenSecret - The secret for the access token.
+ * @property {object} config - The configuration for the Base object.
  * @property {Object} requestOptions - The HTTP request options for Mux Assets
  * @property {string} requestOptions.auth.username - HTTP basic auth username (access token)
  * @property {string} requestOptions.auth.password - HTTP basic auth password (secret)
@@ -17,16 +20,24 @@ class Base extends EventEmitter {
   constructor(...params) {
     super();
 
-    if (params[0] && params[0].tokenId) {
+    if (params[0] instanceof Base) {
       return Object.assign(this, params[0]);
     }
 
-    this.tokenId = params[0] || process.env.MUX_TOKEN_ID;
-    this.tokenSecret = params[1] || process.env.MUX_TOKEN_SECRET;
+    if (typeof params[0] === 'object') {
+      this.config = params[0]; // eslint-disable-line prefer-destructuring
+      this.tokenId = undefined;
+      this.tokenSecret = undefined;
+    } else {
+      this.config = {};
+      this.tokenId = params[0]; // eslint-disable-line prefer-destructuring
+      this.tokenSecret = params[1]; // eslint-disable-line prefer-destructuring
+    }
 
     this.http = axios.create({
-      baseURL: 'https://api.mux.com',
+      baseURL: this.config.baseUrl,
       headers: {
+        'User-Agent': `Mux Node | ${pkg.version}`,
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
@@ -51,7 +62,18 @@ class Base extends EventEmitter {
     });
   }
 
-  set tokenId(token) {
+  set config(options = {}) {
+    this._config = {
+      baseUrl: 'https://api.mux.com',
+      ...options,
+    };
+  }
+
+  get config() {
+    return this._config;
+  }
+
+  set tokenId(token = process.env.MUX_TOKEN_ID) {
     this._tokenId = token;
 
     if (typeof this._tokenId === 'undefined') {
@@ -63,7 +85,7 @@ class Base extends EventEmitter {
     return this._tokenId;
   }
 
-  set tokenSecret(secret) {
+  set tokenSecret(secret = process.env.MUX_TOKEN_SECRET) {
     this._secret = secret;
 
     if (typeof this._secret === 'undefined' || this._secret === '') {
