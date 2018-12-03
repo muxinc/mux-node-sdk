@@ -29,9 +29,9 @@ class Base extends EventEmitter {
       this.tokenId = undefined;
       this.tokenSecret = undefined;
     } else {
-      this.config = {};
       this.tokenId = params[0]; // eslint-disable-line prefer-destructuring
       this.tokenSecret = params[1]; // eslint-disable-line prefer-destructuring
+      this.config = params[2]; // eslint-disable-line prefer-destructuring
     }
 
     this.http = axios.create({
