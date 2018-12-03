@@ -37,7 +37,7 @@ class Mux extends Base {
   /**
    * Mux Constructor
    *
-   * @param {string|options} accessToken - Mux API Access Token, or a configuration object.
+   * @param {string} accessToken - Mux API Access Token
    * @param {string} secret - Mux API secret
    * @param {object} options - Optional configuration object
    * @param {string='https://api.mux.com'} options.baseUrl - Change the base URL for API requests.
