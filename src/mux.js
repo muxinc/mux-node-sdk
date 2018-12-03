@@ -37,12 +37,14 @@ class Mux extends Base {
   /**
    * Mux Constructor
    *
-   * @param {string} accessToken - Mux API Access Token
-   * @param {string} secret - Mux API secret
+   * @param {string=process.env.MUX_TOKEN_ID} accessToken - Mux API Access Token
+   * @param {string=process.env.MUX_TOKEN_SECRET} secret - Mux API secret
+   * @param {object} options - Optional configuration object
+   * @param {string='https://api.mux.com'} options.baseUrl - Change the base URL for API requests.
    * @constructor
    */
-  constructor(accessToken, secret) {
-    super(accessToken, secret);
+  constructor(accessTokenOrConfig, secret, config) {
+    super(accessTokenOrConfig, secret, config);
 
     /** @type {Video} */
     this.Video = new Video(this);

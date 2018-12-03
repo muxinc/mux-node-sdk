@@ -35,9 +35,16 @@ that will allow you to access the Mux Data and Video APIs.
 
 ```javascript
 const Mux = require('@mux/mux-node');
-const muxClient = new Mux(accessToken, secret);
-const { Video, Data } = muxClient;
+const { Video, Data } = new Mux(accessToken, secret);
 ```
+
+If a token ID and secret aren't included as parameters, the SDK will attempt to use the `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` environment variables.
+
+```javascript
+// assume process.env.MUX_TOKEN_ID and process.env.MUX_TOKEN_SECRET contain your credentials
+const muxClient = new Mux(); // Success!
+```
+
 As an example, you can create a Mux asset and playback ID by using the below functions on your Video instance.
 ```javascript
 // Create an asset
