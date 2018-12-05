@@ -4,7 +4,7 @@
 
 ### Breaking Changes
 
-- Nested resource modules are now pascal-case. For example:
+- Nested resource modules are now PascalCase. For example:
 
   ```javascript
   // version 1.x
