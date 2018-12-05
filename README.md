@@ -22,7 +22,7 @@ yarn add @mux/mux-node
 ```
 
 ## Releases
-The latest **stable** release is `1.1.1`
+The latest **stable** release is `2.0.0`
 
 Please keep in mind that master contains edge, so at any point it may be out of sync with what's in the latest stable release. Please consult the [releases](https://github.com/muxinc/mux-node-sdk/releases) page for both stable releases and release candidates.
 
@@ -60,13 +60,17 @@ Or, if you don't have the files online already, you can ingest one via the direc
 
 ```javascript
 const request = require('request');
-const upload = await Video.Upload.create({ new_asset_settings: { playback_policy: 'public' }});
+let upload = await Video.Upload.create({ new_asset_settings: { playback_policy: 'public' }});
 
 // The URL you get back from the upload API is resumable, and the file can be uploaded using a `PUT` request (or a series of them).
-fs.createReadStream('/path/to/your/file').pipe(request.put(upload.url));
+await fs.createReadStream('/path/to/your/file').pipe(request.put(upload.url));
+
+// The upload may not be updated immediately, but shortly after the upload is finished you'll get a `video.asset.created` event and the upload will now have a status of `asset_created` and a new `asset_id` key.
+let updatedUpload = await Video.Upload.get(upload.id);
+
+// Or you could decide to go get additional information about that new asset you created.
+let asset = await Video.Assets.get(updatedUpload['asset_id']);
 ```
-
-
 
 You can access the Mux Data API in the same way by using your Data instance. For example, you can list all of the
 values across every breakdown for the `aggregate_startup_time` metric by using the below function.
