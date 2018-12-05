@@ -32,6 +32,18 @@
   });
   ```
 
+### Soft Deprecations
+
+- `remove` is deprecated in favor of `del`. `remove` will no longer be available in the next major release (3.x).
+
+  ```javascript
+  // 👎
+  const Video.Assets.remove('your-asset-id');
+
+  // 👍
+  const Video.Assets.del('your-asset-id');
+  ```
+
 ### Improvements
 
 - Added support for the new direct uploads endpoints.

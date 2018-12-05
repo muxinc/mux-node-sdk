@@ -78,9 +78,9 @@ describe('Unit::Uploads', () => {
     ));
   });
 
-  /** @test {Uploads.remove} */
-  describe('Uploads.remove', () => {
-    /** @test {Uploads.remove} */
+  /** @test {Uploads.del} */
+  describe('Uploads.del', () => {
+    /** @test {Uploads.del} */
     it('makes a DELETE request to delete an upload', (done) => {
       moxios.stubRequest('https://api.mux.com/video/v1/uploads/testUpload', {
         status: 200,
@@ -88,7 +88,7 @@ describe('Unit::Uploads', () => {
       });
 
       const onFulfilled = sinon.spy();
-      testUploads.remove('testUpload')
+      testUploads.del('testUpload')
         .then(onFulfilled);
 
       return moxios.wait(() => {
@@ -97,9 +97,9 @@ describe('Unit::Uploads', () => {
       });
     });
 
-    /** @test {Uploads.remove} */
+    /** @test {Uploads.del} */
     it('throws an error when an upload id is not given', () => (
-      testUploads.remove()
+      testUploads.del()
         .then((res) => {
           expect(res).to.not.exist;
         })

@@ -59,11 +59,11 @@ class Uploads extends Base {
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Delete an upload
-   * Video.Uploads.remove(uploadId);
+   * Video.Uploads.del(uploadId);
    *
    * @see https://docs.mux.com/reference#delete-an-asset
    */
-  remove(uploadId) {
+  del(uploadId) {
     if (!uploadId) {
       return Promise.reject(new Error('An upload ID is required'));
     }

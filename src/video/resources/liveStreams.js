@@ -57,15 +57,14 @@ class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Delete a mux live stream
-   * Video.LiveStreams.remove(liveStreamId);
+   * Video.LiveStreams.del(liveStreamId);
    *
    * @see https://docs.mux.com/reference#delete-a-live-stream
    */
-  remove(liveStreamId) {
+  del(liveStreamId) {
     if (!liveStreamId) {
       return Promise.reject(new Error('A live stream ID is required to delete a live stream'));
     }
@@ -78,8 +77,7 @@ class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Get a live stream
    * Video.LiveStreams.get(liveStreamId);
@@ -98,8 +96,7 @@ class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // List all live streams for a Mux Environment
    * Video.LiveStreams.list();
@@ -116,8 +113,7 @@ class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Signal a live stream is finished
    * Video.LiveStreams.signalComplete(liveStreamId);
@@ -137,8 +133,7 @@ class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Reset a live stream key if you want to immediately stop the current stream key
    * // from working and create a new stream key that can be used for future broadcasts.
@@ -160,8 +155,7 @@ class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Create a live stream playback ID
    * Video.LiveStreams.createPlaybackId(liveStreamId, { policy: 'public' });
@@ -186,8 +180,7 @@ class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Delete a live stream playback ID
    * Video.LiveStreams.deletePlaybackId(liveStreamId, { policy: 'public' });

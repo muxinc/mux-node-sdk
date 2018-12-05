@@ -14,7 +14,7 @@ describe('Integration::LiveStreams', () => {
     createdLiveStreams.push(testLiveStream);
   });
 
-  after(() => createdLiveStreams.forEach(stream => Video.LiveStreams.remove(stream.id)));
+  after(() => createdLiveStreams.forEach(stream => Video.LiveStreams.del(stream.id)));
 
   /** @test {LiveStreams.create} */
   describe('LiveStreams.create', () => {
@@ -41,18 +41,27 @@ describe('Integration::LiveStreams', () => {
     });
   });
 
+  /** @test {LiveStreams.del} */
+  describe('LiveStreams.del', () => {
+    /** @test {LiveStreams.del} */
+    it('deletes a live stream', async () => {
+      const stream = await Video.LiveStreams.create();
+      await Video.LiveStreams.del(stream.id);
+    });
+
+    /** @test {LiveStreams.del} */
+    it('fails to delete a live stream when not given an incorrect live stream id', () => (
+      Video.LiveStreams.del('somefakeid').catch(err => expect(err).to.exist)
+    ));
+  });
+
   /** @test {LiveStreams.remove} */
-  describe('LiveStreams.remove', () => {
+  describe('LiveStreams.remove [deprecated]', () => {
     /** @test {LiveStreams.remove} */
     it('deletes a live stream', async () => {
       const stream = await Video.LiveStreams.create();
       await Video.LiveStreams.remove(stream.id);
     });
-
-    /** @test {LiveStreams.remove} */
-    it('fails to delete a live stream when not given an incorrect live stream id', () => (
-      Video.LiveStreams.remove('somefakeid').catch(err => expect(err).to.exist)
-    ));
   });
 
   /** @test {LiveStreams.get} */

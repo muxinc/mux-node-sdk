@@ -17,7 +17,7 @@ describe('Integration::Assets', () => {
     createdAssets.push(testAsset);
   });
 
-  after(() => createdAssets.forEach(asset => Video.Assets.remove(asset.id)));
+  after(() => createdAssets.forEach(asset => Video.Assets.del(asset.id)));
 
   /** @test {Assets.create} */
   describe('Assets.create', () => {
@@ -30,18 +30,27 @@ describe('Integration::Assets', () => {
     });
   });
 
+  /** @test {Assets.del} */
+  describe('Assets.del', () => {
+    /** @test {Assets.del} */
+    it('deletes an asset', async () => {
+      const asset = await Video.Assets.create({ input: TEST_VIDEO });
+      Video.Assets.del(asset.id);
+    });
+
+    /** @test {Assets.remove} */
+    it('fails to delete an asset when not given an incorrect assetId', () => (
+      Video.Assets.del('somefakeid').catch(err => expect(err).to.exist)
+    ));
+  });
+
   /** @test {Assets.remove} */
-  describe('Assets.remove', () => {
+  describe('Assets.remove [deprecated]', () => {
     /** @test {Assets.remove} */
     it('deletes an asset', async () => {
       const asset = await Video.Assets.create({ input: TEST_VIDEO });
       Video.Assets.remove(asset.id);
     });
-
-    /** @test {Assets.remove} */
-    it('fails to delete an asset when not given an incorrect assetId', () => (
-      Video.Assets.remove('somefakeid').catch(err => expect(err).to.exist)
-    ));
   });
 
   /** @test {Assets.get} */
