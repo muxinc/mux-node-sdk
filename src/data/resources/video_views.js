@@ -18,7 +18,7 @@ const PATH = '/data/v1/video-views';
  *
  * // Returns a list of video views for a property that occurred within the specified timeframe.
  * // Results are ordered by view_end, according to what you provide for order_direction.
- * Data.videoViews.list({order_direction: 'asc'});
+ * Data.VideoViews.list({order_direction: 'asc'});
  */
 class VideoViews extends Base {
   /**
@@ -35,7 +35,7 @@ class VideoViews extends Base {
    * const { Data } = muxClient;
    *
    * // Returns a list of video views for a property that occurred within the specified timeframe.
-   * Data.videoViews.list({ viewer_id: 'ABCD1234', timeframe: ['7:days'], order_direction: 'asc' });
+   * Data.VideoViews.list({ viewer_id: 'ABCD1234', timeframe: ['7:days'], order_direction: 'asc' });
    * Note: the viewer_id query parameter is required
    *
    * @see https://api-docs.mux.com/#video-view-get-1
@@ -58,7 +58,7 @@ class VideoViews extends Base {
    * const { Data } = muxClient;
    *
    * //Returns the details for a single video view
-   * Data.videoViews.get('ABCD1234');
+   * Data.VideoViews.get('ABCD1234');
    *
    * @see https://api-docs.mux.com/#video-view-get-1
    */

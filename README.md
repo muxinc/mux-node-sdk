@@ -52,9 +52,21 @@ const asset = await Video.assets.create({ input: 'https://storage.googleapis.com
 ```
 
 ```javascript
-// Create a playback ID for an asset
-const playbackId = await Video.assets.createPlaybackId(assetId, { policy: 'public' });
+// ...then later, a playback ID for that asset
+const playbackId = await Video.assets.createPlaybackId(asset.id, { policy: 'public' });
 ```
+
+Or, if you don't have the files online already, you can ingest one via the direct uploads API.
+
+```javascript
+const request = require('request');
+const upload = await Video.Upload.create({ new_asset_settings: { playback_policy: 'public' }});
+
+// The URL you get back from the upload API is resumable, and the file can be uploaded using a `PUT` request (or a series of them).
+fs.createReadStream('/path/to/your/file').pipe(request.put(upload.url));
+```
+
+
 
 You can access the Mux Data API in the same way by using your Data instance. For example, you can list all of the
 values across every breakdown for the `aggregate_startup_time` metric by using the below function.
@@ -95,12 +107,12 @@ Run unit tests: `npm test` or `npm run test:unit`
 
 Run integration tests: `npm run test:int`
 
-__Note__: running the integration tests will require you to configure the `MUX_ACCESS_TOKEN` and `MUX_SECRET` environment variables with your Mux access token and secret.
+__Note__: running the integration tests will require you to configure the `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` environment variables with your Mux access token and secret.
 
 
 To generate the ESDocs, run:
 ```
-./node_modules/.bin/esdoc
+yarn esdoc
 open ./docs/index.html
 ```
 

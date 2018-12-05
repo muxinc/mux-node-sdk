@@ -11,7 +11,7 @@ describe('Integration::Errors', () => {
   describe('Exports.list', () => {
     /** @test {Exports.list} */
     it('Lists the available video view exports along with URLs to retrieve them', async () => {
-      const exports = await Data.exports.list();
+      const exports = await Data.Exports.list();
       expect(exports).to.be.an('array');
     });
   });

@@ -11,7 +11,7 @@ describe('Integration::Errors', () => {
   describe('Filters.list', () => {
     /** @test {Filters.list} */
     it('Lists all the filters broken out into basic and advanced', async () => {
-      const filters = await Data.filters.list();
+      const filters = await Data.Filters.list();
       expect(filters.basic).to.be.an('array');
       expect(filters.advanced).to.be.an('array');
     });
@@ -21,7 +21,7 @@ describe('Integration::Errors', () => {
   describe('Filters.get', () => {
     /** @test {Filters.get} */
     it('Lists the values for a filter along with a total count of related views', async () => {
-      const filters = await Data.filters.get('browser');
+      const filters = await Data.Filters.get('browser');
       expect(filters).to.be.an('array');
     });
   });

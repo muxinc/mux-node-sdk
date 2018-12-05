@@ -11,7 +11,7 @@ describe('Integration::Errors', () => {
   describe('Errors.list', () => {
     /** @test {Errors.list} */
     it('Returns a list of playback errors', async () => {
-      const errors = await Data.errors.list({ filters: ['operating_system:windows'] });
+      const errors = await Data.Errors.list({ filters: ['operating_system:windows'] });
       expect(errors).to.be.an('array');
     });
   });

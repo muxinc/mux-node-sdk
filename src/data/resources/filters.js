@@ -18,7 +18,7 @@ const PATH = '/data/v1/filters';
  * const { Data } = muxClient;
  *
  * // Lists all the filters broken out into basic and advanced
- * Data.filters.list();
+ * Data.Filters.list();
  */
 class Filters extends Base {
   /**
@@ -33,7 +33,7 @@ class Filters extends Base {
    * const { Data } = muxClient;
    *
    * // Lists the values for a filter along with a total count of related views
-   * Data.filters.get('browser', { timeframe: ['7:days'] });
+   * Data.Filters.get('browser', { timeframe: ['7:days'] });
    *
    * @see https://api-docs.mux.com/#filter-get-1
    */
@@ -53,7 +53,7 @@ class Filters extends Base {
    * const { Data } = muxClient;
    *
    * // Lists the available video view exports along with URLs to retrieve them
-   * Data.filters.list();
+   * Data.Filters.list();
    *
    * @see https://api-docs.mux.com/#filter-get
    */

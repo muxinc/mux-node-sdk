@@ -27,11 +27,11 @@ describe('Unit::Data', () => {
     it('creates a new Data instance', () => {
       const TestData = new Data(testApiKey, testSecret);
       expect(() => new Data(testApiKey, testSecret)).to.not.throw();
-      expect(TestData.metrics).to.be.an.instanceof(Metrics);
-      expect(TestData.errors).to.be.an.instanceof(Errors);
-      expect(TestData.exports).to.be.an.instanceof(Exports);
-      expect(TestData.videoViews).to.be.an.instanceof(VideoViews);
-      expect(TestData.filters).to.be.an.instanceof(Filters);
+      expect(TestData.Metrics).to.be.an.instanceof(Metrics);
+      expect(TestData.Errors).to.be.an.instanceof(Errors);
+      expect(TestData.Exports).to.be.an.instanceof(Exports);
+      expect(TestData.VideoViews).to.be.an.instanceof(VideoViews);
+      expect(TestData.Filters).to.be.an.instanceof(Filters);
     });
   });
 });

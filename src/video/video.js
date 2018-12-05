@@ -6,6 +6,7 @@
 const Assets = require('./resources/assets');
 const Base = require('../base');
 const LiveStreams = require('./resources/liveStreams');
+const Uploads = require('./resources/uploads');
 
 /**
  * @ignore
@@ -34,10 +35,16 @@ class Video extends Base {
     super(...params);
 
     /** @type {Assets} */
-    this.assets = new Assets(this);
+    this.Assets = new Assets(this);
+    this.assets = this.Assets;
 
     /** @type {LiveStreams} */
-    this.liveStreams = new LiveStreams(this);
+    this.LiveStreams = new LiveStreams(this);
+    this.liveStreams = this.LiveStreams;
+
+    /** @Type {Uploads} */
+    this.Uploads = new Uploads(this);
+    this.uploads = this.Uploads;
   }
 }
 
