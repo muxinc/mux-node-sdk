@@ -36,15 +36,12 @@ class Video extends Base {
 
     /** @type {Assets} */
     this.Assets = new Assets(this);
-    this.assets = this.Assets;
 
     /** @type {LiveStreams} */
     this.LiveStreams = new LiveStreams(this);
-    this.liveStreams = this.LiveStreams;
 
     /** @Type {Uploads} */
     this.Uploads = new Uploads(this);
-    this.uploads = this.Uploads;
   }
 }
 

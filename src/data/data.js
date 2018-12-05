@@ -33,23 +33,18 @@ class Data extends Base {
 
     /** @type {Metrics} */
     this.Metrics = new Metrics(this);
-    this.metrics = this.Metrics;
 
     /** @type {Errors} */
     this.Errors = new Errors(this);
-    this.errors = this.Errors;
 
     /** @type {Filters} */
     this.Filters = new Filters(this);
-    this.filters = this.Filters;
 
     /** @type {Exports} */
     this.Exports = new Exports(this);
-    this.exports = this.Exports;
 
     /** @type {VideoViews} */
     this.VideoViews = new VideoViews(this);
-    this.videoViews = this.VideoViews;
   }
 }
 
