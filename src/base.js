@@ -99,7 +99,7 @@ class Base extends EventEmitter {
 
   remove(...params) {
     console.warn('The remove helper has been deprecated in favor of del. `remove` will no longer be available after the next major version bump (3.0).'); // eslint-disable-line no-console
-    this.del(...params);
+    return this.del(...params);
   }
 }
 
