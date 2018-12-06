@@ -15,7 +15,7 @@ describe('Integration::Uploads', () => {
     createdUploads.push(testUpload);
   });
 
-  after(() => createdUploads.forEach(upload => Video.Uploads.del(upload.id)));
+  after(() => createdUploads.forEach(upload => Video.Uploads.cancel(upload.id)));
 
   /** @test {Uploads.create} */
   describe('Uploads.create', () => {
@@ -28,27 +28,20 @@ describe('Integration::Uploads', () => {
     });
   });
 
-  /** @test {Uploads.del} */
-  describe('Uploads.del', () => {
-    /** @test {Uploads.del} */
+  /** @test {Uploads.cancel} */
+  describe('Uploads.cancel', () => {
+    /** @test {Uploads.cancel} */
     it('deletes an upload', async () => {
       const upload = await Video.Uploads.create({ new_asset_settings: { playback_policy: 'public' } });
-      Video.Uploads.del(upload.id);
+      await Video.Uploads.cancel(upload.id);
+      const updatedUpload = await Video.Uploads.get(upload.id);
+      expect(updatedUpload.status).to.equal('cancelled');
     });
 
     /** @test {Uploads.del} */
     it('fails to delete an upload when given an incorrect upload id', () => (
-      Video.Uploads.del('somefakeid').catch(err => expect(err).to.exist)
+      Video.Uploads.cancel('somefakeid').catch(err => expect(err).to.exist)
     ));
-  });
-
-  /** @test {Uploads.remove} */
-  describe('Uploads.remove [deprecated]', () => {
-    /** @test {Uploads.remove} */
-    it('deletes an upload', async () => {
-      const upload = await Video.Uploads.create({ new_asset_settings: { playback_policy: 'public' } });
-      Video.Uploads.remove(upload.id);
-    });
   });
 
   /** @test {Uploads.get} */

@@ -19,8 +19,7 @@ const buildBasePath = assetId => `${PATH}/${assetId}`;
  * Assets Class - Provides access to the Mux Video Assets API
  *
  * @example
- * const muxClient = new Mux(accessToken, secret);
- * const { Video } = muxClient;
+ * const { Video } = new Mux(accessToken, secret);
  *
  * // Create an asset
  * Video.Assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
@@ -33,8 +32,7 @@ class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Create an asset
    * Video.Assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
@@ -132,7 +130,7 @@ class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const { Video }= new Mux(accessToken, secret);
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Retrieve an asset playbackId
    * Video.Assets.playbackId(assetId, playbackId);

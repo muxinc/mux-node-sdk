@@ -51,23 +51,23 @@ class Uploads extends Base {
   }
 
   /**
-   * Deletes an upload
-   * @param {string} uploadId - The ID for the upload intended for deletion
+   * Cancels an upload
+   * @param {string} uploadId - The ID for the upload intended for cancellation
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Delete an upload
-   * Video.Uploads.del(uploadId);
+   * Video.Uploads.cancel(uploadId);
    *
    * @see https://docs.mux.com/reference#delete-an-asset
    */
-  del(uploadId) {
+  cancel(uploadId) {
     if (!uploadId) {
       return Promise.reject(new Error('An upload ID is required'));
     }
-    return this.http.delete(buildBasePath(uploadId));
+    return this.http.put(`${buildBasePath(uploadId)}/cancel`);
   }
 
   /**

@@ -78,31 +78,29 @@ describe('Unit::Uploads', () => {
     ));
   });
 
-  /** @test {Uploads.del} */
-  describe('Uploads.del', () => {
-    /** @test {Uploads.del} */
-    it('makes a DELETE request to delete an upload', (done) => {
-      moxios.stubRequest('https://api.mux.com/video/v1/uploads/testUpload', {
+  /** @test {Uploads.cancel} */
+  describe('Uploads.cancel', () => {
+    /** @test {Uploads.cancel} */
+    it('makes a PUT request to cancel an upload', (done) => {
+      moxios.stubRequest('https://api.mux.com/video/v1/uploads/testUpload/cancel', {
         status: 200,
-        responseText: '{"data": {"upload": "delete"}}',
+        responseText: '{"data": {"upload": "cancel"}}',
       });
 
       const onFulfilled = sinon.spy();
-      testUploads.del('testUpload')
+      testUploads.cancel('testUpload')
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].upload).to.equal('delete');
+        expect(onFulfilled.getCall(0).args[0].upload).to.equal('cancel');
         done();
       });
     });
 
     /** @test {Uploads.del} */
     it('throws an error when an upload id is not given', () => (
-      testUploads.del()
-        .then((res) => {
-          expect(res).to.not.exist;
-        })
+      testUploads
+        .cancel()
         .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.include('An upload ID is required');
