@@ -48,25 +48,25 @@ const muxClient = new Mux(); // Success!
 As an example, you can create a Mux asset and playback ID by using the below functions on your Video instance.
 ```javascript
 // Create an asset
-const asset = await Video.assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' });
+const asset = await Video.Assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' });
 ```
 
 ```javascript
 // ...then later, a playback ID for that asset
-const playbackId = await Video.assets.createPlaybackId(asset.id, { policy: 'public' });
+const playbackId = await Video.Assets.createPlaybackId(asset.id, { policy: 'public' });
 ```
 
 Or, if you don't have the files online already, you can ingest one via the direct uploads API.
 
 ```javascript
 const request = require('request');
-let upload = await Video.Upload.create({ new_asset_settings: { playback_policy: 'public' }});
+let upload = await Video.Uploads.create({ new_asset_settings: { playback_policy: 'public' }});
 
 // The URL you get back from the upload API is resumable, and the file can be uploaded using a `PUT` request (or a series of them).
 await fs.createReadStream('/path/to/your/file').pipe(request.put(upload.url));
 
 // The upload may not be updated immediately, but shortly after the upload is finished you'll get a `video.asset.created` event and the upload will now have a status of `asset_created` and a new `asset_id` key.
-let updatedUpload = await Video.Upload.get(upload.id);
+let updatedUpload = await Video.Uploads.get(upload.id);
 
 // Or you could decide to go get additional information about that new asset you created.
 let asset = await Video.Assets.get(updatedUpload['asset_id']);
@@ -76,13 +76,13 @@ You can access the Mux Data API in the same way by using your Data instance. For
 values across every breakdown for the `aggregate_startup_time` metric by using the below function.
 
 ```javascript
-const breakdown = await Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
+const breakdown = await Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
 ```
 
 Every function will return a chainable [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
 ```javascript
-Video.assets.create({
+Video.Assets.create({
   input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'
 }).then(asset => {
   /* Do things with the asset */
