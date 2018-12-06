@@ -58,9 +58,9 @@ describe('Unit::LiveStreams', () => {
     });
   });
 
-  /** @test {LiveStreams.remove} */
-  describe('LiveStreams.remove', () => {
-    /** @test {LiveStreams.remove} */
+  /** @test {LiveStreams.del} */
+  describe('LiveStreams.del', () => {
+    /** @test {LiveStreams.del} */
     it('makes a DELETE request to delete a live stream', (done) => {
       moxios.stubRequest('https://api.mux.com/video/v1/live-streams/testLiveStream', {
         status: 200,
@@ -68,7 +68,7 @@ describe('Unit::LiveStreams', () => {
       });
 
       const onFulfilled = sinon.spy();
-      testLiveStreams.remove('testLiveStream')
+      testLiveStreams.del('testLiveStream')
         .then(onFulfilled);
 
       return moxios.wait(() => {
@@ -77,9 +77,9 @@ describe('Unit::LiveStreams', () => {
       });
     });
 
-    /** @test {LiveStreams.remove} */
+    /** @test {LiveStreams.del} */
     it('throws an error when a live stream id is not given', () => (
-      testLiveStreams.remove()
+      testLiveStreams.del()
         .then((res) => {
           expect(res).to.not.exist;
         })

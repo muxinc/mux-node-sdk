@@ -98,9 +98,9 @@ describe('Unit::Assets', () => {
     ));
   });
 
-  /** @test {Assets.remove} */
-  describe('Assets.remove', () => {
-    /** @test {Assets.remove} */
+  /** @test {Assets.del} */
+  describe('Assets.del', () => {
+    /** @test {Assets.del} */
     it('makes a DELETE request to delete an asset', (done) => {
       moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset', {
         status: 200,
@@ -108,7 +108,7 @@ describe('Unit::Assets', () => {
       });
 
       const onFulfilled = sinon.spy();
-      testAssets.remove('testAsset')
+      testAssets.del('testAsset')
         .then(onFulfilled);
 
       return moxios.wait(() => {
@@ -117,9 +117,9 @@ describe('Unit::Assets', () => {
       });
     });
 
-    /** @test {Assets.remove} */
+    /** @test {Assets.del} */
     it('throws an error when an asset id is not given', () => (
-      testAssets.remove()
+      testAssets.del()
         .then((res) => {
           expect(res).to.not.exist;
         })

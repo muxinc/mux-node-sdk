@@ -19,11 +19,10 @@ const buildBasePath = assetId => `${PATH}/${assetId}`;
  * Assets Class - Provides access to the Mux Video Assets API
  *
  * @example
- * const muxClient = new Mux(accessToken, secret);
- * const { Video } = muxClient;
+ * const { Video } = new Mux(accessToken, secret);
  *
  * // Create an asset
- * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
+ * Video.Assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
  */
 class Assets extends Base {
   /**
@@ -33,11 +32,10 @@ class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Create an asset
-   * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
+   * Video.Assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
    *
    * @see https://docs.mux.com/reference#create-an-asset
    */
@@ -55,15 +53,14 @@ class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Delete an asset
-   * Video.assets.remove(assetId);
+   * Video.Assets.del(assetId);
    *
    * @see https://docs.mux.com/reference#delete-an-asset
    */
-  remove(assetId) {
+  del(assetId) {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required to delete an asset'));
     }
@@ -76,11 +73,10 @@ class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Get an asset
-   * Video.assets.get(assetId);
+   * Video.Assets.get(assetId);
    *
    * @see https://docs.mux.com/reference#retrieve-an-asset
    */
@@ -97,11 +93,10 @@ class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Get input info for an asset
-   * Video.assets.inputInfo(assetId);
+   * Video.Assets.inputInfo(assetId);
    *
    * @see https://docs.mux.com/reference#retrieve-asset-input-info
    */
@@ -117,11 +112,10 @@ class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // List all assets for a Mux Environment
-   * Video.assets.list();
+   * Video.Assets.list();
    *
    * @see https://docs.mux.com/reference#list-assets
    */
@@ -136,11 +130,10 @@ class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Retrieve an asset playbackId
-   * Video.assets.playbackId(assetId, playbackId);
+   * Video.Assets.playbackId(assetId, playbackId);
    *
    * @see https://docs.mux.com/v1/reference#retrieve-an-asset-playback-id
    */
@@ -162,11 +155,10 @@ class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Create an asset playback ID
-   * Video.assets.createPlaybackId(assetId, { policy: 'public' });
+   * Video.Assets.createPlaybackId(assetId, { policy: 'public' });
    *
    * @see https://docs.mux.com/v1/reference#add-an-asset-playback-id
    */
@@ -188,11 +180,10 @@ class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Video } = muxClient;
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // Delete an asset playback ID
-   * Video.assets.deletePlaybackId(assetId, { policy: 'public' });
+   * Video.Assets.deletePlaybackId(assetId, { policy: 'public' });
    *
    * @see https://docs.mux.com/v1/reference#delete-an-asset-playback-id
    */

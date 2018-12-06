@@ -17,7 +17,7 @@ const PATH = '/data/v1/exports';
  * const { Data } = muxClient;
  *
  * // Lists the available video view exports along with URLs to retrieve them
- * Data.exports.list();
+ * Data.Exports.list();
  */
 class Exports extends Base {
   /**
@@ -30,7 +30,7 @@ class Exports extends Base {
    * const { Data } = muxClient;
    *
    * // Lists the available video view exports along with URLs to retrieve them
-   * Data.exports.list();
+   * Data.Exports.list();
    *
    * @see https://api-docs.mux.com/#export-get
    */

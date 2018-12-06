@@ -11,7 +11,7 @@ describe('Integration::Metrics', () => {
   describe('Metrics.breakdown', () => {
     /** @test {Metrics.breakdown} */
     it('Lists all of the values across every breakdown for a specific metric', async () => {
-      const breakdown = await Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
+      const breakdown = await Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
       expect(breakdown).to.be.an('array');
     });
   });
@@ -20,7 +20,7 @@ describe('Integration::Metrics', () => {
   describe('Metrics.comparision', () => {
     /** @test {Metrics.comparision} */
     it('Lists the breakdown values for a specific metric', async () => {
-      const comparison = await Data.metrics.comparison({ value: 'Safari', dimension: 'browser' });
+      const comparison = await Data.Metrics.comparison({ value: 'Safari', dimension: 'browser' });
       expect(comparison).to.be.an('array');
     });
   });
@@ -29,7 +29,7 @@ describe('Integration::Metrics', () => {
   describe('Metrics.insights', () => {
     /** @test {Metrics.insights} */
     it('Returns a list of insights for a metric', async () => {
-      const insights = await Data.metrics.insights('video_startup_time');
+      const insights = await Data.Metrics.insights('video_startup_time');
       expect(insights).to.be.an('array');
     });
   });
@@ -38,7 +38,7 @@ describe('Integration::Metrics', () => {
   describe('Metrics.overall', () => {
     /** @test {Metrics.overall} */
     it('Returns the overall value for a specific metric, as well as the total view count, watch time, and the Mux Global metric value for the metric', async () => {
-      const overall = await Data.metrics.overall('video_startup_time');
+      const overall = await Data.Metrics.overall('video_startup_time');
       expect(overall).to.be.an('object');
     });
   });
@@ -47,7 +47,7 @@ describe('Integration::Metrics', () => {
   describe('Metrics.timeseries', () => {
     /** @test {Metrics.timeseries} */
     it('Returns the overall value for a specific metric, as well as the total view count, watch time, and the Mux Global metric value for the metric', async () => {
-      const timeseries = await Data.metrics.timeseries('video_startup_time');
+      const timeseries = await Data.Metrics.timeseries('video_startup_time');
       expect(timeseries).to.be.an('array');
     });
   });

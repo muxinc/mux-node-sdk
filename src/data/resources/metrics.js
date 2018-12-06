@@ -18,7 +18,7 @@ const PATH = '/data/v1/metrics';
  * const { Data } = muxClient;
  *
  * // List all of the values across every breakdown for a specific metric grouped by operating system
- * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'operating_system' });
+ * Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'operating_system' });
  */
 class Metrics extends Base {
   /**
@@ -34,7 +34,7 @@ class Metrics extends Base {
    * const { Data } = muxClient;
    *
    * // List all of the values across every breakdown for a specific metric grouped by browser
-   * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
+   * Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
    *
    * @see https://api-docs.mux.com/#breakdown-get
    */
@@ -53,7 +53,7 @@ class Metrics extends Base {
    * const { Data } = muxClient;
    *
    * // List the breakdown values for a specific metric within the last 24 hours
-   * Data.metrics.comparison({ value: 'safari', timeframe: '24:hours', dimension: 'cdn' });
+   * Data.Metrics.comparison({ value: 'safari', timeframe: '24:hours', dimension: 'cdn' });
    * Note: the value query parameter is required
    *
    * @see https://api-docs.mux.com/#comparison-get
@@ -78,7 +78,7 @@ class Metrics extends Base {
    * const { Data } = muxClient;
    *
    * // Get a list of insights for a metric measured by median and ordered descending
-   * Data.metrics.insights('aggregate_startup_time', { measurement: 'median', order_direction: 'desc' });
+   * Data.Metrics.insights('aggregate_startup_time', { measurement: 'median', order_direction: 'desc' });
    *
    * @see https://api-docs.mux.com/#insight-get
    */
@@ -102,7 +102,7 @@ class Metrics extends Base {
    * const { Data } = muxClient;
    *
    * // Get the overall value for a specific metric within the past 7 days
-   * Data.metrics.overall('aggregate_startup_time', { timeframe: ['7:days'] });
+   * Data.Metrics.overall('aggregate_startup_time', { timeframe: ['7:days'] });
    *
    * @see https://api-docs.mux.com/#overall-get
    */
@@ -125,7 +125,7 @@ class Metrics extends Base {
    * const { Data } = muxClient;
    *
    * // Get timeseries data for a specific metric within the past 7 days
-   * Data.metrics.timeseries('aggregate_startup_time', { timeframe: ['7:days'] });
+   * Data.Metrics.timeseries('aggregate_startup_time', { timeframe: ['7:days'] });
    *
    * @see https://api-docs.mux.com/#timeseries
    */

@@ -32,19 +32,19 @@ class Data extends Base {
     super(...params);
 
     /** @type {Metrics} */
-    this.metrics = new Metrics(this);
+    this.Metrics = new Metrics(this);
 
     /** @type {Errors} */
-    this.errors = new Errors(this);
+    this.Errors = new Errors(this);
 
     /** @type {Filters} */
-    this.filters = new Filters(this);
+    this.Filters = new Filters(this);
 
     /** @type {Exports} */
-    this.exports = new Exports(this);
+    this.Exports = new Exports(this);
 
     /** @type {VideoViews} */
-    this.videoViews = new VideoViews(this);
+    this.VideoViews = new VideoViews(this);
   }
 }
 
