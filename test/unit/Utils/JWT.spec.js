@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const JWT = require('../../../src/Utils/JWT');
+const JWT = require('../../../src/utils/jwt');
 
 const TEST_ID = '01XNj9qIpoW3eU1sED8EqrFRy01J3VTZ01x';
 const TEST_SECRET =
