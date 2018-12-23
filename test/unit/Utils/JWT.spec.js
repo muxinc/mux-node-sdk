@@ -1,4 +1,5 @@
 const { expect } = require('chai');
+const path = require('path');
 const JWT = require('../../../src/utils/jwt');
 
 const TEST_ID = '01XNj9qIpoW3eU1sED8EqrFRy01J3VTZ01x';
@@ -53,6 +54,32 @@ describe('Utils::JWT', () => {
         keySecret: TEST_SECRET,
         type: 'gif',
       };
+      const token = JWT.sign('some-playback-id', options);
+      expect(token).to.be.a('string');
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq('g');
+    });
+
+    it('takes a file path for a secret', () => {
+      const options = {
+        keyId: TEST_ID,
+        keyFilePath: path.join(__dirname, 'example-private-key.pem'),
+        type: 'gif',
+      };
+
+      const token = JWT.sign('some-playback-id', options);
+      expect(token).to.be.a('string');
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq('g');
+    });
+
+    it('falls back to using environment variables for the key and secret', () => {
+      process.env.MUX_SIGNING_KEY = TEST_ID;
+      process.env.MUX_PRIVATE_KEY = TEST_SECRET;
+      const options = {
+        type: 'gif',
+      };
+
       const token = JWT.sign('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);

@@ -26,13 +26,13 @@ const getPrivateKey = options => {
   if (options.keySecret) {
     key = options.keySecret;
   } else if (options.keyFilePath) {
-    key = fs.readFileSync(options.keyFile);
+    key = fs.readFileSync(options.keyFilePath);
   } else if (process.env.MUX_PRIVATE_KEY) {
     key = Buffer.from(process.env.MUX_PRIVATE_KEY, 'base64');
   }
 
   if (key) {
-    const [rsaHeader] = key.split('\n');
+    const [rsaHeader] = key.toString().split('\n');
     if (rsaHeader === '-----BEGIN RSA PRIVATE KEY-----') {
       return key;
     }
