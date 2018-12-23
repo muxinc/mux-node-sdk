@@ -1,0 +1,79 @@
+[
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "post",
+        "path": "/video/v1/signing-keys",
+        "body": {},
+        "status": 201,
+        "response": {
+            "data": {
+                "private_key": "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcGdJQkFBS0NBUUVBMjdSZURyaVVnWlA0SUxGL0w1TzF1NXFVU1JEL1BnKzRuSWtod29pdi9paFF6NzA4CmNqWkFCRnNTZ0IzOXYzK3pNM1dKRVdRYVFUTWszMzlEd3FLbzRuR2V0MFFaNDcxTzJtaThOV09xYjBSZHRMNTUKZ3gwVVZUVWZKVmNFems4NUR4RW9CdFRXRkhEektGc3hFVnZKS1ljZ3hRZGZXYnZtbFdYYzZ1OE1BQzNEMVpDOQoxaVcxOHFNbUhINnZQYkkrc0t3ekN0ZXp2WkJ4cElYZnU1V0hrdXFYT3pnTnYzUyttRXYzbnhnOWE5ekFTdFg4Clh4bDBXVmJZbXF4UkR0OVJpMHNJTCtyZ1IyY3d5bExaazlUaGR1eVExNXhDeTBjcHQwZkpRRHAwTUxlSngvQ20KdVFtQVFXVERYaDNubTBRK1d1ai9keXNwcWxyMXpBVk1iSHdERVFJREFRQUJBb0lCQVFDNS9qcTJLYXFHKy9aTgo3eFdsK0YwY1FlT1E2NU81UFdQakdQQjhtR3l0TkFJZHE2MFZYem5ZdGlTMlV5MXl4YSsyTzZWYkZLeHBUOXZDClhTSEhEeDc3L0lZSnpkeEJBUTFWTnQ5R0wyYWtwWExTeFlGbTd1STh0Q2oyMm5FV0d0bEtHUk1TblhIU2drQkgKaE5QSVJ6VElORDRZcm9JWkhFbzdaYTJkTWR1dDlYNnQxdm53YytyQWdLTUZpd2hzK1g0aWFqY1pUdkxPaTZ5RApXQzJqNEJ2b3lWbmtkKzFGa3hXSHhJNWNubENmQUZLalRrV1Y3UHlGZlJzWkdpNk9pK3RUdmI0ZktJNlFZemVECnp1cXZnSUhraFRqVnBERFRqbVp4ZjVwL0dRamp4bnMyTGhWVFdMbVNaNjR5bVM3VlJKU0k5UWFaWlBjUHdNSm4KcXlzK1prUnhBb0dCQVBNbFVTb1hXUktrYkY4L2dHaXpyY2ZLSVVWZG9jQndQWnlFZk9EVlFzdGRiUTlXRW1paQpDdHB0Z0FXR2Z6SzdCNmpwNFZ6L1Q0a2VwWXppUkVzMjJXWXBBZzljMk1Rd3k5ZFNWa29MMUFQSW8yN2tLbnlkCm9UVWxvYzRqQXdlbFY4NEdUbUpra0tMK0MwWjg5VXJJVk9pekxsNDQrU1QxU09DazB5eEZmSmsxQW9HQkFPZFIKelZKUE9XaEdNN0pjajhRS1h1elpWZE53R2FSTTJKa0J1ZGJjc3ZxZ0o4cVpSSHBzRFRxRWtlckJETFJoZmRvNgpnckdzVTRvcHRaM1h2ODgxWElZWmI1UmRZTVlVZkQyMXFHbjZvZ1BJNEhHMlp6WEliMVpQMU5Dakl1akwyS3EyCmp2Vno5cml0TXEzL0RvM2o3b0p5Z1oraGN0d0tBNTNNNlhCSi9CbnRBb0dCQU9TZERiZDV4SEpXenQ2dm9salAKdUhIRmg0cmxBcFVoODR3YXRoL2Y1TEc1NGpVdFJKbkU0bGVGNVgxTWZJU0NmaTAvMm5uS1JFbzAyb3VnbzMzawowSHZSeXZJTzVuRnhQL2Z3bnRsNFRaeFJKZm01NW9qTTNTcFBlOWVKNit0Z2R6SnJrMy9IOW9hS1BxZkVEZzZHClZlK0ZxZTlGdWx3WmxMQkR5Wm95cTNpUkFvR0JBS2hNYWZoU3o4L0FFK2pYVTNvc21YZjFnRzQvaDBoMDZMb1oKK1Y0TVlPUGNGbGRmUCtWYUxCM0JTbkRrV0J2OU9wWEdNRVNZdm9jdFpZZ2I2dUFWVU9YNEo2aG9iL3B0K1I3awp4azJsSHE5bVBYWStZY1ZOdVVPdy9ZTjJ6ZlZXS3FPNkF6VXVVL2wxZWdRQ0tGS3YzVjVuZFV2eEtTSlMzdUsyCnJia1creWJaQW9HQkFPRU5XaWFwdlB2WGd0OWUxeXJXbjF6NGg4NFM0ZSsrYTJIVzdzZkwyNXRKVjlIcG1EbEcKb2Z4SkZXNDBBTlh2eDBkc3dpNzg3MUZqYjZ3VXFneEVmL09KYmVQL1dIRUFOTHREZHcyVjIzb3ZMMUZySHVmTwpQb29XRk1wM0szTWZHVjc2dFJEdXZnK2dQOEE2UFdmL0VEa1BWR1NmU1czUEN0RWxDanBvb3hrOAotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=",
+                "id": "BlV2DLfHwb4a5m5J3xZIJ9cw01j2Ki6tg",
+                "created_at": "1545183156"
+            }
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "2334",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 19 Dec 2018 01:32:36 GMT",
+            "Server",
+            "Mux API Server v1.58.8",
+            "X-Request-Id",
+            "2lopfp74u9njgr9geg033621",
+            "Connection",
+            "close"
+        ]
+    },
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "get",
+        "path": "/video/v1/signing-keys",
+        "body": "",
+        "status": 200,
+        "response": {
+            "data": [
+                {
+                    "id": "BlV2DLfHwb4a5m5J3xZIJ9cw01j2Ki6tg",
+                    "created_at": "1545183156"
+                },
+                {
+                    "id": "01XNj9qIpoW3eU1sED8EqrFRy01J3VTZ01x",
+                    "created_at": "1545180534"
+                },
+                {
+                    "id": "dNRgsxrLixTxUg00BmlyhA3T00sBRVqXlR",
+                    "created_at": "1545180209"
+                },
+                {
+                    "id": "FxXIwNIiPCYCtzXzFyYGq5utbzGXcrdi",
+                    "created_at": "1545179296"
+                },
+                {
+                    "id": "eSgFMd01yKGXW34wQSndTeg2CGELApzbm",
+                    "created_at": "1540427290"
+                }
+            ]
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "357",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 19 Dec 2018 01:32:36 GMT",
+            "Server",
+            "Mux API Server v1.58.8",
+            "X-Request-Id",
+            "2lopfp83e72gauk2fs033641",
+            "Connection",
+            "close"
+        ]
+    }
+]

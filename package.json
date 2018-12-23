@@ -24,7 +24,8 @@
     "test:int": "mocha --recursive ./test/integration"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "jsonwebtoken": "^8.4.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
@@ -34,11 +35,15 @@
     "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-chai-friendly": "^0.4.1",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-prettier": "^3.0.0",
     "mocha": "^5.1.1",
     "moxios": "^0.4.0",
+    "nock": "^10.0.4",
+    "prettier": "^1.15.3",
     "sinon": "^4.5.0"
   },
   "repository": {
