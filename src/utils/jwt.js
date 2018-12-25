@@ -13,7 +13,7 @@ const typeToClaim = type => {
 
 const getSigningKey = options => {
   const keyId = options.keyId || process.env.MUX_SIGNING_KEY;
-  if (keyId) {
+  if (!keyId) {
     throw new TypeError('Signing Key ID required');
   }
 
