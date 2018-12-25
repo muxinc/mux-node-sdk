@@ -7,7 +7,7 @@ const Assets = require('./resources/assets');
 const Base = require('../base');
 const LiveStreams = require('./resources/liveStreams');
 const Uploads = require('./resources/uploads');
-const SigningKeys = require('./resources/SigningKeys');
+const SigningKeys = require('./resources/signingKeys');
 
 /**
  * @ignore

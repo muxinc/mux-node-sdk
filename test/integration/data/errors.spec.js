@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { expect } = require('chai');
 const Mux = require('../../../src/mux');
 
@@ -11,7 +10,9 @@ describe('Integration::Errors', () => {
   describe('Errors.list', () => {
     /** @test {Errors.list} */
     it('Returns a list of playback errors', async () => {
-      const errors = await Data.Errors.list({ filters: ['operating_system:windows'] });
+      const errors = await Data.Errors.list({
+        filters: ['operating_system:windows'],
+      });
       expect(errors).to.be.an('array');
     });
   });

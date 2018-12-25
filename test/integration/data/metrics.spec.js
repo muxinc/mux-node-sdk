@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { expect } = require('chai');
 const Mux = require('../../../src/mux');
 
@@ -11,7 +10,9 @@ describe('Integration::Metrics', () => {
   describe('Metrics.breakdown', () => {
     /** @test {Metrics.breakdown} */
     it('Lists all of the values across every breakdown for a specific metric', async () => {
-      const breakdown = await Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
+      const breakdown = await Data.Metrics.breakdown('aggregate_startup_time', {
+        group_by: 'browser',
+      });
       expect(breakdown).to.be.an('array');
     });
   });
@@ -20,7 +21,10 @@ describe('Integration::Metrics', () => {
   describe('Metrics.comparision', () => {
     /** @test {Metrics.comparision} */
     it('Lists the breakdown values for a specific metric', async () => {
-      const comparison = await Data.Metrics.comparison({ value: 'Safari', dimension: 'browser' });
+      const comparison = await Data.Metrics.comparison({
+        value: 'Safari',
+        dimension: 'browser',
+      });
       expect(comparison).to.be.an('array');
     });
   });

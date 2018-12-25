@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { expect } = require('chai');
 const Mux = require('../../../src/mux');
 

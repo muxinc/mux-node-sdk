@@ -1,14 +1,6 @@
-const path = require('path');
-
-require('dotenv').config();
 const { expect } = require('chai');
 const Mux = require('../../../src/mux');
 const nockBack = require('nock').back;
-
-nockBack.setMode('record');
-
-// If we decide to use nock with other modules we should move this to a test helper
-nockBack.fixtures = path.join(__dirname, '/nockFixtures');
 
 /** @test {Uploads} */
 describe('SigningKeys', () => {

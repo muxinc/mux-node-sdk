@@ -20,8 +20,8 @@
   "scripts": {
     "docs": "esdoc",
     "test": "mocha --recursive ./test/unit",
-    "test:unit": "mocha --recursive ./test/unit",
-    "test:int": "mocha --recursive ./test/integration"
+    "test:unit": "NOCK_BACK_MODE=record mocha --recursive ./test",
+    "test:int": "NOCK_BACK_MODE=wild mocha --recursive ./test"
   },
   "dependencies": {
     "axios": "^0.18.0",
