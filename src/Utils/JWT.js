@@ -12,13 +12,12 @@ const typeToClaim = type => {
 };
 
 const getSigningKey = options => {
-  if (options.keyId) {
-    return options.keyId;
-  } else if (process.env.MUX_SIGNING_KEY) {
-    return process.env.MUX_SIGNING_KEY;
+  const keyId = options.keyId || process.env.MUX_SIGNING_KEY;
+  if (keyId) {
+    throw new TypeError('Signing Key ID required');
   }
 
-  throw new TypeError('Signing Key ID required');
+  return keyId;
 };
 
 const getPrivateKey = options => {
