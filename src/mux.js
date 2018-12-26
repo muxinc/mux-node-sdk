@@ -6,6 +6,7 @@
 const Base = require('./base');
 const Video = require('./video/video');
 const Data = require('./data/data');
+const JWT = require('./utils/jwt');
 
 /**
  * Mux Class - Provides access to the Mux Video and Mux Data API
@@ -51,6 +52,8 @@ class Mux extends Base {
 
     /** @type {Data} */
     this.Data = new Data(this);
+
+    this.JWT = JWT;
   }
 }
 

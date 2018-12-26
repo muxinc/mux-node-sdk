@@ -49,17 +49,23 @@ class Base extends EventEmitter {
       },
     });
 
-    this.http.interceptors.request.use((req) => {
+    this.http.interceptors.request.use(req => {
       this.emit('request', req);
 
       return req;
     });
 
-    this.http.interceptors.response.use((res) => {
-      this.emit('response', res);
+    this.http.interceptors.response.use(
+      res => {
+        this.emit('response', res);
 
-      return res.data && res.data.data;
-    });
+        return res.data && res.data.data;
+      },
+      errorRes =>
+        Promise.reject(
+          (errorRes.response && errorRes.response.data.error) || errorRes
+        )
+    );
   }
 
   set config(options = {}) {
@@ -98,7 +104,10 @@ class Base extends EventEmitter {
   }
 
   remove(...params) {
-    console.warn('The remove helper has been deprecated in favor of del. `remove` will no longer be available after the next major version bump (3.0).'); // eslint-disable-line no-console
+    // eslint-disable-next-line no-console
+    console.warn(
+      'The remove helper has been deprecated in favor of del. `remove` will no longer be available after the next major version bump (3.0).'
+    );
     return this.del(...params);
   }
 }

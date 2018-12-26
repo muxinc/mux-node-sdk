@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { expect } = require('chai');
 const Mux = require('../../../src/mux');
 
@@ -11,7 +10,10 @@ describe('Integration::VideoViews', () => {
   describe('VideoViews.list', () => {
     /** @test {VideoViews.list} */
     it('Returns a list of video views for a property that occurred within the specified timeframe', async () => {
-      const views = await Data.VideoViews.list({ viewer_id: 'test', order_direction: 'asc' });
+      const views = await Data.VideoViews.list({
+        viewer_id: 'test',
+        order_direction: 'asc',
+      });
       expect(views).to.be.an('array');
     });
   });
