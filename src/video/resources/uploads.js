@@ -44,7 +44,9 @@ class Uploads extends Base {
    */
   create(params) {
     if (!params) {
-      return Promise.reject(new Error('Params are required for creating a direct upload'));
+      return Promise.reject(
+        new Error('Params are required for creating a direct upload')
+      );
     }
 
     return this.http.post(PATH, params);
@@ -85,7 +87,9 @@ class Uploads extends Base {
    */
   get(uploadId) {
     if (!uploadId) {
-      return Promise.reject(new Error('An upload ID is required to get an asset'));
+      return Promise.reject(
+        new Error('An upload ID is required to get an asset')
+      );
     }
     return this.http.get(buildBasePath(uploadId));
   }

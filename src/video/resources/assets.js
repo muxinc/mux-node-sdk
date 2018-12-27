@@ -41,7 +41,9 @@ class Assets extends Base {
    */
   create(params) {
     if (!params) {
-      return Promise.reject(new Error('Params are required for creating an asset'));
+      return Promise.reject(
+        new Error('Params are required for creating an asset')
+      );
     }
 
     return this.http.post(PATH, params);
@@ -62,7 +64,9 @@ class Assets extends Base {
    */
   del(assetId) {
     if (!assetId) {
-      return Promise.reject(new Error('An asset ID is required to delete an asset'));
+      return Promise.reject(
+        new Error('An asset ID is required to delete an asset')
+      );
     }
     return this.http.delete(buildBasePath(assetId));
   }
@@ -82,7 +86,9 @@ class Assets extends Base {
    */
   get(assetId) {
     if (!assetId) {
-      return Promise.reject(new Error('An asset ID is required to get an asset'));
+      return Promise.reject(
+        new Error('An asset ID is required to get an asset')
+      );
     }
     return this.http.get(buildBasePath(assetId));
   }
@@ -102,7 +108,9 @@ class Assets extends Base {
    */
   inputInfo(assetId) {
     if (!assetId) {
-      return Promise.reject(new Error('An asset ID is required to get input-info'));
+      return Promise.reject(
+        new Error('An asset ID is required to get input-info')
+      );
     }
     return this.http.get(`${buildBasePath(assetId)}/input-info`);
   }
@@ -145,7 +153,9 @@ class Assets extends Base {
     if (!playbackId) {
       return Promise.reject(new Error('A playback ID is required'));
     }
-    return this.http.get(`${buildBasePath(assetId)}/playback-ids/${playbackId}`);
+    return this.http.get(
+      `${buildBasePath(assetId)}/playback-ids/${playbackId}`
+    );
   }
 
   /**
@@ -195,7 +205,9 @@ class Assets extends Base {
     if (!playbackId) {
       return Promise.reject(new Error('A playback ID is required'));
     }
-    return this.http.delete(`${buildBasePath(assetId)}/playback-ids/${playbackId}`);
+    return this.http.delete(
+      `${buildBasePath(assetId)}/playback-ids/${playbackId}`
+    );
   }
 }
 
