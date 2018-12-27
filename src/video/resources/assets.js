@@ -27,7 +27,6 @@ const buildBasePath = assetId => `${PATH}/${assetId}`;
 class Assets extends Base {
   /**
    * Creates a Mux asset with the specified JSON parameters
-   * @extends Base
    * @param {Object} params - Asset JSON parameters (e.g input)
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *

@@ -3,15 +3,19 @@
   "destination": "./docs",
   "plugins": [
     { "name": "esdoc-node" },
+    { "name": "esdoc-ecmascript-proposal-plugin", "option": { "all": true } },
     {
       "name": "esdoc-standard-plugin",
       "option": {
-        "lint": {"enable": true},
-        "coverage": {"enable": true},
-        "accessor": {"access": ["public", "protected", "private"], "autoPrivate": true},
-        "undocumentIdentifier": {"enable": true},
-        "unexportedIdentifier": {"enable": false},
-        "typeInference": {"enable": true},
+        "lint": { "enable": true },
+        "coverage": { "enable": true },
+        "accessor": {
+          "access": ["public", "protected", "private"],
+          "autoPrivate": true
+        },
+        "undocumentIdentifier": { "enable": true },
+        "unexportedIdentifier": { "enable": false },
+        "typeInference": { "enable": true },
         "brand": {
           "logo": "./src/assets/logo.png",
           "title": "MUX",
@@ -22,9 +26,7 @@
         "manual": {
           "index": "./manual/index.md",
           "globalIndex": true,
-          "files": [
-            "./manual/overview.md"
-          ]
+          "files": ["./manual/overview.md"]
         },
         "test": {
           "source": "./test/",
