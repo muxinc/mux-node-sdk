@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/data/resources/metrics.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utils/jwt.js~JWT.html">JWT</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/data/resources/metrics.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*!
+ * Mux Metrics
+ * Copyright(c) 2018 Mux Inc.
+ */
+const Base = require(&apos;../../base&apos;);
+
+/**
+ * @private Base metrics path for the Mux API
+ * */
+const PATH = &apos;/data/v1/metrics&apos;;
+
+/**
+ * Metrics Class - Provides access to the Mux Data Metrics API
+ *
+ * @extends Base
+ * @example
+ * const muxClient = new Mux(accessToken, secret);
+ * const { Data } = muxClient;
+ *
+ * // List all of the values across every breakdown for a specific metric grouped by operating system
+ * Data.Metrics.breakdown(&apos;aggregate_startup_time&apos;, { group_by: &apos;operating_system&apos; });
+ */
+class Metrics extends Base {
+  /**
+   * List the breakdown values for a specific metric
+   *
+   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#breakdown-get for a list of all metric ids
+   * @param {Object} queryParams - example: {group_by: &apos;browser&apos;}
+   * NOTE: the group_by query parameter is required
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Data } = muxClient;
+   *
+   * // List all of the values across every breakdown for a specific metric grouped by browser
+   * Data.Metrics.breakdown(&apos;aggregate_startup_time&apos;, { group_by: &apos;browser&apos; });
+   *
+   * @see https://api-docs.mux.com/#breakdown-get
+   */
+  breakdown(metricId, params) {
+    return this.http.get(`${PATH}/${metricId}/breakdown`, { params });
+  }
+
+  /**
+   * List all of the values across every breakdown for a specific metric
+   *
+   * @param {Object} queryParams - example { value: &apos;safari&apos;, timeframe: &apos;24:hours&apos;, dimension: &apos;cdn&apos; }
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Data } = muxClient;
+   *
+   * // List the breakdown values for a specific metric within the last 24 hours
+   * Data.Metrics.comparison({ value: &apos;safari&apos;, timeframe: &apos;24:hours&apos;, dimension: &apos;cdn&apos; });
+   * Note: the value query parameter is required
+   *
+   * @see https://api-docs.mux.com/#comparison-get
+   */
+  comparison(params) {
+    if (!params || (params &amp;&amp; !params.value)) {
+      throw new Error(
+        &apos;The value query parameter is required for comparing metrics&apos;
+      );
+    }
+    return this.http.get(`${PATH}/comparison`, { params });
+  }
+
+  /**
+   * Returns a list of insights for a metric. These are the worst performing values across all
+   * breakdowns sorted by how much they negatively impact a specific metric.
+   *
+   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#breakdown-get for a list of all metric ids
+   * @param {Object} [queryParams] - example { measurement: &apos;median&apos;, order_direction: &apos;desc&apos; }
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Data } = muxClient;
+   *
+   * // Get a list of insights for a metric measured by median and ordered descending
+   * Data.Metrics.insights(&apos;aggregate_startup_time&apos;, { measurement: &apos;median&apos;, order_direction: &apos;desc&apos; });
+   *
+   * @see https://api-docs.mux.com/#insight-get
+   */
+  insights(metricId, params) {
+    if (!metricId) {
+      throw new Error(&apos;A metric Id is required for insight metrics.&apos;);
+    }
+    return this.http.get(`${PATH}/${metricId}/insights`, { params });
+  }
+
+  /**
+   * Returns the overall value for a specific metric, as well as the total view count,
+   * watch time, and the Mux Global metric value for the metric.
+   *
+   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#overall-get for a list of all metric ids
+   * @param {Object} [queryParams] - example { timeframe: [&apos;7:days&apos;], filters: [&apos;operating_system:windows&apos;] }
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Data } = muxClient;
+   *
+   * // Get the overall value for a specific metric within the past 7 days
+   * Data.Metrics.overall(&apos;aggregate_startup_time&apos;, { timeframe: [&apos;7:days&apos;] });
+   *
+   * @see https://api-docs.mux.com/#overall-get
+   */
+  overall(metricId, params) {
+    if (!metricId) {
+      throw new Error(&apos;A metric Id is required for overall metrics.&apos;);
+    }
+    return this.http.get(`${PATH}/${metricId}/overall`, { params });
+  }
+
+  /**
+   * Returns timeseries data for a specific metric
+   *
+   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#timeseries for a list of all metric ids
+   * @param {Object} [queryParams] - example { timeframe: [&apos;7:days&apos;], filters: [&apos;operating_system:windows&apos;] }
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Data } = muxClient;
+   *
+   * // Get timeseries data for a specific metric within the past 7 days
+   * Data.Metrics.timeseries(&apos;aggregate_startup_time&apos;, { timeframe: [&apos;7:days&apos;] });
+   *
+   * @see https://api-docs.mux.com/#timeseries
+   */
+  timeseries(metricId, params) {
+    if (!metricId) {
+      throw new Error(&apos;A metric Id is required for timeseries metrics.&apos;);
+    }
+    return this.http.get(`${PATH}/${metricId}/timeseries`, { params });
+  }
+}
+
+module.exports = Metrics;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

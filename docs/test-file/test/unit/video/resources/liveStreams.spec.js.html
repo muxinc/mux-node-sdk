@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">test/unit/video/resources/liveStreams.spec.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utils/jwt.js~JWT.html">JWT</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/unit/video/resources/liveStreams.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
+const sinon = require(&apos;sinon&apos;);
+const moxios = require(&apos;moxios&apos;);
+const LiveStreams = require(&apos;../../../../src/video/resources/liveStreams&apos;);
+
+/** @test {LiveStreams} */
+describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
+  const testApiKey = &apos;testApiKey&apos;;
+  const testSecret = &apos;testSecret&apos;;
+  const testLiveStreams = new LiveStreams(testApiKey, testSecret);
+
+  beforeEach(() =&gt; {
+    moxios.install(testLiveStreams.http);
+  });
+
+  afterEach(() =&gt; {
+    moxios.uninstall(testLiveStreams.http);
+  });
+
+  /** @test {LiveStreams} */
+  describe(&apos;LiveStreams&apos;, () =&gt; {
+    /** @test {LiveStreams} */
+    it(&apos;throws an error if an api key is not given&apos;, () =&gt; {
+      expect(() =&gt; new LiveStreams()).to.throw(
+        &apos;API Access Token must be provided.&apos;
+      );
+    });
+
+    /** @test {LiveStreams} */
+    it(&apos;throws an error if a secret key is not given&apos;, () =&gt; {
+      expect(() =&gt; new LiveStreams(&apos;testKey&apos;)).to.throw(
+        &apos;API secret key must be provided&apos;
+      );
+    });
+
+    /** @test {LiveStreams} */
+    it(&apos;creates a new LiveStreams instance&apos;, () =&gt; {
+      const TestLiveStreams = new LiveStreams(testApiKey, testSecret);
+      expect(() =&gt; new LiveStreams(testApiKey, testSecret)).to.not.throw();
+      expect(TestLiveStreams.tokenId).to.equal(testApiKey);
+      expect(TestLiveStreams.tokenSecret).to.equal(testSecret);
+    });
+  });
+
+  /** @test {LiveStreams.create} */
+  describe(&apos;LiveStreams.create&apos;, () =&gt; {
+    /** @test {LiveStreams.create} */
+    it(&apos;makes a POST request to create a LiveStream asset&apos;, done =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/live-streams&apos;, {
+        status: 200,
+        responseText: &apos;{&quot;data&quot;: {&quot;create&quot;: true}}&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testLiveStreams
+        .create(&apos;testLiveStream&apos;, {
+          playback_policy: &apos;public&apos;,
+          new_asset_settings: { playback_policy: &apos;public&apos; },
+        })
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].create).to.be.true;
+        done();
+      });
+    });
+  });
+
+  /** @test {LiveStreams.del} */
+  describe(&apos;LiveStreams.del&apos;, () =&gt; {
+    /** @test {LiveStreams.del} */
+    it(&apos;makes a DELETE request to delete a live stream&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/video/v1/live-streams/testLiveStream&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;deleteLive&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testLiveStreams.del(&apos;testLiveStream&apos;).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].deleteLive).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {LiveStreams.del} */
+    it(&apos;throws an error when a live stream id is not given&apos;, () =&gt;
+      testLiveStreams
+        .del()
+        .then(res =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch(err =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            &apos;A live stream ID is required to delete a live stream&apos;
+          );
+        }));
+  });
+
+  /** @test {LiveStreams.list} */
+  describe(&apos;LiveStreams.list&apos;, () =&gt; {
+    /** @test {LiveStreams.list} */
+    it(&apos;makes a GET request to list all live streams&apos;, done =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/live-streams&apos;, {
+        status: 200,
+        responseText: &apos;{&quot;data&quot;: {&quot;list&quot;: true}}&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testLiveStreams.list().then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].list).to.be.true;
+        done();
+      });
+    });
+
+    it(&apos;makes a GET request to list 100 live streams offset by 2 pages&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/video/v1/live-streams?limit=100&amp;page=2&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;list&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testLiveStreams.list({ limit: 100, page: 2 }).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].list).to.be.true;
+        done();
+      });
+    });
+  });
+
+  /** @test {LiveStreams.get} */
+  describe(&apos;LiveStreams.get&apos;, () =&gt; {
+    /** @test {LiveStreams.get} */
+    it(&apos;makes a GET request to get a live stream&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/video/v1/live-streams/testLiveStream&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;live_stream&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testLiveStreams.get(&apos;testLiveStream&apos;).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].live_stream).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {LiveStreams.get} */
+    it(&apos;throws an error when a live stream id is not given&apos;, () =&gt;
+      testLiveStreams
+        .get()
+        .then(res =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch(err =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            &apos;A live stream ID is required to get a live stream&apos;
+          );
+        }));
+  });
+
+  /** @test {LiveStreams.signalComplete} */
+  describe(&apos;LiveStreams.signalComplete&apos;, () =&gt; {
+    /** @test {LiveStreams.signalComplete} */
+    it(&apos;makes a PUT request to signal a live stream is complete&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/video/v1/live-streams/testLiveStream/complete&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;live_stream&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testLiveStreams.signalComplete(&apos;testLiveStream&apos;).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].live_stream).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {LiveStreams.signalComplete} */
+    it(&apos;throws an error when a live stream id is not given&apos;, () =&gt;
+      testLiveStreams
+        .signalComplete()
+        .then(res =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch(err =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            &apos;A Live Stream ID is required to signal a stream is complete&apos;
+          );
+        }));
+  });
+
+  /** @test {LiveStreams.resetStreamKey} */
+  describe(&apos;LiveStreams.resetStreamKey&apos;, () =&gt; {
+    /** @test {LiveStreams.resetStreamKey} */
+    it(&apos;makes a POST request to reset a live stream key&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/video/v1/live-streams/testLiveStream/reset-stream-key&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;live_stream&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testLiveStreams.resetStreamKey(&apos;testLiveStream&apos;).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].live_stream).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {LiveStreams.resetStreamKey} */
+    it(&apos;throws an error when a live stream id is not given&apos;, () =&gt;
+      testLiveStreams
+        .resetStreamKey()
+        .then(res =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch(err =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            &apos;A Live Stream ID is required to reset a live stream key&apos;
+          );
+        }));
+  });
+
+  /** @test {LiveStreams.createPlaybackId} */
+  describe(&apos;LiveStreams.createPlaybackId&apos;, () =&gt; {
+    /** @test {LiveStreams.createPlaybackId} */
+    it(&apos;makes a POST request to create a playback ID for a live stream&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/video/v1/live-streams/testLiveStream/playback-ids&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;create&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testLiveStreams
+        .createPlaybackId(&apos;testLiveStream&apos;, { policy: &apos;public&apos; })
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].create).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {LiveStreams.createPlaybackId} */
+    it(&apos;throws an error if a Live Stream ID is not given&apos;, () =&gt;
+      testLiveStreams
+        .createPlaybackId(&apos;testLiveStream&apos;)
+        .then(res =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch(err =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            &apos;A playback policy is required to create a live stream playback ID&apos;
+          );
+        }));
+
+    /** @test {LiveStreams.createPlaybackId} */
+    it(&apos;throws an error if params are not given&apos;, () =&gt;
+      testLiveStreams
+        .createPlaybackId()
+        .then(res =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch(err =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            &apos;A Live Stream ID is required to create a live stream playback ID&apos;
+          );
+        }));
+  });
+
+  /** @test {LiveStreams.deletePlaybackId} */
+  describe(&apos;LiveStreams.deletePlaybackId&apos;, () =&gt; {
+    /** @test {LiveStreams.deletePlaybackId} */
+    it(&apos;makes a DELETE request to delete a playback ID for a live stream&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/video/v1/live-streams/testLiveStream/playback-ids/testPlaybackId&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;delete&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testLiveStreams
+        .deletePlaybackId(&apos;testLiveStream&apos;, &apos;testPlaybackId&apos;)
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].delete).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {LiveStreams.deletePlaybackId} */
+    it(&apos;throws an error if a Live Stream ID is not given&apos;, () =&gt;
+      testLiveStreams
+        .deletePlaybackId()
+        .then(res =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch(err =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            &apos;A Live Stream ID is required to delete a live stream playback ID&apos;
+          );
+        }));
+
+    /** @test {LiveStreams.deletePlaybackId} */
+    it(&apos;throws an error if a playback id is not given&apos;, () =&gt;
+      testLiveStreams
+        .deletePlaybackId(&apos;liveStreamId&apos;)
+        .then(res =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch(err =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            &apos;A live stream playback ID is required to delete a live stream playback ID&apos;
+          );
+        }));
+  });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/utils/jwt.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utils/jwt.js~JWT.html">JWT</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/utils/jwt.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*!
+ * JWT - Signed URL Helpers
+ * Note: Hacking this module into a class with static methods because ESDoc forces it. We&apos;ll revisit ESDoc later.
+ * Documentationjs looks real nice.
+ */
+const fs = require(&apos;fs&apos;);
+const jwt = require(&apos;jsonwebtoken&apos;);
+
+const typeToClaim = type =&gt; {
+  const typeMap = {
+    video: &apos;v&apos;,
+    thumbnail: &apos;t&apos;,
+    gif: &apos;g&apos;,
+  };
+
+  return typeMap[type];
+};
+
+const getSigningKey = options =&gt; {
+  const keyId = options.keyId || process.env.MUX_SIGNING_KEY;
+  if (!keyId) {
+    throw new TypeError(&apos;Signing Key ID required&apos;);
+  }
+
+  return keyId;
+};
+
+const getPrivateKey = options =&gt; {
+  let key;
+  if (options.keySecret) {
+    key = options.keySecret;
+  } else if (options.keyFilePath) {
+    key = fs.readFileSync(options.keyFilePath);
+  } else if (process.env.MUX_PRIVATE_KEY) {
+    key = Buffer.from(process.env.MUX_PRIVATE_KEY, &apos;base64&apos;);
+  }
+
+  if (key) {
+    const [rsaHeader] = key.toString().split(&apos;\n&apos;);
+    if (rsaHeader === &apos;-----BEGIN RSA PRIVATE KEY-----&apos;) {
+      return key;
+    }
+
+    try {
+      return Buffer.from(key, &apos;base64&apos;);
+    } catch (err) {
+      throw new TypeError(
+        &apos;Specified signing key must be either a valid PEM string or a base64 encoded PEM.&apos;
+      );
+    }
+  }
+
+  throw new TypeError(&apos;Signing Key ID required&apos;);
+};
+
+/**
+ * JWT - Signed URL token generation helpers
+ *
+ * @example
+ * const Mux = require(&apos;@mux/mux-node&apos;);
+ *
+ * const token = Mux.JWT.sign(&apos;some-playback-id&apos;, { keyId: &apos;your key id&apos;, keySecret: &apos;your key secret&apos; })
+ */
+class JWT {
+  /**
+   * Creates a new token to be used with a signed playback ID
+   * @param {string} playbackId - The Playback ID (of type &apos;signed&apos;) that you&apos;d like to generate a token for.
+   * @param {Object} options - Configuration options to use when creating the token
+   * @param {string} [options.keyId] - The signing key ID to use. If not specified, process.env.MUX_SIGNING_KEY is attempted
+   * @param {string} [options.keySecret] - The signing key secret. If not specified, process.env.MUX_PRIVATE_KEY is used.
+   * @param {string} [options.type=video] - Type of token this will be. Valid types are `video`, `thumbnail`, or `gif`
+   * @param {string} [options.expiration=7d] - Length of time for the token to be valid.
+   * @param {Object} [options.params] - Any additional query params you&apos;d use with a public url. For example, with a thumbnail this would be values such as `time`.
+   * @returns {string} - Returns a token to be used with a signed URL.
+   *
+   * @example
+   * const Mux = require(&apos;@mux/mux-node&apos;);
+   *
+   * const token = Mux.JWT.sign(&apos;some-playback-id&apos;, { keyId: &apos;your key id&apos;, keySecret: &apos;your key secret&apos; });
+   * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
+   */
+  static sign(playbackId, options = {}) {
+    const opts = {
+      type: &apos;video&apos;,
+      expiration: &apos;7d&apos;,
+      params: {},
+      ...options,
+    };
+
+    const keyId = getSigningKey(options);
+    const keySecret = getPrivateKey(options);
+
+    const tokenOptions = {
+      keyid: keyId,
+      subject: playbackId,
+      audience: typeToClaim(opts.type),
+      expiresIn: opts.expiration,
+      noTimestamp: true,
+      algorithm: &apos;RS256&apos;,
+    };
+
+    return jwt.sign(opts.params, keySecret, tokenOptions);
+  }
+
+  /**
+   * Decodes an existing token.
+   *
+   * Note: This does not cryptographically verify the token signature, it simply decodes the values.
+   * @param {string} token - The token you&apos;d like to decode.
+   * @returns {Object} - If the token could be decoded, it returns the decoded token object
+   *
+   * @example
+   * const Mux = require(&apos;@mux/mux-node&apos;);
+   *
+   * const token = Mux.JWT.sign(&apos;some-playback-id&apos;, { keyId: &apos;your key id&apos;, keySecret: &apos;your key secret&apos; });
+   * const decoded = Mux.JWT.decode(token);
+   * // decoded will be the raw decoded JWT, so you&apos;ll see keys like `aud`, `exp`, etc.
+   */
+  static decode(token) {
+    return jwt.decode(token);
+  }
+}
+
+module.exports = JWT;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/video/resources/signingKeys.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utils/jwt.js~JWT.html">JWT</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/video/resources/signingKeys.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*!
+ * Mux Signing Keys
+ * Copyright(c) 2018 Mux Inc.
+ */
+const Base = require(&apos;../../base&apos;);
+
+/**
+ * @private Base signing-key path for the Mux API
+ * */
+const PATH = &apos;/video/v1/signing-keys&apos;;
+
+/**
+ * @private
+ * Build the base asset path for the Mux API
+ * */
+const buildBasePath = keyId =&gt; `${PATH}/${keyId}`;
+
+/**
+ * Signing Key Class - Provides access to the Mux Video Signing Key API
+ *
+ * @example
+ * const { Video } = new Mux(accessToken, secret);
+ *
+ * // Create a new signing key
+ * Video.SigningKeys.create();
+ */
+class SigningKeys extends Base {
+  /**
+   * Creates a new Signing Key that can be used with the JWT module to sign URLs.
+   * @extends Base
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Video } = muxClient;
+   *
+   * const signingKey = await Video.SigningKeys.create();
+   *
+   * @see https://docs.mux.com/v1/reference#url-signing-keys
+   */
+  create() {
+    return this.http.post(PATH, {});
+  }
+
+  /**
+   * Get a signing key. *Note* The private key is _not_ returned.
+   * @param {string} keyId - The ID for the signing key
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // Get an asset
+   * Video.SigningKeys.get(keyId);
+   *
+   * @see https://docs.mux.com/v1/reference#retrieve-a-url-signing-key
+   */
+  get(keyId) {
+    if (!keyId) {
+      return Promise.reject(new Error(&apos;An signing key ID is required.&apos;));
+    }
+    return this.http.get(buildBasePath(keyId));
+  }
+
+  /**
+   * Delete a signing key
+   * @param {string} keyId - The ID for the signing key
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // Get an asset
+   * Video.SigningKeys.del(keyId);
+   *
+   * @see https://docs.mux.com/v1/reference#delete-a-url-signing-key
+   */
+  del(keyId) {
+    if (!keyId) {
+      return Promise.reject(new Error(&apos;An signing key ID is required.&apos;));
+    }
+    return this.http.delete(buildBasePath(keyId));
+  }
+
+  /**
+   * List signing keys
+   * @param {string} keyId - The ID for the signing key
+   * @param {object} params - Object to include as query params
+   * @param {number} params.limit - Number of signing keys to return in the response
+   * @param {number} params.page - Page of signing keys to return (limit * page)
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // Get an asset
+   * Video.SigningKeys.list();
+   *
+   * @see https://docs.mux.com/v1/reference#list-url-signing-keys
+   */
+  list(params = {}) {
+    return this.http.get(PATH, { params });
+  }
+}
+
+module.exports = SigningKeys;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

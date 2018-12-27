@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">LiveStreams | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utils/jwt.js~JWT.html">JWT</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div class="header-notice">
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import LiveStreams from &apos;<span><a href="file/src/video/resources/liveStreams.js.html#lineNumber32">@mux/mux-node/src/video/resources/liveStreams.js</a></span>&apos;</code></pre></div>
+  <span data-ice="access">public</span>
+  <span data-ice="kind">class</span>
+  
+  
+  
+  <span data-ice="source">| <span><a href="file/src/video/resources/liveStreams.js.html#lineNumber32">source</a></span></span>
+</div>
+
+<div class="self-detail detail">
+  <h1 data-ice="name">LiveStreams</h1>
+
+  
+
+  
+  
+  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>*</span> &#x2192; LiveStreams</div></div>
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <div class="description" data-ice="description"><p>Live Streams Class - Provides access to the Mux Video Live Streams API</p>
+</div>
+  
+
+  
+
+  <div data-ice="exampleDocs">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">const muxClient = new Mux(accessToken, secret);
+const { Video } = muxClient;
+
+// Create a live stream
+Video.LiveStreams.create({
+ playback_policy: &apos;public&apos;,
+ new_asset_settings: { playback_policy: &apos;public&apos; }
+});</code></pre>
+    </div>
+</div>
+
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber7">Unit::LiveStreams</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber21">Unit::LiveStreams LiveStreams</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber5">Integration::LiveStreams</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber23">Unit::LiveStreams LiveStreams throws an error if an api key is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber30">Unit::LiveStreams LiveStreams throws an error if a secret key is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber37">Unit::LiveStreams LiveStreams creates a new LiveStreams instance</a></span></li>
+</ul>
+  </div>
+
+  
+</div>
+
+
+
+
+
+<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-create">create</a></span></span><span class="code" data-ice="signature">(params: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Creates a Mux live stream with the specified JSON parameters</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-createPlaybackId">createPlaybackId</a></span></span><span class="code" data-ice="signature">(liveStreamId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, params: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Create a live stream playback id</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-del">del</a></span></span><span class="code" data-ice="signature">(liveStreamId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Deletes a Mux Live Stream</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-deletePlaybackId">deletePlaybackId</a></span></span><span class="code" data-ice="signature">(liveStreamId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, playbackId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Delete a live stream playback ID</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-get">get</a></span></span><span class="code" data-ice="signature">(liveStreamId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Get an Live Stream</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-list">list</a></span></span><span class="code" data-ice="signature">(params: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>List all live streams for a Mux Environment (tied to your access token)</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-resetStreamKey">resetStreamKey</a></span></span><span class="code" data-ice="signature">(liveStreamId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Reset a stream key</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html#instance-method-signalComplete">signalComplete</a></span></span><span class="code" data-ice="signature">(liveStreamId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Signal a live stream is finished</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+<div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
+
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-create">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">create</span><span class="code" data-ice="signature">(params: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/video/resources/liveStreams.js.html#lineNumber50">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Creates a Mux live stream with the specified JSON parameters</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">params</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Live Stream JSON parameters (e.g playback_policy)</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns a resolved Promise with a response from the Mux API</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">const muxClient = new Mux(accessToken, secret);
+const { Video } = muxClient;
+
+// Create a live stream
+Video.LiveStreams.create({
+ playback_policy: &apos;public&apos;,
+ new_asset_settings: { playback_policy: &apos;public&apos; }
+});</code></pre>
+    </div>
+</div>
+
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber46">Unit::LiveStreams LiveStreams.create</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber21">Integration::LiveStreams LiveStreams.create</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber48">Unit::LiveStreams LiveStreams.create makes a POST request to create a LiveStream asset</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber23">Integration::LiveStreams LiveStreams.create creates a live stream with defaults</a></span></li>
+</ul>
+  </div>
+
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#create-a-live-stream">https://docs.mux.com/reference#create-a-live-stream</a></span></li></ul></div>
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-createPlaybackId">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">createPlaybackId</span><span class="code" data-ice="signature">(liveStreamId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, params: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/video/resources/liveStreams.js.html#lineNumber173">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Create a live stream playback id</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">liveStreamId</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The ID for the live stream</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">params</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Live Stream JSON parameters (e.g playback_policy)</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns a resolved Promise with a response from the Mux API</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
+
+// Create a live stream playback ID
+Video.LiveStreams.createPlaybackId(liveStreamId, { policy: &apos;public&apos; });</code></pre>
+    </div>
+</div>
+
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber251">Unit::LiveStreams LiveStreams.createPlaybackId</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber128">Integration::LiveStreams LiveStreams.createPlaybackId</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber253">Unit::LiveStreams LiveStreams.createPlaybackId makes a POST request to create a playback ID for a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber274">Unit::LiveStreams LiveStreams.createPlaybackId throws an error if a Live Stream ID is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber288">Unit::LiveStreams LiveStreams.createPlaybackId throws an error if params are not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber130">Integration::LiveStreams LiveStreams.createPlaybackId creates a playback id for a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber140">Integration::LiveStreams LiveStreams.createPlaybackId fails to create a playback id if given an incorrect live stream id</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber146">Integration::LiveStreams LiveStreams.createPlaybackId fails to create a playback id if not given a playback policy</a></span></li>
+</ul>
+  </div>
+
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#add-a-live-stream-playback-id">https://docs.mux.com/reference#add-a-live-stream-playback-id</a></span></li></ul></div>
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-del">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">del</span><span class="code" data-ice="signature">(liveStreamId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/video/resources/liveStreams.js.html#lineNumber67">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Deletes a Mux Live Stream</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">liveStreamId</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The ID for the live stream intended for deletion</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns a resolved Promise with a response from the Mux API</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
+
+// Delete a mux live stream
+Video.LiveStreams.del(liveStreamId);</code></pre>
+    </div>
+</div>
+
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber70">Unit::LiveStreams LiveStreams.del</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber48">Integration::LiveStreams LiveStreams.del</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber72">Unit::LiveStreams LiveStreams.del makes a DELETE request to delete a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber91">Unit::LiveStreams LiveStreams.del throws an error when a live stream id is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber50">Integration::LiveStreams LiveStreams.del deletes a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber56">Integration::LiveStreams LiveStreams.del fails to delete a live stream when not given an incorrect live stream id</a></span></li>
+</ul>
+  </div>
+
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#delete-a-live-stream">https://docs.mux.com/reference#delete-a-live-stream</a></span></li></ul></div>
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-deletePlaybackId">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">deletePlaybackId</span><span class="code" data-ice="signature">(liveStreamId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, playbackId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/video/resources/liveStreams.js.html#lineNumber209">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Delete a live stream playback ID</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">liveStreamId</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The ID for the live stream</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">playbackId</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The ID for the live stream playback ID to delete</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns a resolved Promise with a response from the Mux API</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
+
+// Delete a live stream playback ID
+Video.LiveStreams.deletePlaybackId(liveStreamId, { policy: &apos;public&apos; });</code></pre>
+    </div>
+</div>
+
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber303">Unit::LiveStreams LiveStreams.deletePlaybackId</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber153">Integration::LiveStreams LiveStreams.deletePlaybackId</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber305">Unit::LiveStreams LiveStreams.deletePlaybackId makes a DELETE request to delete a playback ID for a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber326">Unit::LiveStreams LiveStreams.deletePlaybackId throws an error if a Live Stream ID is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber340">Unit::LiveStreams LiveStreams.deletePlaybackId throws an error if a playback id is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber155">Integration::LiveStreams LiveStreams.deletePlaybackId deletes playbackIds for a live stream</a></span></li>
+</ul>
+  </div>
+
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#delete-a-live-stream-playback-id">https://docs.mux.com/reference#delete-a-live-stream-playback-id</a></span></li></ul></div>
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-get">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">get</span><span class="code" data-ice="signature">(liveStreamId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/video/resources/liveStreams.js.html#lineNumber89">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Get an Live Stream</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">liveStreamId</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The ID for the live stream</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns a resolved Promise with a response from the Mux API</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
+
+// Get a live stream
+Video.LiveStreams.get(liveStreamId);</code></pre>
+    </div>
+</div>
+
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber143">Unit::LiveStreams LiveStreams.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber70">Integration::LiveStreams LiveStreams.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber145">Unit::LiveStreams LiveStreams.get makes a GET request to get a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber164">Unit::LiveStreams LiveStreams.get throws an error when a live stream id is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber72">Integration::LiveStreams LiveStreams.get gets a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber78">Integration::LiveStreams LiveStreams.get fails to get a live stream when not given an incorrect live stream id</a></span></li>
+</ul>
+  </div>
+
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#retrieve-a-live-stream">https://docs.mux.com/reference#retrieve-a-live-stream</a></span></li></ul></div>
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-list">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">list</span><span class="code" data-ice="signature">(params: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/video/resources/liveStreams.js.html#lineNumber110">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>List all live streams for a Mux Environment (tied to your access token)</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">params</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns a resolved Promise with a response from the Mux API</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
+
+// List all live streams for a Mux Environment
+Video.LiveStreams.list();</code></pre>
+    </div>
+</div>
+
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber106">Unit::LiveStreams LiveStreams.list</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber98">Integration::LiveStreams LiveStreams.list</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber108">Unit::LiveStreams LiveStreams.list makes a GET request to list all live streams</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber100">Integration::LiveStreams LiveStreams.list lists all live streams for an environment</a></span></li>
+</ul>
+  </div>
+
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#list-live-streams">https://docs.mux.com/reference#list-live-streams</a></span></li></ul></div>
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-resetStreamKey">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">resetStreamKey</span><span class="code" data-ice="signature">(liveStreamId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/video/resources/liveStreams.js.html#lineNumber150">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Reset a stream key</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">liveStreamId</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The ID for the live stream</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns a resolved Promise with a response from the Mux API</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
+
+// Reset a live stream key if you want to immediately stop the current stream key
+// from working and create a new stream key that can be used for future broadcasts.
+Video.LiveStreams.resetStreamKey(liveStreamId);</code></pre>
+    </div>
+</div>
+
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber215">Unit::LiveStreams LiveStreams.resetStreamKey</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber112">Integration::LiveStreams LiveStreams.resetStreamKey</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber217">Unit::LiveStreams LiveStreams.resetStreamKey makes a POST request to reset a live stream key</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber236">Unit::LiveStreams LiveStreams.resetStreamKey throws an error when a live stream id is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber114">Integration::LiveStreams LiveStreams.resetStreamKey resets a stream key</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber121">Integration::LiveStreams LiveStreams.resetStreamKey fails to reset a stream key if given an incorrect live stream id</a></span></li>
+</ul>
+  </div>
+
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#reset-a-stream-key">https://docs.mux.com/reference#reset-a-stream-key</a></span></li></ul></div>
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-signalComplete">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">signalComplete</span><span class="code" data-ice="signature">(liveStreamId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/video/resources/liveStreams.js.html#lineNumber127">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Signal a live stream is finished</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">liveStreamId</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The ID for the live stream</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns a resolved Promise with a response from the Mux API</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
+
+// Signal a live stream is finished
+Video.LiveStreams.signalComplete(liveStreamId);</code></pre>
+    </div>
+</div>
+
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber179">Unit::LiveStreams LiveStreams.signalComplete</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber83">Integration::LiveStreams LiveStreams.signalComplete</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber181">Unit::LiveStreams LiveStreams.signalComplete makes a PUT request to signal a live stream is complete</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber200">Unit::LiveStreams LiveStreams.signalComplete throws an error when a live stream id is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber85">Integration::LiveStreams LiveStreams.signalComplete signals a live stream is complete</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber91">Integration::LiveStreams LiveStreams.signalComplete fails to signal a live stream is complete when given an incorrect live stream id</a></span></li>
+</ul>
+  </div>
+
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#signal-live-stream-complete">https://docs.mux.com/reference#signal-live-stream-complete</a></span></li></ul></div>
+  
+</div>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

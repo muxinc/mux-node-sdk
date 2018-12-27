@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">test/integration/video/uploads.spec.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utils/jwt.js~JWT.html">JWT</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/integration/video/uploads.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
+const Mux = require(&apos;../../../src/mux&apos;);
+
+/** @test {Uploads} */
+describe(&apos;Integration::Uploads&apos;, () =&gt; {
+  const muxClient = new Mux();
+  const { Video } = muxClient;
+  let testUpload;
+  const createdUploads = []; // These are uploads we&apos;ll clean up when it&apos;s all done.
+
+  before(async () =&gt; {
+    testUpload = await Video.Uploads.create({
+      new_asset_settings: { playback_policy: &apos;public&apos; },
+    });
+    createdUploads.push(testUpload);
+  });
+
+  after(() =&gt;
+    createdUploads.forEach(upload =&gt; Video.Uploads.cancel(upload.id))
+  );
+
+  /** @test {Uploads.create} */
+  describe(&apos;Uploads.create&apos;, () =&gt; {
+    /** @test {Uploads.create} */
+    it(&apos;creates an upload&apos;, async () =&gt; {
+      const upload = await Video.Uploads.create({
+        new_asset_settings: { playback_policy: &apos;public&apos; },
+      });
+      createdUploads.push(upload);
+      expect(upload.status).to.equal(&apos;waiting&apos;);
+      expect(upload.id).to.exist;
+    });
+  });
+
+  /** @test {Uploads.cancel} */
+  describe(&apos;Uploads.cancel&apos;, () =&gt; {
+    /** @test {Uploads.cancel} */
+    it(&apos;deletes an upload&apos;, async () =&gt; {
+      const upload = await Video.Uploads.create({
+        new_asset_settings: { playback_policy: &apos;public&apos; },
+      });
+      await Video.Uploads.cancel(upload.id);
+      const updatedUpload = await Video.Uploads.get(upload.id);
+      expect(updatedUpload.status).to.equal(&apos;cancelled&apos;);
+    });
+
+    /** @test {Uploads.del} */
+    it(&apos;fails to delete an upload when given an incorrect upload id&apos;, () =&gt;
+      Video.Uploads.cancel(&apos;somefakeid&apos;).catch(err =&gt; expect(err).to.exist));
+  });
+
+  /** @test {Uploads.get} */
+  describe(&apos;Uploads.get&apos;, () =&gt; {
+    /** @test {Uploads.get} */
+    it(&apos;gets an upload&apos;, async () =&gt; {
+      const asset = await Video.Uploads.get(testUpload.id);
+      expect(asset.id).to.equal(testUpload.id);
+    });
+
+    /** @test {Uploads.get} */
+    it(&apos;fails to get an upload when given an incorrect upload id&apos;, () =&gt;
+      Video.Uploads.get(&apos;somefakeid&apos;).catch(err =&gt; expect(err).to.exist));
+  });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

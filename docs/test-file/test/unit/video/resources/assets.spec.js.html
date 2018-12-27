@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">test/unit/video/resources/assets.spec.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utils/jwt.js~JWT.html">JWT</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/unit/video/resources/assets.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
+const sinon = require(&apos;sinon&apos;);
+const moxios = require(&apos;moxios&apos;);
+const Assets = require(&apos;../../../../src/video/resources/assets&apos;);
+
+/** @test {Assets} */
+describe(&apos;Unit::Assets&apos;, () =&gt; {
+  const testApiKey = &apos;testApiKey&apos;;
+  const testSecret = &apos;testSecret&apos;;
+  const testAssets = new Assets(testApiKey, testSecret);
+
+  beforeEach(() =&gt; {
+    moxios.install(testAssets.http);
+  });
+
+  afterEach(() =&gt; {
+    moxios.uninstall(testAssets.http);
+  });
+
+  /** @test {Assets} */
+  describe(&apos;Assets&apos;, () =&gt; {
+    /** @test {Assets} */
+    it(&apos;throws an error if an api key is not given&apos;, () =&gt; {
+      expect(() =&gt; new Assets()).to.throw(&apos;API Access Token must be provided.&apos;);
+    });
+
+    /** @test {Assets} */
+    it(&apos;throws an error if a secret key is not given&apos;, () =&gt; {
+      expect(() =&gt; new Assets(&apos;testKey&apos;)).to.throw(
+        &apos;API secret key must be provided&apos;
+      );
+    });
+
+    /** @test {Assets} */
+    it(&apos;creates a new Assets instance&apos;, () =&gt; {
+      const TestAssets = new Assets(testApiKey, testSecret);
+      expect(() =&gt; new Assets(testApiKey, testSecret)).to.not.throw();
+      expect(TestAssets.tokenId).to.equal(testApiKey);
+      expect(TestAssets.tokenSecret).to.equal(testSecret);
+    });
+  });
+
+  /** @test {Assets.create} */
+  describe(&apos;Assets.create&apos;, () =&gt; {
+    /** @test {Assets.create} */
+    it(&apos;makes a POST request to create an asset&apos;, done =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/assets&apos;, {
+        status: 200,
+        responseText: &apos;{&quot;data&quot;: {&quot;create&quot;: true}}&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testAssets.create({ input: &apos;test&apos; }).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].create).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {Assets.create} */
+    it(&apos;throws an error if no asset params are given&apos;, () =&gt;
+      testAssets.create().catch(err =&gt; {
+        expect(err).to.exist;
+        expect(err.message).to.equal(
+          &apos;Params are required for creating an asset&apos;
+        );
+      }));
+  });
+
+  /** @test {Assets.get} */
+  describe(&apos;Assets.get&apos;, () =&gt; {
+    /** @test {Assets.get} */
+    it(&apos;makes a GET request to get an asset&apos;, done =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/assets/testAsset&apos;, {
+        status: 200,
+        responseText: &apos;{&quot;data&quot;: {&quot;asset&quot;: &quot;get&quot;}}&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testAssets.get(&apos;testAsset&apos;).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].asset).to.equal(&apos;get&apos;);
+        done();
+      });
+    });
+
+    /** @test {Assets.get} */
+    it(&apos;throws an error when an asset id is not given&apos;, () =&gt;
+      testAssets
+        .get()
+        .then(res =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch(err =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            &apos;An asset ID is required to get an asset&apos;
+          );
+        }));
+  });
+
+  /** @test {Assets.del} */
+  describe(&apos;Assets.del&apos;, () =&gt; {
+    /** @test {Assets.del} */
+    it(&apos;makes a DELETE request to delete an asset&apos;, done =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/assets/testAsset&apos;, {
+        status: 200,
+        responseText: &apos;{&quot;data&quot;: {&quot;asset&quot;: &quot;delete&quot;}}&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testAssets.del(&apos;testAsset&apos;).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].asset).to.equal(&apos;delete&apos;);
+        done();
+      });
+    });
+
+    /** @test {Assets.del} */
+    it(&apos;throws an error when an asset id is not given&apos;, () =&gt;
+      testAssets
+        .del()
+        .then(res =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch(err =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            &apos;An asset ID is required to delete an asset&apos;
+          );
+        }));
+  });
+
+  /** @test {Assets.inputInfo} */
+  describe(&apos;Assets.inputInfo&apos;, () =&gt; {
+    /** @test {Assets.inputInfo} */
+    it(&apos;makes a GET request to get input info for an asset&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/video/v1/assets/testAsset/input-info&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;input&quot;: &quot;info&quot;}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testAssets.inputInfo(&apos;testAsset&apos;).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].input).to.equal(&apos;info&apos;);
+        done();
+      });
+    });
+
+    /** @test {Assets.inputInfo} */
+    it(&apos;throws an error when an asset id is not given&apos;, () =&gt;
+      testAssets
+        .inputInfo()
+        .then(res =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch(err =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            &apos;An asset ID is required to get input-info&apos;
+          );
+        }));
+  });
+
+  /** @test {Assets.list} */
+  describe(&apos;Assets.list&apos;, () =&gt; {
+    /** @test {Assets.list} */
+    it(&apos;makes a GET request to list all assets&apos;, done =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/assets&apos;, {
+        status: 200,
+        responseText: &apos;{&quot;data&quot;: {&quot;list&quot;: true}}&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testAssets.list().then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].list).to.be.true;
+        done();
+      });
+    });
+
+    it(&apos;makes a GET request to list 100 assets offset by 2 pages&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/video/v1/assets?limit=100&amp;page=2&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;list&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testAssets.list({ limit: 100, page: 2 }).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].list).to.be.true;
+        done();
+      });
+    });
+  });
+
+  /** @test {Assets.createPlaybackId} */
+  describe(&apos;Assets.createPlaybackId&apos;, () =&gt; {
+    /** @test {Assets.createPlaybackId} */
+    it(&apos;makes a POST request to create a Playback Id for an asset&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/video/v1/assets/testAsset/playback-ids&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;create&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testAssets
+        .createPlaybackId(&apos;testAsset&apos;, { policy: &apos;public&apos; })
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].create).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {Assets.createPlaybackId} */
+    it(&apos;throws an error if an asset id is not given&apos;, () =&gt;
+      testAssets
+        .createPlaybackId()
+        .then(res =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch(err =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(&apos;An asset ID is required&apos;);
+        }));
+
+    /** @test {Assets.createPlaybackId} */
+    it(&apos;throws an error if playbackId params are not given&apos;, () =&gt;
+      testAssets
+        .createPlaybackId(&apos;assetid&apos;)
+        .then(res =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch(err =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.equal(&apos;Playback ID params are required&apos;);
+        }));
+  });
+
+  /** @test {Assets.deletePlaybackId} */
+  describe(&apos;Assets.deletePlaybackId&apos;, () =&gt; {
+    /** @test {Assets.deletePlaybackId} */
+    it(&apos;makes a DELETE request to delete a Playback Id for an asset&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/video/v1/assets/testAsset/playback-ids/testPlaybackId&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;delete&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testAssets
+        .deletePlaybackId(&apos;testAsset&apos;, &apos;testPlaybackId&apos;)
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].delete).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {Assets.deletePlaybackId} */
+    it(&apos;throws an error if an asset id is not given&apos;, () =&gt;
+      testAssets.deletePlaybackId().catch(err =&gt; {
+        expect(err).to.exist;
+        expect(err.message).to.equal(&apos;An asset ID is required&apos;);
+      }));
+
+    /** @test {Assets.deletePlaybackId} */
+    it(&apos;throws an error if playbackId params are not given&apos;, () =&gt;
+      testAssets.deletePlaybackId(&apos;assetid&apos;).catch(err =&gt; {
+        expect(err).to.exist;
+        expect(err.message).to.equal(&apos;A playback ID is required&apos;);
+      }));
+  });
+
+  /** @test {Assets.playbackId} */
+  describe(&apos;Assets.playbackId&apos;, () =&gt; {
+    /** @test {Assets.playbackId} */
+    it(&apos;makes a GET request to get a Playback Id for an asset&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/video/v1/assets/testAsset/playback-ids/testPlaybackId&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;get&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testAssets.playbackId(&apos;testAsset&apos;, &apos;testPlaybackId&apos;).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].get).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {Assets.playbackId} */
+    it(&apos;throws an error if an asset id is not given&apos;, () =&gt;
+      testAssets.playbackId().catch(err =&gt; {
+        expect(err).to.exist;
+        expect(err.message).to.equal(&apos;An asset ID is required&apos;);
+      }));
+
+    /** @test {Assets.playbackId} */
+    it(&apos;throws an error if playbackId params are not given&apos;, () =&gt;
+      testAssets.playbackId(&apos;assetid&apos;).catch(err =&gt; {
+        expect(err).to.exist;
+        expect(err.message).to.equal(&apos;A playback ID is required&apos;);
+      }));
+  });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">test/unit/base.spec.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utils/jwt.js~JWT.html">JWT</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/unit/base.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
+const moxios = require(&apos;moxios&apos;);
+const Base = require(&apos;../../src/base&apos;);
+
+/** @test {Mux} */
+describe(&apos;Unit::Base&apos;, () =&gt; {
+  /** @test {Base} */
+  describe(&apos;Base&apos;, () =&gt; {
+    /** @test {Base} */
+    it(&apos;allows configuration to be passed in as params&apos;, () =&gt; {
+      const baseClient = new Base(&apos;testKey&apos;, &apos;testSecret&apos;);
+      expect(baseClient.tokenId).to.be.eq(&apos;testKey&apos;);
+      expect(baseClient.tokenSecret).to.be.eq(&apos;testSecret&apos;);
+    });
+
+    it(&apos;allows configuration to be passed in via environment variables&apos;, () =&gt; {
+      process.env.MUX_TOKEN_ID = &apos;testKey&apos;;
+      process.env.MUX_TOKEN_SECRET = &apos;testSecret&apos;;
+      const baseClient = new Base();
+      expect(baseClient.tokenId).to.be.eq(&apos;testKey&apos;);
+      expect(baseClient.tokenSecret).to.be.eq(&apos;testSecret&apos;);
+    });
+
+    it(&apos;prioritizes params over environment variables&apos;, () =&gt; {
+      process.env.MUX_TOKEN_ID = &apos;crusty-old-id&apos;;
+      process.env.MUX_TOKEN_SECRET = &apos;crusty-old-secret&apos;;
+      const baseClient = new Base(&apos;fancy-new-id&apos;, &apos;fancy-new-secret&apos;);
+      expect(baseClient.tokenId).to.be.eq(&apos;fancy-new-id&apos;);
+      expect(baseClient.tokenSecret).to.be.eq(&apos;fancy-new-secret&apos;);
+    });
+
+    it(&apos;allows configuration to be passed in via the parent instance&apos;, () =&gt; {
+      const parentBase = new Base(&apos;testKey&apos;, &apos;testSecret&apos;);
+      const childBase = new Base(parentBase);
+      expect(childBase.tokenId).to.be.eq(parentBase.tokenId);
+      expect(childBase.tokenSecret).to.be.eq(parentBase.tokenSecret);
+    });
+
+    describe(&apos;http requests&apos;, () =&gt; {
+      let baseClient;
+
+      beforeEach(() =&gt; {
+        baseClient = new Base(&apos;fancy-new-id&apos;, &apos;fancy-new-secret&apos;);
+        moxios.install(baseClient.http);
+
+        moxios.stubRequest(&apos;https://api.mux.com/test/v1/foo&apos;, {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: [&quot;something&quot;, &quot;very&quot;, &quot;fun&quot;]}&apos;,
+        });
+      });
+
+      afterEach(() =&gt; {
+        delete process.env.MUX_TOKEN_ID;
+        delete process.env.MUX_TOKEN_SECRET;
+        moxios.uninstall(baseClient.http);
+      });
+
+      it(&apos;fire an event on a request&apos;, done =&gt; {
+        baseClient.on(&apos;request&apos;, req =&gt; {
+          expect(req.auth.username).to.equal(&apos;fancy-new-id&apos;);
+          expect(req.auth.password).to.equal(&apos;fancy-new-secret&apos;);
+          expect(req.baseURL).to.equal(&apos;https://api.mux.com&apos;);
+          expect(req.url).to.equal(&apos;/test/v1/foo&apos;);
+          done();
+        });
+
+        baseClient.http.get(&apos;/test/v1/foo&apos;);
+      });
+
+      it(&apos;fire an event on a response&apos;, done =&gt; {
+        baseClient.on(&apos;response&apos;, res =&gt; {
+          expect(res.status).to.equal(200);
+          expect(res.data).to.eql({ data: [&apos;something&apos;, &apos;very&apos;, &apos;fun&apos;] });
+          done();
+        });
+
+        baseClient.http.get(&apos;/test/v1/foo&apos;);
+      });
+    });
+  });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

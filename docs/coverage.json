@@ -1,0 +1,94 @@
+{
+  "coverage": "83.69%",
+  "expectCount": 92,
+  "actualCount": 77,
+  "files": {
+    "src/base.js": {
+      "expectCount": 13,
+      "actualCount": 1,
+      "undocumentLines": [
+        20,
+        37,
+        71,
+        72,
+        78,
+        82,
+        83,
+        90,
+        94,
+        95,
+        102,
+        106
+      ]
+    },
+    "src/data/data.js": {
+      "expectCount": 7,
+      "actualCount": 7,
+      "undocumentLines": []
+    },
+    "src/data/resources/errors.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/data/resources/exports.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/data/resources/filters.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/data/resources/metrics.js": {
+      "expectCount": 7,
+      "actualCount": 7,
+      "undocumentLines": []
+    },
+    "src/data/resources/video_views.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/mux.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/utils/jwt.js": {
+      "expectCount": 6,
+      "actualCount": 3,
+      "undocumentLines": [
+        9,
+        19,
+        28
+      ]
+    },
+    "src/video/resources/assets.js": {
+      "expectCount": 11,
+      "actualCount": 11,
+      "undocumentLines": []
+    },
+    "src/video/resources/liveStreams.js": {
+      "expectCount": 11,
+      "actualCount": 11,
+      "undocumentLines": []
+    },
+    "src/video/resources/signingKeys.js": {
+      "expectCount": 7,
+      "actualCount": 7,
+      "undocumentLines": []
+    },
+    "src/video/resources/uploads.js": {
+      "expectCount": 6,
+      "actualCount": 6,
+      "undocumentLines": []
+    },
+    "src/video/video.js": {
+      "expectCount": 6,
+      "actualCount": 6,
+      "undocumentLines": []
+    }
+  }
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">test/unit/video/resources/uploads.spec.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utils/jwt.js~JWT.html">JWT</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/unit/video/resources/uploads.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
+const sinon = require(&apos;sinon&apos;);
+const moxios = require(&apos;moxios&apos;);
+const Uploads = require(&apos;../../../../src/video/resources/uploads&apos;);
+
+/** @test {Uploads} */
+describe(&apos;Unit::Uploads&apos;, () =&gt; {
+  const testApiKey = &apos;testApiKey&apos;;
+  const testSecret = &apos;testSecret&apos;;
+  const testUploads = new Uploads(testApiKey, testSecret);
+
+  beforeEach(() =&gt; {
+    moxios.install(testUploads.http);
+  });
+
+  afterEach(() =&gt; {
+    moxios.uninstall(testUploads.http);
+  });
+
+  /** @test {Uploads.create} */
+  describe(&apos;Uploads.create&apos;, () =&gt; {
+    /** @test {Uploads.create} */
+    it(&apos;makes a POST request to create a new Upload&apos;, done =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/uploads&apos;, {
+        status: 201,
+        responseText: &apos;{&quot;data&quot;: {&quot;create&quot;: true}}&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testUploads
+        .create({
+          new_asset_settings: { playback_policy: &apos;public&apos; },
+        })
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].create).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {Uploads.create} */
+    it(&apos;throws an error if no params are given&apos;, () =&gt;
+      testUploads.create().catch(err =&gt; {
+        expect(err).to.exist;
+        expect(err.message).to.include(&apos;Params are required&apos;);
+      }));
+  });
+
+  /** @test {Uploads.get} */
+  describe(&apos;Uploads.get&apos;, () =&gt; {
+    /** @test {Uploads.get} */
+    it(&apos;makes a GET request to get an upload&apos;, done =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/video/v1/uploads/testUpload&apos;, {
+        status: 200,
+        responseText: &apos;{&quot;data&quot;: {&quot;upload&quot;: &quot;get&quot;}}&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      testUploads.get(&apos;testUpload&apos;).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].upload).to.equal(&apos;get&apos;);
+        done();
+      });
+    });
+
+    /** @test {Uploads.get} */
+    it(&apos;throws an error when an upload id is not given&apos;, () =&gt;
+      testUploads
+        .get()
+        .then(res =&gt; {
+          expect(res).to.not.exist;
+        })
+        .catch(err =&gt; {
+          expect(err).to.exist;
+          expect(err.message).to.include(&apos;An upload ID is required&apos;);
+        }));
+  });
+
+  /** @test {Uploads.cancel} */
+  describe(&apos;Uploads.cancel&apos;, () =&gt; {
+    /** @test {Uploads.cancel} */
+    it(&apos;makes a PUT request to cancel an upload&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/video/v1/uploads/testUpload/cancel&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;upload&quot;: &quot;cancel&quot;}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testUploads.cancel(&apos;testUpload&apos;).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].upload).to.equal(&apos;cancel&apos;);
+        done();
+      });
+    });
+
+    /** @test {Uploads.del} */
+    it(&apos;throws an error when an upload id is not given&apos;, () =&gt;
+      testUploads.cancel().catch(err =&gt; {
+        expect(err).to.exist;
+        expect(err.message).to.include(&apos;An upload ID is required&apos;);
+      }));
+  });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

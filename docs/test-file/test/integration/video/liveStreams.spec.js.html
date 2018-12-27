@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">test/integration/video/liveStreams.spec.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utils/jwt.js~JWT.html">JWT</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/integration/video/liveStreams.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
+const Mux = require(&apos;../../../src/mux&apos;);
+
+/** @test {LiveStreams} */
+describe(&apos;Integration::LiveStreams&apos;, () =&gt; {
+  const muxClient = new Mux();
+  const { Video } = muxClient;
+  let testLiveStream;
+  const createdLiveStreams = [];
+
+  before(async () =&gt; {
+    testLiveStream = await Video.LiveStreams.create();
+    createdLiveStreams.push(testLiveStream);
+  });
+
+  after(() =&gt;
+    createdLiveStreams.forEach(stream =&gt; Video.LiveStreams.del(stream.id))
+  );
+
+  /** @test {LiveStreams.create} */
+  describe(&apos;LiveStreams.create&apos;, () =&gt; {
+    /** @test {LiveStreams.create} */
+    it(&apos;creates a live stream with defaults&apos;, async () =&gt; {
+      const stream = await Video.LiveStreams.create();
+      createdLiveStreams.push(stream);
+      expect(stream.stream_key).to.exist;
+      expect(stream.status).to.equal(&apos;idle&apos;);
+      expect(stream.reconnect_window).to.equal(60);
+    });
+
+    it(&apos;creates a live stream with given parameters&apos;, async () =&gt; {
+      const stream = await Video.LiveStreams.create({
+        playback_policy: &apos;signed&apos;,
+        new_asset_settings: {
+          playback_policy: &apos;signed&apos;,
+        },
+      });
+
+      createdLiveStreams.push(stream);
+      expect(stream.playback_ids[0].policy).to.equal(&apos;signed&apos;);
+      expect(stream.new_asset_settings).to.eql({
+        playback_policies: [&apos;signed&apos;],
+      });
+    });
+  });
+
+  /** @test {LiveStreams.del} */
+  describe(&apos;LiveStreams.del&apos;, () =&gt; {
+    /** @test {LiveStreams.del} */
+    it(&apos;deletes a live stream&apos;, async () =&gt; {
+      const stream = await Video.LiveStreams.create();
+      await Video.LiveStreams.del(stream.id);
+    });
+
+    /** @test {LiveStreams.del} */
+    it(&apos;fails to delete a live stream when not given an incorrect live stream id&apos;, () =&gt;
+      Video.LiveStreams.del(&apos;somefakeid&apos;).catch(err =&gt; expect(err).to.exist));
+  });
+
+  /** @test {LiveStreams.remove} */
+  describe(&apos;LiveStreams.remove [deprecated]&apos;, () =&gt; {
+    /** @test {LiveStreams.remove} */
+    it(&apos;deletes a live stream&apos;, async () =&gt; {
+      const stream = await Video.LiveStreams.create();
+      await Video.LiveStreams.remove(stream.id);
+    });
+  });
+
+  /** @test {LiveStreams.get} */
+  describe(&apos;LiveStreams.get&apos;, () =&gt; {
+    /** @test {LiveStreams.get} */
+    it(&apos;gets a live stream&apos;, async () =&gt; {
+      const stream = await Video.LiveStreams.get(testLiveStream.id);
+      expect(stream.status).to.equal(&apos;idle&apos;);
+    });
+
+    /** @test {LiveStreams.get} */
+    it(&apos;fails to get a live stream when not given an incorrect live stream id&apos;, () =&gt;
+      Video.LiveStreams.get(&apos;somefakeid&apos;).catch(err =&gt; expect(err).to.exist));
+  });
+
+  /** @test {LiveStreams.signalComplete} */
+  describe(&apos;LiveStreams.signalComplete&apos;, () =&gt; {
+    /** @test {LiveStreams.signalComplete} */
+    it(&apos;signals a live stream is complete&apos;, done =&gt; {
+      // Just returns a 204
+      Video.LiveStreams.signalComplete(testLiveStream.id).then(() =&gt; done());
+    });
+
+    /** @test {LiveStreams.signalComplete} */
+    it(&apos;fails to signal a live stream is complete when given an incorrect live stream id&apos;, () =&gt;
+      Video.LiveStreams.signalComplete(&apos;somefakeid&apos;).catch(
+        err =&gt; expect(err).to.exist
+      ));
+  });
+
+  /** @test {LiveStreams.list} */
+  describe(&apos;LiveStreams.list&apos;, () =&gt; {
+    /** @test {LiveStreams.list} */
+    it(&apos;lists all live streams for an environment&apos;, async () =&gt; {
+      const streams = await Video.LiveStreams.list();
+      expect(streams).to.be.an(&apos;array&apos;);
+    });
+
+    it(&apos;lists 5 live streams for an environment&apos;, async () =&gt; {
+      const streams = await Video.LiveStreams.list({ limit: 5 });
+      expect(streams.length).to.be.at.most(5);
+    });
+  });
+
+  /** @test {LiveStreams.resetStreamKey} */
+  describe(&apos;LiveStreams.resetStreamKey&apos;, () =&gt; {
+    /** @test {LiveStreams.resetStreamKey} */
+    it(&apos;resets a stream key&apos;, async () =&gt; {
+      const stream = await Video.LiveStreams.resetStreamKey(testLiveStream.id);
+      expect(stream.id).to.equal(testLiveStream.id);
+      expect(stream.stream_key).to.not.equal(testLiveStream.stream_key);
+    });
+
+    /** @test {LiveStreams.resetStreamKey} */
+    it(&apos;fails to reset a stream key if given an incorrect live stream id&apos;, () =&gt;
+      Video.LiveStreams.resetStreamKey(&apos;somefakeid&apos;).catch(
+        err =&gt; expect(err).to.exist
+      ));
+  });
+
+  /** @test {LiveStreams.createPlaybackId} */
+  describe(&apos;LiveStreams.createPlaybackId&apos;, () =&gt; {
+    /** @test {LiveStreams.createPlaybackId} */
+    it(&apos;creates a playback id for a live stream&apos;, async () =&gt; {
+      const playbackId = await Video.LiveStreams.createPlaybackId(
+        testLiveStream.id,
+        { policy: &apos;public&apos; }
+      );
+      expect(playbackId.policy).to.equal(&apos;public&apos;);
+      expect(playbackId.id).to.exist;
+    });
+
+    /** @test {LiveStreams.createPlaybackId} */
+    it(&apos;fails to create a playback id if given an incorrect live stream id&apos;, () =&gt;
+      Video.LiveStreams.createPlaybackId(&apos;somefakeid&apos;, {
+        policy: &apos;public&apos;,
+      }).catch(err =&gt; expect(err).to.exist));
+
+    /** @test {LiveStreams.createPlaybackId} */
+    it(&apos;fails to create a playback id if not given a playback policy&apos;, () =&gt;
+      Video.LiveStreams.createPlaybackId(&apos;somefakeid&apos;).catch(
+        err =&gt; expect(err).to.exist
+      ));
+  });
+
+  /** @test {LiveStreams.deletePlaybackId} */
+  describe(&apos;LiveStreams.deletePlaybackId&apos;, () =&gt; {
+    /** @test {LiveStreams.deletePlaybackId} */
+    it(&apos;deletes playbackIds for a live stream&apos;, async () =&gt; {
+      const playbackId = await Video.LiveStreams.createPlaybackId(
+        testLiveStream.id,
+        { policy: &apos;public&apos; }
+      );
+      Video.LiveStreams.deletePlaybackId(testLiveStream.id, playbackId.id);
+      const { playback_ids: updatedPlaybackIds } = await Video.LiveStreams.get(
+        testLiveStream.id
+      );
+      expect(updatedPlaybackIds).to.not.include(playbackId);
+    });
+
+    /** @test {PlaybackIds.deletePlaybackId} */
+    it(&apos;fails to get playbackIds for a live stream when not given a playback ID&apos;, () =&gt;
+      Video.LiveStreams.deletePlaybackId(testLiveStream.id).catch(
+        err =&gt; expect(err).to.exist
+      ));
+  });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

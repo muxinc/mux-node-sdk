@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">test/unit/data/resources/metrics.spec.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utils/jwt.js~JWT.html">JWT</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/unit/data/resources/metrics.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
+const moxios = require(&apos;moxios&apos;);
+const sinon = require(&apos;sinon&apos;);
+const Metrics = require(&apos;../../../../src/data/resources/metrics&apos;);
+
+/** @test {Metrics} */
+describe(&apos;Unit::Metrics&apos;, () =&gt; {
+  const testApiKey = &apos;testKey&apos;;
+  const testSecret = &apos;testSecret&apos;;
+  const metricsInstance = new Metrics(testApiKey, testSecret);
+
+  beforeEach(() =&gt; {
+    moxios.install(metricsInstance.http);
+  });
+
+  afterEach(() =&gt; {
+    moxios.uninstall(metricsInstance.http);
+  });
+
+  /** @test {Metrics} */
+  describe(&apos;Metrics&apos;, () =&gt; {
+    /** @test {Metrics} */
+    it(&apos;throws an error if an api key is not given&apos;, () =&gt; {
+      expect(() =&gt; new Metrics()).to.throw(
+        &apos;API Access Token must be provided.&apos;
+      );
+    });
+
+    /** @test {Metrics} */
+    it(&apos;throws an error if a secret key is not given&apos;, () =&gt; {
+      expect(() =&gt; new Metrics(testApiKey)).to.throw(
+        &apos;API secret key must be provided&apos;
+      );
+    });
+
+    /** @test {Metrics} */
+    it(&apos;creates a new Metrics instance&apos;, () =&gt; {
+      const TestMetrics = new Metrics(testApiKey, testSecret);
+      expect(() =&gt; new Metrics(testApiKey, testSecret)).to.not.throw();
+      expect(TestMetrics.tokenId).to.equal(testApiKey);
+      expect(TestMetrics.tokenSecret).to.equal(testSecret);
+    });
+  });
+
+  /** @test {Metrics.breakdown} */
+  describe(&apos;Metrics.breakdown&apos;, () =&gt; {
+    /** @test {Metrics.breakdown} */
+    it(&apos;makes a get request to the Mux data breakdown route&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/data/v1/metrics/testMetric/breakdown&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;breakdown&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      metricsInstance.breakdown(&apos;testMetric&apos;, {}).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].breakdown).to.be.true;
+        done();
+      });
+    });
+  });
+
+  /** @test {Metrics.comparison} */
+  describe(&apos;Metrics.comparison&apos;, () =&gt; {
+    /** @test {Metrics.comparison} */
+    it(&apos;throws an error if the value query parameter is not provided&apos;, () =&gt; {
+      expect(() =&gt; metricsInstance.comparison()).to.throw(
+        &apos;The value query parameter is required for comparing metrics&apos;
+      );
+      expect(() =&gt; metricsInstance.comparison({})).to.throw(
+        &apos;The value query parameter is required for comparing metrics&apos;
+      );
+    });
+
+    /** @test {Metrics.comparison} */
+    it(&apos;makes a get request to the Mux data comparision route&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/data/v1/metrics/comparison?value=abc123&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;comparison&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      metricsInstance.comparison({ value: &apos;abc123&apos; }).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].comparison).to.be.true;
+        done();
+      });
+    });
+  });
+
+  /** @test {Metrics.insights} */
+  describe(&apos;Metrics.insights&apos;, () =&gt; {
+    /** @test {Metrics.insights} */
+    it(&apos;throws an error if a metric Id is not provided&apos;, () =&gt; {
+      expect(() =&gt; metricsInstance.insights()).to.throw(
+        &apos;A metric Id is required for insight metrics.&apos;
+      );
+    });
+
+    /** @test {Metrics.insights} */
+    it(&apos;makes a get request to the Mux data insights route&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/data/v1/metrics/testMetric/insights&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;insights&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      metricsInstance.insights(&apos;testMetric&apos;).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].insights).to.be.true;
+        done();
+      });
+    });
+  });
+
+  /** @test {Metrics.overall} */
+  describe(&apos;Metrics.overall&apos;, () =&gt; {
+    /** @test {Metrics.overall} */
+    it(&apos;throws an error if a metric Id is not provided&apos;, () =&gt; {
+      expect(() =&gt; metricsInstance.overall()).to.throw(
+        &apos;A metric Id is required for overall metrics.&apos;
+      );
+    });
+
+    /** @test {Metrics.overall} */
+    it(&apos;makes a get request to the Mux data overall route&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/data/v1/metrics/testMetric/overall&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;overall&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      metricsInstance.overall(&apos;testMetric&apos;, {}).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].overall).to.be.true;
+        done();
+      });
+    });
+  });
+
+  /** @test {Metrics.timeseries} */
+  describe(&apos;Metrics.timeseries&apos;, () =&gt; {
+    /** @test {Metrics.timeseries} */
+    it(&apos;throws an error if a metric Id is not provided&apos;, () =&gt; {
+      expect(() =&gt; metricsInstance.timeseries()).to.throw(
+        &apos;A metric Id is required for timeseries metrics.&apos;
+      );
+    });
+
+    /** @test {Metrics.timeseries} */
+    it(&apos;makes a get request to the Mux data timeseries route&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/data/v1/metrics/testMetric/timeseries&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: {&quot;timeseries&quot;: true}}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      metricsInstance.timeseries(&apos;testMetric&apos;, {}).then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].timeseries).to.be.true;
+        done();
+      });
+    });
+  });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
