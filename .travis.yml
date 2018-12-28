@@ -5,6 +5,8 @@ node_js:
   - '9'
   - '10'
 
+before_deploy: 'yarn docs'
+
 deploy:
   provider: pages
   skip-cleanup: true
