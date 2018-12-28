@@ -21,12 +21,16 @@ describe('Unit::VideoViews', () => {
   describe('VideoViews', () => {
     /** @test {VideoViews} */
     it('throws an error if an api key is not given', () => {
-      expect(() => new VideoViews()).to.throw('API Access Token must be provided.');
+      expect(() => new VideoViews()).to.throw(
+        'API Access Token must be provided.'
+      );
     });
 
     /** @test {VideoViews} */
     it('throws an error if a secret key is not given', () => {
-      expect(() => new VideoViews(testApiKey)).to.throw('API secret key must be provided');
+      expect(() => new VideoViews(testApiKey)).to.throw(
+        'API secret key must be provided'
+      );
     });
 
     /** @test {VideoViews} */
@@ -42,19 +46,25 @@ describe('Unit::VideoViews', () => {
   describe('VideoViews.list', () => {
     /** @test {VideoViews.list} */
     it('throws an error if the viewer_id query parameter is not provided', () => {
-      expect(() => videoViewsInstance.list()).to.throw('The viewer_id query parameter is required for listing video views.');
-      expect(() => videoViewsInstance.list({})).to.throw('The viewer_id query parameter is required for listing video views.');
+      expect(() => videoViewsInstance.list()).to.throw(
+        'The viewer_id query parameter is required for listing video views.'
+      );
+      expect(() => videoViewsInstance.list({})).to.throw(
+        'The viewer_id query parameter is required for listing video views.'
+      );
     });
 
-    it('makes a get request to the Mux data video-views route', (done) => {
-      moxios.stubRequest('https://api.mux.com/data/v1/video-views?viewer_id=abc123', {
-        status: 200,
-        responseText: '{"data": {"video": "views"}}',
-      });
+    it('makes a get request to the Mux data video-views route', done => {
+      moxios.stubRequest(
+        'https://api.mux.com/data/v1/video-views?viewer_id=abc123',
+        {
+          status: 200,
+          responseText: '{"data": {"video": "views"}}',
+        }
+      );
 
       const onFulfilled = sinon.spy();
-      videoViewsInstance.list({ viewer_id: 'abc123' })
-        .then(onFulfilled);
+      videoViewsInstance.list({ viewer_id: 'abc123' }).then(onFulfilled);
 
       return moxios.wait(() => {
         expect(onFulfilled.getCall(0).args[0].video).to.equal('views');
@@ -66,15 +76,14 @@ describe('Unit::VideoViews', () => {
   /** @test {VideoViews.get} */
   describe('VideoViews.get', () => {
     /** @test {VideoViews.get} */
-    it('makes a get request to the Mux data video-views route', (done) => {
+    it('makes a get request to the Mux data video-views route', done => {
       moxios.stubRequest('https://api.mux.com/data/v1/video-views/someView', {
         status: 200,
         responseText: '{"data": {"video": "views"}}',
       });
 
       const onFulfilled = sinon.spy();
-      videoViewsInstance.get('someView')
-        .then(onFulfilled);
+      videoViewsInstance.get('someView').then(onFulfilled);
 
       return moxios.wait(() => {
         expect(onFulfilled.getCall(0).args[0].video).to.equal('views');

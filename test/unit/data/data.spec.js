@@ -20,7 +20,9 @@ describe('Unit::Data', () => {
 
     /** @test {Data} */
     it('throws an error if a secret key is not given', () => {
-      expect(() => new Data(testApiKey)).to.throw('API secret key must be provided');
+      expect(() => new Data(testApiKey)).to.throw(
+        'API secret key must be provided'
+      );
     });
 
     /** @test {Data} */

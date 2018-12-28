@@ -52,9 +52,12 @@ class Mux extends Base {
 
     /** @type {Data} */
     this.Data = new Data(this);
-
-    this.JWT = JWT;
   }
 }
+
+/**
+ * @ {JWT}
+ */
+Mux.JWT = JWT;
 
 module.exports = Mux;

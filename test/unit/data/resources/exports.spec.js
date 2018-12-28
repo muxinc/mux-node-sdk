@@ -21,12 +21,16 @@ describe('Unit::Exports', () => {
   describe('Exports', () => {
     /** @test {Exports} */
     it('throws an error if an api key is not given', () => {
-      expect(() => new Exports()).to.throw('API Access Token must be provided.');
+      expect(() => new Exports()).to.throw(
+        'API Access Token must be provided.'
+      );
     });
 
     /** @test {Exports} */
     it('throws an error if a secret key is not given', () => {
-      expect(() => new Exports(testApiKey)).to.throw('API secret key must be provided');
+      expect(() => new Exports(testApiKey)).to.throw(
+        'API secret key must be provided'
+      );
     });
 
     /** @test {Exports} */
@@ -41,15 +45,14 @@ describe('Unit::Exports', () => {
   /** @test {Exports.list} */
   describe('Exports.list', () => {
     /** @test {Exports.list} */
-    it('makes a get request to the Mux data exports route', (done) => {
+    it('makes a get request to the Mux data exports route', done => {
       moxios.stubRequest('https://api.mux.com/data/v1/exports', {
         status: 200,
         responseText: '{"data": {"exports": true}}',
       });
 
       const onFulfilled = sinon.spy();
-      exportsInstance.list({})
-        .then(onFulfilled);
+      exportsInstance.list({}).then(onFulfilled);
 
       return moxios.wait(() => {
         expect(onFulfilled.getCall(0).args[0].exports).to.be.true;

@@ -66,7 +66,9 @@ class LiveStreams extends Base {
    */
   del(liveStreamId) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A live stream ID is required to delete a live stream'));
+      return Promise.reject(
+        new Error('A live stream ID is required to delete a live stream')
+      );
     }
     return this.http.delete(buildBasePath(liveStreamId));
   }
@@ -86,7 +88,9 @@ class LiveStreams extends Base {
    */
   get(liveStreamId) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A live stream ID is required to get a live stream'));
+      return Promise.reject(
+        new Error('A live stream ID is required to get a live stream')
+      );
     }
     return this.http.get(buildBasePath(liveStreamId));
   }
@@ -122,7 +126,9 @@ class LiveStreams extends Base {
    */
   signalComplete(liveStreamId) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A Live Stream ID is required to signal a stream is complete'));
+      return Promise.reject(
+        new Error('A Live Stream ID is required to signal a stream is complete')
+      );
     }
     return this.http.put(`${buildBasePath(liveStreamId)}/complete`);
   }
@@ -143,7 +149,9 @@ class LiveStreams extends Base {
    */
   resetStreamKey(liveStreamId) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A Live Stream ID is required to reset a live stream key'));
+      return Promise.reject(
+        new Error('A Live Stream ID is required to reset a live stream key')
+      );
     }
     return this.http.post(`${buildBasePath(liveStreamId)}/reset-stream-key`);
   }
@@ -164,13 +172,24 @@ class LiveStreams extends Base {
    */
   createPlaybackId(liveStreamId, params) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A Live Stream ID is required to create a live stream playback ID'));
+      return Promise.reject(
+        new Error(
+          'A Live Stream ID is required to create a live stream playback ID'
+        )
+      );
     }
 
     if (!params) {
-      return Promise.reject(new Error('A playback policy is required to create a live stream playback ID'));
+      return Promise.reject(
+        new Error(
+          'A playback policy is required to create a live stream playback ID'
+        )
+      );
     }
-    return this.http.post(`${buildBasePath(liveStreamId)}/playback-ids`, params);
+    return this.http.post(
+      `${buildBasePath(liveStreamId)}/playback-ids`,
+      params
+    );
   }
 
   /**
@@ -189,13 +208,23 @@ class LiveStreams extends Base {
    */
   deletePlaybackId(liveStreamId, playbackId) {
     if (!liveStreamId) {
-      return Promise.reject(new Error('A Live Stream ID is required to delete a live stream playback ID'));
+      return Promise.reject(
+        new Error(
+          'A Live Stream ID is required to delete a live stream playback ID'
+        )
+      );
     }
 
     if (!playbackId) {
-      return Promise.reject(new Error('A live stream playback ID is required to delete a live stream playback ID'));
+      return Promise.reject(
+        new Error(
+          'A live stream playback ID is required to delete a live stream playback ID'
+        )
+      );
     }
-    return this.http.delete(`${buildBasePath(liveStreamId)}/playback-ids/${playbackId}`);
+    return this.http.delete(
+      `${buildBasePath(liveStreamId)}/playback-ids/${playbackId}`
+    );
   }
 }
 

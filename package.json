@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "esdoc-ecmascript-proposal-plugin": "^1.0.0",
     "jsonwebtoken": "^8.4.0"
   },
   "devDependencies": {

@@ -18,7 +18,9 @@ describe('Unit::Video', () => {
 
     /** @test {Video} */
     it('throws an error if a secret key is not given', () => {
-      expect(() => new Video('testKey')).to.throw('API secret key must be provided');
+      expect(() => new Video('testKey')).to.throw(
+        'API secret key must be provided'
+      );
     });
 
     /** @test {Video} */

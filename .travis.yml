@@ -1,6 +1,14 @@
 language: node_js
 node_js:
-  - "lts/*"
-  - "8"
-  - "9"
-  - "10"
+  - 'lts/*'
+  - '8'
+  - '9'
+  - '10'
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  local-dir: 'docs'
+  on:
+    branch: master

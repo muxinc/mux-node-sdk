@@ -8,13 +8,16 @@ describe('Unit::Mux', () => {
   /** @test {Mux} */
   describe('Mux', () => {
     /** @test {Mux} */
-    it('exposes Mux Video, Data, and JWT utilities', () => {
+    it('exposes Mux Video and Data as instance methods', () => {
       const muxClient = new Mux('testKey', 'testSecret');
-      const { Video, Data, JWT } = muxClient;
+      const { Video, Data } = muxClient;
       expect(Video).to.to.be.an.instanceof(MuxVideo);
       expect(Data).to.to.be.an.instanceof(MuxData);
-      expect(JWT.sign).to.be.a('function');
-      expect(JWT.decode).to.be.a('function');
+    });
+
+    it('exposes JWT Helper utilities as static methods', () => {
+      expect(Mux.JWT.sign).to.be.a('function');
+      expect(Mux.JWT.decode).to.be.a('function');
     });
   });
 });

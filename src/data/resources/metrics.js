@@ -60,7 +60,9 @@ class Metrics extends Base {
    */
   comparison(params) {
     if (!params || (params && !params.value)) {
-      throw new Error('The value query parameter is required for comparing metrics');
+      throw new Error(
+        'The value query parameter is required for comparing metrics'
+      );
     }
     return this.http.get(`${PATH}/comparison`, { params });
   }
