@@ -4,7 +4,7 @@
 
 Official Mux API wrapper for Node projects.
 
-This library is intended to provide Mux API convenience methods for applications written in server-side Javascript. __Please note__ that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.
+This library is intended to provide Mux API convenience methods for applications written in server-side Javascript. **Please note** that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.
 
 Not familiar with Mux? Check out https://mux.com/ for more information.
 
@@ -13,20 +13,19 @@ Not familiar with Mux? Check out https://mux.com/ for more information.
 See the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk)
 
 ## Installation
+
 ```
 npm install @mux/mux-node --save
 ```
+
 or
+
 ```
 yarn add @mux/mux-node
 ```
 
-## Releases
-The latest **stable** release is `2.0.0`
-
-Please keep in mind that master contains edge, so at any point it may be out of sync with what's in the latest stable release. Please consult the [releases](https://github.com/muxinc/mux-node-sdk/releases) page for both stable releases and release candidates.
-
 ## Usage
+
 To start, you will need a Mux access token and secret for your Mux environment. For more information on where to get
 an access token, visit the Mux Getting Started guide https://docs.mux.com/docs
 
@@ -46,21 +45,28 @@ const muxClient = new Mux(); // Success!
 ```
 
 As an example, you can create a Mux asset and playback ID by using the below functions on your Video instance.
+
 ```javascript
 // Create an asset
-const asset = await Video.Assets.create({ input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' });
+const asset = await Video.Assets.create({
+  input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4',
+});
 ```
 
 ```javascript
 // ...then later, a playback ID for that asset
-const playbackId = await Video.Assets.createPlaybackId(asset.id, { policy: 'public' });
+const playbackId = await Video.Assets.createPlaybackId(asset.id, {
+  policy: 'public',
+});
 ```
 
 Or, if you don't have the files online already, you can ingest one via the direct uploads API.
 
 ```javascript
 const request = require('request');
-let upload = await Video.Uploads.create({ new_asset_settings: { playback_policy: 'public' }});
+let upload = await Video.Uploads.create({
+  new_asset_settings: { playback_policy: 'public' },
+});
 
 // The URL you get back from the upload API is resumable, and the file can be uploaded using a `PUT` request (or a series of them).
 await fs.createReadStream('/path/to/your/file').pipe(request.put(upload.url));
@@ -76,14 +82,16 @@ You can access the Mux Data API in the same way by using your Data instance. For
 values across every breakdown for the `aggregate_startup_time` metric by using the below function.
 
 ```javascript
-const breakdown = await Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
+const breakdown = await Data.Metrics.breakdown('aggregate_startup_time', {
+  group_by: 'browser',
+});
 ```
 
 Every function will return a chainable [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
 ```javascript
 Video.Assets.create({
-  input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'
+  input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4',
 }).then(asset => {
   /* Do things with the asset */
 });
@@ -111,10 +119,10 @@ Run unit tests: `npm test` or `npm run test:unit`
 
 Run integration tests: `npm run test:int`
 
-__Note__: running the integration tests will require you to configure the `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` environment variables with your Mux access token and secret.
-
+**Note**: running the integration tests will require you to configure the `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` environment variables with your Mux access token and secret.
 
 To generate the ESDocs, run:
+
 ```
 yarn esdoc
 open ./docs/index.html
