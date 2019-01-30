@@ -85,5 +85,27 @@ describe('Utils::JWT', () => {
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('g');
     });
+
+    it('accepts a timestamp or time shorthand', () => {
+      const options1 = {
+        keyId: TEST_ID,
+        keySecret: TEST_SECRET,
+        expiration: '3h',
+      };
+
+      const options2 = {
+        ...options1,
+        expiration: 60 * 60 * 3,
+      };
+
+      const token1 = JWT.sign('some-playback-id', options1);
+      const token2 = JWT.sign('some-playback-id', options2);
+      expect(token1).to.be.a('string');
+      expect(token2).to.be.a('string');
+
+      const decoded1 = JWT.decode(token1);
+      const decoded2 = JWT.decode(token2);
+      expect(decoded1.exp).to.be.closeTo(decoded2.exp, 2);
+    });
   });
 });
