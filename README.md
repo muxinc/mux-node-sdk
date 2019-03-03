@@ -87,6 +87,25 @@ const breakdown = await Data.Metrics.breakdown('aggregate_startup_time', {
 });
 ```
 
+## JWT Helpers <small>([API Reference](https://muxinc.github.io/mux-node-sdk/class/src/utils/jwt.js~JWT.html))</small>
+
+You can use any JWT-compatible library, but we've included some light helpers in the SDK to make it easier to get up and running.
+
+```javascript
+// Assuming you have your signing key specified in your environment variables:
+// Signing token ID: process.env.MUX_SIGNING_KEY
+// Signing token secret: process.env.MUX_PRIVATE_KEY
+
+// Most simple request, defaults to type video and is valid for 7 days.
+const token = Mux.JWT.sign('some-playback-id');
+
+// If you wanted to sign a thumbnail
+const thumbToken = Mux.JWT.sign('some-playback-id', { type: 'thumbnail' });
+
+// If you wanted to sign a gif
+const gifToken = Mux.JWT.sign('some-playback-id', { type: 'gif' });
+```
+
 Every function will return a chainable [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
 ```javascript
