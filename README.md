@@ -87,6 +87,8 @@ const breakdown = await Data.Metrics.breakdown('aggregate_startup_time', {
 });
 ```
 
+## Usage Details
+
 Every function will return a chainable [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
 ```javascript
@@ -95,6 +97,29 @@ Video.Assets.create({
 }).then(asset => {
   /* Do things with the asset */
 });
+```
+
+## JWT Helpers <small>([API Reference](https://muxinc.github.io/mux-node-sdk/class/src/utils/jwt.js~JWT.html))</small>
+
+You can use any JWT-compatible library, but we've included some light helpers in the SDK to make it easier to get up and running.
+
+```javascript
+// Assuming you have your signing key specified in your environment variables:
+// Signing token ID: process.env.MUX_SIGNING_KEY
+// Signing token secret: process.env.MUX_PRIVATE_KEY
+
+// Most simple request, defaults to type video and is valid for 7 days.
+const token = Mux.JWT.sign('some-playback-id');
+// https://stream.mux.com/some-playback-id.m3u8?token=${token}
+
+// If you wanted to sign a thumbnail
+const thumbParams = { time: 14, width: 100 }
+const thumbToken = Mux.JWT.sign('some-playback-id', { type: 'thumbnail', params: thumbParams });
+// https://image.mux.com/some-playback-id/thumbnail.jpg?token=${token}
+
+// If you wanted to sign a gif
+const gifToken = Mux.JWT.sign('some-playback-id', { type: 'gif' });
+// https://image.mux.com/some-playback-id/animated.gif?token=${token}
 ```
 
 ## `request` and `response` events
