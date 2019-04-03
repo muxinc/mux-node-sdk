@@ -1,8 +1,14 @@
-# Mux Node SDK
+![Mux Node Banner](github-nodejs-sdk.png)
+
+# Mux Node
 
 ![build status](https://api.travis-ci.org/muxinc/mux-node-sdk.svg?branch=master) ![npm version](https://badge.fury.io/js/%40mux%2Fmux-node.svg)
 
-Official Mux API wrapper for Node projects.
+Official Mux API wrapper for Node projects, supporting both Mux Data and Mux Video.
+
+[Mux Video](https://mux.com/video) is an API-first platform, powered by data and designed by video experts to make beautiful video possible for every development team.
+
+[Mux Data](https://mux.com/data) is a platform for monitoring your video streaming performance with just a few lines of code. Get in-depth quality of service analytics on web, mobile, and OTT devices.
 
 This library is intended to provide Mux API convenience methods for applications written in server-side Javascript. **Please note** that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.
 
