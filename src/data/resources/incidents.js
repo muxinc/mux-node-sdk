@@ -88,8 +88,6 @@ class Incidents extends Base {
     }
     return this.http.get(`${PATH}/${incidentId}/related`, { params });
   }
-
-
 }
 
 module.exports = Incidents;
