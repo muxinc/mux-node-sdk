@@ -33,10 +33,10 @@ describe('Unit::Incidents', () => {
 
     /** @test {Incidents} */
     it('creates a new Incidents instance', () => {
-      const TestErrors = new Incidents(testApiKey, testSecret);
+      const TestIncidents = new Incidents(testApiKey, testSecret);
       expect(() => new Incidents(testApiKey, testSecret)).to.not.throw();
-      expect(TestErrors.tokenId).to.equal(testApiKey);
-      expect(TestErrors.tokenSecret).to.equal(testSecret);
+      expect(TestIncidents.tokenId).to.equal(testApiKey);
+      expect(TestIncidents.tokenSecret).to.equal(testSecret);
     });
   });
 
