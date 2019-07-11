@@ -9,6 +9,7 @@ const Errors = require('../../src/data/resources/errors');
 const Filters = require('../../src/data/resources/filters');
 const Exports = require('../../src/data/resources/exports');
 const VideoViews = require('../../src/data/resources/video_views');
+const Incidents = require('../../src/data/resources/incidents');
 
 /**
  * @ignore
@@ -45,6 +46,9 @@ class Data extends Base {
 
     /** @type {VideoViews} */
     this.VideoViews = new VideoViews(this);
+
+    /** @type {Incidents} */
+    this.Incidents = new Incidents(this);
   }
 }
 
