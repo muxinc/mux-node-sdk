@@ -2,8 +2,7 @@
  * Mux Metrics
  * Copyright(c) 2018 Mux Inc.
  */
-
-const api = require('../../utils/api');
+const Base = require('../../base');
 
 /**
  * @private Base metrics path for the Mux API
@@ -13,45 +12,15 @@ const PATH = '/data/v1/metrics';
 /**
  * Metrics Class - Provides access to the Mux Data Metrics API
  *
+ * @extends Base
  * @example
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;
  *
  * // List all of the values across every breakdown for a specific metric grouped by operating system
- * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'operating_system' });
+ * Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'operating_system' });
  */
-class Metrics {
-  /**
-   * @ignore
-   * Metrics Constructor
-   *
-   * @param {string} accessToken - Mux API Access Token
-   * @param {string} secret - Mux API Access Token secret
-   * @constructor
-   */
-  constructor(accessToken, secret) {
-    if (typeof accessToken === 'undefined') {
-      throw new Error('API Access Token must be provided.');
-    }
-
-    if (typeof secret === 'undefined') {
-      throw new Error('API secret key must be provided');
-    }
-
-    /**
-     *  @ignore
-     *  @type {Object} requestOptions - The HTTP request options for Mux Assets
-     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)
-     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)
-     * */
-    this.requestOptions = {
-      auth: {
-        username: accessToken,
-        password: secret,
-      },
-    };
-  }
-
+class Metrics extends Base {
   /**
    * List the breakdown values for a specific metric
    *
@@ -65,12 +34,12 @@ class Metrics {
    * const { Data } = muxClient;
    *
    * // List all of the values across every breakdown for a specific metric grouped by browser
-   * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
+   * Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
    *
    * @see https://api-docs.mux.com/#breakdown-get
    */
-  breakdown(metricId, queryParams) {
-    return api.get(`${PATH}/${metricId}/breakdown`, queryParams, this.requestOptions);
+  breakdown(metricId, params) {
+    return this.http.get(`${PATH}/${metricId}/breakdown`, { params });
   }
 
   /**
@@ -84,16 +53,18 @@ class Metrics {
    * const { Data } = muxClient;
    *
    * // List the breakdown values for a specific metric within the last 24 hours
-   * Data.metrics.comparison({ value: 'safari', timeframe: '24:hours', dimension: 'cdn' });
+   * Data.Metrics.comparison({ value: 'safari', timeframe: '24:hours', dimension: 'cdn' });
    * Note: the value query parameter is required
    *
    * @see https://api-docs.mux.com/#comparison-get
    */
-  comparison(queryParams) {
-    if (!queryParams || (queryParams && !queryParams.value)) {
-      throw new Error('The value query parameter is required for comparing metrics');
+  comparison(params) {
+    if (!params || (params && !params.value)) {
+      throw new Error(
+        'The value query parameter is required for comparing metrics'
+      );
     }
-    return api.get(`${PATH}/comparison`, queryParams, this.requestOptions);
+    return this.http.get(`${PATH}/comparison`, { params });
   }
 
   /**
@@ -109,15 +80,15 @@ class Metrics {
    * const { Data } = muxClient;
    *
    * // Get a list of insights for a metric measured by median and ordered descending
-   * Data.metrics.insights('aggregate_startup_time', { measurement: 'median', order_direction: 'desc' });
+   * Data.Metrics.insights('aggregate_startup_time', { measurement: 'median', order_direction: 'desc' });
    *
    * @see https://api-docs.mux.com/#insight-get
    */
-  insights(metricId, queryParams) {
+  insights(metricId, params) {
     if (!metricId) {
       throw new Error('A metric Id is required for insight metrics.');
     }
-    return api.get(`${PATH}/${metricId}/insights`, queryParams, this.requestOptions);
+    return this.http.get(`${PATH}/${metricId}/insights`, { params });
   }
 
   /**
@@ -133,15 +104,15 @@ class Metrics {
    * const { Data } = muxClient;
    *
    * // Get the overall value for a specific metric within the past 7 days
-   * Data.metrics.overall('aggregate_startup_time', { timeframe: ['7:days'] });
+   * Data.Metrics.overall('aggregate_startup_time', { timeframe: ['7:days'] });
    *
    * @see https://api-docs.mux.com/#overall-get
    */
-  overall(metricId, queryParams) {
+  overall(metricId, params) {
     if (!metricId) {
       throw new Error('A metric Id is required for overall metrics.');
     }
-    return api.get(`${PATH}/${metricId}/overall`, queryParams, this.requestOptions);
+    return this.http.get(`${PATH}/${metricId}/overall`, { params });
   }
 
   /**
@@ -156,15 +127,15 @@ class Metrics {
    * const { Data } = muxClient;
    *
    * // Get timeseries data for a specific metric within the past 7 days
-   * Data.metrics.timeseries('aggregate_startup_time', { timeframe: ['7:days'] });
+   * Data.Metrics.timeseries('aggregate_startup_time', { timeframe: ['7:days'] });
    *
    * @see https://api-docs.mux.com/#timeseries
    */
-  timeseries(metricId, queryParams) {
+  timeseries(metricId, params) {
     if (!metricId) {
       throw new Error('A metric Id is required for timeseries metrics.');
     }
-    return api.get(`${PATH}/${metricId}/timeseries`, queryParams, this.requestOptions);
+    return this.http.get(`${PATH}/${metricId}/timeseries`, { params });
   }
 }
 

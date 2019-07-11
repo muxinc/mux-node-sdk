@@ -2,8 +2,7 @@
  * Mux Errors
  * Copyright(c) 2018 Mux Inc.
  */
-
-const api = require('../../utils/api');
+const Base = require('../../base');
 
 /**
  * @private Base errors path for the Mux API
@@ -12,63 +11,30 @@ const PATH = '/data/v1/errors';
 
 /**
  * Errors Class - Provides access to the Mux Data Errors API
- *
+ * @extends Base
  * @example
- * const muxClient = new Mux(accessToken, secret);
- * const { Data } = muxClient;
+ * const { Data } = new Mux(accessToken, secret);
  *
  * // Returns a list of playback errors filtered by the windows operating system
- * Data.errors.list({ filters: ['operating_system:windows'] });
+ * Data.Errors.list({ filters: ['operating_system:windows'] });
  */
-class Errors {
-  /**
-   * @ignore
-   * Errors Constructor
-   *
-   * @param {string} accessToken - Mux API Access Token
-   * @param {string} secret - Mux API Access Token secret
-   * @constructor
-   */
-  constructor(accessToken, secret) {
-    if (typeof accessToken === 'undefined') {
-      throw new Error('API Access Token must be provided.');
-    }
-
-    if (typeof secret === 'undefined') {
-      throw new Error('API secret key must be provided');
-    }
-
-    /**
-     *  @ignore
-     *  @type {Object} requestOptions - The HTTP request options for Mux Assets
-     *  @property {string} requestOptions.auth.username - HTTP basic auth username (access token)
-     *  @property {string} requestOptions.auth.password - HTTP basic auth password (secret)
-     * */
-    this.requestOptions = {
-      auth: {
-        username: accessToken,
-        password: secret,
-      },
-    };
-  }
-
+class Errors extends Base {
   /**
    * Returns a list of playback errors
    *
-   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }
+   * @param {Object} [params] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Data } = muxClient;
+   * const { Data } = new Mux(accessToken, secret);
    *
    * // Returns a list of playback errors filtered by the windows operating system
-   * Data.errors.list({ filters: ['operating_system:windows'] });
+   * Data.Errors.list({ filters: ['operating_system:windows'] });
    *
    * @see https://api-docs.mux.com/#view-error-get
    */
-  list(queryParams) {
-    return api.get(PATH, queryParams, this.requestOptions);
+  list(params) {
+    return this.http.get(PATH, { params });
   }
 }
 

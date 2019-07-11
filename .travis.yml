@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - 'lts/*'
+  - '8'
+  - '9'
+  - '10'
+
+before_deploy: 'yarn docs'
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  local-dir: 'docs'
+  on:
+    branch: master

@@ -20,18 +20,20 @@ describe('Unit::Data', () => {
 
     /** @test {Data} */
     it('throws an error if a secret key is not given', () => {
-      expect(() => new Data(testApiKey)).to.throw('API secret key must be provided');
+      expect(() => new Data(testApiKey)).to.throw(
+        'API secret key must be provided'
+      );
     });
 
     /** @test {Data} */
     it('creates a new Data instance', () => {
       const TestData = new Data(testApiKey, testSecret);
       expect(() => new Data(testApiKey, testSecret)).to.not.throw();
-      expect(TestData.metrics).to.be.an.instanceof(Metrics);
-      expect(TestData.errors).to.be.an.instanceof(Errors);
-      expect(TestData.exports).to.be.an.instanceof(Exports);
-      expect(TestData.videoViews).to.be.an.instanceof(VideoViews);
-      expect(TestData.filters).to.be.an.instanceof(Filters);
+      expect(TestData.Metrics).to.be.an.instanceof(Metrics);
+      expect(TestData.Errors).to.be.an.instanceof(Errors);
+      expect(TestData.Exports).to.be.an.instanceof(Exports);
+      expect(TestData.VideoViews).to.be.an.instanceof(VideoViews);
+      expect(TestData.Filters).to.be.an.instanceof(Filters);
     });
   });
 });

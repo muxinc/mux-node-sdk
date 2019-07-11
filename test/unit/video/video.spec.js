@@ -1,7 +1,8 @@
 const { expect } = require('chai');
 const Video = require('../../../src/video/video');
 const Assets = require('../../../src/video/resources/assets');
-const PlaybackIds = require('../../../src/video/resources/playbackIds');
+const LiveStreams = require('../../../src/video/resources/liveStreams');
+const Uploads = require('../../../src/video/resources/uploads');
 
 /** @test {Video} */
 describe('Unit::Video', () => {
@@ -17,15 +18,19 @@ describe('Unit::Video', () => {
 
     /** @test {Video} */
     it('throws an error if a secret key is not given', () => {
-      expect(() => new Video('testKey')).to.throw('API secret key must be provided');
+      expect(() => new Video('testKey')).to.throw(
+        'API secret key must be provided'
+      );
     });
 
     /** @test {Video} */
     it('creates a new Video instance', () => {
       const TestVideo = new Video(testApiKey, testSecret);
       expect(() => new Video(testApiKey, testSecret)).to.not.throw();
-      expect(TestVideo.assets).to.be.an.instanceof(Assets);
-      expect(TestVideo.playbackIds).to.be.an.instanceof(PlaybackIds);
+      expect(TestVideo.Assets).to.be.an.instanceof(Assets);
+      expect(TestVideo.LiveStreams).to.be.an.instanceof(LiveStreams);
+      expect(TestVideo.LiveStreams).to.be.an.instanceof(LiveStreams);
+      expect(TestVideo.Uploads).to.be.an.instanceof(Uploads);
     });
   });
 });

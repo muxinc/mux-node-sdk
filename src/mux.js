@@ -3,12 +3,15 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
+const Base = require('./base');
 const Video = require('./video/video');
 const Data = require('./data/data');
+const JWT = require('./utils/jwt');
 
 /**
  * Mux Class - Provides access to the Mux Video and Mux Data API
  *
+ * @extends Base
  * @type {Video}
  * @property {Video} Mux.Video provides access to the Mux Video API
  * @type {Data}
@@ -31,29 +34,30 @@ const Data = require('./data/data');
  * // List all of the values across every breakdown for the `aggregate_startup_time` metric
  * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
  */
-class Mux {
+class Mux extends Base {
   /**
    * Mux Constructor
    *
-   * @param {string} accessToken - Mux API Access Token
-   * @param {string} secret - Mux API secret
+   * @param {string=process.env.MUX_TOKEN_ID} accessToken - Mux API Access Token
+   * @param {string=process.env.MUX_TOKEN_SECRET} secret - Mux API secret
+   * @param {object} options - Optional configuration object
+   * @param {string='https://api.mux.com'} options.baseUrl - Change the base URL for API requests.
    * @constructor
    */
-  constructor(accessToken, secret) {
-    if (typeof accessToken === 'undefined') {
-      throw new Error('API Access Token must be provided.');
-    }
-
-    if (typeof secret === 'undefined') {
-      throw new Error('API secret key must be provided');
-    }
+  constructor(accessTokenOrConfig, secret, config) {
+    super(accessTokenOrConfig, secret, config);
 
     /** @type {Video} */
-    this.Video = new Video(accessToken, secret);
+    this.Video = new Video(this);
 
     /** @type {Data} */
-    this.Data = new Data(accessToken, secret);
+    this.Data = new Data(this);
   }
 }
+
+/**
+ * @ {JWT}
+ */
+Mux.JWT = JWT;
 
 module.exports = Mux;

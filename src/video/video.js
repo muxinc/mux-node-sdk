@@ -4,11 +4,14 @@
  */
 
 const Assets = require('./resources/assets');
-const PlaybackIds = require('./resources/playbackIds');
+const Base = require('../base');
 const LiveStreams = require('./resources/liveStreams');
+const Uploads = require('./resources/uploads');
+const SigningKeys = require('./resources/signingKeys');
 
 /**
  * @ignore
+ * @extends Base
  * Video Class - Provides access to the Mux Video API
  *
  * @example
@@ -21,7 +24,7 @@ const LiveStreams = require('./resources/liveStreams');
  * // Create a playback Id for an asset
  * Video.playbackIds.create('assetId', { policy: 'public' });
  */
-class Video {
+class Video extends Base {
   /**
    * Video Constructor
    *
@@ -29,23 +32,20 @@ class Video {
    * @param {string} secret - Mux API secret
    * @constructor
    */
-  constructor(accessToken, secret) {
-    if (typeof accessToken === 'undefined') {
-      throw new Error('API Access Token must be provided.');
-    }
-
-    if (typeof secret === 'undefined') {
-      throw new Error('API secret key must be provided');
-    }
+  constructor(...params) {
+    super(...params);
 
     /** @type {Assets} */
-    this.assets = new Assets(accessToken, secret);
-
-    /** @type {PlaybackIds} */
-    this.playbackIds = new PlaybackIds(accessToken, secret);
+    this.Assets = new Assets(this);
 
     /** @type {LiveStreams} */
-    this.liveStreams = new LiveStreams(accessToken, secret);
+    this.LiveStreams = new LiveStreams(this);
+
+    /** @Type {Uploads} */
+    this.Uploads = new Uploads(this);
+
+    /** @Type {SigningKeys} */
+    this.SigningKeys = new SigningKeys(this);
   }
 }
 

@@ -1,286 +1,173 @@
-require('dotenv').config();
 const { expect } = require('chai');
-const should = require('chai').should();
 const Mux = require('../../../src/mux');
 
 /** @test {LiveStreams} */
 describe('Integration::LiveStreams', () => {
-  const muxClient = new Mux(process.env.MUX_ACCESS_TOKEN, process.env.MUX_SECRET);
+  const muxClient = new Mux();
   const { Video } = muxClient;
   let testLiveStream;
+  const createdLiveStreams = [];
 
-  before(() => (
-    Video.liveStreams.create()
-      .then((res) => {
-        const { data } = res;
-        should.exist(data);
-        expect(res.status).to.equal(201);
-        testLiveStream = data;
-      })
-      .catch((err) => {
-        expect(err).to.equal(undefined);
-      })
-  ));
+  before(async () => {
+    testLiveStream = await Video.LiveStreams.create();
+    createdLiveStreams.push(testLiveStream);
+  });
 
-  after(() => (
-    Video.liveStreams.remove(testLiveStream.data.id)
-      .then((res) => {
-        const { data } = res;
-        should.exist(data);
-        expect(res.status).to.equal(204);
-      })
-      .catch((err) => {
-        expect(err).to.equal(undefined);
-      })
-  ));
+  after(() =>
+    createdLiveStreams.forEach(stream => Video.LiveStreams.del(stream.id))
+  );
 
   /** @test {LiveStreams.create} */
   describe('LiveStreams.create', () => {
     /** @test {LiveStreams.create} */
-    it('creates a live stream with defaults', () => (
-      Video.liveStreams.create()
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(201);
-        })
-        .catch((err) => {
-          expect(err).to.equal(undefined);
-        })
-    ));
+    it('creates a live stream with defaults', async () => {
+      const stream = await Video.LiveStreams.create();
+      createdLiveStreams.push(stream);
+      expect(stream.stream_key).to.exist;
+      expect(stream.status).to.equal('idle');
+      expect(stream.reconnect_window).to.equal(60);
+    });
 
-    it('creates a live stream with given parameters', () => (
-      Video.liveStreams.create({playback_policy: 'signed', 'new_asset_settings': { playback_policy: 'signed' }})
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(data.data.new_asset_settings).to.not.equal(undefined);
-          expect(res.status).to.equal(201);
-        })
-        .catch((err) => {
-          expect(err).to.equal(undefined);
-        })
-    ));
+    it('creates a live stream with given parameters', async () => {
+      const stream = await Video.LiveStreams.create({
+        playback_policy: 'signed',
+        new_asset_settings: {
+          playback_policy: 'signed',
+        },
+      });
+
+      createdLiveStreams.push(stream);
+      expect(stream.playback_ids[0].policy).to.equal('signed');
+      expect(stream.new_asset_settings).to.eql({
+        playback_policies: ['signed'],
+      });
+    });
+  });
+
+  /** @test {LiveStreams.del} */
+  describe('LiveStreams.del', () => {
+    /** @test {LiveStreams.del} */
+    it('deletes a live stream', async () => {
+      const stream = await Video.LiveStreams.create();
+      await Video.LiveStreams.del(stream.id);
+    });
+
+    /** @test {LiveStreams.del} */
+    it('fails to delete a live stream when not given an incorrect live stream id', () =>
+      Video.LiveStreams.del('somefakeid').catch(err => expect(err).to.exist));
   });
 
   /** @test {LiveStreams.remove} */
-  describe('LiveStreams.remove', () => {
+  describe('LiveStreams.remove [deprecated]', () => {
     /** @test {LiveStreams.remove} */
-    it('deletes a live stream', () => (
-      Video.liveStreams.create()
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          return Video.liveStreams.remove(data.data.id);
-        })
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(204);
-        })
-        .catch((err) => {
-          expect(err).to.equal(undefined);
-        })
-    ));
-
-    /** @test {LiveStreams.remove} */
-    it('fails to delete a live stream when not given an incorrect live stream id', () => (
-      Video.liveStreams.remove('somefakeid')
-        .then((res) => {
-          const { data } = res;
-          should.not.exist(data);
-        })
-        .catch((err) => {
-          should.exist(err);
-        })
-    ));
+    it('deletes a live stream', async () => {
+      const stream = await Video.LiveStreams.create();
+      await Video.LiveStreams.remove(stream.id);
+    });
   });
 
   /** @test {LiveStreams.get} */
   describe('LiveStreams.get', () => {
     /** @test {LiveStreams.get} */
-    it('gets a live stream', () => (
-      Video.liveStreams.get(testLiveStream.data.id)
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(200);
-        })
-        .catch((err) => {
-          expect(err).to.equal(undefined);
-        })
-    ));
+    it('gets a live stream', async () => {
+      const stream = await Video.LiveStreams.get(testLiveStream.id);
+      expect(stream.status).to.equal('idle');
+    });
 
     /** @test {LiveStreams.get} */
-    it('fails to get a live stream when not given an incorrect live stream id', () => (
-      Video.liveStreams.get('somefakeid')
-        .then((res) => {
-          const { data } = res;
-          should.not.exist(data);
-        })
-        .catch((err) => {
-          should.exist(err);
-        })
-    ));
+    it('fails to get a live stream when not given an incorrect live stream id', () =>
+      Video.LiveStreams.get('somefakeid').catch(err => expect(err).to.exist));
   });
 
   /** @test {LiveStreams.signalComplete} */
   describe('LiveStreams.signalComplete', () => {
     /** @test {LiveStreams.signalComplete} */
-    it('signals a live stream is complete', () => (
-      Video.liveStreams.signalComplete(testLiveStream.data.id)
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(200);
-        })
-        .catch((err) => {
-          should.not.exist(err);
-        })
-    ));
+    it('signals a live stream is complete', done => {
+      // Just returns a 204
+      Video.LiveStreams.signalComplete(testLiveStream.id).then(() => done());
+    });
 
     /** @test {LiveStreams.signalComplete} */
-    it('fails to signal a live stream is complete when given an incorrect live stream id', () => (
-      Video.liveStreams.signalComplete('somefakeid')
-        .then((res) => {
-          const { data } = res;
-          should.not.exist(data);
-        })
-        .catch((err) => {
-          should.exist(err);
-        })
-    ));
+    it('fails to signal a live stream is complete when given an incorrect live stream id', () =>
+      Video.LiveStreams.signalComplete('somefakeid').catch(
+        err => expect(err).to.exist
+      ));
   });
 
   /** @test {LiveStreams.list} */
   describe('LiveStreams.list', () => {
     /** @test {LiveStreams.list} */
-    it('lists all live streams for an environment', () => (
-      Video.liveStreams.list()
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(200);
-        })
-        .catch((err) => {
-          expect(err).to.equal(undefined);
-        })
-    ));
+    it('lists all live streams for an environment', async () => {
+      const streams = await Video.LiveStreams.list();
+      expect(streams).to.be.an('array');
+    });
 
-    it('lists 5 live streams for an environment', () => (
-      Video.liveStreams.list({limit: 5})
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(data.length === 5);
-          expect(res.status).to.equal(200);
-        })
-        .catch((err) => {
-          expect(err).to.equal(undefined);
-        })
-    ));
+    it('lists 5 live streams for an environment', async () => {
+      const streams = await Video.LiveStreams.list({ limit: 5 });
+      expect(streams.length).to.be.at.most(5);
+    });
   });
 
   /** @test {LiveStreams.resetStreamKey} */
   describe('LiveStreams.resetStreamKey', () => {
     /** @test {LiveStreams.resetStreamKey} */
-    it('resets a stream key', () => (
-      Video.liveStreams.resetStreamKey(testLiveStream.data.id)
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(201);
-        })
-        .catch((err) => {
-          should.not.exist(err);
-        })
-    ));
+    it('resets a stream key', async () => {
+      const stream = await Video.LiveStreams.resetStreamKey(testLiveStream.id);
+      expect(stream.id).to.equal(testLiveStream.id);
+      expect(stream.stream_key).to.not.equal(testLiveStream.stream_key);
+    });
 
     /** @test {LiveStreams.resetStreamKey} */
-    it('fails to reset a stream key if given an incorrect live stream id', () => (
-      Video.liveStreams.resetStreamKey('somefakeid')
-        .then((res) => {
-          const { data } = res;
-          should.not.exist(data);
-        })
-        .catch((err) => {
-          should.exist(err);
-        })
-    ));
+    it('fails to reset a stream key if given an incorrect live stream id', () =>
+      Video.LiveStreams.resetStreamKey('somefakeid').catch(
+        err => expect(err).to.exist
+      ));
   });
 
   /** @test {LiveStreams.createPlaybackId} */
   describe('LiveStreams.createPlaybackId', () => {
     /** @test {LiveStreams.createPlaybackId} */
-    it('creates a playback id for a live stream', () => (
-      Video.liveStreams.createPlaybackId(testLiveStream.data.id, { policy: 'public' })
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(201);
-        })
-        .catch((err) => {
-          console.log(err)
-          should.not.exist(err);
-        })
-    ));
+    it('creates a playback id for a live stream', async () => {
+      const playbackId = await Video.LiveStreams.createPlaybackId(
+        testLiveStream.id,
+        { policy: 'public' }
+      );
+      expect(playbackId.policy).to.equal('public');
+      expect(playbackId.id).to.exist;
+    });
 
     /** @test {LiveStreams.createPlaybackId} */
-    it('fails to create a playback id if given an incorrect live stream id', () => (
-      Video.liveStreams.createPlaybackId('somefakeid', { policy: 'public' })
-        .then((res) => {
-          const { data } = res;
-          should.not.exist(data);
-        })
-        .catch((err) => {
-          should.exist(err);
-        })
-    ));
+    it('fails to create a playback id if given an incorrect live stream id', () =>
+      Video.LiveStreams.createPlaybackId('somefakeid', {
+        policy: 'public',
+      }).catch(err => expect(err).to.exist));
 
     /** @test {LiveStreams.createPlaybackId} */
-    it('fails to create a playback id if not given a playback policy', () => (
-      Video.liveStreams.createPlaybackId('somefakeid')
-        .then((res) => {
-          const { data } = res;
-          should.not.exist(data);
-        })
-        .catch((err) => {
-          should.exist(err);
-        })
-    ));
+    it('fails to create a playback id if not given a playback policy', () =>
+      Video.LiveStreams.createPlaybackId('somefakeid').catch(
+        err => expect(err).to.exist
+      ));
   });
 
   /** @test {LiveStreams.deletePlaybackId} */
   describe('LiveStreams.deletePlaybackId', () => {
     /** @test {LiveStreams.deletePlaybackId} */
-    it('deletes playbackIds for a live stream', () => (
-      Video.liveStreams.createPlaybackId(testLiveStream.data.id, { policy: 'public' })
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(201);
-          return Video.liveStreams.deletePlaybackId(testLiveStream.data.id, data.data.id);
-        })
-        .then((res) => {
-          const { data } = res;
-          should.exist(data);
-          expect(res.status).to.equal(204);
-        })
-        .catch((err) => {
-          expect(err).to.equal(undefined);
-        })
-    ));
+    it('deletes playbackIds for a live stream', async () => {
+      const playbackId = await Video.LiveStreams.createPlaybackId(
+        testLiveStream.id,
+        { policy: 'public' }
+      );
+      Video.LiveStreams.deletePlaybackId(testLiveStream.id, playbackId.id);
+      const { playback_ids: updatedPlaybackIds } = await Video.LiveStreams.get(
+        testLiveStream.id
+      );
+      expect(updatedPlaybackIds).to.not.include(playbackId);
+    });
 
     /** @test {PlaybackIds.deletePlaybackId} */
-    it('fails to get playbackIds for a live stream when not given a playback ID', () => (
-      Video.liveStreams.deletePlaybackId(testLiveStream.data.id)
-        .then((res) => {
-          const { data } = res;
-          should.not.exist(data);
-        })
-        .catch((err) => {
-          should.exist(err);
-        })
-    ));
+    it('fails to get playbackIds for a live stream when not given a playback ID', () =>
+      Video.LiveStreams.deletePlaybackId(testLiveStream.id).catch(
+        err => expect(err).to.exist
+      ));
   });
 });
