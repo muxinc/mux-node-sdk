@@ -30,7 +30,7 @@ class Incidents extends Base {
    * const { Data } = new Mux(accessToken, secret);
    *
    * // Returns a list of all open incidents
-   * Data.Errors.list({ status: 'open' });
+   * Data.Incidents.list({ status: 'open' });
    *
    * @see https://api-docs.mux.com/#incident-get
    */
