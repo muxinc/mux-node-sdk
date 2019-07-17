@@ -47,7 +47,6 @@ class Incidents extends Base {
    * Returns the details for a single incident
    *
    * @param {string} incidentId - The ID for the incident
-   * @param {Object} [params] - example { measurement: 'median' }
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
@@ -59,11 +58,11 @@ class Incidents extends Base {
    *
    * @see https://api-docs.mux.com/#incident-get-1
    */
-  get(incidentId, params) {
+  get(incidentId) {
     if (!incidentId) {
       throw new Error('An incident Id is required for incident details.');
     }
-    return this.http.get(`${PATH}/${incidentId}`, { params });
+    return this.http.get(`${PATH}/${incidentId}`);
   }
 
   /**
