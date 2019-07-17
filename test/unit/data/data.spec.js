@@ -5,6 +5,7 @@ const Filters = require('../../../src/data/resources/filters');
 const Errors = require('../../../src/data/resources/errors');
 const VideoViews = require('../../../src/data/resources/video_views');
 const Exports = require('../../../src/data/resources/exports');
+const Incidents = require('../../../src/data/resources/incidents');
 
 /** @test {Data} */
 describe('Unit::Data', () => {
@@ -34,6 +35,7 @@ describe('Unit::Data', () => {
       expect(TestData.Exports).to.be.an.instanceof(Exports);
       expect(TestData.VideoViews).to.be.an.instanceof(VideoViews);
       expect(TestData.Filters).to.be.an.instanceof(Filters);
+      expect(TestData.Incidents).to.be.an.instanceof(Incidents);
     });
   });
 });
