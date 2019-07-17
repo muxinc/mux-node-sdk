@@ -22,8 +22,7 @@ class Incidents extends Base {
   /**
    * Returns a list of all open incidents
    *
-   * @param {Object} [params] - example { status: 'open' }
-   * Note: the status query parameter is required
+   * @param {Object} [params] - example { status: 'open', severity: 'warning' }
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
@@ -35,11 +34,6 @@ class Incidents extends Base {
    * @see https://api-docs.mux.com/#incident-get
    */
   list(params) {
-    if (!params || (params && !params.status)) {
-      throw new Error(
-        'The status query parameter is required for listing incidents.'
-      );
-    }
     return this.http.get(PATH, { params });
   }
 

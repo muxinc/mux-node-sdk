@@ -43,15 +43,6 @@ describe('Unit::Incidents', () => {
   /** @test {Incidents.list} */
   describe('Incidents.list', () => {
     /** @test {Incidents.list} */
-    it('throws an error if the status query parameter is not provided', () => {
-      expect(() => incidentsInstance.list()).to.throw(
-        'The status query parameter is required for listing incidents.'
-      );
-      expect(() => incidentsInstance.list({})).to.throw(
-        'The status query parameter is required for listing incidents.'
-      );
-    });
-
     it('makes a get request to the Mux data incidents route', done => {
       moxios.stubRequest('https://api.mux.com/data/v1/incidents?status=open', {
         status: 200,
