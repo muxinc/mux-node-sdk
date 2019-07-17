@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../">
+  <title data-ice="title">Manual | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container manual-root manual-index" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div class="manual-toc-root">
+  
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    </ul>
+  </div>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div class="github-markdown">
+  <div class="manual-user-index" data-ice="manualUserIndex"><p><img src="github-nodejs-sdk.png" alt="Mux Node Banner"></p>
+<h1 id="mux-node">Mux Node</h1><p><img src="https://api.travis-ci.org/muxinc/mux-node-sdk.svg?branch=master" alt="build status"> <img src="https://badge.fury.io/js/%40mux%2Fmux-node.svg" alt="npm version"></p>
+<p>Official Mux API wrapper for Node projects, supporting both Mux Data and Mux Video.</p>
+<p><a href="https://mux.com/video">Mux Video</a> is an API-first platform, powered by data and designed by video experts to make beautiful video possible for every development team.</p>
+<p><a href="https://mux.com/data">Mux Data</a> is a platform for monitoring your video streaming performance with just a few lines of code. Get in-depth quality of service analytics on web, mobile, and OTT devices.</p>
+<p>This library is intended to provide Mux API convenience methods for applications written in server-side Javascript. <strong>Please note</strong> that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.</p>
+<p>Not familiar with Mux? Check out <a href="https://mux.com/">https://mux.com/</a> for more information.</p>
+<h2 id="documentation">Documentation</h2><p>See the <a href="https://muxinc.github.io/mux-node-sdk">Mux-Node docs</a></p>
+<h2 id="installation">Installation</h2><pre><code><code class="source-code prettyprint">npm install @mux/mux-node --save</code>
+</code></pre><p>or</p>
+<pre><code><code class="source-code prettyprint">yarn add @mux/mux-node</code>
+</code></pre><h2 id="usage">Usage</h2><p>To start, you will need a Mux access token and secret for your Mux environment. For more information on where to get
+an access token, visit the Mux Getting Started guide <a href="https://docs.mux.com/docs">https://docs.mux.com/docs</a></p>
+<p>Require the <code>@mux/mux-node</code> npm module and create a Mux instance. Your Mux instance will have <code>Data</code> and <code>Video</code> properties
+that will allow you to access the Mux Data and Video APIs.</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">const Mux = require(&apos;@mux/mux-node&apos;);
+const { Video, Data } = new Mux(accessToken, secret);</code>
+</code></pre>
+<p>If a token ID and secret aren&apos;t included as parameters, the SDK will attempt to use the <code>MUX_TOKEN_ID</code> and <code>MUX_TOKEN_SECRET</code> environment variables.</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">// assume process.env.MUX_TOKEN_ID and process.env.MUX_TOKEN_SECRET contain your credentials
+const muxClient = new Mux(); // Success!</code>
+</code></pre>
+<p>As an example, you can create a Mux asset and playback ID by using the below functions on your Video instance.</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">// Create an asset
+const asset = await Video.Assets.create({
+  input: &apos;https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4&apos;,
+});</code>
+</code></pre>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">// ...then later, a playback ID for that asset
+const playbackId = await Video.Assets.createPlaybackId(asset.id, {
+  policy: &apos;public&apos;,
+});</code>
+</code></pre>
+<p>Or, if you don&apos;t have the files online already, you can ingest one via the direct uploads API.</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">const request = require(&apos;request&apos;);
+let upload = await Video.Uploads.create({
+  new_asset_settings: { playback_policy: &apos;public&apos; },
+});
+
+// The URL you get back from the upload API is resumable, and the file can be uploaded using a `PUT` request (or a series of them).
+await fs.createReadStream(&apos;/path/to/your/file&apos;).pipe(request.put(upload.url));
+
+// The upload may not be updated immediately, but shortly after the upload is finished you&apos;ll get a `video.asset.created` event and the upload will now have a status of `asset_created` and a new `asset_id` key.
+let updatedUpload = await Video.Uploads.get(upload.id);
+
+// Or you could decide to go get additional information about that new asset you created.
+let asset = await Video.Assets.get(updatedUpload[&apos;asset_id&apos;]);</code>
+</code></pre>
+<p>You can access the Mux Data API in the same way by using your Data instance. For example, you can list all of the
+values across every breakdown for the <code>aggregate_startup_time</code> metric by using the below function.</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">const breakdown = await Data.Metrics.breakdown(&apos;aggregate_startup_time&apos;, {
+  group_by: &apos;browser&apos;,
+});</code>
+</code></pre>
+<h2 id="usage-details">Usage Details</h2><p>Every function will return a chainable <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>.</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">Video.Assets.create({
+  input: &apos;https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4&apos;,
+}).then(asset =&gt; {
+  /* Do things with the asset */
+});</code>
+</code></pre>
+<h2 id="jwt-helpers--lt-small-gt---a-href--https---muxinc-github-io-mux-node-sdk-class-src-utils-jwt-js-jwt-html--api-reference--a---lt--small-gt-">JWT Helpers &lt;small&gt;(<a href="https://muxinc.github.io/mux-node-sdk/class/src/utils/jwt.js~JWT.html">API Reference</a>)&lt;/small&gt;</h2><p>You can use any JWT-compatible library, but we&apos;ve included some light helpers in the SDK to make it easier to get up and running.</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">// Assuming you have your signing key specified in your environment variables:
+// Signing token ID: process.env.MUX_SIGNING_KEY
+// Signing token secret: process.env.MUX_PRIVATE_KEY
+
+// Most simple request, defaults to type video and is valid for 7 days.
+const token = Mux.JWT.sign(&apos;some-playback-id&apos;);
+// https://stream.mux.com/some-playback-id.m3u8?token=${token}
+
+// If you wanted to sign a thumbnail
+const thumbParams = { time: 14, width: 100 }
+const thumbToken = Mux.JWT.sign(&apos;some-playback-id&apos;, { type: &apos;thumbnail&apos;, params: thumbParams });
+// https://image.mux.com/some-playback-id/thumbnail.jpg?token=${token}
+
+// If you wanted to sign a gif
+const gifToken = Mux.JWT.sign(&apos;some-playback-id&apos;, { type: &apos;gif&apos; });
+// https://image.mux.com/some-playback-id/animated.gif?token=${token}</code>
+</code></pre>
+<h2 id="-code-request--code--and--code-response--code--events"><code>request</code> and <code>response</code> events</h2><p>The SDK returns the <code>data</code> key for every object, because in the Mux API that&apos;s always the thing you actually want to see. Sometimes, however, it&apos;s useful to see more details about the request being made or the full response object. You can listen for <code>request</code> and <code>response</code> events to get these raw objects.</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">muxClient.on(&apos;request&apos;, req =&gt; {
+  // Request will contain everything being sent such as `headers, method, base url, etc
+});
+
+muxClient.on(&apos;response&apos;, res =&gt; {
+  // Response will include everything returned from the API, such as status codes/text, headers, etc
+});</code>
+</code></pre>
+<p>See the <a href="https://muxinc.github.io/mux-node-sdk/identifiers.html">Mux-Node docs</a> for a list of all available functions.</p>
+<h2 id="development">Development</h2><p>Run unit tests: <code>npm test</code> or <code>npm run test:unit</code></p>
+<p>Run integration tests: <code>npm run test:int</code></p>
+<p><strong>Note</strong>: running the integration tests will require you to configure the <code>MUX_TOKEN_ID</code> and <code>MUX_TOKEN_SECRET</code> environment variables with your Mux access token and secret.</p>
+<p>To generate the ESDocs, run:</p>
+<pre><code><code class="source-code prettyprint">yarn esdoc
+open ./docs/index.html</code>
+</code></pre><h2 id="contributing">Contributing</h2><p>Find a bug or want to add a useful feature? That&apos;d be amazing! If you&apos;d like to submit a <a href="https://help.github.com/articles/about-pull-requests/">pull request</a> to the project with changes, please do something along these lines:</p>
+<ol>
+<li>Fork the project wherever you&apos;d like</li>
+<li>Create a meaningful branch name that relates to your contribution. Consider including an issue number if available. <code>git co -b add-node-lts-support</code></li>
+<li>Make any changes you&apos;d like in your forked branch.</li>
+<li>Add any relevant tests for your changes</li>
+<li>Open the pull request! :tada:</li>
+</ol>
+</div>
+
+  
+
+  <div class="manual-cards">
+    
+  </div>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

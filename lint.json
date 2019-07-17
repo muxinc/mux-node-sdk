@@ -1,0 +1,677 @@
+[
+  {
+    "name": "Filters#get",
+    "filePath": "src/data/resources/filters.js",
+    "lines": [
+      {
+        "lineNumber": 23,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 24,
+        "line": "   * Lists the values for a filter along with a total count of related views"
+      },
+      {
+        "lineNumber": 25,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 26,
+        "line": "   * @param {string} filterId - The filter name/id for see https://api-docs.mux.com/#filter-get-1 for a list of all filter ids"
+      },
+      {
+        "lineNumber": 27,
+        "line": "   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }"
+      },
+      {
+        "lineNumber": 28,
+        "line": "   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API"
+      },
+      {
+        "lineNumber": 29,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 30,
+        "line": "   * @example"
+      },
+      {
+        "lineNumber": 31,
+        "line": "   * const muxClient = new Mux(accessToken, secret);"
+      },
+      {
+        "lineNumber": 32,
+        "line": "   * const { Data } = muxClient;"
+      },
+      {
+        "lineNumber": 33,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 34,
+        "line": "   * // Lists the values for a filter along with a total count of related views"
+      },
+      {
+        "lineNumber": 35,
+        "line": "   * Data.Filters.get('browser', { timeframe: ['7:days'] });"
+      },
+      {
+        "lineNumber": 36,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 37,
+        "line": "   * @see https://api-docs.mux.com/#filter-get-1"
+      },
+      {
+        "lineNumber": 38,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 39,
+        "line": "  get(filterId, params) {"
+      }
+    ],
+    "codeParams": [
+      "filterId",
+      "params"
+    ],
+    "docParams": [
+      "filterId",
+      "queryParams"
+    ]
+  },
+  {
+    "name": "Metrics#breakdown",
+    "filePath": "src/data/resources/metrics.js",
+    "lines": [
+      {
+        "lineNumber": 23,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 24,
+        "line": "   * List the breakdown values for a specific metric"
+      },
+      {
+        "lineNumber": 25,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 26,
+        "line": "   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#breakdown-get for a list of all metric ids"
+      },
+      {
+        "lineNumber": 27,
+        "line": "   * @param {Object} queryParams - example: {group_by: 'browser'}"
+      },
+      {
+        "lineNumber": 28,
+        "line": "   * NOTE: the group_by query parameter is required"
+      },
+      {
+        "lineNumber": 29,
+        "line": "   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API"
+      },
+      {
+        "lineNumber": 30,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 31,
+        "line": "   * @example"
+      },
+      {
+        "lineNumber": 32,
+        "line": "   * const muxClient = new Mux(accessToken, secret);"
+      },
+      {
+        "lineNumber": 33,
+        "line": "   * const { Data } = muxClient;"
+      },
+      {
+        "lineNumber": 34,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 35,
+        "line": "   * // List all of the values across every breakdown for a specific metric grouped by browser"
+      },
+      {
+        "lineNumber": 36,
+        "line": "   * Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });"
+      },
+      {
+        "lineNumber": 37,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 38,
+        "line": "   * @see https://api-docs.mux.com/#breakdown-get"
+      },
+      {
+        "lineNumber": 39,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 40,
+        "line": "  breakdown(metricId, params) {"
+      }
+    ],
+    "codeParams": [
+      "metricId",
+      "params"
+    ],
+    "docParams": [
+      "metricId",
+      "queryParams"
+    ]
+  },
+  {
+    "name": "Metrics#comparison",
+    "filePath": "src/data/resources/metrics.js",
+    "lines": [
+      {
+        "lineNumber": 44,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 45,
+        "line": "   * List all of the values across every breakdown for a specific metric"
+      },
+      {
+        "lineNumber": 46,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 47,
+        "line": "   * @param {Object} queryParams - example { value: 'safari', timeframe: '24:hours', dimension: 'cdn' }"
+      },
+      {
+        "lineNumber": 48,
+        "line": "   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API"
+      },
+      {
+        "lineNumber": 49,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 50,
+        "line": "   * @example"
+      },
+      {
+        "lineNumber": 51,
+        "line": "   * const muxClient = new Mux(accessToken, secret);"
+      },
+      {
+        "lineNumber": 52,
+        "line": "   * const { Data } = muxClient;"
+      },
+      {
+        "lineNumber": 53,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 54,
+        "line": "   * // List the breakdown values for a specific metric within the last 24 hours"
+      },
+      {
+        "lineNumber": 55,
+        "line": "   * Data.Metrics.comparison({ value: 'safari', timeframe: '24:hours', dimension: 'cdn' });"
+      },
+      {
+        "lineNumber": 56,
+        "line": "   * Note: the value query parameter is required"
+      },
+      {
+        "lineNumber": 57,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 58,
+        "line": "   * @see https://api-docs.mux.com/#comparison-get"
+      },
+      {
+        "lineNumber": 59,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 60,
+        "line": "  comparison(params) {"
+      }
+    ],
+    "codeParams": [
+      "params"
+    ],
+    "docParams": [
+      "queryParams"
+    ]
+  },
+  {
+    "name": "Metrics#insights",
+    "filePath": "src/data/resources/metrics.js",
+    "lines": [
+      {
+        "lineNumber": 69,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 70,
+        "line": "   * Returns a list of insights for a metric. These are the worst performing values across all"
+      },
+      {
+        "lineNumber": 71,
+        "line": "   * breakdowns sorted by how much they negatively impact a specific metric."
+      },
+      {
+        "lineNumber": 72,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 73,
+        "line": "   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#breakdown-get for a list of all metric ids"
+      },
+      {
+        "lineNumber": 74,
+        "line": "   * @param {Object} [queryParams] - example { measurement: 'median', order_direction: 'desc' }"
+      },
+      {
+        "lineNumber": 75,
+        "line": "   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API"
+      },
+      {
+        "lineNumber": 76,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 77,
+        "line": "   * @example"
+      },
+      {
+        "lineNumber": 78,
+        "line": "   * const muxClient = new Mux(accessToken, secret);"
+      },
+      {
+        "lineNumber": 79,
+        "line": "   * const { Data } = muxClient;"
+      },
+      {
+        "lineNumber": 80,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 81,
+        "line": "   * // Get a list of insights for a metric measured by median and ordered descending"
+      },
+      {
+        "lineNumber": 82,
+        "line": "   * Data.Metrics.insights('aggregate_startup_time', { measurement: 'median', order_direction: 'desc' });"
+      },
+      {
+        "lineNumber": 83,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 84,
+        "line": "   * @see https://api-docs.mux.com/#insight-get"
+      },
+      {
+        "lineNumber": 85,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 86,
+        "line": "  insights(metricId, params) {"
+      }
+    ],
+    "codeParams": [
+      "metricId",
+      "params"
+    ],
+    "docParams": [
+      "metricId",
+      "queryParams"
+    ]
+  },
+  {
+    "name": "Metrics#overall",
+    "filePath": "src/data/resources/metrics.js",
+    "lines": [
+      {
+        "lineNumber": 93,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 94,
+        "line": "   * Returns the overall value for a specific metric, as well as the total view count,"
+      },
+      {
+        "lineNumber": 95,
+        "line": "   * watch time, and the Mux Global metric value for the metric."
+      },
+      {
+        "lineNumber": 96,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 97,
+        "line": "   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#overall-get for a list of all metric ids"
+      },
+      {
+        "lineNumber": 98,
+        "line": "   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }"
+      },
+      {
+        "lineNumber": 99,
+        "line": "   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API"
+      },
+      {
+        "lineNumber": 100,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 101,
+        "line": "   * @example"
+      },
+      {
+        "lineNumber": 102,
+        "line": "   * const muxClient = new Mux(accessToken, secret);"
+      },
+      {
+        "lineNumber": 103,
+        "line": "   * const { Data } = muxClient;"
+      },
+      {
+        "lineNumber": 104,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 105,
+        "line": "   * // Get the overall value for a specific metric within the past 7 days"
+      },
+      {
+        "lineNumber": 106,
+        "line": "   * Data.Metrics.overall('aggregate_startup_time', { timeframe: ['7:days'] });"
+      },
+      {
+        "lineNumber": 107,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 108,
+        "line": "   * @see https://api-docs.mux.com/#overall-get"
+      },
+      {
+        "lineNumber": 109,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 110,
+        "line": "  overall(metricId, params) {"
+      }
+    ],
+    "codeParams": [
+      "metricId",
+      "params"
+    ],
+    "docParams": [
+      "metricId",
+      "queryParams"
+    ]
+  },
+  {
+    "name": "Metrics#timeseries",
+    "filePath": "src/data/resources/metrics.js",
+    "lines": [
+      {
+        "lineNumber": 117,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 118,
+        "line": "   * Returns timeseries data for a specific metric"
+      },
+      {
+        "lineNumber": 119,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 120,
+        "line": "   * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#timeseries for a list of all metric ids"
+      },
+      {
+        "lineNumber": 121,
+        "line": "   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }"
+      },
+      {
+        "lineNumber": 122,
+        "line": "   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API"
+      },
+      {
+        "lineNumber": 123,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 124,
+        "line": "   * @example"
+      },
+      {
+        "lineNumber": 125,
+        "line": "   * const muxClient = new Mux(accessToken, secret);"
+      },
+      {
+        "lineNumber": 126,
+        "line": "   * const { Data } = muxClient;"
+      },
+      {
+        "lineNumber": 127,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 128,
+        "line": "   * // Get timeseries data for a specific metric within the past 7 days"
+      },
+      {
+        "lineNumber": 129,
+        "line": "   * Data.Metrics.timeseries('aggregate_startup_time', { timeframe: ['7:days'] });"
+      },
+      {
+        "lineNumber": 130,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 131,
+        "line": "   * @see https://api-docs.mux.com/#timeseries"
+      },
+      {
+        "lineNumber": 132,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 133,
+        "line": "  timeseries(metricId, params) {"
+      }
+    ],
+    "codeParams": [
+      "metricId",
+      "params"
+    ],
+    "docParams": [
+      "metricId",
+      "queryParams"
+    ]
+  },
+  {
+    "name": "VideoViews#list",
+    "filePath": "src/data/resources/video_views.js",
+    "lines": [
+      {
+        "lineNumber": 23,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 24,
+        "line": "   * Returns a list of video views for a property that occurred within the specified timeframe."
+      },
+      {
+        "lineNumber": 25,
+        "line": "   * Results are ordered by view_end, according to what you provide for order_direction."
+      },
+      {
+        "lineNumber": 26,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 27,
+        "line": "   * @extends Base"
+      },
+      {
+        "lineNumber": 28,
+        "line": "   * @param {Object} queryParams - example { viewer_id: 'ABCD1234', timeframe: ['7:days'], filters: ['operating_system:windows'] }"
+      },
+      {
+        "lineNumber": 29,
+        "line": "   * NOTE: the viewer_id query parameter is required"
+      },
+      {
+        "lineNumber": 30,
+        "line": "   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API"
+      },
+      {
+        "lineNumber": 31,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 32,
+        "line": "   * @example"
+      },
+      {
+        "lineNumber": 33,
+        "line": "   * const muxClient = new Mux(accessToken, secret);"
+      },
+      {
+        "lineNumber": 34,
+        "line": "   * const { Data } = muxClient;"
+      },
+      {
+        "lineNumber": 35,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 36,
+        "line": "   * // Returns a list of video views for a property that occurred within the specified timeframe."
+      },
+      {
+        "lineNumber": 37,
+        "line": "   * Data.VideoViews.list({ viewer_id: 'ABCD1234', timeframe: ['7:days'], order_direction: 'asc' });"
+      },
+      {
+        "lineNumber": 38,
+        "line": "   * Note: the viewer_id query parameter is required"
+      },
+      {
+        "lineNumber": 39,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 40,
+        "line": "   * @see https://api-docs.mux.com/#video-view-get-1"
+      },
+      {
+        "lineNumber": 41,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 42,
+        "line": "  list(params) {"
+      }
+    ],
+    "codeParams": [
+      "params"
+    ],
+    "docParams": [
+      "queryParams"
+    ]
+  },
+  {
+    "name": "SigningKeys#list",
+    "filePath": "src/video/resources/signingKeys.js",
+    "lines": [
+      {
+        "lineNumber": 84,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 85,
+        "line": "   * List signing keys"
+      },
+      {
+        "lineNumber": 86,
+        "line": "   * @param {string} keyId - The ID for the signing key"
+      },
+      {
+        "lineNumber": 87,
+        "line": "   * @param {object} params - Object to include as query params"
+      },
+      {
+        "lineNumber": 88,
+        "line": "   * @param {number} params.limit - Number of signing keys to return in the response"
+      },
+      {
+        "lineNumber": 89,
+        "line": "   * @param {number} params.page - Page of signing keys to return (limit * page)"
+      },
+      {
+        "lineNumber": 90,
+        "line": "   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API"
+      },
+      {
+        "lineNumber": 91,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 92,
+        "line": "   * @example"
+      },
+      {
+        "lineNumber": 93,
+        "line": "   * const { Video } = new Mux(accessToken, secret);"
+      },
+      {
+        "lineNumber": 94,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 95,
+        "line": "   * // Get an asset"
+      },
+      {
+        "lineNumber": 96,
+        "line": "   * Video.SigningKeys.list();"
+      },
+      {
+        "lineNumber": 97,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 98,
+        "line": "   * @see https://docs.mux.com/v1/reference#list-url-signing-keys"
+      },
+      {
+        "lineNumber": 99,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 100,
+        "line": "  list(params = {}) {"
+      }
+    ],
+    "codeParams": [
+      "params"
+    ],
+    "docParams": [
+      "keyId",
+      "params"
+    ]
+  }
+]
