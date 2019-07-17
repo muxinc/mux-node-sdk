@@ -1,6 +1,7 @@
 #docs
 docs
 manual
+github-nodejs-sdk.png
 
 #test
 test
@@ -9,11 +10,12 @@ test
 src/assets
 node_modules
 
-#lock files
-yarn.lock
-
 #private files
 .env
+.gitignore
+.eslintrc.json
+.nvmrc
+.prettierrc.js
 
 #ide configs
 .idea

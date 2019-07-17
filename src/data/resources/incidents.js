@@ -16,7 +16,7 @@ const PATH = '/data/v1/incidents';
  * const { Data } = new Mux(accessToken, secret);
  *
  * // Returns a list of all open incidents
- * Data.incidents.list({ status: 'open' });
+ * Data.Incidents.list({ status: 'open' });
  */
 class Incidents extends Base {
   /**
