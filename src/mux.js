@@ -6,6 +6,7 @@
 const Base = require('./base');
 const Video = require('./video/video');
 const Data = require('./data/data');
+const Webhooks = require('./webhooks/webhooks');
 const JWT = require('./utils/jwt');
 
 /**
@@ -16,9 +17,11 @@ const JWT = require('./utils/jwt');
  * @property {Video} Mux.Video provides access to the Mux Video API
  * @type {Data}
  * @property {Data} Mux.Data provides access to the Mux Data API
+ * @type {Webhooks}
+ * @property {Webhooks} Mux.Webhooks provides access to verifying Webhooks signatures
  * @example
  * const muxClient = new Mux(accessToken, secret);
- * const { Video, Data } = muxClient;
+ * const { Video, Data, Webhooks } = muxClient;
  *
  * // Create an asset
  * let assetId;
@@ -33,6 +36,9 @@ const JWT = require('./utils/jwt');
  *
  * // List all of the values across every breakdown for the `aggregate_startup_time` metric
  * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
+
+ * // Verify a webhook signature
+ * Webhooks.verifyHeader(body, signature, secret);
  */
 class Mux extends Base {
   /**
@@ -52,6 +58,8 @@ class Mux extends Base {
 
     /** @type {Data} */
     this.Data = new Data(this);
+
+    this.Webhooks = new Webhooks(this);
   }
 }
 

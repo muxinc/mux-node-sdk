@@ -19,5 +19,11 @@ describe('Unit::Mux', () => {
       expect(Mux.JWT.sign).to.be.a('function');
       expect(Mux.JWT.decode).to.be.a('function');
     });
+
+    it('exposes Webhooks.verifyHeader', () => {
+      const muxClient = new Mux('testKey', 'testSecret');
+      const { Webhooks } = muxClient;
+      expect(Webhooks.verifyHeader).to.be.a('function');
+    });
   });
 });
