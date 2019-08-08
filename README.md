@@ -107,7 +107,8 @@ Video.Assets.create({
 
 ## Verifying Webhook Signatures
 
-[TODO] - add link to docs and explanation of this feature
+Learn more about verifying webhook headers in our [Webhooks Security Guide](https://docs.mux.com/docs/webhook-security)
+
 
 ```javascript
 /*

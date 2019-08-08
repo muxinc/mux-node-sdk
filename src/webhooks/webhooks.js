@@ -49,8 +49,7 @@ class Webhooks extends Base {
    * // Verify a webhook signature
    * Webhooks.verifyHeader(body, signature, secret);
    *
-   * // TODO - update "see" link
-   * @see https://docs.mux.com/reference#list-assets
+   * @see https://docs.mux.com/docs/webhook-security
    */
   verifyHeader (...args) {
     return this.VerifyHeader.verify(...args);
