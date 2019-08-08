@@ -51,7 +51,7 @@ describe('Unit::VerifyHeader', () => {
 
     /** @test {VerifyHeader.verify} */
     describe('verify', () => {
-      const payload = "{\"test\":\"body\"}";
+      let payload = "{\"test\":\"body\"}";
       const secret = "SuperSecret123";
       const validTimeSec = 1565125718;
       const validHeaderAtTheTime = "t=1565125718,v1=854ece4c22acef7c66b57d4e504153bc512595e8e9c772ece2a68150548c19a7";
@@ -101,8 +101,16 @@ describe('Unit::VerifyHeader', () => {
         afterEach(() => clock.restore())
 
         /** @test {VerifyHeader.verify} */
-        it('will return true', () => {
+        it('will return true when the payload is a string', () => {
           const verifyHeader = new VerifyHeader(testApiKey, testSecret);
+          const isVerified = verifyHeader.verify(payload, validHeaderAtTheTime, secret);
+          expect(isVerified).to.be.true;
+        });
+
+        /** @test {VerifyHeader.verify} */
+        it('will return true when the payload is a buffer', () => {
+          const verifyHeader = new VerifyHeader(testApiKey, testSecret);
+          payload = Buffer.from(payload)
           const isVerified = verifyHeader.verify(payload, validHeaderAtTheTime, secret);
           expect(isVerified).to.be.true;
         });
