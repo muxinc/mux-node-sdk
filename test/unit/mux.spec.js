@@ -15,15 +15,15 @@ describe('Unit::Mux', () => {
       expect(Data).to.to.be.an.instanceof(MuxData);
     });
 
+    /** @test {Mux.JTW} */
     it('exposes JWT Helper utilities as static methods', () => {
       expect(Mux.JWT.sign).to.be.a('function');
       expect(Mux.JWT.decode).to.be.a('function');
     });
 
+    /** @test {Mux.Webhooks} */
     it('exposes Webhooks.verifyHeader', () => {
-      const muxClient = new Mux('testKey', 'testSecret');
-      const { Webhooks } = muxClient;
-      expect(Webhooks.verifyHeader).to.be.a('function');
+      expect(Mux.Webhooks.verifyHeader).to.be.a('function');
     });
   });
 });

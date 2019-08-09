@@ -4,31 +4,6 @@ const Webhooks = require('../../../src/webhooks/webhooks');
 
 /** @test {Webhooks} */
 describe('Unit::Webhooks', () => {
-  const testApiKey = 'testApiKey';
-  const testSecret = 'testSecret';
-
-  /** @test {Webhooks} */
-  describe('Webhooks', () => {
-    /** @test {Webhooks} */
-    it('throws an error if an api key is not given', () => {
-      expect(() => new Webhooks()).to.throw('API Access Token must be provided.');
-    });
-
-    /** @test {Webhooks} */
-    it('throws an error if a secret key is not given', () => {
-      expect(() => new Webhooks('testKey')).to.throw(
-        'API secret key must be provided'
-      );
-    });
-
-    /** @test {Webhooks} */
-    it('creates a new Webhooks instance', () => {
-      const TestWebhooks = new Webhooks(testApiKey, testSecret);
-      expect(() => new Webhooks(testApiKey, testSecret)).to.not.throw();
-      expect(TestWebhooks.verifyHeader).to.be.a('function');
-    });
-  });
-
   /** @test {Webhooks.verifyHeader} */
   describe('verifyHeader', () => {
     const payload = "{\"test\":\"body\"}";
@@ -45,8 +20,7 @@ describe('Unit::Webhooks', () => {
 
     /** @test {Webhooks.verifyHeader} */
     it('returns true for a valid header', () => {
-      const webhooks = new Webhooks(testApiKey, testSecret);
-      expect(webhooks.verifyHeader(payload, validHeaderAtTheTime, secret)).to.be.true;
+      expect(Webhooks.verifyHeader(payload, validHeaderAtTheTime, secret)).to.be.true;
     });
   });
 });

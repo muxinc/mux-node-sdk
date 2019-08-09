@@ -2,8 +2,6 @@ const crypto = require('crypto');
 const DEFAULT_TOLERANCE = 300; // 5 minutes
 const EXPECTED_SCHEME = 'v1';
 
-const Base = require('../../base');
-
 /**
  * Secure compare, from https://github.com/freewil/scmp
 */
@@ -32,8 +30,8 @@ function _secureCompare (a, b) {
   return result === 0;
 }
 
-class VerifyHeader extends Base {
-  parseHeader (header, scheme = EXPECTED_SCHEME) {
+class VerifyHeader {
+  static parseHeader (header, scheme = EXPECTED_SCHEME) {
     if (typeof header !== 'string') {
       return null;
     }
@@ -59,14 +57,14 @@ class VerifyHeader extends Base {
     );
   }
 
-  computeSignature (payload, secret) {
+  static computeSignature (payload, secret) {
     return crypto
       .createHmac('sha256', secret)
       .update(payload, 'utf8')
       .digest('hex');
   }
 
-  verify (payload, header, secret, tolerance = DEFAULT_TOLERANCE) {
+  static verify (payload, header, secret, tolerance = DEFAULT_TOLERANCE) {
     payload = Buffer.isBuffer(payload) ? payload.toString('utf8') : payload;
     header = Buffer.isBuffer(header) ? header.toString('utf8') : header;
 

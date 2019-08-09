@@ -58,8 +58,6 @@ class Mux extends Base {
 
     /** @type {Data} */
     this.Data = new Data(this);
-
-    this.Webhooks = new Webhooks(this);
   }
 }
 
@@ -67,5 +65,7 @@ class Mux extends Base {
  * @ {JWT}
  */
 Mux.JWT = JWT;
+
+Mux.Webhooks = Webhooks;
 
 module.exports = Mux;
