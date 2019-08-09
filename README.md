@@ -105,6 +105,31 @@ Video.Assets.create({
 });
 ```
 
+## Verifying Webhook Signatures
+
+Learn more about verifying webhook headers in our [Webhooks Security Guide](https://docs.mux.com/docs/webhook-security)
+
+
+```javascript
+/*
+  If the header is valid, this will return `true`
+  If invalid, this will throw one of the following errors:
+    * new Error('Unable to extract timestamp and signatures from header')
+    * new Error('No signatures found with expected scheme');
+    * new Error('No signatures found matching the expected signature for payload.')
+    * new Error('Timestamp outside the tolerance zone')
+*/
+
+/*
+  `payload` is the raw request body. It should be a string representation of a JSON object.
+  `header` is the value in request.headers['Mux-Signature']
+  `secret` is the signing secret for this configured webhook. You can find that in your webhooks dashboard
+           (note that this secret is different than your API Secret Key)
+*/
+
+Mux.Webhooks.verifyHeader(payload, header, secret);
+```
+
 ## JWT Helpers <small>([API Reference](https://muxinc.github.io/mux-node-sdk/class/src/utils/jwt.js~JWT.html))</small>
 
 You can use any JWT-compatible library, but we've included some light helpers in the SDK to make it easier to get up and running.
