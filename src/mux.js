@@ -25,17 +25,17 @@ const JWT = require('./utils/jwt');
  *
  * // Create an asset
  * let assetId;
- * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
+ * Video.Assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
  *   .then((res) => {
  *     const { data } = res.data;
  *     assetId = data.id;
  *   });
  *
  * // Create a playback Id for an asset
- * Video.playbackIds.create(assetId, { policy: 'public' });
+ * Video.PlaybackIds.create(assetId, { policy: 'public' });
  *
  * // List all of the values across every breakdown for the `aggregate_startup_time` metric
- * Data.metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
+ * Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
 
  * // Verify a webhook signature
  * Webhooks.verifyHeader(body, signature, secret);
