@@ -19,10 +19,10 @@ const SigningKeys = require('./resources/signingKeys');
  * const { Video } = muxClient;
  *
  * // Create an asset
- * Video.assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
+ * Video.Assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
  *
- * // Create a playback Id for an asset
- * Video.playbackIds.create('assetId', { policy: 'public' });
+ * // Create an asset playback ID
+ * Video.Assets.createPlaybackId(assetId, { policy: 'public' });
  */
 class Video extends Base {
   /**
