@@ -6,8 +6,7 @@ const VerifyHeader = require('./resources/verify_header');
  *
  * @example
  * const Mux = require('mux');
- * const muxClient = new Mux(accessToken, secret);
- * const { Webhooks } = muxClient;
+ * const { Webhooks } = Mux;
  *
  * // Verify a webhook signature
  * Webhooks.verifyHeader(body, signature, secret);
@@ -28,8 +27,7 @@ class Webhooks {
    *
    * @example
    * const Mux = require('@mux/mux-node');
-   * const muxClient = new Mux(accessToken, secret);
-   * const { Webhooks } = muxClient;
+   * const { Webhooks } = Mux;
    *
    * // Verify a webhook signature
    * Webhooks.verifyHeader(body, signature, secret);
