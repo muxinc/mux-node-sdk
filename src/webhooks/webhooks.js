@@ -5,7 +5,7 @@ const VerifyHeader = require('./resources/verify_header');
  * Webhooks - Provides access to the Mux Webhooks signature verification
  *
  * @example
- * const Mux = require('mux');
+ * const Mux = require('@mux/mux-node');
  * const { Webhooks } = Mux;
  *
  * // Verify a webhook signature
