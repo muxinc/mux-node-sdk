@@ -6,7 +6,8 @@ const VerifyHeader = require('./resources/verify_header');
  *
  * @example
  * const Mux = require('mux');
- * const { Webhooks } = Mux;
+ * const muxClient = new Mux(accessToken, secret);
+ * const { Webhooks } = muxClient;
  *
  * // Verify a webhook signature
  * Webhooks.verifyHeader(body, signature, secret);
@@ -26,16 +27,16 @@ class Webhooks {
    * @throws {Error} throw error when a webhook signature verification fails.
    *
    * @example
-   * const Mux = require('mux');
-   * const { Webhooks } = Mux;
-   *
+   * const Mux = require('@mux/mux-node');
+   * const muxClient = new Mux(accessToken, secret);
+   * const { Webhooks } = muxClient;
    *
    * // Verify a webhook signature
    * Webhooks.verifyHeader(body, signature, secret);
    *
    * @see https://docs.mux.com/docs/webhook-security
    */
-  static verifyHeader (...args) {
+  static verifyHeader(...args) {
     return VerifyHeader.verify(...args);
   }
 }
