@@ -107,7 +107,7 @@ Video.Assets.create({
 
 ## Verifying Webhook Signatures
 
-Learn more about verifying webhook headers in our [Webhooks Security Guide](https://docs.mux.com/docs/webhook-security)
+Verifying Webhook Signatures is *optional*. Learn more in our [Webhook Security Guide](https://docs.mux.com/docs/webhook-security)
 
 
 ```javascript
@@ -128,6 +128,48 @@ Learn more about verifying webhook headers in our [Webhooks Security Guide](http
 */
 
 Mux.Webhooks.verifyHeader(payload, header, secret);
+```
+
+Note that when passing in the payload you want to pass in the raw un-parsed request body, not the parsed JSON.
+Here's an example if you are using express.
+
+```javascript
+const Mux = require('@mux/mux-node');
+const { Webhooks } = Mux;
+const express = require('express');
+const bodyParser = require('body-parser');
+
+/**
+ * You'll need to make sure this is externally accessible.  ngrok (https://ngrok.com/)
+ * makes this really easy.
+ */
+
+const webhookSecret = process.env.WEBHOOK_SECRET;
+const app = express();
+
+app.post(
+  '/webhooks',
+  bodyParser.raw({type: 'application/json'}),
+  async (req, res) => {
+    try {
+      const sig = req.headers['mux-signature'];
+      const body = Webhook.verifyHeader(req.body, sig, webhookSecret);
+      console.log('Success:', body);
+      // await doSomething(body);
+      res.json({received: true});
+    } catch (err) {
+      console.error(err)
+      res.status(400).send('Webhook error')
+    }
+    } catch (err) {
+      // On error, return the error message
+      return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+);
+
+app.listen(3000, () => {
+  console.log('Example app listening on port 3000!');
+});
 ```
 
 ## JWT Helpers <small>([API Reference](https://muxinc.github.io/mux-node-sdk/class/src/utils/jwt.js~JWT.html))</small>
