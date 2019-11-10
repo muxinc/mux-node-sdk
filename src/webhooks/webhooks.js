@@ -26,16 +26,15 @@ class Webhooks {
    * @throws {Error} throw error when a webhook signature verification fails.
    *
    * @example
-   * const Mux = require('mux');
+   * const Mux = require('@mux/mux-node');
    * const { Webhooks } = Mux;
-   *
    *
    * // Verify a webhook signature
    * Webhooks.verifyHeader(body, signature, secret);
    *
    * @see https://docs.mux.com/docs/webhook-security
    */
-  static verifyHeader (...args) {
+  static verifyHeader(...args) {
     return VerifyHeader.verify(...args);
   }
 }
