@@ -293,7 +293,7 @@ class LiveStreams extends Base {
         )
       );
     }
-    return this.http.post(
+    return this.http.get(
       `${buildBasePath(liveStreamId)}/simulcast-targets/${simulcastTargetId}`
     );
   }
