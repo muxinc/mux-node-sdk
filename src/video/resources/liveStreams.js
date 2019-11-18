@@ -314,7 +314,7 @@ class LiveStreams extends Base {
     if (!simulcastTargetId) {
       return Promise.reject(
         new Error(
-          'A simulcat target ID is required to delete a simulcast target'
+          'A simulcast target ID is required to delete a simulcast target'
         )
       );
     }
