@@ -365,7 +365,10 @@ describe('Unit::LiveStreams', () => {
 
       const onFulfilled = sinon.spy();
       testLiveStreams
-        .createSimulcastTarget('testLiveStream', { url: 'rtmp://live.example.com/app', stream_key: 'difvbfgi'})
+        .createSimulcastTarget('testLiveStream', {
+          url: 'rtmp://live.example.com/app',
+          stream_key: 'difvbfgi',
+        })
         .then(onFulfilled);
 
       return moxios.wait(() => {

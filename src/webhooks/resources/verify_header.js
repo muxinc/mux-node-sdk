@@ -1,13 +1,14 @@
 const crypto = require('crypto');
+
 const DEFAULT_TOLERANCE = 300; // 5 minutes
 const EXPECTED_SCHEME = 'v1';
 
 /**
  * Secure compare, from https://github.com/freewil/scmp
-*/
-function _secureCompare (a, b) {
-  a = Buffer.from(a);
-  b = Buffer.from(b);
+ */
+function secureCompare(_a, _b) {
+  const a = Buffer.from(_a);
+  const b = Buffer.from(_b);
 
   // return early here if buffer lengths are not equal since timingSafeEqual
   // will throw if buffer lengths are not equal
@@ -24,14 +25,15 @@ function _secureCompare (a, b) {
   const len = a.length;
   let result = 0;
 
-  for (let i = 0; i < len; ++i) {
+  for (let i = 0; i < len; i += 1) {
+    /* eslint-disable no-bitwise */
     result |= a[i] ^ b[i];
   }
   return result === 0;
 }
 
 class VerifyHeader {
-  static parseHeader (header, scheme = EXPECTED_SCHEME) {
+  static parseHeader(header, scheme = EXPECTED_SCHEME) {
     if (typeof header !== 'string') {
       return null;
     }
@@ -41,6 +43,7 @@ class VerifyHeader {
         const kv = item.split('=');
 
         if (kv[0] === 't') {
+          /* eslint-disable no-param-reassign, prefer-destructuring */
           accum.timestamp = kv[1];
         }
 
@@ -57,16 +60,20 @@ class VerifyHeader {
     );
   }
 
-  static computeSignature (payload, secret) {
+  static computeSignature(payload, secret) {
     return crypto
       .createHmac('sha256', secret)
       .update(payload, 'utf8')
       .digest('hex');
   }
 
-  static verify (payload, header, secret, tolerance = DEFAULT_TOLERANCE) {
-    payload = Buffer.isBuffer(payload) ? payload.toString('utf8') : payload;
-    header = Buffer.isBuffer(header) ? header.toString('utf8') : header;
+  static verify(_payload, _header, secret, tolerance = DEFAULT_TOLERANCE) {
+    const payload = Buffer.isBuffer(_payload)
+      ? _payload.toString('utf8')
+      : _payload;
+    const header = Buffer.isBuffer(_header)
+      ? _header.toString('utf8')
+      : _header;
 
     const details = this.parseHeader(header);
 
@@ -83,16 +90,20 @@ class VerifyHeader {
       secret
     );
 
-    const signatureFound = !!details.signatures.filter((sig) => _secureCompare(sig, expectedSignature)).length;
+    const signatureFound = !!details.signatures.filter(sig =>
+      secureCompare(sig, expectedSignature)
+    ).length;
 
     if (!signatureFound) {
-      throw new Error('No signatures found matching the expected signature for payload.')
+      throw new Error(
+        'No signatures found matching the expected signature for payload.'
+      );
     }
 
     const timestampAge = Math.floor(Date.now() / 1000) - details.timestamp;
 
     if (tolerance > 0 && timestampAge > tolerance) {
-      throw new Error('Timestamp outside the tolerance zone')
+      throw new Error('Timestamp outside the tolerance zone');
     }
 
     return true;

@@ -21,7 +21,9 @@
     "docs": "esdoc",
     "test": "mocha --recursive ./test/unit",
     "test:unit": "NOCK_BACK_MODE=record mocha --recursive ./test",
-    "test:int": "NOCK_BACK_MODE=wild mocha --recursive ./test"
+    "test:int": "NOCK_BACK_MODE=wild mocha --recursive ./test",
+    "format": "eslint src/** test/**",
+    "format:fix": "eslint src/** test/** --fix"
   },
   "dependencies": {
     "axios": "^0.18.0",

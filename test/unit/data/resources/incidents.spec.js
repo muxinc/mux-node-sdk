@@ -21,7 +21,9 @@ describe('Unit::Incidents', () => {
   describe('Incidents', () => {
     /** @test {Incidents} */
     it('throws an error if an api key is not given', () => {
-      expect(() => new Incidents()).to.throw('API Access Token must be provided.');
+      expect(() => new Incidents()).to.throw(
+        'API Access Token must be provided.'
+      );
     });
 
     /** @test {Incidents} */
@@ -50,7 +52,7 @@ describe('Unit::Incidents', () => {
       });
 
       const onFulfilled = sinon.spy();
-      incidentsInstance.list({status: 'open'}).then(onFulfilled);
+      incidentsInstance.list({ status: 'open' }).then(onFulfilled);
 
       return moxios.wait(() => {
         expect(onFulfilled.getCall(0).args[0].incidents).to.be.true;
@@ -94,10 +96,13 @@ describe('Unit::Incidents', () => {
     });
 
     it('makes a get request to the Mux data incidents route', done => {
-      moxios.stubRequest('https://api.mux.com/data/v1/incidents/abc123/related', {
-        status: 200,
-        responseText: '{"data": {"incidents": true}}',
-      });
+      moxios.stubRequest(
+        'https://api.mux.com/data/v1/incidents/abc123/related',
+        {
+          status: 200,
+          responseText: '{"data": {"incidents": true}}',
+        }
+      );
 
       const onFulfilled = sinon.spy();
       incidentsInstance.related('abc123').then(onFulfilled);

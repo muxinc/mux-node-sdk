@@ -127,7 +127,7 @@ class LiveStreams extends Base {
   signalComplete(liveStreamId) {
     if (!liveStreamId) {
       return Promise.reject(
-        new Error('A Live Stream ID is required to signal a stream is complete')
+        new Error('A live stream ID is required to signal a stream is complete')
       );
     }
     return this.http.put(`${buildBasePath(liveStreamId)}/complete`);
@@ -150,7 +150,7 @@ class LiveStreams extends Base {
   resetStreamKey(liveStreamId) {
     if (!liveStreamId) {
       return Promise.reject(
-        new Error('A Live Stream ID is required to reset a live stream key')
+        new Error('A live stream ID is required to reset a live stream key')
       );
     }
     return this.http.post(`${buildBasePath(liveStreamId)}/reset-stream-key`);
@@ -174,7 +174,7 @@ class LiveStreams extends Base {
     if (!liveStreamId) {
       return Promise.reject(
         new Error(
-          'A Live Stream ID is required to create a live stream playback ID'
+          'A live stream ID is required to create a live stream playback ID'
         )
       );
     }
@@ -210,7 +210,7 @@ class LiveStreams extends Base {
     if (!liveStreamId) {
       return Promise.reject(
         new Error(
-          'A Live Stream ID is required to delete a live stream playback ID'
+          'A live stream ID is required to delete a live stream playback ID'
         )
       );
     }
@@ -244,17 +244,13 @@ class LiveStreams extends Base {
   createSimulcastTarget(liveStreamId, params) {
     if (!liveStreamId) {
       return Promise.reject(
-        new Error(
-          'A Live Stream ID is required to create a simulcast target'
-        )
+        new Error('A live stream ID is required to create a simulcast target')
       );
     }
 
-    if (!params) {
+    if (!(params && params.url)) {
       return Promise.reject(
-        new Error(
-          'A url and a stream_key are required to create a simulcast target'
-        )
+        new Error('A url is required to create a simulcast target')
       );
     }
     return this.http.post(
@@ -272,7 +268,7 @@ class LiveStreams extends Base {
    * @example
    * const { Video } = new Mux(accessToken, secret);
    *
-   * // Create a live stream playback ID
+   * // Get a live simulcast target
    * Video.LiveStreams.getSimulcastTarget(liveStreamId, simulcastTargetId);
    *
    * @see https://docs.mux.com/reference#retrieve-a-simulcast-target
@@ -280,17 +276,13 @@ class LiveStreams extends Base {
   getSimulcastTarget(liveStreamId, simulcastTargetId) {
     if (!liveStreamId) {
       return Promise.reject(
-        new Error(
-          'A Live Stream ID is required to get a simulcast target'
-        )
+        new Error('A live stream ID is required to get a simulcast target')
       );
     }
 
     if (!simulcastTargetId) {
       return Promise.reject(
-        new Error(
-          'A simulcast target ID is required to get a simulcast target'
-        )
+        new Error('A simulcast target ID is required to get a simulcast target')
       );
     }
     return this.http.get(
@@ -311,13 +303,11 @@ class LiveStreams extends Base {
    * Video.LiveStreams.deleteSimulcastTarget(liveStreamId, simulcastTargetId);
    *
    * @see https://docs.mux.com/reference#delete-a-simulcast-target
-  */
+   */
   deleteSimulcastTarget(liveStreamId, simulcastTargetId) {
     if (!liveStreamId) {
       return Promise.reject(
-        new Error(
-          'A Live Stream ID is required to delete a simulcast target'
-        )
+        new Error('A live stream ID is required to delete a simulcast target')
       );
     }
 
