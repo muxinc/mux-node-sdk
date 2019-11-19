@@ -88,7 +88,7 @@ describe('Unit::LiveStreams', () => {
     });
 
     /** @test {LiveStreams.del} */
-    it('throws an error when a live stream id is not given', () =>
+    it('throws an error when a live stream ID is not given', () =>
       testLiveStreams
         .del()
         .then(res => {
@@ -161,7 +161,7 @@ describe('Unit::LiveStreams', () => {
     });
 
     /** @test {LiveStreams.get} */
-    it('throws an error when a live stream id is not given', () =>
+    it('throws an error when a live stream ID is not given', () =>
       testLiveStreams
         .get()
         .then(res => {
@@ -197,7 +197,7 @@ describe('Unit::LiveStreams', () => {
     });
 
     /** @test {LiveStreams.signalComplete} */
-    it('throws an error when a live stream id is not given', () =>
+    it('throws an error when a live stream ID is not given', () =>
       testLiveStreams
         .signalComplete()
         .then(res => {
@@ -206,7 +206,7 @@ describe('Unit::LiveStreams', () => {
         .catch(err => {
           expect(err).to.exist;
           expect(err.message).to.equal(
-            'A Live Stream ID is required to signal a stream is complete'
+            'A live stream ID is required to signal a stream is complete'
           );
         }));
   });
@@ -233,7 +233,7 @@ describe('Unit::LiveStreams', () => {
     });
 
     /** @test {LiveStreams.resetStreamKey} */
-    it('throws an error when a live stream id is not given', () =>
+    it('throws an error when a live stream ID is not given', () =>
       testLiveStreams
         .resetStreamKey()
         .then(res => {
@@ -242,7 +242,7 @@ describe('Unit::LiveStreams', () => {
         .catch(err => {
           expect(err).to.exist;
           expect(err.message).to.equal(
-            'A Live Stream ID is required to reset a live stream key'
+            'A live stream ID is required to reset a live stream key'
           );
         }));
   });
@@ -271,7 +271,7 @@ describe('Unit::LiveStreams', () => {
     });
 
     /** @test {LiveStreams.createPlaybackId} */
-    it('throws an error if a Live Stream ID is not given', () =>
+    it('throws an error if params are not given', () =>
       testLiveStreams
         .createPlaybackId('testLiveStream')
         .then(res => {
@@ -285,7 +285,7 @@ describe('Unit::LiveStreams', () => {
         }));
 
     /** @test {LiveStreams.createPlaybackId} */
-    it('throws an error if params are not given', () =>
+    it('throws an error if a live stream ID is not given', () =>
       testLiveStreams
         .createPlaybackId()
         .then(res => {
@@ -294,7 +294,7 @@ describe('Unit::LiveStreams', () => {
         .catch(err => {
           expect(err).to.exist;
           expect(err.message).to.equal(
-            'A Live Stream ID is required to create a live stream playback ID'
+            'A live stream ID is required to create a live stream playback ID'
           );
         }));
   });
@@ -323,7 +323,7 @@ describe('Unit::LiveStreams', () => {
     });
 
     /** @test {LiveStreams.deletePlaybackId} */
-    it('throws an error if a Live Stream ID is not given', () =>
+    it('throws an error if a live stream ID is not given', () =>
       testLiveStreams
         .deletePlaybackId()
         .then(res => {
@@ -332,7 +332,7 @@ describe('Unit::LiveStreams', () => {
         .catch(err => {
           expect(err).to.exist;
           expect(err.message).to.equal(
-            'A Live Stream ID is required to delete a live stream playback ID'
+            'A live stream ID is required to delete a live stream playback ID'
           );
         }));
 
@@ -347,6 +347,165 @@ describe('Unit::LiveStreams', () => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'A live stream playback ID is required to delete a live stream playback ID'
+          );
+        }));
+  });
+
+  /** @test {LiveStreams.createSimulcastTarget} */
+  describe('LiveStreams.createSimulcastTarget', () => {
+    /** @test {LiveStreams.createSimulcastTarget} */
+    it('makes a POST request to create a simulcast target for a live stream', done => {
+      moxios.stubRequest(
+        'https://api.mux.com/video/v1/live-streams/testLiveStream/simulcast-targets',
+        {
+          status: 200,
+          responseText: '{"data": {"create": true}}',
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testLiveStreams
+        .createSimulcastTarget('testLiveStream', {
+          url: 'rtmp://live.example.com/app',
+          stream_key: 'difvbfgi',
+        })
+        .then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].create).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {LiveStreams.createSimulcastTarget} */
+    it('throws an error if a live stream ID is not given', () =>
+      testLiveStreams
+        .createSimulcastTarget()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A live stream ID is required to create a simulcast target'
+          );
+        }));
+
+    /** @test {LiveStreams.createSimulcastTarget} */
+    it('throws an error if a url and stream key are not given', () =>
+      testLiveStreams
+        .createSimulcastTarget('testLiveStream')
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A url is required to create a simulcast target'
+          );
+        }));
+  });
+
+  /** @test {LiveStreams.getSimulcastTarget} */
+  describe('LiveStreams.getSimulcastTarget', () => {
+    /** @test {LiveStreams.getSimulcastTarget} */
+    it('makes a GET request to get a simulcast target for a live stream', done => {
+      moxios.stubRequest(
+        'https://api.mux.com/video/v1/live-streams/testLiveStream/simulcast-targets/testSimulcastTarget',
+        {
+          status: 200,
+          responseText: '{"data": {"simulcast_target": true}}',
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testLiveStreams
+        .getSimulcastTarget('testLiveStream', 'testSimulcastTarget')
+        .then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].simulcast_target).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {LiveStreams.getSimulcastTarget} */
+    it('throws an error if a live stream ID is not given', () =>
+      testLiveStreams
+        .getSimulcastTarget()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A live stream ID is required to get a simulcast target'
+          );
+        }));
+
+    /** @test {LiveStreams.createSimulcastTarget} */
+    it('throws an error if a simulcast target id is not given', () =>
+      testLiveStreams
+        .getSimulcastTarget('testLiveStream')
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A simulcast target ID is required to get a simulcast target'
+          );
+        }));
+  });
+
+  /** @test {LiveStreams.deleteSimulcastTarget} */
+  describe('LiveStreams.deleteSimulcastTarget', () => {
+    /** @test {LiveStreams.deleteSimulcastTarget} */
+    it('makes a DELETE request to delete a simulcast target for a live stream', done => {
+      moxios.stubRequest(
+        'https://api.mux.com/video/v1/live-streams/testLiveStream/simulcast-targets/testSimulcastTarget',
+        {
+          status: 200,
+          responseText: '{"data": {"deleteSimulcastTarget": true}}',
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testLiveStreams
+        .deleteSimulcastTarget('testLiveStream', 'testSimulcastTarget')
+        .then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].deleteSimulcastTarget).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {LiveStreams.deleteSimulcastTarget} */
+    it('throws an error if a live stream ID is not given', () =>
+      testLiveStreams
+        .deleteSimulcastTarget()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A live stream ID is required to delete a simulcast target'
+          );
+        }));
+
+    /** @test {LiveStreams.deleteSimulcastTarget} */
+    it('throws an error if a simulcast target id is not given', () =>
+      testLiveStreams
+        .deleteSimulcastTarget('testLiveStream')
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A simulcast target ID is required to delete a simulcast target'
           );
         }));
   });

@@ -4,9 +4,6 @@ const VerifyHeader = require('../../../../src/webhooks/resources/verify_header')
 
 /** @test {VerifyHeader} */
 describe('Unit::VerifyHeader', () => {
-  const testApiKey = 'testApiKey';
-  const testSecret = 'testSecret';
-
   /** @test {VerifyHeader} */
   describe('VerifyHeader', () => {
     /** @test {VerifyHeader.parseHeader} */
@@ -18,8 +15,10 @@ describe('Unit::VerifyHeader', () => {
             * body: "{\"test\":\"body\"}"
             * time: 1565125718 (08/06/2019 @ 9:08pm UTC)
         */
-        const header = "t=1565125718,v1=854ece4c22acef7c66b57d4e504153bc512595e8e9c772ece2a68150548c19a7";
-        const expectedSignature = "854ece4c22acef7c66b57d4e504153bc512595e8e9c772ece2a68150548c19a7";
+        const header =
+          't=1565125718,v1=854ece4c22acef7c66b57d4e504153bc512595e8e9c772ece2a68150548c19a7';
+        const expectedSignature =
+          '854ece4c22acef7c66b57d4e504153bc512595e8e9c772ece2a68150548c19a7';
         const parsed = VerifyHeader.parseHeader(header);
         expect(parsed.timestamp).to.equal('1565125718');
         expect(parsed.signatures.length).to.equal(1);
@@ -29,10 +28,11 @@ describe('Unit::VerifyHeader', () => {
 
     /** @test {VerifyHeader.verify} */
     describe('verify', () => {
-      let payload = "{\"test\":\"body\"}";
-      const secret = "SuperSecret123";
+      let payload = '{"test":"body"}';
+      const secret = 'SuperSecret123';
       const validTimeSec = 1565125718;
-      const validHeaderAtTheTime = "t=1565125718,v1=854ece4c22acef7c66b57d4e504153bc512595e8e9c772ece2a68150548c19a7";
+      const validHeaderAtTheTime =
+        't=1565125718,v1=854ece4c22acef7c66b57d4e504153bc512595e8e9c772ece2a68150548c19a7';
 
       /** @test {VerifyHeader.verify} */
       describe('with a malformatted header value', () => {
@@ -40,7 +40,7 @@ describe('Unit::VerifyHeader', () => {
         it('will throw an unable to extract timestamp and signatures error', () => {
           expect(() => {
             VerifyHeader.verify(payload, 'somebadheadervalue', secret);
-          }).to.throw('Unable to extract timestamp and signatures from header')
+          }).to.throw('Unable to extract timestamp and signatures from header');
         });
       });
 
@@ -49,9 +49,9 @@ describe('Unit::VerifyHeader', () => {
         /** @test {VerifyHeader.verify} */
         it('will throw a no signatures found with expected scheme error', () => {
           expect(() => {
-            const header = "t=1565125718,v2=weiorwer";
+            const header = 't=1565125718,v2=weiorwer';
             VerifyHeader.verify(payload, header, secret);
-          }).to.throw('No signatures found with expected scheme')
+          }).to.throw('No signatures found with expected scheme');
         });
       });
 
@@ -70,25 +70,32 @@ describe('Unit::VerifyHeader', () => {
         let clock;
 
         beforeEach(() => {
-          clock = sinon.useFakeTimers(new Date(validTimeSec * 1000))
-        })
+          clock = sinon.useFakeTimers(new Date(validTimeSec * 1000));
+        });
 
-        afterEach(() => clock.restore())
+        afterEach(() => clock.restore());
 
         /** @test {VerifyHeader.verify} */
         it('will return true when the payload is a string', () => {
-          const isVerified = VerifyHeader.verify(payload, validHeaderAtTheTime, secret);
+          const isVerified = VerifyHeader.verify(
+            payload,
+            validHeaderAtTheTime,
+            secret
+          );
           expect(isVerified).to.be.true;
         });
 
         /** @test {VerifyHeader.verify} */
         it('will return true when the payload is a buffer', () => {
-          payload = Buffer.from(payload)
-          const isVerified = VerifyHeader.verify(payload, validHeaderAtTheTime, secret);
+          payload = Buffer.from(payload);
+          const isVerified = VerifyHeader.verify(
+            payload,
+            validHeaderAtTheTime,
+            secret
+          );
           expect(isVerified).to.be.true;
         });
       });
     });
   });
 });
-

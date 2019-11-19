@@ -6,10 +6,15 @@ describe('Integration::LiveStreams', () => {
   const muxClient = new Mux();
   const { Video } = muxClient;
   let testLiveStream;
+  let testSimulcastTarget;
   const createdLiveStreams = [];
 
   before(async () => {
     testLiveStream = await Video.LiveStreams.create();
+    testSimulcastTarget = await Video.LiveStreams.createSimulcastTarget(
+      testLiveStream.id,
+      { url: 'rtmp://live.example.com/app', stream_key: 'difvbfgi' }
+    );
     createdLiveStreams.push(testLiveStream);
   });
 
@@ -162,6 +167,84 @@ describe('Integration::LiveStreams', () => {
         testLiveStream.id
       );
       expect(updatedPlaybackIds).to.not.include(playbackId);
+    });
+
+    /** @test {PlaybackIds.deletePlaybackId} */
+    it('fails to get playbackIds for a live stream when not given a playback ID', () =>
+      Video.LiveStreams.deletePlaybackId(testLiveStream.id).catch(
+        err => expect(err).to.exist
+      ));
+  });
+
+  /** @test {LiveStreams.createSimulcastTarget} */
+  describe('LiveStreams.createSimulcastTarget', () => {
+    /** @test {LiveStreams.createSimulcastTarget} */
+    it('creates a simulcast target for a live stream', async () => {
+      const simulcastTarget = await Video.LiveStreams.createSimulcastTarget(
+        testLiveStream.id,
+        { url: 'rtmp://live.example.com/app', stream_key: 'difvbfgi' }
+      );
+      expect(simulcastTarget.id).to.exist;
+    });
+
+    /** @test {LiveStreams.createSimulcastTarget} */
+    it('fails to create a simulcast target if given an incorrect live stream id', () =>
+      Video.LiveStreams.createSimulcastTarget('somefakeid', {
+        url: 'rtmp://live.example.com/app',
+        stream_key: 'difvbfgi',
+      }).catch(err => expect(err).to.exist));
+
+    /** @test {LiveStreams.createSimulcastTarget} */
+    it('fails to create a playback id if not given params', () =>
+      Video.LiveStreams.createSimulcastTarget('somefakeid').catch(
+        err => expect(err).to.exist
+      ));
+  });
+
+  /** @test {LiveStreams.getSimulcastTarget} */
+  describe('LiveStreams.getSimulcastTarget', () => {
+    /** @test {LiveStreams.getSimulcastTarget} */
+    it('gets a simulcast target for a live stream', async () => {
+      const simulcastTarget = await Video.LiveStreams.getSimulcastTarget(
+        testLiveStream.id,
+        testSimulcastTarget.id
+      );
+      expect(simulcastTarget.id).to.exist;
+    });
+
+    /** @test {LiveStreams.getSimulcastTarget} */
+    it('fails to get a simulcast target if given an incorrect live stream id', () =>
+      Video.LiveStreams.getSimulcastTarget('somefakeid').catch(
+        err => expect(err).to.exist
+      ));
+
+    /** @test {LiveStreams.getSimulcastTarget} */
+    it('fails to get a simulcast target given a fake simulcast target idj', () =>
+      Video.LiveStreams.createSimulcastTarget(
+        'somefakeid',
+        'someotherfakeid'
+      ).catch(err => expect(err).to.exist));
+  });
+
+  /** @test {LiveStreams.deleteSimulcastTarget} */
+  describe('LiveStreams.deleteSimulcastTarget', () => {
+    /** @test {LiveStreams.deleteSimulcastTarget} */
+    it('deletes the simulcast target for a live stream', async () => {
+      const simulcastTarget = await Video.LiveStreams.createSimulcastTarget(
+        testLiveStream.id,
+        { url: 'rtmp://live.example.com/app', stream_key: 'difvbfgi' }
+      );
+      await Video.LiveStreams.deleteSimulcastTarget(
+        testLiveStream.id,
+        simulcastTarget.id
+      );
+      const {
+        simulcast_targets: updatedSimulcastTargets,
+      } = await Video.LiveStreams.get(testLiveStream.id);
+      const simulcastTargetIds = updatedSimulcastTargets.map(
+        target => target.id
+      );
+      expect(simulcastTargetIds).to.not.include(simulcastTarget.id);
     });
 
     /** @test {PlaybackIds.deletePlaybackId} */

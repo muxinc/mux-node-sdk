@@ -14,3 +14,9 @@ deploy:
   local-dir: 'docs'
   on:
     branch: master
+
+script:
+  - yarn format
+  - yarn test
+
+cache: yarn

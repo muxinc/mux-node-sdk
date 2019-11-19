@@ -127,7 +127,7 @@ class LiveStreams extends Base {
   signalComplete(liveStreamId) {
     if (!liveStreamId) {
       return Promise.reject(
-        new Error('A Live Stream ID is required to signal a stream is complete')
+        new Error('A live stream ID is required to signal a stream is complete')
       );
     }
     return this.http.put(`${buildBasePath(liveStreamId)}/complete`);
@@ -150,7 +150,7 @@ class LiveStreams extends Base {
   resetStreamKey(liveStreamId) {
     if (!liveStreamId) {
       return Promise.reject(
-        new Error('A Live Stream ID is required to reset a live stream key')
+        new Error('A live stream ID is required to reset a live stream key')
       );
     }
     return this.http.post(`${buildBasePath(liveStreamId)}/reset-stream-key`);
@@ -174,7 +174,7 @@ class LiveStreams extends Base {
     if (!liveStreamId) {
       return Promise.reject(
         new Error(
-          'A Live Stream ID is required to create a live stream playback ID'
+          'A live stream ID is required to create a live stream playback ID'
         )
       );
     }
@@ -210,7 +210,7 @@ class LiveStreams extends Base {
     if (!liveStreamId) {
       return Promise.reject(
         new Error(
-          'A Live Stream ID is required to delete a live stream playback ID'
+          'A live stream ID is required to delete a live stream playback ID'
         )
       );
     }
@@ -224,6 +224,102 @@ class LiveStreams extends Base {
     }
     return this.http.delete(
       `${buildBasePath(liveStreamId)}/playback-ids/${playbackId}`
+    );
+  }
+
+  /**
+   * Create a simulcast target
+   * @param {string} liveStreamId - The ID for the live stream
+   * @param {Object} params - Simulcast Target JSON parameters (e.g url and stream_key)
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // Create a live stream playback ID
+   * Video.LiveStreams.createSimulcastTarget(liveStreamId, {url: 'rtmp://live.example.com/app', stream_key: 'difvbfgi', passthrough: 'Example Live Streaming service'});
+   *
+   * @see https://docs.mux.com/reference#create-a-simulcast-target
+   */
+  createSimulcastTarget(liveStreamId, params) {
+    if (!liveStreamId) {
+      return Promise.reject(
+        new Error('A live stream ID is required to create a simulcast target')
+      );
+    }
+
+    if (!(params && params.url)) {
+      return Promise.reject(
+        new Error('A url is required to create a simulcast target')
+      );
+    }
+    return this.http.post(
+      `${buildBasePath(liveStreamId)}/simulcast-targets`,
+      params
+    );
+  }
+
+  /**
+   * Get a simulcast target
+   * @param {string} liveStreamId - The ID for the live stream
+   * @param {string} simulcastTargetId - The ID for the simulcast target to delete
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // Get a live simulcast target
+   * Video.LiveStreams.getSimulcastTarget(liveStreamId, simulcastTargetId);
+   *
+   * @see https://docs.mux.com/reference#retrieve-a-simulcast-target
+   */
+  getSimulcastTarget(liveStreamId, simulcastTargetId) {
+    if (!liveStreamId) {
+      return Promise.reject(
+        new Error('A live stream ID is required to get a simulcast target')
+      );
+    }
+
+    if (!simulcastTargetId) {
+      return Promise.reject(
+        new Error('A simulcast target ID is required to get a simulcast target')
+      );
+    }
+    return this.http.get(
+      `${buildBasePath(liveStreamId)}/simulcast-targets/${simulcastTargetId}`
+    );
+  }
+
+  /**
+   * Delete a simulcast target
+   * @param {string} liveStreamId - The ID for the live stream
+   * @param {string} simulcastTargetId - The ID for the simulcast target to delete
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // Delete a simulcast target
+   * Video.LiveStreams.deleteSimulcastTarget(liveStreamId, simulcastTargetId);
+   *
+   * @see https://docs.mux.com/reference#delete-a-simulcast-target
+   */
+  deleteSimulcastTarget(liveStreamId, simulcastTargetId) {
+    if (!liveStreamId) {
+      return Promise.reject(
+        new Error('A live stream ID is required to delete a simulcast target')
+      );
+    }
+
+    if (!simulcastTargetId) {
+      return Promise.reject(
+        new Error(
+          'A simulcast target ID is required to delete a simulcast target'
+        )
+      );
+    }
+    return this.http.delete(
+      `${buildBasePath(liveStreamId)}/simulcast-targets/${simulcastTargetId}`
     );
   }
 }
