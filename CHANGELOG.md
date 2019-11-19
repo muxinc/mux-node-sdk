@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.5.0
+
+- Add Simulcast Targets and Delivery Usage apis (view [docs](https://muxinc.github.io/mux-node-sdk/) for usage)
+- Update dependencies
+- Add `yarn format` commands and add formatting check to CI
+
 ## 2.0
 
 ### Breaking Changes
