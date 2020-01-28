@@ -13,7 +13,7 @@ const PATH = '/video/v1/delivery-usage';
  * DeliveryUsage Class - Provides access to the Mux Video Delivery Usage API
  *
  * @example
- * const { DeliveryUsage } = new Mux(accessToken, secret);
+ * const { Video } = new Mux(accessToken, secret);
  *
  * // List delivery usage within a timeframe
  * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});
@@ -25,7 +25,7 @@ class DeliveryUsage extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
-   * const { DeliveryUsage } = new Mux(accessToken, secret);
+   * const { Video } = new Mux(accessToken, secret);
    *
    * // List all delivery usage for a Mux Environment within a timeframe
    * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});
