@@ -208,6 +208,61 @@ class Assets extends Base {
       `${buildBasePath(assetId)}/playback-ids/${playbackId}`
     );
   }
+
+  /**
+   * Create a subtitle text track
+   * @param {string} assetId - The ID for the asset
+   * @param {Object} params - subtitle text track JSON parameters
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // Create an asset text track
+   * Video.Assets.createTrack(assetId, {
+   *   url: "https://example.com/myVIdeo_en.srt",
+   *   type: "text",
+   *   text_type: "subtitles",
+   *   language_code: "en-US",
+   * });
+   *
+   * @see https://docs.mux.com/reference#create-a-subtitle-text-track
+   */
+  createTrack(assetId, params) {
+    if (!assetId) {
+      return Promise.reject(new Error('An asset ID is required'));
+    }
+
+    if (!params) {
+      return Promise.reject(new Error('Text track params are required'));
+    }
+    return this.http.post(`${buildBasePath(assetId)}/tracks`, params);
+  }
+
+  /**
+   * Delete an asset text track
+   * @param {string} assetId - The ID for the asset
+   * @param {string} trackId - The ID for the asset text track to delete
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // Delete an asset text track
+   * Video.Assets.deleteTrack(assetId, trackId);
+   *
+   * @see https://docs.mux.com/reference#delete-a-subtitle-text-track
+   */
+  deleteTrack(assetId, trackId) {
+    if (!assetId) {
+      return Promise.reject(new Error('An asset ID is required'));
+    }
+
+    if (!trackId) {
+      return Promise.reject(new Error('A track ID is required'));
+    }
+    return this.http.delete(`${buildBasePath(assetId)}/tracks/${trackId}`);
+  }
 }
 
 module.exports = Assets;

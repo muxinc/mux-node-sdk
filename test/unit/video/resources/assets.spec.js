@@ -328,4 +328,93 @@ describe('Unit::Assets', () => {
         expect(err.message).to.equal('A playback ID is required');
       }));
   });
+
+  /** @test {Assets.createTrack} */
+  describe('Assets.createTrack', () => {
+    /** @test {Assets.createTrack} */
+    it('makes a POST request to create a text track for an asset', done => {
+      moxios.stubRequest(
+        'https://api.mux.com/video/v1/assets/testAsset/tracks',
+        {
+          status: 200,
+          responseText: '{"data": {"create": true}}',
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testAssets
+        .createTrack('testAsset', {
+          url: 'https://example.com/myVIdeo_en.srt',
+          type: 'text',
+          text_type: 'subtitles',
+          language_code: 'en-US',
+        })
+        .then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].create).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {Assets.createTrack} */
+    it('throws an error if an asset id is not given', () =>
+      testAssets
+        .createTrack()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal('An asset ID is required');
+        }));
+
+    /** @test {Assets.createTrack} */
+    it('throws an error if track params are not given', () =>
+      testAssets
+        .createTrack('assetid')
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal('Text track params are required');
+        }));
+  });
+
+  /** @test {Assets.deleteTrack} */
+  describe('Assets.deleteTrack', () => {
+    /** @test {Assets.deleteTrack} */
+    it('makes a DELETE request to delete a text track for an asset', done => {
+      moxios.stubRequest(
+        'https://api.mux.com/video/v1/assets/testAsset/tracks/testTrackId',
+        {
+          status: 200,
+          responseText: '{"data": {"delete": true}}',
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testAssets.deleteTrack('testAsset', 'testTrackId').then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].delete).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {Assets.deleteTrack} */
+    it('throws an error if an asset id is not given', () =>
+      testAssets.deleteTrack().catch(err => {
+        expect(err).to.exist;
+        expect(err.message).to.equal('An asset ID is required');
+      }));
+
+    /** @test {Assets.deleteTrack} */
+    it('throws an error if text track ID is not given', () =>
+      testAssets.deleteTrack('assetid').catch(err => {
+        expect(err).to.exist;
+        expect(err.message).to.equal('A track ID is required');
+      }));
+  });
 });
