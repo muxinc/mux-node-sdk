@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.6.0
+
+- Add Asset text track endpoints (view [docs](https://docs.mux.com/reference#create-a-subtitle-text-track) for usage)
+
 ## 2.5.0
 
 - Add Simulcast Targets and Delivery Usage apis (view [docs](https://muxinc.github.io/mux-node-sdk/) for usage)

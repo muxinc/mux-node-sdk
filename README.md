@@ -235,3 +235,11 @@ Find a bug or want to add a useful feature? That'd be amazing! If you'd like to 
 3. Make any changes you'd like in your forked branch.
 4. Add any relevant tests for your changes
 5. Open the pull request! :tada:
+
+## Releasing
+
+1. Update CHANGELOG.md
+1. Update version in package.json
+1. Open Pull Request, merge after approved
+1. Tag master: example: `git tag v2.6.0` and `git push --tags origin`
+1. Run `npm publish`
