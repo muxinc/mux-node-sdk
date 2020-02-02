@@ -24,17 +24,18 @@ const JWT = require('./utils/jwt');
  * const { Video, Data, Webhooks } = muxClient;
  *
  * // Create an asset
- * let assetId;
- * Video.Assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
- *   .then((res) => {
- *     const { data } = res.data;
+ * // returns a Promise
+ * Video.Assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'})
+ *   .then((data) => {
  *     assetId = data.id;
  *   });
  *
  * // Create a playback Id for an asset
- * Video.PlaybackIds.create(assetId, { policy: 'public' });
+ * // returns a Promise
+ * Video.Assets.createPlaybackId(assetId, { policy: 'public' });
  *
  * // List all of the values across every breakdown for the `aggregate_startup_time` metric
+ * // returns a Promise
  * Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
 
  * // Verify a webhook signature
