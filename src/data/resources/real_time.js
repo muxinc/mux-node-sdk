@@ -76,7 +76,7 @@ class RealTime extends Base {
   breakdown(metricId, params) {
     if (!metricId) {
       throw new Error(
-        'A metric Id is required for real-time breakdown information.'
+        'A metric Id is required for real-time breakdown information'
       );
     }
 
@@ -107,7 +107,7 @@ class RealTime extends Base {
   histogramTimeseries(metricId, params) {
     if (!metricId) {
       throw new Error(
-        'A metric Id is required for real-time histogram timeseries information.'
+        'A metric Id is required for real-time histogram timeseries information'
       );
     }
     return this.http.get(`${PATH}/metrics/${metricId}/histogram-timeseries`, {
