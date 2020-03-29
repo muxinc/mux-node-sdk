@@ -68,8 +68,8 @@ class RealTime extends Base {
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
-   * // List the breakdown information for concurrent_viewers by ASN for a specific time for the Windows operating system in the US
-   * Data.RealTime.breakdown('concurrent_viewers', { dimension: 'asn', timestamp: 1547853000, filters: ['operating_system:windows', 'country:US'] });
+   * // List the breakdown information for current-concurrent-viewers by ASN for a specific time for the Windows operating system in the US
+   * Data.RealTime.breakdown('current-concurrent-viewers', { dimension: 'asn', timestamp: 1547853000, filters: ['operating_system:windows', 'country:US'] });
    *
    * @see https://api-docs.mux.com/#real-time-get-2
    */
@@ -99,8 +99,8 @@ class RealTime extends Base {
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
-   * // List histogram timeseries information for concurrent_viewers for the Windows operating system in the US
-   * Data.RealTime.histogramTimeseries('concurrent_viewers', { filters: ['operating_system:windows', 'country:US'] });
+   * // List histogram timeseries information for video-startup-time for the Windows operating system in the US
+   * Data.RealTime.histogramTimeseries('video-startup-time', { filters: ['operating_system:windows', 'country:US'] });
    *
    * @see https://api-docs.mux.com/#real-time-get-3
    */
@@ -127,7 +127,7 @@ class RealTime extends Base {
    * const { Data } = muxClient;
    *
    * // List timeseries information for the playback-failure-percentage metric along with the number of concurrent viewers for the Windows operating system in the US
-   * Data.RealTime.histogramTimeseries('playback-failure-percentage', { filters: ['operating_system:windows', 'country:US'] });
+   * Data.RealTime.timeseries('playback-failure-percentage', { filters: ['operating_system:windows', 'country:US'] });
    *
    * @see https://api-docs.mux.com/#real-time-get-3
    */
