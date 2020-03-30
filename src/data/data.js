@@ -4,12 +4,13 @@
  */
 
 const Base = require('../base');
-const Metrics = require('../../src/data/resources/metrics');
 const Errors = require('../../src/data/resources/errors');
-const Filters = require('../../src/data/resources/filters');
 const Exports = require('../../src/data/resources/exports');
-const VideoViews = require('../../src/data/resources/video_views');
+const Filters = require('../../src/data/resources/filters');
 const Incidents = require('../../src/data/resources/incidents');
+const Metrics = require('../../src/data/resources/metrics');
+const RealTime = require('../../src/data/resources/real_time');
+const VideoViews = require('../../src/data/resources/video_views');
 
 /**
  * @ignore
@@ -32,23 +33,26 @@ class Data extends Base {
   constructor(...params) {
     super(...params);
 
-    /** @type {Metrics} */
-    this.Metrics = new Metrics(this);
-
     /** @type {Errors} */
     this.Errors = new Errors(this);
-
-    /** @type {Filters} */
-    this.Filters = new Filters(this);
 
     /** @type {Exports} */
     this.Exports = new Exports(this);
 
-    /** @type {VideoViews} */
-    this.VideoViews = new VideoViews(this);
+    /** @type {Filters} */
+    this.Filters = new Filters(this);
 
     /** @type {Incidents} */
     this.Incidents = new Incidents(this);
+
+    /** @type {Metrics} */
+    this.Metrics = new Metrics(this);
+
+    /** @type {RealTime} */
+    this.RealTime = new RealTime(this);
+
+    /** @type {VideoViews} */
+    this.VideoViews = new VideoViews(this);
   }
 }
 
