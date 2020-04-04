@@ -22,6 +22,7 @@
     "test": "mocha --recursive ./test/unit",
     "test:unit": "NOCK_BACK_MODE=record mocha --recursive ./test",
     "test:int": "NOCK_BACK_MODE=wild mocha --recursive ./test",
+    "test:types": "tsd ./",
     "format": "eslint src/** test/**",
     "format:fix": "eslint src/** test/** --fix"
   },
@@ -47,7 +48,8 @@
     "moxios": "^0.4.0",
     "nock": "^10.0.4",
     "prettier": "^1.15.3",
-    "sinon": "^4.5.0"
+    "sinon": "^4.5.0",
+    "tsd": "^0.11.0"
   },
   "repository": {
     "type": "git",
@@ -56,5 +58,6 @@
   "bugs": {
     "url": "https://github.com/muxinc/mux-node-sdk/issues"
   },
-  "homepage": "https://github.com/muxinc/mux-node-sdk#readme"
+  "homepage": "https://github.com/muxinc/mux-node-sdk#readme",
+  "types": "types/mux.d.ts"
 }
