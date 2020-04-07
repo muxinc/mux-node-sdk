@@ -417,4 +417,52 @@ describe('Unit::Assets', () => {
         expect(err.message).to.equal('A track ID is required');
       }));
   });
+
+  /** @test {Assets.updateMp4Support} */
+  describe('Assets.updateMp4Support', () => {
+    /** @test {Assets.updateMp4Support} */
+    it('makes a PUT request to update the mp4 support', done => {
+      moxios.stubRequest(
+        'https://api.mux.com/video/v1/assets/testAsset/mp4-support',
+        {
+          status: 200,
+          responseText: '{"data": {"update": true}}',
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testAssets
+        .updateMp4Support('testAsset', { mp4_support: 'standard' })
+        .then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].update).to.be.true;
+        done();
+      });
+    });
+  });
+
+  /** @test {Assets.updateMasterAccess} */
+  describe('Assets.updateMasterAccess', () => {
+    /** @test {Assets.updateMasterAccess} */
+    it('makes a PUT request to update the master access', done => {
+      moxios.stubRequest(
+        'https://api.mux.com/video/v1/assets/testAsset/master-access',
+        {
+          status: 200,
+          responseText: '{"data": {"update": true}}',
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testAssets
+        .updateMasterAccess('testAsset', { master_access: 'temporary' })
+        .then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].update).to.be.true;
+        done();
+      });
+    });
+  });
 });

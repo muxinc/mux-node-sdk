@@ -155,4 +155,40 @@ describe('Integration::Assets', () => {
         err => expect(err).to.exist
       ));
   });
+
+  /** @test {Assets.updateMp4Support} */
+  describe('Assets.updateMp4Support', () => {
+    /** @test {Assets.updateMp4Support} */
+    it('updates the mp4 support for an asset', async () => {
+      try {
+        await Video.Assets.updateMp4Support(testAsset.id, {
+          mp4_support: 'standard',
+        });
+        const { mp4_support: updatedMp4Support } = await Video.Assets.get(
+          testAsset.id
+        );
+        expect(updatedMp4Support).to.equal('standard');
+      } catch (err) {
+        expect(err.messages && err.messages[0]).to.equal('Asset is not ready');
+      }
+    });
+  });
+
+  /** @test {Assets.updateMasterAccess} */
+  describe('Assets.updateMasterAccess', () => {
+    /** @test {Assets.updateMasterAccess} */
+    it('updates the master access for an asset', async () => {
+      try {
+        await Video.Assets.updateMasterAccess(testAsset.id, {
+          master_access: 'temporary',
+        });
+        const { master_access: updatedMasterAccess } = await Video.Assets.get(
+          testAsset.id
+        );
+        expect(updatedMasterAccess).to.equal('temporary');
+      } catch (err) {
+        expect(err.messages && err.messages[0]).to.equal('Asset is not ready');
+      }
+    });
+  });
 });
