@@ -263,6 +263,54 @@ class Assets extends Base {
     }
     return this.http.delete(`${buildBasePath(assetId)}/tracks/${trackId}`);
   }
+
+  /**
+   * Update mp4 support for an asset
+   * @param {Object} params - mp4 support JSON parameters
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // Updates mp4 support for an asset
+   * Video.Assets.updateMp4Support(assetId, {mp4_support: "standard"});
+   *
+   * @see https://docs.mux.com/reference#update-mp4-support
+   */
+  updateMp4Support(assetId, params) {
+    if (!assetId) {
+      return Promise.reject(new Error('An asset ID is required'));
+    }
+
+    if (!(params && params.mp4_support)) {
+      return Promise.reject(new Error('params.mp4_support is required'));
+    }
+    return this.http.put(`${buildBasePath(assetId)}/mp4-support`, params);
+  }
+
+  /**
+   * Update master access for an asset
+   * @param {Object} params - master access JSON parameters
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // Delete an asset text track
+   * Video.Assets.updateMasterAccess(assetId, {mp4_support: "temporary"});
+   *
+   * @see https://docs.mux.com/reference#update-master-access
+   */
+  updateMasterAccess(assetId, params) {
+    if (!assetId) {
+      return Promise.reject(new Error('An asset ID is required'));
+    }
+
+    if (!(params && params.master_access)) {
+      return Promise.reject(new Error('params.master_access is required'));
+    }
+    return this.http.put(`${buildBasePath(assetId)}/master-access`, params);
+  }
 }
 
 module.exports = Assets;

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.8.0
+
+- Add asset mp4-support endpoint (view [docs](https://docs.mux.com/reference#update-mp4-support) for usage)
+- Add asset master-access endpoint (view [docs](https://docs.mux.com/reference#update-master-access) for usage)
+
+## 2.7.0
+
+- Add real time api endpoints (view [docs](https://api-docs.mux.com/#real-time-get-1) for usage)
+
+
 ## 2.6.0
 
 - Add Asset text track endpoints (view [docs](https://docs.mux.com/reference#create-a-subtitle-text-track) for usage)
