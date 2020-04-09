@@ -11,6 +11,9 @@ yarn-error.log*
 # Dependency directories
 node_modules/
 
+# Build directories
+dist/
+
 # IDE generated files
 *.iws
 *.iml
