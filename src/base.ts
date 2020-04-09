@@ -1,8 +1,8 @@
 /* eslint no-underscore-dangle: ["error", { "allow": ["_config", "_tokenId", "_secret"] }] */
 
-const axios = require('axios');
-const EventEmitter = require('events');
-const pkg = require('../package.json');
+import axios, { AxiosInstance } from 'axios';
+import { EventEmitter } from 'events';
+import pkg from '../package.json';
 
 /**
  * Mux Base Class - Simple base class to be extended by all child modules.
@@ -16,8 +16,25 @@ const pkg = require('../package.json');
  * @property {string} requestOptions.auth.password - HTTP basic auth password (secret)
  *
  */
-class Base extends EventEmitter {
-  constructor(...params) {
+export default class Base extends EventEmitter {
+  _tokenId?: string;
+  _tokenSecret?: string;
+  _config?: {
+    baseUrl?: string;
+  };
+  _requestOptions?: {
+    auth?: {
+      username?: string;
+      password?: string;
+    }
+  };
+  http: AxiosInstance = undefined as any;
+
+  constructor(base: Base);
+  constructor(config: Object);
+  constructor(tokenId: string, tokenSecret: string, config: Object);
+  constructor(param?: Base | Object | string, tokenSecret?: string, config?: Object);
+  constructor(...params: any[]) {
     super();
 
     if (params[0] instanceof Base) {
@@ -35,17 +52,17 @@ class Base extends EventEmitter {
     }
 
     this.http = axios.create({
-      baseURL: this.config.baseUrl,
+      baseURL: this.config?.baseUrl,
       headers: {
         'User-Agent': `Mux Node | ${pkg.version}`,
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      mode: 'cors',
+      //mode: 'cors',
       withCredentials: false,
       auth: {
-        username: this.tokenId,
-        password: this.tokenSecret,
+        username: this.tokenId as any,
+        password: this.tokenSecret as any,
       },
     });
 
@@ -68,7 +85,8 @@ class Base extends EventEmitter {
     );
   }
 
-  set config(options = {}) {
+  set config(options) {
+    options = options || {};
     this._config = {
       baseUrl: 'https://api.mux.com',
       ...options,
@@ -79,7 +97,8 @@ class Base extends EventEmitter {
     return this._config;
   }
 
-  set tokenId(token = process.env.MUX_TOKEN_ID) {
+  set tokenId(token) {
+    token = token || process.env.MUX_TOKEN_ID;
     this._tokenId = token;
 
     if (typeof this._tokenId === 'undefined') {
@@ -91,25 +110,25 @@ class Base extends EventEmitter {
     return this._tokenId;
   }
 
-  set tokenSecret(secret = process.env.MUX_TOKEN_SECRET) {
-    this._secret = secret;
+  set tokenSecret(secret) {
+    secret = secret || process.env.MUX_TOKEN_SECRET
+    this._tokenSecret = secret;
 
-    if (typeof this._secret === 'undefined' || this._secret === '') {
+    if (typeof this._tokenSecret === 'undefined' || this._tokenSecret === '') {
       throw new Error('API secret key must be provided');
     }
   }
 
   get tokenSecret() {
-    return this._secret;
+    return this._tokenSecret;
   }
 
-  remove(...params) {
+  remove(...params: any[]): any {
     // eslint-disable-next-line no-console
     console.warn(
       'The remove helper has been deprecated in favor of del. `remove` will no longer be available after the next major version bump (3.0).'
     );
-    return this.del(...params);
+    // TODO: Determine why del is undefined
+    return (this as any).del(...params);
   }
 }
-
-module.exports = Base;

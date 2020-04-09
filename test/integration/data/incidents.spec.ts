@@ -1,5 +1,5 @@
-const { expect } = require('chai');
-const Mux = require('../../../src/mux');
+import { expect } from 'chai';
+import Mux from '../../../src/mux';
 
 /** @test {Incidents} */
 describe('Integration::Incidents', () => {

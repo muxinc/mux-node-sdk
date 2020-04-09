@@ -3,8 +3,8 @@
  * Note: Hacking this module into a class with static methods because ESDoc forces it. We'll revisit ESDoc later.
  * Documentationjs looks real nice.
  */
-const fs = require('fs');
-const jwt = require('jsonwebtoken');
+import fs from 'fs';
+import jwt from 'jsonwebtoken';
 
 const typeToClaim = type => {
   const typeMap = {
@@ -57,11 +57,11 @@ const getPrivateKey = options => {
  * JWT - Signed URL token generation helpers
  *
  * @example
- * const Mux = require('@mux/mux-node');
+ * import Mux from '@mux/mux-node';
  *
  * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' })
  */
-class JWT {
+export default class JWT {
   /**
    * Creates a new token to be used with a signed playback ID
    * @param {string} playbackId - The Playback ID (of type 'signed') that you'd like to generate a token for.
@@ -74,12 +74,12 @@ class JWT {
    * @returns {string} - Returns a token to be used with a signed URL.
    *
    * @example
-   * const Mux = require('@mux/mux-node');
+   * import Mux from '@mux/mux-node';
    *
    * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
    * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
    */
-  static sign(playbackId, options = {}) {
+  static sign(playbackId: string, options = {}) {
     const opts = {
       type: 'video',
       expiration: '7d',
@@ -110,15 +110,13 @@ class JWT {
    * @returns {Object} - If the token could be decoded, it returns the decoded token object
    *
    * @example
-   * const Mux = require('@mux/mux-node');
+   * import Mux from '@mux/mux-node';
    *
    * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
    * const decoded = Mux.JWT.decode(token);
    * // decoded will be the raw decoded JWT, so you'll see keys like `aud`, `exp`, etc.
    */
-  static decode(token) {
+  static decode(token: string) {
     return jwt.decode(token);
   }
 }
-
-module.exports = JWT;

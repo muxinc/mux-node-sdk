@@ -1,6 +1,6 @@
-const { expect } = require('chai');
-const sinon = require('sinon');
-const Webhooks = require('../../../src/webhooks/webhooks');
+import { expect } from 'chai';
+import sinon from 'sinon';
+import Webhooks from '../../../src/webhooks/webhooks';
 
 /** @test {Webhooks} */
 describe('Unit::Webhooks', () => {
@@ -11,7 +11,7 @@ describe('Unit::Webhooks', () => {
     const validTimeSec = 1565125718;
     const validHeaderAtTheTime =
       't=1565125718,v1=854ece4c22acef7c66b57d4e504153bc512595e8e9c772ece2a68150548c19a7';
-    let clock;
+    let clock: sinon.SinonFakeTimers;
 
     beforeEach(() => {
       clock = sinon.useFakeTimers(new Date(validTimeSec * 1000));

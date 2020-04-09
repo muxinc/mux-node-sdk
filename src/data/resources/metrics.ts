@@ -2,7 +2,7 @@
  * Mux Metrics
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
 
 /**
  * @private Base metrics path for the Mux API
@@ -20,7 +20,7 @@ const PATH = '/data/v1/metrics';
  * // List all of the values across every breakdown for a specific metric grouped by operating system
  * Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'operating_system' });
  */
-class Metrics extends Base {
+export default class Metrics extends Base {
   /**
    * List the breakdown values for a specific metric
    *
@@ -58,7 +58,10 @@ class Metrics extends Base {
    *
    * @see https://api-docs.mux.com/#comparison-get
    */
-  comparison(params) {
+  comparison(params: {
+    [index: string]: any;
+    value: string;
+  }) {
     if (!params || (params && !params.value)) {
       throw new Error(
         'The value query parameter is required for comparing metrics'
@@ -84,7 +87,7 @@ class Metrics extends Base {
    *
    * @see https://api-docs.mux.com/#insight-get
    */
-  insights(metricId, params) {
+  insights(metricId: string, params?: any) {
     if (!metricId) {
       throw new Error('A metric Id is required for insight metrics.');
     }
@@ -108,7 +111,7 @@ class Metrics extends Base {
    *
    * @see https://api-docs.mux.com/#overall-get
    */
-  overall(metricId, params) {
+  overall(metricId: string, params?: any) {
     if (!metricId) {
       throw new Error('A metric Id is required for overall metrics.');
     }
@@ -131,12 +134,10 @@ class Metrics extends Base {
    *
    * @see https://api-docs.mux.com/#timeseries
    */
-  timeseries(metricId, params) {
+  timeseries(metricId: string, params?: any) {
     if (!metricId) {
       throw new Error('A metric Id is required for timeseries metrics.');
     }
     return this.http.get(`${PATH}/${metricId}/timeseries`, { params });
   }
 }
-
-module.exports = Metrics;

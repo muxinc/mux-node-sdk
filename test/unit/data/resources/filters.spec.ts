@@ -1,7 +1,7 @@
-const { expect } = require('chai');
-const moxios = require('moxios');
-const sinon = require('sinon');
-const Filters = require('../../../../src/data/resources/filters');
+import { expect } from 'chai';
+import moxios from 'moxios';
+import sinon from 'sinon';
+import Filters from '../../../../src/data/resources/filters';
 
 /** @test {Filters} */
 describe('Unit::Filters', () => {
@@ -9,12 +9,13 @@ describe('Unit::Filters', () => {
   const testSecret = 'testSecret';
   const filtersInstance = new Filters(testApiKey, testSecret);
 
+  // TODO: Figure out why axios and moxios don't match
   beforeEach(() => {
-    moxios.install(filtersInstance.http);
+    moxios.install(filtersInstance.http as any);
   });
 
   afterEach(() => {
-    moxios.uninstall(filtersInstance.http);
+    moxios.uninstall(filtersInstance.http as any);
   });
 
   /** @test {Filters} */
@@ -52,7 +53,7 @@ describe('Unit::Filters', () => {
       });
 
       const onFulfilled = sinon.spy();
-      filtersInstance.list({}).then(onFulfilled);
+      filtersInstance.list().then(onFulfilled);
 
       return moxios.wait(() => {
         expect(onFulfilled.getCall(0).args[0].filters).to.be.true;
@@ -65,7 +66,7 @@ describe('Unit::Filters', () => {
   describe('Filters.get', () => {
     /** @test {Filters.get} */
     it('throws an error if a filter Id is not provided', () => {
-      expect(() => filtersInstance.get()).to.throw(
+      expect(() => filtersInstance.get(undefined as any)).to.throw(
         'Filter Id is required to get filter information.'
       );
     });

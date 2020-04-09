@@ -1,12 +1,12 @@
-const { expect } = require('chai');
-const Mux = require('../../../src/mux');
+import { expect } from 'chai';
+import Mux from '../../../src/mux';
 
 /** @test {Uploads} */
 describe('Integration::Uploads', () => {
   const muxClient = new Mux();
   const { Video } = muxClient;
   let testUpload;
-  const createdUploads = []; // These are uploads we'll clean up when it's all done.
+  const createdUploads: any[] = []; // These are uploads we'll clean up when it's all done.
 
   before(async () => {
     testUpload = await Video.Uploads.create({

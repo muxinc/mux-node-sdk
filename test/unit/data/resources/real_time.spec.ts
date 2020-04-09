@@ -1,7 +1,7 @@
-const { expect } = require('chai');
-const moxios = require('moxios');
-const sinon = require('sinon');
-const RealTime = require('../../../../src/data/resources/real_time');
+import { expect } from 'chai';
+import moxios from 'moxios';
+import sinon from 'sinon';
+import RealTime from '../../../../src/data/resources/real_time';
 
 /** @test {RealTime} */
 describe('Unit::RealTime', () => {
@@ -87,10 +87,10 @@ describe('Unit::RealTime', () => {
   describe('RealTime.breakdown', () => {
     /** @test {RealTime.breakdown} */
     it('throws an error if the value query parameter is not provided', () => {
-      expect(() => realTimeInstance.breakdown()).to.throw(
+      expect(() => realTimeInstance.breakdown(undefined as any, undefined as any)).to.throw(
         'A metric Id is required for real-time breakdown information'
       );
-      expect(() => realTimeInstance.breakdown({})).to.throw(
+      expect(() => realTimeInstance.breakdown({} as any)).to.throw(
         'The dimension query parameter is required for real-time breakdown information'
       );
     });
@@ -121,7 +121,7 @@ describe('Unit::RealTime', () => {
   describe('RealTime.histogramTimeseries', () => {
     /** @test {RealTime.histogramTimeseries} */
     it('throws an error if the value query parameter is not provided', () => {
-      expect(() => realTimeInstance.histogramTimeseries()).to.throw(
+      expect(() => realTimeInstance.histogramTimeseries(undefined as any)).to.throw(
         'A metric Id is required for real-time histogram timeseries information'
       );
     });

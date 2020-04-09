@@ -2,7 +2,7 @@
  * Mux Real-Time
  * Copyright(c) 2020 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
 
 /**
  * @private Base real-time path for the Mux API
@@ -20,7 +20,7 @@ const PATH = '/data/v1/realtime';
  * // Returns a list of available real-time dimensions
  * Data.RealTime.dimensions();
  */
-class RealTime extends Base {
+export default class RealTime extends Base {
   /**
    * List of available real-time dimensions
    *
@@ -73,7 +73,10 @@ class RealTime extends Base {
    *
    * @see https://api-docs.mux.com/#real-time-get-2
    */
-  breakdown(metricId, params) {
+  breakdown(metricId: string, params: {
+    [index: string]: any;
+    dimension: string;
+  }) {
     if (!metricId) {
       throw new Error(
         'A metric Id is required for real-time breakdown information'
@@ -104,7 +107,7 @@ class RealTime extends Base {
    *
    * @see https://api-docs.mux.com/#real-time-get-3
    */
-  histogramTimeseries(metricId, params) {
+  histogramTimeseries(metricId: string, params?: any) {
     if (!metricId) {
       throw new Error(
         'A metric Id is required for real-time histogram timeseries information'
@@ -131,7 +134,7 @@ class RealTime extends Base {
    *
    * @see https://api-docs.mux.com/#real-time-get-3
    */
-  timeseries(metricId, params) {
+  timeseries(metricId: string, params?: any) {
     if (!metricId) {
       throw new Error(
         'A metric Id is required for real-time timeseries information.'
@@ -142,4 +145,3 @@ class RealTime extends Base {
     });
   }
 }
-module.exports = RealTime;

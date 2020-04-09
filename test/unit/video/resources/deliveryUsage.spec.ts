@@ -1,7 +1,7 @@
-const { expect } = require('chai');
-const sinon = require('sinon');
-const moxios = require('moxios');
-const DeliveryUsage = require('../../../../src/video/resources/deliveryUsage');
+import { expect } from 'chai';
+import sinon from 'sinon';
+import moxios from 'moxios';
+import DeliveryUsage from '../../../../src/video/resources/deliveryUsage';
 
 /** @test {DeliveryUsage} */
 describe('Unit::DeliveryUsage', () => {

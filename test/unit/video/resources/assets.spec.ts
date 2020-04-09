@@ -1,7 +1,7 @@
-const { expect } = require('chai');
-const sinon = require('sinon');
-const moxios = require('moxios');
-const Assets = require('../../../../src/video/resources/assets');
+import { expect } from 'chai';
+import sinon from 'sinon';
+import moxios from 'moxios';
+import Assets from '../../../../src/video/resources/assets';
 
 /** @test {Assets} */
 describe('Unit::Assets', () => {
@@ -9,12 +9,13 @@ describe('Unit::Assets', () => {
   const testSecret = 'testSecret';
   const testAssets = new Assets(testApiKey, testSecret);
 
+  // TODO: Figure out why axios and moxios don't match
   beforeEach(() => {
-    moxios.install(testAssets.http);
+    moxios.install(testAssets.http as any);
   });
 
   afterEach(() => {
-    moxios.uninstall(testAssets.http);
+    moxios.uninstall(testAssets.http as any);
   });
 
   /** @test {Assets} */
@@ -60,7 +61,7 @@ describe('Unit::Assets', () => {
 
     /** @test {Assets.create} */
     it('throws an error if no asset params are given', () =>
-      testAssets.create().catch(err => {
+      testAssets.create(undefined as any).catch(err => {
         expect(err).to.exist;
         expect(err.message).to.equal(
           'Params are required for creating an asset'
@@ -89,7 +90,7 @@ describe('Unit::Assets', () => {
     /** @test {Assets.get} */
     it('throws an error when an asset id is not given', () =>
       testAssets
-        .get()
+        .get(undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -122,7 +123,7 @@ describe('Unit::Assets', () => {
     /** @test {Assets.del} */
     it('throws an error when an asset id is not given', () =>
       testAssets
-        .del()
+        .del(undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -158,7 +159,7 @@ describe('Unit::Assets', () => {
     /** @test {Assets.inputInfo} */
     it('throws an error when an asset id is not given', () =>
       testAssets
-        .inputInfo()
+        .inputInfo(undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -233,7 +234,7 @@ describe('Unit::Assets', () => {
     /** @test {Assets.createPlaybackId} */
     it('throws an error if an asset id is not given', () =>
       testAssets
-        .createPlaybackId()
+        .createPlaybackId(undefined as any, undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -245,7 +246,7 @@ describe('Unit::Assets', () => {
     /** @test {Assets.createPlaybackId} */
     it('throws an error if playbackId params are not given', () =>
       testAssets
-        .createPlaybackId('assetid')
+        .createPlaybackId('assetid', undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -280,14 +281,14 @@ describe('Unit::Assets', () => {
 
     /** @test {Assets.deletePlaybackId} */
     it('throws an error if an asset id is not given', () =>
-      testAssets.deletePlaybackId().catch(err => {
+      testAssets.deletePlaybackId(undefined as any, undefined as any).catch(err => {
         expect(err).to.exist;
         expect(err.message).to.equal('An asset ID is required');
       }));
 
     /** @test {Assets.deletePlaybackId} */
     it('throws an error if playbackId params are not given', () =>
-      testAssets.deletePlaybackId('assetid').catch(err => {
+      testAssets.deletePlaybackId('assetid', undefined as any).catch(err => {
         expect(err).to.exist;
         expect(err.message).to.equal('A playback ID is required');
       }));
@@ -316,14 +317,14 @@ describe('Unit::Assets', () => {
 
     /** @test {Assets.playbackId} */
     it('throws an error if an asset id is not given', () =>
-      testAssets.playbackId().catch(err => {
+      testAssets.playbackId(undefined as any, undefined as any).catch(err => {
         expect(err).to.exist;
         expect(err.message).to.equal('An asset ID is required');
       }));
 
     /** @test {Assets.playbackId} */
     it('throws an error if playbackId params are not given', () =>
-      testAssets.playbackId('assetid').catch(err => {
+      testAssets.playbackId('assetid', undefined as any).catch(err => {
         expect(err).to.exist;
         expect(err.message).to.equal('A playback ID is required');
       }));
@@ -360,7 +361,7 @@ describe('Unit::Assets', () => {
     /** @test {Assets.createTrack} */
     it('throws an error if an asset id is not given', () =>
       testAssets
-        .createTrack()
+        .createTrack(undefined as any, undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -372,7 +373,7 @@ describe('Unit::Assets', () => {
     /** @test {Assets.createTrack} */
     it('throws an error if track params are not given', () =>
       testAssets
-        .createTrack('assetid')
+        .createTrack('assetid', undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -405,14 +406,14 @@ describe('Unit::Assets', () => {
 
     /** @test {Assets.deleteTrack} */
     it('throws an error if an asset id is not given', () =>
-      testAssets.deleteTrack().catch(err => {
+      testAssets.deleteTrack(undefined as any, undefined as any).catch(err => {
         expect(err).to.exist;
         expect(err.message).to.equal('An asset ID is required');
       }));
 
     /** @test {Assets.deleteTrack} */
     it('throws an error if text track ID is not given', () =>
-      testAssets.deleteTrack('assetid').catch(err => {
+      testAssets.deleteTrack('assetid', undefined as any).catch(err => {
         expect(err).to.exist;
         expect(err.message).to.equal('A track ID is required');
       }));

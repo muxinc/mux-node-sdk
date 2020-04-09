@@ -1,7 +1,7 @@
-const { expect } = require('chai');
-const sinon = require('sinon');
-const moxios = require('moxios');
-const Uploads = require('../../../../src/video/resources/uploads');
+import { expect } from 'chai';
+import sinon from 'sinon';
+import moxios from 'moxios';
+import Uploads from '../../../../src/video/resources/uploads';
 
 /** @test {Uploads} */
 describe('Unit::Uploads', () => {
@@ -9,12 +9,13 @@ describe('Unit::Uploads', () => {
   const testSecret = 'testSecret';
   const testUploads = new Uploads(testApiKey, testSecret);
 
+  // TODO: Figure out why axios and moxios don't match
   beforeEach(() => {
-    moxios.install(testUploads.http);
+    moxios.install(testUploads.http as any);
   });
 
   afterEach(() => {
-    moxios.uninstall(testUploads.http);
+    moxios.uninstall(testUploads.http as any);
   });
 
   /** @test {Uploads.create} */
@@ -41,7 +42,7 @@ describe('Unit::Uploads', () => {
 
     /** @test {Uploads.create} */
     it('throws an error if no params are given', () =>
-      testUploads.create().catch(err => {
+      testUploads.create(undefined as any).catch(err => {
         expect(err).to.exist;
         expect(err.message).to.include('Params are required');
       }));
@@ -68,7 +69,7 @@ describe('Unit::Uploads', () => {
     /** @test {Uploads.get} */
     it('throws an error when an upload id is not given', () =>
       testUploads
-        .get()
+        .get(undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -101,7 +102,7 @@ describe('Unit::Uploads', () => {
 
     /** @test {Uploads.del} */
     it('throws an error when an upload id is not given', () =>
-      testUploads.cancel().catch(err => {
+      testUploads.cancel(undefined as any).catch(err => {
         expect(err).to.exist;
         expect(err.message).to.include('An upload ID is required');
       }));

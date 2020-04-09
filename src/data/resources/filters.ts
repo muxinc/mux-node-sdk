@@ -2,7 +2,7 @@
  * Mux Filters
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
 
 /**
  * @private Base filters path for the Mux API
@@ -20,7 +20,7 @@ const PATH = '/data/v1/filters';
  * // Lists all the filters broken out into basic and advanced
  * Data.Filters.list();
  */
-class Filters extends Base {
+export default class Filters extends Base {
   /**
    * Lists the values for a filter along with a total count of related views
    *
@@ -37,7 +37,7 @@ class Filters extends Base {
    *
    * @see https://api-docs.mux.com/#filter-get-1
    */
-  get(filterId, params) {
+  get(filterId: string, params?: any) {
     if (!filterId) {
       throw new Error('Filter Id is required to get filter information.');
     }
@@ -61,5 +61,3 @@ class Filters extends Base {
     return this.http.get(PATH);
   }
 }
-
-module.exports = Filters;

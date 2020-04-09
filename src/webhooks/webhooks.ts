@@ -1,18 +1,18 @@
 /* globals Buffer */
-const VerifyHeader = require('./resources/verify_header');
+import VerifyHeader from './resources/verify_header';
 
 /**
  * Webhooks - Provides access to the Mux Webhooks signature verification
  *
  * @example
- * const Mux = require('@mux/mux-node');
+ * import Mux from '@mux/mux-node';
  * const { Webhooks } = Mux;
  *
  * // Verify a webhook signature
  * Webhooks.verifyHeader(body, signature, secret);
  *
  */
-class Webhooks {
+export default class Webhooks {
   /**
    * Verify a webhook signature. When enabled, Mux will send webhooks with a signature
    * in the http request header 'Mux-Signature'. You can use that signature to verify
@@ -26,7 +26,7 @@ class Webhooks {
    * @throws {Error} throw error when a webhook signature verification fails.
    *
    * @example
-   * const Mux = require('@mux/mux-node');
+   * import Mux from '@mux/mux-node';
    * const { Webhooks } = Mux;
    *
    * // Verify a webhook signature
@@ -38,5 +38,3 @@ class Webhooks {
     return VerifyHeader.verify(...args);
   }
 }
-
-module.exports = Webhooks;

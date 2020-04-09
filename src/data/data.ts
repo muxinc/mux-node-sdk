@@ -3,14 +3,14 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-const Base = require('../base');
-const Errors = require('../../src/data/resources/errors');
-const Exports = require('../../src/data/resources/exports');
-const Filters = require('../../src/data/resources/filters');
-const Incidents = require('../../src/data/resources/incidents');
-const Metrics = require('../../src/data/resources/metrics');
-const RealTime = require('../../src/data/resources/real_time');
-const VideoViews = require('../../src/data/resources/video_views');
+import Base from '../base';
+import Errors from '../../src/data/resources/errors';
+import Exports from '../../src/data/resources/exports';
+import Filters from '../../src/data/resources/filters';
+import Incidents from '../../src/data/resources/incidents';
+import Metrics from '../../src/data/resources/metrics';
+import RealTime from '../../src/data/resources/real_time';
+import VideoViews from '../../src/data/resources/video_views';
 
 /**
  * @ignore
@@ -22,38 +22,39 @@ const VideoViews = require('../../src/data/resources/video_views');
  * const { Data } = muxClient;
  *
  */
-class Data extends Base {
+export default class Data extends Base {
+
+  /** @type {Errors} */
+  Errors = new Errors(this);
+
+  /** @type {Exports} */
+  Exports = new Exports(this);
+
+  /** @type {Filters} */
+  Filters = new Filters(this);
+
+  /** @type {Incidents} */
+  Incidents = new Incidents(this);
+
+  /** @type {Metrics} */
+  Metrics = new Metrics(this);
+
+  /** @type {RealTime} */
+  RealTime = new RealTime(this);
+
+  /** @type {VideoViews} */
+  VideoViews = new VideoViews(this);
+
   /**
-   * Data Constructor
-   *
-   * @param {string} accessToken - Mux API Access Token
-   * @param {string} secret - Mux API secret
-   * @constructor
-   */
-  constructor(...params) {
+ * Data Constructor
+ *
+ * @param {string} accessToken - Mux API Access Token
+ * @param {string} secret - Mux API secret
+ * @constructor
+ */
+  constructor(accessToken?: string, secret?: string);
+  constructor(accessToken?: Object, secret?: string);
+  constructor(...params: any[]) {
     super(...params);
-
-    /** @type {Errors} */
-    this.Errors = new Errors(this);
-
-    /** @type {Exports} */
-    this.Exports = new Exports(this);
-
-    /** @type {Filters} */
-    this.Filters = new Filters(this);
-
-    /** @type {Incidents} */
-    this.Incidents = new Incidents(this);
-
-    /** @type {Metrics} */
-    this.Metrics = new Metrics(this);
-
-    /** @type {RealTime} */
-    this.RealTime = new RealTime(this);
-
-    /** @type {VideoViews} */
-    this.VideoViews = new VideoViews(this);
   }
 }
-
-module.exports = Data;

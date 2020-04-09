@@ -2,7 +2,7 @@
  * Mux Errors
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
 
 /**
  * @private Base errors path for the Mux API
@@ -18,7 +18,7 @@ const PATH = '/data/v1/errors';
  * // Returns a list of playback errors filtered by the windows operating system
  * Data.Errors.list({ filters: ['operating_system:windows'] });
  */
-class Errors extends Base {
+export default class Errors extends Base {
   /**
    * Returns a list of playback errors
    *
@@ -33,9 +33,7 @@ class Errors extends Base {
    *
    * @see https://api-docs.mux.com/#view-error-get
    */
-  list(params) {
+  list(params: any) {
     return this.http.get(PATH, { params });
   }
 }
-
-module.exports = Errors;

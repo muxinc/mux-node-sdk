@@ -2,7 +2,7 @@
  * Mux Assets
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
 
 /**
  * @private Base asset path for the Mux API
@@ -24,7 +24,7 @@ const buildBasePath = assetId => `${PATH}/${assetId}`;
  * // Create an asset
  * Video.Assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
  */
-class Assets extends Base {
+export default class Assets extends Base {
   /**
    * Creates a Mux asset with the specified JSON parameters
    * @param {Object} params - Asset JSON parameters (e.g input)
@@ -38,7 +38,7 @@ class Assets extends Base {
    *
    * @see https://docs.mux.com/reference#create-an-asset
    */
-  create(params) {
+  create(params: any) {
     if (!params) {
       return Promise.reject(
         new Error('Params are required for creating an asset')
@@ -61,7 +61,7 @@ class Assets extends Base {
    *
    * @see https://docs.mux.com/reference#delete-an-asset
    */
-  del(assetId) {
+  del(assetId: string) {
     if (!assetId) {
       return Promise.reject(
         new Error('An asset ID is required to delete an asset')
@@ -83,7 +83,7 @@ class Assets extends Base {
    *
    * @see https://docs.mux.com/reference#retrieve-an-asset
    */
-  get(assetId) {
+  get(assetId: string) {
     if (!assetId) {
       return Promise.reject(
         new Error('An asset ID is required to get an asset')
@@ -105,7 +105,7 @@ class Assets extends Base {
    *
    * @see https://docs.mux.com/reference#retrieve-asset-input-info
    */
-  inputInfo(assetId) {
+  inputInfo(assetId: string) {
     if (!assetId) {
       return Promise.reject(
         new Error('An asset ID is required to get input-info')
@@ -126,7 +126,7 @@ class Assets extends Base {
    *
    * @see https://docs.mux.com/reference#list-assets
    */
-  list(params) {
+  list(params?: any) {
     return this.http.get(PATH, { params });
   }
 
@@ -144,7 +144,7 @@ class Assets extends Base {
    *
    * @see https://docs.mux.com/v1/reference#retrieve-an-asset-playback-id
    */
-  playbackId(assetId, playbackId) {
+  playbackId(assetId: string, playbackId: string) {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }
@@ -171,7 +171,10 @@ class Assets extends Base {
    *
    * @see https://docs.mux.com/v1/reference#add-an-asset-playback-id
    */
-  createPlaybackId(assetId, params) {
+  createPlaybackId(assetId: string, params: {
+    [index: string]: any;
+    policy: string;
+  }) {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }
@@ -196,7 +199,7 @@ class Assets extends Base {
    *
    * @see https://docs.mux.com/v1/reference#delete-an-asset-playback-id
    */
-  deletePlaybackId(assetId, playbackId) {
+  deletePlaybackId(assetId: string, playbackId: string) {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }
@@ -228,7 +231,7 @@ class Assets extends Base {
    *
    * @see https://docs.mux.com/reference#create-a-subtitle-text-track
    */
-  createTrack(assetId, params) {
+  createTrack(assetId: string, params: any) {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }
@@ -253,7 +256,7 @@ class Assets extends Base {
    *
    * @see https://docs.mux.com/reference#delete-a-subtitle-text-track
    */
-  deleteTrack(assetId, trackId) {
+  deleteTrack(assetId: string, trackId: string) {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }
@@ -277,7 +280,10 @@ class Assets extends Base {
    *
    * @see https://docs.mux.com/reference#update-mp4-support
    */
-  updateMp4Support(assetId, params) {
+  updateMp4Support(assetId: string, params: {
+    [index: string]: any;
+    mp4_support: string;
+  }) {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }
@@ -301,7 +307,10 @@ class Assets extends Base {
    *
    * @see https://docs.mux.com/reference#update-master-access
    */
-  updateMasterAccess(assetId, params) {
+  updateMasterAccess(assetId: string, params: {
+    [index: string]: any;
+    master_access: string;
+  }) {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }
@@ -312,5 +321,3 @@ class Assets extends Base {
     return this.http.put(`${buildBasePath(assetId)}/master-access`, params);
   }
 }
-
-module.exports = Assets;

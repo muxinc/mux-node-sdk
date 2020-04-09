@@ -2,7 +2,7 @@
  * Mux Exports
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
 
 /**
  * @private Base exports path for the Mux API
@@ -19,7 +19,7 @@ const PATH = '/data/v1/exports';
  * // Lists the available video view exports along with URLs to retrieve them
  * Data.Exports.list();
  */
-class Exports extends Base {
+export default class Exports extends Base {
   /**
    * Lists the available video view exports along with URLs to retrieve them
    * @extends Base
@@ -38,5 +38,3 @@ class Exports extends Base {
     return this.http.get(PATH);
   }
 }
-
-module.exports = Exports;

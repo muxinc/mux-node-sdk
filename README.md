@@ -39,7 +39,7 @@ Require the `@mux/mux-node` npm module and create a Mux instance. Your Mux insta
 that will allow you to access the Mux Data and Video APIs.
 
 ```javascript
-const Mux = require('@mux/mux-node');
+import Mux from '@mux/mux-node';
 const { Video, Data } = new Mux(accessToken, secret);
 ```
 
@@ -69,7 +69,7 @@ const playbackId = await Video.Assets.createPlaybackId(asset.id, {
 Or, if you don't have the files online already, you can ingest one via the direct uploads API.
 
 ```javascript
-const request = require('request');
+import request from 'request';
 let upload = await Video.Uploads.create({
   new_asset_settings: { playback_policy: 'public' },
 });
@@ -134,10 +134,10 @@ Note that when passing in the payload you want to pass in the raw un-parsed requ
 Here's an example if you are using express.
 
 ```javascript
-const Mux = require('@mux/mux-node');
+import Mux from '@mux/mux-node';
 const { Webhooks } = Mux;
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
 
 /**
  * You'll need to make sure this is externally accessible.  ngrok (https://ngrok.com/)

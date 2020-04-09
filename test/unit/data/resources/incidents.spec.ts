@@ -1,7 +1,7 @@
-const { expect } = require('chai');
-const moxios = require('moxios');
-const sinon = require('sinon');
-const Incidents = require('../../../../src/data/resources/incidents');
+import { expect } from 'chai';
+import moxios from 'moxios';
+import sinon from 'sinon';
+import Incidents from '../../../../src/data/resources/incidents';
 
 /** @test {Incidents} */
 describe('Unit::Incidents', () => {
@@ -9,12 +9,13 @@ describe('Unit::Incidents', () => {
   const testSecret = 'testSecret';
   const incidentsInstance = new Incidents(testApiKey, testSecret);
 
+  // TODO: Figure out why axios and moxios don't match
   beforeEach(() => {
-    moxios.install(incidentsInstance.http);
+    moxios.install(incidentsInstance.http as any);
   });
 
   afterEach(() => {
-    moxios.uninstall(incidentsInstance.http);
+    moxios.uninstall(incidentsInstance.http as any);
   });
 
   /** @test {Incidents} */
@@ -65,7 +66,7 @@ describe('Unit::Incidents', () => {
   describe('Incidents.get', () => {
     /** @test {Incidents.get} */
     it('throws an error if an incident Id is not provided', () => {
-      expect(() => incidentsInstance.get()).to.throw(
+      expect(() => incidentsInstance.get(undefined as any)).to.throw(
         'An incident Id is required for incident details.'
       );
     });
@@ -90,7 +91,7 @@ describe('Unit::Incidents', () => {
   describe('Incidents.related', () => {
     /** @test {Incidents.related} */
     it('throws an error if an incident Id is not provided', () => {
-      expect(() => incidentsInstance.related()).to.throw(
+      expect(() => incidentsInstance.related(undefined as any)).to.throw(
         'An incident Id is required for related incidents.'
       );
     });

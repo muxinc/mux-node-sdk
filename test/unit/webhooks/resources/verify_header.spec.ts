@@ -1,6 +1,6 @@
-const { expect } = require('chai');
-const sinon = require('sinon');
-const VerifyHeader = require('../../../../src/webhooks/resources/verify_header');
+import { expect } from 'chai';
+import sinon from 'sinon';
+import VerifyHeader from '../../../../src/webhooks/resources/verify_header';
 
 /** @test {VerifyHeader} */
 describe('Unit::VerifyHeader', () => {
@@ -20,15 +20,15 @@ describe('Unit::VerifyHeader', () => {
         const expectedSignature =
           '854ece4c22acef7c66b57d4e504153bc512595e8e9c772ece2a68150548c19a7';
         const parsed = VerifyHeader.parseHeader(header);
-        expect(parsed.timestamp).to.equal('1565125718');
-        expect(parsed.signatures.length).to.equal(1);
-        expect(parsed.signatures[0]).to.equal(expectedSignature);
+        expect(parsed?.timestamp).to.equal('1565125718');
+        expect(parsed?.signatures.length).to.equal(1);
+        expect(parsed?.signatures[0]).to.equal(expectedSignature);
       });
     });
 
     /** @test {VerifyHeader.verify} */
     describe('verify', () => {
-      let payload = '{"test":"body"}';
+      let payload: string | Buffer = '{"test":"body"}';
       const secret = 'SuperSecret123';
       const validTimeSec = 1565125718;
       const validHeaderAtTheTime =
@@ -67,7 +67,7 @@ describe('Unit::VerifyHeader', () => {
 
       /** @test {VerifyHeader.verify} */
       describe('with a header value that is actually valid', () => {
-        let clock;
+        let clock: sinon.SinonFakeTimers;
 
         beforeEach(() => {
           clock = sinon.useFakeTimers(new Date(validTimeSec * 1000));

@@ -1,7 +1,7 @@
-const { expect } = require('chai');
-const moxios = require('moxios');
-const sinon = require('sinon');
-const VideoViews = require('../../../../src/data/resources/video_views');
+import { expect } from 'chai';
+import moxios from 'moxios';
+import sinon from 'sinon';
+import VideoViews from '../../../../src/data/resources/video_views';
 
 /** @test {VideoViews} */
 describe('Unit::VideoViews', () => {

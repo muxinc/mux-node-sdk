@@ -1,8 +1,8 @@
-const { expect } = require('chai');
-const Video = require('../../../src/video/video');
-const Assets = require('../../../src/video/resources/assets');
-const LiveStreams = require('../../../src/video/resources/liveStreams');
-const Uploads = require('../../../src/video/resources/uploads');
+import { expect } from 'chai';
+import Video from '../../../src/video/video';
+import Assets from '../../../src/video/resources/assets';
+import LiveStreams from '../../../src/video/resources/liveStreams';
+import Uploads from '../../../src/video/resources/uploads';
 
 /** @test {Video} */
 describe('Unit::Video', () => {

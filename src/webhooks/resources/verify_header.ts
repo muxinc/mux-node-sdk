@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+import crypto from 'crypto';
 
 const DEFAULT_TOLERANCE = 300; // 5 minutes
 const EXPECTED_SCHEME = 'v1';
@@ -32,7 +32,7 @@ function secureCompare(_a, _b) {
   return result === 0;
 }
 
-class VerifyHeader {
+export default class VerifyHeader {
   static parseHeader(header, scheme = EXPECTED_SCHEME) {
     if (typeof header !== 'string') {
       return null;
@@ -44,11 +44,11 @@ class VerifyHeader {
 
         if (kv[0] === 't') {
           /* eslint-disable no-param-reassign, prefer-destructuring */
-          accum.timestamp = kv[1];
+          accum.timestamp = kv[1] as any;
         }
 
         if (kv[0] === scheme) {
-          accum.signatures.push(kv[1]);
+          accum.signatures.push(kv[1] as never);
         }
 
         return accum;
@@ -109,5 +109,3 @@ class VerifyHeader {
     return true;
   }
 }
-
-module.exports = VerifyHeader;

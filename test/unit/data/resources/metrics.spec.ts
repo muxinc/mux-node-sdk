@@ -1,7 +1,7 @@
-const { expect } = require('chai');
-const moxios = require('moxios');
-const sinon = require('sinon');
-const Metrics = require('../../../../src/data/resources/metrics');
+import { expect } from 'chai';
+import moxios from 'moxios';
+import sinon from 'sinon';
+import Metrics from '../../../../src/data/resources/metrics';
 
 /** @test {Metrics} */
 describe('Unit::Metrics', () => {
@@ -9,12 +9,13 @@ describe('Unit::Metrics', () => {
   const testSecret = 'testSecret';
   const metricsInstance = new Metrics(testApiKey, testSecret);
 
+  // TODO: Figure out why axios and moxios don't match
   beforeEach(() => {
-    moxios.install(metricsInstance.http);
+    moxios.install(metricsInstance.http as any);
   });
 
   afterEach(() => {
-    moxios.uninstall(metricsInstance.http);
+    moxios.uninstall(metricsInstance.http as any);
   });
 
   /** @test {Metrics} */
@@ -68,10 +69,10 @@ describe('Unit::Metrics', () => {
   describe('Metrics.comparison', () => {
     /** @test {Metrics.comparison} */
     it('throws an error if the value query parameter is not provided', () => {
-      expect(() => metricsInstance.comparison()).to.throw(
+      expect(() => metricsInstance.comparison(undefined as any)).to.throw(
         'The value query parameter is required for comparing metrics'
       );
-      expect(() => metricsInstance.comparison({})).to.throw(
+      expect(() => metricsInstance.comparison({} as any)).to.throw(
         'The value query parameter is required for comparing metrics'
       );
     });
@@ -100,7 +101,7 @@ describe('Unit::Metrics', () => {
   describe('Metrics.insights', () => {
     /** @test {Metrics.insights} */
     it('throws an error if a metric Id is not provided', () => {
-      expect(() => metricsInstance.insights()).to.throw(
+      expect(() => metricsInstance.insights(undefined as any)).to.throw(
         'A metric Id is required for insight metrics.'
       );
     });
@@ -129,7 +130,7 @@ describe('Unit::Metrics', () => {
   describe('Metrics.overall', () => {
     /** @test {Metrics.overall} */
     it('throws an error if a metric Id is not provided', () => {
-      expect(() => metricsInstance.overall()).to.throw(
+      expect(() => metricsInstance.overall(undefined as any)).to.throw(
         'A metric Id is required for overall metrics.'
       );
     });
@@ -158,7 +159,7 @@ describe('Unit::Metrics', () => {
   describe('Metrics.timeseries', () => {
     /** @test {Metrics.timeseries} */
     it('throws an error if a metric Id is not provided', () => {
-      expect(() => metricsInstance.timeseries()).to.throw(
+      expect(() => metricsInstance.timeseries(undefined as any)).to.throw(
         'A metric Id is required for timeseries metrics.'
       );
     });

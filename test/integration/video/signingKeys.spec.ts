@@ -1,5 +1,5 @@
-const { expect } = require('chai');
-const Mux = require('../../../src/mux');
+import { expect } from 'chai';
+import Mux from '../../../src/mux';
 const nockBack = require('nock').back;
 
 /** @test {Uploads} */
@@ -29,6 +29,7 @@ describe('SigningKeys', () => {
       const createdSigningKey = await Video.SigningKeys.create();
 
       const signingKey = await Video.SigningKeys.get(createdSigningKey.id);
+      console.log('signingKey', signingKey);
       expect(signingKey.id).to.exist;
       expect(signingKey.created_at).to.exist;
       expect(signingKey.private_key).to.not.exist;

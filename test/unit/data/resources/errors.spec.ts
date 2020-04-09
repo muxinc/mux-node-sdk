@@ -1,7 +1,7 @@
-const { expect } = require('chai');
-const moxios = require('moxios');
-const sinon = require('sinon');
-const Errors = require('../../../../src/data/resources/errors');
+import { expect } from 'chai';
+import moxios from 'moxios';
+import sinon from 'sinon';
+import Errors from '../../../../src/data/resources/errors';
 
 /** @test {Errors} */
 describe('Unit::Errors', () => {
@@ -9,12 +9,13 @@ describe('Unit::Errors', () => {
   const testSecret = 'testSecret';
   const errorsInstance = new Errors(testApiKey, testSecret);
 
+  // TODO: Figure out why axios and moxios don't match
   beforeEach(() => {
-    moxios.install(errorsInstance.http);
+    moxios.install(errorsInstance.http as any);
   });
 
   afterEach(() => {
-    moxios.uninstall(errorsInstance.http);
+    moxios.uninstall(errorsInstance.http as any);
   });
 
   /** @test {Errors} */

@@ -1,6 +1,6 @@
-const { expect } = require('chai');
-const path = require('path');
-const JWT = require('../../../src/utils/jwt');
+import { expect } from 'chai';
+import path from 'path';
+import JWT from '../../../src/utils/jwt';
 
 const TEST_ID = '01XNj9qIpoW3eU1sED8EqrFRy01J3VTZ01x';
 const TEST_SECRET =
@@ -61,6 +61,7 @@ describe('Utils::JWT', () => {
     });
 
     it('takes a file path for a secret', () => {
+      console.log('dirname', __dirname);
       const options = {
         keyId: TEST_ID,
         keyFilePath: path.join(__dirname, 'example-private-key.pem'),

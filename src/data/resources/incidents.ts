@@ -2,7 +2,7 @@
  * Mux Incidents
  * Copyright(c) 2019 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
 
 /**
  * @private Base incidents path for the Mux API
@@ -18,7 +18,7 @@ const PATH = '/data/v1/incidents';
  * // Returns a list of all open incidents
  * Data.Incidents.list({ status: 'open' });
  */
-class Incidents extends Base {
+export default class Incidents extends Base {
   /**
    * Returns a list of all open incidents
    *
@@ -33,7 +33,7 @@ class Incidents extends Base {
    *
    * @see https://api-docs.mux.com/#incident-get
    */
-  list(params) {
+  list(params?: any) {
     return this.http.get(PATH, { params });
   }
 
@@ -52,7 +52,7 @@ class Incidents extends Base {
    *
    * @see https://api-docs.mux.com/#incident-get-1
    */
-  get(incidentId) {
+  get(incidentId: string) {
     if (!incidentId) {
       throw new Error('An incident Id is required for incident details.');
     }
@@ -75,12 +75,10 @@ class Incidents extends Base {
    *
    * @see https://api-docs.mux.com/#incident-get-2
    */
-  related(incidentId, params) {
+  related(incidentId: string, params?: any) {
     if (!incidentId) {
       throw new Error('An incident Id is required for related incidents.');
     }
     return this.http.get(`${PATH}/${incidentId}/related`, { params });
   }
 }
-
-module.exports = Incidents;

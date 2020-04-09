@@ -2,7 +2,7 @@
  * Mux Assets
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
 
 /**
  * @private Base asset path for the Mux API
@@ -24,7 +24,7 @@ const buildBasePath = uploadId => `${PATH}/${uploadId}`;
  * // Create an upload
  * Video.Uploads.create({ new_asset_settings: { playback_policy: 'public' } });
  */
-class Uploads extends Base {
+export default class Uploads extends Base {
   /**
    * Creates a direct upload with the specified JSON parameters
    * @extends Base
@@ -42,7 +42,7 @@ class Uploads extends Base {
    *
    * @see https://docs.mux.com/reference#upload-an-asset
    */
-  create(params) {
+  create(params: any) {
     if (!params) {
       return Promise.reject(
         new Error('Params are required for creating a direct upload')
@@ -65,7 +65,7 @@ class Uploads extends Base {
    *
    * @see https://docs.mux.com/reference#delete-an-asset
    */
-  cancel(uploadId) {
+  cancel(uploadId: string) {
     if (!uploadId) {
       return Promise.reject(new Error('An upload ID is required'));
     }
@@ -85,7 +85,7 @@ class Uploads extends Base {
    *
    * @see https://docs.mux.com/reference#retrieve-an-asset
    */
-  get(uploadId) {
+  get(uploadId: string) {
     if (!uploadId) {
       return Promise.reject(
         new Error('An upload ID is required to get an asset')
@@ -94,5 +94,3 @@ class Uploads extends Base {
     return this.http.get(buildBasePath(uploadId));
   }
 }
-
-module.exports = Uploads;

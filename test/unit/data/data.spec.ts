@@ -1,11 +1,11 @@
-const { expect } = require('chai');
-const Data = require('../../../src/data/data');
-const Metrics = require('../../../src/data/resources/metrics');
-const Filters = require('../../../src/data/resources/filters');
-const Errors = require('../../../src/data/resources/errors');
-const VideoViews = require('../../../src/data/resources/video_views');
-const Exports = require('../../../src/data/resources/exports');
-const Incidents = require('../../../src/data/resources/incidents');
+import { expect } from 'chai';
+import Data from '../../../src/data/data';
+import Metrics from '../../../src/data/resources/metrics';
+import Filters from '../../../src/data/resources/filters';
+import Errors from '../../../src/data/resources/errors';
+import VideoViews from '../../../src/data/resources/video_views';
+import Exports from '../../../src/data/resources/exports';
+import Incidents from '../../../src/data/resources/incidents';
 
 /** @test {Data} */
 describe('Unit::Data', () => {

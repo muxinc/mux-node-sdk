@@ -19,11 +19,14 @@
   "license": "MIT",
   "scripts": {
     "docs": "esdoc",
-    "test": "mocha --recursive ./test/unit",
-    "test:unit": "NOCK_BACK_MODE=record mocha --recursive ./test",
-    "test:int": "NOCK_BACK_MODE=wild mocha --recursive ./test",
+    "test": "mocha --recursive ./dist/test",
+    "test:unit": "NOCK_BACK_MODE=record mocha --recursive ./dist/test",
+    "test:int": "NOCK_BACK_MODE=wild mocha --recursive ./dist/test",
     "format": "eslint src/** test/**",
-    "format:fix": "eslint src/** test/** --fix"
+    "format:fix": "eslint src/** test/** --fix",
+    "build": "tsc",
+    "clean": "rimraf ./dist",
+    "prepublishOnly": "tsc --declaration"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -31,6 +34,11 @@
     "jsonwebtoken": "^8.4.0"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "7.0.2",
+    "@types/moxios": "0.4.9",
+    "@types/node": "13.11.1",
+    "@types/sinon": "9.0.0",
     "chai": "^4.1.2",
     "dotenv": "^5.0.1",
     "esdoc": "^1.0.4",
@@ -43,11 +51,13 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-prettier": "^3.0.0",
-    "mocha": "^5.1.1",
+    "mocha": "^7.1.1",
     "moxios": "^0.4.0",
     "nock": "^10.0.4",
     "prettier": "^1.15.3",
-    "sinon": "^4.5.0"
+    "rimraf": "3.0.2",
+    "sinon": "^4.5.0",
+    "typescript": "3.8.3"
   },
   "repository": {
     "type": "git",

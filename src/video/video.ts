@@ -3,12 +3,12 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-const Assets = require('./resources/assets');
-const Base = require('../base');
-const LiveStreams = require('./resources/liveStreams');
-const Uploads = require('./resources/uploads');
-const SigningKeys = require('./resources/signingKeys');
-const DeliveryUsage = require('./resources/deliveryUsage');
+import Assets from './resources/assets';
+import Base from '../base';
+import LiveStreams from './resources/liveStreams';
+import Uploads from './resources/uploads';
+import SigningKeys from './resources/signingKeys';
+import DeliveryUsage from './resources/deliveryUsage';
 
 /**
  * @ignore
@@ -25,32 +25,30 @@ const DeliveryUsage = require('./resources/deliveryUsage');
  * // Create an asset playback ID
  * Video.Assets.createPlaybackId(assetId, { policy: 'public' });
  */
-class Video extends Base {
+export default class Video extends Base {
+  /** @type {Assets} */
+  Assets = new Assets(this);
+
+  /** @type {LiveStreams} */
+  LiveStreams = new LiveStreams(this);
+
+  /** @Type {Uploads} */
+  Uploads = new Uploads(this);
+
+  /** @Type {SigningKeys} */
+  SigningKeys = new SigningKeys(this);
+
+  /** @Type {DeliveryUsage} */
+  DeliveryUsage = new DeliveryUsage(this);
+
   /**
-   * Video Constructor
-   *
-   * @param {string} accessToken - Mux API Access Token
-   * @param {string} secret - Mux API secret
-   * @constructor
-   */
+ * Video Constructor
+ *
+ * @param {string} accessToken - Mux API Access Token
+ * @param {string} secret - Mux API secret
+ * @constructor
+ */
   constructor(...params) {
     super(...params);
-
-    /** @type {Assets} */
-    this.Assets = new Assets(this);
-
-    /** @type {LiveStreams} */
-    this.LiveStreams = new LiveStreams(this);
-
-    /** @Type {Uploads} */
-    this.Uploads = new Uploads(this);
-
-    /** @Type {SigningKeys} */
-    this.SigningKeys = new SigningKeys(this);
-
-    /** @Type {DeliveryUsage} */
-    this.DeliveryUsage = new DeliveryUsage(this);
   }
 }
-
-module.exports = Video;

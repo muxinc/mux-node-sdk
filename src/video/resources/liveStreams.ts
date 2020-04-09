@@ -2,7 +2,7 @@
  * Mux Live Streams
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
 
 /**
  * @private Base live stream path for the Mux API
@@ -29,7 +29,7 @@ const buildBasePath = liveStreamId => `${PATH}/${liveStreamId}`;
  *  new_asset_settings: { playback_policy: 'public' }
  * });
  */
-class LiveStreams extends Base {
+export default class LiveStreams extends Base {
   /**
    * Creates a Mux live stream with the specified JSON parameters
    * @param {Object} params - Live Stream JSON parameters (e.g playback_policy)
@@ -47,7 +47,7 @@ class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/reference#create-a-live-stream
    */
-  create(params) {
+  create(params?: any) {
     return this.http.post(PATH, params);
   }
 
@@ -64,7 +64,7 @@ class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/reference#delete-a-live-stream
    */
-  del(liveStreamId) {
+  del(liveStreamId: string) {
     if (!liveStreamId) {
       return Promise.reject(
         new Error('A live stream ID is required to delete a live stream')
@@ -86,7 +86,7 @@ class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/reference#retrieve-a-live-stream
    */
-  get(liveStreamId) {
+  get(liveStreamId: string) {
     if (!liveStreamId) {
       return Promise.reject(
         new Error('A live stream ID is required to get a live stream')
@@ -107,7 +107,7 @@ class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/reference#list-live-streams
    */
-  list(params) {
+  list(params?: any) {
     return this.http.get(PATH, { params });
   }
 
@@ -124,7 +124,7 @@ class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/reference#signal-live-stream-complete
    */
-  signalComplete(liveStreamId) {
+  signalComplete(liveStreamId: string) {
     if (!liveStreamId) {
       return Promise.reject(
         new Error('A live stream ID is required to signal a stream is complete')
@@ -147,7 +147,7 @@ class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/reference#reset-a-stream-key
    */
-  resetStreamKey(liveStreamId) {
+  resetStreamKey(liveStreamId: string) {
     if (!liveStreamId) {
       return Promise.reject(
         new Error('A live stream ID is required to reset a live stream key')
@@ -170,7 +170,10 @@ class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/reference#add-a-live-stream-playback-id
    */
-  createPlaybackId(liveStreamId, params) {
+  createPlaybackId(liveStreamId: string, params: {
+    [index: string]: any;
+    policy: string;
+  }) {
     if (!liveStreamId) {
       return Promise.reject(
         new Error(
@@ -206,7 +209,7 @@ class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/reference#delete-a-live-stream-playback-id
    */
-  deletePlaybackId(liveStreamId, playbackId) {
+  deletePlaybackId(liveStreamId: string, playbackId: string) {
     if (!liveStreamId) {
       return Promise.reject(
         new Error(
@@ -241,7 +244,10 @@ class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/reference#create-a-simulcast-target
    */
-  createSimulcastTarget(liveStreamId, params) {
+  createSimulcastTarget(liveStreamId: string, params: {
+    [index: string]: any;
+    url: string;
+  }) {
     if (!liveStreamId) {
       return Promise.reject(
         new Error('A live stream ID is required to create a simulcast target')
@@ -273,7 +279,7 @@ class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/reference#retrieve-a-simulcast-target
    */
-  getSimulcastTarget(liveStreamId, simulcastTargetId) {
+  getSimulcastTarget(liveStreamId: string, simulcastTargetId: string) {
     if (!liveStreamId) {
       return Promise.reject(
         new Error('A live stream ID is required to get a simulcast target')
@@ -304,7 +310,7 @@ class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/reference#delete-a-simulcast-target
    */
-  deleteSimulcastTarget(liveStreamId, simulcastTargetId) {
+  deleteSimulcastTarget(liveStreamId: string, simulcastTargetId: string) {
     if (!liveStreamId) {
       return Promise.reject(
         new Error('A live stream ID is required to delete a simulcast target')
@@ -323,5 +329,3 @@ class LiveStreams extends Base {
     );
   }
 }
-
-module.exports = LiveStreams;

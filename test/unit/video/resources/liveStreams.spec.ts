@@ -1,7 +1,7 @@
-const { expect } = require('chai');
-const sinon = require('sinon');
-const moxios = require('moxios');
-const LiveStreams = require('../../../../src/video/resources/liveStreams');
+import { expect } from 'chai';
+import sinon from 'sinon';
+import moxios from 'moxios';
+import LiveStreams from '../../../../src/video/resources/liveStreams';
 
 /** @test {LiveStreams} */
 describe('Unit::LiveStreams', () => {
@@ -9,12 +9,13 @@ describe('Unit::LiveStreams', () => {
   const testSecret = 'testSecret';
   const testLiveStreams = new LiveStreams(testApiKey, testSecret);
 
+  // TODO: Figure out why axios and moxios don't match
   beforeEach(() => {
-    moxios.install(testLiveStreams.http);
+    moxios.install(testLiveStreams.http as any);
   });
 
   afterEach(() => {
-    moxios.uninstall(testLiveStreams.http);
+    moxios.uninstall(testLiveStreams.http as any);
   });
 
   /** @test {LiveStreams} */
@@ -52,6 +53,7 @@ describe('Unit::LiveStreams', () => {
       });
 
       const onFulfilled = sinon.spy();
+      // TODO: Should this test with two parameters?
       testLiveStreams
         .create('testLiveStream', {
           playback_policy: 'public',
@@ -90,7 +92,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.del} */
     it('throws an error when a live stream ID is not given', () =>
       testLiveStreams
-        .del()
+        .del(undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -163,7 +165,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.get} */
     it('throws an error when a live stream ID is not given', () =>
       testLiveStreams
-        .get()
+        .get(undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -199,7 +201,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.signalComplete} */
     it('throws an error when a live stream ID is not given', () =>
       testLiveStreams
-        .signalComplete()
+        .signalComplete(undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -235,7 +237,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.resetStreamKey} */
     it('throws an error when a live stream ID is not given', () =>
       testLiveStreams
-        .resetStreamKey()
+        .resetStreamKey(undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -273,7 +275,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.createPlaybackId} */
     it('throws an error if params are not given', () =>
       testLiveStreams
-        .createPlaybackId('testLiveStream')
+        .createPlaybackId('testLiveStream', undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -287,7 +289,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.createPlaybackId} */
     it('throws an error if a live stream ID is not given', () =>
       testLiveStreams
-        .createPlaybackId()
+        .createPlaybackId(undefined as any, undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -325,7 +327,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.deletePlaybackId} */
     it('throws an error if a live stream ID is not given', () =>
       testLiveStreams
-        .deletePlaybackId()
+        .deletePlaybackId(undefined as any, undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -339,7 +341,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.deletePlaybackId} */
     it('throws an error if a playback id is not given', () =>
       testLiveStreams
-        .deletePlaybackId('liveStreamId')
+        .deletePlaybackId('liveStreamId', undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -380,7 +382,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.createSimulcastTarget} */
     it('throws an error if a live stream ID is not given', () =>
       testLiveStreams
-        .createSimulcastTarget()
+        .createSimulcastTarget(undefined as any, undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -394,7 +396,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.createSimulcastTarget} */
     it('throws an error if a url and stream key are not given', () =>
       testLiveStreams
-        .createSimulcastTarget('testLiveStream')
+        .createSimulcastTarget('testLiveStream', undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -432,7 +434,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.getSimulcastTarget} */
     it('throws an error if a live stream ID is not given', () =>
       testLiveStreams
-        .getSimulcastTarget()
+        .getSimulcastTarget(undefined as any, undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -446,7 +448,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.createSimulcastTarget} */
     it('throws an error if a simulcast target id is not given', () =>
       testLiveStreams
-        .getSimulcastTarget('testLiveStream')
+        .getSimulcastTarget('testLiveStream', undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -484,7 +486,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.deleteSimulcastTarget} */
     it('throws an error if a live stream ID is not given', () =>
       testLiveStreams
-        .deleteSimulcastTarget()
+        .deleteSimulcastTarget(undefined as any, undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })
@@ -498,7 +500,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.deleteSimulcastTarget} */
     it('throws an error if a simulcast target id is not given', () =>
       testLiveStreams
-        .deleteSimulcastTarget('testLiveStream')
+        .deleteSimulcastTarget('testLiveStream', undefined as any)
         .then(res => {
           expect(res).to.not.exist;
         })

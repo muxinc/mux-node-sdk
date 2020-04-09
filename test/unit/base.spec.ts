@@ -1,6 +1,6 @@
-const { expect } = require('chai');
-const moxios = require('moxios');
-const Base = require('../../src/base');
+import { expect } from 'chai';
+import moxios from 'moxios';
+import Base from '../../src/base';
 
 /** @test {Mux} */
 describe('Unit::Base', () => {
