@@ -3,6 +3,8 @@
  * Copyright(c) 2018 Mux Inc.
  */
 import Base from '../../base';
+import { Upload } from '../../interfaces/upload/Upload';
+import { CreateUpload } from '../../interfaces/create-upload/CreateUpload';
 
 /**
  * @private Base asset path for the Mux API
@@ -42,14 +44,14 @@ export default class Uploads extends Base {
    *
    * @see https://docs.mux.com/reference#upload-an-asset
    */
-  create(params: any) {
+  create(params: CreateUpload) {
     if (!params) {
       return Promise.reject(
         new Error('Params are required for creating a direct upload')
       );
     }
 
-    return this.http.post(PATH, params);
+    return this.http.post<Upload>(PATH, params);
   }
 
   /**
@@ -91,6 +93,6 @@ export default class Uploads extends Base {
         new Error('An upload ID is required to get an asset')
       );
     }
-    return this.http.get(buildBasePath(uploadId));
+    return this.http.get<Upload>(buildBasePath(uploadId));
   }
 }
