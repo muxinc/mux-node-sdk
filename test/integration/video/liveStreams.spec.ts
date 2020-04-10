@@ -171,7 +171,7 @@ describe('Integration::LiveStreams', () => {
 
     /** @test {PlaybackIds.deletePlaybackId} */
     it('fails to get playbackIds for a live stream when not given a playback ID', () =>
-      Video.LiveStreams.deletePlaybackId(testLiveStream.id).catch(
+      Video.LiveStreams.deletePlaybackId(testLiveStream.id, undefined as any).catch(
         err => expect(err).to.exist
       ));
   });
@@ -214,7 +214,7 @@ describe('Integration::LiveStreams', () => {
 
     /** @test {LiveStreams.getSimulcastTarget} */
     it('fails to get a simulcast target if given an incorrect live stream id', () =>
-      Video.LiveStreams.getSimulcastTarget('somefakeid').catch(
+      Video.LiveStreams.getSimulcastTarget('somefakeid', undefined as any).catch(
         err => expect(err).to.exist
       ));
 
@@ -222,7 +222,7 @@ describe('Integration::LiveStreams', () => {
     it('fails to get a simulcast target given a fake simulcast target idj', () =>
       Video.LiveStreams.createSimulcastTarget(
         'somefakeid',
-        'someotherfakeid'
+        'someotherfakeid' as any
       ).catch(err => expect(err).to.exist));
   });
 
@@ -249,7 +249,7 @@ describe('Integration::LiveStreams', () => {
 
     /** @test {PlaybackIds.deletePlaybackId} */
     it('fails to get playbackIds for a live stream when not given a playback ID', () =>
-      Video.LiveStreams.deletePlaybackId(testLiveStream.id).catch(
+      Video.LiveStreams.deletePlaybackId(testLiveStream.id, undefined as any).catch(
         err => expect(err).to.exist
       ));
   });
