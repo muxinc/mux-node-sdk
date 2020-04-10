@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import Mux from '../../src/mux';
+import * as Mux from '../../src/mux';
 import MuxVideo from '../../src/video/video';
 import MuxData from '../../src/data/data';
 

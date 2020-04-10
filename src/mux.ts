@@ -41,7 +41,7 @@ import JWT from './utils/jwt';
  * // Verify a webhook signature
  * Webhooks.verifyHeader(body, signature, secret);
  */
-export default class Mux extends Base {
+class Mux extends Base {
   /** @type {Video} */
   Video = new Video(this);
 
@@ -68,3 +68,5 @@ export default class Mux extends Base {
 
   static Webhooks = Webhooks;
 }
+
+export = Mux;
