@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto, { KeyObject } from 'crypto';
 
 const DEFAULT_TOLERANCE = 300; // 5 minutes
 const EXPECTED_SCHEME = 'v1';
@@ -33,7 +33,7 @@ function secureCompare(_a, _b) {
 }
 
 export default class VerifyHeader {
-  static parseHeader(header, scheme = EXPECTED_SCHEME) {
+  static parseHeader(header: string, scheme: 'v1' | string = EXPECTED_SCHEME): { timestamp: number, signatures: string[] } | null {
     if (typeof header !== 'string') {
       return null;
     }
@@ -60,14 +60,14 @@ export default class VerifyHeader {
     );
   }
 
-  static computeSignature(payload, secret) {
+  static computeSignature(payload: string, secret: string | ArrayBufferView | KeyObject): string {
     return crypto
-      .createHmac('sha256', secret)
+      .createHmac('sha256', secret as any)
       .update(payload, 'utf8')
       .digest('hex');
   }
 
-  static verify(_payload, _header, secret, tolerance = DEFAULT_TOLERANCE) {
+  static verify(_payload: string | Buffer, _header: string | Buffer, secret: string, tolerance: number = DEFAULT_TOLERANCE): boolean {
     const payload = Buffer.isBuffer(_payload)
       ? _payload.toString('utf8')
       : _payload;

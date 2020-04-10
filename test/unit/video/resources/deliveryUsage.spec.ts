@@ -9,12 +9,13 @@ describe('Unit::DeliveryUsage', () => {
   const testSecret = 'testSecret';
   const testDeliveryUsage = new DeliveryUsage(testApiKey, testSecret);
 
+  // TODO: Figure out why axios and moxios don't match
   beforeEach(() => {
-    moxios.install(testDeliveryUsage.http);
+    moxios.install(testDeliveryUsage.http as any);
   });
 
   afterEach(() => {
-    moxios.uninstall(testDeliveryUsage.http);
+    moxios.uninstall(testDeliveryUsage.http as any);
   });
 
   /** @test {DeliveryUsage.list} */

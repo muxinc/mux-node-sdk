@@ -149,7 +149,7 @@ describe('Integration::LiveStreams', () => {
 
     /** @test {LiveStreams.createPlaybackId} */
     it('fails to create a playback id if not given a playback policy', () =>
-      Video.LiveStreams.createPlaybackId('somefakeid').catch(
+      Video.LiveStreams.createPlaybackId('somefakeid', undefined as any).catch(
         err => expect(err).to.exist
       ));
   });
@@ -196,7 +196,7 @@ describe('Integration::LiveStreams', () => {
 
     /** @test {LiveStreams.createSimulcastTarget} */
     it('fails to create a playback id if not given params', () =>
-      Video.LiveStreams.createSimulcastTarget('somefakeid').catch(
+      Video.LiveStreams.createSimulcastTarget('somefakeid', undefined as any).catch(
         err => expect(err).to.exist
       ));
   });

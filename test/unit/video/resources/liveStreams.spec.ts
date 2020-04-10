@@ -53,9 +53,8 @@ describe('Unit::LiveStreams', () => {
       });
 
       const onFulfilled = sinon.spy();
-      // TODO: Should this test with two parameters?
       testLiveStreams
-        .create('testLiveStream', {
+        .create({
           playback_policy: 'public',
           new_asset_settings: { playback_policy: 'public' },
         })

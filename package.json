@@ -19,7 +19,7 @@
   "license": "MIT",
   "scripts": {
     "docs": "esdoc",
-    "test": "mocha --recursive ./dist/test",
+    "test": "mocha --recursive ./dist/test/unit",
     "test:unit": "NOCK_BACK_MODE=record mocha --recursive ./dist/test",
     "test:int": "NOCK_BACK_MODE=wild mocha --recursive ./dist/test",
     "format": "eslint src/** test/**",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/mocha": "7.0.2",
-    "@types/moxios": "0.4.9",
+    "@types/moxios": "0.4.5",
     "@types/node": "13.11.1",
     "@types/sinon": "9.0.0",
     "chai": "^4.1.2",

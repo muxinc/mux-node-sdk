@@ -37,11 +37,12 @@ describe('Unit::Base', () => {
     });
 
     describe('http requests', () => {
-      let baseClient;
+      let baseClient: Base;
 
+      // TODO: Figure out why axios and moxios don't match
       beforeEach(() => {
         baseClient = new Base('fancy-new-id', 'fancy-new-secret');
-        moxios.install(baseClient.http);
+        moxios.install(baseClient.http as any);
 
         moxios.stubRequest('https://api.mux.com/test/v1/foo', {
           status: 200,
@@ -52,7 +53,7 @@ describe('Unit::Base', () => {
       afterEach(() => {
         delete process.env.MUX_TOKEN_ID;
         delete process.env.MUX_TOKEN_SECRET;
-        moxios.uninstall(baseClient.http);
+        moxios.uninstall(baseClient.http as any);
       });
 
       it('fire an event on a request', done => {

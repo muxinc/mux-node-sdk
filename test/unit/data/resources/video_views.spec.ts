@@ -9,12 +9,13 @@ describe('Unit::VideoViews', () => {
   const testSecret = 'testSecret';
   const videoViewsInstance = new VideoViews(testApiKey, testSecret);
 
+  // TODO: Figure out why axios and moxios don't match
   beforeEach(() => {
-    moxios.install(videoViewsInstance.http);
+    moxios.install(videoViewsInstance.http as any);
   });
 
   afterEach(() => {
-    moxios.uninstall(videoViewsInstance.http);
+    moxios.uninstall(videoViewsInstance.http as any);
   });
 
   /** @test {VideoViews} */
@@ -46,10 +47,10 @@ describe('Unit::VideoViews', () => {
   describe('VideoViews.list', () => {
     /** @test {VideoViews.list} */
     it('throws an error if the viewer_id query parameter is not provided', () => {
-      expect(() => videoViewsInstance.list()).to.throw(
+      expect(() => videoViewsInstance.list(undefined as any)).to.throw(
         'The viewer_id query parameter is required for listing video views.'
       );
-      expect(() => videoViewsInstance.list({})).to.throw(
+      expect(() => videoViewsInstance.list({} as any)).to.throw(
         'The viewer_id query parameter is required for listing video views.'
       );
     });

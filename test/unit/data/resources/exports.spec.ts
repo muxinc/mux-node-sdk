@@ -9,12 +9,13 @@ describe('Unit::Exports', () => {
   const testSecret = 'testSecret';
   const exportsInstance = new Exports(testApiKey, testSecret);
 
+  // TODO: Figure out why axios and moxios don't match
   beforeEach(() => {
-    moxios.install(exportsInstance.http);
+    moxios.install(exportsInstance.http as any);
   });
 
   afterEach(() => {
-    moxios.uninstall(exportsInstance.http);
+    moxios.uninstall(exportsInstance.http as any);
   });
 
   /** @test {Exports} */
@@ -52,7 +53,7 @@ describe('Unit::Exports', () => {
       });
 
       const onFulfilled = sinon.spy();
-      exportsInstance.list({}).then(onFulfilled);
+      exportsInstance.list().then(onFulfilled);
 
       return moxios.wait(() => {
         expect(onFulfilled.getCall(0).args[0].exports).to.be.true;

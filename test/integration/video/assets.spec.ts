@@ -109,14 +109,14 @@ describe('Integration::Assets', () => {
 
     /** @test {PlaybackIds.create} */
     it('throws an error if an Asset ID is not given', () =>
-      Video.Assets.createPlaybackId().catch(err => {
+      Video.Assets.createPlaybackId(undefined as any, undefined as any).catch(err => {
         expect(err).to.exist;
         expect(err.message).to.equal('An asset ID is required');
       }));
 
     /** @test {PlaybackIds.create} */
     it('throws an error if params are not given', () =>
-      Video.Assets.createPlaybackId(testAsset.id).catch(err => {
+      Video.Assets.createPlaybackId(testAsset.id, undefined as any).catch(err => {
         expect(err).to.exist;
         expect(err.message).to.equal('Playback ID params are required');
       }));
@@ -151,7 +151,7 @@ describe('Integration::Assets', () => {
 
     /** @test {Assets.deletePlaybackId} */
     it('fails to delete playbackIds for an asset when not given a playback ID', () =>
-      Video.Assets.deletePlaybackId(testAsset.id).catch(
+      Video.Assets.deletePlaybackId(testAsset.id, undefined as any).catch(
         err => expect(err).to.exist
       ));
   });

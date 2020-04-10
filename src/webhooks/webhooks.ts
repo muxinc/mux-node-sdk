@@ -34,7 +34,7 @@ export default class Webhooks {
    *
    * @see https://docs.mux.com/docs/webhook-security
    */
-  static verifyHeader(...args) {
-    return VerifyHeader.verify(...args);
+  static verifyHeader(_payload: string | Buffer, _header: string | Buffer, secret: string, tolerance?: number): boolean {
+    return VerifyHeader.verify(_payload, _header, secret, tolerance);
   }
 }

@@ -9,12 +9,13 @@ describe('Unit::RealTime', () => {
   const testSecret = 'testSecret';
   const realTimeInstance = new RealTime(testApiKey, testSecret);
 
+  // TODO: Figure out why axios and moxios don't match
   beforeEach(() => {
-    moxios.install(realTimeInstance.http);
+    moxios.install(realTimeInstance.http as any);
   });
 
   afterEach(() => {
-    moxios.uninstall(realTimeInstance.http);
+    moxios.uninstall(realTimeInstance.http as any);
   });
 
   /** @test {RealTime} */
@@ -90,7 +91,7 @@ describe('Unit::RealTime', () => {
       expect(() => realTimeInstance.breakdown(undefined as any, undefined as any)).to.throw(
         'A metric Id is required for real-time breakdown information'
       );
-      expect(() => realTimeInstance.breakdown({} as any)).to.throw(
+      expect(() => realTimeInstance.breakdown('playback-failure-percentage', undefined as any)).to.throw(
         'The dimension query parameter is required for real-time breakdown information'
       );
     });
@@ -152,7 +153,7 @@ describe('Unit::RealTime', () => {
   describe('RealTime.timeseries', () => {
     /** @test {RealTime.timeseries} */
     it('throws an error if the value query parameter is not provided', () => {
-      expect(() => realTimeInstance.timeseries()).to.throw(
+      expect(() => realTimeInstance.timeseries(undefined as any)).to.throw(
         'A metric Id is required for real-time timeseries information'
       );
     });
