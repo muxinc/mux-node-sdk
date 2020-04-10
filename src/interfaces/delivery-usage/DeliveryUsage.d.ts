@@ -1,4 +1,4 @@
-import Data from "../../data/data"
+import { Data } from "../data/Data";
 
 export interface DeliveryUsage {
     /**
