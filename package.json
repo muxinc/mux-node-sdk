@@ -12,7 +12,8 @@
     "live streaming"
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
-  "main": "src/mux.js",
+  "main": "dist/mux.js",
+  "types": "dist/mux.d.ts",
   "engines": {
     "node": ">=8"
   },
