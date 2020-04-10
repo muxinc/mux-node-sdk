@@ -1,0 +1,1 @@
+export type TrackMaxChannelLayout = 'mono' | 'stereo' | '5.1' | '7.1';

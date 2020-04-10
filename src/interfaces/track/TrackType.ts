@@ -1,0 +1,1 @@
+export type TrackType = 'video' | 'audio' | 'text';
