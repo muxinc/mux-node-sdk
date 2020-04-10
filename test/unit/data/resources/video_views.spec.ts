@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import moxios from 'moxios';
-import sinon from 'sinon';
+import * as moxios from 'moxios';
+import * as sinon from 'sinon';
 import VideoViews from '../../../../src/data/resources/video_views';
 
 /** @test {VideoViews} */

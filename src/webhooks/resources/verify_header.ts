@@ -1,4 +1,4 @@
-import crypto, { KeyObject } from 'crypto';
+import * as crypto from 'crypto';
 
 const DEFAULT_TOLERANCE = 300; // 5 minutes
 const EXPECTED_SCHEME = 'v1';
@@ -60,7 +60,7 @@ export default class VerifyHeader {
     );
   }
 
-  static computeSignature(payload: string, secret: string | ArrayBufferView | KeyObject): string {
+  static computeSignature(payload: string, secret: string | ArrayBufferView | crypto.KeyObject): string {
     return crypto
       .createHmac('sha256', secret as any)
       .update(payload, 'utf8')

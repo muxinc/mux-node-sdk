@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import moxios from 'moxios';
-import sinon from 'sinon';
+import * as moxios from 'moxios';
+import * as sinon from 'sinon';
 import Filters from '../../../../src/data/resources/filters';
 
 /** @test {Filters} */

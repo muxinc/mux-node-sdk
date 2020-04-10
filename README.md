@@ -39,7 +39,7 @@ Require the `@mux/mux-node` npm module and create a Mux instance. Your Mux insta
 that will allow you to access the Mux Data and Video APIs.
 
 ```javascript
-import Mux from '@mux/mux-node';
+import * as Mux from '@mux/mux-node';
 const { Video, Data } = new Mux(accessToken, secret);
 ```
 
@@ -134,7 +134,7 @@ Note that when passing in the payload you want to pass in the raw un-parsed requ
 Here's an example if you are using express.
 
 ```javascript
-import Mux from '@mux/mux-node';
+import * as Mux from '@mux/mux-node';
 const { Webhooks } = Mux;
 import express from 'express';
 import bodyParser from 'body-parser';

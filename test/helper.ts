@@ -1,5 +1,5 @@
 require('dotenv').config();
-import path from 'path';
+import * as path from 'path';
 const nockBack = require('nock').back;
 
 before(() => {

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import sinon from 'sinon';
+import * as sinon from 'sinon';
 import Webhooks from '../../../src/webhooks/webhooks';
 
 /** @test {Webhooks} */

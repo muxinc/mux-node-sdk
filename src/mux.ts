@@ -69,4 +69,8 @@ class Mux extends Base {
   static Webhooks = Webhooks;
 }
 
+declare namespace Mux {
+  
+}
+
 export = Mux;

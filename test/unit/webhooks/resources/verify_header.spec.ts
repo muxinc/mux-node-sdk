@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import sinon from 'sinon';
+import * as sinon from 'sinon';
 import VerifyHeader from '../../../../src/webhooks/resources/verify_header';
 
 /** @test {VerifyHeader} */

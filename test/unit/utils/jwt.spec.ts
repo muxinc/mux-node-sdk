@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import path from 'path';
+import * as path from 'path';
 import JWT from '../../../src/utils/jwt';
 
 const TEST_ID = '01XNj9qIpoW3eU1sED8EqrFRy01J3VTZ01x';

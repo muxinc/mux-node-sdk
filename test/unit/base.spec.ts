@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import moxios from 'moxios';
+import * as moxios from 'moxios';
 import Base from '../../src/base';
 
 /** @test {Mux} */

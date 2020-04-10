@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import Mux from '../../../src/mux';
+import * as Mux from '../../../src/mux';
 
 const TEST_VIDEO =
   'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';

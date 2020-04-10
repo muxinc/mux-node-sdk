@@ -3,7 +3,7 @@
  * Note: Hacking this module into a class with static methods because ESDoc forces it. We'll revisit ESDoc later.
  * Documentationjs looks real nice.
  */
-import fs from 'fs';
+import * as fs from 'fs';
 import jwt from 'jsonwebtoken';
 
 const typeToClaim = type => {
@@ -57,7 +57,7 @@ const getPrivateKey = options => {
  * JWT - Signed URL token generation helpers
  *
  * @example
- * import Mux from '@mux/mux-node';
+ * import * as Mux from '@mux/mux-node';
  *
  * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' })
  */
@@ -74,7 +74,7 @@ export default class JWT {
    * @returns {string} - Returns a token to be used with a signed URL.
    *
    * @example
-   * import Mux from '@mux/mux-node';
+   * import * as Mux from '@mux/mux-node';
    *
    * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
    * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
@@ -110,7 +110,7 @@ export default class JWT {
    * @returns {Object} - If the token could be decoded, it returns the decoded token object
    *
    * @example
-   * import Mux from '@mux/mux-node';
+   * import * as Mux from '@mux/mux-node';
    *
    * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
    * const decoded = Mux.JWT.decode(token);

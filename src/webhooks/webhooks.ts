@@ -5,7 +5,7 @@ import VerifyHeader from './resources/verify_header';
  * Webhooks - Provides access to the Mux Webhooks signature verification
  *
  * @example
- * import Mux from '@mux/mux-node';
+ * import * as Mux from '@mux/mux-node';
  * const { Webhooks } = Mux;
  *
  * // Verify a webhook signature
@@ -26,7 +26,7 @@ export default class Webhooks {
    * @throws {Error} throw error when a webhook signature verification fails.
    *
    * @example
-   * import Mux from '@mux/mux-node';
+   * import * as Mux from '@mux/mux-node';
    * const { Webhooks } = Mux;
    *
    * // Verify a webhook signature

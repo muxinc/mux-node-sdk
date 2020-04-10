@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import Mux from '../../../src/mux';
+import * as Mux from '../../../src/mux';
 
 /** @test {Uploads} */
 describe('Integration::Uploads', () => {

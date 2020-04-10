@@ -2,7 +2,7 @@
 
 import axios, { AxiosInstance } from 'axios';
 import { EventEmitter } from 'events';
-import pkg from '../package.json';
+import pkg = require('../package.json');
 
 /**
  * Mux Base Class - Simple base class to be extended by all child modules.
