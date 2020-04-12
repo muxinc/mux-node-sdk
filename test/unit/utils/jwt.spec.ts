@@ -61,10 +61,9 @@ describe('Utils::JWT', () => {
     });
 
     it('takes a file path for a secret', () => {
-      console.log('dirname', __dirname);
       const options = {
         keyId: TEST_ID,
-        keyFilePath: path.join(__dirname, 'example-private-key.pem'),
+        keyFilePath: path.join('./test/unit/utils', 'example-private-key.pem'),
         type: 'gif',
       };
 
