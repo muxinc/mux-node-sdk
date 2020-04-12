@@ -3,6 +3,8 @@
  * Copyright(c) 2018 Mux Inc.
  */
 import Base from '../../base';
+import { DeliveryUsage as _DeliveryUsage } from '../../interfaces/delivery-usage/DeliveryUsage';
+import { ListDeliveryUsage } from '../../interfaces/delivery-usage/ListDeliveryUsage';
 
 /**
  * @private Base delivery usage path for the Mux API
@@ -32,7 +34,7 @@ export default class DeliveryUsage extends Base {
    *
    * @see https://docs.mux.com/reference#delivery-usage
    */
-  list(params?: any) {
-    return this.http.get(PATH, { params });
+  list(params?: ListDeliveryUsage) {
+    return this.http.get<_DeliveryUsage>(PATH, { params });
   }
 }

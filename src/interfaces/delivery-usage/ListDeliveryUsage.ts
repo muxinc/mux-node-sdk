@@ -1,4 +1,4 @@
-export interface DeliveryUsage {
+export interface ListDeliveryUsage {
     /**
      * Time window to get delivery usage information.
      * 
