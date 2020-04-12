@@ -1,4 +1,4 @@
-import { CreateAsset } from "../create-asset/CreateAsset";
+import { CreateAsset } from "../create/CreateAsset";
 
 export interface Upload {
     /** Unique identifier for the upload. */

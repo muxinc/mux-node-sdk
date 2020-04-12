@@ -1,4 +1,4 @@
-import { CreateAsset } from "../create-asset/CreateAsset"
+import { CreateAsset } from "./CreateAsset"
 
 export interface CreateUpload {
     /**

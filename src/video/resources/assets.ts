@@ -3,6 +3,11 @@
  * Copyright(c) 2018 Mux Inc.
  */
 import Base from '../../base';
+import { Asset } from '../../interfaces/asset/Asset';
+import { PlaybackId } from '../../interfaces/playback_id/PlaybackId';
+import { CreateTextTrack } from '../../interfaces/create/CreateTextTrack';
+import { AssetMp4Support } from '../../interfaces/asset/AssetMp4Support';
+import { MasterAcces } from '../../interfaces/master/MasterAccess';
 
 /**
  * @private Base asset path for the Mux API
@@ -45,7 +50,7 @@ export default class Assets extends Base {
       );
     }
 
-    return this.http.post(PATH, params);
+    return this.http.post<Asset>(PATH, params);
   }
 
   /**
@@ -89,7 +94,7 @@ export default class Assets extends Base {
         new Error('An asset ID is required to get an asset')
       );
     }
-    return this.http.get(buildBasePath(assetId));
+    return this.http.get<Asset>(buildBasePath(assetId));
   }
 
   /**
@@ -126,8 +131,8 @@ export default class Assets extends Base {
    *
    * @see https://docs.mux.com/reference#list-assets
    */
-  list(params?: any) {
-    return this.http.get(PATH, { params });
+  list(params?: { limit?: number, page?: number }) {
+    return this.http.get<Asset>(PATH, { params });
   }
 
   /**
@@ -152,7 +157,7 @@ export default class Assets extends Base {
     if (!playbackId) {
       return Promise.reject(new Error('A playback ID is required'));
     }
-    return this.http.get(
+    return this.http.get<PlaybackId>(
       `${buildBasePath(assetId)}/playback-ids/${playbackId}`
     );
   }
@@ -172,7 +177,6 @@ export default class Assets extends Base {
    * @see https://docs.mux.com/v1/reference#add-an-asset-playback-id
    */
   createPlaybackId(assetId: string, params: {
-    [index: string]: any;
     policy: string;
   }) {
     if (!assetId) {
@@ -182,7 +186,7 @@ export default class Assets extends Base {
     if (!params) {
       return Promise.reject(new Error('Playback ID params are required'));
     }
-    return this.http.post(`${buildBasePath(assetId)}/playback-ids`, params);
+    return this.http.post<PlaybackId>(`${buildBasePath(assetId)}/playback-ids`, params);
   }
 
   /**
@@ -231,7 +235,7 @@ export default class Assets extends Base {
    *
    * @see https://docs.mux.com/reference#create-a-subtitle-text-track
    */
-  createTrack(assetId: string, params: any) {
+  createTrack(assetId: string, params: CreateTextTrack) {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }
@@ -239,7 +243,7 @@ export default class Assets extends Base {
     if (!params) {
       return Promise.reject(new Error('Text track params are required'));
     }
-    return this.http.post(`${buildBasePath(assetId)}/tracks`, params);
+    return this.http.post<TextTrack>(`${buildBasePath(assetId)}/tracks`, params);
   }
 
   /**
@@ -281,8 +285,7 @@ export default class Assets extends Base {
    * @see https://docs.mux.com/reference#update-mp4-support
    */
   updateMp4Support(assetId: string, params: {
-    [index: string]: any;
-    mp4_support: string;
+    mp4_support: AssetMp4Support;
   }) {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
@@ -308,8 +311,7 @@ export default class Assets extends Base {
    * @see https://docs.mux.com/reference#update-master-access
    */
   updateMasterAccess(assetId: string, params: {
-    [index: string]: any;
-    master_access: string;
+    master_access: MasterAcces;
   }) {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));

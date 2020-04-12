@@ -4,7 +4,7 @@
  */
 import Base from '../../base';
 import { Upload } from '../../interfaces/upload/Upload';
-import { CreateUpload } from '../../interfaces/create-upload/CreateUpload';
+import { CreateUpload } from '../../interfaces/create/CreateUpload';
 
 /**
  * @private Base asset path for the Mux API
