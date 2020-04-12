@@ -27,6 +27,7 @@
     "format:fix": "eslint src/** test/** --fix",
     "build": "tsc",
     "clean": "rimraf ./dist",
+    "rebuild":"npm run clean && npm run build",
     "prepublishOnly": "tsc --declaration"
   },
   "dependencies": {

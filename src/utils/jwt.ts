@@ -4,7 +4,7 @@
  * Documentationjs looks real nice.
  */
 import * as fs from 'fs';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 
 const typeToClaim = type => {
   const typeMap = {

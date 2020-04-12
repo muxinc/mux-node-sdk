@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as Mux from '../../src/mux';
-import * as MuxVideo from '../../src/video/video';
-import * as MuxData from '../../src/data/data';
+import MuxVideo from '../../src/video/video';
+import MuxData from '../../src/data/data';
 
 /** @test {Mux} */
 describe('Unit::Mux', () => {
