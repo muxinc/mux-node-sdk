@@ -55,7 +55,7 @@ describe('Unit::DeliveryUsage', () => {
           asset_id: '123',
           limit: 100,
           page: 2,
-          timeframe: [date1, date2],
+          timeframe: [date1.toString(), date2.toString()],
         })
         .then(onFulfilled);
 

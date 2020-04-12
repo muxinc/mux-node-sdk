@@ -6,20 +6,21 @@ export interface ListDeliveryUsage {
      * 
      * Default time window is 1 hour representing usage from 13th to 12th hour from when the request is made.
      */
-    timeframe: [string, string];
+    timeframe?: [string, string] | [string] | [];
+    // TODO: Determine valid cases
 
     /**
      * Number of Delivery Usage objects to include in the response
      */
-    limit: number;
+    limit?: number;
 
     /**
      * Offset by this many pages, of the size of limit.
      */
-    page: number;
+    page?: number;
 
     /**
      * Filter response to return delivery usage for this asset only.
      */
-    asset_id: string;
+    asset_id?: string;
 }
