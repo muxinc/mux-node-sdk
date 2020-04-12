@@ -28,7 +28,7 @@
     "build": "tsc",
     "clean": "rimraf ./dist",
     "rebuild":"yarn run clean && yarn run build",
-    "prepublishOnly": "tsc --declaration"
+    "prepublishOnly": "yarn run clean && tsc --declaration"
   },
   "dependencies": {
     "axios": "^0.18.0",
