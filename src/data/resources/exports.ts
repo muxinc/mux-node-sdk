@@ -6,7 +6,7 @@ import Base from '../../base';
 
 /**
  * @private Base exports path for the Mux API
- * */
+ */
 const PATH = '/data/v1/exports';
 
 /**

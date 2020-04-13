@@ -45,7 +45,7 @@ export default class Data extends Base {
   /** @type {VideoViews} */
   VideoViews = new VideoViews(this);
 
-  /**
+/**
  * Data Constructor
  *
  * @param {string} accessToken - Mux API Access Token

@@ -4,6 +4,14 @@ import axios, { AxiosInstance } from 'axios';
 import { EventEmitter } from 'events';
 import pkg = require('../package.json');
 
+export interface RequestOptions {
+  baseUrl?: string;
+  auth?: {
+    username?: string;
+    password?: string;
+  }
+}
+
 /**
  * Mux Base Class - Simple base class to be extended by all child modules.
  *
@@ -17,23 +25,16 @@ import pkg = require('../package.json');
  *
  */
 export default class Base extends EventEmitter {
-  _tokenId?: string;
-  _tokenSecret?: string;
-  _config?: {
-    baseUrl?: string;
-  };
-  _requestOptions?: {
-    auth?: {
-      username?: string;
-      password?: string;
-    }
-  };
+  private _tokenId?: string;
+  private _tokenSecret?: string;
+  private _config?: RequestOptions;
+  // TODO: Should this be removed?
+  private _requestOptions?: RequestOptions;
   http: AxiosInstance = undefined as any;
 
-  constructor(base: Base);
-  constructor(config: Object);
-  constructor(tokenId: string, tokenSecret: string, config: Object);
-  constructor(param?: Base | Object | string, tokenSecret?: string, config?: Object);
+  constructor(base: Base | RequestOptions);
+  constructor(tokenId: string, tokenSecret: string, config: RequestOptions);
+  constructor(param?: Base | RequestOptions | string, tokenSecret?: string, config?: RequestOptions);
   constructor(...params: any[]) {
     super();
 
@@ -58,7 +59,7 @@ export default class Base extends EventEmitter {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      //mode: 'cors',
+      // mode: 'cors',
       withCredentials: false,
       auth: {
         username: this.tokenId as any,
@@ -85,7 +86,7 @@ export default class Base extends EventEmitter {
     );
   }
 
-  set config(options) {
+  set config(options: RequestOptions) {
     options = options || {};
     this._config = {
       baseUrl: 'https://api.mux.com',

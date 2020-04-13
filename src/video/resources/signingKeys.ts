@@ -6,13 +6,13 @@ import Base from '../../base';
 
 /**
  * @private Base signing-key path for the Mux API
- * */
+ */
 const PATH = '/video/v1/signing-keys';
 
 /**
  * @private
  * Build the base asset path for the Mux API
- * */
+ */
 const buildBasePath = keyId => `${PATH}/${keyId}`;
 
 /**

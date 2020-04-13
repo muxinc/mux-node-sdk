@@ -7,7 +7,7 @@ export interface CreateAsset {
      * An array of objects that each describe an input file to be used to create the asset.
      * As a shortcut, input can also be a string URL for a file when only one input file is used. See input[].url for requirements.
      * 
-     * **(required)**
+     * (required)
      */
     input: Input[];
 
@@ -28,7 +28,7 @@ export interface CreateAsset {
     * Arbitrary metadata that will be included in the asset details and related webhooks.
     * Can be used to store your own ID for a video along with the asset.
     * 
-    * **Max: 255 characters**
+    * Max: 255 characters
     */
     passthrough?: string;
 

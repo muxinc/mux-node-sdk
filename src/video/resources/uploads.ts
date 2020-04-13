@@ -8,13 +8,13 @@ import { CreateUpload } from '../../interfaces/create/CreateUpload';
 
 /**
  * @private Base asset path for the Mux API
- * */
+ */
 const PATH = '/video/v1/uploads';
 
 /**
  * @private
  * Build the base asset path for the Mux API
- * */
+ */
 const buildBasePath = uploadId => `${PATH}/${uploadId}`;
 
 /**

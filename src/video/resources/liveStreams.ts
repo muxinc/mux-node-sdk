@@ -6,13 +6,13 @@ import Base from '../../base';
 
 /**
  * @private Base live stream path for the Mux API
- * */
+ */
 const PATH = '/video/v1/live-streams';
 
 /**
  * @private
  * Build the base live stream path for the Mux API
- * */
+ */
 const buildBasePath = liveStreamId => `${PATH}/${liveStreamId}`;
 
 /**

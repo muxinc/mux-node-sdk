@@ -41,7 +41,7 @@ export default class Video extends Base {
   /** @Type {DeliveryUsage} */
   DeliveryUsage = new DeliveryUsage(this);
 
-  /**
+/**
  * Video Constructor
  *
  * @param {string} accessToken - Mux API Access Token

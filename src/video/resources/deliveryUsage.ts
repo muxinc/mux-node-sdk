@@ -8,7 +8,7 @@ import { ListDeliveryUsage } from '../../interfaces/delivery-usage/ListDeliveryU
 
 /**
  * @private Base delivery usage path for the Mux API
- * */
+ */
 const PATH = '/video/v1/delivery-usage';
 
 /**

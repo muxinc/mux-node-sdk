@@ -6,7 +6,7 @@ const EXPECTED_SCHEME = 'v1';
 /**
  * Secure compare, from https://github.com/freewil/scmp
  */
-function secureCompare(_a, _b) {
+function secureCompare(_a: string, _b: string) {
   const a = Buffer.from(_a);
   const b = Buffer.from(_b);
 
