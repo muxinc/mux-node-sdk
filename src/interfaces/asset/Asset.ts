@@ -94,5 +94,5 @@ export interface Asset {
      * 
      * Default: `none`
      */
-    errors: AssetError
+    errors: AssetError;
 }

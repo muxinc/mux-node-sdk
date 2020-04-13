@@ -9,7 +9,7 @@ export interface RequestOptions {
   auth?: {
     username?: string;
     password?: string;
-  }
+  };
 }
 
 /**

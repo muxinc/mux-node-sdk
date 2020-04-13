@@ -3,7 +3,7 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-import Base from '../base';
+import Base, { RequestOptions } from '../base';
 import Errors from '../../src/data/resources/errors';
 import Exports from '../../src/data/resources/exports';
 import Filters from '../../src/data/resources/filters';
@@ -45,15 +45,16 @@ export default class Data extends Base {
   /** @type {VideoViews} */
   VideoViews = new VideoViews(this);
 
-/**
- * Data Constructor
- *
- * @param {string} accessToken - Mux API Access Token
- * @param {string} secret - Mux API secret
- * @constructor
- */
-  constructor(accessToken?: string, secret?: string);
-  constructor(accessToken?: Object, secret?: string);
+  /**
+   * Data Constructor
+   *
+   * @param {string} accessToken - Mux API Access Token
+   * @param {string} secret - Mux API secret
+   * @constructor
+   */
+  constructor(base: Base | RequestOptions);
+  constructor(tokenId: string, tokenSecret: string, config: RequestOptions);
+  constructor(param?: Base | RequestOptions | string, tokenSecret?: string, config?: RequestOptions);
   constructor(...params: any[]) {
     super(...params);
   }

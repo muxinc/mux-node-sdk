@@ -8,6 +8,7 @@ import { PlaybackId } from '../../interfaces/playback_id/PlaybackId';
 import { CreateTextTrack } from '../../interfaces/create/CreateTextTrack';
 import { AssetMp4Support } from '../../interfaces/asset/AssetMp4Support';
 import { MasterAcces } from '../../interfaces/master/MasterAccess';
+import { CreateAsset } from '../../interfaces/create/CreateAsset';
 
 /**
  * @private Base asset path for the Mux API
@@ -43,7 +44,7 @@ export default class Assets extends Base {
    *
    * @see https://docs.mux.com/reference#create-an-asset
    */
-  create(params: any) {
+  create(params: CreateAsset) {
     if (!params) {
       return Promise.reject(
         new Error('Params are required for creating an asset')
@@ -131,7 +132,10 @@ export default class Assets extends Base {
    *
    * @see https://docs.mux.com/reference#list-assets
    */
-  list(params?: { limit?: number, page?: number }) {
+  list(params?: {
+    limit?: number;
+    page?: number;
+  }) {
     return this.http.get<Asset>(PATH, { params });
   }
 

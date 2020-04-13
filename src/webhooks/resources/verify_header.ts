@@ -33,7 +33,10 @@ function secureCompare(_a: string, _b: string) {
 }
 
 export default class VerifyHeader {
-  static parseHeader(header: string, scheme: 'v1' | string = EXPECTED_SCHEME): { timestamp: number, signatures: string[] } | null {
+  static parseHeader(header: string, scheme: 'v1' | string = EXPECTED_SCHEME): {
+    timestamp: number;
+    signatures: string[];
+  } | null {
     if (typeof header !== 'string') {
       return null;
     }

@@ -1,13 +1,33 @@
 {
-  "extends": ["airbnb-base", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "env": {
     "node": true,
     "mocha": true
   },
-  "plugins": ["prettier", "chai-friendly"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "rules": {
-    "no-unused-expressions": 0,
-    "chai-friendly/no-unused-expressions": 2,
-    "prettier/prettier": "error"
-  }
+    "no-unused-expressions": 1,
+    "no-underscore-dangle": "off",
+    "camelcase": 0,
+    "@typescript-eslint/camelcase": "off"
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.test.ts",
+        "*.spec.ts"
+      ],
+      "rules": {
+        "no-unused-expressions": 0,
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ]
 }

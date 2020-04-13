@@ -3,7 +3,7 @@ import { TrackMaxChannelLayout } from "./TrackMaxChannelLayout";
 
 export interface AudioTrack extends BaseTrack {
     /** Possible values are `video`, `audio` and `text`. */
-    type: 'audio'
+    type: 'audio';
 
     /**
      * The duration in seconds of the track media.

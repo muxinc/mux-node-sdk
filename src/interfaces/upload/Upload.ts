@@ -57,5 +57,5 @@ export interface Upload {
 
         /** Human readable error message */
         message: string;
-    }
+    };
 }
