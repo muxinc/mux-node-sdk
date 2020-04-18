@@ -158,10 +158,6 @@ app.post(
       // await doSomething(body);
       res.json({received: true});
     } catch (err) {
-      console.error(err)
-      res.status(400).send('Webhook error')
-    }
-    } catch (err) {
       // On error, return the error message
       return res.status(400).send(`Webhook Error: ${err.message}`);
     }
