@@ -1,15 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { EventEmitter } from 'events';
 
-import Base, { RequestOptions } from './base';
-import Video from './video/video';
-
-/*
-import Data from './data/data';
-import Webhooks from './webhooks/webhooks';
-import JWT from './utils/jwt';
-*/
-
 declare interface RequestOptions {
   baseUrl?: string;
   auth?: {
@@ -23,7 +14,6 @@ declare class Base extends EventEmitter {
   private _tokenSecret?: string;
   private _config?: RequestOptions;
   private _requestOptions?: RequestOptions;
-  http: AxiosInstance = undefined as any;
 
   constructor(base: Base | RequestOptions);
   constructor(tokenId: string, tokenSecret: string, config: RequestOptions);
@@ -31,26 +21,29 @@ declare class Base extends EventEmitter {
   constructor(...params: any[]);
 }
 
-declare class Asset
-
-import { AssetStatus } from "./AssetStatus";
-import { AssetMaxStoredResolution } from "./AssetMaxStoredResolution";
-import { AssetMp4Support } from "./AssetMp4Support";
-import { AssetError } from "../error/AssetError";
-import { MasterAcces } from "../master/MasterAccess";
-import { Master } from "../master/Master";
-import { StaticRenditions } from "../static-renditions/StaticRenditions";
-import { PlaybackId } from "../playback_id/PlaybackId";
-import { Track } from "../track/Track";
-
 declare interface PlaybackId {
   id: string;
   policy: 'public' | 'signed';
 }
 
-declare type TrackMaxChannelLayout = 'mono' | 'stereo' | '5.1' | '7.1';
-declare type TrackStatus = 'preparing' | 'ready' | 'errored';
-declare type TrackType = 'video' | 'audio' | 'text';
+type TrackMaxChannelLayout = 'mono' | 'stereo' | '5.1' | '7.1';
+type TrackStatus = 'preparing' | 'ready' | 'errored';
+type TrackType = 'video' | 'audio' | 'text';
+type Track = VideoTrack | AudioTrack | TextTrack;
+type AssetMp4Support = 'none' | 'standard';
+
+declare interface StaticRenditions {
+    status: 'ready' | 'preparing' | 'errored';
+    files: File[];
+}
+declare interface File {
+    name: 'low.mp4' | 'medium.mp4' | 'high.mp4';
+    ext: 'mp4';
+    height: number;
+    width: number;
+    bitrate: number;
+    filesize: number;
+}
 
 declare interface BaseTrack {
   id: string;
@@ -64,6 +57,16 @@ declare interface TextTrack {
   language_code: string;
   closed_captions: boolean;
   name: string;
+}
+type MasterAcces = 'none' | 'temporary';
+type MasterStatus = 'ready' | 'preparing' | 'errored';
+declare interface Master {
+    status: MasterStatus;
+    url: string;
+}
+declare interface AssetError {
+    type: "invalid_input" | string;
+    messages: string[];
 }
 
 declare interface Asset {
@@ -103,4 +106,3 @@ declare namespace Mux {
 }
 
 export = Mux;
-
