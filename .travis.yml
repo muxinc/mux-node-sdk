@@ -1,9 +1,10 @@
 language: node_js
 node_js:
   - 'lts/*'
-  - '8'
-  - '9'
   - '10'
+  - '12'
+  - '13'
+  - '14'
 
 before_deploy: 'yarn docs'
 
