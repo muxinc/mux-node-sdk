@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { EventEmitter } from 'events';
 
-declare interface RequestOptions {
+export declare interface RequestOptions {
   baseUrl?: string;
   auth?: {
     username?: string;
@@ -9,7 +9,7 @@ declare interface RequestOptions {
   };
 }
 
-declare class Base extends EventEmitter {
+export declare class Base extends EventEmitter {
   private _tokenId?: string;
   private _tokenSecret?: string;
   private _config?: RequestOptions;
@@ -21,25 +21,25 @@ declare class Base extends EventEmitter {
   constructor(...params: any[]);
 }
 
-declare interface PlaybackId {
+export declare interface PlaybackId {
   id: string;
   policy: 'public' | 'signed';
 }
 
-declare interface BaseTrack {
+export declare interface BaseTrack {
   id: string;
   passthrough: string;
   status: TrackStatus;
 }
 
-declare interface AudioTrack extends BaseTrack {
+export declare interface AudioTrack extends BaseTrack {
     type: 'audio';
     duration: number;
     max_channels: number;
     max_channel_layout: TrackMaxChannelLayout;
 }
 
-declare interface TextTrack extends BaseTrack {
+export declare interface TextTrack extends BaseTrack {
     type: 'text';
     text_type: 'subtitles';
     language_code: string;
@@ -47,7 +47,7 @@ declare interface TextTrack extends BaseTrack {
     name: string;
 }
 
-declare interface VideoTrack extends BaseTrack {
+export declare interface VideoTrack extends BaseTrack {
     type: 'video';
     duration: number;
     max_width: number;
@@ -61,11 +61,11 @@ type TrackType = 'video' | 'audio' | 'text';
 type Track = VideoTrack | AudioTrack | TextTrack;
 type AssetMp4Support = 'none' | 'standard';
 
-declare interface StaticRenditions {
+export declare interface StaticRenditions {
     status: 'ready' | 'preparing' | 'errored';
     files: File[];
 }
-declare interface File {
+export declare interface File {
     name: 'low.mp4' | 'medium.mp4' | 'high.mp4';
     ext: 'mp4';
     height: number;
@@ -75,7 +75,7 @@ declare interface File {
 }
 
 
-declare interface TextTrack {
+export declare interface TextTrack {
   type: 'text';
   text_type: 'subtitles';
   language_code: string;
@@ -84,16 +84,16 @@ declare interface TextTrack {
 }
 type MasterAcces = 'none' | 'temporary';
 type MasterStatus = 'ready' | 'preparing' | 'errored';
-declare interface Master {
+export declare interface Master {
     status: MasterStatus;
     url: string;
 }
-declare interface AssetError {
+export declare interface AssetError {
     type: "invalid_input" | string;
     messages: string[];
 }
 
-declare interface Asset {
+export declare interface Asset {
     id: string;
     created_at: string;
     status: 'preparing' | 'ready' | 'errored';
@@ -113,9 +113,9 @@ declare interface Asset {
     errors: AssetError;
 }
 
-declare type PlaybackIdPolicy = 'public' | 'signed';
+export declare type PlaybackIdPolicy = 'public' | 'signed';
 
-declare interface InputOverlaySetting {
+export declare interface InputOverlaySetting {
     vertical_align?: 'top' | 'middle' | 'bottom';
     vertical_margin?: string;
     horizontal_align?: 'left' | 'center' | 'right';
@@ -125,7 +125,7 @@ declare interface InputOverlaySetting {
     opacity?: string;
 }
 
-declare interface Input {
+export declare interface Input {
     url: string;
     overlay_settings?: InputOverlaySetting;
     type?: 'video' | 'audio' | 'text';
@@ -136,7 +136,7 @@ declare interface Input {
     passthrough?: string;
 }
 
-declare interface CreateAssetParams {
+export declare interface CreateAssetParams {
     input: string | Input[];
     playback_policy?: PlaybackIdPolicy | (PlaybackIdPolicy)[];
     passthrough?: string;
@@ -144,13 +144,13 @@ declare interface CreateAssetParams {
     normalize_audio?: boolean;
 }
 
-declare interface SimulcastTargetParams {
+export declare interface SimulcastTargetParams {
   url: string;
   stream_key?: string;
   passthrough?: string;
 }
 
-declare interface CreateLiveStreamParams {
+export declare interface CreateLiveStreamParams {
     reconnect_window?: number;
     playback_policy?: PlaybackIdPolicy | (PlaybackIdPolicy)[];
     new_asset_settings?: any;
@@ -160,16 +160,16 @@ declare interface CreateLiveStreamParams {
     test?: boolean;
 }
 
-declare interface ListParams {
+export declare interface ListParams {
     limit: number;
     page: number;
 }
 
-declare interface CreatePlaybackIdParams {
+export declare interface CreatePlaybackIdParams {
     policy: PlaybackIdPolicy;
 }
 
-declare class Assets extends Base {
+export declare class Assets extends Base {
     create (params: CreateAssetParams): Promise<any>;
     del (assetId: string): Promise<any>;
     get (assetId: string): Promise<any>;
@@ -177,7 +177,7 @@ declare class Assets extends Base {
     list (params: ListParams): Promise<any>;
 }
 
-declare class LiveStreams extends Base {
+export declare class LiveStreams extends Base {
     create(params: CreateLiveStreamParams): Promise<any>
     del(liveStreamId: string): Promise<any>
     get(liveStreamId: string): Promise<any>
@@ -191,59 +191,59 @@ declare class LiveStreams extends Base {
     deleteSimulcastTarget(liveStreamId: string, simulcastTargetId: string): Promise<any>;
 }
 
-declare interface CreateUploadParams {
+export declare interface CreateUploadParams {
     timeout?: string;
     cors_origin?: string;
     new_asset_settings?: any;
     test?: boolean;
 }
 
-declare class Uploads extends Base {
+export declare class Uploads extends Base {
     create(params: CreateUploadParams): Promise<any>;
     cancel(uploadId: string): Promise<any>;
     get(uploadId: string): Promise<any>;
 }
 
-declare interface JWTOptions {
+export declare interface JWTOptions {
     keyId: string;
     keySecret: string;
     type: string;
     params?: any;
 }
 
-declare class JWT {
+export declare class JWT {
     static sign(playbackId: string, options: JWTOptions): string;
 }
 
-declare class Webhooks {
+export declare class Webhooks {
     static verifyHeader(payload: string | Buffer, headers: string, secret: string, tolerance?: number): boolean;
 }
 
-declare interface ErrorsParams {
+export declare interface ErrorsParams {
     filters?: any[];
     array?: any[];
 }
 
-declare class Errors extends Base {
+export declare class Errors extends Base {
     list(params?: ErrorsParams): Promise<any>;
 }
 
-declare class Exports extends Base {
+export declare class Exports extends Base {
     list: Promise<any>;
 }
 
-declare class Filters extends Base {
+export declare class Filters extends Base {
     list: Promise<any>;
     get(filterId: string, queryParams?: any): Promise<any>;
 }
 
-declare class Incidents extends Base {
+export declare class Incidents extends Base {
     list(queryParams?: any): Promise<any>;
     get(incidentId: string): Promise<any>;
     related(incidentId: string, queryParams?: any): Promise<any>;
 }
 
-declare class Metrics extends Base {
+export declare class Metrics extends Base {
     breakdown(metricId: string, queryParams: any): Promise<any>;
     comparison(queryParams: any): Promise<any>;
     insights(metricId: string, queryParams?: any): Promise<any>;
@@ -251,7 +251,7 @@ declare class Metrics extends Base {
     timeseries(metricId: string, queryParams?: any): Promise<any>;
 }
 
-declare class RealTime extends Base {
+export declare class RealTime extends Base {
     breakdown(metricId: string, queryParams: any): Promise<any>;
     dimensions(): Promise<any>;
     histogramTimeseries(metricId: string, queryParams: any): Promise<any>;
@@ -259,19 +259,19 @@ declare class RealTime extends Base {
     timeseries(metricId: string, queryParams: any): Promise<any>;
 }
 
-declare class VideoViews extends Base {
+export declare class VideoViews extends Base {
   get(videoViewId: string): Promise<any>;
   list(queryParams: any): Promise<any>;
 }
 
-declare class Video extends Base {
+export declare class Video extends Base {
     Assets: Assets;
     LiveStreams: LiveStreams;
     Uploads: Uploads;
     Metrics: Metrics;
 }
 
-declare class Data extends Base {
+export declare class Data extends Base {
     Errors: Errors;
     Exports: Exports;
     Filters: Filters;
@@ -289,6 +289,4 @@ declare class Mux extends Base {
     static Webhooks: typeof Webhooks;
 }
 
-declare namespace Mux {}
-
-export = Mux;
+export default Mux;
