@@ -22,8 +22,8 @@
     "test": "mocha --recursive ./test/unit",
     "test:unit": "NOCK_BACK_MODE=record mocha --recursive ./test",
     "test:int": "NOCK_BACK_MODE=wild mocha --recursive ./test",
-    "format": "eslint src/** test/**",
-    "format:fix": "eslint src/** test/** --fix"
+    "format": "eslint src/** test/** types/** --no-error-on-unmatched-pattern",
+    "lint": "yarn format"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -31,12 +31,14 @@
     "jsonwebtoken": "^8.4.0"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.0.1",
+    "@typescript-eslint/parser": "^3.0.1",
     "chai": "^4.1.2",
     "dotenv": "^5.0.1",
     "esdoc": "^1.0.4",
     "esdoc-node": "^1.0.3",
     "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^4.19.1",
+    "eslint": "^7.1.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-chai-friendly": "^0.4.1",
@@ -48,8 +50,7 @@
     "nock": "^10.0.4",
     "prettier": "^1.15.3",
     "sinon": "^4.5.0",
-    "typescript": "^3.8.3",
-    "typescript-eslint-parser": "^22.0.0"
+    "typescript": "^3.8.3"
   },
   "repository": {
     "type": "git",

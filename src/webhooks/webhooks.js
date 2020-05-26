@@ -1,4 +1,3 @@
-/* globals Buffer */
 const VerifyHeader = require('./resources/verify_header');
 
 /**
