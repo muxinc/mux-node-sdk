@@ -1,6 +1,11 @@
 // import { AxiosInstance } from 'axios';
 import { EventEmitter } from 'events';
 import { RequestOptions } from './interfaces/RequestOptions';
+import { PlaybackId } from './interfaces/PlaybackId';
+import { AudioTrack } from './interfaces/AudioTrack';
+import { VideoTrack } from './interfaces/VideoTrack';
+import { TextTrack } from './interfaces/TextTrack';
+import { StaticRenditions } from './interfaces/StaticRenditions';
 
 export declare class Base extends EventEmitter {
   private _tokenId?: string;
@@ -18,68 +23,9 @@ export declare class Base extends EventEmitter {
   constructor(...params: any[]);
 }
 
-export declare interface PlaybackId {
-  id: string;
-  policy: 'public' | 'signed';
-}
-
-export declare interface BaseTrack {
-  id: string;
-  passthrough: string;
-  status: TrackStatus;
-}
-
-export declare interface AudioTrack extends BaseTrack {
-  type: 'audio';
-  duration: number;
-  max_channels: number;
-  max_channel_layout: TrackMaxChannelLayout;
-}
-
-/*
-export declare interface TextTrack extends BaseTrack {
-  type: 'text';
-  text_type: 'subtitles';
-  language_code: string;
-  closed_captions: boolean;
-  name: string;
-}
-*/
-
-export declare interface VideoTrack extends BaseTrack {
-  type: 'video';
-  duration: number;
-  max_width: number;
-  max_height: number;
-  max_frame_rate: number;
-}
-
-type TrackMaxChannelLayout = 'mono' | 'stereo' | '5.1' | '7.1';
-type TrackStatus = 'preparing' | 'ready' | 'errored';
-type TrackType = 'video' | 'audio' | 'text';
-type Track = VideoTrack | AudioTrack | TextTrack;
+declare type Track = VideoTrack | AudioTrack | TextTrack;
 type AssetMp4Support = 'none' | 'standard';
 
-export declare interface StaticRenditions {
-  status: 'ready' | 'preparing' | 'errored';
-  files: File[];
-}
-export declare interface File {
-  name: 'low.mp4' | 'medium.mp4' | 'high.mp4';
-  ext: 'mp4';
-  height: number;
-  width: number;
-  bitrate: number;
-  filesize: number;
-}
-
-export declare interface TextTrack {
-  type: 'text';
-  text_type: 'subtitles';
-  language_code: string;
-  closed_captions: boolean;
-  name: string;
-}
 type MasterAcces = 'none' | 'temporary';
 type MasterStatus = 'ready' | 'preparing' | 'errored';
 export declare interface Master {
@@ -133,16 +79,6 @@ export declare interface Input {
   closed_captions?: boolean;
   passthrough?: string;
 }
-/*
-export interface CreateAssetRequest {
-    input?: Array<InputSettings>;
-    playback_policy?: Array<PlaybackPolicy>;
-    demo?: boolean;
-    per_title_encode?: boolean;
-    passthrough?: string;
-    mp4_support?: CreateAssetRequest.mp4_support;
-}
-*/
 
 export declare interface CreateAssetParams {
   input: string | Input[];
@@ -323,4 +259,4 @@ declare class Mux extends Base {
 }
 
 export default Mux;
-export { RequestOptions };
+export { RequestOptions, PlaybackId, VideoTrack, AudioTrack, TextTrack };

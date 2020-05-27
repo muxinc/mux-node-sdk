@@ -23,7 +23,8 @@ module.exports = {
       },
       rules: {
         camelcase: 'off',
-        'no-useless-constructor': 'off',
+        'no-useless-constructor': 'off', // https://github.com/typescript-eslint/typescript-eslint/issues/420
+        'no-unused-vars': 'off', // https://github.com/typescript-eslint/typescript-eslint/issues/363
         'import/extensions': [
           'error',
           'ignorePackages',
