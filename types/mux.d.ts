@@ -1,7 +1,11 @@
 // import { AxiosInstance } from 'axios';
 import { EventEmitter } from 'events';
 
+import { Asset } from './interfaces/Asset';
+import { AssetError } from './interfaces/AssetError';
+import { AssetMaster } from './interfaces/AssetMaster';
 import { AssetMp4Support } from './interfaces/AssetMp4Support';
+import { AssetMasterAccess } from './interfaces/AssetMasterAccess';
 import { AudioTrack } from './interfaces/AudioTrack';
 import { CreateAssetParams } from './interfaces/CreateAssetParams';
 import { InputInfo } from './interfaces/InputInfo';
@@ -30,39 +34,6 @@ export declare class Base extends EventEmitter {
     config?: RequestOptions
   );
   constructor(...params: any[]);
-}
-
-declare type Track = VideoTrack | AudioTrack | TextTrack;
-
-type MasterAcces = 'none' | 'temporary';
-type MasterStatus = 'ready' | 'preparing' | 'errored';
-export declare interface Master {
-  status: MasterStatus;
-  url: string;
-}
-export declare interface AssetError {
-  type: 'invalid_input' | string;
-  messages: string[];
-}
-
-export declare interface Asset {
-  id: string;
-  created_at: string;
-  status: 'preparing' | 'ready' | 'errored';
-  duration: number;
-  max_stored_resolution: 'Audio-only' | 'SD' | 'HD' | 'FHD' | 'UHD';
-  max_stored_frame_rate: number;
-  aspect_ratio: string;
-  per_title_encode: boolean;
-  is_live: boolean;
-  playback_ids: PlaybackId[];
-  tracks: Track[];
-  mp4_support: AssetMp4Support;
-  static_renditions: StaticRenditions;
-  master_access: MasterAcces;
-  master: Master;
-  passthrough: string;
-  errors: AssetError;
 }
 
 export declare interface SimulcastTargetParams {
@@ -233,7 +204,11 @@ declare class Mux extends Base {
 
 export default Mux;
 export {
+  Asset,
+  AssetError,
+  AssetMaster,
   AssetMp4Support,
+  AssetMasterAccess,
   AudioTrack,
   CreateAssetParams,
   InputInfo,
