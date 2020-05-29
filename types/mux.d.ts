@@ -8,17 +8,22 @@ import { AssetMp4Support } from './interfaces/AssetMp4Support';
 import { AssetMasterAccess } from './interfaces/AssetMasterAccess';
 import { AudioTrack } from './interfaces/AudioTrack';
 import { CreateAssetParams } from './interfaces/CreateAssetParams';
+import { CreateLiveStreamParams } from './interfaces/CreateLiveStreamParams';
 import { InputInfo } from './interfaces/InputInfo';
 import { InputOverlaySettings } from './interfaces/InputOverlaySettings';
 import { InputTrack } from './interfaces/InputTrack';
 import { InputFile } from './interfaces/InputFile';
 import { InputSettings } from './interfaces/InputSettings';
+import { LiveStream } from './interfaces/LiveStream';
 import { PlaybackId } from './interfaces/PlaybackId';
 import { PlaybackIdPolicy } from './interfaces/PlaybackIdPolicy';
 import { RequestOptions } from './interfaces/RequestOptions';
+import { SimulcastTarget } from './interfaces/SimulcastTarget';
+import { SimulcastTargetParams } from './interfaces/SimulcastTargetParams';
 import { StaticRenditions } from './interfaces/StaticRenditions';
 import { TextTrack } from './interfaces/TextTrack';
 import { VideoTrack } from './interfaces/VideoTrack';
+import { Track } from './interfaces/Track';
 
 export declare class Base extends EventEmitter {
   private _tokenId?: string;
@@ -36,22 +41,6 @@ export declare class Base extends EventEmitter {
   constructor(...params: any[]);
 }
 
-export declare interface SimulcastTargetParams {
-  url: string;
-  stream_key?: string;
-  passthrough?: string;
-}
-
-export declare interface CreateLiveStreamParams {
-  reconnect_window?: number;
-  playback_policy?: PlaybackIdPolicy | (PlaybackIdPolicy)[];
-  new_asset_settings?: any;
-  passthrough?: string;
-  reduced_latency?: boolean;
-  simulcast_targets?: SimulcastTargetParams[];
-  test?: boolean;
-}
-
 export declare interface ListParams {
   limit: number;
   page: number;
@@ -61,34 +50,58 @@ export declare interface CreatePlaybackIdParams {
   policy: PlaybackIdPolicy;
 }
 
+export declare interface UpdateMp4SupportParams {
+  mp4_support: AssetMp4Support;
+}
+
+export declare interface UpdateMasterAccessParams {
+  master_access: AssetMasterAccess;
+}
+
 export declare class Assets extends Base {
   create(params: CreateAssetParams): Promise<Asset>;
   del(assetId: string): Promise<any>;
+  createTrack(assetId: string): Promise<Track>;
   get(assetId: string): Promise<Asset>;
   inputInfo(assetId: string): Promise<Array<InputInfo>>;
   list(params: ListParams): Promise<Array<Asset>>;
+  playbackId(assetId: string): Promise<PlaybackId>;
+  createPlaybackId(
+    assetId: string,
+    params: CreatePlaybackIdParams
+  ): Promise<PlaybackId>;
+  deletePlaybackId(liveStreamId: string, playbackId: string): Promise<any>;
+  deleteTrack(assetId: string): Promise<any>;
+  updateMp4Support(
+    assetId: string,
+    params: UpdateMp4SupportParams
+  ): Promise<Asset>;
+  updateMasterAccess(
+    assetId: string,
+    params: UpdateMasterAccessParams
+  ): Promise<Asset>;
 }
 
 export declare class LiveStreams extends Base {
   create(params: CreateLiveStreamParams): Promise<any>;
   del(liveStreamId: string): Promise<any>;
-  get(liveStreamId: string): Promise<any>;
-  list(params: ListParams): Promise<any>;
+  get(liveStreamId: string): Promise<LiveStream>;
+  list(params: ListParams): Promise<Array<LiveStream>>;
   signalComplete(liveStreamId: string): Promise<any>;
-  resetStreamKey(liveStreamId: string): Promise<any>;
+  resetStreamKey(liveStreamId: string): Promise<LiveStream>;
   createPlaybackId(
     liveStreamId: string,
     params: CreatePlaybackIdParams
-  ): Promise<any>;
+  ): Promise<PlaybackId>;
   deletePlaybackId(liveStreamId: string, playbackId: string): Promise<any>;
   createSimulcastTarget(
     liveStreamId: string,
     params: SimulcastTargetParams
-  ): Promise<any>;
+  ): Promise<SimulcastTarget>;
   getSimulcastTarget(
     liveStreamId: string,
     simulcastTargetId: string
-  ): Promise<any>;
+  ): Promise<SimulcastTarget>;
   deleteSimulcastTarget(
     liveStreamId: string,
     simulcastTargetId: string
@@ -211,6 +224,7 @@ export {
   AssetMasterAccess,
   AudioTrack,
   CreateAssetParams,
+  CreateLiveStreamParams,
   InputInfo,
   InputOverlaySettings,
   InputTrack,
