@@ -1,11 +1,20 @@
 // import { AxiosInstance } from 'axios';
 import { EventEmitter } from 'events';
-import { RequestOptions } from './interfaces/RequestOptions';
-import { PlaybackId } from './interfaces/PlaybackId';
+
+import { AssetMp4Support } from './interfaces/AssetMp4Support';
 import { AudioTrack } from './interfaces/AudioTrack';
-import { VideoTrack } from './interfaces/VideoTrack';
-import { TextTrack } from './interfaces/TextTrack';
+import { CreateAssetParams } from './interfaces/CreateAssetParams';
+import { InputInfo } from './interfaces/InputInfo';
+import { InputOverlaySettings } from './interfaces/InputOverlaySettings';
+import { InputTrack } from './interfaces/InputTrack';
+import { InputFile } from './interfaces/InputFile';
+import { InputSettings } from './interfaces/InputSettings';
+import { PlaybackId } from './interfaces/PlaybackId';
+import { PlaybackIdPolicy } from './interfaces/PlaybackIdPolicy';
+import { RequestOptions } from './interfaces/RequestOptions';
 import { StaticRenditions } from './interfaces/StaticRenditions';
+import { TextTrack } from './interfaces/TextTrack';
+import { VideoTrack } from './interfaces/VideoTrack';
 
 export declare class Base extends EventEmitter {
   private _tokenId?: string;
@@ -24,7 +33,6 @@ export declare class Base extends EventEmitter {
 }
 
 declare type Track = VideoTrack | AudioTrack | TextTrack;
-type AssetMp4Support = 'none' | 'standard';
 
 type MasterAcces = 'none' | 'temporary';
 type MasterStatus = 'ready' | 'preparing' | 'errored';
@@ -57,37 +65,6 @@ export declare interface Asset {
   errors: AssetError;
 }
 
-export declare type PlaybackIdPolicy = 'public' | 'signed';
-
-export declare interface InputOverlaySetting {
-  vertical_align?: 'top' | 'middle' | 'bottom';
-  vertical_margin?: string;
-  horizontal_align?: 'left' | 'center' | 'right';
-  horizontal_margin?: string;
-  width?: string;
-  height?: string;
-  opacity?: string;
-}
-
-export declare interface Input {
-  url: string;
-  overlay_settings?: InputOverlaySetting;
-  type?: 'video' | 'audio' | 'text';
-  text_type?: string;
-  language_code?: string;
-  name?: string;
-  closed_captions?: boolean;
-  passthrough?: string;
-}
-
-export declare interface CreateAssetParams {
-  input: string | Input[];
-  playback_policy?: PlaybackIdPolicy | (PlaybackIdPolicy)[];
-  passthrough?: string;
-  mp4_support?: AssetMp4Support;
-  normalize_audio?: boolean;
-}
-
 export declare interface SimulcastTargetParams {
   url: string;
   stream_key?: string;
@@ -117,12 +94,20 @@ export declare interface AssetResponse {
   data: Asset;
 }
 
+export declare interface AssetListResponse {
+  data: Array<Asset>;
+}
+
+export declare interface AssetInputInfoResponse {
+  data: Array<InputInfo>;
+}
+
 export declare class Assets extends Base {
   create(params: CreateAssetParams): Promise<AssetResponse>;
   del(assetId: string): Promise<any>;
   get(assetId: string): Promise<AssetResponse>;
-  inputInfo(assetId: string): Promise<any>;
-  list(params: ListParams): Promise<any>;
+  inputInfo(assetId: string): Promise<AssetInputInfoResponse>;
+  list(params: ListParams): Promise<AssetListResponse>;
 }
 
 export declare class LiveStreams extends Base {
@@ -259,4 +244,19 @@ declare class Mux extends Base {
 }
 
 export default Mux;
-export { RequestOptions, PlaybackId, VideoTrack, AudioTrack, TextTrack };
+export {
+  AssetMp4Support,
+  AudioTrack,
+  CreateAssetParams,
+  InputInfo,
+  InputOverlaySettings,
+  InputTrack,
+  InputFile,
+  InputSettings,
+  PlaybackId,
+  PlaybackIdPolicy,
+  RequestOptions,
+  StaticRenditions,
+  TextTrack,
+  VideoTrack,
+};
