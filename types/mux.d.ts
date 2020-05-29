@@ -90,24 +90,12 @@ export declare interface CreatePlaybackIdParams {
   policy: PlaybackIdPolicy;
 }
 
-export declare interface AssetResponse {
-  data: Asset;
-}
-
-export declare interface AssetListResponse {
-  data: Array<Asset>;
-}
-
-export declare interface AssetInputInfoResponse {
-  data: Array<InputInfo>;
-}
-
 export declare class Assets extends Base {
-  create(params: CreateAssetParams): Promise<AssetResponse>;
+  create(params: CreateAssetParams): Promise<Asset>;
   del(assetId: string): Promise<any>;
-  get(assetId: string): Promise<AssetResponse>;
-  inputInfo(assetId: string): Promise<AssetInputInfoResponse>;
-  list(params: ListParams): Promise<AssetListResponse>;
+  get(assetId: string): Promise<Asset>;
+  inputInfo(assetId: string): Promise<Array<InputInfo>>;
+  list(params: ListParams): Promise<Array<Asset>>;
 }
 
 export declare class LiveStreams extends Base {
