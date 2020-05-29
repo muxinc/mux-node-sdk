@@ -42,8 +42,8 @@ export declare class Base extends EventEmitter {
 }
 
 export declare interface ListParams {
-  limit: number;
-  page: number;
+  limit?: number;
+  page?: number;
 }
 
 export declare interface CreatePlaybackIdParams {
