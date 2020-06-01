@@ -15,6 +15,9 @@ import { ExportsResponse } from './interfaces/ExportsResponse';
 import { FiltersListResponse } from './interfaces/FiltersListResponse';
 import { FilterValueResponse } from './interfaces/FilterValueResponse';
 import { FilterQueryParams } from './interfaces/FilterQueryParams';
+import { Incident } from './interfaces/Incident';
+import { IncidentsResponse } from './interfaces/IncidentsResponse';
+import { IncidentsQueryParams } from './interfaces/IncidentsQueryParams';
 import { InputInfo } from './interfaces/InputInfo';
 import { InputOverlaySettings } from './interfaces/InputOverlaySettings';
 import { InputTrack } from './interfaces/InputTrack';
@@ -164,9 +167,9 @@ export declare class Filters extends Base {
 }
 
 export declare class Incidents extends Base {
-  list(queryParams?: any): Promise<any>;
-  get(incidentId: string): Promise<any>;
-  related(incidentId: string, queryParams?: any): Promise<any>;
+  list(queryParams?: IncidentsQueryParams): Promise<IncidentsResponse>;
+  get(incidentId: string): Promise<IncidentsResponse>;
+  related(incidentId: string, queryParams?: any): Promise<IncidentsResponse>;
 }
 
 export declare class Metrics extends Base {
@@ -235,6 +238,9 @@ export {
   FiltersListResponse,
   FilterQueryParams,
   FilterValueResponse,
+  Incident,
+  IncidentsResponse,
+  IncidentsQueryParams,
   InputInfo,
   InputOverlaySettings,
   InputTrack,
