@@ -9,6 +9,7 @@ import { AssetMasterAccess } from './interfaces/AssetMasterAccess';
 import { AudioTrack } from './interfaces/AudioTrack';
 import { CreateAssetParams } from './interfaces/CreateAssetParams';
 import { CreateLiveStreamParams } from './interfaces/CreateLiveStreamParams';
+import { CreateUploadParams } from './interfaces/CreateUploadParams';
 import { InputInfo } from './interfaces/InputInfo';
 import { InputOverlaySettings } from './interfaces/InputOverlaySettings';
 import { InputTrack } from './interfaces/InputTrack';
@@ -22,6 +23,7 @@ import { SimulcastTarget } from './interfaces/SimulcastTarget';
 import { SimulcastTargetParams } from './interfaces/SimulcastTargetParams';
 import { StaticRenditions } from './interfaces/StaticRenditions';
 import { TextTrack } from './interfaces/TextTrack';
+import { Upload } from './interfaces/Upload';
 import { VideoTrack } from './interfaces/VideoTrack';
 import { Track } from './interfaces/Track';
 
@@ -108,17 +110,10 @@ export declare class LiveStreams extends Base {
   ): Promise<any>;
 }
 
-export declare interface CreateUploadParams {
-  timeout?: string;
-  cors_origin?: string;
-  new_asset_settings?: any;
-  test?: boolean;
-}
-
 export declare class Uploads extends Base {
-  create(params: CreateUploadParams): Promise<any>;
-  cancel(uploadId: string): Promise<any>;
-  get(uploadId: string): Promise<any>;
+  create(params: CreateUploadParams): Promise<Upload>;
+  cancel(uploadId: string): Promise<Upload>;
+  get(uploadId: string): Promise<Upload>;
 }
 
 export declare interface JWTOptions {
@@ -225,6 +220,7 @@ export {
   AudioTrack,
   CreateAssetParams,
   CreateLiveStreamParams,
+  CreateUploadParams,
   InputInfo,
   InputOverlaySettings,
   InputTrack,
@@ -235,5 +231,6 @@ export {
   RequestOptions,
   StaticRenditions,
   TextTrack,
+  Upload,
   VideoTrack,
 };
