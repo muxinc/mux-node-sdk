@@ -35,6 +35,8 @@ import { MetricsComparisonValue } from './interfaces/MetricsComparisonValue';
 import { MetricsInsightsQueryParams } from './interfaces/MetricsInsightsQueryParams';
 import { MetricsInsightsResponse } from './interfaces/MetricsInsightsResponse';
 import { MetricsOverallQueryParams } from './interfaces/MetricsOverallQueryParams';
+import { MetricsOverallResponse } from './interfaces/MetricsOverallResponse';
+import { MetricsOverallValue } from './interfaces/MetricsOverallValue';
 import { MetricsTimeseriesQueryParams } from './interfaces/MetricsTimeseriesQueryParams';
 import { PlaybackId } from './interfaces/PlaybackId';
 import { PlaybackIdPolicy } from './interfaces/PlaybackIdPolicy';
@@ -199,7 +201,7 @@ export declare class Metrics extends Base {
   overall(
     metricId: string,
     queryParams?: MetricsOverallQueryParams
-  ): Promise<any>;
+  ): Promise<MetricsOverallResponse>;
   timeseries(
     metricId: string,
     queryParams?: MetricsTimeseriesQueryParams
@@ -283,6 +285,8 @@ export {
   MetricsComparisonValue,
   MetricsInsightsQueryParams,
   MetricsOverallQueryParams,
+  MetricsOverallResponse,
+  MetricsOverallValue,
   MetricsTimeseriesQueryParams,
   PlaybackId,
   PlaybackIdPolicy,
