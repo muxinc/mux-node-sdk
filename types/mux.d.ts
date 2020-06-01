@@ -38,6 +38,7 @@ import { MetricsOverallQueryParams } from './interfaces/MetricsOverallQueryParam
 import { MetricsOverallResponse } from './interfaces/MetricsOverallResponse';
 import { MetricsOverallValue } from './interfaces/MetricsOverallValue';
 import { MetricsTimeseriesQueryParams } from './interfaces/MetricsTimeseriesQueryParams';
+import { MetricsTimeseriesResponse } from './interfaces/MetricsTimeseriesResponse';
 import { PlaybackId } from './interfaces/PlaybackId';
 import { PlaybackIdPolicy } from './interfaces/PlaybackIdPolicy';
 import { RequestOptions } from './interfaces/RequestOptions';
@@ -205,7 +206,7 @@ export declare class Metrics extends Base {
   timeseries(
     metricId: string,
     queryParams?: MetricsTimeseriesQueryParams
-  ): Promise<any>;
+  ): Promise<MetricsTimeseriesResponse>;
 }
 
 export declare class RealTime extends Base {
@@ -288,6 +289,7 @@ export {
   MetricsOverallResponse,
   MetricsOverallValue,
   MetricsTimeseriesQueryParams,
+  MetricsTimeseriesResponse,
   PlaybackId,
   PlaybackIdPolicy,
   RequestOptions,
