@@ -10,6 +10,11 @@ import { AudioTrack } from './interfaces/AudioTrack';
 import { CreateAssetParams } from './interfaces/CreateAssetParams';
 import { CreateLiveStreamParams } from './interfaces/CreateLiveStreamParams';
 import { CreateUploadParams } from './interfaces/CreateUploadParams';
+import { ErrorsResponse } from './interfaces/ErrorsResponse';
+import { ExportsResponse } from './interfaces/ExportsResponse';
+import { FiltersListResponse } from './interfaces/FiltersListResponse';
+import { FilterValueResponse } from './interfaces/FilterValueResponse';
+import { FilterQueryParams } from './interfaces/FilterQueryParams';
 import { InputInfo } from './interfaces/InputInfo';
 import { InputOverlaySettings } from './interfaces/InputOverlaySettings';
 import { InputTrack } from './interfaces/InputTrack';
@@ -25,6 +30,7 @@ import { StaticRenditions } from './interfaces/StaticRenditions';
 import { TextTrack } from './interfaces/TextTrack';
 import { Upload } from './interfaces/Upload';
 import { VideoTrack } from './interfaces/VideoTrack';
+import { ViewError } from './interfaces/ViewError';
 import { Track } from './interfaces/Track';
 
 export declare class Base extends EventEmitter {
@@ -142,16 +148,19 @@ export declare interface ErrorsParams {
 }
 
 export declare class Errors extends Base {
-  list(params?: ErrorsParams): Promise<any>;
+  list(params?: ErrorsParams): Promise<ErrorsResponse>;
 }
 
 export declare class Exports extends Base {
-  list: Promise<any>;
+  list: Promise<ExportsResponse>;
 }
 
 export declare class Filters extends Base {
-  list: Promise<any>;
-  get(filterId: string, queryParams?: any): Promise<any>;
+  list: Promise<FiltersListResponse>;
+  get(
+    filterId: string,
+    queryParams?: FilterQueryParams
+  ): Promise<FilterValueResponse>;
 }
 
 export declare class Incidents extends Base {
@@ -221,6 +230,11 @@ export {
   CreateAssetParams,
   CreateLiveStreamParams,
   CreateUploadParams,
+  ErrorsResponse,
+  ExportsResponse,
+  FiltersListResponse,
+  FilterQueryParams,
+  FilterValueResponse,
   InputInfo,
   InputOverlaySettings,
   InputTrack,
@@ -233,4 +247,5 @@ export {
   TextTrack,
   Upload,
   VideoTrack,
+  ViewError,
 };

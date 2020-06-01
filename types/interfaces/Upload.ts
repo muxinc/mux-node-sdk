@@ -1,4 +1,4 @@
-import { CreateAssetParams } from './Asset';
+import { CreateAssetParams } from './CreateAssetParams';
 
 export interface Upload {
   id: string;
