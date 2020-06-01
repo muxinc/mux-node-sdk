@@ -10,13 +10,10 @@ import { AudioTrack } from './interfaces/AudioTrack';
 import { CreateAssetParams } from './interfaces/CreateAssetParams';
 import { CreateLiveStreamParams } from './interfaces/CreateLiveStreamParams';
 import { CreateUploadParams } from './interfaces/CreateUploadParams';
-import { ErrorsResponse } from './interfaces/ErrorsResponse';
-import { ExportsResponse } from './interfaces/ExportsResponse';
 import { FiltersListResponse } from './interfaces/FiltersListResponse';
-import { FilterValueResponse } from './interfaces/FilterValueResponse';
+import { FilterValue } from './interfaces/FilterValue';
 import { FilterQueryParams } from './interfaces/FilterQueryParams';
 import { Incident } from './interfaces/Incident';
-import { IncidentsResponse } from './interfaces/IncidentsResponse';
 import { IncidentsQueryParams } from './interfaces/IncidentsQueryParams';
 import { InputInfo } from './interfaces/InputInfo';
 import { InputOverlaySettings } from './interfaces/InputOverlaySettings';
@@ -28,17 +25,12 @@ import { LiveStream } from './interfaces/LiveStream';
 import { Metric } from './interfaces/Metric';
 import { MetricsBreakdownQueryParams } from './interfaces/MetricsBreakdownQueryParams';
 import { MetricsBreakdownValue } from './interfaces/MetricsBreakdownValue';
-import { MetricsBreakdownResponse } from './interfaces/MetricsBreakdownResponse';
 import { MetricsComparisonQueryParams } from './interfaces/MetricsComparisonQueryParams';
-import { MetricsComparisonResponse } from './interfaces/MetricsComparisonResponse';
 import { MetricsComparisonValue } from './interfaces/MetricsComparisonValue';
 import { MetricsInsightsQueryParams } from './interfaces/MetricsInsightsQueryParams';
-import { MetricsInsightsResponse } from './interfaces/MetricsInsightsResponse';
 import { MetricsOverallQueryParams } from './interfaces/MetricsOverallQueryParams';
-import { MetricsOverallResponse } from './interfaces/MetricsOverallResponse';
 import { MetricsOverallValue } from './interfaces/MetricsOverallValue';
 import { MetricsTimeseriesQueryParams } from './interfaces/MetricsTimeseriesQueryParams';
-import { MetricsTimeseriesResponse } from './interfaces/MetricsTimeseriesResponse';
 import { PlaybackId } from './interfaces/PlaybackId';
 import { PlaybackIdPolicy } from './interfaces/PlaybackIdPolicy';
 import { RequestOptions } from './interfaces/RequestOptions';
@@ -49,6 +41,7 @@ import { TextTrack } from './interfaces/TextTrack';
 import { Upload } from './interfaces/Upload';
 import { VideoTrack } from './interfaces/VideoTrack';
 import { ViewError } from './interfaces/ViewError';
+import { VideoView } from './interfaces/VideoView';
 import { Track } from './interfaces/Track';
 
 export declare class Base extends EventEmitter {
@@ -166,11 +159,11 @@ export declare interface ErrorsParams {
 }
 
 export declare class Errors extends Base {
-  list(params?: ErrorsParams): Promise<ErrorsResponse>;
+  list(params?: ErrorsParams): Promise<Array<ViewError>>;
 }
 
 export declare class Exports extends Base {
-  list: Promise<ExportsResponse>;
+  list: Promise<Array<string>>;
 }
 
 export declare class Filters extends Base {
@@ -178,35 +171,35 @@ export declare class Filters extends Base {
   get(
     filterId: string,
     queryParams?: FilterQueryParams
-  ): Promise<FilterValueResponse>;
+  ): Promise<Array<FilterValue>>;
 }
 
 export declare class Incidents extends Base {
-  list(queryParams?: IncidentsQueryParams): Promise<IncidentsResponse>;
-  get(incidentId: string): Promise<IncidentsResponse>;
-  related(incidentId: string, queryParams?: any): Promise<IncidentsResponse>;
+  list(queryParams?: IncidentsQueryParams): Promise<Array<Incident>>;
+  get(incidentId: string): Promise<Array<Incident>>;
+  related(incidentId: string, queryParams?: any): Promise<Array<Incident>>;
 }
 
 export declare class Metrics extends Base {
   breakdown(
     metricId: string,
     queryParams: MetricsBreakdownQueryParams
-  ): Promise<MetricsBreakdownResponse>;
+  ): Promise<Array<MetricsBreakdownValue>>;
   comparison(
     queryParams: MetricsComparisonQueryParams
-  ): Promise<MetricsComparisonResponse>;
+  ): Promise<Array<MetricsComparisonValue>>;
   insights(
     metricId: string,
     queryParams?: MetricsInsightsQueryParams
-  ): Promise<MetricsInsightsResponse>;
+  ): Promise<Array<Insight>>;
   overall(
     metricId: string,
     queryParams?: MetricsOverallQueryParams
-  ): Promise<MetricsOverallResponse>;
+  ): Promise<Array<MetricsOverallValue>>;
   timeseries(
     metricId: string,
     queryParams?: MetricsTimeseriesQueryParams
-  ): Promise<MetricsTimeseriesResponse>;
+  ): Promise<Array<Array<string>>>;
 }
 
 export declare class RealTime extends Base {
@@ -218,8 +211,8 @@ export declare class RealTime extends Base {
 }
 
 export declare class VideoViews extends Base {
-  get(videoViewId: string): Promise<any>;
-  list(queryParams: any): Promise<any>;
+  get(videoViewId: string): Promise<VideoView>;
+  list(queryParams: any): Promise<Array<VideoView>>;
 }
 
 export declare class Video extends Base {
@@ -262,13 +255,10 @@ export {
   CreateAssetParams,
   CreateLiveStreamParams,
   CreateUploadParams,
-  ErrorsResponse,
-  ExportsResponse,
   FiltersListResponse,
   FilterQueryParams,
-  FilterValueResponse,
+  FilterValue,
   Incident,
-  IncidentsResponse,
   IncidentsQueryParams,
   InputInfo,
   InputOverlaySettings,
@@ -279,17 +269,13 @@ export {
   LiveStream,
   Metric,
   MetricsBreakdownQueryParams,
-  MetricsBreakdownResponse,
   MetricsBreakdownValue,
   MetricsComparisonQueryParams,
-  MetricsComparisonResponse,
   MetricsComparisonValue,
   MetricsInsightsQueryParams,
   MetricsOverallQueryParams,
-  MetricsOverallResponse,
   MetricsOverallValue,
   MetricsTimeseriesQueryParams,
-  MetricsTimeseriesResponse,
   PlaybackId,
   PlaybackIdPolicy,
   RequestOptions,
@@ -298,4 +284,5 @@ export {
   Upload,
   VideoTrack,
   ViewError,
+  VideoView,
 };
