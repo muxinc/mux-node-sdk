@@ -23,7 +23,19 @@ import { InputOverlaySettings } from './interfaces/InputOverlaySettings';
 import { InputTrack } from './interfaces/InputTrack';
 import { InputFile } from './interfaces/InputFile';
 import { InputSettings } from './interfaces/InputSettings';
+import { Insight } from './interfaces/Insight';
 import { LiveStream } from './interfaces/LiveStream';
+import { Metric } from './interfaces/Metric';
+import { MetricsBreakdownQueryParams } from './interfaces/MetricsBreakdownQueryParams';
+import { MetricsBreakdownValue } from './interfaces/MetricsBreakdownValue';
+import { MetricsBreakdownResponse } from './interfaces/MetricsBreakdownResponse';
+import { MetricsComparisonQueryParams } from './interfaces/MetricsComparisonQueryParams';
+import { MetricsComparisonResponse } from './interfaces/MetricsComparisonResponse';
+import { MetricsComparisonValue } from './interfaces/MetricsComparisonValue';
+import { MetricsInsightsQueryParams } from './interfaces/MetricsInsightsQueryParams';
+import { MetricsInsightsResponse } from './interfaces/MetricsInsightsResponse';
+import { MetricsOverallQueryParams } from './interfaces/MetricsOverallQueryParams';
+import { MetricsTimeseriesQueryParams } from './interfaces/MetricsTimeseriesQueryParams';
 import { PlaybackId } from './interfaces/PlaybackId';
 import { PlaybackIdPolicy } from './interfaces/PlaybackIdPolicy';
 import { RequestOptions } from './interfaces/RequestOptions';
@@ -173,11 +185,25 @@ export declare class Incidents extends Base {
 }
 
 export declare class Metrics extends Base {
-  breakdown(metricId: string, queryParams: any): Promise<any>;
-  comparison(queryParams: any): Promise<any>;
-  insights(metricId: string, queryParams?: any): Promise<any>;
-  overall(metricId: string, queryParams?: any): Promise<any>;
-  timeseries(metricId: string, queryParams?: any): Promise<any>;
+  breakdown(
+    metricId: string,
+    queryParams: MetricsBreakdownQueryParams
+  ): Promise<MetricsBreakdownResponse>;
+  comparison(
+    queryParams: MetricsComparisonQueryParams
+  ): Promise<MetricsComparisonResponse>;
+  insights(
+    metricId: string,
+    queryParams?: MetricsInsightsQueryParams
+  ): Promise<MetricsInsightsResponse>;
+  overall(
+    metricId: string,
+    queryParams?: MetricsOverallQueryParams
+  ): Promise<any>;
+  timeseries(
+    metricId: string,
+    queryParams?: MetricsTimeseriesQueryParams
+  ): Promise<any>;
 }
 
 export declare class RealTime extends Base {
@@ -246,6 +272,18 @@ export {
   InputTrack,
   InputFile,
   InputSettings,
+  Insight,
+  LiveStream,
+  Metric,
+  MetricsBreakdownQueryParams,
+  MetricsBreakdownResponse,
+  MetricsBreakdownValue,
+  MetricsComparisonQueryParams,
+  MetricsComparisonResponse,
+  MetricsComparisonValue,
+  MetricsInsightsQueryParams,
+  MetricsOverallQueryParams,
+  MetricsTimeseriesQueryParams,
   PlaybackId,
   PlaybackIdPolicy,
   RequestOptions,
