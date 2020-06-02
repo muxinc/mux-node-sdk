@@ -1,5 +1,5 @@
 export interface FilterQueryParams {
-  filterId: string;
+  filter_id: string;
   limit?: number;
   page?: number;
   filters?: Array<string>;

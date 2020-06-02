@@ -33,6 +33,14 @@ import { MetricsOverallValue } from './interfaces/MetricsOverallValue';
 import { MetricsTimeseriesQueryParams } from './interfaces/MetricsTimeseriesQueryParams';
 import { PlaybackId } from './interfaces/PlaybackId';
 import { PlaybackIdPolicy } from './interfaces/PlaybackIdPolicy';
+import { RealTimeBreakdownQueryParams } from './interfaces/RealTimeBreakdownQueryParams';
+import { RealTimeBreakdownResponse } from './interfaces/RealTimeBreakdownResponse';
+import { RealTimeDimensionsResponse } from './interfaces/RealTimeDimensionsResponse';
+import { RealTimeHistogramQueryParams } from './interfaces/RealTimeHistogramQueryParams';
+import { RealTimeHistogramResponse } from './interfaces/RealTimeHistogramResponse';
+import { RealTimeMetricsResponse } from './interfaces/RealTimeMetricsResponse';
+import { RealTimeTimeseriesParams } from './interfaces/RealTimeTimeseriesParams';
+import { RealTimeTimeseriesResponse } from './interfaces/RealTimeTimeseriesResponse';
 import { RequestOptions } from './interfaces/RequestOptions';
 import { SimulcastTarget } from './interfaces/SimulcastTarget';
 import { SimulcastTargetParams } from './interfaces/SimulcastTargetParams';
@@ -204,11 +212,20 @@ export declare class Metrics extends Base {
 }
 
 export declare class RealTime extends Base {
-  breakdown(metricId: string, queryParams: any): Promise<any>;
-  dimensions(): Promise<any>;
-  histogramTimeseries(metricId: string, queryParams: any): Promise<any>;
-  metrics(): Promise<any>;
-  timeseries(metricId: string, queryParams: any): Promise<any>;
+  breakdown(
+    metricId: string,
+    queryParams: RealTimeBreakdownQueryParams
+  ): Promise<Array<RealTimeBreakdownResponse>>;
+  dimensions(): Promise<Array<RealTimeDimensionsResponse>>;
+  histogramTimeseries(
+    metricId: string,
+    queryParams: RealTimeHistogramQueryParams
+  ): Promise<RealTimeHistogramResponse>;
+  metrics(): Promise<Array<RealTimeMetricsResponse>>;
+  timeseries(
+    metricId: string,
+    queryParams?: RealTimeTimeseriesParams
+  ): Promise<Array<RealTimeTimeseriesResponse>>;
 }
 
 export declare class VideoViews extends Base {
@@ -279,6 +296,7 @@ export {
   MetricsTimeseriesQueryParams,
   PlaybackId,
   PlaybackIdPolicy,
+  RealTimeBreakdownQueryParams,
   RequestOptions,
   StaticRenditions,
   TextTrack,
