@@ -42,6 +42,7 @@ import { Upload } from './interfaces/Upload';
 import { VideoTrack } from './interfaces/VideoTrack';
 import { ViewError } from './interfaces/ViewError';
 import { VideoView } from './interfaces/VideoView';
+import { VideoViewsQueryParams } from './interfaces/VideoViewsQueryParams';
 import { Track } from './interfaces/Track';
 
 export declare class Base extends EventEmitter {
@@ -212,7 +213,7 @@ export declare class RealTime extends Base {
 
 export declare class VideoViews extends Base {
   get(videoViewId: string): Promise<VideoView>;
-  list(queryParams: any): Promise<Array<VideoView>>;
+  list(queryParams?: VideoViewsQueryParams): Promise<Array<VideoView>>;
 }
 
 export declare class Video extends Base {
@@ -285,4 +286,5 @@ export {
   VideoTrack,
   ViewError,
   VideoView,
+  VideoViewsQueryParams,
 };

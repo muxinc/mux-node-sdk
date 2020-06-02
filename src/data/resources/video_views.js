@@ -27,7 +27,6 @@ class VideoViews extends Base {
    *
    * @extends Base
    * @param {Object} queryParams - example { viewer_id: 'ABCD1234', timeframe: ['7:days'], filters: ['operating_system:windows'] }
-   * NOTE: the viewer_id query parameter is required
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
@@ -36,16 +35,10 @@ class VideoViews extends Base {
    *
    * // Returns a list of video views for a property that occurred within the specified timeframe.
    * Data.VideoViews.list({ viewer_id: 'ABCD1234', timeframe: ['7:days'], order_direction: 'asc' });
-   * Note: the viewer_id query parameter is required
    *
    * @see https://api-docs.mux.com/#video-view-get-1
    */
   list(params) {
-    if (!params || (params && !params.viewer_id)) {
-      throw new Error(
-        'The viewer_id query parameter is required for listing video views.'
-      );
-    }
     return this.http.get(PATH, { params });
   }
 
