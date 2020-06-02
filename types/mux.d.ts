@@ -4,22 +4,22 @@ import { EventEmitter } from 'events';
 import { Asset } from './interfaces/Asset';
 import { AssetError } from './interfaces/AssetError';
 import { AssetMaster } from './interfaces/AssetMaster';
-import { AssetMp4Support } from './interfaces/AssetMp4Support';
 import { AssetMasterAccess } from './interfaces/AssetMasterAccess';
+import { AssetMp4Support } from './interfaces/AssetMp4Support';
 import { AudioTrack } from './interfaces/AudioTrack';
 import { CreateAssetParams } from './interfaces/CreateAssetParams';
 import { CreateLiveStreamParams } from './interfaces/CreateLiveStreamParams';
 import { CreateUploadParams } from './interfaces/CreateUploadParams';
-import { FiltersListResponse } from './interfaces/FiltersListResponse';
-import { FilterValue } from './interfaces/FilterValue';
 import { FilterQueryParams } from './interfaces/FilterQueryParams';
+import { FilterValue } from './interfaces/FilterValue';
+import { FiltersListResponse } from './interfaces/FiltersListResponse';
 import { Incident } from './interfaces/Incident';
 import { IncidentsQueryParams } from './interfaces/IncidentsQueryParams';
+import { InputFile } from './interfaces/InputFile';
 import { InputInfo } from './interfaces/InputInfo';
 import { InputOverlaySettings } from './interfaces/InputOverlaySettings';
-import { InputTrack } from './interfaces/InputTrack';
-import { InputFile } from './interfaces/InputFile';
 import { InputSettings } from './interfaces/InputSettings';
+import { InputTrack } from './interfaces/InputTrack';
 import { Insight } from './interfaces/Insight';
 import { LiveStream } from './interfaces/LiveStream';
 import { Metric } from './interfaces/Metric';
@@ -46,12 +46,12 @@ import { SimulcastTarget } from './interfaces/SimulcastTarget';
 import { SimulcastTargetParams } from './interfaces/SimulcastTargetParams';
 import { StaticRenditions } from './interfaces/StaticRenditions';
 import { TextTrack } from './interfaces/TextTrack';
+import { Track } from './interfaces/Track';
 import { Upload } from './interfaces/Upload';
 import { VideoTrack } from './interfaces/VideoTrack';
-import { ViewError } from './interfaces/ViewError';
 import { VideoView } from './interfaces/VideoView';
 import { VideoViewsQueryParams } from './interfaces/VideoViewsQueryParams';
-import { Track } from './interfaces/Track';
+import { ViewError } from './interfaces/ViewError';
 
 export declare class Base extends EventEmitter {
   private _tokenId?: string;
@@ -267,22 +267,22 @@ export {
   Asset,
   AssetError,
   AssetMaster,
-  AssetMp4Support,
   AssetMasterAccess,
+  AssetMp4Support,
   AudioTrack,
   CreateAssetParams,
   CreateLiveStreamParams,
   CreateUploadParams,
-  FiltersListResponse,
   FilterQueryParams,
   FilterValue,
+  FiltersListResponse,
   Incident,
   IncidentsQueryParams,
+  InputFile,
   InputInfo,
   InputOverlaySettings,
-  InputTrack,
-  InputFile,
   InputSettings,
+  InputTrack,
   Insight,
   LiveStream,
   Metric,
@@ -297,12 +297,22 @@ export {
   PlaybackId,
   PlaybackIdPolicy,
   RealTimeBreakdownQueryParams,
+  RealTimeBreakdownResponse,
+  RealTimeDimensionsResponse,
+  RealTimeHistogramQueryParams,
+  RealTimeHistogramResponse,
+  RealTimeMetricsResponse,
+  RealTimeTimeseriesParams,
+  RealTimeTimeseriesResponse,
   RequestOptions,
+  SimulcastTarget,
+  SimulcastTargetParams,
   StaticRenditions,
   TextTrack,
+  Track,
   Upload,
   VideoTrack,
-  ViewError,
   VideoView,
   VideoViewsQueryParams,
+  ViewError,
 };
