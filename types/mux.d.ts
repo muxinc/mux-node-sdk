@@ -1,4 +1,3 @@
-// import { AxiosInstance } from 'axios';
 import { EventEmitter } from 'events';
 
 import { Asset } from './interfaces/Asset';
