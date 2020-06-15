@@ -10,10 +10,11 @@ describe('Integration::Incidents', () => {
   describe('Incidents.list', () => {
     /** @test {Incidents.list} */
     it('Returns a list of open incidents', async () => {
-      const incidents = await Data.Incidents.list({
+      const resp = await Data.Incidents.list({
         status: 'open',
       });
-      expect(incidents).to.be.an('array');
+      expect(resp.data).to.be.an('array');
+      expect(resp.timeframe).to.be.an('array');
     });
   });
 });

@@ -58,7 +58,7 @@ describe('Unit::VideoViews', () => {
       videoViewsInstance.list({ viewer_id: 'abc123' }).then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].video).to.equal('views');
+        expect(onFulfilled.getCall(0).args[0].data.video).to.equal('views');
         done();
       });
     });
@@ -77,7 +77,7 @@ describe('Unit::VideoViews', () => {
       videoViewsInstance.get('someView').then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].video).to.equal('views');
+        expect(onFulfilled.getCall(0).args[0].data.video).to.equal('views');
         done();
       });
     });

@@ -53,7 +53,7 @@ describe('Unit::Errors', () => {
       errorsInstance.list({}).then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].errors).to.be.true;
+        expect(onFulfilled.getCall(0).args[0].data.errors).to.be.true;
         done();
       });
     });

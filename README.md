@@ -213,7 +213,7 @@ Run unit tests: `npm test` or `npm run test:unit`
 
 Run integration tests: `npm run test:int`
 
-**Note**: running the integration tests will require you to configure the `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` environment variables with your Mux access token and secret.
+**Note**: running the integration tests will require you to configure the `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` environment variables with your Mux access token and secret. You should use the credentials for sdks@mux.com, where we generate views for this purpose ("watch-this" project).
 
 To generate the ESDocs, run:
 
@@ -231,6 +231,8 @@ Find a bug or want to add a useful feature? That'd be amazing! If you'd like to 
 3. Make any changes you'd like in your forked branch.
 4. Add any relevant tests for your changes
 5. Open the pull request! :tada:
+
+Running integration tests will require a Mux account with valid seed data for `/video` and `/data` endpoints. If you are contributing and you don't have this, please add unit test coverage and someone from the Mux will help get integration tests added if necessary.
 
 ## Releasing
 

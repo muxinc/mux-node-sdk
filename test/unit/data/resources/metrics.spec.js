@@ -58,7 +58,7 @@ describe('Unit::Metrics', () => {
       metricsInstance.breakdown('testMetric', {}).then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].breakdown).to.be.true;
+        expect(onFulfilled.getCall(0).args[0].data.breakdown).to.be.true;
         done();
       });
     });
@@ -90,7 +90,7 @@ describe('Unit::Metrics', () => {
       metricsInstance.comparison({ value: 'abc123' }).then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].comparison).to.be.true;
+        expect(onFulfilled.getCall(0).args[0].data.comparison).to.be.true;
         done();
       });
     });
@@ -119,7 +119,7 @@ describe('Unit::Metrics', () => {
       metricsInstance.insights('testMetric').then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].insights).to.be.true;
+        expect(onFulfilled.getCall(0).args[0].data.insights).to.be.true;
         done();
       });
     });
@@ -148,7 +148,7 @@ describe('Unit::Metrics', () => {
       metricsInstance.overall('testMetric', {}).then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].overall).to.be.true;
+        expect(onFulfilled.getCall(0).args[0].data.overall).to.be.true;
         done();
       });
     });
@@ -177,7 +177,7 @@ describe('Unit::Metrics', () => {
       metricsInstance.timeseries('testMetric', {}).then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].timeseries).to.be.true;
+        expect(onFulfilled.getCall(0).args[0].data.timeseries).to.be.true;
         done();
       });
     });
