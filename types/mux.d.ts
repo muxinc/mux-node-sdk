@@ -110,7 +110,7 @@ export declare class Assets extends Base {
 }
 
 export declare class LiveStreams extends Base {
-  create(params: CreateLiveStreamParams): Promise<any>;
+  create(params: CreateLiveStreamParams): Promise<LiveStream>;
   del(liveStreamId: string): Promise<any>;
   get(liveStreamId: string): Promise<LiveStream>;
   list(params: ListParams): Promise<Array<LiveStream>>;
