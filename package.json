@@ -19,9 +19,9 @@
   "license": "MIT",
   "scripts": {
     "docs": "esdoc",
-    "test": "mocha --recursive ./test/unit",
-    "test:unit": "NOCK_BACK_MODE=record mocha --recursive ./test",
-    "test:int": "NOCK_BACK_MODE=wild mocha --recursive ./test",
+    "test": "yarn test:unit",
+    "test:unit": "mocha --recursive ./test/unit",
+    "test:int": "mocha --recursive ./test/integration --timeout 10000",
     "format": "eslint src/** test/** types/** --no-error-on-unmatched-pattern",
     "lint": "yarn format"
   },
@@ -47,7 +47,6 @@
     "eslint-plugin-prettier": "^3.0.0",
     "mocha": "^5.1.1",
     "moxios": "^0.4.0",
-    "nock": "^10.0.4",
     "prettier": "^1.15.3",
     "sinon": "^4.5.0",
     "typescript": "^3.8.3"

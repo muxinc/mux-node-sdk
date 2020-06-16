@@ -12,7 +12,7 @@ describe('Integration::Exports', () => {
     it('Lists the available video view exports along with URLs to retrieve them', async () => {
       const resp = await Data.Exports.list();
       expect(resp.data).to.be.an('array');
-      expect(resp.total_row_count).to.eq(8);
+      expect(resp.total_row_count).to.be.greaterThan(6); // we should have 7 or 8
       expect(resp.timeframe).to.be.an('array');
     });
   });
