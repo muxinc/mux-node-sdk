@@ -215,6 +215,8 @@ Run integration tests: `npm run test:int`
 
 **Note**: running the integration tests will require you to configure the `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` environment variables with your Mux access token and secret. You should use the credentials for sdks@mux.com, where we generate views for this purpose ("watch-this" project).
 
+Integration tests do not get run on CI because of Mux API rate limits, so run them locally.
+
 To generate the ESDocs, run:
 
 ```

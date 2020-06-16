@@ -19,6 +19,5 @@ deploy:
 script:
   - yarn format
   - yarn test:unit
-  - yarn test:int
 
 cache: yarn
