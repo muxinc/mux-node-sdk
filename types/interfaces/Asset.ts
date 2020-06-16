@@ -16,8 +16,8 @@ export declare interface Asset {
   aspect_ratio: string;
   per_title_encode: boolean;
   is_live: boolean;
-  playback_ids: PlaybackId[];
-  tracks: Track[];
+  playback_ids: Array<PlaybackId>;
+  tracks: Array<Track>;
   mp4_support: AssetMp4Support;
   static_renditions: StaticRenditions;
   master_access: AssetMasterAccess;

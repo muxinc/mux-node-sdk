@@ -4,8 +4,8 @@ import { AssetMp4Support } from './AssetMp4Support';
 import { AssetMasterAccess } from './AssetMasterAccess';
 
 export interface CreateAssetParams {
-  input: string | InputSettings[];
-  playback_policy?: PlaybackIdPolicy | (PlaybackIdPolicy)[];
+  input: string | Array<InputSettings>;
+  playback_policy?: PlaybackIdPolicy | Array<PlaybackIdPolicy>;
   passthrough?: string;
   mp4_support?: AssetMp4Support;
   normalize_audio?: boolean;

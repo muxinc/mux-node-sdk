@@ -65,7 +65,7 @@ export declare class Base extends EventEmitter {
     tokenSecret?: string,
     config?: RequestOptions
   );
-  constructor(...params: any[]);
+  constructor(...params: Array<any>);
 }
 
 export declare interface ListParams {
@@ -162,8 +162,8 @@ export declare class Webhooks {
 }
 
 export declare interface ErrorsParams {
-  filters?: any[];
-  array?: any[];
+  filters?: Array<any>;
+  array?: Array<any>;
 }
 
 export declare class Errors extends Base {

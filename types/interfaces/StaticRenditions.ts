@@ -9,5 +9,5 @@ export interface StaticRendition {
 
 export interface StaticRenditions {
   status: 'ready' | 'preparing' | 'errored';
-  files: StaticRendition[];
+  files: Array<StaticRendition>;
 }
