@@ -109,14 +109,6 @@ class Base extends EventEmitter {
   get tokenSecret() {
     return this._secret;
   }
-
-  remove(...params) {
-    // eslint-disable-next-line no-console
-    console.warn(
-      'The remove helper has been deprecated in favor of del. `remove` will no longer be available after the next major version bump (3.0).'
-    );
-    return this.del(...params);
-  }
 }
 
 module.exports = Base;
