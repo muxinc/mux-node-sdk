@@ -1,5 +1,9 @@
 export interface RealTimeTimeseriesResponse {
-  value: number;
-  date: string;
-  concurrent_viewers: number;
+  total_row_count: null;
+  timeframe: Array<number>;
+  data: Array<{
+    value: number;
+    date: string;
+    concurrent_viewers: number;
+  }>;
 }

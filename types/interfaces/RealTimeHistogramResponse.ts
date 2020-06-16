@@ -1,12 +1,11 @@
+import { RealTimeHistogramValue } from './RealTimeHistogramValue';
+
 export interface RealTimeHistogramResponse {
-  timestamp: string;
-  sum: number;
-  p95: number;
-  median: number;
-  max_percentage: number;
-  average: number;
-  bucket_values: Array<{
-    percentage: number;
-    count: number;
-  }>;
+  total_row_count: null;
+  timeframe: Array<number>;
+  meta: {
+    buckets: Array<{ start: number; end: number }>;
+    bucket_unit: string;
+  };
+  data: Array<RealTimeHistogramValue>;
 }

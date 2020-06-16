@@ -33,10 +33,11 @@ import { MetricsTimeseriesQueryParams } from './interfaces/MetricsTimeseriesQuer
 import { PlaybackId } from './interfaces/PlaybackId';
 import { PlaybackIdPolicy } from './interfaces/PlaybackIdPolicy';
 import { RealTimeBreakdownQueryParams } from './interfaces/RealTimeBreakdownQueryParams';
-import { RealTimeBreakdownResponse } from './interfaces/RealTimeBreakdownResponse';
-import { RealTimeDimensionsResponse } from './interfaces/RealTimeDimensionsResponse';
+import { RealTimeBreakdownValue } from './interfaces/RealTimeBreakdownValue';
+import { RealTimeDimensionsValue } from './interfaces/RealTimeDimensionsValue';
 import { RealTimeHistogramQueryParams } from './interfaces/RealTimeHistogramQueryParams';
 import { RealTimeHistogramResponse } from './interfaces/RealTimeHistogramResponse';
+import { RealTimeHistogramValue } from './interfaces/RealTimeHistogramValue';
 import { RealTimeMetricsResponse } from './interfaces/RealTimeMetricsResponse';
 import { RealTimeTimeseriesParams } from './interfaces/RealTimeTimeseriesParams';
 import { RealTimeTimeseriesResponse } from './interfaces/RealTimeTimeseriesResponse';
@@ -166,12 +167,30 @@ export declare interface ErrorsParams {
   array?: Array<any>;
 }
 
+export declare interface ErrorsListResponse {
+  total_row_count: null;
+  timeframe: Array<number>;
+  data: Array<ViewError>;
+}
+
 export declare class Errors extends Base {
-  list(params?: ErrorsParams): Promise<Array<ViewError>>;
+  list(params?: ErrorsParams): Promise<ErrorsListResponse>;
+}
+
+export declare interface ExportsListResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Array<string>;
 }
 
 export declare class Exports extends Base {
-  list: Promise<Array<string>>;
+  list: Promise<ExportsListResponse>;
+}
+
+export declare interface FilterGetResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Array<FilterValue>;
 }
 
 export declare class Filters extends Base {
@@ -179,57 +198,120 @@ export declare class Filters extends Base {
   get(
     filterId: string,
     queryParams?: FilterQueryParams
-  ): Promise<Array<FilterValue>>;
+  ): Promise<FilterGetResponse>;
+}
+
+export declare interface IncidentsListResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Array<Incident>;
+}
+
+export declare interface IncidentsGetResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Incident;
 }
 
 export declare class Incidents extends Base {
-  list(queryParams?: IncidentsQueryParams): Promise<Array<Incident>>;
-  get(incidentId: string): Promise<Array<Incident>>;
-  related(incidentId: string, queryParams?: any): Promise<Array<Incident>>;
+  list(queryParams?: IncidentsQueryParams): Promise<IncidentsListResponse>;
+  get(incidentId: string): Promise<IncidentsGetResponse>;
+  related(
+    incidentId: string,
+    queryParams?: any
+  ): Promise<IncidentsListResponse>;
+}
+
+export declare interface MetricsBreakdownResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Array<MetricsBreakdownValue>;
+}
+
+export declare interface MetricsComparisonResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Array<MetricsComparisonValue>;
+}
+
+export declare interface MetricsInsightsResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Array<Insight>;
+}
+
+export declare interface MetricsOverallResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: MetricsOverallValue;
+}
+
+export declare interface MetricsTimeseriesResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Array<Array<string>>;
 }
 
 export declare class Metrics extends Base {
   breakdown(
     metricId: string,
     queryParams: MetricsBreakdownQueryParams
-  ): Promise<Array<MetricsBreakdownValue>>;
+  ): Promise<MetricsBreakdownResponse>;
   comparison(
     queryParams: MetricsComparisonQueryParams
-  ): Promise<Array<MetricsComparisonValue>>;
+  ): Promise<MetricsComparisonResponse>;
   insights(
     metricId: string,
     queryParams?: MetricsInsightsQueryParams
-  ): Promise<Array<Insight>>;
+  ): Promise<MetricsInsightsResponse>;
   overall(
     metricId: string,
     queryParams?: MetricsOverallQueryParams
-  ): Promise<Array<MetricsOverallValue>>;
+  ): Promise<MetricsOverallResponse>;
   timeseries(
     metricId: string,
     queryParams?: MetricsTimeseriesQueryParams
-  ): Promise<Array<Array<string>>>;
+  ): Promise<MetricsTimeseriesResponse>;
+}
+
+export declare interface RealTimeBreakdownResponse {
+  total_row_count: null;
+  timeframe: Array<number>;
+  data: Array<RealTimeBreakdownValue>;
+}
+
+export declare interface RealTimeDimensionsResponse {
+  total_row_count: null;
+  timeframe: Array<number>;
+  data: Array<RealTimeDimensionsValue>;
 }
 
 export declare class RealTime extends Base {
   breakdown(
     metricId: string,
     queryParams: RealTimeBreakdownQueryParams
-  ): Promise<Array<RealTimeBreakdownResponse>>;
-  dimensions(): Promise<Array<RealTimeDimensionsResponse>>;
+  ): Promise<RealTimeBreakdownResponse>;
+  dimensions(): Promise<RealTimeDimensionsResponse>;
   histogramTimeseries(
     metricId: string,
     queryParams: RealTimeHistogramQueryParams
   ): Promise<RealTimeHistogramResponse>;
-  metrics(): Promise<Array<RealTimeMetricsResponse>>;
+  metrics(): Promise<RealTimeMetricsResponse>;
   timeseries(
     metricId: string,
     queryParams?: RealTimeTimeseriesParams
-  ): Promise<Array<RealTimeTimeseriesResponse>>;
+  ): Promise<RealTimeTimeseriesResponse>;
+}
+
+export declare interface VideoViewsListResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Array<VideoView>;
 }
 
 export declare class VideoViews extends Base {
   get(videoViewId: string): Promise<VideoView>;
-  list(queryParams?: VideoViewsQueryParams): Promise<Array<VideoView>>;
+  list(queryParams?: VideoViewsQueryParams): Promise<VideoViewsListResponse>;
 }
 
 export declare class Video extends Base {
@@ -296,10 +378,11 @@ export {
   PlaybackId,
   PlaybackIdPolicy,
   RealTimeBreakdownQueryParams,
-  RealTimeBreakdownResponse,
-  RealTimeDimensionsResponse,
+  RealTimeBreakdownValue,
+  RealTimeDimensionsValue,
   RealTimeHistogramQueryParams,
   RealTimeHistogramResponse,
+  RealTimeHistogramValue,
   RealTimeMetricsResponse,
   RealTimeTimeseriesParams,
   RealTimeTimeseriesResponse,
