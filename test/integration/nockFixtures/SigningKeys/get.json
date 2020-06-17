@@ -1,0 +1,63 @@
+[
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "post",
+        "path": "/video/v1/signing-keys",
+        "body": {},
+        "status": 201,
+        "response": {
+            "data": {
+                "private_key": "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBMEcveUVzeVh6ZmFCWU1xQm1BbG9FdG9UanA5dG1TZDJ4YnFRZHZiT3o3Z3FtdUg1CmkrZnpndjlyb1hpVTVYcktNRjFGMVVmWURBTHJPRG5hWFBXc2haVHZTVVU1anVaSG9DMVdWNWRMRXZPYkQ5Ym4KSHcwMlBMcTRmTGp4U1IwckJGQkczVjVBWDJnNlBSL3l1VzRQOE5UamtITzJJblk2M3UxMXhlbXdjd3FZY0hadgowdzBYbHd5VXN1Qkw1cHJoNFJHRko0SnJyM1M0bVN5OWhtR1dQYTd3ZExnRGFIU0xDTEhObDB6UXJjcy9YV1NqCjZlTFljSXJDTUg3TkVtUUhocmdSSyt1UTRjYWZxbzZhOVlhOW5pNXEzTDI2b3pva0prd1Y5ZEkyQW5WOFBWN2IKcFpzbnIyNXF6TTVac1JHU1c2M0JLTkEyWmJBczBEK21OZk10WlFJREFRQUJBb0lCQVFDQ1FqTkp4RW5xRU83eAppaHhLNHpZQzhmM2UxNHNxZHhzbW5sekJ1Nk9xOURETDhnUjloa3NMeG91QXNWWjd3cXl3Wk5uTFc4YU1XeGFjCllLc3lCT1gzNVFkVkJzbmRuOU9MS2tvWEd4bHprb0dJK0lnZlE2WnRkVkx0dnJZck51czNHdVB1VzRSbkd6K3EKQzFrb3dMdDlpYzFjN0xNWi9rRDBKL205NFRpLzZ2SlZLVTRoSHphTzZDaW9Ic0dUdFRBUzc2VzhlcGY5aWhKYQptMWlFOXRGcWZUanpjYlQ4VGU4ZHNKTmszREtUa2pHd0greG5UdTBTakJJbjBhZWJqM2FTT0Z3R0cxTWpWbVVGCkdNRzFqSHlpODNzdjlYdnpLWFZHenNXMFJ6QUdNVnFCdlY5bkM4WkljbHJGN2h1MHBiVmdtenFva1hmOUpaR3MKU0wwMkJiT0JBb0dCQU4vc2svMkM4cmphbEp4TWdyb0tLRHdEK1c2dnFVVXlQRHJmclJEVVIwNkZOczByOEhlRQp4TXBEVFBwTFRJZTdpZFFBN1ZTWE1JK2doOTF3TGNCOFlKeFNsdEJsSjc0SFd0OWxUcys3WE1JTit4YWF5b3NuCkpSUWROdmR5ZC8wNjI5UFdDbkx1VXkrRTc4aUYwZFNKVHNtWkxVMXVRaFpXVDZrRVdEb0hsWmpaQW9HQkFPNUwKZE5DMCtyNTFFZGFMZVFsdXNlRmt5TG5PN2YvY0NzTW04dVFzbUFDbnpSbUJFWUJBTFdUVzVjR1dENWNIeHgvagpxMC9ISXhGc1JQaDZsZ0p0YWtwZGFtVnFJb3pVYVNZSW0yOXR4OEpwUlY0V1NwNmQwNmRNY0ZNc2xxQTB4dnVlCkQ1SDNwSDdBdEpHc2hBeFRpQVFORkl2T3Jtekd0YzQzbVhTandrRnRBb0dBTHUzZkNpZHloU2xTTWZ1YS9qQjQKeERNMUNHeUtOalZVQ0NhdWw3TlZpbkJDenZjaGUzcjQzMGNCa0FkTjc3aHZKMTVXWHY4Y3IwMCtqRHNoYTVEbAprbjJBbkFaSE1QMUxuendWSzFZaUY0MWtqUlU5MDdJTmhFeW5JMjc3RkxoTUwvWlExRXQ4Wlo0ZnZzL0U3UjBsCnhQeDBVU0VGZXJiMkZQOFRHbjVTYk9rQ2dZQW4yN00wWGJFN1BqVzNueWlsclVCUHBSMzJCbWpFelRkM29RSXIKckZIWWVqalNOVWFLSHpINGxnRmtPZ2R0aWIyQzFnQUhuaFY5aXBDV3gxcGtHWTBYMXp3K3Jsd05GbEpvTERSagpsUWMrdTRFQTFkV3habERLd1B4Z3pTcDhyWmRDNnhOTHBSSjhxUnNLNnNKRGxZMUFzRGRwa3k2VnZ6OFZ1VE1QCjBYeGltUUtCZ1FDenJLK3B4eWp4dGM4b1pRMkhZb2VFS252QnNZTlNHY0hReEJkWW9ESmc2QmlIalVCK3AzbDMKVk5yTG1nd28rZE1pbFhseDdEaGpzN1htWFNnK3QvSjhET1lIa2hWNEJxL0J1b2ltVzUzd0t4enVhVFRUWnZLTQpjTWMwT1M0L1NLRFU1NFFzelFKczc1dENnSVJmZi9oWWtiU051eVBsam81SDVOQm9adHhHVFE9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=",
+                "id": "YyhiU1mYhKiY2KSC3cDMmJ7DUrQD8xyxOzzkBFiOvgs",
+                "created_at": "1592356472"
+            }
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "2344",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 17 Jun 2020 01:14:32 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "FhkvxlvKgtNpnS0ABWGD",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    },
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "get",
+        "path": "/video/v1/signing-keys/YyhiU1mYhKiY2KSC3cDMmJ7DUrQD8xyxOzzkBFiOvgs",
+        "body": "",
+        "status": 200,
+        "response": {
+            "data": {
+                "id": "YyhiU1mYhKiY2KSC3cDMmJ7DUrQD8xyxOzzkBFiOvgs",
+                "created_at": "1592356472"
+            }
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "87",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 17 Jun 2020 01:14:32 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "FhkvxoSi--qMXM0ABcGC",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    }
+]

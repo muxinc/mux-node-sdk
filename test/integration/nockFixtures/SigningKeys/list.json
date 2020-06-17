@@ -1,0 +1,65 @@
+[
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "post",
+        "path": "/video/v1/signing-keys",
+        "body": {},
+        "status": 201,
+        "response": {
+            "data": {
+                "private_key": "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBbUwxLzQzOVlOUTBnak13RWNPMnpWUXROay9yUnpMcVNPK01zSUJ2cWZFOENoejltCjJKRWpGS3BvaS9hdCsrVGk0RS8xbFZtOURxeG5ZalBwTTN6M2lCbWloVnVlVVQ3UGlHdUxKaXlPbjNzNWdFcXkKSk8zUXR4Y2pLVkJJMk82T25WSmhFaU1DU0Vpd0lFTkx3NWxkQ3JiQ2Y5K2x1aG1ERlBkVngwc1RaZG43SmZ0ZApRREN3WGtpZVB4RzBpYWc3cS9NQnVKVmVLYWxWUnpxWDFqUXk1RXBrbnFPdXpmemMxM2YxZ0NxVW5lbmU3R1RCCjdHZTBydkFzdStiWWhSVGhsdE91b1R1VUllTzhha0xBYXBFL2dCZllBYUsrMWpEd0lFREZvbW1BWXNGN005UW8KUHk2SnRMblFWcFdJeERGTjYvQ25KU2sxbEw1dmlGNVRNMDhIYVFJREFRQUJBb0lCQVFDQk5CdlF4OUpIM2pqZwpvVnhJWXVyR1QrOXA5RXd3ME1vTzJ0Wml1dnFaK1FQOGdJZHhQeVRid0dMN3NzbnVRT29pTWNGZWV6RFFEc3JOCmFYZ2xVOXJZU0VjUVpEWUNLQTNLS3A3a3hlQkh6Q2NSL1IzQTIyTW8zZXVpY1FXT2JBNDd5b25PbThxOGRyQjIKT2pjRzJONjV4MnUwVysySEJUbTdMSlpsSlg3ZE1qNzZNT1YvUldhNWM4QmlkQXlKSGYvSnhaeHp5ekx4Q2JZagpNQTFBMXcyY3hsdk1LTktpa0UzVTVkblJ0QURyb2xKNWlKeW9Gb1ZIYWtiTFUrNVZ6SkNBUFlGNTV1M2o0STRaCmgzemhqRHNSZWp0WDdvUzhYOFZET3FyczZPTFZVV2sxbDNUdUFOYjZqeEtjWUxnS0o3TFpRaEw5dFZmYnRTUU4KUkhpNWxJM2hBb0dCQU1ENnZWaWFBMkhrWEtENVV5R2w0cENpdjV0cy9VKzBpanVjaWh0OXk0UHRsWEtmcEluVgppWWxVK2x0UG4yOEFhZWtEeWtqK2dzVjU3Z0ZNYnVxWWs0Z2dHOGw2VUY4R0ZEd3c0bFhlYTliWGhNTW5qRHVmCnhlU1dhL3hGK1FnWGJMQlExVmFLOXVrRFhHM0t2N0V1a2hnZy84TTRVazc4UUxCMVhlT3NhSDd0QW9HQkFNcWUKdVZ3Nm4vdjYvdDRYb1IzNHUvNkxkaTVHZGVzand6ZzdkS1dJSUtkREZic3I1LzhaTDZmVEhrNkJwRVBGWFN0MwpWOHAzZGlOMlNZODMwaXZpNThlTU5aeFN3ZzRKMzRHVTFERHBzbkVqV0lpWFNiTzdZNThTVXRkK1VQRGh2WG1YClFHcXoxSm1GQS9ZRm0rbzFZU2svRjVZSzl0azN2b2pxUlVKS2dON3RBb0dBQmdOS0J3cTFkRVZqUlhpL1NGc2MKMWhqY0U0R3YydDNyT0xSRjhWbFlFQUpGRjg4MWx6M2FEVGRpblptN2cvL2xUT2RiVkM3cDhERStZemY0ZE1MUQpSZnVLSWhyM2loNXNYdnUrOGFIK2hqRXM1OC9CcE5Iem5vMjVTNkQ2ZzNBSGFPNzcxcmg1dlFUbnlsdjQ0UkpzClp1Z1FVQXJmTmFyU2NTMFhBZE1MWm5rQ2dZQlVEMWVOT05Fb28rL2F5ZWpRMjJGNjcvYmVxZUsvNDcxWTllbWwKeHZ6dEIzcmJoUktobFp4Y3ZzeUMrMnZmcGVES2FKK21ZcnREYVE2SmVUb2JkTzU5cmVDTDh4V0k1M1d2ZDhRMAphcS9hR2pUZnJnd29vYVJwMlJzL1JhdGswL0pjb0hCY0ZERXVZNjNLQW5lMXllRitVQ3VEMXhhajlXbDV1ZDl6CjZoN2UzUUtCZ0UyY0NQT0VKeVNqOWNhU2NmTEpULzh0b0NqTndqUGhWb1lRQWg2a25uUUZ1Q0FRbGxRWjlxSlcKek1Pd1k1eUk3VnNWaGpDZjQvR1FlWjBPRFAxVGRMbkl5Y2JVdUdmbEtYYUI2MVdsQ0hUQmZMc0VnTkxxa2dNZQpSUTJBNHpWdFRkQUFSbms0YnF5eGROcklERWVoT2JEM00vcTFidU1kZkZORGVIMGx6bHhJCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==",
+                "id": "iMUlOFWIalm01Fe01OF1ag57Elc01MqiV01NG8zpprbIsUY",
+                "created_at": "1592356475"
+            }
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "2344",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 17 Jun 2020 01:14:35 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "FhkvxyD28CnfIooAA4OB",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    },
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "get",
+        "path": "/video/v1/signing-keys",
+        "body": "",
+        "status": 200,
+        "response": {
+            "data": [
+                {
+                    "id": "iMUlOFWIalm01Fe01OF1ag57Elc01MqiV01NG8zpprbIsUY",
+                    "created_at": "1592356475"
+                }
+            ]
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "93",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 17 Jun 2020 01:14:35 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "Fhkvx0xQCvnUpTcABcRC",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    }
+]

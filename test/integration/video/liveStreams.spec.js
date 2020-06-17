@@ -62,15 +62,6 @@ describe('Integration::LiveStreams', () => {
       Video.LiveStreams.del('somefakeid').catch(err => expect(err).to.exist));
   });
 
-  /** @test {LiveStreams.remove} */
-  describe('LiveStreams.remove [deprecated]', () => {
-    /** @test {LiveStreams.remove} */
-    it('deletes a live stream', async () => {
-      const stream = await Video.LiveStreams.create();
-      await Video.LiveStreams.remove(stream.id);
-    });
-  });
-
   /** @test {LiveStreams.get} */
   describe('LiveStreams.get', () => {
     /** @test {LiveStreams.get} */
