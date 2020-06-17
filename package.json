@@ -19,7 +19,7 @@
   "license": "MIT",
   "scripts": {
     "docs": "esdoc",
-    "test": "yarn test:unit",
+    "test": "yarn mocha --recursive ./test",
     "test:unit": "mocha --recursive ./test/unit",
     "test:int": "NOCK_BACK_MODE=record mocha --recursive ./test/integration --timeout 10000",
     "test:int:wild": "NOCK_BACK_MODE=wild mocha --recursive ./test/integration --timeout 10000",
