@@ -1,5 +1,6 @@
 const { expect } = require('chai');
 const Mux = require('../../../src/mux');
+const nockBack = require('nock').back;
 
 /** @test {DeliveryUsage} */
 describe('Integration::DeliveryUsage', () => {
@@ -10,12 +11,14 @@ describe('Integration::DeliveryUsage', () => {
   describe('DeliveryUsage.list', () => {
     /** @test {DeliveryUsage.list} */
     it('lists all delivery usage for a timeframe', async () => {
+      const { nockDone } = await nockBack('DeliveryUsage/list.json');
       const usage = await Video.DeliveryUsage.list({
         timeframe: [],
         page: 2,
         limit: 100,
       });
       expect(usage).to.be.an('array');
+      nockDone();
     });
   });
 });

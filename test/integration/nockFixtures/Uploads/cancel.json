@@ -1,0 +1,115 @@
+[
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "post",
+        "path": "/video/v1/uploads",
+        "body": {
+            "new_asset_settings": {
+                "playback_policy": "public"
+            }
+        },
+        "status": 201,
+        "response": {
+            "data": {
+                "url": "https://storage.googleapis.com/video-storage-us-east1-uploads/9i01EnP5na1bnKjJVn8FpFmWIlDXI4UWj38yoNoMS02OQ?Expires=1592374383&GoogleAccessId=mux-direct-upload%40mux-cloud.iam.gserviceaccount.com&Signature=XQpZwXaahw6g8W2pplUwwR%2BHE3bn5BwUOELDHtqP%2FYZu7RQkwKOSR1D2OLZkm%2Bb8XX6fnh13xpyKzmbeNgZGSJS8aCTTj6VepofzBpoaOyWKIcIzACbpyvfslRh%2BgDG2%2BSCUpn4%2FweY%2F31KW8SP96VxcBbW5BJIuFS1AuYzfpBdXDAoNYolSfamMeRENPSl3uPjG1Us%2B07u5G9PQwW27DhzLSCH8YC18mjPxG8g2UZVdACUjSesRD%2Fnn4T8qaKXIyAVkpbxWdFuyACxe8J1KZRrSWYFhJKLaNY4nUKmYKbc1hZnHEhGTqJ1saPsuahga8EJ%2BpB%2FwHMA3lqLwL657vg%3D%3D&upload_id=AAANsUlhwA3QhFr1SGlwbb6XTZqUVJZ19V7nj8jkXSrhRAUFvHGTNkwY5wzvBgSYkSI-UNjAYVI4sVEo2SCEGZFnIeLLIamhow",
+                "timeout": 3600,
+                "status": "waiting",
+                "new_asset_settings": {
+                    "playback_policies": [
+                        "public"
+                    ]
+                },
+                "id": "9i01EnP5na1bnKjJVn8FpFmWIlDXI4UWj38yoNoMS02OQ"
+            }
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "845",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 17 Jun 2020 05:13:03 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "Fhk8yo2rdsGPPNkAHZVC",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    },
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "put",
+        "path": "/video/v1/uploads/9i01EnP5na1bnKjJVn8FpFmWIlDXI4UWj38yoNoMS02OQ/cancel",
+        "body": "",
+        "status": 200,
+        "response": {
+            "data": {
+                "timeout": 3600,
+                "status": "cancelled",
+                "new_asset_settings": {
+                    "playback_policies": [
+                        "public"
+                    ]
+                },
+                "id": "9i01EnP5na1bnKjJVn8FpFmWIlDXI4UWj38yoNoMS02OQ"
+            }
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "153",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 17 Jun 2020 05:13:04 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "Fhk8yrJoGSiKsGkAC7sF",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    },
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "get",
+        "path": "/video/v1/uploads/9i01EnP5na1bnKjJVn8FpFmWIlDXI4UWj38yoNoMS02OQ",
+        "body": "",
+        "status": 200,
+        "response": {
+            "data": {
+                "timeout": 3600,
+                "status": "cancelled",
+                "new_asset_settings": {
+                    "playback_policies": [
+                        "public"
+                    ]
+                },
+                "id": "9i01EnP5na1bnKjJVn8FpFmWIlDXI4UWj38yoNoMS02OQ"
+            }
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "153",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 17 Jun 2020 05:13:04 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "Fhk8ys_pbrNMPiIADTYD",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    }
+]

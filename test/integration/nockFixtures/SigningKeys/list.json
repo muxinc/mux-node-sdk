@@ -7,24 +7,24 @@
         "status": 201,
         "response": {
             "data": {
-                "private_key": "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBbUwxLzQzOVlOUTBnak13RWNPMnpWUXROay9yUnpMcVNPK01zSUJ2cWZFOENoejltCjJKRWpGS3BvaS9hdCsrVGk0RS8xbFZtOURxeG5ZalBwTTN6M2lCbWloVnVlVVQ3UGlHdUxKaXlPbjNzNWdFcXkKSk8zUXR4Y2pLVkJJMk82T25WSmhFaU1DU0Vpd0lFTkx3NWxkQ3JiQ2Y5K2x1aG1ERlBkVngwc1RaZG43SmZ0ZApRREN3WGtpZVB4RzBpYWc3cS9NQnVKVmVLYWxWUnpxWDFqUXk1RXBrbnFPdXpmemMxM2YxZ0NxVW5lbmU3R1RCCjdHZTBydkFzdStiWWhSVGhsdE91b1R1VUllTzhha0xBYXBFL2dCZllBYUsrMWpEd0lFREZvbW1BWXNGN005UW8KUHk2SnRMblFWcFdJeERGTjYvQ25KU2sxbEw1dmlGNVRNMDhIYVFJREFRQUJBb0lCQVFDQk5CdlF4OUpIM2pqZwpvVnhJWXVyR1QrOXA5RXd3ME1vTzJ0Wml1dnFaK1FQOGdJZHhQeVRid0dMN3NzbnVRT29pTWNGZWV6RFFEc3JOCmFYZ2xVOXJZU0VjUVpEWUNLQTNLS3A3a3hlQkh6Q2NSL1IzQTIyTW8zZXVpY1FXT2JBNDd5b25PbThxOGRyQjIKT2pjRzJONjV4MnUwVysySEJUbTdMSlpsSlg3ZE1qNzZNT1YvUldhNWM4QmlkQXlKSGYvSnhaeHp5ekx4Q2JZagpNQTFBMXcyY3hsdk1LTktpa0UzVTVkblJ0QURyb2xKNWlKeW9Gb1ZIYWtiTFUrNVZ6SkNBUFlGNTV1M2o0STRaCmgzemhqRHNSZWp0WDdvUzhYOFZET3FyczZPTFZVV2sxbDNUdUFOYjZqeEtjWUxnS0o3TFpRaEw5dFZmYnRTUU4KUkhpNWxJM2hBb0dCQU1ENnZWaWFBMkhrWEtENVV5R2w0cENpdjV0cy9VKzBpanVjaWh0OXk0UHRsWEtmcEluVgppWWxVK2x0UG4yOEFhZWtEeWtqK2dzVjU3Z0ZNYnVxWWs0Z2dHOGw2VUY4R0ZEd3c0bFhlYTliWGhNTW5qRHVmCnhlU1dhL3hGK1FnWGJMQlExVmFLOXVrRFhHM0t2N0V1a2hnZy84TTRVazc4UUxCMVhlT3NhSDd0QW9HQkFNcWUKdVZ3Nm4vdjYvdDRYb1IzNHUvNkxkaTVHZGVzand6ZzdkS1dJSUtkREZic3I1LzhaTDZmVEhrNkJwRVBGWFN0MwpWOHAzZGlOMlNZODMwaXZpNThlTU5aeFN3ZzRKMzRHVTFERHBzbkVqV0lpWFNiTzdZNThTVXRkK1VQRGh2WG1YClFHcXoxSm1GQS9ZRm0rbzFZU2svRjVZSzl0azN2b2pxUlVKS2dON3RBb0dBQmdOS0J3cTFkRVZqUlhpL1NGc2MKMWhqY0U0R3YydDNyT0xSRjhWbFlFQUpGRjg4MWx6M2FEVGRpblptN2cvL2xUT2RiVkM3cDhERStZemY0ZE1MUQpSZnVLSWhyM2loNXNYdnUrOGFIK2hqRXM1OC9CcE5Iem5vMjVTNkQ2ZzNBSGFPNzcxcmg1dlFUbnlsdjQ0UkpzClp1Z1FVQXJmTmFyU2NTMFhBZE1MWm5rQ2dZQlVEMWVOT05Fb28rL2F5ZWpRMjJGNjcvYmVxZUsvNDcxWTllbWwKeHZ6dEIzcmJoUktobFp4Y3ZzeUMrMnZmcGVES2FKK21ZcnREYVE2SmVUb2JkTzU5cmVDTDh4V0k1M1d2ZDhRMAphcS9hR2pUZnJnd29vYVJwMlJzL1JhdGswL0pjb0hCY0ZERXVZNjNLQW5lMXllRitVQ3VEMXhhajlXbDV1ZDl6CjZoN2UzUUtCZ0UyY0NQT0VKeVNqOWNhU2NmTEpULzh0b0NqTndqUGhWb1lRQWg2a25uUUZ1Q0FRbGxRWjlxSlcKek1Pd1k1eUk3VnNWaGpDZjQvR1FlWjBPRFAxVGRMbkl5Y2JVdUdmbEtYYUI2MVdsQ0hUQmZMc0VnTkxxa2dNZQpSUTJBNHpWdFRkQUFSbms0YnF5eGROcklERWVoT2JEM00vcTFidU1kZkZORGVIMGx6bHhJCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==",
-                "id": "iMUlOFWIalm01Fe01OF1ag57Elc01MqiV01NG8zpprbIsUY",
-                "created_at": "1592356475"
+                "private_key": "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBMEJyallnSkdDVDh6TUFZbGZjeS96TXBFeS9kb1QxZE5FUjRqRkdLR1JjVmNobUhBCmpNQXdqNkp6Y1JJaTY4RzYrTVlrYkVldzlJVkRRSFpoY2tFRFYrc3N1REhQVDVWUnJFdXRaeW13bk54RkplM3oKUFVzSmtyVWFlZFRiZHVNRk9ISHVzZjNyRUxPc2NTOENSc1JyeHJNQThzUXNwemFDSWJ5WU1rS1NwMGtPVDM4aQpyZE43VDVBYVVJQTZEMXVCeVhvc0RzbXJQbkN2T1RhWmxZTkhkeWdrT0lmaVdpbE9haHFjS0VINVRXVEtodi9LCjRwZUg3L1ppcS8wa04wYWZ6aDhRN281c29nY2F4enZZcS92VzNPd3NQU2c3Q09JdVRFSTBNcjI5VTZxTVF4S3MKSFFVc3dHem4rOWNnaGxlV3U3TnRuQm5LYytpRlVhTEFqZ2xOSHdJREFRQUJBb0lCQVFEQTQzdEpGOFJrdzhDbApUYjBvYWtTSkJCNWFVOXJLVjZmbUt1SG0vaDlvd2pNdGw2T0trb1V3VFNubGJ5TVJGSU5DSFI0Ymd5UEFzVmlSCmdtaDJKMDU3Q2s5cjl6Y3BrOFNkQjVRVlgrNEVwcUl0TXUzWExSc1ZjV20xN1JieWppQURubzdaU2ZxOGcxMWQKbDIzcnZCb05sVk5Xc1lDV0NJNzd5RHZsc2hFT25acFFyM3FYWEhpSEFPMkxzcUQ5UGxHTldZWFhudG5KODVMMQozQUpXNmM3MjErZFJJLy85U3hKdGRHbkpGK1Nzcmx2TWdCVCtUT2U5RTdsaDMrSzg1dmZUQjg0QUtqQ3BoQ3RoCjlIeXl2QXZrUW56L0VwM2c3ZlpmSmZid1k0a2g2a0E5QkpWMHRZTnBmcWhXci8wUVBVanlLQk5JUDhGVTFLT0oKRklFQ1JZWTVBb0dCQU5XemxRcW1GaFU5dnhTb3ZpWVJHa2Y4Um9vTk1nY0ttc0dabVczTnRwVFZOYitGdnpnOQpiQk00cDlwUjdsUCs2UTdTZDBZelA1T0NybWgwcG1HNG8yajAwY0gyM2NMRlBRUkJHWVhMMzIxSHdjS3V0Qy91CmE2YmRLWGtHaC81bzk2M3Q2K0xKOFRFdFR1U3BCeWZVQWdweTJXNzJCVlRMSzd1ZnBPWkl2Um83QW9HQkFQbEwKdXFTNkFxUUpCTzJEVDlEbzdjN2JEdUQzeEF2U1BpREwzNEQ5a2RscUZ5OFJCeHVaVk9Ya2lZbno5SFFHb1BQRgoreXZvaFJwVGxacUV4cmd4Qnd5QzkvYTVQK2pkSk9VUFMyUEQvRTRSOTYzVnRnR2p6eGlueUVJSzdXUk5hZXYrCmoyd1gvQmRUZU5VcXBmc1pDMmlYYTF1cGZDV1JQekhmK25KeWUwWnRBb0dBRDFHeVMzTWdmaUZSQTFBZFlXazAKY3hpWWplam9QeXo1Ynd0dHZqdFM3VlJqWi9sVWZkbVpWNzlsK1BhS21TYmEyaDhvUWJZR3hySkZnbU5xVWZNRQpjOCtwQWJpS3FSMnVoQkdPbk5MQ2ozam5ZT2RaTDE1dUJTWXhoT1Y4OWpYY0czSEV5UnNrMlJ1Z1hpL252V2tyClJFaDdZY0x0R3VqOWw1T1lKSkh1VEdVQ2dZQXg0bDkwdXV2d1d3V3JhVTA5Wm42L2w4SUFibFBDY2MyUXpucm8KMnRTbWhyNGc0dTFqTG1sNG55U09nRXg0TXlOZDVFNEFXVVRaSWNTYjZObkMzYnlsV2tlNERSV215U21xMUVhbgpyZjM4dVVld2QwVTJTc3NVQ2U3ZW1FVXNmdmtsQ2drMC9nK3BzMEJJbDRJakhyM1RyZ2tEaklTVkY5MW5ZNFJBCkJueDRlUUtCZ0ZEekl3MTA4K1ZwaFYxZE5VR1Vxemk2MjlmTGxPVGt0S25MNWdMT3kvN3cybE93UUc1Z2xUQ20KVW5HallRc3pCWEswMm9abE9MeHMxTlpiRkc2eWhkMElwaUNqVXlMSDVvM3VKQmpMajh0VWRHYW9sZm9lY3dQNwpoK2F4OEdHd25uaUJqMUE5R1lBTWNjR2Q0MTRERk9Xb2JOaTI0N25wbGk0ZC90Nkt6aFVzCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==",
+                "id": "KLm5cVVB8qXCMOlIk79ego02sesXjrUiFHjZSpckpOBg",
+                "created_at": "1592370223"
             }
         },
         "rawHeaders": [
             "Cache-Control",
             "max-age=0, private, must-revalidate",
             "Content-Length",
-            "2344",
+            "2341",
             "Content-Type",
             "application/json; charset=utf-8",
             "Date",
-            "Wed, 17 Jun 2020 01:14:35 GMT",
+            "Wed, 17 Jun 2020 05:03:42 GMT",
             "Server",
             "Mux API Server v1.94.1",
             "X-Request-Id",
-            "FhkvxyD28CnfIooAA4OB",
+            "Fhk8R_Qp3T53TGUALXqB",
             "Connection",
             "close"
         ],
@@ -39,8 +39,8 @@
         "response": {
             "data": [
                 {
-                    "id": "iMUlOFWIalm01Fe01OF1ag57Elc01MqiV01NG8zpprbIsUY",
-                    "created_at": "1592356475"
+                    "id": "KLm5cVVB8qXCMOlIk79ego02sesXjrUiFHjZSpckpOBg",
+                    "created_at": "1592370223"
                 }
             ]
         },
@@ -48,15 +48,36 @@
             "Cache-Control",
             "max-age=0, private, must-revalidate",
             "Content-Length",
-            "93",
+            "90",
             "Content-Type",
             "application/json; charset=utf-8",
             "Date",
-            "Wed, 17 Jun 2020 01:14:35 GMT",
+            "Wed, 17 Jun 2020 05:03:42 GMT",
             "Server",
             "Mux API Server v1.94.1",
             "X-Request-Id",
-            "Fhkvx0xQCvnUpTcABcRC",
+            "Fhk8SBqgUWhnFgAALXuB",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    },
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "delete",
+        "path": "/video/v1/signing-keys/KLm5cVVB8qXCMOlIk79ego02sesXjrUiFHjZSpckpOBg",
+        "body": "",
+        "status": 204,
+        "response": "",
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Date",
+            "Wed, 17 Jun 2020 05:03:43 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "Fhk8SDeiqOE2SeQAB86G",
             "Connection",
             "close"
         ],

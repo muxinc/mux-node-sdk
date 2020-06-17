@@ -209,13 +209,13 @@ See the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk/identifiers.html) 
 
 ## Development
 
-Run unit tests: `npm test` or `npm run test:unit`
+Run unit tests: `yarn test` or `yarn test:unit`
 
-Run integration tests: `npm run test:int`
+Run integration tests: `yarn test:int` - this will run integration tests with `nock` and `NOCK_BACK_MODE` set to `record`. This means that previously recorded API requests will be stubbed and any missing ones will be recorded.
 
-**Note**: running the integration tests will require you to configure the `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` environment variables with your Mux access token and secret. You should use the credentials for sdks@mux.com, where we generate views for this purpose ("watch-this" project).
+You can also run integration tests with real requests by running `yarn test:int:wild`. Make sure you have `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` set as environment variables so your requests are authenticated. This is useful to run locally to verify that actual API requests work as expected. When running the whole suite locally you might run into Mux API rate limits so keep that in mind.
 
-Integration tests do not get run on CI because of Mux API rate limits, so run them locally.
+**Pro Tip** Use mocha `-g` option to run only a specific test or group of tests. For example: `yarn test -g 'creates a new Assets'`.
 
 To generate the ESDocs, run:
 

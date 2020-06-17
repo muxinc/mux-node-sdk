@@ -21,8 +21,8 @@
     "docs": "esdoc",
     "test": "yarn test:unit",
     "test:unit": "mocha --recursive ./test/unit",
-    "test:int": "NOCK_BACK_MODE=wild mocha --recursive ./test/integration",
-    "test:int:record": "mocha --recursive ./test/integration --timeout 10000",
+    "test:int": "NOCK_BACK_MODE=record mocha --recursive ./test/integration --timeout 10000",
+    "test:int:wild": "NOCK_BACK_MODE=wild mocha --recursive ./test/integration --timeout 10000",
     "format": "eslint src/** test/** types/** --no-error-on-unmatched-pattern",
     "lint": "yarn format"
   },
