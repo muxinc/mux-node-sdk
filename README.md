@@ -244,4 +244,4 @@ Running integration tests will require a Mux account with valid seed data for `/
 1. Tag master: example: `git tag v2.6.0` and `git push --tags origin`
 1. Run `npm publish`
 
-If releaseing a beta tag, run `npm publish -beta`
+If releaseing a beta tag, run `npm publish --tag beta`
