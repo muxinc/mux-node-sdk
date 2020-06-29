@@ -58,14 +58,21 @@ class Base extends EventEmitter {
     this.http.interceptors.response.use(
       res => {
         this.emit('response', res);
+        if (this.isVideoUrl(res.config.url)) {
+          return res.data && res.data.data;
+        }
 
-        return res.data && res.data.data;
+        return res.data;
       },
       errorRes =>
         Promise.reject(
           (errorRes.response && errorRes.response.data.error) || errorRes
         )
     );
+  }
+
+  isVideoUrl(url) {
+    return url.startsWith(`${this.config.baseUrl}/video/v1/`);
   }
 
   set config(options = {}) {
@@ -101,14 +108,6 @@ class Base extends EventEmitter {
 
   get tokenSecret() {
     return this._secret;
-  }
-
-  remove(...params) {
-    // eslint-disable-next-line no-console
-    console.warn(
-      'The remove helper has been deprecated in favor of del. `remove` will no longer be available after the next major version bump (3.0).'
-    );
-    return this.del(...params);
   }
 }
 

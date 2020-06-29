@@ -55,7 +55,7 @@ describe('Unit::Incidents', () => {
       incidentsInstance.list({ status: 'open' }).then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].incidents).to.be.true;
+        expect(onFulfilled.getCall(0).args[0].data.incidents).to.be.true;
         done();
       });
     });
@@ -80,7 +80,7 @@ describe('Unit::Incidents', () => {
       incidentsInstance.get('abc123').then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].incidents).to.be.true;
+        expect(onFulfilled.getCall(0).args[0].data.incidents).to.be.true;
         done();
       });
     });
@@ -108,7 +108,7 @@ describe('Unit::Incidents', () => {
       incidentsInstance.related('abc123').then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].incidents).to.be.true;
+        expect(onFulfilled.getCall(0).args[0].data.incidents).to.be.true;
         done();
       });
     });

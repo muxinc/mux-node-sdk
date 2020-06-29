@@ -1,8 +1,9 @@
 const { expect } = require('chai');
 const Mux = require('../../../src/mux');
+const nockBack = require('nock').back;
 
 /** @test {Filters} */
-describe('Integration::Errors', () => {
+describe('Integration::Filters', () => {
   const muxClient = new Mux();
   const { Data } = muxClient;
 
@@ -10,9 +11,12 @@ describe('Integration::Errors', () => {
   describe('Filters.list', () => {
     /** @test {Filters.list} */
     it('Lists all the filters broken out into basic and advanced', async () => {
-      const filters = await Data.Filters.list();
-      expect(filters.basic).to.be.an('array');
-      expect(filters.advanced).to.be.an('array');
+      const { nockDone } = await nockBack('Filters/list.json');
+      const resp = await Data.Filters.list();
+      expect(resp.timeframe).to.be.an('array');
+      expect(resp.data.basic).to.be.an('array');
+      expect(resp.data.advanced).to.be.an('array');
+      nockDone();
     });
   });
 
@@ -20,8 +24,11 @@ describe('Integration::Errors', () => {
   describe('Filters.get', () => {
     /** @test {Filters.get} */
     it('Lists the values for a filter along with a total count of related views', async () => {
-      const filters = await Data.Filters.get('browser');
-      expect(filters).to.be.an('array');
+      const { nockDone } = await nockBack('Filters/get.json');
+      const resp = await Data.Filters.get('browser');
+      expect(resp.data).to.be.an('array');
+      expect(resp.timeframe).to.be.an('array');
+      nockDone();
     });
   });
 });

@@ -1,39 +1,27 @@
 const { expect } = require('chai');
 const Mux = require('../../../src/mux');
+const nockBack = require('nock').back;
 
 /** @test {LiveStreams} */
 describe('Integration::LiveStreams', () => {
   const muxClient = new Mux();
   const { Video } = muxClient;
-  let testLiveStream;
-  let testSimulcastTarget;
-  const createdLiveStreams = [];
-
-  before(async () => {
-    testLiveStream = await Video.LiveStreams.create();
-    testSimulcastTarget = await Video.LiveStreams.createSimulcastTarget(
-      testLiveStream.id,
-      { url: 'rtmp://live.example.com/app', stream_key: 'difvbfgi' }
-    );
-    createdLiveStreams.push(testLiveStream);
-  });
-
-  after(() =>
-    createdLiveStreams.forEach(stream => Video.LiveStreams.del(stream.id))
-  );
 
   /** @test {LiveStreams.create} */
   describe('LiveStreams.create', () => {
     /** @test {LiveStreams.create} */
     it('creates a live stream with defaults', async () => {
+      const { nockDone } = await nockBack('LiveStreams/create.json');
       const stream = await Video.LiveStreams.create();
-      createdLiveStreams.push(stream);
       expect(stream.stream_key).to.exist;
       expect(stream.status).to.equal('idle');
       expect(stream.reconnect_window).to.equal(60);
+      await Video.LiveStreams.del(stream.id);
+      nockDone();
     });
 
     it('creates a live stream with given parameters', async () => {
+      const { nockDone } = await nockBack('LiveStreams/createWithParams.json');
       const stream = await Video.LiveStreams.create({
         playback_policy: 'signed',
         new_asset_settings: {
@@ -41,11 +29,12 @@ describe('Integration::LiveStreams', () => {
         },
       });
 
-      createdLiveStreams.push(stream);
       expect(stream.playback_ids[0].policy).to.equal('signed');
       expect(stream.new_asset_settings).to.eql({
         playback_policies: ['signed'],
       });
+      await Video.LiveStreams.del(stream.id);
+      nockDone();
     });
   });
 
@@ -53,8 +42,10 @@ describe('Integration::LiveStreams', () => {
   describe('LiveStreams.del', () => {
     /** @test {LiveStreams.del} */
     it('deletes a live stream', async () => {
+      const { nockDone } = await nockBack('LiveStreams/del.json');
       const stream = await Video.LiveStreams.create();
       await Video.LiveStreams.del(stream.id);
+      nockDone();
     });
 
     /** @test {LiveStreams.del} */
@@ -62,21 +53,15 @@ describe('Integration::LiveStreams', () => {
       Video.LiveStreams.del('somefakeid').catch(err => expect(err).to.exist));
   });
 
-  /** @test {LiveStreams.remove} */
-  describe('LiveStreams.remove [deprecated]', () => {
-    /** @test {LiveStreams.remove} */
-    it('deletes a live stream', async () => {
-      const stream = await Video.LiveStreams.create();
-      await Video.LiveStreams.remove(stream.id);
-    });
-  });
-
   /** @test {LiveStreams.get} */
   describe('LiveStreams.get', () => {
     /** @test {LiveStreams.get} */
     it('gets a live stream', async () => {
+      const { nockDone } = await nockBack('LiveStreams/get.json');
+      const testLiveStream = await Video.LiveStreams.create();
       const stream = await Video.LiveStreams.get(testLiveStream.id);
       expect(stream.status).to.equal('idle');
+      nockDone();
     });
 
     /** @test {LiveStreams.get} */
@@ -87,29 +72,42 @@ describe('Integration::LiveStreams', () => {
   /** @test {LiveStreams.signalComplete} */
   describe('LiveStreams.signalComplete', () => {
     /** @test {LiveStreams.signalComplete} */
-    it('signals a live stream is complete', done => {
+    it('signals a live stream is complete', async () => {
+      const { nockDone } = await nockBack('LiveStreams/signalComplete.json');
+      const testLiveStream = await Video.LiveStreams.create();
       // Just returns a 204
-      Video.LiveStreams.signalComplete(testLiveStream.id).then(() => done());
+      await Video.LiveStreams.signalComplete(testLiveStream.id);
+      await Video.LiveStreams.del(testLiveStream.id);
+      nockDone();
     });
 
     /** @test {LiveStreams.signalComplete} */
-    it('fails to signal a live stream is complete when given an incorrect live stream id', () =>
-      Video.LiveStreams.signalComplete('somefakeid').catch(
+    it('fails to signal a live stream is complete when given an incorrect live stream id', async () => {
+      const { nockDone } = await nockBack(
+        'LiveStreams/signalCompleteFail.json'
+      );
+      await Video.LiveStreams.signalComplete('somefakeid').catch(
         err => expect(err).to.exist
-      ));
+      );
+      nockDone();
+    });
   });
 
   /** @test {LiveStreams.list} */
   describe('LiveStreams.list', () => {
     /** @test {LiveStreams.list} */
     it('lists all live streams for an environment', async () => {
+      const { nockDone } = await nockBack('LiveStreams/list.json');
       const streams = await Video.LiveStreams.list();
       expect(streams).to.be.an('array');
+      nockDone();
     });
 
     it('lists 5 live streams for an environment', async () => {
+      const { nockDone } = await nockBack('LiveStreams/listWithLimit.json');
       const streams = await Video.LiveStreams.list({ limit: 5 });
       expect(streams.length).to.be.at.most(5);
+      nockDone();
     });
   });
 
@@ -117,9 +115,13 @@ describe('Integration::LiveStreams', () => {
   describe('LiveStreams.resetStreamKey', () => {
     /** @test {LiveStreams.resetStreamKey} */
     it('resets a stream key', async () => {
+      const { nockDone } = await nockBack('LiveStreams/resetStreamKey.json');
+      const testLiveStream = await Video.LiveStreams.create();
       const stream = await Video.LiveStreams.resetStreamKey(testLiveStream.id);
       expect(stream.id).to.equal(testLiveStream.id);
       expect(stream.stream_key).to.not.equal(testLiveStream.stream_key);
+      await Video.LiveStreams.del(testLiveStream.id);
+      nockDone();
     });
 
     /** @test {LiveStreams.resetStreamKey} */
@@ -133,19 +135,28 @@ describe('Integration::LiveStreams', () => {
   describe('LiveStreams.createPlaybackId', () => {
     /** @test {LiveStreams.createPlaybackId} */
     it('creates a playback id for a live stream', async () => {
+      const { nockDone } = await nockBack('LiveStreams/createPlaybackId.json');
+      const testLiveStream = await Video.LiveStreams.create();
       const playbackId = await Video.LiveStreams.createPlaybackId(
         testLiveStream.id,
         { policy: 'public' }
       );
       expect(playbackId.policy).to.equal('public');
+      await Video.LiveStreams.del(testLiveStream.id);
       expect(playbackId.id).to.exist;
+      nockDone();
     });
 
     /** @test {LiveStreams.createPlaybackId} */
-    it('fails to create a playback id if given an incorrect live stream id', () =>
-      Video.LiveStreams.createPlaybackId('somefakeid', {
+    it('fails to create a playback id if given an incorrect live stream id', async () => {
+      const { nockDone } = await nockBack(
+        'LiveStreams/createPlaybackIdFail.json'
+      );
+      await Video.LiveStreams.createPlaybackId('somefakeid', {
         policy: 'public',
-      }).catch(err => expect(err).to.exist));
+      }).catch(err => expect(err).to.exist);
+      nockDone();
+    });
 
     /** @test {LiveStreams.createPlaybackId} */
     it('fails to create a playback id if not given a playback policy', () =>
@@ -158,20 +169,29 @@ describe('Integration::LiveStreams', () => {
   describe('LiveStreams.deletePlaybackId', () => {
     /** @test {LiveStreams.deletePlaybackId} */
     it('deletes playbackIds for a live stream', async () => {
+      const { nockDone } = await nockBack('LiveStreams/deletePlaybackId.json');
+      const testLiveStream = await Video.LiveStreams.create({
+        playback_policy: 'public',
+      });
       const playbackId = await Video.LiveStreams.createPlaybackId(
         testLiveStream.id,
         { policy: 'public' }
       );
-      Video.LiveStreams.deletePlaybackId(testLiveStream.id, playbackId.id);
+      await Video.LiveStreams.deletePlaybackId(
+        testLiveStream.id,
+        playbackId.id
+      );
       const { playback_ids: updatedPlaybackIds } = await Video.LiveStreams.get(
         testLiveStream.id
       );
       expect(updatedPlaybackIds).to.not.include(playbackId);
+      await Video.LiveStreams.del(testLiveStream.id);
+      nockDone();
     });
 
     /** @test {PlaybackIds.deletePlaybackId} */
     it('fails to get playbackIds for a live stream when not given a playback ID', () =>
-      Video.LiveStreams.deletePlaybackId(testLiveStream.id).catch(
+      Video.LiveStreams.deletePlaybackId('playbackId1').catch(
         err => expect(err).to.exist
       ));
   });
@@ -180,11 +200,17 @@ describe('Integration::LiveStreams', () => {
   describe('LiveStreams.createSimulcastTarget', () => {
     /** @test {LiveStreams.createSimulcastTarget} */
     it('creates a simulcast target for a live stream', async () => {
+      const { nockDone } = await nockBack(
+        'LiveStreams/createSimulcastTarget.json'
+      );
+      const testLiveStream = await Video.LiveStreams.create();
       const simulcastTarget = await Video.LiveStreams.createSimulcastTarget(
         testLiveStream.id,
         { url: 'rtmp://live.example.com/app', stream_key: 'difvbfgi' }
       );
       expect(simulcastTarget.id).to.exist;
+      await Video.LiveStreams.del(testLiveStream.id);
+      nockDone();
     });
 
     /** @test {LiveStreams.createSimulcastTarget} */
@@ -205,11 +231,19 @@ describe('Integration::LiveStreams', () => {
   describe('LiveStreams.getSimulcastTarget', () => {
     /** @test {LiveStreams.getSimulcastTarget} */
     it('gets a simulcast target for a live stream', async () => {
+      const { nockDone } = await nockBack('LiveStreams/getSimulcastTarget');
+      const testLiveStream = await Video.LiveStreams.create();
+      const testSimulcastTarget = await Video.LiveStreams.createSimulcastTarget(
+        testLiveStream.id,
+        { url: 'rtmp://live.example.com/app', stream_key: 'difvbfgi' }
+      );
       const simulcastTarget = await Video.LiveStreams.getSimulcastTarget(
         testLiveStream.id,
         testSimulcastTarget.id
       );
       expect(simulcastTarget.id).to.exist;
+      await Video.LiveStreams.del(testLiveStream.id);
+      nockDone();
     });
 
     /** @test {LiveStreams.getSimulcastTarget} */
@@ -230,6 +264,12 @@ describe('Integration::LiveStreams', () => {
   describe('LiveStreams.deleteSimulcastTarget', () => {
     /** @test {LiveStreams.deleteSimulcastTarget} */
     it('deletes the simulcast target for a live stream', async () => {
+      const { nockDone } = await nockBack('LiveStreams/deleteSimulcastTarget');
+      const testLiveStream = await Video.LiveStreams.create({
+        simulcast_targets: [
+          { url: 'rtmp://live.example.com/app', stream_key: '12345' },
+        ],
+      });
       const simulcastTarget = await Video.LiveStreams.createSimulcastTarget(
         testLiveStream.id,
         { url: 'rtmp://live.example.com/app', stream_key: 'difvbfgi' }
@@ -238,6 +278,7 @@ describe('Integration::LiveStreams', () => {
         testLiveStream.id,
         simulcastTarget.id
       );
+      await Video.LiveStreams.get(testLiveStream.id);
       const {
         simulcast_targets: updatedSimulcastTargets,
       } = await Video.LiveStreams.get(testLiveStream.id);
@@ -245,11 +286,13 @@ describe('Integration::LiveStreams', () => {
         target => target.id
       );
       expect(simulcastTargetIds).to.not.include(simulcastTarget.id);
+      await Video.LiveStreams.del(testLiveStream.id);
+      nockDone();
     });
 
     /** @test {PlaybackIds.deletePlaybackId} */
     it('fails to get playbackIds for a live stream when not given a playback ID', () =>
-      Video.LiveStreams.deletePlaybackId(testLiveStream.id).catch(
+      Video.LiveStreams.deletePlaybackId('testLiveStreamId').catch(
         err => expect(err).to.exist
       ));
   });

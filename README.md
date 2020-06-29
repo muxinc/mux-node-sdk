@@ -209,11 +209,13 @@ See the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk/identifiers.html) 
 
 ## Development
 
-Run unit tests: `npm test` or `npm run test:unit`
+Run unit tests: `yarn test` or `yarn test:unit`
 
-Run integration tests: `npm run test:int`
+Run integration tests: `yarn test:int` - this will run integration tests with `nock` and `NOCK_BACK_MODE` set to `record`. This means that previously recorded API requests will be stubbed and any missing ones will be recorded.
 
-**Note**: running the integration tests will require you to configure the `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` environment variables with your Mux access token and secret.
+You can also run integration tests with real requests by running `yarn test:int:wild`. Make sure you have `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` set as environment variables so your requests are authenticated. This is useful to run locally to verify that actual API requests work as expected. When running the whole suite locally you might run into Mux API rate limits so keep that in mind.
+
+**Pro Tip** Use mocha `-g` option to run only a specific test or group of tests. For example: `yarn test -g 'creates a new Assets'`.
 
 To generate the ESDocs, run:
 
@@ -232,6 +234,8 @@ Find a bug or want to add a useful feature? That'd be amazing! If you'd like to 
 4. Add any relevant tests for your changes
 5. Open the pull request! :tada:
 
+Running integration tests will require a Mux account with valid seed data for `/video` and `/data` endpoints. If you are contributing and you don't have this, please add unit test coverage and someone from the Mux will help get integration tests added if necessary.
+
 ## Releasing
 
 1. Update CHANGELOG.md
@@ -239,3 +243,5 @@ Find a bug or want to add a useful feature? That'd be amazing! If you'd like to 
 1. Open Pull Request, merge after approved
 1. Tag master: example: `git tag v2.6.0` and `git push --tags origin`
 1. Run `npm publish`
+
+If releaseing a beta tag, run `npm publish --tag beta`

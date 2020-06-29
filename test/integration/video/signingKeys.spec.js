@@ -2,8 +2,8 @@ const { expect } = require('chai');
 const Mux = require('../../../src/mux');
 const nockBack = require('nock').back;
 
-/** @test {Uploads} */
-describe('SigningKeys', () => {
+/** @test {SigningKeys} */
+describe('Integration:SigningKeys', () => {
   const muxClient = new Mux();
   const { Video } = muxClient;
 
@@ -17,13 +17,14 @@ describe('SigningKeys', () => {
       expect(signingKey.id).to.exist;
       expect(signingKey.private_key).to.exist;
       expect(signingKey.created_at).to.exist;
+      await Video.SigningKeys.del(signingKey.id);
       nockDone();
     });
   });
 
   /** @test {SigningKeys.get} */
   describe('SigningKeys.get', () => {
-    /** @test {SigningKeys.create} */
+    /** @test {SigningKeys.get} */
     it('retrieves a signing key', async () => {
       const { nockDone } = await nockBack('SigningKeys/get.json');
       const createdSigningKey = await Video.SigningKeys.create();
@@ -32,6 +33,7 @@ describe('SigningKeys', () => {
       expect(signingKey.id).to.exist;
       expect(signingKey.created_at).to.exist;
       expect(signingKey.private_key).to.not.exist;
+      await Video.SigningKeys.del(createdSigningKey.id);
       nockDone();
     });
   });
@@ -50,9 +52,8 @@ describe('SigningKeys', () => {
         await Video.SigningKeys.get(createdSigningKey.id);
       } catch (err) {
         expect(err.type).to.eq('not_found');
+        nockDone();
       }
-
-      nockDone();
     });
   });
 
@@ -61,25 +62,10 @@ describe('SigningKeys', () => {
     /** @test {SigningKeys.list} */
     it('lists signing keys', async () => {
       const { nockDone } = await nockBack('SigningKeys/list.json');
-      await Video.SigningKeys.create();
-
+      const createdKey = await Video.SigningKeys.create();
       const signingKeys = await Video.SigningKeys.list();
-
       expect(signingKeys.length).to.be.greaterThan(0);
-
-      nockDone();
-    });
-
-    /** @test {SigningKeys.list} */
-    it('lists signing keys with params', async () => {
-      const { nockDone } = await nockBack('SigningKeys/list-with-params.json');
-      await Video.SigningKeys.create();
-      await Video.SigningKeys.create();
-
-      const signingKeys = await Video.SigningKeys.list({ limit: 1 });
-
-      expect(signingKeys.length).to.eq(1);
-
+      await Video.SigningKeys.del(createdKey.id);
       nockDone();
     });
   });

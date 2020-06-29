@@ -1,0 +1,79 @@
+[
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "post",
+        "path": "/video/v1/uploads",
+        "body": {
+            "new_asset_settings": {
+                "playback_policy": "public"
+            }
+        },
+        "status": 201,
+        "response": {
+            "data": {
+                "url": "https://storage.googleapis.com/video-storage-us-east1-uploads/2iYUSdveAaB2fRRuIUUQZXKGTTU7jgE6iQOX5tuWyD4?Expires=1592374382&GoogleAccessId=mux-direct-upload%40mux-cloud.iam.gserviceaccount.com&Signature=V9jyUMyMxKcjm%2Fp%2BE9Ooelp9vgkIClnlzlHn6BLM9XQ1yGr%2FhC%2F4Wi4OBBdRgBmY75HbJZ%2FaNEHy2C8B53cJO%2Fe7n5AkSrh5RndR3THzxL5enCERmUrtjl%2BTdJABYunkgxFpRSfAHB36PTps5l4aksZT3yyhjUK5hrqw3jAH0L4JW6rvS3yNZgfWqycw9MTjOVz0RYV1V88LCeIZZ5aXE16DpogwMIA%2FAKJlzZBJqdSOW8VPxLJrcTPjiF4Y%2BDwRQEXuotRu9yfbWViVKLhY%2FLKiv4HxWpdSDQkUkN78ivRT1pBfK6cTgBnnV04ALSLlvPVJaYXpxsNLYeBziZJnFQ%3D%3D&upload_id=AAANsUmsZzTix5ffliRLxOPmj5rRbmMuS022q-Ni2LFom3ZbqV41zDk7jFritFn1Z9Tz9VQfr6QXt4Fyi_VgW88XCpqyggJ0mQ",
+                "timeout": 3600,
+                "status": "waiting",
+                "new_asset_settings": {
+                    "playback_policies": [
+                        "public"
+                    ]
+                },
+                "id": "2iYUSdveAaB2fRRuIUUQZXKGTTU7jgE6iQOX5tuWyD4"
+            }
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "839",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 17 Jun 2020 05:13:02 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "Fhk8yjt5MDquxj0ALsuB",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    },
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "put",
+        "path": "/video/v1/uploads/2iYUSdveAaB2fRRuIUUQZXKGTTU7jgE6iQOX5tuWyD4/cancel",
+        "body": "",
+        "status": 200,
+        "response": {
+            "data": {
+                "timeout": 3600,
+                "status": "cancelled",
+                "new_asset_settings": {
+                    "playback_policies": [
+                        "public"
+                    ]
+                },
+                "id": "2iYUSdveAaB2fRRuIUUQZXKGTTU7jgE6iQOX5tuWyD4"
+            }
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "151",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 17 Jun 2020 05:13:02 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "Fhk8ymRn2WGvnHYALsxB",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    }
+]

@@ -1,0 +1,72 @@
+[
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "post",
+        "path": "/video/v1/live-streams",
+        "body": {
+            "playback_policy": "signed",
+            "new_asset_settings": {
+                "playback_policy": "signed"
+            }
+        },
+        "status": 201,
+        "response": {
+            "data": {
+                "stream_key": "a0d97016-d7a0-da30-6451-ef43f05651a3",
+                "status": "idle",
+                "reconnect_window": 60,
+                "playback_ids": [
+                    {
+                        "policy": "signed",
+                        "id": "PfWbDpU5e3No02SzG9EFDOk1YWUC2HeoH9rDKYwHf658"
+                    }
+                ],
+                "new_asset_settings": {
+                    "playback_policies": [
+                        "signed"
+                    ]
+                },
+                "id": "Iv01vtt59gjqN2Nrnf8w9cxazT02yCJ7t01haUsvBWFtqs",
+                "created_at": "1592367158"
+            }
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "323",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 17 Jun 2020 04:12:38 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "Fhk5fo4n-ZulcrUAClkG",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    },
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "delete",
+        "path": "/video/v1/live-streams/Iv01vtt59gjqN2Nrnf8w9cxazT02yCJ7t01haUsvBWFtqs",
+        "body": "",
+        "status": 204,
+        "response": "",
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Date",
+            "Wed, 17 Jun 2020 04:12:39 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "Fhk5fq6a24b3EjEACllG",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    }
+]

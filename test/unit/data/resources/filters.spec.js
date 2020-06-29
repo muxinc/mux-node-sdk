@@ -55,7 +55,7 @@ describe('Unit::Filters', () => {
       filtersInstance.list({}).then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].filters).to.be.true;
+        expect(onFulfilled.getCall(0).args[0].data.filters).to.be.true;
         done();
       });
     });
@@ -81,7 +81,7 @@ describe('Unit::Filters', () => {
       filtersInstance.get('someFilter', {}).then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].filters).to.be.true;
+        expect(onFulfilled.getCall(0).args[0].data.filters).to.be.true;
         done();
       });
     });

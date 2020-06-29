@@ -1,5 +1,6 @@
 const { expect } = require('chai');
 const Mux = require('../../../src/mux');
+const nockBack = require('nock').back;
 
 /** @test {Incidents} */
 describe('Integration::Incidents', () => {
@@ -10,10 +11,13 @@ describe('Integration::Incidents', () => {
   describe('Incidents.list', () => {
     /** @test {Incidents.list} */
     it('Returns a list of open incidents', async () => {
-      const incidents = await Data.Incidents.list({
+      const { nockDone } = await nockBack('Incidents/list.json');
+      const resp = await Data.Incidents.list({
         status: 'open',
       });
-      expect(incidents).to.be.an('array');
+      expect(resp.data).to.be.an('array');
+      expect(resp.timeframe).to.be.an('array');
+      nockDone();
     });
   });
 });

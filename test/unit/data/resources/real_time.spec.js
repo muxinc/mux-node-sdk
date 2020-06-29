@@ -55,7 +55,7 @@ describe('Unit::RealTime', () => {
       realTimeInstance.dimensions().then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].name).to.equal('asn');
+        expect(onFulfilled.getCall(0).args[0].data.name).to.equal('asn');
         done();
       });
     });
@@ -75,7 +75,7 @@ describe('Unit::RealTime', () => {
       realTimeInstance.metrics().then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].name).to.equal(
+        expect(onFulfilled.getCall(0).args[0].data.name).to.equal(
           'current-concurrent-viewers'
         );
         done();
@@ -111,7 +111,7 @@ describe('Unit::RealTime', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].breakdown).to.be.true;
+        expect(onFulfilled.getCall(0).args[0].data.breakdown).to.be.true;
         done();
       });
     });
@@ -142,7 +142,8 @@ describe('Unit::RealTime', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].histogramTimeseries).to.be.true;
+        expect(onFulfilled.getCall(0).args[0].data.histogramTimeseries).to.be
+          .true;
         done();
       });
     });
@@ -173,7 +174,7 @@ describe('Unit::RealTime', () => {
         .then(onFulfilled);
 
       return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].timeseries).to.be.true;
+        expect(onFulfilled.getCall(0).args[0].data.timeseries).to.be.true;
         done();
       });
     });
