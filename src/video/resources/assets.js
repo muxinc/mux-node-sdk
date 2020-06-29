@@ -296,8 +296,8 @@ class Assets extends Base {
    * @example
    * const { Video } = new Mux(accessToken, secret);
    *
-   * // Delete an asset text track
-   * Video.Assets.updateMasterAccess(assetId, {mp4_support: "temporary"});
+   * // Update master access for an asset
+   * Video.Assets.updateMasterAccess(assetId, {master_access: "temporary"});
    *
    * @see https://docs.mux.com/reference#update-master-access
    */
