@@ -236,12 +236,3 @@ Find a bug or want to add a useful feature? That'd be amazing! If you'd like to 
 
 Running integration tests will require a Mux account with valid seed data for `/video` and `/data` endpoints. If you are contributing and you don't have this, please add unit test coverage and someone from the Mux will help get integration tests added if necessary.
 
-## Releasing
-
-1. Update CHANGELOG.md
-1. Update version in package.json
-1. Open Pull Request, merge after approved
-1. Tag master: example: `git tag v2.6.0` and `git push --tags origin`
-1. Run `npm publish`
-
-If releaseing a beta tag, run `npm publish --tag beta`
