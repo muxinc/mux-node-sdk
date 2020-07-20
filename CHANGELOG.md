@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.1
+
+- Typescript bugfix: Allow `new_asset_settings` to be a partial `CreateAssetParams`
+
 ## 3.0.0
 
 - Drop Node 8 support (this is no longer LTS and it is not recommended to use Node 8 in production)
