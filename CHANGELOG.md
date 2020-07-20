@@ -2,7 +2,7 @@
 
 ## 3.0.1
 
-- Typescript bugfix: Allow `new_asset_settings` to be a partial `CreateAssetParams`
+- Typescript bugfix: Allow `new_asset_settings` to be a partial `CreateAssetParams` for both live streams and direct uploads
 
 ## 3.0.0
 
