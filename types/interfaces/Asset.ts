@@ -21,7 +21,7 @@ export declare interface Asset {
   mp4_support: AssetMp4Support;
   static_renditions: StaticRenditions;
   master_access: AssetMasterAccess;
-  master: AssetMaster;
+  master?: AssetMaster;
   passthrough: string;
   errors: AssetError;
 }
