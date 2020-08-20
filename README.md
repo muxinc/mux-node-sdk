@@ -153,7 +153,7 @@ app.post(
   async (req, res) => {
     try {
       const sig = req.headers['mux-signature'];
-      const body = Webhook.verifyHeader(req.body, sig, webhookSecret);
+      const body = Webhooks.verifyHeader(req.body, sig, webhookSecret);
       console.log('Success:', body);
       // await doSomething(body);
       res.json({received: true});
