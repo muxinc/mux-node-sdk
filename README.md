@@ -161,6 +161,7 @@ app.post(
       // On error, return the error message
       return res.status(400).send(`Webhook Error: ${err.message}`);
     }
+   }
 );
 
 app.listen(3000, () => {
