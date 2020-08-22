@@ -153,9 +153,12 @@ app.post(
   async (req, res) => {
     try {
       const sig = req.headers['mux-signature'];
-      const body = Webhooks.verifyHeader(req.body, sig, webhookSecret);
-      console.log('Success:', body);
-      // await doSomething(body);
+      // returns a `boolean` with value `true` if the signature is valid
+      const isValidSignature = Webhooks.verifyHeader(req.body, sig, webhookSecret);
+      console.log('Success:', isValidSignature);
+      // convert the raw req.body to JSON, which is originally Buffer (raw)
+      const jsonFormattedBody = JSON.parse(req.body);
+      // await doSomething();
       res.json({received: true});
     } catch (err) {
       // On error, return the error message
