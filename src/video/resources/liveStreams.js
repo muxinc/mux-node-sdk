@@ -236,7 +236,7 @@ class LiveStreams extends Base {
    * @example
    * const { Video } = new Mux(accessToken, secret);
    *
-   * // Create a live stream playback ID
+   * // Create a live simulcast target
    * Video.LiveStreams.createSimulcastTarget(liveStreamId, {url: 'rtmp://live.example.com/app', stream_key: 'difvbfgi', passthrough: 'Example Live Streaming service'});
    *
    * @see https://docs.mux.com/reference#create-a-simulcast-target
