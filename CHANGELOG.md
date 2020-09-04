@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.3
+
+- Typescript bugfix: Change JWTOptions type declaration to correctly mark some fields as optional
+
 ## 3.0.2
 
 - Typescript bugfix: Change types/interfaces/Asset.ts to correctly mark some fields as optional
