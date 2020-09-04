@@ -143,14 +143,15 @@ export declare class Uploads extends Base {
 }
 
 export declare interface JWTOptions {
-  keyId: string;
-  keySecret: string;
   type: string;
+  keyId?: string;
+  keySecret?: string;
+  expiration?: string;
   params?: any;
 }
 
 export declare class JWT {
-  static sign(playbackId: string, options: JWTOptions): string;
+  static sign(playbackId: string, options?: JWTOptions): string;
 }
 
 export declare class Webhooks {
