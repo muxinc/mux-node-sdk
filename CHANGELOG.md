@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.0.4
+
+- Improve Typescript def for JWTOptions
+- Export Mux.default so it plays nice with firebase functions (#61)
+
 ## 3.0.3
 
 - Typescript bugfix: Change JWTOptions type declaration to correctly mark some fields as optional
