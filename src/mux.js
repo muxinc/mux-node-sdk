@@ -69,4 +69,6 @@ Mux.JWT = JWT;
 
 Mux.Webhooks = Webhooks;
 
+Mux.default = Mux;
+
 module.exports = Mux;
