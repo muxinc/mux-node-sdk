@@ -134,6 +134,8 @@ export declare class LiveStreams extends Base {
     liveStreamId: string,
     simulcastTargetId: string
   ): Promise<any>;
+  enable(liveStreamId: string): Promise<any>;
+  disable(liveStreamId: string): Promise<any>;
 }
 
 export declare class Uploads extends Base {
