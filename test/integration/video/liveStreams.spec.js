@@ -314,6 +314,24 @@ describe('Integration::LiveStreams', () => {
     it('fails to enable a live stream if given an incorrect live stream id', () =>
       Video.LiveStreams.enable('somefakeid')
       .catch(err => expect(err).to.exist));
+  });
 
+  /** @test {LiveStreams.disable} */
+  describe('LiveStreams.disable', () => {
+    /** @test {LiveStreams.disable} */
+    it('disables a live stream', async () => {
+      const { nockDone } = await nockBack(
+        'LiveStreams/disable.json'
+      );
+      const testLiveStream = await Video.LiveStreams.create();
+      
+      await Video.LiveStreams.disable(testLiveStream.id);
+      nockDone();
+    });
+
+    /** @test {LiveStreams.disable} */
+    it('fails to disable a live stream if given an incorrect live stream id', () =>
+      Video.LiveStreams.disable('somefakeid')
+      .catch(err => expect(err).to.exist));
   });
 });
