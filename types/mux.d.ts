@@ -143,7 +143,7 @@ export declare class Uploads extends Base {
 }
 
 export declare interface JWTOptions {
-  type?: 'video' | 'thumbnail' | 'gif';
+  type?: 'video' | 'thumbnail' | 'gif' | 'storyboard';
   keyId?: string;
   keySecret?: string;
   expiration?: string;

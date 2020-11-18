@@ -60,6 +60,18 @@ describe('Utils::JWT', () => {
       expect(decoded.aud).to.eq('g');
     });
 
+    it('maps type storyboard to s', () => {
+      const options = {
+        keyId: TEST_ID,
+        keySecret: TEST_SECRET,
+        type: 'storyboard',
+      };
+      const token = JWT.sign('some-playback-id', options);
+      expect(token).to.be.a('string');
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq('s');
+    });
+
     it('takes a file path for a secret', () => {
       const options = {
         keyId: TEST_ID,

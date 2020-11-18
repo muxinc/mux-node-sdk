@@ -107,8 +107,7 @@ Video.Assets.create({
 
 ## Verifying Webhook Signatures
 
-Verifying Webhook Signatures is *optional*. Learn more in our [Webhook Security Guide](https://docs.mux.com/docs/webhook-security)
-
+Verifying Webhook Signatures is _optional_. Learn more in our [Webhook Security Guide](https://docs.mux.com/docs/webhook-security)
 
 ```javascript
 /*
@@ -149,22 +148,26 @@ const app = express();
 
 app.post(
   '/webhooks',
-  bodyParser.raw({type: 'application/json'}),
+  bodyParser.raw({ type: 'application/json' }),
   async (req, res) => {
     try {
       const sig = req.headers['mux-signature'];
       // returns a `boolean` with value `true` if the signature is valid
-      const isValidSignature = Webhooks.verifyHeader(req.body, sig, webhookSecret);
+      const isValidSignature = Webhooks.verifyHeader(
+        req.body,
+        sig,
+        webhookSecret
+      );
       console.log('Success:', isValidSignature);
       // convert the raw req.body to JSON, which is originally Buffer (raw)
       const jsonFormattedBody = JSON.parse(req.body);
       // await doSomething();
-      res.json({received: true});
+      res.json({ received: true });
     } catch (err) {
       // On error, return the error message
       return res.status(400).send(`Webhook Error: ${err.message}`);
     }
-   }
+  }
 );
 
 app.listen(3000, () => {
@@ -186,13 +189,22 @@ const token = Mux.JWT.sign('some-playback-id');
 // https://stream.mux.com/some-playback-id.m3u8?token=${token}
 
 // If you wanted to sign a thumbnail
-const thumbParams = { time: 14, width: 100 }
-const thumbToken = Mux.JWT.sign('some-playback-id', { type: 'thumbnail', params: thumbParams });
+const thumbParams = { time: 14, width: 100 };
+const thumbToken = Mux.JWT.sign('some-playback-id', {
+  type: 'thumbnail',
+  params: thumbParams,
+});
 // https://image.mux.com/some-playback-id/thumbnail.jpg?token=${token}
 
 // If you wanted to sign a gif
 const gifToken = Mux.JWT.sign('some-playback-id', { type: 'gif' });
 // https://image.mux.com/some-playback-id/animated.gif?token=${token}
+
+// And, an example for a storyboard
+const storyboardToken = Mux.JWT.sign('some-playback-id', {
+  type: 'storyboard',
+});
+// https://image.mux.com/some-playback-id/storyboard.jpg?token=${token}
 ```
 
 ## `request` and `response` events
@@ -239,4 +251,3 @@ Find a bug or want to add a useful feature? That'd be amazing! If you'd like to 
 5. Open the pull request! :tada:
 
 Running integration tests will require a Mux account with valid seed data for `/video` and `/data` endpoints. If you are contributing and you don't have this, please add unit test coverage and someone from the Mux will help get integration tests added if necessary.
-
