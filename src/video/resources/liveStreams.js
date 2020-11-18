@@ -353,12 +353,12 @@ class LiveStreams extends Base {
    * @example
    * const { Video } = new Mux(accessToken, secret);
    *
-   * // Delete a simulcast target
-   * Video.LiveStreams.enableLiveStream(liveStreamId);
+   * // Enable a Live Stream
+   * Video.LiveStreams.enable(liveStreamId);
    *
    * @see https://docs.mux.com/reference#enable-a-live-stream
    */
-  enableLiveStream(liveStreamId) {
+  enable(liveStreamId) {
     if (!liveStreamId) {
       return Promise.reject(
         new Error('A live stream ID is required to enable a live stream')
