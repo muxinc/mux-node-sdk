@@ -331,12 +331,12 @@ class LiveStreams extends Base {
    * @example
    * const { Video } = new Mux(accessToken, secret);
    *
-   * // Delete a simulcast target
-   * Video.LiveStreams.disableLiveStream(liveStreamId);
+   * // Disable a live stream
+   * Video.LiveStreams.disable(liveStreamId);
    *
    * @see https://docs.mux.com/reference#disable-a-live-stream
    */
-  disableLiveStream(liveStreamId) {
+  disable(liveStreamId) {
     if (!liveStreamId) {
       return Promise.reject(
         new Error('A live stream ID is required to disable a live stream')
