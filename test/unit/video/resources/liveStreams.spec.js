@@ -523,9 +523,7 @@ describe('Unit::LiveStreams', () => {
       );
 
       const onFulfilled = sinon.spy();
-      testLiveStreams
-        .enable('testLiveStream')
-        .then(onFulfilled);
+      testLiveStreams.enable('testLiveStream').then(onFulfilled);
 
       return moxios.wait(() => {
         expect(onFulfilled.getCall(0).args[0].enable).to.be.true;
@@ -561,9 +559,7 @@ describe('Unit::LiveStreams', () => {
       );
 
       const onFulfilled = sinon.spy();
-      testLiveStreams
-        .disable('testLiveStream')
-        .then(onFulfilled);
+      testLiveStreams.disable('testLiveStream').then(onFulfilled);
 
       return moxios.wait(() => {
         expect(onFulfilled.getCall(0).args[0].disable).to.be.true;
