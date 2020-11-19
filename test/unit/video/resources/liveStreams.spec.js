@@ -509,4 +509,76 @@ describe('Unit::LiveStreams', () => {
           );
         }));
   });
+
+  /** @test {LiveStreams.enable} */
+  describe('LiveStreams.enable', () => {
+    /** @test {LiveStreams.enable} */
+    it('makes a PUT request to enable a live stream', done => {
+      moxios.stubRequest(
+        'https://api.mux.com/video/v1/live-streams/testLiveStream/enable',
+        {
+          status: 200,
+          responseText: '{"data": {"enable": true}}',
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testLiveStreams.enable('testLiveStream').then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].enable).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {LiveStreams.enable} */
+    it('throws an error if a live stream ID is not given', () =>
+      testLiveStreams
+        .enable()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A live stream ID is required to enable a live stream'
+          );
+        }));
+  });
+
+  /** @test {LiveStreams.disable} */
+  describe('LiveStreams.disable', () => {
+    /** @test {LiveStreams.disable} */
+    it('makes a PUT request to disable a live stream', done => {
+      moxios.stubRequest(
+        'https://api.mux.com/video/v1/live-streams/testLiveStream/disable',
+        {
+          status: 200,
+          responseText: '{"data": {"disable": true}}',
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      testLiveStreams.disable('testLiveStream').then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].disable).to.be.true;
+        done();
+      });
+    });
+
+    /** @test {LiveStreams.disable} */
+    it('throws an error if a live stream ID is not given', () =>
+      testLiveStreams
+        .disable()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A live stream ID is required to disable a live stream'
+          );
+        }));
+  });
 });

@@ -322,6 +322,50 @@ class LiveStreams extends Base {
       `${buildBasePath(liveStreamId)}/simulcast-targets/${simulcastTargetId}`
     );
   }
+
+  /**
+   * Disable a Live Stream
+   * @param {string} liveStreamId - The ID for the live stream
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // Disable a live stream
+   * Video.LiveStreams.disable(liveStreamId);
+   *
+   * @see https://docs.mux.com/reference#disable-a-live-stream
+   */
+  disable(liveStreamId) {
+    if (!liveStreamId) {
+      return Promise.reject(
+        new Error('A live stream ID is required to disable a live stream')
+      );
+    }
+    return this.http.put(`${buildBasePath(liveStreamId)}/disable`);
+  }
+
+  /**
+   * Enable a Live Stream
+   * @param {string} liveStreamId - The ID for the live stream
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // Enable a Live Stream
+   * Video.LiveStreams.enable(liveStreamId);
+   *
+   * @see https://docs.mux.com/reference#enable-a-live-stream
+   */
+  enable(liveStreamId) {
+    if (!liveStreamId) {
+      return Promise.reject(
+        new Error('A live stream ID is required to enable a live stream')
+      );
+    }
+    return this.http.put(`${buildBasePath(liveStreamId)}/enable`);
+  }
 }
 
 module.exports = LiveStreams;
