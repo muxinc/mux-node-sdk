@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.0
+
+- Add methods for /enable and /disable live streams
+- Update JWT helper for generating signatures for storyboards (thanks @davekiss)
+
+
 ## 3.0.4
 
 - Improve Typescript def for JWTOptions
