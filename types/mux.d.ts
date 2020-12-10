@@ -321,7 +321,6 @@ export declare class Video extends Base {
   Assets: Assets;
   LiveStreams: LiveStreams;
   Uploads: Uploads;
-  Metrics: Metrics;
 }
 
 export declare class Data extends Base {
