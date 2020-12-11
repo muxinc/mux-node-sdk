@@ -157,7 +157,7 @@ export declare class DeliveryUsage extends Base {
 }
 
 export declare class SigningKeys extends Base {
-  create() : Promise<SigningKey>;
+  create(): Promise<SigningKey>;
   list(params: ListParams): Promise<Array<SigningKey>>;
   get(keyId: string): Promise<SigningKey>;
   del(keyId: string): Promise<any>;
