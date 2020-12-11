@@ -9,6 +9,7 @@ import { AudioTrack } from './interfaces/AudioTrack';
 import { CreateAssetParams } from './interfaces/CreateAssetParams';
 import { CreateLiveStreamParams } from './interfaces/CreateLiveStreamParams';
 import { CreateUploadParams } from './interfaces/CreateUploadParams';
+import { DeliveryReport } from './interfaces/DeliveryReport';
 import { FilterQueryParams } from './interfaces/FilterQueryParams';
 import { FilterValue } from './interfaces/FilterValue';
 import { FiltersListResponse } from './interfaces/FiltersListResponse';
@@ -42,6 +43,7 @@ import { RealTimeMetricsResponse } from './interfaces/RealTimeMetricsResponse';
 import { RealTimeTimeseriesParams } from './interfaces/RealTimeTimeseriesParams';
 import { RealTimeTimeseriesResponse } from './interfaces/RealTimeTimeseriesResponse';
 import { RequestOptions } from './interfaces/RequestOptions';
+import { SigningKey } from './interfaces/SigningKey';
 import { SimulcastTarget } from './interfaces/SimulcastTarget';
 import { SimulcastTargetParams } from './interfaces/SimulcastTargetParams';
 import { StaticRenditions } from './interfaces/StaticRenditions';
@@ -52,8 +54,6 @@ import { VideoTrack } from './interfaces/VideoTrack';
 import { VideoView } from './interfaces/VideoView';
 import { VideoViewsQueryParams } from './interfaces/VideoViewsQueryParams';
 import { ViewError } from './interfaces/ViewError';
-import { DeliveryReport } from './interfaces/DeliveryReport';
-import { SigningKey } from './interfaces/SigningKey';
 
 export declare class Base extends EventEmitter {
   private _tokenId?: string;
@@ -411,6 +411,7 @@ export {
   RealTimeTimeseriesParams,
   RealTimeTimeseriesResponse,
   RequestOptions,
+  SigningKey,
   SimulcastTarget,
   SimulcastTargetParams,
   StaticRenditions,
