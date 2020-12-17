@@ -11,4 +11,5 @@ export interface CreateAssetParams {
   normalize_audio?: boolean;
   test?: boolean;
   master_access?: AssetMasterAccess;
+  per_title_encode?: boolean;
 }

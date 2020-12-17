@@ -9,6 +9,7 @@ import { AudioTrack } from './interfaces/AudioTrack';
 import { CreateAssetParams } from './interfaces/CreateAssetParams';
 import { CreateLiveStreamParams } from './interfaces/CreateLiveStreamParams';
 import { CreateUploadParams } from './interfaces/CreateUploadParams';
+import { DeliveryReport } from './interfaces/DeliveryReport';
 import { FilterQueryParams } from './interfaces/FilterQueryParams';
 import { FilterValue } from './interfaces/FilterValue';
 import { FiltersListResponse } from './interfaces/FiltersListResponse';
@@ -42,6 +43,7 @@ import { RealTimeMetricsResponse } from './interfaces/RealTimeMetricsResponse';
 import { RealTimeTimeseriesParams } from './interfaces/RealTimeTimeseriesParams';
 import { RealTimeTimeseriesResponse } from './interfaces/RealTimeTimeseriesResponse';
 import { RequestOptions } from './interfaces/RequestOptions';
+import { SigningKey } from './interfaces/SigningKey';
 import { SimulcastTarget } from './interfaces/SimulcastTarget';
 import { SimulcastTargetParams } from './interfaces/SimulcastTargetParams';
 import { StaticRenditions } from './interfaces/StaticRenditions';
@@ -72,6 +74,13 @@ export declare class Base extends EventEmitter {
 export declare interface ListParams {
   limit?: number;
   page?: number;
+}
+
+export declare interface ListDeliveryUsageParams {
+  limit?: number;
+  page?: number;
+  asset_id?: string;
+  timeframe: Array<number>;
 }
 
 export declare interface CreatePlaybackIdParams {
@@ -141,7 +150,17 @@ export declare class LiveStreams extends Base {
 export declare class Uploads extends Base {
   create(params: CreateUploadParams): Promise<Upload>;
   cancel(uploadId: string): Promise<Upload>;
-  get(uploadId: string): Promise<Upload>;
+}
+
+export declare class DeliveryUsage extends Base {
+  list(params: ListDeliveryUsageParams): Promise<Array<DeliveryReport>>;
+}
+
+export declare class SigningKeys extends Base {
+  create(): Promise<SigningKey>;
+  list(params: ListParams): Promise<Array<SigningKey>>;
+  get(keyId: string): Promise<SigningKey>;
+  del(keyId: string): Promise<any>;
 }
 
 export declare interface JWTOptions {
@@ -321,7 +340,8 @@ export declare class Video extends Base {
   Assets: Assets;
   LiveStreams: LiveStreams;
   Uploads: Uploads;
-  Metrics: Metrics;
+  DeliveryUsage: DeliveryUsage;
+  SigningKeys: SigningKeys;
 }
 
 export declare class Data extends Base {
@@ -357,6 +377,7 @@ export {
   CreateAssetParams,
   CreateLiveStreamParams,
   CreateUploadParams,
+  DeliveryReport,
   FilterQueryParams,
   FilterValue,
   FiltersListResponse,
@@ -390,6 +411,7 @@ export {
   RealTimeTimeseriesParams,
   RealTimeTimeseriesResponse,
   RequestOptions,
+  SigningKey,
   SimulcastTarget,
   SimulcastTargetParams,
   StaticRenditions,
