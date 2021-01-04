@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">test/unit/data/resources/real_time.spec.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/incidents.js~Incidents.html">Incidents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/real_time.js~RealTime.html">RealTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utils/jwt.js~JWT.html">JWT</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/deliveryUsage.js~DeliveryUsage.html">DeliveryUsage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks">webhooks</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/webhooks.js~Webhooks.html">Webhooks</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks-resources">webhooks/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/resources/verify_header.js~VerifyHeader.html">VerifyHeader</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/unit/data/resources/real_time.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
+const moxios = require(&apos;moxios&apos;);
+const sinon = require(&apos;sinon&apos;);
+const RealTime = require(&apos;../../../../src/data/resources/real_time&apos;);
+
+/** @test {RealTime} */
+describe(&apos;Unit::RealTime&apos;, () =&gt; {
+  const testApiKey = &apos;testKey&apos;;
+  const testSecret = &apos;testSecret&apos;;
+  const realTimeInstance = new RealTime(testApiKey, testSecret);
+
+  beforeEach(() =&gt; {
+    moxios.install(realTimeInstance.http);
+  });
+
+  afterEach(() =&gt; {
+    moxios.uninstall(realTimeInstance.http);
+  });
+
+  /** @test {RealTime} */
+  describe(&apos;RealTime&apos;, () =&gt; {
+    /** @test {RealTime} */
+    it(&apos;throws an error if an api key is not given&apos;, () =&gt; {
+      expect(() =&gt; new RealTime()).to.throw(
+        &apos;API Access Token must be provided.&apos;
+      );
+    });
+
+    /** @test {RealTime} */
+    it(&apos;throws an error if a secret key is not given&apos;, () =&gt; {
+      expect(() =&gt; new RealTime(testApiKey)).to.throw(
+        &apos;API secret key must be provided&apos;
+      );
+    });
+
+    /** @test {RealTime} */
+    it(&apos;creates a new RealTime instance&apos;, () =&gt; {
+      const TestMetrics = new RealTime(testApiKey, testSecret);
+      expect(() =&gt; new RealTime(testApiKey, testSecret)).to.not.throw();
+      expect(TestMetrics.tokenId).to.equal(testApiKey);
+      expect(TestMetrics.tokenSecret).to.equal(testSecret);
+    });
+  });
+
+  /** @test {RealTime.dimensions} */
+  describe(&apos;RealTime.dimensions&apos;, () =&gt; {
+    /** @test {RealTime.dimensions} */
+    it(&apos;makes a get request to the Mux data real-time dimensions route&apos;, done =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/data/v1/realtime/dimensions&apos;, {
+        status: 200,
+        responseText: &apos;{&quot;data&quot;: {&quot;name&quot;: &quot;asn&quot;, &quot;display_name&quot;: &quot;ASN&quot;}}&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      realTimeInstance.dimensions().then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].data.name).to.equal(&apos;asn&apos;);
+        done();
+      });
+    });
+  });
+
+  /** @test {RealTime.metrics} */
+  describe(&apos;RealTime.metrics&apos;, () =&gt; {
+    /** @test {RealTime.metrics} */
+    it(&apos;makes a get request to the Mux data real-time metrics route&apos;, done =&gt; {
+      moxios.stubRequest(&apos;https://api.mux.com/data/v1/realtime/metrics&apos;, {
+        status: 200,
+        responseText:
+          &apos;{&quot;data&quot;: {&quot;name&quot;: &quot;current-concurrent-viewers&quot;, &quot;display_name&quot;: &quot;Current Concurrent Viewers (CCV)&quot; }}&apos;,
+      });
+
+      const onFulfilled = sinon.spy();
+      realTimeInstance.metrics().then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].data.name).to.equal(
+          &apos;current-concurrent-viewers&apos;
+        );
+        done();
+      });
+    });
+  });
+
+  /** @test {RealTime.breakdown} */
+  describe(&apos;RealTime.breakdown&apos;, () =&gt; {
+    /** @test {RealTime.breakdown} */
+    it(&apos;throws an error if the value query parameter is not provided&apos;, () =&gt; {
+      expect(() =&gt; realTimeInstance.breakdown()).to.throw(
+        &apos;A metric Id is required for real-time breakdown information&apos;
+      );
+      expect(() =&gt; realTimeInstance.breakdown({})).to.throw(
+        &apos;The dimension query parameter is required for real-time breakdown information&apos;
+      );
+    });
+
+    /** @test {RealTime.breakdown} */
+    it(&apos;makes a get request to the Mux data real-time metrics route&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/data/v1/realtime/metrics/playback-failure-percentage/breakdown?dimension=country&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: { &quot;breakdown&quot;: true }}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      realTimeInstance
+        .breakdown(&apos;playback-failure-percentage&apos;, { dimension: &apos;country&apos; })
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].data.breakdown).to.be.true;
+        done();
+      });
+    });
+  });
+
+  /** @test {RealTime.histogramTimeseries} */
+  describe(&apos;RealTime.histogramTimeseries&apos;, () =&gt; {
+    /** @test {RealTime.histogramTimeseries} */
+    it(&apos;throws an error if the value query parameter is not provided&apos;, () =&gt; {
+      expect(() =&gt; realTimeInstance.histogramTimeseries()).to.throw(
+        &apos;A metric Id is required for real-time histogram timeseries information&apos;
+      );
+    });
+
+    /** @test {RealTime.histogramTimeseries} */
+    it(&apos;makes a get request to the Mux data real-time histogramTimeseries route&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/data/v1/realtime/metrics/playback-failure-percentage/histogram-timeseries&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: { &quot;histogramTimeseries&quot;: true }}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      realTimeInstance
+        .histogramTimeseries(&apos;playback-failure-percentage&apos;)
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].data.histogramTimeseries).to.be
+          .true;
+        done();
+      });
+    });
+  });
+
+  /** @test {RealTime.timeseries} */
+  describe(&apos;RealTime.timeseries&apos;, () =&gt; {
+    /** @test {RealTime.timeseries} */
+    it(&apos;throws an error if the value query parameter is not provided&apos;, () =&gt; {
+      expect(() =&gt; realTimeInstance.timeseries()).to.throw(
+        &apos;A metric Id is required for real-time timeseries information&apos;
+      );
+    });
+
+    /** @test {RealTime.timeseries} */
+    it(&apos;makes a get request to the Mux data real-time timeseries route&apos;, done =&gt; {
+      moxios.stubRequest(
+        &apos;https://api.mux.com/data/v1/realtime/metrics/playback-failure-percentage/timeseries&apos;,
+        {
+          status: 200,
+          responseText: &apos;{&quot;data&quot;: { &quot;timeseries&quot;: true }}&apos;,
+        }
+      );
+
+      const onFulfilled = sinon.spy();
+      realTimeInstance
+        .timeseries(&apos;playback-failure-percentage&apos;)
+        .then(onFulfilled);
+
+      return moxios.wait(() =&gt; {
+        expect(onFulfilled.getCall(0).args[0].data.timeseries).to.be.true;
+        done();
+      });
+    });
+  });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

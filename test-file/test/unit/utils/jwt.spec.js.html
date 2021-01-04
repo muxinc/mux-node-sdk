@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">test/unit/utils/jwt.spec.js | MUX</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Mux Node SDK"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="MUX"><meta property="twitter:description" content="Mux Node SDK"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/muxinc/mux-node-sdk"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/incidents.js~Incidents.html">Incidents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/real_time.js~RealTime.html">RealTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utils/jwt.js~JWT.html">JWT</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/deliveryUsage.js~DeliveryUsage.html">DeliveryUsage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks">webhooks</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/webhooks.js~Webhooks.html">Webhooks</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks-resources">webhooks/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/resources/verify_header.js~VerifyHeader.html">VerifyHeader</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/unit/utils/jwt.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
+const path = require(&apos;path&apos;);
+const JWT = require(&apos;../../../src/utils/jwt&apos;);
+
+const TEST_ID = &apos;01XNj9qIpoW3eU1sED8EqrFRy01J3VTZ01x&apos;;
+const TEST_SECRET =
+  &apos; LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBNGdoaERZN25QTzFhMmxibHN0T3JTcmt3VUdkdzVaT0tjR0h5U2NkWXpoc1FudHNnCkw4VWxHcURScVhuZFZ2Ky9rMEI2MnZxbzJGT1gvYkdVK2srT2lRang4UCswNVJKOWEyL1lpSzJjQm56MG15WEEKOS9CajRVNis1d3dCUk15Z2xCd2VaeWt1ZVNsZ1dYYnZRRm50bE1LcXptYU5XcnJvSDNpVEJZUU9xeFF5dHdkZApaSXlVeTYwNDJUMXJaQm5WOVN3RzA0UEhjaVJ3TjJ3Ly83YVhMY2FGRnJTOUVxZ29SNGszcjllblN1YWM3STRvCmV5NVJwMmFaVXlzK3U1VnMwUzluMzIzWVViMWZtRU1kZzEyWU1yMHIyL2Q5ZjMrdVZXQVVUTkQ1MitSREsvZ00KOEt6dW5FZ2w5eWFacit6VlFpa0RhOFoyOE9yOUxrN0xNNk5TNlFJREFRQUJBb0lCQURPbXRvYmlvUFRMU0hlYwpZK0Q1ZmFzVnBuUzVMcE5IbzlzS2h0TlZPblhldVcyVHBVZEZSYlZRQ3BrdnYrU2hqS1dabG5senppR2crSnFBCmVncTVJMWt0TWh4Z1VuWUdRNkxKYkRIUGVsZ0JOZVErUEZwc0ZHYm9GN2UwaHBXeUxQK3JiVWNsb2ZrTiszWjIKTnpYOVZzMG5ydUI3anRHczVGNU1yMHdUWVVhMmFNSHU2dnNNZFNYY00rZTVZS3FCQ3Z3dS9MZ0ZvVFE1YXh0RQo0ZzJYbU91YUQrSFBPU0o1T0Mwc3grK1RkbXBNL1lMK3RjVjZZNVBWbUFMUURMcmFJdU9UM01lcUlicElvRlZQCmcxeldSOTBqb3BKWVpLSVFoNEY4WE4xODR1bmZ6bjVJbW1JdktOWE9QSU1YMk1oekw2YU5rSXZ5YmdpWUIvVGwKMm5vdVNBRUNnWUVBNHlzZmVZL0h3Rkl4Vy9MZ2R3UHJubDR4aGkwRkFWeE1QK1k0alhYUHU1bklXS3dvUk1xbgplTEd6UnhESnlhQmN5NXgzVjFhTmYwblV1YzJqRUM2Yi9XUUo2VWJMUzJvK2J1NmdJR1NsbmxLWS9uSlJGTnpwClE0d0F1c1J3M2dTVi9FNW12QVJiYk1vQ3Rha3FxdXhhWlMzODQ1MEFaQkxqcm1kZDU1VlFPUVVDZ1lFQS9yaGIKRm9oVmdxZzY0QjFpU0FCc3dYdTdLNzZHQUN4ZEg0MmxoVjQvNktiUVRVNnFwRWxVZURwbWlVeUkxeVBxZ1MwbApLYS9XMGg5VDI5S0Z1bVlFOWdlUG02b0ZaZjIvQ0RnaWtTWHdQTk5kRWp2SmtrMXdnb3dLbDNNbUhuWGtTYUlZCmpYVG9Td2tmN2RJREhVRXQ3RnRVd1VsQXROM3N4TFcvWlVKSEI1VUNnWUFMOXkyRlBhbUwyOGgxeTJrL1c1bUIKa2Z5UjBMVSt5Um5MRTlsT3VqSGk4OHExd1B1dUErNm1VTlhjbkduRWtRblNQNytaZmhtZDVzbXByOGN6QndGNAphMWlLVFF4UVFKeGhRM2h6dkZsczZYVGRraS9ySldlMEF4L1d0cG9yVjVwKzI3SlZuUFVqMmRBaXVYSmg1bWtzCmd5dWE0WjR2cHo4TzVLcnhrOC9SOFFLQmdRQ1BJbE4xTHZrMktZaWtCWDhEek5GUVRGSWFPNzZhL0ZMNzl5R3EKOXhKY2p0aUFpSk1WTEd1OS83czhyZmc3Uk9CeTVFWjh6V1dldjZIazVjRGx4SXhISUdxUFk1UVRBdXJGR0o0OApDQ0NlWFh0d1VvNXJtdjU5TFdxS1BsZU9TRnNYRVhKUWt3QXhvaGdDRU1CVlFSb29OZzVEYXdGa1lVeTZJUk5ECk9HSW5uUUtCZ1FDeWo1UVU3YjcycktVaWlhTisxaExrVEJFQUFab01jRjY4Ukp5Mlh5VXo5bVJQK1hLMkthbHoKbVdXNFh2RHZoVlB1T25tNjJ1RkxURCsybG1mNjdwUlY3bHlSVWlycVFabzNUVmsweE8yS3JJV21uRm1EZzBSRQp6YnB6MVJsZy9ZVjhQU3E4alE3ZUFsRUs0RHRSdlVoQW5RRU52NlVyVjltRnRjR1k0ZFhSUmc9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=&apos;;
+
+/** @test {Mux.Utils.JWT} */
+describe(&apos;Utils::JWT&apos;, () =&gt; {
+  /** @test {Mux.Utils.JWT.sign} */
+  describe(&apos;sign&apos;, () =&gt; {
+    /** @test {Mux.Utils.JWT.sign} */
+    it(&apos;defaults to video and includes an expiration&apos;, () =&gt; {
+      const options = {
+        keyId: TEST_ID,
+        keySecret: TEST_SECRET,
+      };
+
+      const token = JWT.sign(&apos;some-playback-id&apos;, options);
+      expect(token).to.be.a(&apos;string&apos;);
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq(&apos;v&apos;);
+      expect(decoded.exp).to.be.greaterThan(new Date().getTime() / 1000);
+    });
+
+    it(&apos;maps type video to v&apos;, () =&gt; {
+      const options = {
+        keyId: TEST_ID,
+        keySecret: TEST_SECRET,
+        type: &apos;video&apos;,
+      };
+      const token = JWT.sign(&apos;some-playback-id&apos;, options);
+      expect(token).to.be.a(&apos;string&apos;);
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq(&apos;v&apos;);
+    });
+
+    it(&apos;maps type thumbnail to t&apos;, () =&gt; {
+      const options = {
+        keyId: TEST_ID,
+        keySecret: TEST_SECRET,
+        type: &apos;thumbnail&apos;,
+      };
+      const token = JWT.sign(&apos;some-playback-id&apos;, options);
+      expect(token).to.be.a(&apos;string&apos;);
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq(&apos;t&apos;);
+    });
+
+    it(&apos;maps type gif to g&apos;, () =&gt; {
+      const options = {
+        keyId: TEST_ID,
+        keySecret: TEST_SECRET,
+        type: &apos;gif&apos;,
+      };
+      const token = JWT.sign(&apos;some-playback-id&apos;, options);
+      expect(token).to.be.a(&apos;string&apos;);
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq(&apos;g&apos;);
+    });
+
+    it(&apos;maps type storyboard to s&apos;, () =&gt; {
+      const options = {
+        keyId: TEST_ID,
+        keySecret: TEST_SECRET,
+        type: &apos;storyboard&apos;,
+      };
+      const token = JWT.sign(&apos;some-playback-id&apos;, options);
+      expect(token).to.be.a(&apos;string&apos;);
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq(&apos;s&apos;);
+    });
+
+    it(&apos;takes a file path for a secret&apos;, () =&gt; {
+      const options = {
+        keyId: TEST_ID,
+        keyFilePath: path.join(__dirname, &apos;example-private-key.pem&apos;),
+        type: &apos;gif&apos;,
+      };
+
+      const token = JWT.sign(&apos;some-playback-id&apos;, options);
+      expect(token).to.be.a(&apos;string&apos;);
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq(&apos;g&apos;);
+    });
+
+    it(&apos;falls back to using environment variables for the key and secret&apos;, () =&gt; {
+      process.env.MUX_SIGNING_KEY = TEST_ID;
+      process.env.MUX_PRIVATE_KEY = TEST_SECRET;
+      const options = {
+        type: &apos;gif&apos;,
+      };
+
+      const token = JWT.sign(&apos;some-playback-id&apos;, options);
+      expect(token).to.be.a(&apos;string&apos;);
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq(&apos;g&apos;);
+    });
+
+    it(&apos;accepts a timestamp or time shorthand&apos;, () =&gt; {
+      const options1 = {
+        keyId: TEST_ID,
+        keySecret: TEST_SECRET,
+        expiration: &apos;3h&apos;,
+      };
+
+      const options2 = {
+        ...options1,
+        expiration: 60 * 60 * 3,
+      };
+
+      const token1 = JWT.sign(&apos;some-playback-id&apos;, options1);
+      const token2 = JWT.sign(&apos;some-playback-id&apos;, options2);
+      expect(token1).to.be.a(&apos;string&apos;);
+      expect(token2).to.be.a(&apos;string&apos;);
+
+      const decoded1 = JWT.decode(token1);
+      const decoded2 = JWT.decode(token2);
+      expect(decoded1.exp).to.be.closeTo(decoded2.exp, 2);
+    });
+  });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

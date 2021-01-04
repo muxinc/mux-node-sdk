@@ -1,0 +1,489 @@
+[
+  {
+    "name": "Filters#get",
+    "filePath": "src/data/resources/filters.js",
+    "lines": [
+      {
+        "lineNumber": 23,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 24,
+        "line": "   * Lists the values for a filter along with a total count of related views"
+      },
+      {
+        "lineNumber": 25,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 26,
+        "line": "   * @param {string} filterId - The filter name/id for see https://api-docs.mux.com/#filter-get-1 for a list of all filter ids"
+      },
+      {
+        "lineNumber": 27,
+        "line": "   * @param {Object} [queryParams] - example { timeframe: ['7:days'], filters: ['operating_system:windows'] }"
+      },
+      {
+        "lineNumber": 28,
+        "line": "   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API"
+      },
+      {
+        "lineNumber": 29,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 30,
+        "line": "   * @example"
+      },
+      {
+        "lineNumber": 31,
+        "line": "   * const muxClient = new Mux(accessToken, secret);"
+      },
+      {
+        "lineNumber": 32,
+        "line": "   * const { Data } = muxClient;"
+      },
+      {
+        "lineNumber": 33,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 34,
+        "line": "   * // Lists the values for a filter along with a total count of related views"
+      },
+      {
+        "lineNumber": 35,
+        "line": "   * Data.Filters.get('browser', { timeframe: ['7:days'] });"
+      },
+      {
+        "lineNumber": 36,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 37,
+        "line": "   * @see https://api-docs.mux.com/#filter-get-1"
+      },
+      {
+        "lineNumber": 38,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 39,
+        "line": "  get(filterId, params) {"
+      }
+    ],
+    "codeParams": [
+      "filterId",
+      "params"
+    ],
+    "docParams": [
+      "filterId",
+      "queryParams"
+    ]
+  },
+  {
+    "name": "VideoViews#list",
+    "filePath": "src/data/resources/video_views.js",
+    "lines": [
+      {
+        "lineNumber": 23,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 24,
+        "line": "   * Returns a list of video views for a property that occurred within the specified timeframe."
+      },
+      {
+        "lineNumber": 25,
+        "line": "   * Results are ordered by view_end, according to what you provide for order_direction."
+      },
+      {
+        "lineNumber": 26,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 27,
+        "line": "   * @extends Base"
+      },
+      {
+        "lineNumber": 28,
+        "line": "   * @param {Object} queryParams - example { viewer_id: 'ABCD1234', timeframe: ['7:days'], filters: ['operating_system:windows'] }"
+      },
+      {
+        "lineNumber": 29,
+        "line": "   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API"
+      },
+      {
+        "lineNumber": 30,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 31,
+        "line": "   * @example"
+      },
+      {
+        "lineNumber": 32,
+        "line": "   * const muxClient = new Mux(accessToken, secret);"
+      },
+      {
+        "lineNumber": 33,
+        "line": "   * const { Data } = muxClient;"
+      },
+      {
+        "lineNumber": 34,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 35,
+        "line": "   * // Returns a list of video views for a property that occurred within the specified timeframe."
+      },
+      {
+        "lineNumber": 36,
+        "line": "   * Data.VideoViews.list({ viewer_id: 'ABCD1234', timeframe: ['7:days'], order_direction: 'asc' });"
+      },
+      {
+        "lineNumber": 37,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 38,
+        "line": "   * @see https://api-docs.mux.com/#video-view-get-1"
+      },
+      {
+        "lineNumber": 39,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 40,
+        "line": "  list(params) {"
+      }
+    ],
+    "codeParams": [
+      "params"
+    ],
+    "docParams": [
+      "queryParams"
+    ]
+  },
+  {
+    "name": "Assets#updateMp4Support",
+    "filePath": "src/video/resources/assets.js",
+    "lines": [
+      {
+        "lineNumber": 266,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 267,
+        "line": "   * Update mp4 support for an asset"
+      },
+      {
+        "lineNumber": 268,
+        "line": "   * @param {Object} params - mp4 support JSON parameters"
+      },
+      {
+        "lineNumber": 269,
+        "line": "   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API"
+      },
+      {
+        "lineNumber": 270,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 271,
+        "line": "   * @example"
+      },
+      {
+        "lineNumber": 272,
+        "line": "   * const { Video } = new Mux(accessToken, secret);"
+      },
+      {
+        "lineNumber": 273,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 274,
+        "line": "   * // Updates mp4 support for an asset"
+      },
+      {
+        "lineNumber": 275,
+        "line": "   * Video.Assets.updateMp4Support(assetId, {mp4_support: \"standard\"});"
+      },
+      {
+        "lineNumber": 276,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 277,
+        "line": "   * @see https://docs.mux.com/reference#update-mp4-support"
+      },
+      {
+        "lineNumber": 278,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 279,
+        "line": "  updateMp4Support(assetId, params) {"
+      }
+    ],
+    "codeParams": [
+      "assetId",
+      "params"
+    ],
+    "docParams": [
+      "params"
+    ]
+  },
+  {
+    "name": "Assets#updateMasterAccess",
+    "filePath": "src/video/resources/assets.js",
+    "lines": [
+      {
+        "lineNumber": 290,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 291,
+        "line": "   * Update master access for an asset"
+      },
+      {
+        "lineNumber": 292,
+        "line": "   * @param {Object} params - master access JSON parameters"
+      },
+      {
+        "lineNumber": 293,
+        "line": "   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API"
+      },
+      {
+        "lineNumber": 294,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 295,
+        "line": "   * @example"
+      },
+      {
+        "lineNumber": 296,
+        "line": "   * const { Video } = new Mux(accessToken, secret);"
+      },
+      {
+        "lineNumber": 297,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 298,
+        "line": "   * // Update master access for an asset"
+      },
+      {
+        "lineNumber": 299,
+        "line": "   * Video.Assets.updateMasterAccess(assetId, {master_access: \"temporary\"});"
+      },
+      {
+        "lineNumber": 300,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 301,
+        "line": "   * @see https://docs.mux.com/reference#update-master-access"
+      },
+      {
+        "lineNumber": 302,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 303,
+        "line": "  updateMasterAccess(assetId, params) {"
+      }
+    ],
+    "codeParams": [
+      "assetId",
+      "params"
+    ],
+    "docParams": [
+      "params"
+    ]
+  },
+  {
+    "name": "SigningKeys#list",
+    "filePath": "src/video/resources/signingKeys.js",
+    "lines": [
+      {
+        "lineNumber": 84,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 85,
+        "line": "   * List signing keys"
+      },
+      {
+        "lineNumber": 86,
+        "line": "   * @param {string} keyId - The ID for the signing key"
+      },
+      {
+        "lineNumber": 87,
+        "line": "   * @param {object} params - Object to include as query params"
+      },
+      {
+        "lineNumber": 88,
+        "line": "   * @param {number} params.limit - Number of signing keys to return in the response"
+      },
+      {
+        "lineNumber": 89,
+        "line": "   * @param {number} params.page - Page of signing keys to return (limit * page)"
+      },
+      {
+        "lineNumber": 90,
+        "line": "   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API"
+      },
+      {
+        "lineNumber": 91,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 92,
+        "line": "   * @example"
+      },
+      {
+        "lineNumber": 93,
+        "line": "   * const { Video } = new Mux(accessToken, secret);"
+      },
+      {
+        "lineNumber": 94,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 95,
+        "line": "   * // Get an asset"
+      },
+      {
+        "lineNumber": 96,
+        "line": "   * Video.SigningKeys.list();"
+      },
+      {
+        "lineNumber": 97,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 98,
+        "line": "   * @see https://docs.mux.com/v1/reference#list-url-signing-keys"
+      },
+      {
+        "lineNumber": 99,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 100,
+        "line": "  list(params = {}) {"
+      }
+    ],
+    "codeParams": [
+      "params"
+    ],
+    "docParams": [
+      "keyId",
+      "params"
+    ]
+  },
+  {
+    "name": "Webhooks.verifyHeader",
+    "filePath": "src/webhooks/webhooks.js",
+    "lines": [
+      {
+        "lineNumber": 14,
+        "line": "  /**"
+      },
+      {
+        "lineNumber": 15,
+        "line": "   * Verify a webhook signature. When enabled, Mux will send webhooks with a signature"
+      },
+      {
+        "lineNumber": 16,
+        "line": "   * in the http request header 'Mux-Signature'. You can use that signature to verify"
+      },
+      {
+        "lineNumber": 17,
+        "line": "   * that the webhook is indeed coming from Mux."
+      },
+      {
+        "lineNumber": 18,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 19,
+        "line": "   * @param {string} body - The raw request body from Mux. This is stringified JSON."
+      },
+      {
+        "lineNumber": 20,
+        "line": "   * @param {string} signature - The signature that was in the request header."
+      },
+      {
+        "lineNumber": 21,
+        "line": "   * @param {string} secret - The webhook signing secret (get this from your dashboard)."
+      },
+      {
+        "lineNumber": 22,
+        "line": "   * @returns {boolean} - Returns true if the signature is verified."
+      },
+      {
+        "lineNumber": 23,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 24,
+        "line": "   * @throws {Error} throw error when a webhook signature verification fails."
+      },
+      {
+        "lineNumber": 25,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 26,
+        "line": "   * @example"
+      },
+      {
+        "lineNumber": 27,
+        "line": "   * const Mux = require('@mux/mux-node');"
+      },
+      {
+        "lineNumber": 28,
+        "line": "   * const { Webhooks } = Mux;"
+      },
+      {
+        "lineNumber": 29,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 30,
+        "line": "   * // Verify a webhook signature"
+      },
+      {
+        "lineNumber": 31,
+        "line": "   * Webhooks.verifyHeader(body, signature, secret);"
+      },
+      {
+        "lineNumber": 32,
+        "line": "   *"
+      },
+      {
+        "lineNumber": 33,
+        "line": "   * @see https://docs.mux.com/docs/webhook-security"
+      },
+      {
+        "lineNumber": 34,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 35,
+        "line": "  static verifyHeader(...args) {"
+      }
+    ],
+    "codeParams": [
+      "args"
+    ],
+    "docParams": [
+      "body",
+      "signature",
+      "secret"
+    ]
+  }
+]
