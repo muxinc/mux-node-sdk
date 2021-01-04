@@ -11,7 +11,7 @@ export declare interface Asset {
   created_at: string;
   status: 'preparing' | 'ready' | 'errored';
   duration?: number;
-  max_stored_resolution?: 'Audio-only' | 'SD' | 'HD' | 'FHD' | 'UHD';
+  max_stored_resolution?: 'Audio only' | 'SD' | 'HD' | 'FHD' | 'UHD';
   max_stored_frame_rate?: number;
   aspect_ratio?: string;
   per_title_encode?: boolean;
