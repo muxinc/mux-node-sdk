@@ -14,8 +14,7 @@ jobs:
           node-version: 14
       - run: yarn install --frozen-lockfile
       - run: yarn format
-      - run: yarn test:unit
-      - run: yarn test:int
+      - run: NOCK_BACK_MODE=lockdown yarn test
 
   publish-npm:
     needs: build

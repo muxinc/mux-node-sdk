@@ -18,5 +18,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: yarn install --frozen-lockfile
     - run: yarn format
-    - run: yarn test:unit
-    - run: yarn test:int
+    - run: NOCK_BACK_MODE=lockdown yarn test
