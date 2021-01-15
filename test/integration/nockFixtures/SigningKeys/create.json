@@ -1,0 +1,54 @@
+[
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "post",
+        "path": "/video/v1/signing-keys",
+        "body": {},
+        "status": 201,
+        "response": {
+            "data": {
+                "private_key": "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBeFZXRkJteW5taDRSSjFmR1dlR2oySXZ5dWpLSldUNy9PeS9QcS9PekFZVVZvRlRuClpDSmtKS1JsbE53RGt2WEhjRHpUUlpoN3oxV3FnRDZYRlFVbGRVU1VMbVo4M1BPeXIwVk91QjE5ZklxVk00NlUKYjVNb3k3VzJmK1RlcERRL2xVV2RiaTRCeTJhc0xnWGpOUzlYYTZLYi9UZDY5M1FkVmdObHNNS0FXZkx2c29wcgpSQnhUR2RMU05NRmhUVHlYdHRvemxvbzBWbE9FYXJZRGtlK0pxTytSSk53RDJKcU5hWlV3MFhVdXNXaDU4UGVJCjRSUGl5emNOVTROazZNRVhqMUZDaUxFeG5aOGE4Y0VqckNRZFRyYkdVQktZZTM2bHZieHdXaHJ4bXlTV1hOcUwKa2l6VGlTNHQ4NFIzSDM0M3d2UUZvNXVqUVZ6bG83UFh5WW1heFFJREFRQUJBb0lCQVFDbEtzMXE4U3JmZm1jUgpMUkNpVHBCYlFkZnFMVDUwNnB1cXFId0VDcmc3ZjI3NGdkZ2pJZjM4QlhYWXdNWmxEVDdmSEtvaFNGM296bVVsCmJqMzZwQklVTTFCci9mQm81N2tacHNNYXErUktoNXdXU1RMSXFMMnVzK3VLNUwvTlpNWUxaUGMrTDFmbExZelUKQUsySjZKUWRUVCtQRkE3aWE5ZmFGSUhiRHhGck5zbFU4L0MyMkhKbEk3eDloVi9GblJQRUlMeGlDa3ByVEh4VQp2dG14Ulc2emhUYnVjcSsxTjdnbE4yRjA5YnZiNzc1aGtTWWUwdnlyYlk1YVArRTVHS1lWeFQzRGw3VXQ1dGlVCm1kZ09zK3lVRXFHTFhFUFdZdlBCMWpTSWMzR09QZHpIZUpEb0c3cU0wY0VMcVBLNkpoWnVyUSsrUm1BRjBhTUMKbk5LbWhJT0JBb0dCQU9BYUJ0N215bmlXeGQyWWYvRk4zRDVQSk14TnV3d0pFNkhDMHNUY2Z0alErV2VNS1hsdwpIRFVZSzhuNW95RVlZU3B2S3dBVmtONkR0L3EwR1pCRncrT3dwekZvbmhJMFI3MlA1M1RTWWJmSnhkSUZHZXd1CnB2czhCUkN6UW9LUU5HTk5Ub3hhNWhMZTBTOUhiNlJUb0lMNWJTK1lSaDgvMlBmL2pjRm5wYUIxQW9HQkFPRnMKSGJWQXBtYzlsbHh4bkJ3bitZZTkvUkVHeWFFdnhOdDlzVzJWTnVWRzNmTEZXamtOL0ZZbDc5RE1yZjRZZ3l0bAp3eUNWRzl4MWhVZmg5bm5ONDF4bm9mVTdWMlYyeUN2eGZMdTRMMzZCam9WbHI1Q0p4NUxqYWdEa0tPUkVxOFNpCmhXQ2hYeG9CdDY3dEpkUHkyWXpIV0U0SXhFVWFwTW41cjJSZXM4Y1JBb0dBQ29udXpNaTV1TllPVkE5NTVOVXUKaUZlY2VXY21acmgramRybG9wQmovcnBGSUZOOUY5TG40SzlVVDlsSGpLVGkzT1lCZGEyTjlJanBQQWNBTk1LegpKYUFISE5HNHJVNThHVFFOUkhjb1ZVWk40VVNRSllWRUlRaC9qSHVCb3pZNDRIcWdPUVdGVUZuZUtJVUpnUWJWCnc1TUxTWE8xeUg1dUs2dCs5UnQwdElrQ2dZRUFoN0NGdlduYUFJRWc5aXBvMXNYMVBSRk91S1lHVHFFcmRSZVcKNnFpTDc3MFZzcUc2Nm1jUndtVjVrb3p5R3VaMFpuWU4yNW9GdUZHQlZjQ2RsYm9xSnFBMjdCKzVQdGtlS3Qxawp3TFpnMkZ4eUJyZ3IwdXdzbHEyUFRGUUtqVVVNeEFNMEYvTnJCSU9PSnB5WFRacDcrM0t2SStIQkN2dTd2OXd0CkNGUzlFSkVDZ1lBRHg5citsRkwzekszbzFJdUxiNkx5Ymp0TThoNVVyUVU0dCtLYWVNZW55OW0vRFVmaWFLL0cKc1YydkViaGZRWWpzM2NUbWZLcUswQ0p3dkM2aWo2Z29ZRVdINjlmSUU3Zk5TSHRNMEl5VEJ4bGJCQ3VRNzh5bQpmbW1FaXpzVGhEZm9UTG8xcXIyeVk3bnRXeUQ4U1BxbUwyRnJ5NUQ5cGNBbXlZQzhFOWZnS0E9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=",
+                "id": "02TbWtB3qkHbxPIri01Im02Fw4c01MZ9VCs3q1M00jpWaMnA",
+                "created_at": "1592370218"
+            }
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "2349",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 17 Jun 2020 05:03:37 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "Fhk8RtteSoFdzf4ALXbB",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    },
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "delete",
+        "path": "/video/v1/signing-keys/02TbWtB3qkHbxPIri01Im02Fw4c01MZ9VCs3q1M00jpWaMnA",
+        "body": "",
+        "status": 204,
+        "response": "",
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Date",
+            "Wed, 17 Jun 2020 05:03:38 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "Fhk8RxO6hkbPxMsAFo0B",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    }
+]

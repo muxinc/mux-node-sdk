@@ -1,0 +1,18 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Configurations
+.env
+
+# Dependency directories
+node_modules/
+
+# IDE generated files
+*.iws
+*.iml
+*.ipr
+.idea/
