@@ -1,0 +1,56 @@
+[
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "post",
+        "path": "/video/v1/live-streams",
+        "body": "",
+        "status": 201,
+        "response": {
+            "data": {
+                "stream_key": "7c4247e0-f02d-b3c7-2ab5-0c8ad17e8b8f",
+                "status": "idle",
+                "reconnect_window": 60,
+                "id": "JwBtZKLqZuA01VQW01W875mTR02b2qJ4O01wWu5B015qKM94",
+                "created_at": "1592367125"
+            }
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "182",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 17 Jun 2020 04:12:04 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "Fhk5dqtr06tl-QIACPrE",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    },
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "delete",
+        "path": "/video/v1/live-streams/JwBtZKLqZuA01VQW01W875mTR02b2qJ4O01wWu5B015qKM94",
+        "body": "",
+        "status": 204,
+        "response": "",
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Date",
+            "Wed, 17 Jun 2020 04:12:05 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "Fhk5ds0-y5alCMoAGBiC",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    }
+]

@@ -1,0 +1,262 @@
+[
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "get",
+        "path": "/data/v1/metrics/comparison?value=Safari&dimension=browser",
+        "body": "",
+        "status": 200,
+        "response": {
+            "total_row_count": null,
+            "timeframe": [
+                1592270407,
+                1592356807
+            ],
+            "data": [
+                {
+                    "watch_time": 49017,
+                    "view_count": 4,
+                    "name": "totals"
+                },
+                {
+                    "value": 0.7399064600467682,
+                    "type": "score",
+                    "name": "Overall Score",
+                    "metric": "viewer_experience_score"
+                },
+                {
+                    "value": 0.75,
+                    "type": "score",
+                    "name": "Playback Failure Score",
+                    "metric": "playback_failure_score",
+                    "items": [
+                        {
+                            "value": 0.25,
+                            "type": "percentage",
+                            "name": "Playback Failure Percentage",
+                            "metric": "playback_failure_percentage"
+                        }
+                    ]
+                },
+                {
+                    "value": 0.9414866864681244,
+                    "type": "score",
+                    "name": "Startup Time Score",
+                    "metric": "startup_time_score",
+                    "items": [
+                        {
+                            "value": 625,
+                            "type": "milliseconds",
+                            "name": "Video Startup Time (median)",
+                            "metric": "video_startup_time",
+                            "measurement": "median"
+                        },
+                        {
+                            "value": 625,
+                            "type": "milliseconds",
+                            "name": "Video Startup Time (95th %)",
+                            "metric": "video_startup_time",
+                            "measurement": "95th"
+                        },
+                        {
+                            "value": 274.31640625,
+                            "type": "milliseconds",
+                            "name": "Player Startup Time (median)",
+                            "metric": "player_startup_time",
+                            "measurement": "median"
+                        },
+                        {
+                            "value": 326.25390625,
+                            "type": "milliseconds",
+                            "name": "Player Startup Time (95th %)",
+                            "metric": "player_startup_time",
+                            "measurement": "95th"
+                        },
+                        {
+                            "value": 330.78515625,
+                            "type": "milliseconds",
+                            "name": "Page Load Time (median)",
+                            "metric": "page_load_time",
+                            "measurement": "median"
+                        },
+                        {
+                            "value": 346.890625,
+                            "type": "milliseconds",
+                            "name": "Page Load Time (95th %)",
+                            "metric": "page_load_time",
+                            "measurement": "95th"
+                        },
+                        {
+                            "value": 1287.015625,
+                            "type": "milliseconds",
+                            "name": "Aggregate Startup Time (median)",
+                            "metric": "aggregate_startup_time",
+                            "measurement": "median"
+                        },
+                        {
+                            "value": 1287.015625,
+                            "type": "milliseconds",
+                            "name": "Aggregate Startup Time (95th %)",
+                            "metric": "aggregate_startup_time",
+                            "measurement": "95th"
+                        },
+                        {
+                            "value": null,
+                            "type": "milliseconds",
+                            "name": "Seek Latency",
+                            "metric": "seek_latency"
+                        },
+                        {
+                            "value": 0,
+                            "type": "percentage",
+                            "name": "Exits Before Video Start",
+                            "metric": "exits_before_video_start"
+                        }
+                    ]
+                },
+                {
+                    "value": 1,
+                    "type": "score",
+                    "name": "Rebuffer Score",
+                    "metric": "rebuffer_score",
+                    "items": [
+                        {
+                            "value": 0,
+                            "type": "percentage",
+                            "name": "Rebuffer Percentage",
+                            "metric": "rebuffer_percentage"
+                        },
+                        {
+                            "value": 0,
+                            "type": "per_minute",
+                            "name": "Rebuffer Frequency",
+                            "metric": "rebuffer_frequency"
+                        },
+                        {
+                            "value": 0,
+                            "type": "milliseconds",
+                            "name": "Rebuffer Duration (median)",
+                            "metric": "rebuffer_duration",
+                            "measurement": "median"
+                        },
+                        {
+                            "value": 0,
+                            "type": "milliseconds",
+                            "name": "Rebuffer Duration (95th %)",
+                            "metric": "rebuffer_duration",
+                            "measurement": "95th"
+                        },
+                        {
+                            "value": 0,
+                            "type": "number",
+                            "name": "Rebuffer Count (median)",
+                            "metric": "rebuffer_count",
+                            "measurement": "median"
+                        },
+                        {
+                            "value": 0,
+                            "type": "number",
+                            "name": "Rebuffer Count (95th %)",
+                            "metric": "rebuffer_count",
+                            "measurement": "95th"
+                        }
+                    ]
+                },
+                {
+                    "value": 1,
+                    "type": "score",
+                    "name": "Video Quality Score",
+                    "metric": "video_quality_score",
+                    "items": [
+                        {
+                            "value": 0,
+                            "type": "percentage",
+                            "name": "Upscale Percentage (median)",
+                            "metric": "upscale_percentage",
+                            "measurement": "median"
+                        },
+                        {
+                            "value": 0,
+                            "type": "percentage",
+                            "name": "Upscale Percentage (95th %)",
+                            "metric": "upscale_percentage",
+                            "measurement": "95th"
+                        },
+                        {
+                            "value": 0,
+                            "type": "percentage",
+                            "name": "Upscale Percentage (average)",
+                            "metric": "upscale_percentage",
+                            "measurement": "avg"
+                        },
+                        {
+                            "value": 0.062,
+                            "type": "percentage",
+                            "name": "Downscale Percentage (median)",
+                            "metric": "downscale_percentage",
+                            "measurement": "median"
+                        },
+                        {
+                            "value": 0.062,
+                            "type": "percentage",
+                            "name": "Downscale Percentage (95th %)",
+                            "metric": "downscale_percentage",
+                            "measurement": "95th"
+                        },
+                        {
+                            "value": 0.0625,
+                            "type": "percentage",
+                            "name": "Downscale Percentage (average)",
+                            "metric": "downscale_percentage",
+                            "measurement": "avg"
+                        },
+                        {
+                            "value": 0,
+                            "type": "percentage",
+                            "name": "Max Upscale Percentage (median)",
+                            "metric": "max_upscale_percentage",
+                            "measurement": "median"
+                        },
+                        {
+                            "value": 0,
+                            "type": "percentage",
+                            "name": "Max Upscale Percentage (95th %)",
+                            "metric": "max_upscale_percentage",
+                            "measurement": "95th"
+                        },
+                        {
+                            "value": 0.062,
+                            "type": "percentage",
+                            "name": "Max Downscale Percentage (median)",
+                            "metric": "max_downscale_percentage",
+                            "measurement": "median"
+                        },
+                        {
+                            "value": 0.062,
+                            "type": "percentage",
+                            "name": "Max Downscale Percentage (95th %)",
+                            "metric": "max_downscale_percentage",
+                            "measurement": "95th"
+                        }
+                    ]
+                }
+            ]
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "3898",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 17 Jun 2020 01:20:07 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "FhkwFGZRC-jFbJ4ACeaB",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    }
+]

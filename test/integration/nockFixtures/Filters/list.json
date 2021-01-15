@@ -1,0 +1,61 @@
+[
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "get",
+        "path": "/data/v1/filters",
+        "body": "",
+        "status": 200,
+        "response": {
+            "total_row_count": null,
+            "timeframe": [
+                1592270324,
+                1592356724
+            ],
+            "data": {
+                "basic": [
+                    "browser",
+                    "country",
+                    "operating_system",
+                    "player_software",
+                    "player_software_version",
+                    "source_hostname",
+                    "source_type",
+                    "stream_type",
+                    "video_title"
+                ],
+                "advanced": [
+                    "asn",
+                    "browser_version",
+                    "cdn",
+                    "experiment_name",
+                    "operating_system_version",
+                    "player_name",
+                    "player_version",
+                    "preroll_ad_asset_hostname",
+                    "preroll_ad_tag_hostname",
+                    "preroll_played",
+                    "preroll_requested",
+                    "sub_property_id",
+                    "video_series"
+                ]
+            }
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "465",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Wed, 17 Jun 2020 01:18:44 GMT",
+            "Server",
+            "Mux API Server v1.94.1",
+            "X-Request-Id",
+            "FhkwARSBnoqbVVIAAlgj",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    }
+]
