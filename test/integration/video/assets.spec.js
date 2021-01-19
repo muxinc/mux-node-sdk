@@ -1,6 +1,8 @@
 const { expect } = require('chai');
 const Mux = require('../../../src/mux');
 const nockBack = require('nock').back;
+nockBack.setMode('record')
+nockBack.fixtures = __dirname + '/nockFixtures'
 
 const TEST_VIDEO =
   'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';
@@ -16,9 +18,9 @@ describe('Integration::Assets', () => {
     it('creates an asset when given an input', async () => {
       const { nockDone } = await nockBack('Assets/create.json');
       const asset = await Video.Assets.create({ input: TEST_VIDEO });
-      expect(asset.status).to.equal('preparing');
-      expect(asset.id).to.exist;
-      await Video.Assets.del(asset.id);
+      expect(asset.data.status).to.equal('preparing');
+      expect(asset.data.id).to.exist;
+      await Video.Assets.del(asset.data.id);
       nockDone();
     });
   });
@@ -29,7 +31,7 @@ describe('Integration::Assets', () => {
     it('deletes an asset', async () => {
       const { nockDone } = await nockBack('Assets/createAndDelete.json');
       const asset = await Video.Assets.create({ input: TEST_VIDEO });
-      await Video.Assets.del(asset.id);
+      await Video.Assets.del(asset.data.id);
       nockDone();
     });
 
@@ -47,9 +49,9 @@ describe('Integration::Assets', () => {
     it('gets an asset', async () => {
       const { nockDone } = await nockBack('Assets/get.json');
       const testAsset = await Video.Assets.create({ input: TEST_VIDEO });
-      const asset = await Video.Assets.get(testAsset.id);
-      expect(asset.id).to.equal(testAsset.id);
-      await Video.Assets.del(testAsset.id);
+      const asset = await Video.Assets.get(testAsset.data.id);
+      expect(asset.data.id).to.equal(testAsset.data.id);
+      await Video.Assets.del(testAsset.data.id);
       nockDone();
     });
 
@@ -69,12 +71,12 @@ describe('Integration::Assets', () => {
       const { nockDone } = await nockBack('Assets/inputInfo.json');
       const testAsset = await Video.Assets.create({ input: TEST_VIDEO });
       try {
-        const info = await Video.Assets.inputInfo(testAsset.id);
+        const info = await Video.Assets.inputInfo(testAsset.data.id);
         expect(info).to.be.an('array');
       } catch (err) {
         expect(err.messages).to.eql(['Asset is still preparing']);
       }
-      await Video.Assets.del(testAsset.id);
+      await Video.Assets.del(testAsset.data.id);
       nockDone();
     });
 
@@ -94,14 +96,14 @@ describe('Integration::Assets', () => {
     it('lists all assets for an environment', async () => {
       const { nockDone } = await nockBack('Assets/list.json');
       const assets = await Video.Assets.list();
-      expect(assets).to.be.an('array');
+      expect(assets.data).to.be.an('array');
       nockDone();
     });
 
     it('lists 5 assets for an environment', async () => {
       const { nockDone } = await nockBack('Assets/listLimit.json');
       const assets = await Video.Assets.list({ limit: 5 });
-      expect(assets).to.be.an('array');
+      expect(assets.data).to.be.an('array');
       nockDone();
     });
   });
@@ -112,12 +114,12 @@ describe('Integration::Assets', () => {
     it('creates playbackIds for an asset', async () => {
       const { nockDone } = await nockBack('Assets/createPlaybackId.json');
       const testAsset = await Video.Assets.create({ input: TEST_VIDEO });
-      const playbackId = await Video.Assets.createPlaybackId(testAsset.id, {
+      const playbackId = await Video.Assets.createPlaybackId(testAsset.data.id, {
         policy: 'public',
       });
-      expect(playbackId.policy).to.equal('public');
-      expect(playbackId.id).to.exist;
-      await Video.Assets.del(testAsset.id);
+      expect(playbackId.data.policy).to.equal('public');
+      expect(playbackId.data.id).to.exist;
+      await Video.Assets.del(testAsset.data.id);
       nockDone();
     });
 
@@ -135,10 +137,10 @@ describe('Integration::Assets', () => {
     it('throws an error if params are not given', async () => {
       const { nockDone } = await nockBack('Assets/createPlaybackIdFail2.json');
       const testAsset = await Video.Assets.create({ input: TEST_VIDEO });
-      await Video.Assets.createPlaybackId(testAsset.id).catch(async err => {
+      await Video.Assets.createPlaybackId(testAsset.data.id).catch(async err => {
         expect(err).to.exist;
         expect(err.message).to.equal('Playback ID params are required');
-        await Video.Assets.del(testAsset.id);
+        await Video.Assets.del(testAsset.data.id);
         nockDone();
       });
     });
@@ -150,14 +152,28 @@ describe('Integration::Assets', () => {
     it('gets playbackIds for an asset', async () => {
       const { nockDone } = await nockBack('Assets/getPlaybackId.json');
       const testAsset = await Video.Assets.create({ input: TEST_VIDEO });
-      const { id } = await Video.Assets.createPlaybackId(testAsset.id, {
+      const { id } = await Video.Assets.createPlaybackId(testAsset.data.id, {
         policy: 'public',
       });
-      const playbackId = await Video.Assets.playbackId(testAsset.id, id);
-      expect(playbackId.id).to.equal(id);
-      expect(playbackId.policy).to.equal('public');
-      await Video.Assets.del(testAsset.id);
+      const playbackId = await Video.Assets.playbackId(testAsset.data.id, id);
+      expect(playbackId.data.id).to.equal(id);
+      expect(playbackId.data.policy).to.equal('public');
+      await Video.Assets.del(testAsset.data.id);
       nockDone();
+
+      // return nockBack('Assets/list.json').then(({ nockDone, context }) => {
+      //   //  do your tests returning a promise and chain it with
+      //   //  `.then(nockDone)`
+      //   const testAsset = await Video.Assets.create({ input: TEST_VIDEO });
+      //   const { id } = await Video.Assets.createPlaybackId(testAsset.data.id, {
+      //     policy: 'public',
+      //   });
+      //   const playbackId = await Video.Assets.playbackId(testAsset.data.id, id);
+      //   expect(playbackId.data.id).to.equal(id);
+      //   expect(playbackId.data.policy).to.equal('public');
+      //   await Video.Assets.del(testAsset.data.id);
+      //   nockDone();
+      // })
     });
   });
 
@@ -174,10 +190,10 @@ describe('Integration::Assets', () => {
     it('fails to delete playbackIds for an asset when not given a playback ID', async () => {
       const { nockDone } = await nockBack('Assets/deletePlaybackIdFail.json');
       const testAsset = await Video.Assets.create({ input: TEST_VIDEO });
-      await Video.Assets.deletePlaybackId(testAsset.id).catch(
+      await Video.Assets.deletePlaybackId(testAsset.data.id).catch(
         err => expect(err).to.exist
       );
-      await Video.Assets.del(testAsset.id);
+      await Video.Assets.del(testAsset.data.id);
       nockDone();
     });
   });
@@ -189,17 +205,17 @@ describe('Integration::Assets', () => {
       const { nockDone } = await nockBack('Assets/updateMp4Support.json');
       const testAsset = await Video.Assets.create({ input: TEST_VIDEO });
       try {
-        await Video.Assets.updateMp4Support(testAsset.id, {
+        await Video.Assets.updateMp4Support(testAsset.data.id, {
           mp4_support: 'standard',
         });
         const { mp4_support: updatedMp4Support } = await Video.Assets.get(
-          testAsset.id
+          testAsset.data.id
         );
         expect(updatedMp4Support).to.equal('standard');
       } catch (err) {
         expect(err.messages && err.messages[0]).to.equal('Asset is not ready');
       }
-      await Video.Assets.del(testAsset.id);
+      await Video.Assets.del(testAsset.data.id);
       nockDone();
     });
   });
@@ -211,17 +227,17 @@ describe('Integration::Assets', () => {
       const { nockDone } = await nockBack('Assets/updateMasterAccess.json');
       const testAsset = await Video.Assets.create({ input: TEST_VIDEO });
       try {
-        await Video.Assets.updateMasterAccess(testAsset.id, {
+        await Video.Assets.updateMasterAccess(testAsset.data.id, {
           master_access: 'temporary',
         });
         const { master_access: updatedMasterAccess } = await Video.Assets.get(
-          testAsset.id
+          testAsset.data.id
         );
         expect(updatedMasterAccess).to.equal('temporary');
       } catch (err) {
         expect(err.messages && err.messages[0]).to.equal('Asset is not ready');
       }
-      await Video.Assets.del(testAsset.id);
+      await Video.Assets.del(testAsset.data.id);
       nockDone();
     });
   });
