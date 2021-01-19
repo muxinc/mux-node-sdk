@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const Mux = require('../../../src/mux');
 const nockBack = require('nock').back;
 nockBack.setMode('record')
-nockBack.fixtures = __dirname + '/nockFixtures'
+nockBack.fixtures = __dirname + '/nockFixtures' // also present in test/integration/_helper.js
 
 const TEST_VIDEO =
   'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';
@@ -160,20 +160,6 @@ describe('Integration::Assets', () => {
       expect(playbackId.data.policy).to.equal('public');
       await Video.Assets.del(testAsset.data.id);
       nockDone();
-
-      // return nockBack('Assets/list.json').then(({ nockDone, context }) => {
-      //   //  do your tests returning a promise and chain it with
-      //   //  `.then(nockDone)`
-      //   const testAsset = await Video.Assets.create({ input: TEST_VIDEO });
-      //   const { id } = await Video.Assets.createPlaybackId(testAsset.data.id, {
-      //     policy: 'public',
-      //   });
-      //   const playbackId = await Video.Assets.playbackId(testAsset.data.id, id);
-      //   expect(playbackId.data.id).to.equal(id);
-      //   expect(playbackId.data.policy).to.equal('public');
-      //   await Video.Assets.del(testAsset.data.id);
-      //   nockDone();
-      // })
     });
   });
 
