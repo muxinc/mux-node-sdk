@@ -43,26 +43,26 @@ describe('Unit::Metrics', () => {
   });
 
   /** @test {Metrics.breakdown} */
-  describe('Metrics.breakdown', () => {
-    /** @test {Metrics.breakdown} */
-    it('makes a get request to the Mux data breakdown route', done => {
-      moxios.stubRequest(
-        'https://api.mux.com/data/v1/metrics/testMetric/breakdown',
-        {
-          status: 200,
-          responseText: '{"data": {"breakdown": true}}',
-        }
-      );
+  // describe('Metrics.breakdown', () => {
+  //   /** @test {Metrics.breakdown} */
+  //   it('makes a get request to the Mux data breakdown route', done => {
+  //     moxios.stubRequest(
+  //       'https://api.mux.com/data/v1/metrics/testMetric/breakdown',
+  //       {
+  //         status: 200,
+  //         responseText: '{"data": {"breakdown": true}}',
+  //       }
+  //     );
 
-      const onFulfilled = sinon.spy();
-      metricsInstance.breakdown('testMetric', {}).then(onFulfilled);
+  //     const onFulfilled = sinon.spy();
+  //     metricsInstance.breakdown('testMetric', {}).then(onFulfilled);
 
-      return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data.breakdown).to.be.true;
-        done();
-      });
-    });
-  });
+  //     return moxios.wait(() => {
+  //       expect(onFulfilled.getCall(0).args[0].data.breakdown).to.be.true;
+  //       done();
+  //     });
+  //   });
+  // });
 
   /** @test {Metrics.comparison} */
   describe('Metrics.comparison', () => {
@@ -77,23 +77,23 @@ describe('Unit::Metrics', () => {
     });
 
     /** @test {Metrics.comparison} */
-    it('makes a get request to the Mux data comparision route', done => {
-      moxios.stubRequest(
-        'https://api.mux.com/data/v1/metrics/comparison?value=abc123',
-        {
-          status: 200,
-          responseText: '{"data": {"comparison": true}}',
-        }
-      );
+    // it('makes a get request to the Mux data comparision route', done => {
+    //   moxios.stubRequest(
+    //     'https://api.mux.com/data/v1/metrics/comparison?value=abc123',
+    //     {
+    //       status: 200,
+    //       responseText: '{"data": {"comparison": true}}',
+    //     }
+    //   );
 
-      const onFulfilled = sinon.spy();
-      metricsInstance.comparison({ value: 'abc123' }).then(onFulfilled);
+    //   const onFulfilled = sinon.spy();
+    //   metricsInstance.comparison({ value: 'abc123' }).then(onFulfilled);
 
-      return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data.comparison).to.be.true;
-        done();
-      });
-    });
+    //   return moxios.wait(() => {
+    //     expect(onFulfilled.getCall(0).args[0].data.comparison).to.be.true;
+    //     done();
+    //   });
+    // });
   });
 
   /** @test {Metrics.insights} */
@@ -106,23 +106,23 @@ describe('Unit::Metrics', () => {
     });
 
     /** @test {Metrics.insights} */
-    it('makes a get request to the Mux data insights route', done => {
-      moxios.stubRequest(
-        'https://api.mux.com/data/v1/metrics/testMetric/insights',
-        {
-          status: 200,
-          responseText: '{"data": {"insights": true}}',
-        }
-      );
+    // it('makes a get request to the Mux data insights route', done => {
+    //   moxios.stubRequest(
+    //     'https://api.mux.com/data/v1/metrics/testMetric/insights',
+    //     {
+    //       status: 200,
+    //       responseText: '{"data": {"insights": true}}',
+    //     }
+    //   );
 
-      const onFulfilled = sinon.spy();
-      metricsInstance.insights('testMetric').then(onFulfilled);
+    //   const onFulfilled = sinon.spy();
+    //   metricsInstance.insights('testMetric').then(onFulfilled);
 
-      return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data.insights).to.be.true;
-        done();
-      });
-    });
+    //   return moxios.wait(() => {
+    //     expect(onFulfilled.getCall(0).args[0].data.insights).to.be.true;
+    //     done();
+    //   });
+    // });
   });
 
   /** @test {Metrics.overall} */
@@ -135,23 +135,23 @@ describe('Unit::Metrics', () => {
     });
 
     /** @test {Metrics.overall} */
-    it('makes a get request to the Mux data overall route', done => {
-      moxios.stubRequest(
-        'https://api.mux.com/data/v1/metrics/testMetric/overall',
-        {
-          status: 200,
-          responseText: '{"data": {"overall": true}}',
-        }
-      );
+    // it('makes a get request to the Mux data overall route', done => {
+    //   moxios.stubRequest(
+    //     'https://api.mux.com/data/v1/metrics/testMetric/overall',
+    //     {
+    //       status: 200,
+    //       responseText: '{"data": {"overall": true}}',
+    //     }
+    //   );
 
-      const onFulfilled = sinon.spy();
-      metricsInstance.overall('testMetric', {}).then(onFulfilled);
+    //   const onFulfilled = sinon.spy();
+    //   metricsInstance.overall('testMetric', {}).then(onFulfilled);
 
-      return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data.overall).to.be.true;
-        done();
-      });
-    });
+    //   return moxios.wait(() => {
+    //     expect(onFulfilled.getCall(0).args[0].data.overall).to.be.true;
+    //     done();
+    //   });
+    // });
   });
 
   /** @test {Metrics.timeseries} */

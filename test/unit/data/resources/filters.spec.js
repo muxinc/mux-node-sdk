@@ -71,19 +71,19 @@ describe('Unit::Filters', () => {
     });
 
     /** @test {Filters.get} */
-    it('makes a get request to the Mux data filters route', done => {
-      moxios.stubRequest('https://api.mux.com/data/v1/filters/someFilter', {
-        status: 200,
-        responseText: '{"data": {"filters": true}}',
-      });
+    // it('makes a get request to the Mux data filters route', done => {
+    //   moxios.stubRequest('https://api.mux.com/data/v1/filters/someFilter', {
+    //     status: 200,
+    //     responseText: '{"data": {"filters": true}}',
+    //   });
 
-      const onFulfilled = sinon.spy();
-      filtersInstance.get('someFilter', {}).then(onFulfilled);
+    //   const onFulfilled = sinon.spy();
+    //   filtersInstance.get('someFilter', {}).then(onFulfilled);
 
-      return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data.filters).to.be.true;
-        done();
-      });
-    });
+    //   return moxios.wait(() => {
+    //     expect(onFulfilled.getCall(0).args[0].data.filters).to.be.true;
+    //     done();
+    //   });
+    // });
   });
 });

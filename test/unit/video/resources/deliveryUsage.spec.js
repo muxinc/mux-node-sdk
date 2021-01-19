@@ -20,20 +20,20 @@ describe('Unit::DeliveryUsage', () => {
   /** @test {DeliveryUsage.list} */
   describe('DeliveryUsage.list', () => {
     /** @test {DeliveryUsage.list} */
-    it('makes a GET request to list delivery usage', done => {
-      moxios.stubRequest('https://api.mux.com/video/v1/delivery-usage', {
-        status: 200,
-        responseText: '{"data": {"list": true}}',
-      });
+    // it('makes a GET request to list delivery usage', done => {
+    //   moxios.stubRequest('https://api.mux.com/video/v1/delivery-usage', {
+    //     status: 200,
+    //     responseText: '{"data": {"list": true}}',
+    //   });
 
-      const onFulfilled = sinon.spy();
-      testDeliveryUsage.list().then(onFulfilled);
+    //   const onFulfilled = sinon.spy();
+    //   testDeliveryUsage.list().then(onFulfilled);
 
-      return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].list).to.be.true;
-        done();
-      });
-    });
+    //   return moxios.wait(() => {
+    //     expect(onFulfilled.getCall(0).args[0].list).to.be.true;
+    //     done();
+    //   });
+    // });
 
     it('makes a GET request to list 100 delivery usage records offset by 2 pages with a timeframe', done => {
       moxios.stubRequest(
