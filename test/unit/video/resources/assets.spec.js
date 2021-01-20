@@ -87,22 +87,22 @@ describe('Unit::Assets', () => {
     // });
 
     /** @test {Assets.get} */
-    // it('throws an error when an asset id is not given', () =>
-    //   testAssets
-    //     .get()
-    //     .then(res => {
-    //       expect(res).to.not.exist;
-    //     })
-    //     .catch(err => {
-    //       expect(err).to.exist;
-    //       expect(err.message).to.equal(
-    //         'An asset ID is required to get an asset'
-    //       );
-    //     }));
+    it('throws an error when an asset id is not given', () =>
+      testAssets
+        .get()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'An asset ID is required to get an asset'
+          );
+        }));
   });
 
   /** @test {Assets.del} */
-  describe('Assets.del', () => {
+  // describe('Assets.del', () => {
     /** @test {Assets.del} */
     // it('makes a DELETE request to delete an asset', done => {
     //   moxios.stubRequest('https://api.mux.com/video/v1/assets/testAsset', {
@@ -120,19 +120,19 @@ describe('Unit::Assets', () => {
     // });
 
     /** @test {Assets.del} */
-    // it('throws an error when an asset id is not given', () =>
-    //   testAssets
-    //     .del()
-    //     .then(res => {
-    //       expect(res).to.not.exist;
-    //     })
-    //     .catch(err => {
-    //       expect(err).to.exist;
-    //       expect(err.message).to.equal(
-    //         'An asset ID is required to delete an asset'
-    //       );
-    //     }));
-  });
+    it('throws an error when an asset id is not given', () =>
+      testAssets
+        .del()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'An asset ID is required to delete an asset'
+          );
+        }));
+  // });
 
   /** @test {Assets.inputInfo} */
   describe('Assets.inputInfo', () => {
@@ -156,18 +156,18 @@ describe('Unit::Assets', () => {
     // });
 
     /** @test {Assets.inputInfo} */
-    // it('throws an error when an asset id is not given', () =>
-    //   testAssets
-    //     .inputInfo()
-    //     .then(res => {
-    //       expect(res).to.not.exist;
-    //     })
-    //     .catch(err => {
-    //       expect(err).to.exist;
-    //       expect(err.message).to.equal(
-    //         'An asset ID is required to get input-info'
-    //       );
-    //     }));
+    it('throws an error when an asset id is not given', () =>
+      testAssets
+        .inputInfo()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'An asset ID is required to get input-info'
+          );
+        }));
   });
 
   /** @test {Assets.list} */
@@ -208,7 +208,7 @@ describe('Unit::Assets', () => {
   });
 
   /** @test {Assets.createPlaybackId} */
-  describe('Assets.createPlaybackId', () => {
+  // describe('Assets.createPlaybackId', () => {
     /** @test {Assets.createPlaybackId} */
     // it('makes a POST request to create a Playback Id for an asset', done => {
     //   moxios.stubRequest(
@@ -253,7 +253,7 @@ describe('Unit::Assets', () => {
     //       expect(err).to.exist;
     //       expect(err.message).to.equal('Playback ID params are required');
     //     }));
-  });
+  // });
 
   /** @test {Assets.deletePlaybackId} */
   describe('Assets.deletePlaybackId', () => {
@@ -296,23 +296,23 @@ describe('Unit::Assets', () => {
   /** @test {Assets.playbackId} */
   describe('Assets.playbackId', () => {
     /** @test {Assets.playbackId} */
-    // it('makes a GET request to get a Playback Id for an asset', done => {
-    //   moxios.stubRequest(
-    //     'https://api.mux.com/video/v1/assets/testAsset/playback-ids/testPlaybackId',
-    //     {
-    //       status: 200,
-    //       responseText: '{"data": {"get": true}}',
-    //     }
-    //   );
+    it('makes a GET request to get a Playback Id for an asset', done => {
+      moxios.stubRequest(
+        'https://api.mux.com/video/v1/assets/testAsset/playback-ids/testPlaybackId',
+        {
+          status: 200,
+          responseText: '{"data": {"get": true}}',
+        }
+      );
 
-    //   const onFulfilled = sinon.spy();
-    //   testAssets.playbackId('testAsset', 'testPlaybackId').then(onFulfilled);
+      const onFulfilled = sinon.spy();
+      testAssets.playbackId('testAsset', 'testPlaybackId').then(onFulfilled);
 
-    //   return moxios.wait(() => {
-    //     expect(onFulfilled.getCall(0).args[0].get).to.be.true;
-    //     done();
-    //   });
-    // });
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].get).to.be.true;
+        done();
+      });
+    });
 
     /** @test {Assets.playbackId} */
     it('throws an error if an asset id is not given', () =>
@@ -419,7 +419,7 @@ describe('Unit::Assets', () => {
   });
 
   /** @test {Assets.updateMp4Support} */
-  describe('Assets.updateMp4Support', () => {
+  // describe('Assets.updateMp4Support', () => {
     /** @test {Assets.updateMp4Support} */
     // it('makes a PUT request to update the mp4 support', done => {
     //   moxios.stubRequest(
@@ -440,10 +440,10 @@ describe('Unit::Assets', () => {
     //     done();
     //   });
     // });
-  });
+  // });
 
   /** @test {Assets.updateMasterAccess} */
-  describe('Assets.updateMasterAccess', () => {
+  // describe('Assets.updateMasterAccess', () => {
     /** @test {Assets.updateMasterAccess} */
     // it('makes a PUT request to update the master access', done => {
     //   moxios.stubRequest(
@@ -464,5 +464,5 @@ describe('Unit::Assets', () => {
     //     done();
     //   });
     // });
-  });
+  // });
 });

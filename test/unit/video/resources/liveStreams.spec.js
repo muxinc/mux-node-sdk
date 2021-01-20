@@ -88,18 +88,18 @@ describe('Unit::LiveStreams', () => {
     // });
 
     /** @test {LiveStreams.del} */
-  //   it('throws an error when a live stream ID is not given', () =>
-  //     testLiveStreams
-  //       .del()
-  //       .then(res => {
-  //         expect(res).to.not.exist;
-  //       })
-  //       .catch(err => {
-  //         expect(err).to.exist;
-  //         expect(err.message).to.equal(
-  //           'A live stream ID is required to delete a live stream'
-  //         );
-  //       }));
+    it('throws an error when a live stream ID is not given', () =>
+      testLiveStreams
+        .del()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A live stream ID is required to delete a live stream'
+          );
+        }));
   });
 
   /** @test {LiveStreams.list} */
@@ -161,18 +161,18 @@ describe('Unit::LiveStreams', () => {
     // });
 
     /** @test {LiveStreams.get} */
-    // it('throws an error when a live stream ID is not given', () =>
-    //   testLiveStreams
-    //     .get()
-    //     .then(res => {
-    //       expect(res).to.not.exist;
-    //     })
-    //     .catch(err => {
-    //       expect(err).to.exist;
-    //       expect(err.message).to.equal(
-    //         'A live stream ID is required to get a live stream'
-    //       );
-    //     }));
+    it('throws an error when a live stream ID is not given', () =>
+      testLiveStreams
+        .get()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A live stream ID is required to get a live stream'
+          );
+        }));
   });
 
   /** @test {LiveStreams.signalComplete} */
@@ -197,18 +197,18 @@ describe('Unit::LiveStreams', () => {
     // });
 
     /** @test {LiveStreams.signalComplete} */
-    // it('throws an error when a live stream ID is not given', () =>
-    //   testLiveStreams
-    //     .signalComplete()
-    //     .then(res => {
-    //       expect(res).to.not.exist;
-    //     })
-    //     .catch(err => {
-    //       expect(err).to.exist;
-    //       expect(err.message).to.equal(
-    //         'A live stream ID is required to signal a stream is complete'
-    //       );
-    //     }));
+    it('throws an error when a live stream ID is not given', () =>
+      testLiveStreams
+        .signalComplete()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A live stream ID is required to signal a stream is complete'
+          );
+        }));
   });
 
   /** @test {LiveStreams.resetStreamKey} */
@@ -233,18 +233,18 @@ describe('Unit::LiveStreams', () => {
     // });
 
     /** @test {LiveStreams.resetStreamKey} */
-    // it('throws an error when a live stream ID is not given', () =>
-    //   testLiveStreams
-    //     .resetStreamKey()
-    //     .then(res => {
-    //       expect(res).to.not.exist;
-    //     })
-    //     .catch(err => {
-    //       expect(err).to.exist;
-    //       expect(err.message).to.equal(
-    //         'A live stream ID is required to reset a live stream key'
-    //       );
-    //     }));
+    it('throws an error when a live stream ID is not given', () =>
+      testLiveStreams
+        .resetStreamKey()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A live stream ID is required to reset a live stream key'
+          );
+        }));
   });
 
   /** @test {LiveStreams.createPlaybackId} */
@@ -285,18 +285,18 @@ describe('Unit::LiveStreams', () => {
     //     }));
 
     /** @test {LiveStreams.createPlaybackId} */
-    // it('throws an error if a live stream ID is not given', () =>
-    //   testLiveStreams
-    //     .createPlaybackId()
-    //     .then(res => {
-    //       expect(res).to.not.exist;
-    //     })
-    //     .catch(err => {
-    //       expect(err).to.exist;
-    //       expect(err.message).to.equal(
-    //         'A live stream ID is required to create a live stream playback ID'
-    //       );
-    //     }));
+    it('throws an error if a live stream ID is not given', () =>
+      testLiveStreams
+        .createPlaybackId()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A live stream ID is required to create a live stream playback ID'
+          );
+        }));
   });
 
   /** @test {LiveStreams.deletePlaybackId} */
@@ -378,18 +378,18 @@ describe('Unit::LiveStreams', () => {
     // });
 
     /** @test {LiveStreams.createSimulcastTarget} */
-    // it('throws an error if a live stream ID is not given', () =>
-    //   testLiveStreams
-    //     .createSimulcastTarget()
-    //     .then(res => {
-    //       expect(res).to.not.exist;
-    //     })
-    //     .catch(err => {
-    //       expect(err).to.exist;
-    //       expect(err.message).to.equal(
-    //         'A live stream ID is required to create a simulcast target'
-    //       );
-    //     }));
+    it('throws an error if a live stream ID is not given', () =>
+      testLiveStreams
+        .createSimulcastTarget()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A live stream ID is required to create a simulcast target'
+          );
+        }));
 
     /** @test {LiveStreams.createSimulcastTarget} */
     // it('throws an error if a url and stream key are not given', () =>
@@ -430,32 +430,32 @@ describe('Unit::LiveStreams', () => {
     // });
 
     /** @test {LiveStreams.getSimulcastTarget} */
-    // it('throws an error if a live stream ID is not given', () =>
-    //   testLiveStreams
-    //     .getSimulcastTarget()
-    //     .then(res => {
-    //       expect(res).to.not.exist;
-    //     })
-    //     .catch(err => {
-    //       expect(err).to.exist;
-    //       expect(err.message).to.equal(
-    //         'A live stream ID is required to get a simulcast target'
-    //       );
-    //     }));
+    it('throws an error if a live stream ID is not given', () =>
+      testLiveStreams
+        .getSimulcastTarget()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A live stream ID is required to get a simulcast target'
+          );
+        }));
 
     /** @test {LiveStreams.createSimulcastTarget} */
-    // it('throws an error if a simulcast target id is not given', () =>
-    //   testLiveStreams
-    //     .getSimulcastTarget('testLiveStream')
-    //     .then(res => {
-    //       expect(res).to.not.exist;
-    //     })
-    //     .catch(err => {
-    //       expect(err).to.exist;
-    //       expect(err.message).to.equal(
-    //         'A simulcast target ID is required to get a simulcast target'
-    //       );
-    //     }));
+    it('throws an error if a simulcast target id is not given', () =>
+      testLiveStreams
+        .getSimulcastTarget('testLiveStream')
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A simulcast target ID is required to get a simulcast target'
+          );
+        }));
   });
 
   /** @test {LiveStreams.deleteSimulcastTarget} */
@@ -532,18 +532,18 @@ describe('Unit::LiveStreams', () => {
     // });
 
     /** @test {LiveStreams.enable} */
-    // it('throws an error if a live stream ID is not given', () =>
-    //   testLiveStreams
-    //     .enable()
-    //     .then(res => {
-    //       expect(res).to.not.exist;
-    //     })
-    //     .catch(err => {
-    //       expect(err).to.exist;
-    //       expect(err.message).to.equal(
-    //         'A live stream ID is required to enable a live stream'
-    //       );
-    //     }));
+    it('throws an error if a live stream ID is not given', () =>
+      testLiveStreams
+        .enable()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A live stream ID is required to enable a live stream'
+          );
+        }));
   });
 
   /** @test {LiveStreams.disable} */
@@ -568,17 +568,17 @@ describe('Unit::LiveStreams', () => {
     // });
 
     /** @test {LiveStreams.disable} */
-  //   it('throws an error if a live stream ID is not given', () =>
-  //     testLiveStreams
-  //       .disable()
-  //       .then(res => {
-  //         expect(res).to.not.exist;
-  //       })
-  //       .catch(err => {
-  //         expect(err).to.exist;
-  //         expect(err.message).to.equal(
-  //           'A live stream ID is required to disable a live stream'
-  //         );
-  //       }));
+    it('throws an error if a live stream ID is not given', () =>
+      testLiveStreams
+        .disable()
+        .then(res => {
+          expect(res).to.not.exist;
+        })
+        .catch(err => {
+          expect(err).to.exist;
+          expect(err.message).to.equal(
+            'A live stream ID is required to disable a live stream'
+          );
+        }));
   });
 });

@@ -43,7 +43,7 @@ describe('Unit::VideoViews', () => {
   });
 
   /** @test {VideoViews.list} */
-  describe('VideoViews.list', () => {
+  // describe('VideoViews.list', () => {
     /** @test {VideoViews.list} */
     // it('makes a get request to the Mux data video-views route', done => {
     //   moxios.stubRequest(
@@ -62,10 +62,10 @@ describe('Unit::VideoViews', () => {
     //     done();
     //   });
     // });
-  });
+  // });
 
   /** @test {VideoViews.get} */
-  describe('VideoViews.get', () => {
+  // describe('VideoViews.get', () => {
     /** @test {VideoViews.get} */
     // it('makes a get request to the Mux data video-views route', done => {
     //   moxios.stubRequest('https://api.mux.com/data/v1/video-views/someView', {
@@ -81,5 +81,5 @@ describe('Unit::VideoViews', () => {
     //     done();
     //   });
     // });
-  });
+  // });
 });

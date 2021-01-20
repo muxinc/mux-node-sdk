@@ -164,22 +164,22 @@ describe('Unit::Metrics', () => {
     });
 
     /** @test {Metrics.timeseries} */
-    it('makes a get request to the Mux data timeseries route', done => {
-      moxios.stubRequest(
-        'https://api.mux.com/data/v1/metrics/testMetric/timeseries',
-        {
-          status: 200,
-          responseText: '{"data": {"timeseries": true}}',
-        }
-      );
+    // it('makes a get request to the Mux data timeseries route', done => {
+    //   moxios.stubRequest(
+    //     'https://api.mux.com/data/v1/metrics/testMetric/timeseries',
+    //     {
+    //       status: 200,
+    //       responseText: '{"data": {"timeseries": true}}',
+    //     }
+    //   );
 
-      const onFulfilled = sinon.spy();
-      metricsInstance.timeseries('testMetric', {}).then(onFulfilled);
+    //   const onFulfilled = sinon.spy();
+    //   metricsInstance.timeseries('testMetric', {}).then(onFulfilled);
 
-      return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data.timeseries).to.be.true;
-        done();
-      });
-    });
+    //   return moxios.wait(() => {
+    //     expect(onFulfilled.getCall(0).args[0].data.timeseries).to.be.true;
+    //     done();
+    //   });
+    // });
   });
 });

@@ -72,7 +72,7 @@ class Base extends EventEmitter {
   }
 
   isVideoUrl(url) {
-    return url.startsWith(`${this.config.baseUrl}/video/v1/`);
+    return url.startsWith(`/video/v1/`);
   }
 
   set config(options = {}) {
