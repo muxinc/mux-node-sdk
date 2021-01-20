@@ -70,7 +70,7 @@ describe('Unit::Assets', () => {
   });
 
   /** @test {Assets.del} */
-  // describe('Assets.del', () => {
+  describe('Assets.del', () => {
     /** @test {Assets.del} */
     it('throws an error when an asset id is not given', () =>
       testAssets
@@ -84,7 +84,7 @@ describe('Unit::Assets', () => {
             'An asset ID is required to delete an asset'
           );
         }));
-  // });
+  });
 
   /** @test {Assets.inputInfo} */
   describe('Assets.inputInfo', () => {

@@ -16,7 +16,6 @@ describe('Integration::Assets', () => {
     it('creates an asset when given an input', async () => {
       const { nockDone } = await nockBack('Assets/create.json');
       const asset = await Video.Assets.create({ input: TEST_VIDEO });
-      console.log(asset)
       expect(asset.status).to.equal('preparing');
       expect(asset.id).to.exist;
       await Video.Assets.del(asset.id);
