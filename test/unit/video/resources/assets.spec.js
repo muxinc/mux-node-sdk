@@ -107,13 +107,10 @@ describe('Unit::Assets', () => {
   describe('Assets.list', () => {
     /** @test {Assets.list} */
     it('makes a GET request to list 100 assets offset by 2 pages', done => {
-      moxios.stubRequest(
-        '/video/v1/assets?limit=100&page=2',
-        {
-          status: 200,
-          responseText: '{"data": {"list": true}}',
-        }
-      );
+      moxios.stubRequest('/video/v1/assets?limit=100&page=2', {
+        status: 200,
+        responseText: '{"data": {"list": true}}',
+      });
 
       const onFulfilled = sinon.spy();
       testAssets.list({ limit: 100, page: 2 }).then(onFulfilled);
@@ -196,13 +193,10 @@ describe('Unit::Assets', () => {
   describe('Assets.createTrack', () => {
     /** @test {Assets.createTrack} */
     it('makes a POST request to create a text track for an asset', done => {
-      moxios.stubRequest(
-        '/video/v1/assets/testAsset/tracks',
-        {
-          status: 200,
-          responseText: '{"data": {"create": true}}',
-        }
-      );
+      moxios.stubRequest('/video/v1/assets/testAsset/tracks', {
+        status: 200,
+        responseText: '{"data": {"create": true}}',
+      });
 
       const onFulfilled = sinon.spy();
       testAssets
@@ -249,13 +243,10 @@ describe('Unit::Assets', () => {
   describe('Assets.deleteTrack', () => {
     /** @test {Assets.deleteTrack} */
     it('makes a DELETE request to delete a text track for an asset', done => {
-      moxios.stubRequest(
-        '/video/v1/assets/testAsset/tracks/testTrackId',
-        {
-          status: 200,
-          responseText: '{"data": {"delete": true}}',
-        }
-      );
+      moxios.stubRequest('/video/v1/assets/testAsset/tracks/testTrackId', {
+        status: 200,
+        responseText: '{"data": {"delete": true}}',
+      });
 
       const onFulfilled = sinon.spy();
       testAssets.deleteTrack('testAsset', 'testTrackId').then(onFulfilled);

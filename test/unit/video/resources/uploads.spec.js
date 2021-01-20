@@ -1,5 +1,4 @@
 const { expect } = require('chai');
-const sinon = require('sinon');
 const moxios = require('moxios');
 const Uploads = require('../../../../src/video/resources/uploads');
 

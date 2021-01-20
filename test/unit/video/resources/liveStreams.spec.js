@@ -63,13 +63,10 @@ describe('Unit::LiveStreams', () => {
   describe('LiveStreams.list', () => {
     /** @test {LiveStreams.list} */
     it('makes a GET request to list 100 live streams offset by 2 pages', done => {
-      moxios.stubRequest(
-        '/video/v1/live-streams?limit=100&page=2',
-        {
-          status: 200,
-          responseText: '{"data": {"list": true}}',
-        }
-      );
+      moxios.stubRequest('/video/v1/live-streams?limit=100&page=2', {
+        status: 200,
+        responseText: '{"data": {"list": true}}',
+      });
 
       const onFulfilled = sinon.spy();
       testLiveStreams.list({ limit: 100, page: 2 }).then(onFulfilled);

@@ -1,6 +1,5 @@
 const { expect } = require('chai');
 const moxios = require('moxios');
-const sinon = require('sinon');
 const VideoViews = require('../../../../src/data/resources/video_views');
 
 /** @test {VideoViews} */

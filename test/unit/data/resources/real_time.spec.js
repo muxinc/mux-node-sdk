@@ -1,6 +1,5 @@
 const { expect } = require('chai');
 const moxios = require('moxios');
-const sinon = require('sinon');
 const RealTime = require('../../../../src/data/resources/real_time');
 
 /** @test {RealTime} */

@@ -14,5 +14,4 @@ describe('Unit::Errors', () => {
   afterEach(() => {
     moxios.uninstall(errorsInstance.http);
   });
-
 });
