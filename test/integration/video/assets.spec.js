@@ -1,8 +1,6 @@
 const { expect } = require('chai');
 const Mux = require('../../../src/mux');
 const nockBack = require('nock').back;
-nockBack.setMode('record')
-nockBack.fixtures = __dirname + '/nockFixtures' // also present in test/integration/_helper.js
 
 const TEST_VIDEO =
   'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';
@@ -152,6 +150,7 @@ describe('Integration::Assets', () => {
     it('gets playbackIds for an asset', async () => {
       const { nockDone } = await nockBack('Assets/getPlaybackId.json');
       const testAsset = await Video.Assets.create({ input: TEST_VIDEO });
+      console.log("here", testAsset)
       const { id } = await Video.Assets.createPlaybackId(testAsset.data.id, {
         policy: 'public',
       });
