@@ -42,28 +42,6 @@ describe('Unit::Metrics', () => {
     });
   });
 
-  /** @test {Metrics.breakdown} */
-  // describe('Metrics.breakdown', () => {
-  //   /** @test {Metrics.breakdown} */
-  //   it('makes a get request to the Mux data breakdown route', done => {
-  //     moxios.stubRequest(
-  //       'https://api.mux.com/data/v1/metrics/testMetric/breakdown',
-  //       {
-  //         status: 200,
-  //         responseText: '{"data": {"breakdown": true}}',
-  //       }
-  //     );
-
-  //     const onFulfilled = sinon.spy();
-  //     metricsInstance.breakdown('testMetric', {}).then(onFulfilled);
-
-  //     return moxios.wait(() => {
-  //       expect(onFulfilled.getCall(0).args[0].data.breakdown).to.be.true;
-  //       done();
-  //     });
-  //   });
-  // });
-
   /** @test {Metrics.comparison} */
   describe('Metrics.comparison', () => {
     /** @test {Metrics.comparison} */
@@ -75,25 +53,6 @@ describe('Unit::Metrics', () => {
         'The value query parameter is required for comparing metrics'
       );
     });
-
-    /** @test {Metrics.comparison} */
-    // it('makes a get request to the Mux data comparision route', done => {
-    //   moxios.stubRequest(
-    //     'https://api.mux.com/data/v1/metrics/comparison?value=abc123',
-    //     {
-    //       status: 200,
-    //       responseText: '{"data": {"comparison": true}}',
-    //     }
-    //   );
-
-    //   const onFulfilled = sinon.spy();
-    //   metricsInstance.comparison({ value: 'abc123' }).then(onFulfilled);
-
-    //   return moxios.wait(() => {
-    //     expect(onFulfilled.getCall(0).args[0].data.comparison).to.be.true;
-    //     done();
-    //   });
-    // });
   });
 
   /** @test {Metrics.insights} */
@@ -104,25 +63,6 @@ describe('Unit::Metrics', () => {
         'A metric Id is required for insight metrics.'
       );
     });
-
-    /** @test {Metrics.insights} */
-    // it('makes a get request to the Mux data insights route', done => {
-    //   moxios.stubRequest(
-    //     'https://api.mux.com/data/v1/metrics/testMetric/insights',
-    //     {
-    //       status: 200,
-    //       responseText: '{"data": {"insights": true}}',
-    //     }
-    //   );
-
-    //   const onFulfilled = sinon.spy();
-    //   metricsInstance.insights('testMetric').then(onFulfilled);
-
-    //   return moxios.wait(() => {
-    //     expect(onFulfilled.getCall(0).args[0].data.insights).to.be.true;
-    //     done();
-    //   });
-    // });
   });
 
   /** @test {Metrics.overall} */
@@ -133,25 +73,6 @@ describe('Unit::Metrics', () => {
         'A metric Id is required for overall metrics.'
       );
     });
-
-    /** @test {Metrics.overall} */
-    // it('makes a get request to the Mux data overall route', done => {
-    //   moxios.stubRequest(
-    //     'https://api.mux.com/data/v1/metrics/testMetric/overall',
-    //     {
-    //       status: 200,
-    //       responseText: '{"data": {"overall": true}}',
-    //     }
-    //   );
-
-    //   const onFulfilled = sinon.spy();
-    //   metricsInstance.overall('testMetric', {}).then(onFulfilled);
-
-    //   return moxios.wait(() => {
-    //     expect(onFulfilled.getCall(0).args[0].data.overall).to.be.true;
-    //     done();
-    //   });
-    // });
   });
 
   /** @test {Metrics.timeseries} */
@@ -162,24 +83,5 @@ describe('Unit::Metrics', () => {
         'A metric Id is required for timeseries metrics.'
       );
     });
-
-    /** @test {Metrics.timeseries} */
-    // it('makes a get request to the Mux data timeseries route', done => {
-    //   moxios.stubRequest(
-    //     'https://api.mux.com/data/v1/metrics/testMetric/timeseries',
-    //     {
-    //       status: 200,
-    //       responseText: '{"data": {"timeseries": true}}',
-    //     }
-    //   );
-
-    //   const onFulfilled = sinon.spy();
-    //   metricsInstance.timeseries('testMetric', {}).then(onFulfilled);
-
-    //   return moxios.wait(() => {
-    //     expect(onFulfilled.getCall(0).args[0].data.timeseries).to.be.true;
-    //     done();
-    //   });
-    // });
   });
 });

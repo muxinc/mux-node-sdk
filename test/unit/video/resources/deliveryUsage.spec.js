@@ -22,7 +22,7 @@ describe('Unit::DeliveryUsage', () => {
     /** @test {DeliveryUsage.list} */
     it('makes a GET request to list 100 delivery usage records offset by 2 pages with a timeframe', done => {
       moxios.stubRequest(
-        'https://api.mux.com/video/v1/delivery-usage?asset_id=123&limit=100&page=2&timeframe[]=1573471440&timeframe[]=1574076240',
+        '/video/v1/delivery-usage?asset_id=123&limit=100&page=2&timeframe[]=1573471440&timeframe[]=1574076240',
         {
           status: 200,
           responseText: '{"data": {"list": true}}',

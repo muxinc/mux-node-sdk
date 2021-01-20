@@ -108,7 +108,7 @@ describe('Unit::Assets', () => {
     /** @test {Assets.list} */
     it('makes a GET request to list 100 assets offset by 2 pages', done => {
       moxios.stubRequest(
-        'https://api.mux.com/video/v1/assets?limit=100&page=2',
+        '/video/v1/assets?limit=100&page=2',
         {
           status: 200,
           responseText: '{"data": {"list": true}}',
@@ -130,7 +130,7 @@ describe('Unit::Assets', () => {
     /** @test {Assets.deletePlaybackId} */
     it('makes a DELETE request to delete a Playback Id for an asset', done => {
       moxios.stubRequest(
-        'https://api.mux.com/video/v1/assets/testAsset/playback-ids/testPlaybackId',
+        '/video/v1/assets/testAsset/playback-ids/testPlaybackId',
         {
           status: 200,
           responseText: '{"data": {"delete": true}}',
@@ -161,7 +161,7 @@ describe('Unit::Assets', () => {
     /** @test {Assets.playbackId} */
     it('makes a GET request to get a Playback Id for an asset', done => {
       moxios.stubRequest(
-        'https://api.mux.com/video/v1/assets/testAsset/playback-ids/testPlaybackId',
+        '/video/v1/assets/testAsset/playback-ids/testPlaybackId',
         {
           status: 200,
           responseText: '{"data": {"get": true}}',
@@ -197,7 +197,7 @@ describe('Unit::Assets', () => {
     /** @test {Assets.createTrack} */
     it('makes a POST request to create a text track for an asset', done => {
       moxios.stubRequest(
-        'https://api.mux.com/video/v1/assets/testAsset/tracks',
+        '/video/v1/assets/testAsset/tracks',
         {
           status: 200,
           responseText: '{"data": {"create": true}}',
@@ -250,7 +250,7 @@ describe('Unit::Assets', () => {
     /** @test {Assets.deleteTrack} */
     it('makes a DELETE request to delete a text track for an asset', done => {
       moxios.stubRequest(
-        'https://api.mux.com/video/v1/assets/testAsset/tracks/testTrackId',
+        '/video/v1/assets/testAsset/tracks/testTrackId',
         {
           status: 200,
           responseText: '{"data": {"delete": true}}',

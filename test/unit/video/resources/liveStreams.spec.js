@@ -64,7 +64,7 @@ describe('Unit::LiveStreams', () => {
     /** @test {LiveStreams.list} */
     it('makes a GET request to list 100 live streams offset by 2 pages', done => {
       moxios.stubRequest(
-        'https://api.mux.com/video/v1/live-streams?limit=100&page=2',
+        '/video/v1/live-streams?limit=100&page=2',
         {
           status: 200,
           responseText: '{"data": {"list": true}}',

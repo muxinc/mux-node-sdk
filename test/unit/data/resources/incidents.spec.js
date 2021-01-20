@@ -42,25 +42,6 @@ describe('Unit::Incidents', () => {
     });
   });
 
-  /** @test {Incidents.list} */
-  // describe('Incidents.list', () => {
-  //   /** @test {Incidents.list} */
-  //   it('makes a get request to the Mux data incidents route', done => {
-  //     moxios.stubRequest('https://api.mux.com/data/v1/incidents?status=open', {
-  //       status: 200,
-  //       responseText: '{"data": {"incidents": true}}',
-  //     });
-
-  //     const onFulfilled = sinon.spy();
-  //     incidentsInstance.list({ status: 'open' }).then(onFulfilled);
-
-  //     return moxios.wait(() => {
-  //       expect(onFulfilled.getCall(0).args[0].data.incidents).to.be.true;
-  //       done();
-  //     });
-  //   });
-  // });
-
   /** @test {Incidents.get} */
   describe('Incidents.get', () => {
     /** @test {Incidents.get} */
@@ -69,21 +50,6 @@ describe('Unit::Incidents', () => {
         'An incident Id is required for incident details.'
       );
     });
-
-    // it('makes a get request to the Mux data incidents route', done => {
-    //   moxios.stubRequest('https://api.mux.com/data/v1/incidents/abc123', {
-    //     status: 200,
-    //     responseText: '{"data": {"incidents": true}}',
-    //   });
-
-    //   const onFulfilled = sinon.spy();
-    //   incidentsInstance.get('abc123').then(onFulfilled);
-
-    //   return moxios.wait(() => {
-    //     expect(onFulfilled.getCall(0).args[0].data.incidents).to.be.true;
-    //     done();
-    //   });
-    // });
   });
 
   /** @test {Incidents.related} */
@@ -97,7 +63,7 @@ describe('Unit::Incidents', () => {
 
     it('makes a get request to the Mux data incidents route', done => {
       moxios.stubRequest(
-        'https://api.mux.com/data/v1/incidents/abc123/related',
+        '/data/v1/incidents/abc123/related',
         {
           status: 200,
           responseText: '{"data": {"incidents": true}}',

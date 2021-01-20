@@ -43,7 +43,7 @@ describe('Unit::Base', () => {
         baseClient = new Base('fancy-new-id', 'fancy-new-secret');
         moxios.install(baseClient.http);
 
-        moxios.stubRequest('https://api.mux.com/test/v1/foo', {
+        moxios.stubRequest('/test/v1/foo', {
           status: 200,
           responseText: '{"data": ["something", "very", "fun"]}',
         });
