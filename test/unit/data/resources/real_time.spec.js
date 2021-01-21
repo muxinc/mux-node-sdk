@@ -1,6 +1,5 @@
 const { expect } = require('chai');
 const moxios = require('moxios');
-const sinon = require('sinon');
 const RealTime = require('../../../../src/data/resources/real_time');
 
 /** @test {RealTime} */
@@ -42,47 +41,6 @@ describe('Unit::RealTime', () => {
     });
   });
 
-  /** @test {RealTime.dimensions} */
-  describe('RealTime.dimensions', () => {
-    /** @test {RealTime.dimensions} */
-    it('makes a get request to the Mux data real-time dimensions route', done => {
-      moxios.stubRequest('https://api.mux.com/data/v1/realtime/dimensions', {
-        status: 200,
-        responseText: '{"data": {"name": "asn", "display_name": "ASN"}}',
-      });
-
-      const onFulfilled = sinon.spy();
-      realTimeInstance.dimensions().then(onFulfilled);
-
-      return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data.name).to.equal('asn');
-        done();
-      });
-    });
-  });
-
-  /** @test {RealTime.metrics} */
-  describe('RealTime.metrics', () => {
-    /** @test {RealTime.metrics} */
-    it('makes a get request to the Mux data real-time metrics route', done => {
-      moxios.stubRequest('https://api.mux.com/data/v1/realtime/metrics', {
-        status: 200,
-        responseText:
-          '{"data": {"name": "current-concurrent-viewers", "display_name": "Current Concurrent Viewers (CCV)" }}',
-      });
-
-      const onFulfilled = sinon.spy();
-      realTimeInstance.metrics().then(onFulfilled);
-
-      return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data.name).to.equal(
-          'current-concurrent-viewers'
-        );
-        done();
-      });
-    });
-  });
-
   /** @test {RealTime.breakdown} */
   describe('RealTime.breakdown', () => {
     /** @test {RealTime.breakdown} */
@@ -94,27 +52,6 @@ describe('Unit::RealTime', () => {
         'The dimension query parameter is required for real-time breakdown information'
       );
     });
-
-    /** @test {RealTime.breakdown} */
-    it('makes a get request to the Mux data real-time metrics route', done => {
-      moxios.stubRequest(
-        'https://api.mux.com/data/v1/realtime/metrics/playback-failure-percentage/breakdown?dimension=country',
-        {
-          status: 200,
-          responseText: '{"data": { "breakdown": true }}',
-        }
-      );
-
-      const onFulfilled = sinon.spy();
-      realTimeInstance
-        .breakdown('playback-failure-percentage', { dimension: 'country' })
-        .then(onFulfilled);
-
-      return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data.breakdown).to.be.true;
-        done();
-      });
-    });
   });
 
   /** @test {RealTime.histogramTimeseries} */
@@ -125,28 +62,6 @@ describe('Unit::RealTime', () => {
         'A metric Id is required for real-time histogram timeseries information'
       );
     });
-
-    /** @test {RealTime.histogramTimeseries} */
-    it('makes a get request to the Mux data real-time histogramTimeseries route', done => {
-      moxios.stubRequest(
-        'https://api.mux.com/data/v1/realtime/metrics/playback-failure-percentage/histogram-timeseries',
-        {
-          status: 200,
-          responseText: '{"data": { "histogramTimeseries": true }}',
-        }
-      );
-
-      const onFulfilled = sinon.spy();
-      realTimeInstance
-        .histogramTimeseries('playback-failure-percentage')
-        .then(onFulfilled);
-
-      return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data.histogramTimeseries).to.be
-          .true;
-        done();
-      });
-    });
   });
 
   /** @test {RealTime.timeseries} */
@@ -156,27 +71,6 @@ describe('Unit::RealTime', () => {
       expect(() => realTimeInstance.timeseries()).to.throw(
         'A metric Id is required for real-time timeseries information'
       );
-    });
-
-    /** @test {RealTime.timeseries} */
-    it('makes a get request to the Mux data real-time timeseries route', done => {
-      moxios.stubRequest(
-        'https://api.mux.com/data/v1/realtime/metrics/playback-failure-percentage/timeseries',
-        {
-          status: 200,
-          responseText: '{"data": { "timeseries": true }}',
-        }
-      );
-
-      const onFulfilled = sinon.spy();
-      realTimeInstance
-        .timeseries('playback-failure-percentage')
-        .then(onFulfilled);
-
-      return moxios.wait(() => {
-        expect(onFulfilled.getCall(0).args[0].data.timeseries).to.be.true;
-        done();
-      });
     });
   });
 });
