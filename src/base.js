@@ -71,6 +71,7 @@ class Base extends EventEmitter {
     );
   }
 
+  // eslint-disable-next-line class-methods-use-this
   isVideoUrl(url) {
     return url.startsWith(`/video/v1/`);
   }
