@@ -134,229 +134,145 @@ window.esdocSearchIndex = [
   [
     "assets.create src/video/resources/assets.js~assets#create,assets.create",
     "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber46",
-    "Unit::Assets Assets.create makes a POST request to create an asset",
-    "test"
-  ],
-  [
-    "assets.create src/video/resources/assets.js~assets#create,assets.create",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber62",
     "Unit::Assets Assets.create throws an error if no asset params are given",
     "test"
   ],
   [
-    "assets.createplaybackid src/video/resources/assets.js~assets#createplaybackid,assets.createplaybackid",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber211",
-    "Unit::Assets Assets.createPlaybackId",
-    "test"
-  ],
-  [
-    "assets.createplaybackid src/video/resources/assets.js~assets#createplaybackid,assets.createplaybackid",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber213",
-    "Unit::Assets Assets.createPlaybackId makes a POST request to create a Playback Id for an asset",
-    "test"
-  ],
-  [
-    "assets.createplaybackid src/video/resources/assets.js~assets#createplaybackid,assets.createplaybackid",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber234",
-    "Unit::Assets Assets.createPlaybackId throws an error if an asset id is not given",
-    "test"
-  ],
-  [
-    "assets.createplaybackid src/video/resources/assets.js~assets#createplaybackid,assets.createplaybackid",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber246",
-    "Unit::Assets Assets.createPlaybackId throws an error if playbackId params are not given",
-    "test"
-  ],
-  [
     "assets.createtrack src/video/resources/assets.js~assets#createtrack,assets.createtrack",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber333",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber193",
     "Unit::Assets Assets.createTrack",
     "test"
   ],
   [
     "assets.createtrack src/video/resources/assets.js~assets#createtrack,assets.createtrack",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber335",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber195",
     "Unit::Assets Assets.createTrack makes a POST request to create a text track for an asset",
     "test"
   ],
   [
     "assets.createtrack src/video/resources/assets.js~assets#createtrack,assets.createtrack",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber361",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber218",
     "Unit::Assets Assets.createTrack throws an error if an asset id is not given",
     "test"
   ],
   [
     "assets.createtrack src/video/resources/assets.js~assets#createtrack,assets.createtrack",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber373",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber230",
     "Unit::Assets Assets.createTrack throws an error if track params are not given",
     "test"
   ],
   [
     "assets.del src/video/resources/assets.js~assets#del,assets.del",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber105",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber73",
     "Unit::Assets Assets.del",
     "test"
   ],
   [
     "assets.del src/video/resources/assets.js~assets#del,assets.del",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber107",
-    "Unit::Assets Assets.del makes a DELETE request to delete an asset",
-    "test"
-  ],
-  [
-    "assets.del src/video/resources/assets.js~assets#del,assets.del",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber123",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber75",
     "Unit::Assets Assets.del throws an error when an asset id is not given",
     "test"
   ],
   [
     "assets.deleteplaybackid src/video/resources/assets.js~assets#deleteplaybackid,assets.deleteplaybackid",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber259",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber126",
     "Unit::Assets Assets.deletePlaybackId",
     "test"
   ],
   [
     "assets.deleteplaybackid src/video/resources/assets.js~assets#deleteplaybackid,assets.deleteplaybackid",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber261",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber128",
     "Unit::Assets Assets.deletePlaybackId makes a DELETE request to delete a Playback Id for an asset",
     "test"
   ],
   [
     "assets.deleteplaybackid src/video/resources/assets.js~assets#deleteplaybackid,assets.deleteplaybackid",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber282",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber149",
     "Unit::Assets Assets.deletePlaybackId throws an error if an asset id is not given",
     "test"
   ],
   [
-    "assets.deleteplaybackid src/video/resources/assets.js~assets#deleteplaybackid,assets.deleteplaybackid",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber289",
-    "Unit::Assets Assets.deletePlaybackId throws an error if playbackId params are not given",
-    "test"
-  ],
-  [
     "assets.deletetrack src/video/resources/assets.js~assets#deletetrack,assets.deletetrack",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber386",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber243",
     "Unit::Assets Assets.deleteTrack",
     "test"
   ],
   [
     "assets.deletetrack src/video/resources/assets.js~assets#deletetrack,assets.deletetrack",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber388",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber245",
     "Unit::Assets Assets.deleteTrack makes a DELETE request to delete a text track for an asset",
     "test"
   ],
   [
     "assets.deletetrack src/video/resources/assets.js~assets#deletetrack,assets.deletetrack",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber407",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber261",
     "Unit::Assets Assets.deleteTrack throws an error if an asset id is not given",
     "test"
   ],
   [
     "assets.deletetrack src/video/resources/assets.js~assets#deletetrack,assets.deletetrack",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber414",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber268",
     "Unit::Assets Assets.deleteTrack throws an error if text track ID is not given",
     "test"
   ],
   [
     "assets.get src/video/resources/assets.js~assets#get,assets.get",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber72",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber56",
     "Unit::Assets Assets.get",
     "test"
   ],
   [
     "assets.get src/video/resources/assets.js~assets#get,assets.get",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber74",
-    "Unit::Assets Assets.get makes a GET request to get an asset",
-    "test"
-  ],
-  [
-    "assets.get src/video/resources/assets.js~assets#get,assets.get",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber90",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber58",
     "Unit::Assets Assets.get throws an error when an asset id is not given",
     "test"
   ],
   [
     "assets.inputinfo src/video/resources/assets.js~assets#inputinfo,assets.inputinfo",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber138",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber90",
     "Unit::Assets Assets.inputInfo",
     "test"
   ],
   [
     "assets.inputinfo src/video/resources/assets.js~assets#inputinfo,assets.inputinfo",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber140",
-    "Unit::Assets Assets.inputInfo makes a GET request to get input info for an asset",
-    "test"
-  ],
-  [
-    "assets.inputinfo src/video/resources/assets.js~assets#inputinfo,assets.inputinfo",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber159",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber92",
     "Unit::Assets Assets.inputInfo throws an error when an asset id is not given",
     "test"
   ],
   [
     "assets.list src/video/resources/assets.js~assets#list,assets.list",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber174",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber107",
     "Unit::Assets Assets.list",
     "test"
   ],
   [
-    "",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber191",
+    "assets.list src/video/resources/assets.js~assets#list,assets.list",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber109",
     "Unit::Assets Assets.list makes a GET request to list 100 assets offset by 2 pages",
     "test"
   ],
   [
-    "assets.list src/video/resources/assets.js~assets#list,assets.list",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber176",
-    "Unit::Assets Assets.list makes a GET request to list all assets",
-    "test"
-  ],
-  [
     "assets.playbackid src/video/resources/assets.js~assets#playbackid,assets.playbackid",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber297",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber157",
     "Unit::Assets Assets.playbackId",
     "test"
   ],
   [
     "assets.playbackid src/video/resources/assets.js~assets#playbackid,assets.playbackid",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber299",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber159",
     "Unit::Assets Assets.playbackId makes a GET request to get a Playback Id for an asset",
     "test"
   ],
   [
     "assets.playbackid src/video/resources/assets.js~assets#playbackid,assets.playbackid",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber318",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber178",
     "Unit::Assets Assets.playbackId throws an error if an asset id is not given",
     "test"
   ],
   [
     "assets.playbackid src/video/resources/assets.js~assets#playbackid,assets.playbackid",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber325",
+    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber185",
     "Unit::Assets Assets.playbackId throws an error if playbackId params are not given",
-    "test"
-  ],
-  [
-    "assets.updatemasteraccess src/video/resources/assets.js~assets#updatemasteraccess,assets.updatemasteraccess",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber446",
-    "Unit::Assets Assets.updateMasterAccess",
-    "test"
-  ],
-  [
-    "assets.updatemasteraccess src/video/resources/assets.js~assets#updatemasteraccess,assets.updatemasteraccess",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber448",
-    "Unit::Assets Assets.updateMasterAccess makes a PUT request to update the master access",
-    "test"
-  ],
-  [
-    "assets.updatemp4support src/video/resources/assets.js~assets#updatemp4support,assets.updatemp4support",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber422",
-    "Unit::Assets Assets.updateMp4Support",
-    "test"
-  ],
-  [
-    "assets.updatemp4support src/video/resources/assets.js~assets#updatemp4support,assets.updatemp4support",
-    "test-file/test/unit/video/resources/assets.spec.js.html#lineNumber424",
-    "Unit::Assets Assets.updateMp4Support makes a PUT request to update the mp4 support",
     "test"
   ],
   [
@@ -456,159 +372,63 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
-    "",
-    "test-file/test/unit/video/resources/deliveryUsage.spec.js.html#lineNumber38",
+    "deliveryusage.list src/video/resources/deliveryusage.js~deliveryusage#list,deliveryusage.list",
+    "test-file/test/unit/video/resources/deliveryUsage.spec.js.html#lineNumber23",
     "Unit::DeliveryUsage DeliveryUsage.list makes a GET request to list 100 delivery usage records offset by 2 pages with a timeframe",
     "test"
   ],
   [
-    "deliveryusage.list src/video/resources/deliveryusage.js~deliveryusage#list,deliveryusage.list",
-    "test-file/test/unit/video/resources/deliveryUsage.spec.js.html#lineNumber23",
-    "Unit::DeliveryUsage DeliveryUsage.list makes a GET request to list delivery usage",
-    "test"
-  ],
-  [
     "errors src/data/resources/errors.js~errors,errors",
-    "test-file/test/unit/data/resources/errors.spec.js.html#lineNumber7",
+    "test-file/test/unit/data/resources/errors.spec.js.html#lineNumber5",
     "Unit::Errors",
     "test"
   ],
   [
-    "errors src/data/resources/errors.js~errors,errors",
-    "test-file/test/unit/data/resources/errors.spec.js.html#lineNumber21",
-    "Unit::Errors Errors",
-    "test"
-  ],
-  [
-    "errors src/data/resources/errors.js~errors,errors",
-    "test-file/test/unit/data/resources/errors.spec.js.html#lineNumber35",
-    "Unit::Errors Errors creates a new Errors instance",
-    "test"
-  ],
-  [
-    "errors src/data/resources/errors.js~errors,errors",
-    "test-file/test/unit/data/resources/errors.spec.js.html#lineNumber28",
-    "Unit::Errors Errors throws an error if a secret key is not given",
-    "test"
-  ],
-  [
-    "errors src/data/resources/errors.js~errors,errors",
-    "test-file/test/unit/data/resources/errors.spec.js.html#lineNumber23",
-    "Unit::Errors Errors throws an error if an api key is not given",
-    "test"
-  ],
-  [
-    "errors.list src/data/resources/errors.js~errors#list,errors.list",
-    "test-file/test/unit/data/resources/errors.spec.js.html#lineNumber44",
-    "Unit::Errors Errors.list",
-    "test"
-  ],
-  [
-    "errors.list src/data/resources/errors.js~errors#list,errors.list",
-    "test-file/test/unit/data/resources/errors.spec.js.html#lineNumber46",
-    "Unit::Errors Errors.list makes a get request to the Mux data errors route",
-    "test"
-  ],
-  [
     "exports src/data/resources/exports.js~exports,exports",
-    "test-file/test/unit/data/resources/exports.spec.js.html#lineNumber7",
+    "test-file/test/unit/data/resources/exports.spec.js.html#lineNumber5",
     "Unit::Exports",
     "test"
   ],
   [
-    "exports src/data/resources/exports.js~exports,exports",
-    "test-file/test/unit/data/resources/exports.spec.js.html#lineNumber21",
-    "Unit::Exports Exports",
-    "test"
-  ],
-  [
-    "exports src/data/resources/exports.js~exports,exports",
-    "test-file/test/unit/data/resources/exports.spec.js.html#lineNumber37",
-    "Unit::Exports Exports creates a new Exports instance",
-    "test"
-  ],
-  [
-    "exports src/data/resources/exports.js~exports,exports",
-    "test-file/test/unit/data/resources/exports.spec.js.html#lineNumber30",
-    "Unit::Exports Exports throws an error if a secret key is not given",
-    "test"
-  ],
-  [
-    "exports src/data/resources/exports.js~exports,exports",
-    "test-file/test/unit/data/resources/exports.spec.js.html#lineNumber23",
-    "Unit::Exports Exports throws an error if an api key is not given",
-    "test"
-  ],
-  [
-    "exports.list src/data/resources/exports.js~exports#list,exports.list",
-    "test-file/test/unit/data/resources/exports.spec.js.html#lineNumber46",
-    "Unit::Exports Exports.list",
-    "test"
-  ],
-  [
-    "exports.list src/data/resources/exports.js~exports#list,exports.list",
-    "test-file/test/unit/data/resources/exports.spec.js.html#lineNumber48",
-    "Unit::Exports Exports.list makes a get request to the Mux data exports route",
-    "test"
-  ],
-  [
     "filters src/data/resources/filters.js~filters,filters",
-    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber7",
+    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber6",
     "Unit::Filters",
     "test"
   ],
   [
     "filters src/data/resources/filters.js~filters,filters",
-    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber21",
+    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber20",
     "Unit::Filters Filters",
     "test"
   ],
   [
     "filters src/data/resources/filters.js~filters,filters",
-    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber37",
+    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber36",
     "Unit::Filters Filters creates a new Filters instance",
     "test"
   ],
   [
     "filters src/data/resources/filters.js~filters,filters",
-    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber30",
+    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber29",
     "Unit::Filters Filters throws an error if a secret key is not given",
     "test"
   ],
   [
     "filters src/data/resources/filters.js~filters,filters",
-    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber23",
+    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber22",
     "Unit::Filters Filters throws an error if an api key is not given",
     "test"
   ],
   [
     "filters.get src/data/resources/filters.js~filters#get,filters.get",
-    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber65",
+    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber45",
     "Unit::Filters Filters.get",
     "test"
   ],
   [
     "filters.get src/data/resources/filters.js~filters#get,filters.get",
-    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber74",
-    "Unit::Filters Filters.get makes a get request to the Mux data filters route",
-    "test"
-  ],
-  [
-    "filters.get src/data/resources/filters.js~filters#get,filters.get",
-    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber67",
+    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber47",
     "Unit::Filters Filters.get throws an error if a filter Id is not provided",
-    "test"
-  ],
-  [
-    "filters.list src/data/resources/filters.js~filters#list,filters.list",
-    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber46",
-    "Unit::Filters Filters.list",
-    "test"
-  ],
-  [
-    "filters.list src/data/resources/filters.js~filters#list,filters.list",
-    "test-file/test/unit/data/resources/filters.spec.js.html#lineNumber48",
-    "Unit::Filters Filters.list makes a get request to the Mux data filters route",
     "test"
   ],
   [
@@ -643,49 +463,31 @@ window.esdocSearchIndex = [
   ],
   [
     "incidents.get src/data/resources/incidents.js~incidents#get,incidents.get",
-    "test-file/test/unit/data/resources/incidents.spec.js.html#lineNumber65",
+    "test-file/test/unit/data/resources/incidents.spec.js.html#lineNumber46",
     "Unit::Incidents Incidents.get",
     "test"
   ],
   [
-    "",
-    "test-file/test/unit/data/resources/incidents.spec.js.html#lineNumber73",
-    "Unit::Incidents Incidents.get makes a get request to the Mux data incidents route",
-    "test"
-  ],
-  [
     "incidents.get src/data/resources/incidents.js~incidents#get,incidents.get",
-    "test-file/test/unit/data/resources/incidents.spec.js.html#lineNumber67",
+    "test-file/test/unit/data/resources/incidents.spec.js.html#lineNumber48",
     "Unit::Incidents Incidents.get throws an error if an incident Id is not provided",
     "test"
   ],
   [
-    "incidents.list src/data/resources/incidents.js~incidents#list,incidents.list",
-    "test-file/test/unit/data/resources/incidents.spec.js.html#lineNumber46",
-    "Unit::Incidents Incidents.list",
-    "test"
-  ],
-  [
-    "incidents.list src/data/resources/incidents.js~incidents#list,incidents.list",
-    "test-file/test/unit/data/resources/incidents.spec.js.html#lineNumber48",
-    "Unit::Incidents Incidents.list makes a get request to the Mux data incidents route",
-    "test"
-  ],
-  [
     "incidents.related src/data/resources/incidents.js~incidents#related,incidents.related",
-    "test-file/test/unit/data/resources/incidents.spec.js.html#lineNumber90",
+    "test-file/test/unit/data/resources/incidents.spec.js.html#lineNumber56",
     "Unit::Incidents Incidents.related",
     "test"
   ],
   [
     "",
-    "test-file/test/unit/data/resources/incidents.spec.js.html#lineNumber98",
+    "test-file/test/unit/data/resources/incidents.spec.js.html#lineNumber64",
     "Unit::Incidents Incidents.related makes a get request to the Mux data incidents route",
     "test"
   ],
   [
     "incidents.related src/data/resources/incidents.js~incidents#related,incidents.related",
-    "test-file/test/unit/data/resources/incidents.spec.js.html#lineNumber92",
+    "test-file/test/unit/data/resources/incidents.spec.js.html#lineNumber58",
     "Unit::Incidents Incidents.related throws an error if an incident Id is not provided",
     "test"
   ],
@@ -720,374 +522,236 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
-    "livestreams.create src/video/resources/livestreams.js~livestreams#create,livestreams.create",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber46",
-    "Unit::LiveStreams LiveStreams.create",
-    "test"
-  ],
-  [
-    "livestreams.create src/video/resources/livestreams.js~livestreams#create,livestreams.create",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber48",
-    "Unit::LiveStreams LiveStreams.create makes a POST request to create a LiveStream asset",
-    "test"
-  ],
-  [
     "livestreams.createplaybackid src/video/resources/livestreams.js~livestreams#createplaybackid,livestreams.createplaybackid",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber251",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber133",
     "Unit::LiveStreams LiveStreams.createPlaybackId",
     "test"
   ],
   [
     "livestreams.createplaybackid src/video/resources/livestreams.js~livestreams#createplaybackid,livestreams.createplaybackid",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber253",
-    "Unit::LiveStreams LiveStreams.createPlaybackId makes a POST request to create a playback ID for a live stream",
-    "test"
-  ],
-  [
-    "livestreams.createplaybackid src/video/resources/livestreams.js~livestreams#createplaybackid,livestreams.createplaybackid",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber288",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber135",
     "Unit::LiveStreams LiveStreams.createPlaybackId throws an error if a live stream ID is not given",
     "test"
   ],
   [
-    "livestreams.createplaybackid src/video/resources/livestreams.js~livestreams#createplaybackid,livestreams.createplaybackid",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber274",
-    "Unit::LiveStreams LiveStreams.createPlaybackId throws an error if params are not given",
-    "test"
-  ],
-  [
     "livestreams.createsimulcasttarget src/video/resources/livestreams.js~livestreams#createsimulcasttarget,livestreams.createsimulcasttarget",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber355",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber167",
     "Unit::LiveStreams LiveStreams.createSimulcastTarget",
     "test"
   ],
   [
     "livestreams.createsimulcasttarget src/video/resources/livestreams.js~livestreams#createsimulcasttarget,livestreams.createsimulcasttarget",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber357",
-    "Unit::LiveStreams LiveStreams.createSimulcastTarget makes a POST request to create a simulcast target for a live stream",
-    "test"
-  ],
-  [
-    "livestreams.createsimulcasttarget src/video/resources/livestreams.js~livestreams#createsimulcasttarget,livestreams.createsimulcasttarget",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber381",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber169",
     "Unit::LiveStreams LiveStreams.createSimulcastTarget throws an error if a live stream ID is not given",
     "test"
   ],
   [
-    "livestreams.createsimulcasttarget src/video/resources/livestreams.js~livestreams#createsimulcasttarget,livestreams.createsimulcasttarget",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber395",
-    "Unit::LiveStreams LiveStreams.createSimulcastTarget throws an error if a url and stream key are not given",
-    "test"
-  ],
-  [
     "livestreams.del src/video/resources/livestreams.js~livestreams#del,livestreams.del",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber70",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber46",
     "Unit::LiveStreams LiveStreams.del",
     "test"
   ],
   [
     "livestreams.del src/video/resources/livestreams.js~livestreams#del,livestreams.del",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber72",
-    "Unit::LiveStreams LiveStreams.del makes a DELETE request to delete a live stream",
-    "test"
-  ],
-  [
-    "livestreams.del src/video/resources/livestreams.js~livestreams#del,livestreams.del",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber91",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber48",
     "Unit::LiveStreams LiveStreams.del throws an error when a live stream ID is not given",
     "test"
   ],
   [
     "livestreams.deleteplaybackid src/video/resources/livestreams.js~livestreams#deleteplaybackid,livestreams.deleteplaybackid",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber303",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber150",
     "Unit::LiveStreams LiveStreams.deletePlaybackId",
     "test"
   ],
   [
     "livestreams.deleteplaybackid src/video/resources/livestreams.js~livestreams#deleteplaybackid,livestreams.deleteplaybackid",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber305",
-    "Unit::LiveStreams LiveStreams.deletePlaybackId makes a DELETE request to delete a playback ID for a live stream",
-    "test"
-  ],
-  [
-    "livestreams.deleteplaybackid src/video/resources/livestreams.js~livestreams#deleteplaybackid,livestreams.deleteplaybackid",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber326",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber152",
     "Unit::LiveStreams LiveStreams.deletePlaybackId throws an error if a live stream ID is not given",
     "test"
   ],
   [
-    "livestreams.deleteplaybackid src/video/resources/livestreams.js~livestreams#deleteplaybackid,livestreams.deleteplaybackid",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber340",
-    "Unit::LiveStreams LiveStreams.deletePlaybackId throws an error if a playback id is not given",
-    "test"
-  ],
-  [
     "livestreams.deletesimulcasttarget src/video/resources/livestreams.js~livestreams#deletesimulcasttarget,livestreams.deletesimulcasttarget",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber462",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber215",
     "Unit::LiveStreams LiveStreams.deleteSimulcastTarget",
     "test"
   ],
   [
     "livestreams.deletesimulcasttarget src/video/resources/livestreams.js~livestreams#deletesimulcasttarget,livestreams.deletesimulcasttarget",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber464",
-    "Unit::LiveStreams LiveStreams.deleteSimulcastTarget makes a DELETE request to delete a simulcast target for a live stream",
-    "test"
-  ],
-  [
-    "livestreams.deletesimulcasttarget src/video/resources/livestreams.js~livestreams#deletesimulcasttarget,livestreams.deletesimulcasttarget",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber485",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber217",
     "Unit::LiveStreams LiveStreams.deleteSimulcastTarget throws an error if a live stream ID is not given",
     "test"
   ],
   [
     "livestreams.deletesimulcasttarget src/video/resources/livestreams.js~livestreams#deletesimulcasttarget,livestreams.deletesimulcasttarget",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber499",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber231",
     "Unit::LiveStreams LiveStreams.deleteSimulcastTarget throws an error if a simulcast target id is not given",
     "test"
   ],
   [
     "livestreams.disable src/video/resources/livestreams.js~livestreams#disable,livestreams.disable",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber550",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber263",
     "Unit::LiveStreams LiveStreams.disable",
     "test"
   ],
   [
     "livestreams.disable src/video/resources/livestreams.js~livestreams#disable,livestreams.disable",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber552",
-    "Unit::LiveStreams LiveStreams.disable makes a PUT request to disable a live stream",
-    "test"
-  ],
-  [
-    "livestreams.disable src/video/resources/livestreams.js~livestreams#disable,livestreams.disable",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber571",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber265",
     "Unit::LiveStreams LiveStreams.disable throws an error if a live stream ID is not given",
     "test"
   ],
   [
     "livestreams.enable src/video/resources/livestreams.js~livestreams#enable,livestreams.enable",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber514",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber246",
     "Unit::LiveStreams LiveStreams.enable",
     "test"
   ],
   [
     "livestreams.enable src/video/resources/livestreams.js~livestreams#enable,livestreams.enable",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber516",
-    "Unit::LiveStreams LiveStreams.enable makes a PUT request to enable a live stream",
-    "test"
-  ],
-  [
-    "livestreams.enable src/video/resources/livestreams.js~livestreams#enable,livestreams.enable",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber535",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber248",
     "Unit::LiveStreams LiveStreams.enable throws an error if a live stream ID is not given",
     "test"
   ],
   [
     "livestreams.get src/video/resources/livestreams.js~livestreams#get,livestreams.get",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber143",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber82",
     "Unit::LiveStreams LiveStreams.get",
     "test"
   ],
   [
     "livestreams.get src/video/resources/livestreams.js~livestreams#get,livestreams.get",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber145",
-    "Unit::LiveStreams LiveStreams.get makes a GET request to get a live stream",
-    "test"
-  ],
-  [
-    "livestreams.get src/video/resources/livestreams.js~livestreams#get,livestreams.get",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber164",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber84",
     "Unit::LiveStreams LiveStreams.get throws an error when a live stream ID is not given",
     "test"
   ],
   [
     "livestreams.getsimulcasttarget src/video/resources/livestreams.js~livestreams#getsimulcasttarget,livestreams.getsimulcasttarget",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber410",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber184",
     "Unit::LiveStreams LiveStreams.getSimulcastTarget",
     "test"
   ],
   [
     "livestreams.getsimulcasttarget src/video/resources/livestreams.js~livestreams#getsimulcasttarget,livestreams.getsimulcasttarget",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber412",
-    "Unit::LiveStreams LiveStreams.getSimulcastTarget makes a GET request to get a simulcast target for a live stream",
-    "test"
-  ],
-  [
-    "livestreams.getsimulcasttarget src/video/resources/livestreams.js~livestreams#getsimulcasttarget,livestreams.getsimulcasttarget",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber433",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber186",
     "Unit::LiveStreams LiveStreams.getSimulcastTarget throws an error if a live stream ID is not given",
     "test"
   ],
   [
     "livestreams.createsimulcasttarget src/video/resources/livestreams.js~livestreams#createsimulcasttarget,livestreams.createsimulcasttarget",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber447",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber200",
     "Unit::LiveStreams LiveStreams.getSimulcastTarget throws an error if a simulcast target id is not given",
     "test"
   ],
   [
     "livestreams.list src/video/resources/livestreams.js~livestreams#list,livestreams.list",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber106",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber63",
     "Unit::LiveStreams LiveStreams.list",
     "test"
   ],
   [
-    "",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber123",
+    "livestreams.list src/video/resources/livestreams.js~livestreams#list,livestreams.list",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber65",
     "Unit::LiveStreams LiveStreams.list makes a GET request to list 100 live streams offset by 2 pages",
     "test"
   ],
   [
-    "livestreams.list src/video/resources/livestreams.js~livestreams#list,livestreams.list",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber108",
-    "Unit::LiveStreams LiveStreams.list makes a GET request to list all live streams",
-    "test"
-  ],
-  [
     "livestreams.resetstreamkey src/video/resources/livestreams.js~livestreams#resetstreamkey,livestreams.resetstreamkey",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber215",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber116",
     "Unit::LiveStreams LiveStreams.resetStreamKey",
     "test"
   ],
   [
     "livestreams.resetstreamkey src/video/resources/livestreams.js~livestreams#resetstreamkey,livestreams.resetstreamkey",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber217",
-    "Unit::LiveStreams LiveStreams.resetStreamKey makes a POST request to reset a live stream key",
-    "test"
-  ],
-  [
-    "livestreams.resetstreamkey src/video/resources/livestreams.js~livestreams#resetstreamkey,livestreams.resetstreamkey",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber236",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber118",
     "Unit::LiveStreams LiveStreams.resetStreamKey throws an error when a live stream ID is not given",
     "test"
   ],
   [
     "livestreams.signalcomplete src/video/resources/livestreams.js~livestreams#signalcomplete,livestreams.signalcomplete",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber179",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber99",
     "Unit::LiveStreams LiveStreams.signalComplete",
     "test"
   ],
   [
     "livestreams.signalcomplete src/video/resources/livestreams.js~livestreams#signalcomplete,livestreams.signalcomplete",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber181",
-    "Unit::LiveStreams LiveStreams.signalComplete makes a PUT request to signal a live stream is complete",
-    "test"
-  ],
-  [
-    "livestreams.signalcomplete src/video/resources/livestreams.js~livestreams#signalcomplete,livestreams.signalcomplete",
-    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber200",
+    "test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber101",
     "Unit::LiveStreams LiveStreams.signalComplete throws an error when a live stream ID is not given",
     "test"
   ],
   [
     "metrics src/data/resources/metrics.js~metrics,metrics",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber7",
+    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber6",
     "Unit::Metrics",
     "test"
   ],
   [
     "metrics src/data/resources/metrics.js~metrics,metrics",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber21",
+    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber20",
     "Unit::Metrics Metrics",
     "test"
   ],
   [
     "metrics src/data/resources/metrics.js~metrics,metrics",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber37",
+    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber36",
     "Unit::Metrics Metrics creates a new Metrics instance",
     "test"
   ],
   [
     "metrics src/data/resources/metrics.js~metrics,metrics",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber30",
+    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber29",
     "Unit::Metrics Metrics throws an error if a secret key is not given",
     "test"
   ],
   [
     "metrics src/data/resources/metrics.js~metrics,metrics",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber23",
+    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber22",
     "Unit::Metrics Metrics throws an error if an api key is not given",
     "test"
   ],
   [
-    "metrics.breakdown src/data/resources/metrics.js~metrics#breakdown,metrics.breakdown",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber46",
-    "Unit::Metrics Metrics.breakdown",
-    "test"
-  ],
-  [
-    "metrics.breakdown src/data/resources/metrics.js~metrics#breakdown,metrics.breakdown",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber48",
-    "Unit::Metrics Metrics.breakdown makes a get request to the Mux data breakdown route",
-    "test"
-  ],
-  [
     "metrics.comparison src/data/resources/metrics.js~metrics#comparison,metrics.comparison",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber68",
+    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber45",
     "Unit::Metrics Metrics.comparison",
     "test"
   ],
   [
     "metrics.comparison src/data/resources/metrics.js~metrics#comparison,metrics.comparison",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber80",
-    "Unit::Metrics Metrics.comparison makes a get request to the Mux data comparision route",
-    "test"
-  ],
-  [
-    "metrics.comparison src/data/resources/metrics.js~metrics#comparison,metrics.comparison",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber70",
+    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber47",
     "Unit::Metrics Metrics.comparison throws an error if the value query parameter is not provided",
     "test"
   ],
   [
     "metrics.insights src/data/resources/metrics.js~metrics#insights,metrics.insights",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber100",
+    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber58",
     "Unit::Metrics Metrics.insights",
     "test"
   ],
   [
     "metrics.insights src/data/resources/metrics.js~metrics#insights,metrics.insights",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber109",
-    "Unit::Metrics Metrics.insights makes a get request to the Mux data insights route",
-    "test"
-  ],
-  [
-    "metrics.insights src/data/resources/metrics.js~metrics#insights,metrics.insights",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber102",
+    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber60",
     "Unit::Metrics Metrics.insights throws an error if a metric Id is not provided",
     "test"
   ],
   [
     "metrics.overall src/data/resources/metrics.js~metrics#overall,metrics.overall",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber129",
+    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber68",
     "Unit::Metrics Metrics.overall",
     "test"
   ],
   [
     "metrics.overall src/data/resources/metrics.js~metrics#overall,metrics.overall",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber138",
-    "Unit::Metrics Metrics.overall makes a get request to the Mux data overall route",
-    "test"
-  ],
-  [
-    "metrics.overall src/data/resources/metrics.js~metrics#overall,metrics.overall",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber131",
+    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber70",
     "Unit::Metrics Metrics.overall throws an error if a metric Id is not provided",
     "test"
   ],
   [
     "metrics.timeseries src/data/resources/metrics.js~metrics#timeseries,metrics.timeseries",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber158",
+    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber78",
     "Unit::Metrics Metrics.timeseries",
     "test"
   ],
   [
     "metrics.timeseries src/data/resources/metrics.js~metrics#timeseries,metrics.timeseries",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber167",
-    "Unit::Metrics Metrics.timeseries makes a get request to the Mux data timeseries route",
-    "test"
-  ],
-  [
-    "metrics.timeseries src/data/resources/metrics.js~metrics#timeseries,metrics.timeseries",
-    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber160",
+    "test-file/test/unit/data/resources/metrics.spec.js.html#lineNumber80",
     "Unit::Metrics Metrics.timeseries throws an error if a metric Id is not provided",
     "test"
   ],
@@ -1123,169 +787,109 @@ window.esdocSearchIndex = [
   ],
   [
     "realtime src/data/resources/real_time.js~realtime,realtime",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber7",
+    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber6",
     "Unit::RealTime",
     "test"
   ],
   [
     "realtime src/data/resources/real_time.js~realtime,realtime",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber21",
+    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber20",
     "Unit::RealTime RealTime",
     "test"
   ],
   [
     "realtime src/data/resources/real_time.js~realtime,realtime",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber37",
+    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber36",
     "Unit::RealTime RealTime creates a new RealTime instance",
     "test"
   ],
   [
     "realtime src/data/resources/real_time.js~realtime,realtime",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber30",
+    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber29",
     "Unit::RealTime RealTime throws an error if a secret key is not given",
     "test"
   ],
   [
     "realtime src/data/resources/real_time.js~realtime,realtime",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber23",
+    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber22",
     "Unit::RealTime RealTime throws an error if an api key is not given",
     "test"
   ],
   [
     "realtime.breakdown src/data/resources/real_time.js~realtime#breakdown,realtime.breakdown",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber87",
+    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber45",
     "Unit::RealTime RealTime.breakdown",
     "test"
   ],
   [
     "realtime.breakdown src/data/resources/real_time.js~realtime#breakdown,realtime.breakdown",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber99",
-    "Unit::RealTime RealTime.breakdown makes a get request to the Mux data real-time metrics route",
-    "test"
-  ],
-  [
-    "realtime.breakdown src/data/resources/real_time.js~realtime#breakdown,realtime.breakdown",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber89",
+    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber47",
     "Unit::RealTime RealTime.breakdown throws an error if the value query parameter is not provided",
     "test"
   ],
   [
-    "realtime.dimensions src/data/resources/real_time.js~realtime#dimensions,realtime.dimensions",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber46",
-    "Unit::RealTime RealTime.dimensions",
-    "test"
-  ],
-  [
-    "realtime.dimensions src/data/resources/real_time.js~realtime#dimensions,realtime.dimensions",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber48",
-    "Unit::RealTime RealTime.dimensions makes a get request to the Mux data real-time dimensions route",
-    "test"
-  ],
-  [
     "realtime.histogramtimeseries src/data/resources/real_time.js~realtime#histogramtimeseries,realtime.histogramtimeseries",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber121",
+    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber58",
     "Unit::RealTime RealTime.histogramTimeseries",
     "test"
   ],
   [
     "realtime.histogramtimeseries src/data/resources/real_time.js~realtime#histogramtimeseries,realtime.histogramtimeseries",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber130",
-    "Unit::RealTime RealTime.histogramTimeseries makes a get request to the Mux data real-time histogramTimeseries route",
-    "test"
-  ],
-  [
-    "realtime.histogramtimeseries src/data/resources/real_time.js~realtime#histogramtimeseries,realtime.histogramtimeseries",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber123",
+    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber60",
     "Unit::RealTime RealTime.histogramTimeseries throws an error if the value query parameter is not provided",
     "test"
   ],
   [
-    "realtime.metrics src/data/resources/real_time.js~realtime#metrics,realtime.metrics",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber65",
-    "Unit::RealTime RealTime.metrics",
-    "test"
-  ],
-  [
-    "realtime.metrics src/data/resources/real_time.js~realtime#metrics,realtime.metrics",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber67",
-    "Unit::RealTime RealTime.metrics makes a get request to the Mux data real-time metrics route",
-    "test"
-  ],
-  [
     "realtime.timeseries src/data/resources/real_time.js~realtime#timeseries,realtime.timeseries",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber153",
+    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber68",
     "Unit::RealTime RealTime.timeseries",
     "test"
   ],
   [
     "realtime.timeseries src/data/resources/real_time.js~realtime#timeseries,realtime.timeseries",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber162",
-    "Unit::RealTime RealTime.timeseries makes a get request to the Mux data real-time timeseries route",
-    "test"
-  ],
-  [
-    "realtime.timeseries src/data/resources/real_time.js~realtime#timeseries,realtime.timeseries",
-    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber155",
+    "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber70",
     "Unit::RealTime RealTime.timeseries throws an error if the value query parameter is not provided",
     "test"
   ],
   [
     "uploads src/video/resources/uploads.js~uploads,uploads",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber7",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber6",
     "Unit::Uploads",
     "test"
   ],
   [
     "uploads.cancel src/video/resources/uploads.js~uploads#cancel,uploads.cancel",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber82",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber45",
     "Unit::Uploads Uploads.cancel",
     "test"
   ],
   [
-    "uploads.cancel src/video/resources/uploads.js~uploads#cancel,uploads.cancel",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber84",
-    "Unit::Uploads Uploads.cancel makes a PUT request to cancel an upload",
-    "test"
-  ],
-  [
     "uploads.del uploads.del,uploads.del",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber103",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber47",
     "Unit::Uploads Uploads.cancel throws an error when an upload id is not given",
     "test"
   ],
   [
     "uploads.create src/video/resources/uploads.js~uploads#create,uploads.create",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber21",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber20",
     "Unit::Uploads Uploads.create",
     "test"
   ],
   [
     "uploads.create src/video/resources/uploads.js~uploads#create,uploads.create",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber23",
-    "Unit::Uploads Uploads.create makes a POST request to create a new Upload",
-    "test"
-  ],
-  [
-    "uploads.create src/video/resources/uploads.js~uploads#create,uploads.create",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber43",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber22",
     "Unit::Uploads Uploads.create throws an error if no params are given",
     "test"
   ],
   [
     "uploads.get src/video/resources/uploads.js~uploads#get,uploads.get",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber51",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber30",
     "Unit::Uploads Uploads.get",
     "test"
   ],
   [
     "uploads.get src/video/resources/uploads.js~uploads#get,uploads.get",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber53",
-    "Unit::Uploads Uploads.get makes a GET request to get an upload",
-    "test"
-  ],
-  [
-    "uploads.get src/video/resources/uploads.js~uploads#get,uploads.get",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber69",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber32",
     "Unit::Uploads Uploads.get throws an error when an upload id is not given",
     "test"
   ],
@@ -1405,56 +1009,32 @@ window.esdocSearchIndex = [
   ],
   [
     "videoviews src/data/resources/video_views.js~videoviews,videoviews",
-    "test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber7",
+    "test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber6",
     "Unit::VideoViews",
     "test"
   ],
   [
     "videoviews src/data/resources/video_views.js~videoviews,videoviews",
-    "test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber21",
+    "test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber20",
     "Unit::VideoViews VideoViews",
     "test"
   ],
   [
     "videoviews src/data/resources/video_views.js~videoviews,videoviews",
-    "test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber37",
+    "test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber36",
     "Unit::VideoViews VideoViews creates a new VideoViews instance",
     "test"
   ],
   [
     "videoviews src/data/resources/video_views.js~videoviews,videoviews",
-    "test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber30",
+    "test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber29",
     "Unit::VideoViews VideoViews throws an error if a secret key is not given",
     "test"
   ],
   [
     "videoviews src/data/resources/video_views.js~videoviews,videoviews",
-    "test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber23",
+    "test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber22",
     "Unit::VideoViews VideoViews throws an error if an api key is not given",
-    "test"
-  ],
-  [
-    "videoviews.get src/data/resources/video_views.js~videoviews#get,videoviews.get",
-    "test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber68",
-    "Unit::VideoViews VideoViews.get",
-    "test"
-  ],
-  [
-    "videoviews.get src/data/resources/video_views.js~videoviews#get,videoviews.get",
-    "test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber70",
-    "Unit::VideoViews VideoViews.get makes a get request to the Mux data video-views route",
-    "test"
-  ],
-  [
-    "videoviews.list src/data/resources/video_views.js~videoviews#list,videoviews.list",
-    "test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber46",
-    "Unit::VideoViews VideoViews.list",
-    "test"
-  ],
-  [
-    "videoviews.list src/data/resources/video_views.js~videoviews#list,videoviews.list",
-    "test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber48",
-    "Unit::VideoViews VideoViews.list makes a get request to the Mux data video-views route",
     "test"
   ],
   [

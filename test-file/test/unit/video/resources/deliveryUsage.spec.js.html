@@ -72,24 +72,9 @@ describe(&apos;Unit::DeliveryUsage&apos;, () =&gt; {
   /** @test {DeliveryUsage.list} */
   describe(&apos;DeliveryUsage.list&apos;, () =&gt; {
     /** @test {DeliveryUsage.list} */
-    it(&apos;makes a GET request to list delivery usage&apos;, done =&gt; {
-      moxios.stubRequest(&apos;https://api.mux.com/video/v1/delivery-usage&apos;, {
-        status: 200,
-        responseText: &apos;{&quot;data&quot;: {&quot;list&quot;: true}}&apos;,
-      });
-
-      const onFulfilled = sinon.spy();
-      testDeliveryUsage.list().then(onFulfilled);
-
-      return moxios.wait(() =&gt; {
-        expect(onFulfilled.getCall(0).args[0].list).to.be.true;
-        done();
-      });
-    });
-
     it(&apos;makes a GET request to list 100 delivery usage records offset by 2 pages with a timeframe&apos;, done =&gt; {
       moxios.stubRequest(
-        &apos;https://api.mux.com/video/v1/delivery-usage?asset_id=123&amp;limit=100&amp;page=2&amp;timeframe[]=1573471440&amp;timeframe[]=1574076240&apos;,
+        &apos;/video/v1/delivery-usage?asset_id=123&amp;limit=100&amp;page=2&amp;timeframe[]=1573471440&amp;timeframe[]=1574076240&apos;,
         {
           status: 200,
           responseText: &apos;{&quot;data&quot;: {&quot;list&quot;: true}}&apos;,

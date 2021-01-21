@@ -51,7 +51,6 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">test/unit/video/resources/uploads.spec.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
-const sinon = require(&apos;sinon&apos;);
 const moxios = require(&apos;moxios&apos;);
 const Uploads = require(&apos;../../../../src/video/resources/uploads&apos;);
 
@@ -72,26 +71,6 @@ describe(&apos;Unit::Uploads&apos;, () =&gt; {
   /** @test {Uploads.create} */
   describe(&apos;Uploads.create&apos;, () =&gt; {
     /** @test {Uploads.create} */
-    it(&apos;makes a POST request to create a new Upload&apos;, done =&gt; {
-      moxios.stubRequest(&apos;https://api.mux.com/video/v1/uploads&apos;, {
-        status: 201,
-        responseText: &apos;{&quot;data&quot;: {&quot;create&quot;: true}}&apos;,
-      });
-
-      const onFulfilled = sinon.spy();
-      testUploads
-        .create({
-          new_asset_settings: { playback_policy: &apos;public&apos; },
-        })
-        .then(onFulfilled);
-
-      return moxios.wait(() =&gt; {
-        expect(onFulfilled.getCall(0).args[0].create).to.be.true;
-        done();
-      });
-    });
-
-    /** @test {Uploads.create} */
     it(&apos;throws an error if no params are given&apos;, () =&gt;
       testUploads.create().catch(err =&gt; {
         expect(err).to.exist;
@@ -101,22 +80,6 @@ describe(&apos;Unit::Uploads&apos;, () =&gt; {
 
   /** @test {Uploads.get} */
   describe(&apos;Uploads.get&apos;, () =&gt; {
-    /** @test {Uploads.get} */
-    it(&apos;makes a GET request to get an upload&apos;, done =&gt; {
-      moxios.stubRequest(&apos;https://api.mux.com/video/v1/uploads/testUpload&apos;, {
-        status: 200,
-        responseText: &apos;{&quot;data&quot;: {&quot;upload&quot;: &quot;get&quot;}}&apos;,
-      });
-
-      const onFulfilled = sinon.spy();
-      testUploads.get(&apos;testUpload&apos;).then(onFulfilled);
-
-      return moxios.wait(() =&gt; {
-        expect(onFulfilled.getCall(0).args[0].upload).to.equal(&apos;get&apos;);
-        done();
-      });
-    });
-
     /** @test {Uploads.get} */
     it(&apos;throws an error when an upload id is not given&apos;, () =&gt;
       testUploads
@@ -132,25 +95,6 @@ describe(&apos;Unit::Uploads&apos;, () =&gt; {
 
   /** @test {Uploads.cancel} */
   describe(&apos;Uploads.cancel&apos;, () =&gt; {
-    /** @test {Uploads.cancel} */
-    it(&apos;makes a PUT request to cancel an upload&apos;, done =&gt; {
-      moxios.stubRequest(
-        &apos;https://api.mux.com/video/v1/uploads/testUpload/cancel&apos;,
-        {
-          status: 200,
-          responseText: &apos;{&quot;data&quot;: {&quot;upload&quot;: &quot;cancel&quot;}}&apos;,
-        }
-      );
-
-      const onFulfilled = sinon.spy();
-      testUploads.cancel(&apos;testUpload&apos;).then(onFulfilled);
-
-      return moxios.wait(() =&gt; {
-        expect(onFulfilled.getCall(0).args[0].upload).to.equal(&apos;cancel&apos;);
-        done();
-      });
-    });
-
     /** @test {Uploads.del} */
     it(&apos;throws an error when an upload id is not given&apos;, () =&gt;
       testUploads.cancel().catch(err =&gt; {

@@ -52,7 +52,6 @@
 <div class="content" data-ice="content"><h1 data-ice="title">test/unit/data/resources/video_views.spec.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
 const moxios = require(&apos;moxios&apos;);
-const sinon = require(&apos;sinon&apos;);
 const VideoViews = require(&apos;../../../../src/data/resources/video_views&apos;);
 
 /** @test {VideoViews} */
@@ -91,47 +90,6 @@ describe(&apos;Unit::VideoViews&apos;, () =&gt; {
       expect(() =&gt; new VideoViews(testApiKey, testSecret)).to.not.throw();
       expect(TestVideoViews.tokenId).to.equal(testApiKey);
       expect(TestVideoViews.tokenSecret).to.equal(testSecret);
-    });
-  });
-
-  /** @test {VideoViews.list} */
-  describe(&apos;VideoViews.list&apos;, () =&gt; {
-    /** @test {VideoViews.list} */
-    it(&apos;makes a get request to the Mux data video-views route&apos;, done =&gt; {
-      moxios.stubRequest(
-        &apos;https://api.mux.com/data/v1/video-views?viewer_id=abc123&apos;,
-        {
-          status: 200,
-          responseText: &apos;{&quot;data&quot;: {&quot;video&quot;: &quot;views&quot;}}&apos;,
-        }
-      );
-
-      const onFulfilled = sinon.spy();
-      videoViewsInstance.list({ viewer_id: &apos;abc123&apos; }).then(onFulfilled);
-
-      return moxios.wait(() =&gt; {
-        expect(onFulfilled.getCall(0).args[0].data.video).to.equal(&apos;views&apos;);
-        done();
-      });
-    });
-  });
-
-  /** @test {VideoViews.get} */
-  describe(&apos;VideoViews.get&apos;, () =&gt; {
-    /** @test {VideoViews.get} */
-    it(&apos;makes a get request to the Mux data video-views route&apos;, done =&gt; {
-      moxios.stubRequest(&apos;https://api.mux.com/data/v1/video-views/someView&apos;, {
-        status: 200,
-        responseText: &apos;{&quot;data&quot;: {&quot;video&quot;: &quot;views&quot;}}&apos;,
-      });
-
-      const onFulfilled = sinon.spy();
-      videoViewsInstance.get(&apos;someView&apos;).then(onFulfilled);
-
-      return moxios.wait(() =&gt; {
-        expect(onFulfilled.getCall(0).args[0].data.video).to.equal(&apos;views&apos;);
-        done();
-      });
     });
   });
 });

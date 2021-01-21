@@ -50,9 +50,7 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">test/unit/data/resources/exports.spec.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
-const moxios = require(&apos;moxios&apos;);
-const sinon = require(&apos;sinon&apos;);
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const moxios = require(&apos;moxios&apos;);
 const Exports = require(&apos;../../../../src/data/resources/exports&apos;);
 
 /** @test {Exports} */
@@ -67,50 +65,6 @@ describe(&apos;Unit::Exports&apos;, () =&gt; {
 
   afterEach(() =&gt; {
     moxios.uninstall(exportsInstance.http);
-  });
-
-  /** @test {Exports} */
-  describe(&apos;Exports&apos;, () =&gt; {
-    /** @test {Exports} */
-    it(&apos;throws an error if an api key is not given&apos;, () =&gt; {
-      expect(() =&gt; new Exports()).to.throw(
-        &apos;API Access Token must be provided.&apos;
-      );
-    });
-
-    /** @test {Exports} */
-    it(&apos;throws an error if a secret key is not given&apos;, () =&gt; {
-      expect(() =&gt; new Exports(testApiKey)).to.throw(
-        &apos;API secret key must be provided&apos;
-      );
-    });
-
-    /** @test {Exports} */
-    it(&apos;creates a new Exports instance&apos;, () =&gt; {
-      const TestExports = new Exports(testApiKey, testSecret);
-      expect(() =&gt; new Exports(testApiKey, testSecret)).to.not.throw();
-      expect(TestExports.tokenId).to.equal(testApiKey);
-      expect(TestExports.tokenSecret).to.equal(testSecret);
-    });
-  });
-
-  /** @test {Exports.list} */
-  describe(&apos;Exports.list&apos;, () =&gt; {
-    /** @test {Exports.list} */
-    it(&apos;makes a get request to the Mux data exports route&apos;, done =&gt; {
-      moxios.stubRequest(&apos;https://api.mux.com/data/v1/exports&apos;, {
-        status: 200,
-        responseText: &apos;{&quot;data&quot;: {&quot;exports&quot;: true}}&apos;,
-      });
-
-      const onFulfilled = sinon.spy();
-      exportsInstance.list({}).then(onFulfilled);
-
-      return moxios.wait(() =&gt; {
-        expect(onFulfilled.getCall(0).args[0].data.exports).to.be.true;
-        done();
-      });
-    });
   });
 });
 </code></pre>
