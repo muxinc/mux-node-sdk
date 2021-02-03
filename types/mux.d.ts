@@ -150,6 +150,7 @@ export declare class LiveStreams extends Base {
 export declare class Uploads extends Base {
   create(params: CreateUploadParams): Promise<Upload>;
   cancel(uploadId: string): Promise<Upload>;
+  get(uploadId: string): Promise<Upload>;
 }
 
 export declare class DeliveryUsage extends Base {
