@@ -102,7 +102,7 @@ export declare class Assets extends Base {
   get(assetId: string): Promise<Asset>;
   inputInfo(assetId: string): Promise<Array<InputInfo>>;
   list(params: ListParams): Promise<Array<Asset>>;
-  playbackId(assetId: string): Promise<PlaybackId>;
+  playbackId(assetId: string, playbackId: string): Promise<PlaybackId>;
   createPlaybackId(
     assetId: string,
     params: CreatePlaybackIdParams
