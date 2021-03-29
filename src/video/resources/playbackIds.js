@@ -38,15 +38,16 @@ class PlaybackIds extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-asset-or-livestream-id
    */
-   get(playbackId) {
+  get(playbackId) {
     if (!playbackId) {
       return Promise.reject(
-        new Error('An playback ID is required to get an asset or live stream identifier')
+        new Error(
+          'An playback ID is required to get an asset or live stream identifier'
+        )
       );
     }
     return this.http.get(buildBasePath(playbackId));
   }
-
 }
 
 module.exports = PlaybackIds;
