@@ -33,7 +33,7 @@ class PlaybackIds extends Base {
    * @example
    * const { Video } = new Mux(accessToken, secret);
    *
-   * // Retrieve an Asset or Live Stream associated with a Playback ID
+   * // Retrieve an Asset or Live Stream identifier associated with a Playback ID
    * Video.PlaybackIds.get(playbackId);
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-asset-or-livestream-id
