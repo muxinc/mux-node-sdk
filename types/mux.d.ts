@@ -54,6 +54,7 @@ import { VideoTrack } from './interfaces/VideoTrack';
 import { VideoView } from './interfaces/VideoView';
 import { VideoViewsQueryParams } from './interfaces/VideoViewsQueryParams';
 import { ViewError } from './interfaces/ViewError';
+import { PlaybackIdentifier } from './interfaces/PlaybackIdentifier';
 
 export declare class Base extends EventEmitter {
   private _tokenId?: string;
@@ -162,6 +163,10 @@ export declare class SigningKeys extends Base {
   list(params: ListParams): Promise<Array<SigningKey>>;
   get(keyId: string): Promise<SigningKey>;
   del(keyId: string): Promise<any>;
+}
+
+export declare class PlaybackIds extends Base {
+  get(playbackId: string): Promise<PlaybackIdentifier>;
 }
 
 export declare interface JWTOptions {
@@ -343,6 +348,7 @@ export declare class Video extends Base {
   Uploads: Uploads;
   DeliveryUsage: DeliveryUsage;
   SigningKeys: SigningKeys;
+  PlaybackIds: PlaybackIds;
 }
 
 export declare class Data extends Base {
@@ -401,6 +407,7 @@ export {
   MetricsOverallValue,
   MetricsTimeseriesQueryParams,
   PlaybackId,
+  PlaybackIdentifier,
   PlaybackIdPolicy,
   RealTimeBreakdownQueryParams,
   RealTimeBreakdownValue,
