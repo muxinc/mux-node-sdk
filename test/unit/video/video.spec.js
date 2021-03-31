@@ -4,7 +4,7 @@ const Assets = require('../../../src/video/resources/assets');
 const LiveStreams = require('../../../src/video/resources/liveStreams');
 const Uploads = require('../../../src/video/resources/uploads');
 const PlaybackIds = require('../../../src/video/resources/playbackIds');
-const DeliveryUsage = require('../../../src/video/resources/deliveryUsage')
+const DeliveryUsage = require('../../../src/video/resources/deliveryUsage');
 
 /** @test {Video} */
 describe('Unit::Video', () => {
