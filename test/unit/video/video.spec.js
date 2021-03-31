@@ -5,6 +5,7 @@ const LiveStreams = require('../../../src/video/resources/liveStreams');
 const Uploads = require('../../../src/video/resources/uploads');
 const PlaybackIds = require('../../../src/video/resources/playbackIds');
 const DeliveryUsage = require('../../../src/video/resources/deliveryUsage');
+const SigningKeys = require('../../../src/video/resources/signingKeys');
 
 /** @test {Video} */
 describe('Unit::Video', () => {
@@ -34,6 +35,7 @@ describe('Unit::Video', () => {
       expect(TestVideo.DeliveryUsage).to.be.an.instanceof(DeliveryUsage);
       expect(TestVideo.PlaybackIds).to.be.an.instanceof(PlaybackIds);
       expect(TestVideo.Uploads).to.be.an.instanceof(Uploads);
+      expect(TestVideo.SigningKeys).to.be.an.instanceof(SigningKeys);
     });
   });
 });
