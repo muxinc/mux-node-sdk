@@ -31,7 +31,7 @@ class Errors extends Base {
    * // Returns a list of playback errors filtered by the windows operating system
    * Data.Errors.list({ filters: ['operating_system:windows'] });
    *
-   * @see https://api-docs.mux.com/#view-error-get
+   * @see https://docs.mux.com/api-reference/data#operation/list-errors
    */
   list(params) {
     return this.http.get(PATH, { params });

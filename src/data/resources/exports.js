@@ -32,7 +32,7 @@ class Exports extends Base {
    * // Lists the available video view exports along with URLs to retrieve them
    * Data.Exports.list();
    *
-   * @see https://api-docs.mux.com/#export-get
+   * @see https://docs.mux.com/api-reference/data#operation/list-exports
    */
   list() {
     return this.http.get(PATH);

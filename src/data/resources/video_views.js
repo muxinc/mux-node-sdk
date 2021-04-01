@@ -36,7 +36,7 @@ class VideoViews extends Base {
    * // Returns a list of video views for a property that occurred within the specified timeframe.
    * Data.VideoViews.list({ viewer_id: 'ABCD1234', timeframe: ['7:days'], order_direction: 'asc' });
    *
-   * @see https://api-docs.mux.com/#video-view-get-1
+   * @see https://docs.mux.com/api-reference/data#operation/list-video-views
    */
   list(params) {
     return this.http.get(PATH, { params });
@@ -55,7 +55,7 @@ class VideoViews extends Base {
    * //Returns the details for a single video view
    * Data.VideoViews.get('ABCD1234');
    *
-   * @see https://api-docs.mux.com/#video-view-get-1
+   * @see https://docs.mux.com/api-reference/data#operation/get-video-view
    */
   get(videoViewId) {
     if (!videoViewId) {

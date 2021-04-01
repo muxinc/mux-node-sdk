@@ -36,7 +36,7 @@ class Metrics extends Base {
    * // List all of the values across every breakdown for a specific metric grouped by browser
    * Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
    *
-   * @see https://api-docs.mux.com/#breakdown-get
+   * @see https://docs.mux.com/api-reference/data#operation/list-breakdown-values
    */
   breakdown(metricId, params) {
     return this.http.get(`${PATH}/${metricId}/breakdown`, { params });
@@ -56,7 +56,7 @@ class Metrics extends Base {
    * Data.Metrics.comparison({ value: 'safari', timeframe: '24:hours', dimension: 'cdn' });
    * Note: the value query parameter is required
    *
-   * @see https://api-docs.mux.com/#comparison-get
+   * @see https://docs.mux.com/api-reference/data#operation/list-all-metric-values
    */
   comparison(params) {
     if (!params || (params && !params.value)) {
@@ -82,7 +82,7 @@ class Metrics extends Base {
    * // Get a list of insights for a metric measured by median and ordered descending
    * Data.Metrics.insights('aggregate_startup_time', { measurement: 'median', order_direction: 'desc' });
    *
-   * @see https://api-docs.mux.com/#insight-get
+   * @see https://docs.mux.com/api-reference/data#operation/list-insights
    */
   insights(metricId, params) {
     if (!metricId) {
@@ -106,7 +106,7 @@ class Metrics extends Base {
    * // Get the overall value for a specific metric within the past 7 days
    * Data.Metrics.overall('aggregate_startup_time', { timeframe: ['7:days'] });
    *
-   * @see https://api-docs.mux.com/#overall-get
+   * @see https://docs.mux.com/api-reference/data#operation/get-overall-values
    */
   overall(metricId, params) {
     if (!metricId) {
@@ -129,7 +129,7 @@ class Metrics extends Base {
    * // Get timeseries data for a specific metric within the past 7 days
    * Data.Metrics.timeseries('aggregate_startup_time', { timeframe: ['7:days'] });
    *
-   * @see https://api-docs.mux.com/#timeseries
+   * @see https://docs.mux.com/api-reference/data#operation/get-metric-timeseries-data
    */
   timeseries(metricId, params) {
     if (!metricId) {
