@@ -45,7 +45,7 @@ class LiveStreams extends Base {
    *  new_asset_settings: { playback_policy: 'public' }
    * });
    *
-   * @see https://docs.mux.com/reference#create-a-live-stream
+   * @see https://docs.mux.com/api-reference/video#operation/create-live-stream
    */
   create(params) {
     return this.http.post(PATH, params);
@@ -62,7 +62,7 @@ class LiveStreams extends Base {
    * // Delete a mux live stream
    * Video.LiveStreams.del(liveStreamId);
    *
-   * @see https://docs.mux.com/reference#delete-a-live-stream
+   * @see https://docs.mux.com/api-reference/video#operation/delete-live-stream
    */
   del(liveStreamId) {
     if (!liveStreamId) {
@@ -84,7 +84,7 @@ class LiveStreams extends Base {
    * // Get a live stream
    * Video.LiveStreams.get(liveStreamId);
    *
-   * @see https://docs.mux.com/reference#retrieve-a-live-stream
+   * @see https://docs.mux.com/api-reference/video#operation/get-live-stream
    */
   get(liveStreamId) {
     if (!liveStreamId) {
@@ -105,7 +105,7 @@ class LiveStreams extends Base {
    * // List all live streams for a Mux Environment
    * Video.LiveStreams.list();
    *
-   * @see https://docs.mux.com/reference#list-live-streams
+   * @see https://docs.mux.com/api-reference/video#operation/list-live-streams
    */
   list(params) {
     return this.http.get(PATH, { params });
@@ -122,7 +122,7 @@ class LiveStreams extends Base {
    * // Signal a live stream is finished
    * Video.LiveStreams.signalComplete(liveStreamId);
    *
-   * @see https://docs.mux.com/reference#signal-live-stream-complete
+   * @see https://docs.mux.com/api-reference/video#operation/signal-live-stream-complete
    */
   signalComplete(liveStreamId) {
     if (!liveStreamId) {
@@ -145,7 +145,7 @@ class LiveStreams extends Base {
    * // from working and create a new stream key that can be used for future broadcasts.
    * Video.LiveStreams.resetStreamKey(liveStreamId);
    *
-   * @see https://docs.mux.com/reference#reset-a-stream-key
+   * @see https://docs.mux.com/api-reference/video#operation/reset-stream-key
    */
   resetStreamKey(liveStreamId) {
     if (!liveStreamId) {
@@ -168,7 +168,7 @@ class LiveStreams extends Base {
    * // Create a live stream playback ID
    * Video.LiveStreams.createPlaybackId(liveStreamId, { policy: 'public' });
    *
-   * @see https://docs.mux.com/reference#add-a-live-stream-playback-id
+   * @see https://docs.mux.com/api-reference/video#operation/create-live-stream-playback-id
    */
   createPlaybackId(liveStreamId, params) {
     if (!liveStreamId) {
@@ -204,7 +204,7 @@ class LiveStreams extends Base {
    * // Delete a live stream playback ID
    * Video.LiveStreams.deletePlaybackId(liveStreamId, { policy: 'public' });
    *
-   * @see https://docs.mux.com/reference#delete-a-live-stream-playback-id
+   * @see https://docs.mux.com/api-reference/video#operation/delete-live-stream-playback-id
    */
   deletePlaybackId(liveStreamId, playbackId) {
     if (!liveStreamId) {
@@ -239,7 +239,7 @@ class LiveStreams extends Base {
    * // Create a live simulcast target
    * Video.LiveStreams.createSimulcastTarget(liveStreamId, {url: 'rtmp://live.example.com/app', stream_key: 'difvbfgi', passthrough: 'Example Live Streaming service'});
    *
-   * @see https://docs.mux.com/reference#create-a-simulcast-target
+   * @see https://docs.mux.com/api-reference/video#operation/create-live-stream-simulcast-target
    */
   createSimulcastTarget(liveStreamId, params) {
     if (!liveStreamId) {
@@ -271,7 +271,7 @@ class LiveStreams extends Base {
    * // Get a live simulcast target
    * Video.LiveStreams.getSimulcastTarget(liveStreamId, simulcastTargetId);
    *
-   * @see https://docs.mux.com/reference#retrieve-a-simulcast-target
+   * @see https://docs.mux.com/api-reference/video#operation/get-live-stream-simulcast-target
    */
   getSimulcastTarget(liveStreamId, simulcastTargetId) {
     if (!liveStreamId) {
@@ -302,7 +302,7 @@ class LiveStreams extends Base {
    * // Delete a simulcast target
    * Video.LiveStreams.deleteSimulcastTarget(liveStreamId, simulcastTargetId);
    *
-   * @see https://docs.mux.com/reference#delete-a-simulcast-target
+   * @see https://docs.mux.com/api-reference/video#operation/delete-live-stream-simulcast-target
    */
   deleteSimulcastTarget(liveStreamId, simulcastTargetId) {
     if (!liveStreamId) {
@@ -334,7 +334,7 @@ class LiveStreams extends Base {
    * // Disable a live stream
    * Video.LiveStreams.disable(liveStreamId);
    *
-   * @see https://docs.mux.com/reference#disable-a-live-stream
+   * @see https://docs.mux.com/api-reference/video#operation/disable-live-stream
    */
   disable(liveStreamId) {
     if (!liveStreamId) {
@@ -356,7 +356,7 @@ class LiveStreams extends Base {
    * // Enable a Live Stream
    * Video.LiveStreams.enable(liveStreamId);
    *
-   * @see https://docs.mux.com/reference#enable-a-live-stream
+   * @see https://docs.mux.com/api-reference/video#operation/enable-live-stream
    */
   enable(liveStreamId) {
     if (!liveStreamId) {

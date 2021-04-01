@@ -36,7 +36,7 @@ class Assets extends Base {
    * // Create an asset
    * Video.Assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
    *
-   * @see https://docs.mux.com/reference#create-an-asset
+   * @see https://docs.mux.com/api-reference/video#operation/create-asset
    */
   create(params) {
     if (!params) {
@@ -59,7 +59,7 @@ class Assets extends Base {
    * // Delete an asset
    * Video.Assets.del(assetId);
    *
-   * @see https://docs.mux.com/reference#delete-an-asset
+   * @see hhttps://docs.mux.com/api-reference/video#operation/delete-asset
    */
   del(assetId) {
     if (!assetId) {
@@ -81,7 +81,7 @@ class Assets extends Base {
    * // Get an asset
    * Video.Assets.get(assetId);
    *
-   * @see https://docs.mux.com/reference#retrieve-an-asset
+   * @see https://docs.mux.com/api-reference/video#operation/get-asset
    */
   get(assetId) {
     if (!assetId) {
@@ -103,7 +103,7 @@ class Assets extends Base {
    * // Get input info for an asset
    * Video.Assets.inputInfo(assetId);
    *
-   * @see https://docs.mux.com/reference#retrieve-asset-input-info
+   * @see https://docs.mux.com/api-reference/video#operation/get-asset-input-info
    */
   inputInfo(assetId) {
     if (!assetId) {
@@ -124,7 +124,7 @@ class Assets extends Base {
    * // List all assets for a Mux Environment
    * Video.Assets.list();
    *
-   * @see https://docs.mux.com/reference#list-assets
+   * @see https://docs.mux.com/api-reference/video#operation/list-assets
    */
   list(params) {
     return this.http.get(PATH, { params });
@@ -142,7 +142,7 @@ class Assets extends Base {
    * // Retrieve an asset playbackId
    * Video.Assets.playbackId(assetId, playbackId);
    *
-   * @see https://docs.mux.com/v1/reference#retrieve-an-asset-playback-id
+   * @see https://docs.mux.com/api-reference/video#operation/get-asset-playback-id
    */
   playbackId(assetId, playbackId) {
     if (!assetId) {
@@ -169,7 +169,7 @@ class Assets extends Base {
    * // Create an asset playback ID
    * Video.Assets.createPlaybackId(assetId, { policy: 'public' });
    *
-   * @see https://docs.mux.com/v1/reference#add-an-asset-playback-id
+   * @see https://docs.mux.com/api-reference/video#operation/create-asset-playback-id
    */
   createPlaybackId(assetId, params) {
     if (!assetId) {
@@ -194,7 +194,7 @@ class Assets extends Base {
    * // Delete an asset playback ID
    * Video.Assets.deletePlaybackId(assetId, { policy: 'public' });
    *
-   * @see https://docs.mux.com/v1/reference#delete-an-asset-playback-id
+   * @see https://docs.mux.com/api-reference/video#operation/delete-asset-playback-id
    */
   deletePlaybackId(assetId, playbackId) {
     if (!assetId) {
@@ -226,7 +226,7 @@ class Assets extends Base {
    *   language_code: "en-US",
    * });
    *
-   * @see https://docs.mux.com/reference#create-a-subtitle-text-track
+   * @see https://docs.mux.com/api-reference/video#operation/create-asset-track
    */
   createTrack(assetId, params) {
     if (!assetId) {
@@ -251,7 +251,7 @@ class Assets extends Base {
    * // Delete an asset text track
    * Video.Assets.deleteTrack(assetId, trackId);
    *
-   * @see https://docs.mux.com/reference#delete-a-subtitle-text-track
+   * @see https://docs.mux.com/api-reference/video#operation/delete-asset-track
    */
   deleteTrack(assetId, trackId) {
     if (!assetId) {
@@ -275,7 +275,7 @@ class Assets extends Base {
    * // Updates mp4 support for an asset
    * Video.Assets.updateMp4Support(assetId, {mp4_support: "standard"});
    *
-   * @see https://docs.mux.com/reference#update-mp4-support
+   * @see https://docs.mux.com/api-reference/video#operation/update-asset-mp4-support
    */
   updateMp4Support(assetId, params) {
     if (!assetId) {
@@ -299,7 +299,7 @@ class Assets extends Base {
    * // Update master access for an asset
    * Video.Assets.updateMasterAccess(assetId, {master_access: "temporary"});
    *
-   * @see https://docs.mux.com/reference#update-master-access
+   * @see https://docs.mux.com/api-reference/video#operation/update-asset-master-access
    */
   updateMasterAccess(assetId, params) {
     if (!assetId) {
