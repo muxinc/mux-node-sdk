@@ -152,6 +152,7 @@ export declare class Uploads extends Base {
   create(params: CreateUploadParams): Promise<Upload>;
   cancel(uploadId: string): Promise<Upload>;
   get(uploadId: string): Promise<Upload>;
+  list(params: ListParams): Promise<Array<Upload>>;
 }
 
 export declare class DeliveryUsage extends Base {
