@@ -93,6 +93,22 @@ class Uploads extends Base {
     }
     return this.http.get(buildBasePath(uploadId));
   }
+
+  /**
+   * List all uploads
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // List all uploads
+   * Video.Uploads.list();
+   *
+   * @see https://docs.mux.com/api-reference/video#operation/list-direct-uploads
+   */
+  list(params) {
+    return this.http.get(PATH, { params });
+  }
 }
 
 module.exports = Uploads;
