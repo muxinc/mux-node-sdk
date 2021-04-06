@@ -5,8 +5,6 @@ import { AssetMasterAccess } from './AssetMasterAccess';
 
 export interface CreateAssetParams {
   input: string | Array<InputSettings>;
-  start_time?: number;
-  end_time?: number;
   playback_policy?: PlaybackIdPolicy | Array<PlaybackIdPolicy>;
   passthrough?: string;
   mp4_support?: AssetMp4Support;
