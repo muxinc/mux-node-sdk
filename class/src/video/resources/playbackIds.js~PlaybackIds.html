@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../../">
-  <title data-ice="title">DeliveryUsage | MUX</title>
+  <title data-ice="title">PlaybackIds | MUX</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -51,23 +51,23 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import DeliveryUsage from &apos;<span><a href="file/src/video/resources/deliveryUsage.js.html#lineNumber21">@mux/mux-node/src/video/resources/deliveryUsage.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import PlaybackIds from &apos;<span><a href="file/src/video/resources/playbackIds.js.html#lineNumber27">@mux/mux-node/src/video/resources/playbackIds.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/video/resources/deliveryUsage.js.html#lineNumber21">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/video/resources/playbackIds.js.html#lineNumber27">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
-  <h1 data-ice="name">DeliveryUsage</h1>
+  <h1 data-ice="name">PlaybackIds</h1>
 
   
 
   
   
-  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>events~EventEmitter</span> &#x2192; <span>src/base.js~Base</span> &#x2192; DeliveryUsage</div></div>
+  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>events~EventEmitter</span> &#x2192; <span>src/base.js~Base</span> &#x2192; PlaybackIds</div></div>
   
   
   
@@ -77,7 +77,7 @@
 
   
   
-  <div class="description" data-ice="description"><p>DeliveryUsage Class - Provides access to the Mux Video Delivery Usage API</p>
+  <div class="description" data-ice="description"><p>PlaybackIds Class - Provides access to the Mux Playback ID API</p>
 </div>
   
 
@@ -90,8 +90,8 @@
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
 
-// List delivery usage within a timeframe
-Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});</code></pre>
+// Retrieve an Asset or Live Stream  identifier associated with a Playback ID
+Video.PlaybackIds.get(playbackId);</code></pre>
     </div>
 </div>
 
@@ -99,7 +99,11 @@ Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/deliveryUsage.spec.js.html#lineNumber7">Unit::DeliveryUsage</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber6">Unit::PlaybackIds</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber20">Unit::PlaybackIds PlaybackIds</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber22">Unit::PlaybackIds PlaybackIds throws an error if an api key is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber29">Unit::PlaybackIds PlaybackIds throws an error if a secret key is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber36">Unit::PlaybackIds PlaybackIds creates a new PlaybackIds instance</a></span></li>
 </ul>
   </div>
 
@@ -128,13 +132,13 @@ Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});</code></pre>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/video/resources/deliveryUsage.js~DeliveryUsage.html#instance-method-list">list</a></span></span><span class="code" data-ice="signature">(params: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/video/resources/playbackIds.js~PlaybackIds.html#instance-method-get">get</a></span></span><span class="code" data-ice="signature">(playbackId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>List all delivery usage during a timeframe for a Mux Environment (tied to your access token)</p>
+        <div data-ice="description"><p>Retrieve an Asset or Live Stream  identifier associated with a Playback ID</p>
 </div>
       </div>
     </td>
@@ -156,25 +160,25 @@ Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});</code></pre>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-list">
+  <h3 data-ice="anchor" id="instance-method-get">
     <span class="access" data-ice="access">public</span>
     
     
     
     
     
-    <span class="code" data-ice="name">list</span><span class="code" data-ice="signature">(params: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="code" data-ice="name">get</span><span class="code" data-ice="signature">(playbackId: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/video/resources/deliveryUsage.js.html#lineNumber35">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/video/resources/playbackIds.js.html#lineNumber41">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>List all delivery usage during a timeframe for a Mux Environment (tied to your access token)</p>
+  <div data-ice="description"><p>Retrieve an Asset or Live Stream  identifier associated with a Playback ID</p>
 </div>
 
   
@@ -188,10 +192,10 @@ Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});</code></pre>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">params</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="name" class="code" data-depth="0">playbackId</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>Request JSON parameters (e.g timeframe)</p>
+      <td data-ice="description"><p>The ID for playback</p>
 </td>
     </tr>
 </tbody>
@@ -229,8 +233,8 @@ Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});</code></pre>
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
 
-// List all delivery usage for a Mux Environment within a timeframe
-Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});</code></pre>
+// Retrieve an Asset or Live Stream identifier associated with a Playback ID
+Video.PlaybackIds.get(playbackId);</code></pre>
     </div>
 </div>
 
@@ -238,12 +242,12 @@ Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/deliveryUsage.spec.js.html#lineNumber21">Unit::DeliveryUsage DeliveryUsage.list</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/deliveryUsage.spec.js.html#lineNumber23">Unit::DeliveryUsage DeliveryUsage.list makes a GET request to list 100 delivery usage records offset by 2 pages with a timeframe</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber45">Unit::PlaybackIds PlaybackIds.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber47">Unit::PlaybackIds PlaybackIds.get throws an error when an playback ID is not given</a></span></li>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/list-delivery-usage">https://docs.mux.com/api-reference/video#operation/list-delivery-usage</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/get-asset-or-livestream-id">https://docs.mux.com/api-reference/video#operation/get-asset-or-livestream-id</a></span></li></ul></div>
   
 </div>
 </div>

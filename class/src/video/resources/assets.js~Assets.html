@@ -41,6 +41,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/deliveryUsage.js~DeliveryUsage.html">DeliveryUsage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/playbackIds.js~PlaybackIds.html">PlaybackIds</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks">webhooks</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/webhooks.js~Webhooks.html">Webhooks</a></span></span></li>
@@ -565,7 +566,7 @@ Video.Assets.create({input: &apos;https://storage.googleapis.com/muxdemofiles/mu
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#create-an-asset">https://docs.mux.com/reference#create-an-asset</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/create-asset">https://docs.mux.com/api-reference/video#operation/create-asset</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -656,7 +657,7 @@ Video.Assets.createPlaybackId(assetId, { policy: &apos;public&apos; });</code></
 
   
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/v1/reference#add-an-asset-playback-id">https://docs.mux.com/v1/reference#add-an-asset-playback-id</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/create-asset-playback-id">https://docs.mux.com/api-reference/video#operation/create-asset-playback-id</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -761,7 +762,7 @@ Video.Assets.createTrack(assetId, {
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#create-a-subtitle-text-track">https://docs.mux.com/reference#create-a-subtitle-text-track</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/create-asset-track">https://docs.mux.com/api-reference/video#operation/create-asset-track</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -852,7 +853,7 @@ Video.Assets.del(assetId);</code></pre>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#delete-an-asset">https://docs.mux.com/reference#delete-an-asset</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="hhttps://docs.mux.com/api-reference/video#operation/delete-asset">hhttps://docs.mux.com/api-reference/video#operation/delete-asset</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -951,7 +952,7 @@ Video.Assets.deletePlaybackId(assetId, { policy: &apos;public&apos; });</code></
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/v1/reference#delete-an-asset-playback-id">https://docs.mux.com/v1/reference#delete-an-asset-playback-id</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/delete-asset-playback-id">https://docs.mux.com/api-reference/video#operation/delete-asset-playback-id</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1051,7 +1052,7 @@ Video.Assets.deleteTrack(assetId, trackId);</code></pre>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#delete-a-subtitle-text-track">https://docs.mux.com/reference#delete-a-subtitle-text-track</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/delete-asset-track">https://docs.mux.com/api-reference/video#operation/delete-asset-track</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1142,7 +1143,7 @@ Video.Assets.get(assetId);</code></pre>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#retrieve-an-asset">https://docs.mux.com/reference#retrieve-an-asset</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/get-asset">https://docs.mux.com/api-reference/video#operation/get-asset</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1233,7 +1234,7 @@ Video.Assets.inputInfo(assetId);</code></pre>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#retrieve-asset-input-info">https://docs.mux.com/reference#retrieve-asset-input-info</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/get-asset-input-info">https://docs.mux.com/api-reference/video#operation/get-asset-input-info</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1323,7 +1324,7 @@ Video.Assets.list();</code></pre>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#list-assets">https://docs.mux.com/reference#list-assets</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/list-assets">https://docs.mux.com/api-reference/video#operation/list-assets</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1423,7 +1424,7 @@ Video.Assets.playbackId(assetId, playbackId);</code></pre>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/v1/reference#retrieve-an-asset-playback-id">https://docs.mux.com/v1/reference#retrieve-an-asset-playback-id</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/get-asset-playback-id">https://docs.mux.com/api-reference/video#operation/get-asset-playback-id</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1507,7 +1508,7 @@ Video.Assets.updateMasterAccess(assetId, {master_access: &quot;temporary&quot;})
 
   
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#update-master-access">https://docs.mux.com/reference#update-master-access</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/update-asset-master-access">https://docs.mux.com/api-reference/video#operation/update-asset-master-access</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1591,7 +1592,7 @@ Video.Assets.updateMp4Support(assetId, {mp4_support: &quot;standard&quot;});</co
 
   
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#update-mp4-support">https://docs.mux.com/reference#update-mp4-support</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/update-asset-mp4-support">https://docs.mux.com/api-reference/video#operation/update-asset-mp4-support</a></span></li></ul></div>
   
 </div>
 </div>

@@ -41,6 +41,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/deliveryUsage.js~DeliveryUsage.html">DeliveryUsage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/playbackIds.js~PlaybackIds.html">PlaybackIds</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks">webhooks</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/webhooks.js~Webhooks.html">Webhooks</a></span></span></li>
@@ -82,7 +83,7 @@ class DeliveryUsage extends Base {
    * // List all delivery usage for a Mux Environment within a timeframe
    * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});
    *
-   * @see https://docs.mux.com/reference#delivery-usage
+   * @see https://docs.mux.com/api-reference/video#operation/list-delivery-usage
    */
   list(params) {
     return this.http.get(PATH, { params });

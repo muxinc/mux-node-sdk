@@ -41,6 +41,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/deliveryUsage.js~DeliveryUsage.html">DeliveryUsage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/playbackIds.js~PlaybackIds.html">PlaybackIds</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks">webhooks</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/webhooks.js~Webhooks.html">Webhooks</a></span></span></li>
@@ -88,7 +89,7 @@ class Metrics extends Base {
    * // List all of the values across every breakdown for a specific metric grouped by browser
    * Data.Metrics.breakdown(&apos;aggregate_startup_time&apos;, { group_by: &apos;browser&apos; });
    *
-   * @see https://api-docs.mux.com/#breakdown-get
+   * @see https://docs.mux.com/api-reference/data#operation/list-breakdown-values
    */
   breakdown(metricId, params) {
     return this.http.get(`${PATH}/${metricId}/breakdown`, { params });
@@ -108,7 +109,7 @@ class Metrics extends Base {
    * Data.Metrics.comparison({ value: &apos;safari&apos;, timeframe: &apos;24:hours&apos;, dimension: &apos;cdn&apos; });
    * Note: the value query parameter is required
    *
-   * @see https://api-docs.mux.com/#comparison-get
+   * @see https://docs.mux.com/api-reference/data#operation/list-all-metric-values
    */
   comparison(params) {
     if (!params || (params &amp;&amp; !params.value)) {
@@ -134,7 +135,7 @@ class Metrics extends Base {
    * // Get a list of insights for a metric measured by median and ordered descending
    * Data.Metrics.insights(&apos;aggregate_startup_time&apos;, { measurement: &apos;median&apos;, order_direction: &apos;desc&apos; });
    *
-   * @see https://api-docs.mux.com/#insight-get
+   * @see https://docs.mux.com/api-reference/data#operation/list-insights
    */
   insights(metricId, params) {
     if (!metricId) {
@@ -158,7 +159,7 @@ class Metrics extends Base {
    * // Get the overall value for a specific metric within the past 7 days
    * Data.Metrics.overall(&apos;aggregate_startup_time&apos;, { timeframe: [&apos;7:days&apos;] });
    *
-   * @see https://api-docs.mux.com/#overall-get
+   * @see https://docs.mux.com/api-reference/data#operation/get-overall-values
    */
   overall(metricId, params) {
     if (!metricId) {
@@ -181,7 +182,7 @@ class Metrics extends Base {
    * // Get timeseries data for a specific metric within the past 7 days
    * Data.Metrics.timeseries(&apos;aggregate_startup_time&apos;, { timeframe: [&apos;7:days&apos;] });
    *
-   * @see https://api-docs.mux.com/#timeseries
+   * @see https://docs.mux.com/api-reference/data#operation/get-metric-timeseries-data
    */
   timeseries(metricId, params) {
     if (!metricId) {

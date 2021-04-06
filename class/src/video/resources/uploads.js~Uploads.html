@@ -41,6 +41,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/deliveryUsage.js~DeliveryUsage.html">DeliveryUsage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/playbackIds.js~PlaybackIds.html">PlaybackIds</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks">webhooks</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/webhooks.js~Webhooks.html">Webhooks</a></span></span></li>
@@ -98,7 +99,7 @@ Video.Uploads.create({ new_asset_settings: { playback_policy: &apos;public&apos;
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber6">Unit::Uploads</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber7">Unit::Uploads</a></span></li>
 </ul>
   </div>
 
@@ -200,6 +201,35 @@ Video.Uploads.create({ new_asset_settings: { playback_policy: &apos;public&apos;
       
     </td>
   </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html#instance-method-list">list</a></span></span><span class="code" data-ice="signature">(params: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>List all uploads</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
 </tbody>
 </table>
 </div>
@@ -286,7 +316,7 @@ Video.Uploads.create({ new_asset_settings: { playback_policy: &apos;public&apos;
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
 
-// Delete an upload
+// Cancels an upload
 Video.Uploads.cancel(uploadId);</code></pre>
     </div>
 </div>
@@ -295,11 +325,11 @@ Video.Uploads.cancel(uploadId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber45">Unit::Uploads Uploads.cancel</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber46">Unit::Uploads Uploads.cancel</a></span></li>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#delete-an-asset">https://docs.mux.com/reference#delete-an-asset</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/cancel-direct-upload">https://docs.mux.com/api-reference/video#operation/cancel-direct-upload</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -388,12 +418,12 @@ fs.createReadStream(pathToFile).pipe(request.put(upload.url))</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber20">Unit::Uploads Uploads.create</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber22">Unit::Uploads Uploads.create throws an error if no params are given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber21">Unit::Uploads Uploads.create</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber23">Unit::Uploads Uploads.create throws an error if no params are given</a></span></li>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#upload-an-asset">https://docs.mux.com/reference#upload-an-asset</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/create-direct-upload">https://docs.mux.com/api-reference/video#operation/create-direct-upload</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -470,7 +500,7 @@ fs.createReadStream(pathToFile).pipe(request.put(upload.url))</code></pre>
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
 
-// Get an asset
+// Get an upload
 Video.Uploads.get(uploadId);</code></pre>
     </div>
 </div>
@@ -479,12 +509,102 @@ Video.Uploads.get(uploadId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber30">Unit::Uploads Uploads.get</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber32">Unit::Uploads Uploads.get throws an error when an upload id is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber31">Unit::Uploads Uploads.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber33">Unit::Uploads Uploads.get throws an error when an upload id is not given</a></span></li>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#retrieve-an-asset">https://docs.mux.com/reference#retrieve-an-asset</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/get-direct-upload">https://docs.mux.com/api-reference/video#operation/get-direct-upload</a></span></li></ul></div>
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-list">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">list</span><span class="code" data-ice="signature">(params: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/video/resources/uploads.js.html#lineNumber109">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>List all uploads</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">params</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns a resolved Promise with a response from the Mux API</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
+
+// List all uploads
+Video.Uploads.list();</code></pre>
+    </div>
+</div>
+
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber56">Unit::Uploads Uploads.list</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber58">Unit::Uploads Uploads.list makes a GET request to list 100 uploads offset by 2 pages</a></span></li>
+</ul>
+  </div>
+
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/list-direct-uploads">https://docs.mux.com/api-reference/video#operation/list-direct-uploads</a></span></li></ul></div>
   
 </div>
 </div>

@@ -41,6 +41,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/deliveryUsage.js~DeliveryUsage.html">DeliveryUsage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/playbackIds.js~PlaybackIds.html">PlaybackIds</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks">webhooks</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/webhooks.js~Webhooks.html">Webhooks</a></span></span></li>
@@ -595,7 +596,7 @@ Video.LiveStreams.create({
 
   
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#create-a-live-stream">https://docs.mux.com/reference#create-a-live-stream</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/create-live-stream">https://docs.mux.com/api-reference/video#operation/create-live-stream</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -693,7 +694,7 @@ Video.LiveStreams.createPlaybackId(liveStreamId, { policy: &apos;public&apos; })
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#add-a-live-stream-playback-id">https://docs.mux.com/reference#add-a-live-stream-playback-id</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/create-live-stream-playback-id">https://docs.mux.com/api-reference/video#operation/create-live-stream-playback-id</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -792,7 +793,7 @@ Video.LiveStreams.createSimulcastTarget(liveStreamId, {url: &apos;rtmp://live.ex
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#create-a-simulcast-target">https://docs.mux.com/reference#create-a-simulcast-target</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/create-live-stream-simulcast-target">https://docs.mux.com/api-reference/video#operation/create-live-stream-simulcast-target</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -883,7 +884,7 @@ Video.LiveStreams.del(liveStreamId);</code></pre>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#delete-a-live-stream">https://docs.mux.com/reference#delete-a-live-stream</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/delete-live-stream">https://docs.mux.com/api-reference/video#operation/delete-live-stream</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -981,7 +982,7 @@ Video.LiveStreams.deletePlaybackId(liveStreamId, { policy: &apos;public&apos; })
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#delete-a-live-stream-playback-id">https://docs.mux.com/reference#delete-a-live-stream-playback-id</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/delete-live-stream-playback-id">https://docs.mux.com/api-reference/video#operation/delete-live-stream-playback-id</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1080,7 +1081,7 @@ Video.LiveStreams.deleteSimulcastTarget(liveStreamId, simulcastTargetId);</code>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#delete-a-simulcast-target">https://docs.mux.com/reference#delete-a-simulcast-target</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/delete-live-stream-simulcast-target">https://docs.mux.com/api-reference/video#operation/delete-live-stream-simulcast-target</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1171,7 +1172,7 @@ Video.LiveStreams.disable(liveStreamId);</code></pre>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#disable-a-live-stream">https://docs.mux.com/reference#disable-a-live-stream</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/disable-live-stream">https://docs.mux.com/api-reference/video#operation/disable-live-stream</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1262,7 +1263,7 @@ Video.LiveStreams.enable(liveStreamId);</code></pre>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#enable-a-live-stream">https://docs.mux.com/reference#enable-a-live-stream</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/enable-live-stream">https://docs.mux.com/api-reference/video#operation/enable-live-stream</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1353,7 +1354,7 @@ Video.LiveStreams.get(liveStreamId);</code></pre>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#retrieve-a-live-stream">https://docs.mux.com/reference#retrieve-a-live-stream</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/get-live-stream">https://docs.mux.com/api-reference/video#operation/get-live-stream</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1451,7 +1452,7 @@ Video.LiveStreams.getSimulcastTarget(liveStreamId, simulcastTargetId);</code></p
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#retrieve-a-simulcast-target">https://docs.mux.com/reference#retrieve-a-simulcast-target</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/get-live-stream-simulcast-target">https://docs.mux.com/api-reference/video#operation/get-live-stream-simulcast-target</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1541,7 +1542,7 @@ Video.LiveStreams.list();</code></pre>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#list-live-streams">https://docs.mux.com/reference#list-live-streams</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/list-live-streams">https://docs.mux.com/api-reference/video#operation/list-live-streams</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1633,7 +1634,7 @@ Video.LiveStreams.resetStreamKey(liveStreamId);</code></pre>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#reset-a-stream-key">https://docs.mux.com/reference#reset-a-stream-key</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/reset-stream-key">https://docs.mux.com/api-reference/video#operation/reset-stream-key</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -1724,7 +1725,7 @@ Video.LiveStreams.signalComplete(liveStreamId);</code></pre>
 </ul>
   </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/reference#signal-live-stream-complete">https://docs.mux.com/reference#signal-live-stream-complete</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/signal-live-stream-complete">https://docs.mux.com/api-reference/video#operation/signal-live-stream-complete</a></span></li></ul></div>
   
 </div>
 </div>

@@ -41,6 +41,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/deliveryUsage.js~DeliveryUsage.html">DeliveryUsage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/playbackIds.js~PlaybackIds.html">PlaybackIds</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks">webhooks</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/webhooks.js~Webhooks.html">Webhooks</a></span></span></li>
@@ -85,7 +86,7 @@ class RealTime extends Base {
    * // Returns a list of available real-time dimensions
    * Data.RealTime.dimensions();
    *
-   * @see https://api-docs.mux.com/#real-time-get
+   * @see https://docs.mux.com/api-reference/data#operation/list-realtime-dimensions
    */
   dimensions() {
     return this.http.get(`${PATH}/dimensions`);
@@ -103,7 +104,7 @@ class RealTime extends Base {
    * // Returns a list of available real-time metrics
    * Data.RealTime.metrics();
    *
-   * @see https://api-docs.mux.com/#real-time-get-1
+   * @see https://docs.mux.com/api-reference/data#operation/list-realtime-metrics
    */
   metrics() {
     return this.http.get(`${PATH}/metrics`);
@@ -123,7 +124,7 @@ class RealTime extends Base {
    * // List the breakdown information for current-concurrent-viewers by ASN for a specific time for the Windows operating system in the US
    * Data.RealTime.breakdown(&apos;current-concurrent-viewers&apos;, { dimension: &apos;asn&apos;, timestamp: 1547853000, filters: [&apos;operating_system:windows&apos;, &apos;country:US&apos;] });
    *
-   * @see https://api-docs.mux.com/#real-time-get-2
+   * @see https://docs.mux.com/api-reference/data#operation/get-realtime-breakdown
    */
   breakdown(metricId, params) {
     if (!metricId) {
@@ -154,7 +155,7 @@ class RealTime extends Base {
    * // List histogram timeseries information for video-startup-time for the Windows operating system in the US
    * Data.RealTime.histogramTimeseries(&apos;video-startup-time&apos;, { filters: [&apos;operating_system:windows&apos;, &apos;country:US&apos;] });
    *
-   * @see https://api-docs.mux.com/#real-time-get-3
+   * @see https://docs.mux.com/api-reference/data#operation/get-realtime-histogram-timeseries
    */
   histogramTimeseries(metricId, params) {
     if (!metricId) {
@@ -181,7 +182,7 @@ class RealTime extends Base {
    * // List timeseries information for the playback-failure-percentage metric along with the number of concurrent viewers for the Windows operating system in the US
    * Data.RealTime.timeseries(&apos;playback-failure-percentage&apos;, { filters: [&apos;operating_system:windows&apos;, &apos;country:US&apos;] });
    *
-   * @see https://api-docs.mux.com/#real-time-get-3
+   * @see https://docs.mux.com/api-reference/data#operation/get-realtime-timeseries
    */
   timeseries(metricId, params) {
     if (!metricId) {

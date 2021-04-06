@@ -41,6 +41,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/deliveryUsage.js~DeliveryUsage.html">DeliveryUsage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/playbackIds.js~PlaybackIds.html">PlaybackIds</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks">webhooks</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/webhooks.js~Webhooks.html">Webhooks</a></span></span></li>
@@ -83,7 +84,7 @@ class Incidents extends Base {
    * // Returns a list of all open incidents
    * Data.Incidents.list({ status: &apos;open&apos; });
    *
-   * @see https://api-docs.mux.com/#incident-get
+   * @see https://docs.mux.com/api-reference/data#operation/list-incidents
    */
   list(params) {
     return this.http.get(PATH, { params });
@@ -102,7 +103,7 @@ class Incidents extends Base {
    * //Returns the details for a single incident
    * Data.Incidents.get(&apos;ABCD1234&apos;);
    *
-   * @see https://api-docs.mux.com/#incident-get-1
+   * @see https://docs.mux.com/api-reference/data#operation/get-incident
    */
   get(incidentId) {
     if (!incidentId) {
@@ -125,7 +126,7 @@ class Incidents extends Base {
    * //Returns all the incidents that seem related to a specific incident
    * Data.Incidents.related(&apos;ABCD1234&apos;);
    *
-   * @see https://api-docs.mux.com/#incident-get-2
+   * @see https://docs.mux.com/api-reference/data#operation/list-related-incidents
    */
   related(incidentId, params) {
     if (!incidentId) {

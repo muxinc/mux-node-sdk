@@ -61,7 +61,7 @@
       },
       {
         "lineNumber": 37,
-        "line": "   * @see https://api-docs.mux.com/#filter-get-1"
+        "line": "   * @see https://docs.mux.com/api-reference/data#operation/list-filter-values"
       },
       {
         "lineNumber": 38,
@@ -147,7 +147,7 @@
       },
       {
         "lineNumber": 38,
-        "line": "   * @see https://api-docs.mux.com/#video-view-get-1"
+        "line": "   * @see https://docs.mux.com/api-reference/data#operation/list-video-views"
       },
       {
         "lineNumber": 39,
@@ -215,7 +215,7 @@
       },
       {
         "lineNumber": 277,
-        "line": "   * @see https://docs.mux.com/reference#update-mp4-support"
+        "line": "   * @see https://docs.mux.com/api-reference/video#operation/update-asset-mp4-support"
       },
       {
         "lineNumber": 278,
@@ -284,7 +284,7 @@
       },
       {
         "lineNumber": 301,
-        "line": "   * @see https://docs.mux.com/reference#update-master-access"
+        "line": "   * @see https://docs.mux.com/api-reference/video#operation/update-asset-master-access"
       },
       {
         "lineNumber": 302,
@@ -308,71 +308,71 @@
     "filePath": "src/video/resources/signingKeys.js",
     "lines": [
       {
-        "lineNumber": 84,
+        "lineNumber": 85,
         "line": "  /**"
       },
       {
-        "lineNumber": 85,
+        "lineNumber": 86,
         "line": "   * List signing keys"
       },
       {
-        "lineNumber": 86,
+        "lineNumber": 87,
         "line": "   * @param {string} keyId - The ID for the signing key"
       },
       {
-        "lineNumber": 87,
+        "lineNumber": 88,
         "line": "   * @param {object} params - Object to include as query params"
       },
       {
-        "lineNumber": 88,
+        "lineNumber": 89,
         "line": "   * @param {number} params.limit - Number of signing keys to return in the response"
       },
       {
-        "lineNumber": 89,
+        "lineNumber": 90,
         "line": "   * @param {number} params.page - Page of signing keys to return (limit * page)"
       },
       {
-        "lineNumber": 90,
+        "lineNumber": 91,
         "line": "   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API"
       },
       {
-        "lineNumber": 91,
-        "line": "   *"
-      },
-      {
         "lineNumber": 92,
-        "line": "   * @example"
+        "line": "   *"
       },
       {
         "lineNumber": 93,
-        "line": "   * const { Video } = new Mux(accessToken, secret);"
+        "line": "   * @example"
       },
       {
         "lineNumber": 94,
-        "line": "   *"
+        "line": "   * const { Video } = new Mux(accessToken, secret);"
       },
       {
         "lineNumber": 95,
-        "line": "   * // Get an asset"
-      },
-      {
-        "lineNumber": 96,
-        "line": "   * Video.SigningKeys.list();"
-      },
-      {
-        "lineNumber": 97,
         "line": "   *"
       },
       {
+        "lineNumber": 96,
+        "line": "   * // List all signing keys"
+      },
+      {
+        "lineNumber": 97,
+        "line": "   * Video.SigningKeys.list();"
+      },
+      {
         "lineNumber": 98,
-        "line": "   * @see https://docs.mux.com/v1/reference#list-url-signing-keys"
+        "line": "   *"
       },
       {
         "lineNumber": 99,
-        "line": "   */"
+        "line": "   * @see https://docs.mux.com/api-reference/video#operation/list-url-signing-keys"
       },
       {
         "lineNumber": 100,
+        "line": "   */"
+      },
+      {
+        "lineNumber": 101,
         "line": "  list(params = {}) {"
       }
     ],

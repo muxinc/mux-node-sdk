@@ -41,6 +41,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/deliveryUsage.js~DeliveryUsage.html">DeliveryUsage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/playbackIds.js~PlaybackIds.html">PlaybackIds</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks">webhooks</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/webhooks.js~Webhooks.html">Webhooks</a></span></span></li>
@@ -58,6 +59,7 @@
 const Assets = require(&apos;./resources/assets&apos;);
 const Base = require(&apos;../base&apos;);
 const LiveStreams = require(&apos;./resources/liveStreams&apos;);
+const PlaybackIds = require(&apos;./resources/playbackIds&apos;);
 const Uploads = require(&apos;./resources/uploads&apos;);
 const SigningKeys = require(&apos;./resources/signingKeys&apos;);
 const DeliveryUsage = require(&apos;./resources/deliveryUsage&apos;);
@@ -93,6 +95,9 @@ class Video extends Base {
 
     /** @type {LiveStreams} */
     this.LiveStreams = new LiveStreams(this);
+
+    /** @type {PlaybackIds} */
+    this.PlaybackIds = new PlaybackIds(this);
 
     /** @Type {Uploads} */
     this.Uploads = new Uploads(this);

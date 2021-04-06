@@ -41,6 +41,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/deliveryUsage.js~DeliveryUsage.html">DeliveryUsage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/playbackIds.js~PlaybackIds.html">PlaybackIds</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks">webhooks</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/webhooks.js~Webhooks.html">Webhooks</a></span></span></li>
@@ -94,7 +95,13 @@ Video.SigningKeys.create();</code></pre>
     </div>
 </div>
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/signingKeys.spec.js.html#lineNumber7">Unit::SigningKeys</a></span></li>
+</ul>
+  </div>
 
   
 </div>
@@ -247,7 +254,7 @@ Video.SigningKeys.create();</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/video/resources/signingKeys.js.html#lineNumber41">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/video/resources/signingKeys.js.html#lineNumber42">source</a></span></span>
     </span>
   </h3>
 
@@ -293,13 +300,14 @@ Video.SigningKeys.create();</code></pre>
       <pre class="prettyprint source-code"><code data-ice="exampleCode">const muxClient = new Mux(accessToken, secret);
 const { Video } = muxClient;
 
-const signingKey = await Video.SigningKeys.create();</code></pre>
+// Create a new signing key
+Video.SigningKeys.create();</code></pre>
     </div>
 </div>
 
   
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/v1/reference#url-signing-keys">https://docs.mux.com/v1/reference#url-signing-keys</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/create-url-signing-key">https://docs.mux.com/api-reference/video#operation/create-url-signing-key</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -314,7 +322,7 @@ const signingKey = await Video.SigningKeys.create();</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/video/resources/signingKeys.js.html#lineNumber78">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/video/resources/signingKeys.js.html#lineNumber79">source</a></span></span>
     </span>
   </h3>
 
@@ -376,14 +384,21 @@ const signingKey = await Video.SigningKeys.create();</code></pre>
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
 
-// Get an asset
+// Delete a signing key
 Video.SigningKeys.del(keyId);</code></pre>
     </div>
 </div>
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/signingKeys.spec.js.html#lineNumber36">Unit::SigningKeys SigningKeys.del</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/signingKeys.spec.js.html#lineNumber38">Unit::SigningKeys SigningKeys.del throws an error when an key id is not given</a></span></li>
+</ul>
+  </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/v1/reference#delete-a-url-signing-key">https://docs.mux.com/v1/reference#delete-a-url-signing-key</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/delete-url-signing-key">https://docs.mux.com/api-reference/video#operation/delete-url-signing-key</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -398,7 +413,7 @@ Video.SigningKeys.del(keyId);</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/video/resources/signingKeys.js.html#lineNumber58">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/video/resources/signingKeys.js.html#lineNumber59">source</a></span></span>
     </span>
   </h3>
 
@@ -460,14 +475,21 @@ Video.SigningKeys.del(keyId);</code></pre>
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
 
-// Get an asset
+// Get a signing key
 Video.SigningKeys.get(keyId);</code></pre>
     </div>
 </div>
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/signingKeys.spec.js.html#lineNumber21">Unit::SigningKeys SigningKeys.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/signingKeys.spec.js.html#lineNumber23">Unit::SigningKeys SigningKeys.get throws an error when an key id is not given</a></span></li>
+</ul>
+  </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/v1/reference#retrieve-a-url-signing-key">https://docs.mux.com/v1/reference#retrieve-a-url-signing-key</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/get-url-signing-key">https://docs.mux.com/api-reference/video#operation/get-url-signing-key</a></span></li></ul></div>
   
 </div>
 <div class="detail" data-ice="detail">
@@ -482,7 +504,7 @@ Video.SigningKeys.get(keyId);</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/video/resources/signingKeys.js.html#lineNumber101">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/video/resources/signingKeys.js.html#lineNumber102">source</a></span></span>
     </span>
   </h3>
 
@@ -565,14 +587,21 @@ Video.SigningKeys.get(keyId);</code></pre>
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">const { Video } = new Mux(accessToken, secret);
 
-// Get an asset
+// List all signing keys
 Video.SigningKeys.list();</code></pre>
     </div>
 </div>
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/signingKeys.spec.js.html#lineNumber46">Unit::SigningKeys SigningKeys.list</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/signingKeys.spec.js.html#lineNumber48">Unit::SigningKeys SigningKeys.list makes a GET request to list 100 signing keys offset by 2 pages</a></span></li>
+</ul>
+  </div>
 
-  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/v1/reference#list-url-signing-keys">https://docs.mux.com/v1/reference#list-url-signing-keys</a></span></li></ul></div>
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/list-url-signing-keys">https://docs.mux.com/api-reference/video#operation/list-url-signing-keys</a></span></li></ul></div>
   
 </div>
 </div>

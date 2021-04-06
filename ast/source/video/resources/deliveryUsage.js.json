@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 1143,
+  "end": 1168,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 1143,
+    "end": 1168,
     "loc": {
       "start": {
         "line": 1,
@@ -246,7 +246,7 @@
       {
         "type": "Identifier",
         "start": 463,
-        "end": 1111,
+        "end": 1136,
         "loc": {
           "start": {
             "line": 21,
@@ -295,7 +295,7 @@
         "body": {
           "type": "ClassBody",
           "start": 496,
-          "end": 1111,
+          "end": 1136,
           "loc": {
             "start": {
               "line": 21,
@@ -309,8 +309,8 @@
           "body": [
             {
               "type": "ClassMethod",
-              "start": 1047,
-              "end": 1109,
+              "start": 1072,
+              "end": 1134,
               "loc": {
                 "start": {
                   "line": 35,
@@ -325,8 +325,8 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 1047,
-                "end": 1051,
+                "start": 1072,
+                "end": 1076,
                 "loc": {
                   "start": {
                     "line": 35,
@@ -349,8 +349,8 @@
               "params": [
                 {
                   "type": "Identifier",
-                  "start": 1052,
-                  "end": 1058,
+                  "start": 1077,
+                  "end": 1083,
                   "loc": {
                     "start": {
                       "line": 35,
@@ -367,8 +367,8 @@
               ],
               "body": {
                 "type": "BlockStatement",
-                "start": 1060,
-                "end": 1109,
+                "start": 1085,
+                "end": 1134,
                 "loc": {
                   "start": {
                     "line": 35,
@@ -382,8 +382,8 @@
                 "body": [
                   {
                     "type": "ReturnStatement",
-                    "start": 1066,
-                    "end": 1105,
+                    "start": 1091,
+                    "end": 1130,
                     "loc": {
                       "start": {
                         "line": 36,
@@ -396,8 +396,8 @@
                     },
                     "argument": {
                       "type": "CallExpression",
-                      "start": 1073,
-                      "end": 1104,
+                      "start": 1098,
+                      "end": 1129,
                       "loc": {
                         "start": {
                           "line": 36,
@@ -410,8 +410,8 @@
                       },
                       "callee": {
                         "type": "MemberExpression",
-                        "start": 1073,
-                        "end": 1086,
+                        "start": 1098,
+                        "end": 1111,
                         "loc": {
                           "start": {
                             "line": 36,
@@ -424,8 +424,8 @@
                         },
                         "object": {
                           "type": "MemberExpression",
-                          "start": 1073,
-                          "end": 1082,
+                          "start": 1098,
+                          "end": 1107,
                           "loc": {
                             "start": {
                               "line": 36,
@@ -438,8 +438,8 @@
                           },
                           "object": {
                             "type": "ThisExpression",
-                            "start": 1073,
-                            "end": 1077,
+                            "start": 1098,
+                            "end": 1102,
                             "loc": {
                               "start": {
                                 "line": 36,
@@ -453,8 +453,8 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 1078,
-                            "end": 1082,
+                            "start": 1103,
+                            "end": 1107,
                             "loc": {
                               "start": {
                                 "line": 36,
@@ -472,8 +472,8 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 1083,
-                          "end": 1086,
+                          "start": 1108,
+                          "end": 1111,
                           "loc": {
                             "start": {
                               "line": 36,
@@ -492,8 +492,8 @@
                       "arguments": [
                         {
                           "type": "Identifier",
-                          "start": 1087,
-                          "end": 1091,
+                          "start": 1112,
+                          "end": 1116,
                           "loc": {
                             "start": {
                               "line": 36,
@@ -509,8 +509,8 @@
                         },
                         {
                           "type": "ObjectExpression",
-                          "start": 1093,
-                          "end": 1103,
+                          "start": 1118,
+                          "end": 1128,
                           "loc": {
                             "start": {
                               "line": 36,
@@ -524,8 +524,8 @@
                           "properties": [
                             {
                               "type": "ObjectProperty",
-                              "start": 1095,
-                              "end": 1101,
+                              "start": 1120,
+                              "end": 1126,
                               "loc": {
                                 "start": {
                                   "line": 36,
@@ -541,8 +541,8 @@
                               "computed": false,
                               "key": {
                                 "type": "Identifier",
-                                "start": 1095,
-                                "end": 1101,
+                                "start": 1120,
+                                "end": 1126,
                                 "loc": {
                                   "start": {
                                     "line": 36,
@@ -558,8 +558,8 @@
                               },
                               "value": {
                                 "type": "Identifier",
-                                "start": 1095,
-                                "end": 1101,
+                                "start": 1120,
+                                "end": 1126,
                                 "loc": {
                                   "start": {
                                     "line": 36,
@@ -588,9 +588,9 @@
               "leadingComments": [
                 {
                   "type": "CommentBlock",
-                  "value": "*\n   * List all delivery usage during a timeframe for a Mux Environment (tied to your access token)\n   * @param {Object} params - Request JSON parameters (e.g timeframe)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const { Video } = new Mux(accessToken, secret);\n   *\n   * // List all delivery usage for a Mux Environment within a timeframe\n   * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});\n   *\n   * @see https://docs.mux.com/reference#delivery-usage\n   ",
+                  "value": "*\n   * List all delivery usage during a timeframe for a Mux Environment (tied to your access token)\n   * @param {Object} params - Request JSON parameters (e.g timeframe)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const { Video } = new Mux(accessToken, secret);\n   *\n   * // List all delivery usage for a Mux Environment within a timeframe\n   * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});\n   *\n   * @see https://docs.mux.com/api-reference/video#operation/list-delivery-usage\n   ",
                   "start": 500,
-                  "end": 1044,
+                  "end": 1069,
                   "loc": {
                     "start": {
                       "line": 22,
@@ -612,8 +612,8 @@
       },
       {
         "type": "Identifier",
-        "start": 1113,
-        "end": 1142,
+        "start": 1138,
+        "end": 1167,
         "loc": {
           "start": {
             "line": 40,
@@ -626,8 +626,8 @@
         },
         "declaration": {
           "type": "Identifier",
-          "start": 1128,
-          "end": 1141,
+          "start": 1153,
+          "end": 1166,
           "loc": {
             "start": {
               "line": 40,
@@ -647,8 +647,8 @@
       },
       {
         "type": "ExportDefaultDeclaration",
-        "start": 1113,
-        "end": 1142,
+        "start": 1138,
+        "end": 1167,
         "loc": {
           "start": {
             "line": 40,
@@ -662,7 +662,7 @@
         "declaration": {
           "type": "ClassDeclaration",
           "start": 463,
-          "end": 1111,
+          "end": 1136,
           "loc": {
             "start": {
               "line": 21,
@@ -711,7 +711,7 @@
           "body": {
             "type": "ClassBody",
             "start": 496,
-            "end": 1111,
+            "end": 1136,
             "loc": {
               "start": {
                 "line": 21,
@@ -725,8 +725,8 @@
             "body": [
               {
                 "type": "ClassMethod",
-                "start": 1047,
-                "end": 1109,
+                "start": 1072,
+                "end": 1134,
                 "loc": {
                   "start": {
                     "line": 35,
@@ -741,8 +741,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 1047,
-                  "end": 1051,
+                  "start": 1072,
+                  "end": 1076,
                   "loc": {
                     "start": {
                       "line": 35,
@@ -765,8 +765,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 1052,
-                    "end": 1058,
+                    "start": 1077,
+                    "end": 1083,
                     "loc": {
                       "start": {
                         "line": 35,
@@ -783,8 +783,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 1060,
-                  "end": 1109,
+                  "start": 1085,
+                  "end": 1134,
                   "loc": {
                     "start": {
                       "line": 35,
@@ -798,8 +798,8 @@
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 1066,
-                      "end": 1105,
+                      "start": 1091,
+                      "end": 1130,
                       "loc": {
                         "start": {
                           "line": 36,
@@ -812,8 +812,8 @@
                       },
                       "argument": {
                         "type": "CallExpression",
-                        "start": 1073,
-                        "end": 1104,
+                        "start": 1098,
+                        "end": 1129,
                         "loc": {
                           "start": {
                             "line": 36,
@@ -826,8 +826,8 @@
                         },
                         "callee": {
                           "type": "MemberExpression",
-                          "start": 1073,
-                          "end": 1086,
+                          "start": 1098,
+                          "end": 1111,
                           "loc": {
                             "start": {
                               "line": 36,
@@ -840,8 +840,8 @@
                           },
                           "object": {
                             "type": "MemberExpression",
-                            "start": 1073,
-                            "end": 1082,
+                            "start": 1098,
+                            "end": 1107,
                             "loc": {
                               "start": {
                                 "line": 36,
@@ -854,8 +854,8 @@
                             },
                             "object": {
                               "type": "ThisExpression",
-                              "start": 1073,
-                              "end": 1077,
+                              "start": 1098,
+                              "end": 1102,
                               "loc": {
                                 "start": {
                                   "line": 36,
@@ -869,8 +869,8 @@
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 1078,
-                              "end": 1082,
+                              "start": 1103,
+                              "end": 1107,
                               "loc": {
                                 "start": {
                                   "line": 36,
@@ -888,8 +888,8 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 1083,
-                            "end": 1086,
+                            "start": 1108,
+                            "end": 1111,
                             "loc": {
                               "start": {
                                 "line": 36,
@@ -908,8 +908,8 @@
                         "arguments": [
                           {
                             "type": "Identifier",
-                            "start": 1087,
-                            "end": 1091,
+                            "start": 1112,
+                            "end": 1116,
                             "loc": {
                               "start": {
                                 "line": 36,
@@ -925,8 +925,8 @@
                           },
                           {
                             "type": "ObjectExpression",
-                            "start": 1093,
-                            "end": 1103,
+                            "start": 1118,
+                            "end": 1128,
                             "loc": {
                               "start": {
                                 "line": 36,
@@ -940,8 +940,8 @@
                             "properties": [
                               {
                                 "type": "ObjectProperty",
-                                "start": 1095,
-                                "end": 1101,
+                                "start": 1120,
+                                "end": 1126,
                                 "loc": {
                                   "start": {
                                     "line": 36,
@@ -957,8 +957,8 @@
                                 "computed": false,
                                 "key": {
                                   "type": "Identifier",
-                                  "start": 1095,
-                                  "end": 1101,
+                                  "start": 1120,
+                                  "end": 1126,
                                   "loc": {
                                     "start": {
                                       "line": 36,
@@ -974,8 +974,8 @@
                                 },
                                 "value": {
                                   "type": "Identifier",
-                                  "start": 1095,
-                                  "end": 1101,
+                                  "start": 1120,
+                                  "end": 1126,
                                   "loc": {
                                     "start": {
                                       "line": 36,
@@ -1004,9 +1004,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\n   * List all delivery usage during a timeframe for a Mux Environment (tied to your access token)\n   * @param {Object} params - Request JSON parameters (e.g timeframe)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const { Video } = new Mux(accessToken, secret);\n   *\n   * // List all delivery usage for a Mux Environment within a timeframe\n   * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});\n   *\n   * @see https://docs.mux.com/reference#delivery-usage\n   ",
+                    "value": "*\n   * List all delivery usage during a timeframe for a Mux Environment (tied to your access token)\n   * @param {Object} params - Request JSON parameters (e.g timeframe)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const { Video } = new Mux(accessToken, secret);\n   *\n   * // List all delivery usage for a Mux Environment within a timeframe\n   * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});\n   *\n   * @see https://docs.mux.com/api-reference/video#operation/list-delivery-usage\n   ",
                     "start": 500,
-                    "end": 1044,
+                    "end": 1069,
                     "loc": {
                       "start": {
                         "line": 22,
@@ -1099,9 +1099,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n   * List all delivery usage during a timeframe for a Mux Environment (tied to your access token)\n   * @param {Object} params - Request JSON parameters (e.g timeframe)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const { Video } = new Mux(accessToken, secret);\n   *\n   * // List all delivery usage for a Mux Environment within a timeframe\n   * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});\n   *\n   * @see https://docs.mux.com/reference#delivery-usage\n   ",
+      "value": "*\n   * List all delivery usage during a timeframe for a Mux Environment (tied to your access token)\n   * @param {Object} params - Request JSON parameters (e.g timeframe)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const { Video } = new Mux(accessToken, secret);\n   *\n   * // List all delivery usage for a Mux Environment within a timeframe\n   * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});\n   *\n   * @see https://docs.mux.com/api-reference/video#operation/list-delivery-usage\n   ",
       "start": 500,
-      "end": 1044,
+      "end": 1069,
       "loc": {
         "start": {
           "line": 22,
@@ -1565,9 +1565,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n   * List all delivery usage during a timeframe for a Mux Environment (tied to your access token)\n   * @param {Object} params - Request JSON parameters (e.g timeframe)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const { Video } = new Mux(accessToken, secret);\n   *\n   * // List all delivery usage for a Mux Environment within a timeframe\n   * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});\n   *\n   * @see https://docs.mux.com/reference#delivery-usage\n   ",
+      "value": "*\n   * List all delivery usage during a timeframe for a Mux Environment (tied to your access token)\n   * @param {Object} params - Request JSON parameters (e.g timeframe)\n   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API\n   *\n   * @example\n   * const { Video } = new Mux(accessToken, secret);\n   *\n   * // List all delivery usage for a Mux Environment within a timeframe\n   * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});\n   *\n   * @see https://docs.mux.com/api-reference/video#operation/list-delivery-usage\n   ",
       "start": 500,
-      "end": 1044,
+      "end": 1069,
       "loc": {
         "start": {
           "line": 22,
@@ -1592,8 +1592,8 @@
         "binop": null
       },
       "value": "list",
-      "start": 1047,
-      "end": 1051,
+      "start": 1072,
+      "end": 1076,
       "loc": {
         "start": {
           "line": 35,
@@ -1617,8 +1617,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1051,
-      "end": 1052,
+      "start": 1076,
+      "end": 1077,
       "loc": {
         "start": {
           "line": 35,
@@ -1643,8 +1643,8 @@
         "binop": null
       },
       "value": "params",
-      "start": 1052,
-      "end": 1058,
+      "start": 1077,
+      "end": 1083,
       "loc": {
         "start": {
           "line": 35,
@@ -1668,8 +1668,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1058,
-      "end": 1059,
+      "start": 1083,
+      "end": 1084,
       "loc": {
         "start": {
           "line": 35,
@@ -1693,8 +1693,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1060,
-      "end": 1061,
+      "start": 1085,
+      "end": 1086,
       "loc": {
         "start": {
           "line": 35,
@@ -1721,8 +1721,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 1066,
-      "end": 1072,
+      "start": 1091,
+      "end": 1097,
       "loc": {
         "start": {
           "line": 36,
@@ -1749,8 +1749,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 1073,
-      "end": 1077,
+      "start": 1098,
+      "end": 1102,
       "loc": {
         "start": {
           "line": 36,
@@ -1775,8 +1775,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1077,
-      "end": 1078,
+      "start": 1102,
+      "end": 1103,
       "loc": {
         "start": {
           "line": 36,
@@ -1801,8 +1801,8 @@
         "binop": null
       },
       "value": "http",
-      "start": 1078,
-      "end": 1082,
+      "start": 1103,
+      "end": 1107,
       "loc": {
         "start": {
           "line": 36,
@@ -1827,8 +1827,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1082,
-      "end": 1083,
+      "start": 1107,
+      "end": 1108,
       "loc": {
         "start": {
           "line": 36,
@@ -1853,8 +1853,8 @@
         "binop": null
       },
       "value": "get",
-      "start": 1083,
-      "end": 1086,
+      "start": 1108,
+      "end": 1111,
       "loc": {
         "start": {
           "line": 36,
@@ -1878,8 +1878,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1086,
-      "end": 1087,
+      "start": 1111,
+      "end": 1112,
       "loc": {
         "start": {
           "line": 36,
@@ -1904,8 +1904,8 @@
         "binop": null
       },
       "value": "PATH",
-      "start": 1087,
-      "end": 1091,
+      "start": 1112,
+      "end": 1116,
       "loc": {
         "start": {
           "line": 36,
@@ -1930,8 +1930,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1091,
-      "end": 1092,
+      "start": 1116,
+      "end": 1117,
       "loc": {
         "start": {
           "line": 36,
@@ -1955,8 +1955,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1093,
-      "end": 1094,
+      "start": 1118,
+      "end": 1119,
       "loc": {
         "start": {
           "line": 36,
@@ -1981,8 +1981,8 @@
         "binop": null
       },
       "value": "params",
-      "start": 1095,
-      "end": 1101,
+      "start": 1120,
+      "end": 1126,
       "loc": {
         "start": {
           "line": 36,
@@ -2006,8 +2006,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1102,
-      "end": 1103,
+      "start": 1127,
+      "end": 1128,
       "loc": {
         "start": {
           "line": 36,
@@ -2031,8 +2031,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1103,
-      "end": 1104,
+      "start": 1128,
+      "end": 1129,
       "loc": {
         "start": {
           "line": 36,
@@ -2057,8 +2057,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1104,
-      "end": 1105,
+      "start": 1129,
+      "end": 1130,
       "loc": {
         "start": {
           "line": 36,
@@ -2082,8 +2082,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1108,
-      "end": 1109,
+      "start": 1133,
+      "end": 1134,
       "loc": {
         "start": {
           "line": 37,
@@ -2107,8 +2107,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1110,
-      "end": 1111,
+      "start": 1135,
+      "end": 1136,
       "loc": {
         "start": {
           "line": 38,
@@ -2135,8 +2135,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 1113,
-      "end": 1119,
+      "start": 1138,
+      "end": 1144,
       "loc": {
         "start": {
           "line": 40,
@@ -2163,8 +2163,8 @@
         "updateContext": null
       },
       "value": "default",
-      "start": 1120,
-      "end": 1127,
+      "start": 1145,
+      "end": 1152,
       "loc": {
         "start": {
           "line": 40,
@@ -2189,8 +2189,8 @@
         "binop": null
       },
       "value": "DeliveryUsage",
-      "start": 1128,
-      "end": 1141,
+      "start": 1153,
+      "end": 1166,
       "loc": {
         "start": {
           "line": 40,
@@ -2215,8 +2215,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1141,
-      "end": 1142,
+      "start": 1166,
+      "end": 1167,
       "loc": {
         "start": {
           "line": 40,
@@ -2241,8 +2241,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1143,
-      "end": 1143,
+      "start": 1168,
+      "end": 1168,
       "loc": {
         "start": {
           "line": 41,

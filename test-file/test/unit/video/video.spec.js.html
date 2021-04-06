@@ -41,6 +41,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/deliveryUsage.js~DeliveryUsage.html">DeliveryUsage</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/playbackIds.js~PlaybackIds.html">PlaybackIds</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks">webhooks</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/webhooks.js~Webhooks.html">Webhooks</a></span></span></li>
@@ -55,6 +56,9 @@ const Video = require(&apos;../../../src/video/video&apos;);
 const Assets = require(&apos;../../../src/video/resources/assets&apos;);
 const LiveStreams = require(&apos;../../../src/video/resources/liveStreams&apos;);
 const Uploads = require(&apos;../../../src/video/resources/uploads&apos;);
+const PlaybackIds = require(&apos;../../../src/video/resources/playbackIds&apos;);
+const DeliveryUsage = require(&apos;../../../src/video/resources/deliveryUsage&apos;);
+const SigningKeys = require(&apos;../../../src/video/resources/signingKeys&apos;);
 
 /** @test {Video} */
 describe(&apos;Unit::Video&apos;, () =&gt; {
@@ -81,8 +85,10 @@ describe(&apos;Unit::Video&apos;, () =&gt; {
       expect(() =&gt; new Video(testApiKey, testSecret)).to.not.throw();
       expect(TestVideo.Assets).to.be.an.instanceof(Assets);
       expect(TestVideo.LiveStreams).to.be.an.instanceof(LiveStreams);
-      expect(TestVideo.LiveStreams).to.be.an.instanceof(LiveStreams);
+      expect(TestVideo.DeliveryUsage).to.be.an.instanceof(DeliveryUsage);
+      expect(TestVideo.PlaybackIds).to.be.an.instanceof(PlaybackIds);
       expect(TestVideo.Uploads).to.be.an.instanceof(Uploads);
+      expect(TestVideo.SigningKeys).to.be.an.instanceof(SigningKeys);
     });
   });
 });

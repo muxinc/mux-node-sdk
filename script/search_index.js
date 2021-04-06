@@ -60,6 +60,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "@mux/mux-node/src/video/resources/playbackids.js~playbackids",
+    "class/src/video/resources/playbackIds.js~PlaybackIds.html",
+    "<span>PlaybackIds</span> <span class=\"search-result-import-path\">@mux/mux-node/src/video/resources/playbackIds.js</span>",
+    "class"
+  ],
+  [
     "@mux/mux-node/src/data/resources/real_time.js~realtime",
     "class/src/data/resources/real_time.js~RealTime.html",
     "<span>RealTime</span> <span class=\"search-result-import-path\">@mux/mux-node/src/data/resources/real_time.js</span>",
@@ -786,6 +792,48 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
+    "playbackids src/video/resources/playbackids.js~playbackids,playbackids",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber6",
+    "Unit::PlaybackIds",
+    "test"
+  ],
+  [
+    "playbackids src/video/resources/playbackids.js~playbackids,playbackids",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber20",
+    "Unit::PlaybackIds PlaybackIds",
+    "test"
+  ],
+  [
+    "playbackids src/video/resources/playbackids.js~playbackids,playbackids",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber36",
+    "Unit::PlaybackIds PlaybackIds creates a new PlaybackIds instance",
+    "test"
+  ],
+  [
+    "playbackids src/video/resources/playbackids.js~playbackids,playbackids",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber29",
+    "Unit::PlaybackIds PlaybackIds throws an error if a secret key is not given",
+    "test"
+  ],
+  [
+    "playbackids src/video/resources/playbackids.js~playbackids,playbackids",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber22",
+    "Unit::PlaybackIds PlaybackIds throws an error if an api key is not given",
+    "test"
+  ],
+  [
+    "playbackids.get src/video/resources/playbackids.js~playbackids#get,playbackids.get",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber45",
+    "Unit::PlaybackIds PlaybackIds.get",
+    "test"
+  ],
+  [
+    "playbackids.get src/video/resources/playbackids.js~playbackids#get,playbackids.get",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html#lineNumber47",
+    "Unit::PlaybackIds PlaybackIds.get throws an error when an playback ID is not given",
+    "test"
+  ],
+  [
     "realtime src/data/resources/real_time.js~realtime,realtime",
     "test-file/test/unit/data/resources/real_time.spec.js.html#lineNumber6",
     "Unit::RealTime",
@@ -852,45 +900,99 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
+    "signingkeys src/video/resources/signingkeys.js~signingkeys,signingkeys",
+    "test-file/test/unit/video/resources/signingKeys.spec.js.html#lineNumber7",
+    "Unit::SigningKeys",
+    "test"
+  ],
+  [
+    "signingkeys.del src/video/resources/signingkeys.js~signingkeys#del,signingkeys.del",
+    "test-file/test/unit/video/resources/signingKeys.spec.js.html#lineNumber36",
+    "Unit::SigningKeys SigningKeys.del",
+    "test"
+  ],
+  [
+    "signingkeys.del src/video/resources/signingkeys.js~signingkeys#del,signingkeys.del",
+    "test-file/test/unit/video/resources/signingKeys.spec.js.html#lineNumber38",
+    "Unit::SigningKeys SigningKeys.del throws an error when an key id is not given",
+    "test"
+  ],
+  [
+    "signingkeys.get src/video/resources/signingkeys.js~signingkeys#get,signingkeys.get",
+    "test-file/test/unit/video/resources/signingKeys.spec.js.html#lineNumber21",
+    "Unit::SigningKeys SigningKeys.get",
+    "test"
+  ],
+  [
+    "signingkeys.get src/video/resources/signingkeys.js~signingkeys#get,signingkeys.get",
+    "test-file/test/unit/video/resources/signingKeys.spec.js.html#lineNumber23",
+    "Unit::SigningKeys SigningKeys.get throws an error when an key id is not given",
+    "test"
+  ],
+  [
+    "signingkeys.list src/video/resources/signingkeys.js~signingkeys#list,signingkeys.list",
+    "test-file/test/unit/video/resources/signingKeys.spec.js.html#lineNumber46",
+    "Unit::SigningKeys SigningKeys.list",
+    "test"
+  ],
+  [
+    "signingkeys.list src/video/resources/signingkeys.js~signingkeys#list,signingkeys.list",
+    "test-file/test/unit/video/resources/signingKeys.spec.js.html#lineNumber48",
+    "Unit::SigningKeys SigningKeys.list makes a GET request to list 100 signing keys offset by 2 pages",
+    "test"
+  ],
+  [
     "uploads src/video/resources/uploads.js~uploads,uploads",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber6",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber7",
     "Unit::Uploads",
     "test"
   ],
   [
     "uploads.cancel src/video/resources/uploads.js~uploads#cancel,uploads.cancel",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber45",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber46",
     "Unit::Uploads Uploads.cancel",
     "test"
   ],
   [
     "uploads.del uploads.del,uploads.del",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber47",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber48",
     "Unit::Uploads Uploads.cancel throws an error when an upload id is not given",
     "test"
   ],
   [
     "uploads.create src/video/resources/uploads.js~uploads#create,uploads.create",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber20",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber21",
     "Unit::Uploads Uploads.create",
     "test"
   ],
   [
     "uploads.create src/video/resources/uploads.js~uploads#create,uploads.create",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber22",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber23",
     "Unit::Uploads Uploads.create throws an error if no params are given",
     "test"
   ],
   [
     "uploads.get src/video/resources/uploads.js~uploads#get,uploads.get",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber30",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber31",
     "Unit::Uploads Uploads.get",
     "test"
   ],
   [
     "uploads.get src/video/resources/uploads.js~uploads#get,uploads.get",
-    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber32",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber33",
     "Unit::Uploads Uploads.get throws an error when an upload id is not given",
+    "test"
+  ],
+  [
+    "uploads.list src/video/resources/uploads.js~uploads#list,uploads.list",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber56",
+    "Unit::Uploads Uploads.list",
+    "test"
+  ],
+  [
+    "uploads.list src/video/resources/uploads.js~uploads#list,uploads.list",
+    "test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber58",
+    "Unit::Uploads Uploads.list makes a GET request to list 100 uploads offset by 2 pages",
     "test"
   ],
   [
@@ -979,31 +1081,31 @@ window.esdocSearchIndex = [
   ],
   [
     "video src/mux.js~mux#video,video",
-    "test-file/test/unit/video/video.spec.js.html#lineNumber8",
+    "test-file/test/unit/video/video.spec.js.html#lineNumber11",
     "Unit::Video",
     "test"
   ],
   [
     "video src/mux.js~mux#video,video",
-    "test-file/test/unit/video/video.spec.js.html#lineNumber13",
+    "test-file/test/unit/video/video.spec.js.html#lineNumber16",
     "Unit::Video Video",
     "test"
   ],
   [
     "video src/mux.js~mux#video,video",
-    "test-file/test/unit/video/video.spec.js.html#lineNumber27",
+    "test-file/test/unit/video/video.spec.js.html#lineNumber30",
     "Unit::Video Video creates a new Video instance",
     "test"
   ],
   [
     "video src/mux.js~mux#video,video",
-    "test-file/test/unit/video/video.spec.js.html#lineNumber20",
+    "test-file/test/unit/video/video.spec.js.html#lineNumber23",
     "Unit::Video Video throws an error if a secret key is not given",
     "test"
   ],
   [
     "video src/mux.js~mux#video,video",
-    "test-file/test/unit/video/video.spec.js.html#lineNumber15",
+    "test-file/test/unit/video/video.spec.js.html#lineNumber18",
     "Unit::Video Video throws an error if an api key is not given",
     "test"
   ],
@@ -1782,6 +1884,18 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/video/resources/playbackids.js",
+    "file/src/video/resources/playbackIds.js.html",
+    "src/video/resources/playbackIds.js",
+    "file"
+  ],
+  [
+    "src/video/resources/playbackids.js~playbackids#get",
+    "class/src/video/resources/playbackIds.js~PlaybackIds.html#instance-method-get",
+    "src/video/resources/playbackIds.js~PlaybackIds#get",
+    "method"
+  ],
+  [
     "src/video/resources/signingkeys.js",
     "file/src/video/resources/signingKeys.js.html",
     "src/video/resources/signingKeys.js",
@@ -1833,6 +1947,12 @@ window.esdocSearchIndex = [
     "src/video/resources/uploads.js~uploads#get",
     "class/src/video/resources/uploads.js~Uploads.html#instance-method-get",
     "src/video/resources/uploads.js~Uploads#get",
+    "method"
+  ],
+  [
+    "src/video/resources/uploads.js~uploads#list",
+    "class/src/video/resources/uploads.js~Uploads.html#instance-method-list",
+    "src/video/resources/uploads.js~Uploads#list",
     "method"
   ],
   [
@@ -1959,6 +2079,18 @@ window.esdocSearchIndex = [
     "test/unit/video/resources/livestreams.spec.js",
     "test-file/test/unit/video/resources/liveStreams.spec.js.html",
     "test/unit/video/resources/liveStreams.spec.js",
+    "testFile"
+  ],
+  [
+    "test/unit/video/resources/playbackids.spec.js",
+    "test-file/test/unit/video/resources/playbackIds.spec.js.html",
+    "test/unit/video/resources/playbackIds.spec.js",
+    "testFile"
+  ],
+  [
+    "test/unit/video/resources/signingkeys.spec.js",
+    "test-file/test/unit/video/resources/signingKeys.spec.js.html",
+    "test/unit/video/resources/signingKeys.spec.js",
     "testFile"
   ],
   [

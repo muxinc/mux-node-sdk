@@ -1,7 +1,7 @@
 {
-  "coverage": "83.59%",
-  "expectCount": 128,
-  "actualCount": 107,
+  "coverage": "84.32%",
+  "expectCount": 134,
+  "actualCount": 113,
   "files": {
     "src/base.js": {
       "expectCount": 13,
@@ -90,19 +90,24 @@
       "actualCount": 16,
       "undocumentLines": []
     },
+    "src/video/resources/playbackIds.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
     "src/video/resources/signingKeys.js": {
       "expectCount": 7,
       "actualCount": 7,
       "undocumentLines": []
     },
     "src/video/resources/uploads.js": {
-      "expectCount": 6,
-      "actualCount": 6,
+      "expectCount": 7,
+      "actualCount": 7,
       "undocumentLines": []
     },
     "src/video/video.js": {
-      "expectCount": 7,
-      "actualCount": 7,
+      "expectCount": 8,
+      "actualCount": 8,
       "undocumentLines": []
     },
     "src/webhooks/resources/verify_header.js": {
