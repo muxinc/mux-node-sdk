@@ -35,7 +35,7 @@ class Filters extends Base {
    * // Lists the values for a filter along with a total count of related views
    * Data.Filters.get('browser', { timeframe: ['7:days'] });
    *
-   * @see https://api-docs.mux.com/#filter-get-1
+   * @see https://docs.mux.com/api-reference/data#operation/list-filter-values
    */
   get(filterId, params) {
     if (!filterId) {
@@ -55,7 +55,7 @@ class Filters extends Base {
    * // Lists the available video view exports along with URLs to retrieve them
    * Data.Filters.list();
    *
-   * @see https://api-docs.mux.com/#filter-get
+   * @see https://docs.mux.com/api-reference/data#operation/list-filters
    */
   list() {
     return this.http.get(PATH);

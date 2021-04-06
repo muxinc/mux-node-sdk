@@ -31,7 +31,7 @@ class Incidents extends Base {
    * // Returns a list of all open incidents
    * Data.Incidents.list({ status: 'open' });
    *
-   * @see https://api-docs.mux.com/#incident-get
+   * @see https://docs.mux.com/api-reference/data#operation/list-incidents
    */
   list(params) {
     return this.http.get(PATH, { params });
@@ -50,7 +50,7 @@ class Incidents extends Base {
    * //Returns the details for a single incident
    * Data.Incidents.get('ABCD1234');
    *
-   * @see https://api-docs.mux.com/#incident-get-1
+   * @see https://docs.mux.com/api-reference/data#operation/get-incident
    */
   get(incidentId) {
     if (!incidentId) {
@@ -73,7 +73,7 @@ class Incidents extends Base {
    * //Returns all the incidents that seem related to a specific incident
    * Data.Incidents.related('ABCD1234');
    *
-   * @see https://api-docs.mux.com/#incident-get-2
+   * @see https://docs.mux.com/api-reference/data#operation/list-related-incidents
    */
   related(incidentId, params) {
     if (!incidentId) {

@@ -30,7 +30,7 @@ class DeliveryUsage extends Base {
    * // List all delivery usage for a Mux Environment within a timeframe
    * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});
    *
-   * @see https://docs.mux.com/reference#delivery-usage
+   * @see https://docs.mux.com/api-reference/video#operation/list-delivery-usage
    */
   list(params) {
     return this.http.get(PATH, { params });

@@ -59,4 +59,22 @@ describe('Integration::Uploads', () => {
     it('fails to get an upload when given an incorrect upload id', () =>
       Video.Uploads.get('somefakeid').catch(err => expect(err).to.exist));
   });
+
+  /** @test {Uploads.list} */
+  describe('Uploads.list', () => {
+    /** @test {Uploads.list} */
+    it('lists all uploads for an environment', async () => {
+      const { nockDone } = await nockBack('Uploads/list.json');
+      const assets = await Video.Uploads.list();
+      expect(assets).to.be.an('array');
+      nockDone();
+    });
+
+    it('lists 5 uploads for an environment', async () => {
+      const { nockDone } = await nockBack('Uploads/listLimit.json');
+      const assets = await Video.Uploads.list({ limit: 5 });
+      expect(assets).to.be.an('array');
+      nockDone();
+    });
+  });
 });

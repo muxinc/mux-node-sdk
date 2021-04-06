@@ -6,6 +6,7 @@
 const Assets = require('./resources/assets');
 const Base = require('../base');
 const LiveStreams = require('./resources/liveStreams');
+const PlaybackIds = require('./resources/playbackIds');
 const Uploads = require('./resources/uploads');
 const SigningKeys = require('./resources/signingKeys');
 const DeliveryUsage = require('./resources/deliveryUsage');
@@ -41,6 +42,9 @@ class Video extends Base {
 
     /** @type {LiveStreams} */
     this.LiveStreams = new LiveStreams(this);
+
+    /** @type {PlaybackIds} */
+    this.PlaybackIds = new PlaybackIds(this);
 
     /** @Type {Uploads} */
     this.Uploads = new Uploads(this);

@@ -1,4 +1,5 @@
 const { expect } = require('chai');
+const sinon = require('sinon');
 const moxios = require('moxios');
 const Uploads = require('../../../../src/video/resources/uploads');
 
@@ -49,5 +50,24 @@ describe('Unit::Uploads', () => {
         expect(err).to.exist;
         expect(err.message).to.include('An upload ID is required');
       }));
+  });
+
+  /** @test {Uploads.list} */
+  describe('Uploads.list', () => {
+    /** @test {Uploads.list} */
+    it('makes a GET request to list 100 uploads offset by 2 pages', done => {
+      moxios.stubRequest('/video/v1/uploads?limit=100&page=2', {
+        status: 200,
+        responseText: '{"data": {"list": true}}',
+      });
+
+      const onFulfilled = sinon.spy();
+      testUploads.list({ limit: 100, page: 2 }).then(onFulfilled);
+
+      return moxios.wait(() => {
+        expect(onFulfilled.getCall(0).args[0].list).to.be.true;
+        done();
+      });
+    });
   });
 });

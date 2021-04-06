@@ -34,9 +34,10 @@ class SigningKeys extends Base {
    * const muxClient = new Mux(accessToken, secret);
    * const { Video } = muxClient;
    *
-   * const signingKey = await Video.SigningKeys.create();
+   * // Create a new signing key
+   * Video.SigningKeys.create();
    *
-   * @see https://docs.mux.com/v1/reference#url-signing-keys
+   * @see https://docs.mux.com/api-reference/video#operation/create-url-signing-key
    */
   create() {
     return this.http.post(PATH, {});
@@ -50,10 +51,10 @@ class SigningKeys extends Base {
    * @example
    * const { Video } = new Mux(accessToken, secret);
    *
-   * // Get an asset
+   * // Get a signing key
    * Video.SigningKeys.get(keyId);
    *
-   * @see https://docs.mux.com/v1/reference#retrieve-a-url-signing-key
+   * @see https://docs.mux.com/api-reference/video#operation/get-url-signing-key
    */
   get(keyId) {
     if (!keyId) {
@@ -70,10 +71,10 @@ class SigningKeys extends Base {
    * @example
    * const { Video } = new Mux(accessToken, secret);
    *
-   * // Get an asset
+   * // Delete a signing key
    * Video.SigningKeys.del(keyId);
    *
-   * @see https://docs.mux.com/v1/reference#delete-a-url-signing-key
+   * @see https://docs.mux.com/api-reference/video#operation/delete-url-signing-key
    */
   del(keyId) {
     if (!keyId) {
@@ -93,10 +94,10 @@ class SigningKeys extends Base {
    * @example
    * const { Video } = new Mux(accessToken, secret);
    *
-   * // Get an asset
+   * // List all signing keys
    * Video.SigningKeys.list();
    *
-   * @see https://docs.mux.com/v1/reference#list-url-signing-keys
+   * @see https://docs.mux.com/api-reference/video#operation/list-url-signing-keys
    */
   list(params = {}) {
     return this.http.get(PATH, { params });

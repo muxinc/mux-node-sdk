@@ -40,7 +40,7 @@ class Uploads extends Base {
    * // Now push a file to the URL returned.
    * fs.createReadStream(pathToFile).pipe(request.put(upload.url))
    *
-   * @see https://docs.mux.com/reference#upload-an-asset
+   * @see https://docs.mux.com/api-reference/video#operation/create-direct-upload
    */
   create(params) {
     if (!params) {
@@ -60,10 +60,10 @@ class Uploads extends Base {
    * @example
    * const { Video } = new Mux(accessToken, secret);
    *
-   * // Delete an upload
+   * // Cancels an upload
    * Video.Uploads.cancel(uploadId);
    *
-   * @see https://docs.mux.com/reference#delete-an-asset
+   * @see https://docs.mux.com/api-reference/video#operation/cancel-direct-upload
    */
   cancel(uploadId) {
     if (!uploadId) {
@@ -80,10 +80,10 @@ class Uploads extends Base {
    * @example
    * const { Video } = new Mux(accessToken, secret);
    *
-   * // Get an asset
+   * // Get an upload
    * Video.Uploads.get(uploadId);
    *
-   * @see https://docs.mux.com/reference#retrieve-an-asset
+   * @see https://docs.mux.com/api-reference/video#operation/get-direct-upload
    */
   get(uploadId) {
     if (!uploadId) {
@@ -92,6 +92,22 @@ class Uploads extends Base {
       );
     }
     return this.http.get(buildBasePath(uploadId));
+  }
+
+  /**
+   * List all uploads
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // List all uploads
+   * Video.Uploads.list();
+   *
+   * @see https://docs.mux.com/api-reference/video#operation/list-direct-uploads
+   */
+  list(params) {
+    return this.http.get(PATH, { params });
   }
 }
 
