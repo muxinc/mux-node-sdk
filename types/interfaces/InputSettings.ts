@@ -2,6 +2,8 @@ import { InputOverlaySettings } from './InputOverlaySettings';
 
 export interface InputSettings {
   url: string;
+  start_time?: number;
+  end_time?: number;
   overlay_settings?: InputOverlaySettings;
   type?: 'video' | 'audio' | 'text';
   text_type?: 'subtitles';
