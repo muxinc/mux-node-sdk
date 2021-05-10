@@ -96,10 +96,20 @@ export declare interface UpdateMasterAccessParams {
   master_access: AssetMasterAccess;
 }
 
+export declare interface CreateTrackParams {
+  url: string;
+  type: 'text';
+  text_type: 'subtitles';
+  language_code: string;
+  name?: string;
+  closed_captions?: boolean;
+  passthrough?: string;
+}
+
 export declare class Assets extends Base {
   create(params: CreateAssetParams): Promise<Asset>;
   del(assetId: string): Promise<any>;
-  createTrack(assetId: string): Promise<Track>;
+  createTrack(assetId: string, params: CreateTrackParams): Promise<Track>;
   get(assetId: string): Promise<Asset>;
   inputInfo(assetId: string): Promise<Array<InputInfo>>;
   list(params: ListParams): Promise<Array<Asset>>;
