@@ -118,7 +118,7 @@ export declare class Assets extends Base {
     assetId: string,
     params: CreatePlaybackIdParams
   ): Promise<PlaybackId>;
-  deletePlaybackId(liveStreamId: string, playbackId: string): Promise<any>;
+  deletePlaybackId(assetId: string, playbackId: string): Promise<any>;
   deleteTrack(assetId: string): Promise<any>;
   updateMp4Support(
     assetId: string,
