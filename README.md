@@ -120,16 +120,16 @@ Verifying Webhook Signatures is _optional_. Learn more in our [Webhook Security 
 */
 
 /*
-  `payload` is the raw request body. It should be a string representation of a JSON object.
+  `rawBody` is the raw request body. It should be a string representation of a JSON object.
   `header` is the value in request.headers['mux-signature']
   `secret` is the signing secret for this configured webhook. You can find that in your webhooks dashboard
            (note that this secret is different than your API Secret Key)
 */
 
-Mux.Webhooks.verifyHeader(payload, header, secret);
+Mux.Webhooks.verifyHeader(rawBody, header, secret);
 ```
 
-Note that when passing in the payload you want to pass in the raw un-parsed request body, not the parsed JSON.
+Note that when passing in the payload (`rawBody`) you want to pass in the raw un-parsed request body, not the parsed JSON.
 Here's an example if you are using express.
 
 ```javascript
