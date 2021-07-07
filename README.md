@@ -134,7 +134,7 @@ Here's an example if you are using express.
 
 ```javascript
 const Mux = require('@mux/mux-node');
-const { Webhooks } = Mux;
+const { Webhooks } = new Mux();
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -152,7 +152,7 @@ app.post(
   async (req, res) => {
     try {
       const sig = req.headers['mux-signature'];
-      // returns a `boolean` with value `true` if the signature is valid
+      // will raise an exception if the signature is invalid
       const isValidSignature = Webhooks.verifyHeader(
         req.body,
         sig,
