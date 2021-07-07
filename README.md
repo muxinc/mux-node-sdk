@@ -134,7 +134,7 @@ Here's an example if you are using express.
 
 ```javascript
 const Mux = require('@mux/mux-node');
-const { Webhooks } = new Mux();
+const { Webhooks } = Mux;
 const express = require('express');
 const bodyParser = require('body-parser');
 
