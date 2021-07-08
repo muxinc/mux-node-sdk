@@ -138,7 +138,7 @@ app.post(
   async (req, res) =&gt; {
     try {
       const sig = req.headers[&apos;mux-signature&apos;];
-      // returns a `boolean` with value `true` if the signature is valid
+      // will raise an exception if the signature is invalid
       const isValidSignature = Webhooks.verifyHeader(
         req.body,
         sig,
