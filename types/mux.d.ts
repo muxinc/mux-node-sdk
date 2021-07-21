@@ -233,7 +233,7 @@ export declare interface FilterGetResponse {
 }
 
 export declare class Filters extends Base {
-  list: () => Promise<FiltersListResponse>;
+  list(): Promise<FiltersListResponse>;
   get(
     filterId: string,
     queryParams?: FilterQueryParams
