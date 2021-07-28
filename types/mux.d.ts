@@ -75,6 +75,8 @@ export declare class Base extends EventEmitter {
 export declare interface ListParams {
   limit?: number;
   page?: number;
+  live_stream_id?: string;
+  upload_id?: string;
 }
 
 export declare interface ListDeliveryUsageParams {
