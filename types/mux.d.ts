@@ -225,7 +225,7 @@ export declare interface ExportsListResponse {
 }
 
 export declare class Exports extends Base {
-  list: Promise<ExportsListResponse>;
+  list(): Promise<ExportsListResponse>;
 }
 
 export declare interface FilterGetResponse {
