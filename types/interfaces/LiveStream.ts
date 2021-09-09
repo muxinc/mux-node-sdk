@@ -14,6 +14,7 @@ export interface LiveStream {
   passthrough?: string;
   reconnect_window?: number;
   reduced_latency?: boolean;
+  low_latency?: boolean;
   simulcast_targets?: Array<SimulcastTarget>;
   test?: boolean;
 }
