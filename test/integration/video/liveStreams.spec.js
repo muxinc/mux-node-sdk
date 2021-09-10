@@ -36,6 +36,17 @@ describe('Integration::LiveStreams', () => {
       await Video.LiveStreams.del(stream.id);
       nockDone();
     });
+
+    it('creates a low_latency live stream', async () => {
+      const { nockDone } = await nockBack('LiveStreams/createLowLatency.json');
+      const stream = await Video.LiveStreams.create({
+        low_latency: true,
+      });
+
+      expect(stream.low_latency).to.be.true;
+      await Video.LiveStreams.del(stream.id);
+      nockDone();
+    });
   });
 
   /** @test {LiveStreams.del} */
