@@ -8,6 +8,7 @@ export interface CreateLiveStreamParams {
   new_asset_settings?: Partial<CreateAssetParams>;
   passthrough?: string;
   reduced_latency?: boolean;
+  low_latency?: boolean;
   simulcast_targets?: Array<SimulcastTargetParams>;
   test?: boolean;
 }
