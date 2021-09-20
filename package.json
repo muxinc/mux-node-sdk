@@ -27,7 +27,7 @@
     "lint": "yarn format"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
     "jsonwebtoken": "^8.4.0"
   },
