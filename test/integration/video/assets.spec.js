@@ -36,7 +36,7 @@ describe('Integration::Assets', () => {
     /** @test {Assets.del} */
     it('fails to delete an asset when not given an incorrect assetId', async () => {
       const { nockDone } = await nockBack('Assets/deleteFail.json');
-      await Video.Assets.del('somefakeid').catch(err => expect(err).to.exist);
+      await Video.Assets.del('somefakeid').catch((err) => expect(err).to.exist);
       nockDone();
     });
   });
@@ -56,7 +56,7 @@ describe('Integration::Assets', () => {
     /** @test {Assets.get} */
     it('fails to get an asset when not given an incorrect assetId', async () => {
       const { nockDone } = await nockBack('Assets/getFail.json');
-      await Video.Assets.get('somefakeid').catch(err => expect(err).to.exist);
+      await Video.Assets.get('somefakeid').catch((err) => expect(err).to.exist);
       nockDone();
     });
   });
@@ -82,7 +82,7 @@ describe('Integration::Assets', () => {
     it('fails to get an asset when not given an incorrect assetId', async () => {
       const { nockDone } = await nockBack('Assets/inputInfoFail.json');
       await Video.Assets.inputInfo('somefakeid').catch(
-        err => expect(err).to.exist
+        (err) => expect(err).to.exist
       );
       nockDone();
     });
@@ -124,7 +124,7 @@ describe('Integration::Assets', () => {
     /** @test {PlaybackIds.create} */
     it('throws an error if an Asset ID is not given', async () => {
       const { nockDone } = await nockBack('Assets/createPlaybackIdFail1.json');
-      await Video.Assets.createPlaybackId().catch(err => {
+      await Video.Assets.createPlaybackId().catch((err) => {
         expect(err).to.exist;
         expect(err.message).to.equal('An asset ID is required');
         nockDone();
@@ -135,7 +135,7 @@ describe('Integration::Assets', () => {
     it('throws an error if params are not given', async () => {
       const { nockDone } = await nockBack('Assets/createPlaybackIdFail2.json');
       const testAsset = await Video.Assets.create({ input: TEST_VIDEO });
-      await Video.Assets.createPlaybackId(testAsset.id).catch(async err => {
+      await Video.Assets.createPlaybackId(testAsset.id).catch(async (err) => {
         expect(err).to.exist;
         expect(err.message).to.equal('Playback ID params are required');
         await Video.Assets.del(testAsset.id);
@@ -175,7 +175,7 @@ describe('Integration::Assets', () => {
       const { nockDone } = await nockBack('Assets/deletePlaybackIdFail.json');
       const testAsset = await Video.Assets.create({ input: TEST_VIDEO });
       await Video.Assets.deletePlaybackId(testAsset.id).catch(
-        err => expect(err).to.exist
+        (err) => expect(err).to.exist
       );
       await Video.Assets.del(testAsset.id);
       nockDone();

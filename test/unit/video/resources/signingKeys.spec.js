@@ -23,10 +23,10 @@ describe('Unit::SigningKeys', () => {
     it('throws an error when an key id is not given', () =>
       testSigningKeys
         .get()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.include('An signing key ID is required.');
         }));
@@ -36,7 +36,7 @@ describe('Unit::SigningKeys', () => {
   describe('SigningKeys.del', () => {
     /** @test {SigningKeys.del} */
     it('throws an error when an key id is not given', () =>
-      testSigningKeys.del().catch(err => {
+      testSigningKeys.del().catch((err) => {
         expect(err).to.exist;
         expect(err.message).to.include('An signing key ID is required.');
       }));
@@ -45,7 +45,7 @@ describe('Unit::SigningKeys', () => {
   /** @test {SigningKeys.list} */
   describe('SigningKeys.list', () => {
     /** @test {SigningKeys.list} */
-    it('makes a GET request to list 100 signing keys offset by 2 pages', done => {
+    it('makes a GET request to list 100 signing keys offset by 2 pages', (done) => {
       moxios.stubRequest('/video/v1/signing-keys?limit=100&page=2', {
         status: 200,
         responseText: '{"data": {"list": true}}',

@@ -27,6 +27,6 @@ describe('Integration::PlaybackIds', () => {
 
     /** @test {PlaybackIds.get} */
     it('fails to get a live stream or asset when not given an incorrect playback id', () =>
-      Video.PlaybackIds.get('somefakeid').catch(err => expect(err).to.exist));
+      Video.PlaybackIds.get('somefakeid').catch((err) => expect(err).to.exist));
   });
 });

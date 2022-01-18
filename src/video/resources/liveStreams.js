@@ -13,7 +13,7 @@ const PATH = '/video/v1/live-streams';
  * @private
  * Build the base live stream path for the Mux API
  * */
-const buildBasePath = liveStreamId => `${PATH}/${liveStreamId}`;
+const buildBasePath = (liveStreamId) => `${PATH}/${liveStreamId}`;
 
 /**
  * Live Streams Class - Provides access to the Mux Video Live Streams API

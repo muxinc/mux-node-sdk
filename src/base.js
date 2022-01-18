@@ -49,14 +49,14 @@ class Base extends EventEmitter {
       },
     });
 
-    this.http.interceptors.request.use(req => {
+    this.http.interceptors.request.use((req) => {
       this.emit('request', req);
 
       return req;
     });
 
     this.http.interceptors.response.use(
-      res => {
+      (res) => {
         this.emit('response', res);
         if (this.isVideoUrl(res.config.url)) {
           return res.data && res.data.data;
@@ -64,7 +64,7 @@ class Base extends EventEmitter {
 
         return res.data;
       },
-      errorRes =>
+      (errorRes) =>
         Promise.reject(
           (errorRes.response && errorRes.response.data.error) || errorRes
         )

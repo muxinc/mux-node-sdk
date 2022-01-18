@@ -90,7 +90,7 @@ class VerifyHeader {
       secret
     );
 
-    const signatureFound = !!details.signatures.filter(sig =>
+    const signatureFound = !!details.signatures.filter((sig) =>
       secureCompare(sig, expectedSignature)
     ).length;
 

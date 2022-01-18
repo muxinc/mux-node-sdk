@@ -44,7 +44,7 @@ describe('Unit::Assets', () => {
   describe('Assets.create', () => {
     /** @test {Assets.create} */
     it('throws an error if no asset params are given', () =>
-      testAssets.create().catch(err => {
+      testAssets.create().catch((err) => {
         expect(err).to.exist;
         expect(err.message).to.equal(
           'Params are required for creating an asset'
@@ -58,10 +58,10 @@ describe('Unit::Assets', () => {
     it('throws an error when an asset id is not given', () =>
       testAssets
         .get()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'An asset ID is required to get an asset'
@@ -75,10 +75,10 @@ describe('Unit::Assets', () => {
     it('throws an error when an asset id is not given', () =>
       testAssets
         .del()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'An asset ID is required to delete an asset'
@@ -92,10 +92,10 @@ describe('Unit::Assets', () => {
     it('throws an error when an asset id is not given', () =>
       testAssets
         .inputInfo()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'An asset ID is required to get input-info'
@@ -106,7 +106,7 @@ describe('Unit::Assets', () => {
   /** @test {Assets.list} */
   describe('Assets.list', () => {
     /** @test {Assets.list} */
-    it('makes a GET request to list 100 assets offset by 2 pages', done => {
+    it('makes a GET request to list 100 assets offset by 2 pages', (done) => {
       moxios.stubRequest('/video/v1/assets?limit=100&page=2', {
         status: 200,
         responseText: '{"data": {"list": true}}',
@@ -125,7 +125,7 @@ describe('Unit::Assets', () => {
   /** @test {Assets.deletePlaybackId} */
   describe('Assets.deletePlaybackId', () => {
     /** @test {Assets.deletePlaybackId} */
-    it('makes a DELETE request to delete a Playback Id for an asset', done => {
+    it('makes a DELETE request to delete a Playback Id for an asset', (done) => {
       moxios.stubRequest(
         '/video/v1/assets/testAsset/playback-ids/testPlaybackId',
         {
@@ -147,7 +147,7 @@ describe('Unit::Assets', () => {
 
     /** @test {Assets.deletePlaybackId} */
     it('throws an error if an asset id is not given', () =>
-      testAssets.deletePlaybackId().catch(err => {
+      testAssets.deletePlaybackId().catch((err) => {
         expect(err).to.exist;
         expect(err.message).to.equal('An asset ID is required');
       }));
@@ -156,7 +156,7 @@ describe('Unit::Assets', () => {
   /** @test {Assets.playbackId} */
   describe('Assets.playbackId', () => {
     /** @test {Assets.playbackId} */
-    it('makes a GET request to get a Playback Id for an asset', done => {
+    it('makes a GET request to get a Playback Id for an asset', (done) => {
       moxios.stubRequest(
         '/video/v1/assets/testAsset/playback-ids/testPlaybackId',
         {
@@ -176,14 +176,14 @@ describe('Unit::Assets', () => {
 
     /** @test {Assets.playbackId} */
     it('throws an error if an asset id is not given', () =>
-      testAssets.playbackId().catch(err => {
+      testAssets.playbackId().catch((err) => {
         expect(err).to.exist;
         expect(err.message).to.equal('An asset ID is required');
       }));
 
     /** @test {Assets.playbackId} */
     it('throws an error if playbackId params are not given', () =>
-      testAssets.playbackId('assetid').catch(err => {
+      testAssets.playbackId('assetid').catch((err) => {
         expect(err).to.exist;
         expect(err.message).to.equal('A playback ID is required');
       }));
@@ -192,7 +192,7 @@ describe('Unit::Assets', () => {
   /** @test {Assets.createTrack} */
   describe('Assets.createTrack', () => {
     /** @test {Assets.createTrack} */
-    it('makes a POST request to create a text track for an asset', done => {
+    it('makes a POST request to create a text track for an asset', (done) => {
       moxios.stubRequest('/video/v1/assets/testAsset/tracks', {
         status: 200,
         responseText: '{"data": {"create": true}}',
@@ -218,10 +218,10 @@ describe('Unit::Assets', () => {
     it('throws an error if an asset id is not given', () =>
       testAssets
         .createTrack()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal('An asset ID is required');
         }));
@@ -230,10 +230,10 @@ describe('Unit::Assets', () => {
     it('throws an error if track params are not given', () =>
       testAssets
         .createTrack('assetid')
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal('Text track params are required');
         }));
@@ -242,7 +242,7 @@ describe('Unit::Assets', () => {
   /** @test {Assets.deleteTrack} */
   describe('Assets.deleteTrack', () => {
     /** @test {Assets.deleteTrack} */
-    it('makes a DELETE request to delete a text track for an asset', done => {
+    it('makes a DELETE request to delete a text track for an asset', (done) => {
       moxios.stubRequest('/video/v1/assets/testAsset/tracks/testTrackId', {
         status: 200,
         responseText: '{"data": {"delete": true}}',
@@ -259,14 +259,14 @@ describe('Unit::Assets', () => {
 
     /** @test {Assets.deleteTrack} */
     it('throws an error if an asset id is not given', () =>
-      testAssets.deleteTrack().catch(err => {
+      testAssets.deleteTrack().catch((err) => {
         expect(err).to.exist;
         expect(err.message).to.equal('An asset ID is required');
       }));
 
     /** @test {Assets.deleteTrack} */
     it('throws an error if text track ID is not given', () =>
-      testAssets.deleteTrack('assetid').catch(err => {
+      testAssets.deleteTrack('assetid').catch((err) => {
         expect(err).to.exist;
         expect(err.message).to.equal('A track ID is required');
       }));

@@ -20,7 +20,7 @@ describe('Unit::DeliveryUsage', () => {
   /** @test {DeliveryUsage.list} */
   describe('DeliveryUsage.list', () => {
     /** @test {DeliveryUsage.list} */
-    it('makes a GET request to list 100 delivery usage records offset by 2 pages with a timeframe', done => {
+    it('makes a GET request to list 100 delivery usage records offset by 2 pages with a timeframe', (done) => {
       moxios.stubRequest(
         '/video/v1/delivery-usage?asset_id=123&limit=100&page=2&timeframe[]=1573471440&timeframe[]=1574076240',
         {

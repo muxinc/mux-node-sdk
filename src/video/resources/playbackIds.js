@@ -13,7 +13,7 @@ const PATH = '/video/v1/playback-ids';
  * @private
  * Build the base playback ID path for the Mux API
  * */
-const buildBasePath = playbackId => `${PATH}/${playbackId}`;
+const buildBasePath = (playbackId) => `${PATH}/${playbackId}`;
 
 /**
  * PlaybackIds Class - Provides access to the Mux Playback ID API

@@ -55,8 +55,8 @@ describe('Unit::Base', () => {
         moxios.uninstall(baseClient.http);
       });
 
-      it('fire an event on a request', done => {
-        baseClient.on('request', req => {
+      it('fire an event on a request', (done) => {
+        baseClient.on('request', (req) => {
           expect(req.auth.username).to.equal('fancy-new-id');
           expect(req.auth.password).to.equal('fancy-new-secret');
           expect(req.baseURL).to.equal('https://api.mux.com');
@@ -67,8 +67,8 @@ describe('Unit::Base', () => {
         baseClient.http.get('/test/v1/foo');
       });
 
-      it('fire an event on a response', done => {
-        baseClient.on('response', res => {
+      it('fire an event on a response', (done) => {
+        baseClient.on('response', (res) => {
           expect(res.status).to.equal(200);
           expect(res.data).to.eql({ data: ['something', 'very', 'fun'] });
           done();
