@@ -28,10 +28,6 @@
   },
   "dependencies": {
     "axios": "^0.25.0",
-<<<<<<< HEAD
-=======
-    "axois": "^0.0.1-security",
->>>>>>> package updates + yarn lock
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
     "jsonwebtoken": "^8.5.1"
   },
