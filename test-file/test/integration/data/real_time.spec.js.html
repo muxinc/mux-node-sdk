@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../../../">
-  <title data-ice="title">test/unit/video/resources/playbackIds.spec.js | MUX</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">test/integration/data/real_time.spec.js | MUX</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -50,65 +50,85 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">test/unit/video/resources/playbackIds.spec.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">test/integration/data/real_time.spec.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
-const moxios = require(&apos;moxios&apos;);
-const PlaybackIds = require(&apos;../../../../src/video/resources/playbackIds&apos;);
+const nockBack = require(&apos;nock&apos;).back;
+const Mux = require(&apos;../../../src/mux&apos;);
 
-/** @test {PlaybackIds} */
-describe(&apos;Unit::PlaybackIds&apos;, () =&gt; {
-  const testApiKey = &apos;testApiKey&apos;;
-  const testSecret = &apos;testSecret&apos;;
-  const testPlaybackIds = new PlaybackIds(testApiKey, testSecret);
+/** @test {RealTime} */
+describe(&apos;Integration::RealTime&apos;, () =&gt; {
+  const muxClient = new Mux();
+  const { Data } = muxClient;
 
-  beforeEach(() =&gt; {
-    moxios.install(testPlaybackIds.http);
+  /** @test {RealTime.dimensions} */
+  describe(&apos;RealTime.dimensions&apos;, () =&gt; {
+    /** @test {RealTime.dimensions} */
+    it(&apos;List of available real-time dimensions&apos;, async () =&gt; {
+      const { nockDone } = await nockBack(&apos;RealTime/dimensions.json&apos;);
+      const resp = await Data.RealTime.dimensions();
+      expect(resp.data).to.be.an(&apos;array&apos;);
+      expect(resp.data[0]).to.be.an(&apos;object&apos;);
+      nockDone();
+    });
   });
 
-  afterEach(() =&gt; {
-    moxios.uninstall(testPlaybackIds.http);
+  /** @test {RealTime.metrics} */
+  describe(&apos;RealTime.metrics&apos;, () =&gt; {
+    /** @test {RealTime.metrics} */
+    it(&apos;List available real-time metrics&apos;, async () =&gt; {
+      const { nockDone } = await nockBack(&apos;RealTime/metrics.json&apos;);
+      const resp = await Data.RealTime.metrics();
+      expect(resp.data).to.be.an(&apos;array&apos;);
+      expect(resp.data[0]).to.be.an(&apos;object&apos;);
+      nockDone();
+    });
   });
 
-  /** @test {PlaybackIds} */
-  describe(&apos;PlaybackIds&apos;, () =&gt; {
-    /** @test {PlaybackIds} */
-    it(&apos;throws an error if an api key is not given&apos;, () =&gt; {
-      expect(() =&gt; new PlaybackIds()).to.throw(
-        &apos;API Access Token must be provided.&apos;
+  /** @test {RealTime.breakdown} */
+  describe(&apos;RealTime.breakdown&apos;, () =&gt; {
+    /** @test {RealTime.breakdown} */
+    it(&apos;Get breakdown information for a specific dimension and metric&apos;, async () =&gt; {
+      const { nockDone } = await nockBack(&apos;RealTime/breakdown.json&apos;);
+      const timestamp = 1592357452; // freeze this time for nock
+      const resp = await Data.RealTime.breakdown(
+        &apos;playback-failure-percentage&apos;,
+        {
+          dimension: &apos;asn&apos;,
+          timestamp,
+          filters: [&apos;operating_system:windows&apos;, &apos;country:US&apos;],
+        }
       );
-    });
-
-    /** @test {PlaybackIds} */
-    it(&apos;throws an error if a secret key is not given&apos;, () =&gt; {
-      expect(() =&gt; new PlaybackIds(&apos;testKey&apos;)).to.throw(
-        &apos;API secret key must be provided&apos;
-      );
-    });
-
-    /** @test {PlaybackIds} */
-    it(&apos;creates a new PlaybackIds instance&apos;, () =&gt; {
-      const TestPlaybackIds = new PlaybackIds(testApiKey, testSecret);
-      expect(() =&gt; new PlaybackIds(testApiKey, testSecret)).to.not.throw();
-      expect(TestPlaybackIds.tokenId).to.equal(testApiKey);
-      expect(TestPlaybackIds.tokenSecret).to.equal(testSecret);
+      expect(resp.data).to.be.an(&apos;array&apos;);
+      nockDone();
     });
   });
 
-  /** @test {PlaybackIds.get} */
-  describe(&apos;PlaybackIds.get&apos;, () =&gt; {
-    /** @test {PlaybackIds.get} */
-    it(&apos;throws an error when an playback ID is not given&apos;, () =&gt;
-      testPlaybackIds
-        .get()
-        .then((res) =&gt; {
-          expect(res).to.not.exist;
-        })
-        .catch((err) =&gt; {
-          expect(err).to.exist;
-          expect(err.message).to.equal(
-            &apos;An playback ID is required to get an asset or live stream identifier&apos;
-          );
-        }));
+  /** @test {RealTime.histogramTimeseries} */
+  describe(&apos;RealTime.histogramTimeseries&apos;, () =&gt; {
+    /** @test {RealTime.histogramTimeseries} */
+    it(&apos;List histogram timeseries information for a specific metric&apos;, async () =&gt; {
+      const { nockDone } = await nockBack(&apos;RealTime/histogramTimeseries.json&apos;);
+      const resp = await Data.RealTime.histogramTimeseries(
+        &apos;video-startup-time&apos;,
+        { filters: [&apos;operating_system:windows&apos;, &apos;country:US&apos;] }
+      );
+      expect(resp.data).to.be.an(&apos;array&apos;);
+      nockDone();
+    });
+  });
+
+  /** @test {RealTime.timeseries} */
+  describe(&apos;RealTime.timeseries&apos;, () =&gt; {
+    /** @test {RealTime.timeseries} */
+    it(&apos;List timeseries information for the playback-failure-percentage metric along with the number of concurrent viewers for the Windows operating system in the US&apos;, async () =&gt; {
+      const { nockDone } = await nockBack(&apos;RealTime/timeseries.json&apos;);
+      const resp = await Data.RealTime.timeseries(
+        &apos;playback-failure-percentage&apos;,
+        { filters: [&apos;operating_system:windows&apos;, &apos;country:US&apos;] }
+      );
+      expect(resp.data).to.be.an(&apos;array&apos;);
+      nockDone();
+    });
   });
 });
 </code></pre>

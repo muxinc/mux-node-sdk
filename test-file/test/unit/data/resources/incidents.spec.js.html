@@ -114,7 +114,7 @@ describe(&apos;Unit::Incidents&apos;, () =&gt; {
       );
     });
 
-    it(&apos;makes a get request to the Mux data incidents route&apos;, done =&gt; {
+    it(&apos;makes a get request to the Mux data incidents route&apos;, (done) =&gt; {
       moxios.stubRequest(&apos;/data/v1/incidents/abc123/related&apos;, {
         status: 200,
         responseText: &apos;{&quot;data&quot;: {&quot;incidents&quot;: true}}&apos;,

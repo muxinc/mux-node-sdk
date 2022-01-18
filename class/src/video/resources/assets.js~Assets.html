@@ -99,11 +99,12 @@ Video.Assets.create({input: &apos;https://storage.googleapis.com/muxdemofiles/mu
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber7">Unit::Assets</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber21">Unit::Assets Assets</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber23">Unit::Assets Assets throws an error if an api key is not given</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber28">Unit::Assets Assets throws an error if a secret key is not given</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber35">Unit::Assets Assets creates a new Assets instance</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber8">Unit::Assets</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber22">Unit::Assets Assets</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber10">Integration::Assets</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber24">Unit::Assets Assets throws an error if an api key is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber29">Unit::Assets Assets throws an error if a secret key is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber36">Unit::Assets Assets creates a new Assets instance</a></span></li>
 </ul>
   </div>
 
@@ -561,8 +562,10 @@ Video.Assets.create({input: &apos;https://storage.googleapis.com/muxdemofiles/mu
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber44">Unit::Assets Assets.create</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber46">Unit::Assets Assets.create throws an error if no asset params are given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber45">Unit::Assets Assets.create</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber15">Integration::Assets Assets.create</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber47">Unit::Assets Assets.create throws an error if no asset params are given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber17">Integration::Assets Assets.create creates an asset when given an input</a></span></li>
 </ul>
   </div>
 
@@ -655,7 +658,13 @@ Video.Assets.createPlaybackId(assetId, { policy: &apos;public&apos; });</code></
     </div>
 </div>
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber111">Integration::Assets Assets.createPlaybackId</a></span></li>
+</ul>
+  </div>
 
   <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/create-asset-playback-id">https://docs.mux.com/api-reference/video#operation/create-asset-playback-id</a></span></li></ul></div>
   
@@ -755,10 +764,10 @@ Video.Assets.createTrack(assetId, {
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber193">Unit::Assets Assets.createTrack</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber195">Unit::Assets Assets.createTrack makes a POST request to create a text track for an asset</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber218">Unit::Assets Assets.createTrack throws an error if an asset id is not given</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber230">Unit::Assets Assets.createTrack throws an error if track params are not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber194">Unit::Assets Assets.createTrack</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber196">Unit::Assets Assets.createTrack makes a POST request to create a text track for an asset</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber219">Unit::Assets Assets.createTrack throws an error if an asset id is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber231">Unit::Assets Assets.createTrack throws an error if track params are not given</a></span></li>
 </ul>
   </div>
 
@@ -848,8 +857,11 @@ Video.Assets.del(assetId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber73">Unit::Assets Assets.del</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber75">Unit::Assets Assets.del throws an error when an asset id is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber74">Unit::Assets Assets.del</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber28">Integration::Assets Assets.del</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber76">Unit::Assets Assets.del throws an error when an asset id is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber30">Integration::Assets Assets.del deletes an asset</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber38">Integration::Assets Assets.del fails to delete an asset when not given an incorrect assetId</a></span></li>
 </ul>
   </div>
 
@@ -946,9 +958,12 @@ Video.Assets.deletePlaybackId(assetId, { policy: &apos;public&apos; });</code></
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber126">Unit::Assets Assets.deletePlaybackId</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber128">Unit::Assets Assets.deletePlaybackId makes a DELETE request to delete a Playback Id for an asset</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber149">Unit::Assets Assets.deletePlaybackId throws an error if an asset id is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber127">Unit::Assets Assets.deletePlaybackId</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber166">Integration::Assets Assets.deletePlaybackId</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber129">Unit::Assets Assets.deletePlaybackId makes a DELETE request to delete a Playback Id for an asset</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber150">Unit::Assets Assets.deletePlaybackId throws an error if an asset id is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber168">Integration::Assets Assets.deletePlaybackId deletes playbackIds for an asset</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber175">Integration::Assets Assets.deletePlaybackId fails to delete playbackIds for an asset when not given a playback ID</a></span></li>
 </ul>
   </div>
 
@@ -1045,10 +1060,10 @@ Video.Assets.deleteTrack(assetId, trackId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber243">Unit::Assets Assets.deleteTrack</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber245">Unit::Assets Assets.deleteTrack makes a DELETE request to delete a text track for an asset</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber261">Unit::Assets Assets.deleteTrack throws an error if an asset id is not given</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber268">Unit::Assets Assets.deleteTrack throws an error if text track ID is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber244">Unit::Assets Assets.deleteTrack</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber246">Unit::Assets Assets.deleteTrack makes a DELETE request to delete a text track for an asset</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber262">Unit::Assets Assets.deleteTrack throws an error if an asset id is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber269">Unit::Assets Assets.deleteTrack throws an error if text track ID is not given</a></span></li>
 </ul>
   </div>
 
@@ -1138,8 +1153,11 @@ Video.Assets.get(assetId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber56">Unit::Assets Assets.get</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber58">Unit::Assets Assets.get throws an error when an asset id is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber57">Unit::Assets Assets.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber46">Integration::Assets Assets.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber59">Unit::Assets Assets.get throws an error when an asset id is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber48">Integration::Assets Assets.get gets an asset</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber58">Integration::Assets Assets.get fails to get an asset when not given an incorrect assetId</a></span></li>
 </ul>
   </div>
 
@@ -1229,8 +1247,10 @@ Video.Assets.inputInfo(assetId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber90">Unit::Assets Assets.inputInfo</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber92">Unit::Assets Assets.inputInfo throws an error when an asset id is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber91">Unit::Assets Assets.inputInfo</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber66">Integration::Assets Assets.inputInfo</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber93">Unit::Assets Assets.inputInfo throws an error when an asset id is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber83">Integration::Assets Assets.inputInfo fails to get an asset when not given an incorrect assetId</a></span></li>
 </ul>
   </div>
 
@@ -1319,8 +1339,10 @@ Video.Assets.list();</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber107">Unit::Assets Assets.list</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber109">Unit::Assets Assets.list makes a GET request to list 100 assets offset by 2 pages</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber108">Unit::Assets Assets.list</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber93">Integration::Assets Assets.list</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber110">Unit::Assets Assets.list makes a GET request to list 100 assets offset by 2 pages</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber95">Integration::Assets Assets.list lists all assets for an environment</a></span></li>
 </ul>
   </div>
 
@@ -1417,10 +1439,11 @@ Video.Assets.playbackId(assetId, playbackId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber157">Unit::Assets Assets.playbackId</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber159">Unit::Assets Assets.playbackId makes a GET request to get a Playback Id for an asset</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber178">Unit::Assets Assets.playbackId throws an error if an asset id is not given</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber185">Unit::Assets Assets.playbackId throws an error if playbackId params are not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber158">Unit::Assets Assets.playbackId</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber149">Integration::Assets Assets.playbackId</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber160">Unit::Assets Assets.playbackId makes a GET request to get a Playback Id for an asset</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber179">Unit::Assets Assets.playbackId throws an error if an asset id is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/assets.spec.js.html#lineNumber186">Unit::Assets Assets.playbackId throws an error if playbackId params are not given</a></span></li>
 </ul>
   </div>
 
@@ -1506,7 +1529,14 @@ Video.Assets.updateMasterAccess(assetId, {master_access: &quot;temporary&quot;})
     </div>
 </div>
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber209">Integration::Assets Assets.updateMasterAccess</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber211">Integration::Assets Assets.updateMasterAccess updates the master access for an asset</a></span></li>
+</ul>
+  </div>
 
   <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/update-asset-master-access">https://docs.mux.com/api-reference/video#operation/update-asset-master-access</a></span></li></ul></div>
   
@@ -1590,7 +1620,14 @@ Video.Assets.updateMp4Support(assetId, {mp4_support: &quot;standard&quot;});</co
     </div>
 </div>
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber187">Integration::Assets Assets.updateMp4Support</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/assets.spec.js.html#lineNumber189">Integration::Assets Assets.updateMp4Support updates the mp4 support for an asset</a></span></li>
+</ul>
+  </div>
 
   <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/update-asset-mp4-support">https://docs.mux.com/api-reference/video#operation/update-asset-mp4-support</a></span></li></ul></div>
   

@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../../../">
-  <title data-ice="title">test/unit/video/resources/playbackIds.spec.js | MUX</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">test/integration/video/signingKeys.spec.js | MUX</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -50,65 +50,77 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">test/unit/video/resources/playbackIds.spec.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">test/integration/video/signingKeys.spec.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
-const moxios = require(&apos;moxios&apos;);
-const PlaybackIds = require(&apos;../../../../src/video/resources/playbackIds&apos;);
+const nockBack = require(&apos;nock&apos;).back;
+const Mux = require(&apos;../../../src/mux&apos;);
 
-/** @test {PlaybackIds} */
-describe(&apos;Unit::PlaybackIds&apos;, () =&gt; {
-  const testApiKey = &apos;testApiKey&apos;;
-  const testSecret = &apos;testSecret&apos;;
-  const testPlaybackIds = new PlaybackIds(testApiKey, testSecret);
+/** @test {SigningKeys} */
+describe(&apos;Integration:SigningKeys&apos;, () =&gt; {
+  const muxClient = new Mux();
+  const { Video } = muxClient;
 
-  beforeEach(() =&gt; {
-    moxios.install(testPlaybackIds.http);
-  });
+  /** @test {SigningKeys.create} */
+  describe(&apos;SigningKeys.create&apos;, () =&gt; {
+    /** @test {SigningKeys.create} */
+    it(&apos;creates a new signing key&apos;, async () =&gt; {
+      const { nockDone } = await nockBack(&apos;SigningKeys/create.json&apos;);
+      const signingKey = await Video.SigningKeys.create();
 
-  afterEach(() =&gt; {
-    moxios.uninstall(testPlaybackIds.http);
-  });
-
-  /** @test {PlaybackIds} */
-  describe(&apos;PlaybackIds&apos;, () =&gt; {
-    /** @test {PlaybackIds} */
-    it(&apos;throws an error if an api key is not given&apos;, () =&gt; {
-      expect(() =&gt; new PlaybackIds()).to.throw(
-        &apos;API Access Token must be provided.&apos;
-      );
-    });
-
-    /** @test {PlaybackIds} */
-    it(&apos;throws an error if a secret key is not given&apos;, () =&gt; {
-      expect(() =&gt; new PlaybackIds(&apos;testKey&apos;)).to.throw(
-        &apos;API secret key must be provided&apos;
-      );
-    });
-
-    /** @test {PlaybackIds} */
-    it(&apos;creates a new PlaybackIds instance&apos;, () =&gt; {
-      const TestPlaybackIds = new PlaybackIds(testApiKey, testSecret);
-      expect(() =&gt; new PlaybackIds(testApiKey, testSecret)).to.not.throw();
-      expect(TestPlaybackIds.tokenId).to.equal(testApiKey);
-      expect(TestPlaybackIds.tokenSecret).to.equal(testSecret);
+      expect(signingKey.id).to.exist;
+      expect(signingKey.private_key).to.exist;
+      expect(signingKey.created_at).to.exist;
+      await Video.SigningKeys.del(signingKey.id);
+      nockDone();
     });
   });
 
-  /** @test {PlaybackIds.get} */
-  describe(&apos;PlaybackIds.get&apos;, () =&gt; {
-    /** @test {PlaybackIds.get} */
-    it(&apos;throws an error when an playback ID is not given&apos;, () =&gt;
-      testPlaybackIds
-        .get()
-        .then((res) =&gt; {
-          expect(res).to.not.exist;
-        })
-        .catch((err) =&gt; {
-          expect(err).to.exist;
-          expect(err.message).to.equal(
-            &apos;An playback ID is required to get an asset or live stream identifier&apos;
-          );
-        }));
+  /** @test {SigningKeys.get} */
+  describe(&apos;SigningKeys.get&apos;, () =&gt; {
+    /** @test {SigningKeys.get} */
+    it(&apos;retrieves a signing key&apos;, async () =&gt; {
+      const { nockDone } = await nockBack(&apos;SigningKeys/get.json&apos;);
+      const createdSigningKey = await Video.SigningKeys.create();
+
+      const signingKey = await Video.SigningKeys.get(createdSigningKey.id);
+      expect(signingKey.id).to.exist;
+      expect(signingKey.created_at).to.exist;
+      expect(signingKey.private_key).to.not.exist;
+      await Video.SigningKeys.del(createdSigningKey.id);
+      nockDone();
+    });
+  });
+
+  /** @test {SigningKeys.del} */
+  describe(&apos;SigningKeys.del&apos;, () =&gt; {
+    /** @test {SigningKeys.del} */
+    it(&apos;deletes a signing key&apos;, async () =&gt; {
+      const { nockDone } = await nockBack(&apos;SigningKeys/del.json&apos;);
+      const createdSigningKey = await Video.SigningKeys.create();
+
+      const signingKey = await Video.SigningKeys.del(createdSigningKey.id);
+      expect(signingKey).to.be.empty;
+
+      try {
+        await Video.SigningKeys.get(createdSigningKey.id);
+      } catch (err) {
+        expect(err.type).to.eq(&apos;not_found&apos;);
+        nockDone();
+      }
+    });
+  });
+
+  /** @test {SigningKeys.list} */
+  describe(&apos;SigningKeys.list&apos;, () =&gt; {
+    /** @test {SigningKeys.list} */
+    it(&apos;lists signing keys&apos;, async () =&gt; {
+      const { nockDone } = await nockBack(&apos;SigningKeys/list.json&apos;);
+      const createdKey = await Video.SigningKeys.create();
+      const signingKeys = await Video.SigningKeys.list();
+      expect(signingKeys.length).to.be.greaterThan(0);
+      await Video.SigningKeys.del(createdKey.id);
+      nockDone();
+    });
   });
 });
 </code></pre>

@@ -99,7 +99,8 @@ Video.Uploads.create({ new_asset_settings: { playback_policy: &apos;public&apos;
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber7">Unit::Uploads</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/integration/video/uploads.spec.js.html#lineNumber7">Integration::Uploads</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber8">Unit::Uploads</a></span></li>
 </ul>
   </div>
 
@@ -325,7 +326,10 @@ Video.Uploads.cancel(uploadId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber46">Unit::Uploads Uploads.cancel</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/integration/video/uploads.spec.js.html#lineNumber27">Integration::Uploads Uploads.cancel</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber47">Unit::Uploads Uploads.cancel</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/uploads.spec.js.html#lineNumber29">Integration::Uploads Uploads.cancel cancels an upload</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/uploads.spec.js.html#lineNumber41">Integration::Uploads Uploads.cancel fails to delete an upload when given an incorrect upload id</a></span></li>
 </ul>
   </div>
 
@@ -418,8 +422,10 @@ fs.createReadStream(pathToFile).pipe(request.put(upload.url))</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber21">Unit::Uploads Uploads.create</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber23">Unit::Uploads Uploads.create throws an error if no params are given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/integration/video/uploads.spec.js.html#lineNumber12">Integration::Uploads Uploads.create</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber22">Unit::Uploads Uploads.create</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/uploads.spec.js.html#lineNumber14">Integration::Uploads Uploads.create creates an upload</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber24">Unit::Uploads Uploads.create throws an error if no params are given</a></span></li>
 </ul>
   </div>
 
@@ -509,8 +515,11 @@ Video.Uploads.get(uploadId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber31">Unit::Uploads Uploads.get</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber33">Unit::Uploads Uploads.get throws an error when an upload id is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/integration/video/uploads.spec.js.html#lineNumber46">Integration::Uploads Uploads.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber32">Unit::Uploads Uploads.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/uploads.spec.js.html#lineNumber48">Integration::Uploads Uploads.get gets an upload</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/uploads.spec.js.html#lineNumber60">Integration::Uploads Uploads.get fails to get an upload when given an incorrect upload id</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber34">Unit::Uploads Uploads.get throws an error when an upload id is not given</a></span></li>
 </ul>
   </div>
 
@@ -599,8 +608,10 @@ Video.Uploads.list();</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber56">Unit::Uploads Uploads.list</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber58">Unit::Uploads Uploads.list makes a GET request to list 100 uploads offset by 2 pages</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/integration/video/uploads.spec.js.html#lineNumber65">Integration::Uploads Uploads.list</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber57">Unit::Uploads Uploads.list</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/uploads.spec.js.html#lineNumber67">Integration::Uploads Uploads.list lists all uploads for an environment</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/uploads.spec.js.html#lineNumber59">Unit::Uploads Uploads.list makes a GET request to list 100 uploads offset by 2 pages</a></span></li>
 </ul>
   </div>
 

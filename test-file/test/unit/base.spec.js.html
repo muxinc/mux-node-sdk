@@ -108,8 +108,8 @@ describe(&apos;Unit::Base&apos;, () =&gt; {
         moxios.uninstall(baseClient.http);
       });
 
-      it(&apos;fire an event on a request&apos;, done =&gt; {
-        baseClient.on(&apos;request&apos;, req =&gt; {
+      it(&apos;fire an event on a request&apos;, (done) =&gt; {
+        baseClient.on(&apos;request&apos;, (req) =&gt; {
           expect(req.auth.username).to.equal(&apos;fancy-new-id&apos;);
           expect(req.auth.password).to.equal(&apos;fancy-new-secret&apos;);
           expect(req.baseURL).to.equal(&apos;https://api.mux.com&apos;);
@@ -120,8 +120,8 @@ describe(&apos;Unit::Base&apos;, () =&gt; {
         baseClient.http.get(&apos;/test/v1/foo&apos;);
       });
 
-      it(&apos;fire an event on a response&apos;, done =&gt; {
-        baseClient.on(&apos;response&apos;, res =&gt; {
+      it(&apos;fire an event on a response&apos;, (done) =&gt; {
+        baseClient.on(&apos;response&apos;, (res) =&gt; {
           expect(res.status).to.equal(200);
           expect(res.data).to.eql({ data: [&apos;something&apos;, &apos;very&apos;, &apos;fun&apos;] });
           done();

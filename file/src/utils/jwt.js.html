@@ -59,7 +59,7 @@
 const fs = require(&apos;fs&apos;);
 const jwt = require(&apos;jsonwebtoken&apos;);
 
-const typeToClaim = type =&gt; {
+const typeToClaim = (type) =&gt; {
   const typeMap = {
     video: &apos;v&apos;,
     thumbnail: &apos;t&apos;,
@@ -70,7 +70,7 @@ const typeToClaim = type =&gt; {
   return typeMap[type];
 };
 
-const getSigningKey = options =&gt; {
+const getSigningKey = (options) =&gt; {
   const keyId = options.keyId || process.env.MUX_SIGNING_KEY;
   if (!keyId) {
     throw new TypeError(&apos;Signing Key ID required&apos;);
@@ -79,7 +79,7 @@ const getSigningKey = options =&gt; {
   return keyId;
 };
 
-const getPrivateKey = options =&gt; {
+const getPrivateKey = (options) =&gt; {
   let key;
   if (options.keySecret) {
     key = options.keySecret;

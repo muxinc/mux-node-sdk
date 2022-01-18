@@ -103,11 +103,12 @@ Video.LiveStreams.create({
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber7">Unit::LiveStreams</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber21">Unit::LiveStreams LiveStreams</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber23">Unit::LiveStreams LiveStreams throws an error if an api key is not given</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber30">Unit::LiveStreams LiveStreams throws an error if a secret key is not given</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber37">Unit::LiveStreams LiveStreams creates a new LiveStreams instance</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber8">Unit::LiveStreams</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber22">Unit::LiveStreams LiveStreams</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber7">Integration::LiveStreams</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber24">Unit::LiveStreams LiveStreams throws an error if an api key is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber31">Unit::LiveStreams LiveStreams throws an error if a secret key is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber38">Unit::LiveStreams LiveStreams creates a new LiveStreams instance</a></span></li>
 </ul>
   </div>
 
@@ -594,7 +595,14 @@ Video.LiveStreams.create({
     </div>
 </div>
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber12">Integration::LiveStreams LiveStreams.create</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber14">Integration::LiveStreams LiveStreams.create creates a live stream with defaults</a></span></li>
+</ul>
+  </div>
 
   <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/video#operation/create-live-stream">https://docs.mux.com/api-reference/video#operation/create-live-stream</a></span></li></ul></div>
   
@@ -689,8 +697,12 @@ Video.LiveStreams.createPlaybackId(liveStreamId, { policy: &apos;public&apos; })
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber133">Unit::LiveStreams LiveStreams.createPlaybackId</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber135">Unit::LiveStreams LiveStreams.createPlaybackId throws an error if a live stream ID is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber134">Unit::LiveStreams LiveStreams.createPlaybackId</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber147">Integration::LiveStreams LiveStreams.createPlaybackId</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber136">Unit::LiveStreams LiveStreams.createPlaybackId throws an error if a live stream ID is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber149">Integration::LiveStreams LiveStreams.createPlaybackId creates a playback id for a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber163">Integration::LiveStreams LiveStreams.createPlaybackId fails to create a playback id if given an incorrect live stream id</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber174">Integration::LiveStreams LiveStreams.createPlaybackId fails to create a playback id if not given a playback policy</a></span></li>
 </ul>
   </div>
 
@@ -787,9 +799,13 @@ Video.LiveStreams.createSimulcastTarget(liveStreamId, {url: &apos;rtmp://live.ex
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber167">Unit::LiveStreams LiveStreams.createSimulcastTarget</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber169">Unit::LiveStreams LiveStreams.createSimulcastTarget throws an error if a live stream ID is not given</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber200">Unit::LiveStreams LiveStreams.getSimulcastTarget throws an error if a simulcast target id is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber168">Unit::LiveStreams LiveStreams.createSimulcastTarget</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber212">Integration::LiveStreams LiveStreams.createSimulcastTarget</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber214">Integration::LiveStreams LiveStreams.createSimulcastTarget creates a simulcast target for a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber229">Integration::LiveStreams LiveStreams.createSimulcastTarget fails to create a simulcast target if given an incorrect live stream id</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber236">Integration::LiveStreams LiveStreams.createSimulcastTarget fails to create a playback id if not given params</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber170">Unit::LiveStreams LiveStreams.createSimulcastTarget throws an error if a live stream ID is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber201">Unit::LiveStreams LiveStreams.getSimulcastTarget throws an error if a simulcast target id is not given</a></span></li>
 </ul>
   </div>
 
@@ -879,8 +895,11 @@ Video.LiveStreams.del(liveStreamId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber46">Unit::LiveStreams LiveStreams.del</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber48">Unit::LiveStreams LiveStreams.del throws an error when a live stream ID is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber47">Unit::LiveStreams LiveStreams.del</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber54">Integration::LiveStreams LiveStreams.del</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber49">Unit::LiveStreams LiveStreams.del throws an error when a live stream ID is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber56">Integration::LiveStreams LiveStreams.del deletes a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber64">Integration::LiveStreams LiveStreams.del fails to delete a live stream when not given an incorrect live stream id</a></span></li>
 </ul>
   </div>
 
@@ -977,8 +996,10 @@ Video.LiveStreams.deletePlaybackId(liveStreamId, { policy: &apos;public&apos; })
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber150">Unit::LiveStreams LiveStreams.deletePlaybackId</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber152">Unit::LiveStreams LiveStreams.deletePlaybackId throws an error if a live stream ID is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber151">Unit::LiveStreams LiveStreams.deletePlaybackId</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber181">Integration::LiveStreams LiveStreams.deletePlaybackId</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber153">Unit::LiveStreams LiveStreams.deletePlaybackId throws an error if a live stream ID is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber183">Integration::LiveStreams LiveStreams.deletePlaybackId deletes playbackIds for a live stream</a></span></li>
 </ul>
   </div>
 
@@ -1075,9 +1096,11 @@ Video.LiveStreams.deleteSimulcastTarget(liveStreamId, simulcastTargetId);</code>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber215">Unit::LiveStreams LiveStreams.deleteSimulcastTarget</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber217">Unit::LiveStreams LiveStreams.deleteSimulcastTarget throws an error if a live stream ID is not given</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber231">Unit::LiveStreams LiveStreams.deleteSimulcastTarget throws an error if a simulcast target id is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber276">Integration::LiveStreams LiveStreams.deleteSimulcastTarget</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber216">Unit::LiveStreams LiveStreams.deleteSimulcastTarget</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber278">Integration::LiveStreams LiveStreams.deleteSimulcastTarget deletes the simulcast target for a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber218">Unit::LiveStreams LiveStreams.deleteSimulcastTarget throws an error if a live stream ID is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber232">Unit::LiveStreams LiveStreams.deleteSimulcastTarget throws an error if a simulcast target id is not given</a></span></li>
 </ul>
   </div>
 
@@ -1167,8 +1190,11 @@ Video.LiveStreams.disable(liveStreamId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber263">Unit::LiveStreams LiveStreams.disable</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber265">Unit::LiveStreams LiveStreams.disable throws an error if a live stream ID is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber330">Integration::LiveStreams LiveStreams.disable</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber264">Unit::LiveStreams LiveStreams.disable</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber332">Integration::LiveStreams LiveStreams.disable disables a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber341">Integration::LiveStreams LiveStreams.disable fails to disable a live stream if given an incorrect live stream id</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber266">Unit::LiveStreams LiveStreams.disable throws an error if a live stream ID is not given</a></span></li>
 </ul>
   </div>
 
@@ -1258,8 +1284,11 @@ Video.LiveStreams.enable(liveStreamId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber246">Unit::LiveStreams LiveStreams.enable</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber248">Unit::LiveStreams LiveStreams.enable throws an error if a live stream ID is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber312">Integration::LiveStreams LiveStreams.enable</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber247">Unit::LiveStreams LiveStreams.enable</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber314">Integration::LiveStreams LiveStreams.enable enables a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber323">Integration::LiveStreams LiveStreams.enable fails to enable a live stream if given an incorrect live stream id</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber249">Unit::LiveStreams LiveStreams.enable throws an error if a live stream ID is not given</a></span></li>
 </ul>
   </div>
 
@@ -1349,8 +1378,11 @@ Video.LiveStreams.get(liveStreamId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber82">Unit::LiveStreams LiveStreams.get</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber84">Unit::LiveStreams LiveStreams.get throws an error when a live stream ID is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber83">Unit::LiveStreams LiveStreams.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber69">Integration::LiveStreams LiveStreams.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber85">Unit::LiveStreams LiveStreams.get throws an error when a live stream ID is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber71">Integration::LiveStreams LiveStreams.get gets a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber80">Integration::LiveStreams LiveStreams.get fails to get a live stream when not given an incorrect live stream id</a></span></li>
 </ul>
   </div>
 
@@ -1447,8 +1479,12 @@ Video.LiveStreams.getSimulcastTarget(liveStreamId, simulcastTargetId);</code></p
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber184">Unit::LiveStreams LiveStreams.getSimulcastTarget</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber186">Unit::LiveStreams LiveStreams.getSimulcastTarget throws an error if a live stream ID is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber243">Integration::LiveStreams LiveStreams.getSimulcastTarget</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber185">Unit::LiveStreams LiveStreams.getSimulcastTarget</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber245">Integration::LiveStreams LiveStreams.getSimulcastTarget gets a simulcast target for a live stream</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber262">Integration::LiveStreams LiveStreams.getSimulcastTarget fails to get a simulcast target if given an incorrect live stream id</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber268">Integration::LiveStreams LiveStreams.getSimulcastTarget fails to get a simulcast target given a fake simulcast target idj</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber187">Unit::LiveStreams LiveStreams.getSimulcastTarget throws an error if a live stream ID is not given</a></span></li>
 </ul>
   </div>
 
@@ -1537,8 +1573,10 @@ Video.LiveStreams.list();</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber63">Unit::LiveStreams LiveStreams.list</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber65">Unit::LiveStreams LiveStreams.list makes a GET request to list 100 live streams offset by 2 pages</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber64">Unit::LiveStreams LiveStreams.list</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber109">Integration::LiveStreams LiveStreams.list</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber66">Unit::LiveStreams LiveStreams.list makes a GET request to list 100 live streams offset by 2 pages</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber111">Integration::LiveStreams LiveStreams.list lists all live streams for an environment</a></span></li>
 </ul>
   </div>
 
@@ -1629,8 +1667,11 @@ Video.LiveStreams.resetStreamKey(liveStreamId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber116">Unit::LiveStreams LiveStreams.resetStreamKey</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber118">Unit::LiveStreams LiveStreams.resetStreamKey throws an error when a live stream ID is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber117">Unit::LiveStreams LiveStreams.resetStreamKey</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber127">Integration::LiveStreams LiveStreams.resetStreamKey</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber119">Unit::LiveStreams LiveStreams.resetStreamKey throws an error when a live stream ID is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber129">Integration::LiveStreams LiveStreams.resetStreamKey resets a stream key</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber140">Integration::LiveStreams LiveStreams.resetStreamKey fails to reset a stream key if given an incorrect live stream id</a></span></li>
 </ul>
   </div>
 
@@ -1720,8 +1761,11 @@ Video.LiveStreams.signalComplete(liveStreamId);</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber99">Unit::LiveStreams LiveStreams.signalComplete</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber101">Unit::LiveStreams LiveStreams.signalComplete throws an error when a live stream ID is not given</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber100">Unit::LiveStreams LiveStreams.signalComplete</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber85">Integration::LiveStreams LiveStreams.signalComplete</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/video/resources/liveStreams.spec.js.html#lineNumber102">Unit::LiveStreams LiveStreams.signalComplete throws an error when a live stream ID is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber87">Integration::LiveStreams LiveStreams.signalComplete signals a live stream is complete</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/video/liveStreams.spec.js.html#lineNumber97">Integration::LiveStreams LiveStreams.signalComplete fails to signal a live stream is complete when given an incorrect live stream id</a></span></li>
 </ul>
   </div>
 

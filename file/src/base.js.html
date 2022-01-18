@@ -74,7 +74,7 @@ class Base extends EventEmitter {
     super();
 
     if (params[0] instanceof Base) {
-      return Object.assign(this, params[0]);
+      return Object.assign(this, params[0]); // eslint-disable-line no-constructor-return
     }
 
     if (typeof params[0] === &apos;object&apos;) {
@@ -102,14 +102,14 @@ class Base extends EventEmitter {
       },
     });
 
-    this.http.interceptors.request.use(req =&gt; {
+    this.http.interceptors.request.use((req) =&gt; {
       this.emit(&apos;request&apos;, req);
 
       return req;
     });
 
     this.http.interceptors.response.use(
-      res =&gt; {
+      (res) =&gt; {
         this.emit(&apos;response&apos;, res);
         if (this.isVideoUrl(res.config.url)) {
           return res.data &amp;&amp; res.data.data;
@@ -117,7 +117,7 @@ class Base extends EventEmitter {
 
         return res.data;
       },
-      errorRes =&gt;
+      (errorRes) =&gt;
         Promise.reject(
           (errorRes.response &amp;&amp; errorRes.response.data.error) || errorRes
         )

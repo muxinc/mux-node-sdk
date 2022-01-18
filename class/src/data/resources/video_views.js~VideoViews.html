@@ -101,11 +101,12 @@ Data.VideoViews.list({order_direction: &apos;asc&apos;});</code></pre>
     <h4>Test:</h4>
     <ul>
       
-    <li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber6">Unit::VideoViews</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber20">Unit::VideoViews VideoViews</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber22">Unit::VideoViews VideoViews throws an error if an api key is not given</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber29">Unit::VideoViews VideoViews throws an error if a secret key is not given</a></span></li>
-<li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber36">Unit::VideoViews VideoViews creates a new VideoViews instance</a></span></li>
+    <li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber7">Unit::VideoViews</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber21">Unit::VideoViews VideoViews</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/data/video_views.spec.js.html#lineNumber7">Integration::VideoViews</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber23">Unit::VideoViews VideoViews throws an error if an api key is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber30">Unit::VideoViews VideoViews throws an error if a secret key is not given</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/unit/data/resources/video_views.spec.js.html#lineNumber37">Unit::VideoViews VideoViews creates a new VideoViews instance</a></span></li>
 </ul>
   </div>
 
@@ -270,7 +271,14 @@ Data.VideoViews.get(&apos;ABCD1234&apos;);</code></pre>
     </div>
 </div>
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/integration/data/video_views.spec.js.html#lineNumber26">Integration::VideoViews VideoViews.get</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/data/video_views.spec.js.html#lineNumber28">Integration::VideoViews VideoViews.get Returns the details for a single video view</a></span></li>
+</ul>
+  </div>
 
   <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/data#operation/get-video-view">https://docs.mux.com/api-reference/data#operation/get-video-view</a></span></li></ul></div>
   
@@ -356,7 +364,14 @@ Data.VideoViews.list({ viewer_id: &apos;ABCD1234&apos;, timeframe: [&apos;7:days
     </div>
 </div>
 
-  
+  <div data-ice="tests">
+    <h4>Test:</h4>
+    <ul>
+      
+    <li data-ice="test"><span><a href="test-file/test/integration/data/video_views.spec.js.html#lineNumber12">Integration::VideoViews VideoViews.list</a></span></li>
+<li data-ice="test"><span><a href="test-file/test/integration/data/video_views.spec.js.html#lineNumber14">Integration::VideoViews VideoViews.list Returns a list of video views for a property that occurred within the specified timeframe</a></span></li>
+</ul>
+  </div>
 
   <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://docs.mux.com/api-reference/data#operation/list-video-views">https://docs.mux.com/api-reference/data#operation/list-video-views</a></span></li></ul></div>
   
