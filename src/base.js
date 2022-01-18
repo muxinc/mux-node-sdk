@@ -21,7 +21,7 @@ class Base extends EventEmitter {
     super();
 
     if (params[0] instanceof Base) {
-      return Object.assign(this, params[0]);
+      return Object.assign(this, params[0]); // eslint-disable-line no-constructor-return
     }
 
     if (typeof params[0] === 'object') {

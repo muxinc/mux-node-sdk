@@ -4,13 +4,13 @@
  */
 
 const Base = require('../base');
-const Errors = require('../../src/data/resources/errors');
-const Exports = require('../../src/data/resources/exports');
-const Filters = require('../../src/data/resources/filters');
-const Incidents = require('../../src/data/resources/incidents');
-const Metrics = require('../../src/data/resources/metrics');
-const RealTime = require('../../src/data/resources/real_time');
-const VideoViews = require('../../src/data/resources/video_views');
+const Errors = require('./resources/errors');
+const Exports = require('./resources/exports');
+const Filters = require('./resources/filters');
+const Incidents = require('./resources/incidents');
+const Metrics = require('./resources/metrics');
+const RealTime = require('./resources/real_time');
+const VideoViews = require('./resources/video_views');
 
 /**
  * @ignore
