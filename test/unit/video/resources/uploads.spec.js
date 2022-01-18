@@ -21,7 +21,7 @@ describe('Unit::Uploads', () => {
   describe('Uploads.create', () => {
     /** @test {Uploads.create} */
     it('throws an error if no params are given', () =>
-      testUploads.create().catch(err => {
+      testUploads.create().catch((err) => {
         expect(err).to.exist;
         expect(err.message).to.include('Params are required');
       }));
@@ -33,10 +33,10 @@ describe('Unit::Uploads', () => {
     it('throws an error when an upload id is not given', () =>
       testUploads
         .get()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.include('An upload ID is required');
         }));
@@ -46,7 +46,7 @@ describe('Unit::Uploads', () => {
   describe('Uploads.cancel', () => {
     /** @test {Uploads.del} */
     it('throws an error when an upload id is not given', () =>
-      testUploads.cancel().catch(err => {
+      testUploads.cancel().catch((err) => {
         expect(err).to.exist;
         expect(err.message).to.include('An upload ID is required');
       }));
@@ -55,7 +55,7 @@ describe('Unit::Uploads', () => {
   /** @test {Uploads.list} */
   describe('Uploads.list', () => {
     /** @test {Uploads.list} */
-    it('makes a GET request to list 100 uploads offset by 2 pages', done => {
+    it('makes a GET request to list 100 uploads offset by 2 pages', (done) => {
       moxios.stubRequest('/video/v1/uploads?limit=100&page=2', {
         status: 200,
         responseText: '{"data": {"list": true}}',

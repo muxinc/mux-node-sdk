@@ -1,6 +1,6 @@
 const { expect } = require('chai');
-const Mux = require('../../../src/mux');
 const nockBack = require('nock').back;
+const Mux = require('../../../src/mux');
 
 const TEST_VIDEO =
   'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';
@@ -27,6 +27,6 @@ describe('Integration::PlaybackIds', () => {
 
     /** @test {PlaybackIds.get} */
     it('fails to get a live stream or asset when not given an incorrect playback id', () =>
-      Video.PlaybackIds.get('somefakeid').catch(err => expect(err).to.exist));
+      Video.PlaybackIds.get('somefakeid').catch((err) => expect(err).to.exist));
   });
 });

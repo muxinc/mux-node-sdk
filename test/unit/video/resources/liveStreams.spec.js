@@ -48,10 +48,10 @@ describe('Unit::LiveStreams', () => {
     it('throws an error when a live stream ID is not given', () =>
       testLiveStreams
         .del()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'A live stream ID is required to delete a live stream'
@@ -62,7 +62,7 @@ describe('Unit::LiveStreams', () => {
   /** @test {LiveStreams.list} */
   describe('LiveStreams.list', () => {
     /** @test {LiveStreams.list} */
-    it('makes a GET request to list 100 live streams offset by 2 pages', done => {
+    it('makes a GET request to list 100 live streams offset by 2 pages', (done) => {
       moxios.stubRequest('/video/v1/live-streams?limit=100&page=2', {
         status: 200,
         responseText: '{"data": {"list": true}}',
@@ -84,10 +84,10 @@ describe('Unit::LiveStreams', () => {
     it('throws an error when a live stream ID is not given', () =>
       testLiveStreams
         .get()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'A live stream ID is required to get a live stream'
@@ -101,10 +101,10 @@ describe('Unit::LiveStreams', () => {
     it('throws an error when a live stream ID is not given', () =>
       testLiveStreams
         .signalComplete()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'A live stream ID is required to signal a stream is complete'
@@ -118,10 +118,10 @@ describe('Unit::LiveStreams', () => {
     it('throws an error when a live stream ID is not given', () =>
       testLiveStreams
         .resetStreamKey()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'A live stream ID is required to reset a live stream key'
@@ -135,10 +135,10 @@ describe('Unit::LiveStreams', () => {
     it('throws an error if a live stream ID is not given', () =>
       testLiveStreams
         .createPlaybackId()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'A live stream ID is required to create a live stream playback ID'
@@ -152,10 +152,10 @@ describe('Unit::LiveStreams', () => {
     it('throws an error if a live stream ID is not given', () =>
       testLiveStreams
         .deletePlaybackId()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'A live stream ID is required to delete a live stream playback ID'
@@ -169,10 +169,10 @@ describe('Unit::LiveStreams', () => {
     it('throws an error if a live stream ID is not given', () =>
       testLiveStreams
         .createSimulcastTarget()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'A live stream ID is required to create a simulcast target'
@@ -186,10 +186,10 @@ describe('Unit::LiveStreams', () => {
     it('throws an error if a live stream ID is not given', () =>
       testLiveStreams
         .getSimulcastTarget()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'A live stream ID is required to get a simulcast target'
@@ -200,10 +200,10 @@ describe('Unit::LiveStreams', () => {
     it('throws an error if a simulcast target id is not given', () =>
       testLiveStreams
         .getSimulcastTarget('testLiveStream')
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'A simulcast target ID is required to get a simulcast target'
@@ -217,10 +217,10 @@ describe('Unit::LiveStreams', () => {
     it('throws an error if a live stream ID is not given', () =>
       testLiveStreams
         .deleteSimulcastTarget()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'A live stream ID is required to delete a simulcast target'
@@ -231,10 +231,10 @@ describe('Unit::LiveStreams', () => {
     it('throws an error if a simulcast target id is not given', () =>
       testLiveStreams
         .deleteSimulcastTarget('testLiveStream')
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'A simulcast target ID is required to delete a simulcast target'
@@ -248,10 +248,10 @@ describe('Unit::LiveStreams', () => {
     it('throws an error if a live stream ID is not given', () =>
       testLiveStreams
         .enable()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'A live stream ID is required to enable a live stream'
@@ -265,10 +265,10 @@ describe('Unit::LiveStreams', () => {
     it('throws an error if a live stream ID is not given', () =>
       testLiveStreams
         .disable()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'A live stream ID is required to disable a live stream'

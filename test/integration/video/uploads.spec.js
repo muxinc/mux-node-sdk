@@ -1,6 +1,6 @@
 const { expect } = require('chai');
-const Mux = require('../../../src/mux');
 const nockBack = require('nock').back;
+const Mux = require('../../../src/mux');
 
 /** @test {Uploads} */
 describe('Integration::Uploads', () => {
@@ -38,7 +38,7 @@ describe('Integration::Uploads', () => {
 
     /** @test {Uploads.cancel} */
     it('fails to delete an upload when given an incorrect upload id', () =>
-      Video.Uploads.cancel('somefakeid').catch(err => expect(err).to.exist));
+      Video.Uploads.cancel('somefakeid').catch((err) => expect(err).to.exist));
   });
 
   /** @test {Uploads.get} */
@@ -57,7 +57,7 @@ describe('Integration::Uploads', () => {
 
     /** @test {Uploads.get} */
     it('fails to get an upload when given an incorrect upload id', () =>
-      Video.Uploads.get('somefakeid').catch(err => expect(err).to.exist));
+      Video.Uploads.get('somefakeid').catch((err) => expect(err).to.exist));
   });
 
   /** @test {Uploads.list} */

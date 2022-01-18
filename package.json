@@ -14,7 +14,7 @@
   "author": "Mux <help@mux.com> (https://mux.com/)",
   "main": "src/mux.js",
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "license": "MIT",
   "scripts": {
@@ -29,28 +29,28 @@
   "dependencies": {
     "axios": "^0.25.0",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
-    "jsonwebtoken": "^8.4.0"
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.0.1",
-    "@typescript-eslint/parser": "^3.0.1",
-    "chai": "^4.1.2",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "chai": "^4.3.4",
     "esdoc": "^1.0.4",
-    "esdoc-node": "^1.0.3",
+    "esdoc-node": "^1.0.5",
     "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^7.1.0",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-config-prettier": "^3.3.0",
-    "eslint-plugin-chai-friendly": "^0.4.1",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-prettier": "^3.0.0",
-    "mocha": "^8.0.1",
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-chai-friendly": "^0.7.2",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "mocha": "^9.1.4",
     "moxios": "^0.4.0",
-    "nock": "^12.0.3",
-    "prettier": "^1.15.3",
-    "sinon": "^4.5.0",
-    "typescript": "^3.8.3"
+    "nock": "^13.2.2",
+    "prettier": "^2.5.1",
+    "sinon": "^12.0.1",
+    "typescript": "^4.5.4"
   },
   "repository": {
     "type": "git",

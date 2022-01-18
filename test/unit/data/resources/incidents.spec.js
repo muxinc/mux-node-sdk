@@ -61,7 +61,7 @@ describe('Unit::Incidents', () => {
       );
     });
 
-    it('makes a get request to the Mux data incidents route', done => {
+    it('makes a get request to the Mux data incidents route', (done) => {
       moxios.stubRequest('/data/v1/incidents/abc123/related', {
         status: 200,
         responseText: '{"data": {"incidents": true}}',

@@ -13,7 +13,7 @@ const PATH = '/video/v1/signing-keys';
  * @private
  * Build the base asset path for the Mux API
  * */
-const buildBasePath = keyId => `${PATH}/${keyId}`;
+const buildBasePath = (keyId) => `${PATH}/${keyId}`;
 
 /**
  * Signing Key Class - Provides access to the Mux Video Signing Key API

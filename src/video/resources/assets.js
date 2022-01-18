@@ -13,7 +13,7 @@ const PATH = '/video/v1/assets';
  * @private
  * Build the base asset path for the Mux API
  * */
-const buildBasePath = assetId => `${PATH}/${assetId}`;
+const buildBasePath = (assetId) => `${PATH}/${assetId}`;
 
 /**
  * Assets Class - Provides access to the Mux Video Assets API

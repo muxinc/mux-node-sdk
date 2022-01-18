@@ -47,10 +47,10 @@ describe('Unit::PlaybackIds', () => {
     it('throws an error when an playback ID is not given', () =>
       testPlaybackIds
         .get()
-        .then(res => {
+        .then((res) => {
           expect(res).to.not.exist;
         })
-        .catch(err => {
+        .catch((err) => {
           expect(err).to.exist;
           expect(err.message).to.equal(
             'An playback ID is required to get an asset or live stream identifier'
