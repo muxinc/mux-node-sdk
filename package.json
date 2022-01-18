@@ -1,6 +1,6 @@
 {
   "name": "@mux/mux-node",
-  "version": "3.3.1",
+  "version": "3.3.2",
   "description": "Mux API wrapper",
   "keywords": [
     "mux",
@@ -27,7 +27,7 @@
     "lint": "yarn format"
   },
   "dependencies": {
-    "axios": "^0.21.4",
+    "axios": "^0.25.0",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
     "jsonwebtoken": "^8.4.0"
   },
