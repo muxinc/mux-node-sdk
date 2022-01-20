@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
-const VerifyHeader = require('../../../../dist/webhooks/resources/verify_header');
+const { VerifyHeader } = require('../../../../dist/webhooks/resources/verify_header');
 
 /** @test {VerifyHeader} */
 describe('Unit::VerifyHeader', () => {
@@ -20,7 +20,7 @@ describe('Unit::VerifyHeader', () => {
         const expectedSignature =
           '854ece4c22acef7c66b57d4e504153bc512595e8e9c772ece2a68150548c19a7';
         const parsed = VerifyHeader.parseHeader(header);
-        expect(parsed.timestamp).to.equal('1565125718');
+        expect(parsed.timestamp).to.equal(1565125718);
         expect(parsed.signatures.length).to.equal(1);
         expect(parsed.signatures[0]).to.equal(expectedSignature);
       });

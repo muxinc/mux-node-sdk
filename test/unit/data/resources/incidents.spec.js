@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const moxios = require('moxios');
 const sinon = require('sinon');
-const Incidents = require('../../../../dist/data/resources/incidents');
+const { Incidents } = require('../../../../dist/data/resources/incidents');
 
 /** @test {Incidents} */
 describe('Unit::Incidents', () => {
