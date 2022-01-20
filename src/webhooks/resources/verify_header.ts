@@ -49,14 +49,14 @@ export class VerifyHeader {
 
     return header.split(',').reduce(
       (accum, item) => {
-        const kv = item.split('=');
+        const kv: string[] = item.split('=');
 
         if (kv[0] === 't') {
           /* eslint-disable no-param-reassign, prefer-destructuring */
           accum.timestamp = parseInt(kv[1], 10);
         }
 
-        if (kv[0] === scheme) {
+        if (kv[0] === scheme && typeof kv[1] === 'string') {
           accum.signatures.push(kv[1]);
         }
 
@@ -64,7 +64,7 @@ export class VerifyHeader {
       },
       {
         timestamp: -1,
-        signatures: [],
+        signatures: [] as string[],
       }
     );
   }

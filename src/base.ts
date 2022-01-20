@@ -23,9 +23,9 @@ const pkg = require('../package.json');
 export class Base extends EventEmitter {
   readonly http: AxiosInstance;
 
-  private _tokenId: string;
-  private _tokenSecret: string;
-  private _config: RequestOptions;
+  private _tokenId!: string;
+  private _tokenSecret!: string;
+  private _config!: RequestOptions;
 
   constructor(muxBase: Base)
   constructor(requestOptions: RequestOptions)
@@ -49,7 +49,7 @@ export class Base extends EventEmitter {
         // without 'as' this complains of Base | string typing, but we have ruled out the Base case implicitly
         this.tokenId = tokenIdOrOptionsOrBase as string;
         this.tokenSecret = tokenSecret;
-        this.config = config;
+        this.config = config!;
       }
 
       this.http = Axios.create({
@@ -61,8 +61,8 @@ export class Base extends EventEmitter {
         },
         withCredentials: false,
         auth: {
-          username: this.tokenId,
-          password: this.tokenSecret,
+          username: this._tokenId,
+          password: this._tokenSecret,
         },
       });
 
@@ -75,7 +75,7 @@ export class Base extends EventEmitter {
       this.http.interceptors.response.use(
         (res) => {
           this.emit('response', res);
-          if (this.isVideoUrl(res.config.url)) {
+          if (res.config.url && this.isVideoUrl(res.config.url)) {
             return res.data && res.data.data;
           }
 
@@ -90,7 +90,7 @@ export class Base extends EventEmitter {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  isVideoUrl(url) {
+  isVideoUrl(url: string) {
     return url.startsWith(`/video/v1/`);
   }
 
@@ -105,24 +105,26 @@ export class Base extends EventEmitter {
     return this._config;
   }
 
-  set tokenId(token: string | null) {
-    this._tokenId = token || process.env.MUX_TOKEN_ID;
-
-    if (typeof this._tokenId === 'undefined') {
+  set tokenId(token: string | undefined) {
+    const v = token || process.env.MUX_TOKEN_ID;
+    if (!v || v.length === 0) {
       throw new Error('API Access Token must be provided.');
     }
+
+    this._tokenId = v;
   }
 
   get tokenId() {
     return this._tokenId;
   }
 
-  set tokenSecret(secret: string | null) {
-    this._tokenSecret = secret || process.env.MUX_TOKEN_SECRET;
-
-    if (typeof this._tokenSecret === 'undefined' || this._tokenSecret === '') {
+  set tokenSecret(secret: string | undefined) {
+    const v = secret || process.env.MUX_TOKEN_SECRET
+    if (!v || v.length === 0) {
       throw new Error('API secret key must be provided');
     }
+
+    this._tokenSecret = v;
   }
 
   get tokenSecret() {

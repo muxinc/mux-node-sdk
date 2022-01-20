@@ -45,7 +45,7 @@ export class Video extends Base {
     } else if (typeof accessTokenOrConfigOrBase === 'object') {
       super(accessTokenOrConfigOrBase);
     } else {
-      super(accessTokenOrConfigOrBase, secret, config);
+      super(accessTokenOrConfigOrBase, secret!, config!);
     }
 
     /** @type {Assets} */

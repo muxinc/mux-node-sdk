@@ -6,15 +6,11 @@
 import fs from 'fs';
 import jwt from 'jsonwebtoken';
 
-const typeToClaim = (type) => {
-  const typeMap = {
-    video: 'v',
-    thumbnail: 't',
-    gif: 'g',
-    storyboard: 's',
-  };
-
-  return typeMap[type];
+const TypeClaim = {
+  video: 'v',
+  thumbnail: 't',
+  gif: 'g',
+  storyboard: 's',
 };
 
 const getSigningKey = (options) => {
@@ -91,10 +87,15 @@ export class JWT {
     const keyId = getSigningKey(options);
     const keySecret = getPrivateKey(options);
 
-    const tokenOptions = {
+    const typeClaim = TypeClaim[opts.type];
+    if (!typeClaim) {
+      throw new Error("Invalid signature type: " + opts.type);
+    }
+
+    const tokenOptions: jwt.SignOptions = {
       keyid: keyId,
       subject: playbackId,
-      audience: typeToClaim(opts.type),
+      audience: typeClaim,
       expiresIn: opts.expiration,
       noTimestamp: true,
       algorithm: 'RS256',
