@@ -3,11 +3,13 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-const Base = require('./base');
-const Video = require('./video/video');
-const Data = require('./data/data');
-const Webhooks = require('./webhooks/webhooks');
-const JWT = require('./utils/jwt');
+import Base from './base';
+import Video from './video/video';
+import Data from './data/data';
+import Webhooks from './webhooks/webhooks';
+import JWT from './utils/jwt';
+
+import { RequestOptions } from './RequestOptions';
 
 /**
  * Mux Class - Provides access to the Mux Video and Mux Data API
@@ -41,7 +43,13 @@ const JWT = require('./utils/jwt');
  * // Verify a webhook signature
  * Webhooks.verifyHeader(body, signature, secret);
  */
-class Mux extends Base {
+export default class Mux extends Base {
+  static readonly JWT = JWT;
+  static readonly Webhooks = Webhooks;
+
+  readonly Video: Video;
+  readonly Data: Data;
+
   /**
    * Mux Constructor
    *
@@ -51,8 +59,14 @@ class Mux extends Base {
    * @param {string='https://api.mux.com'} options.baseUrl - Change the base URL for API requests.
    * @constructor
    */
-  constructor(accessTokenOrConfig, secret, config) {
-    super(accessTokenOrConfig, secret, config);
+  constructor(config: RequestOptions)
+  constructor(accessToken: string, secret: string, config: RequestOptions)
+  constructor(accessTokenOrConfig: string | RequestOptions, secret?: string, config?: RequestOptions) {
+    if (typeof accessTokenOrConfig === 'object') {
+      super(accessTokenOrConfig);
+    } else {
+      super(accessTokenOrConfig, secret, config);
+    }
 
     /** @type {Video} */
     this.Video = new Video(this);
@@ -61,14 +75,3 @@ class Mux extends Base {
     this.Data = new Data(this);
   }
 }
-
-/**
- * @ {JWT}
- */
-Mux.JWT = JWT;
-
-Mux.Webhooks = Webhooks;
-
-Mux.default = Mux;
-
-module.exports = Mux;

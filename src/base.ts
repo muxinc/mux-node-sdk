@@ -1,7 +1,11 @@
 /* eslint no-underscore-dangle: ["error", { "allow": ["_config", "_tokenId", "_secret"] }] */
 
-const axios = require('axios');
-const EventEmitter = require('events');
+import Axios, {
+  AxiosInstance,
+} from 'axios';
+import EventEmitter from 'events';
+import { RequestOptions } from './RequestOptions';
+
 const pkg = require('../package.json');
 
 /**
@@ -16,32 +20,35 @@ const pkg = require('../package.json');
  * @property {string} requestOptions.auth.password - HTTP basic auth password (secret)
  *
  */
-class Base extends EventEmitter {
-  constructor(...params) {
+export default class Base extends EventEmitter {
+  readonly http: AxiosInstance;
+
+  private _tokenId: string;
+  private _tokenSecret: string;
+  private _config: RequestOptions;
+
+  constructor(requestOptions: RequestOptions)
+  constructor(tokenId: string, tokenSecret: string, config: RequestOptions)
+  constructor(tokenIdOrOptions: string | RequestOptions, tokenSecret?: string, config?: RequestOptions) {
     super();
 
-    if (params[0] instanceof Base) {
-      return Object.assign(this, params[0]); // eslint-disable-line no-constructor-return
-    }
-
-    if (typeof params[0] === 'object') {
-      this.config = params[0]; // eslint-disable-line prefer-destructuring
+    if (typeof(tokenIdOrOptions) === 'object') {
+      this.config = tokenIdOrOptions; // eslint-disable-line prefer-destructuring
       this.tokenId = undefined;
       this.tokenSecret = undefined;
     } else {
-      this.tokenId = params[0]; // eslint-disable-line prefer-destructuring
-      this.tokenSecret = params[1]; // eslint-disable-line prefer-destructuring
-      this.config = params[2]; // eslint-disable-line prefer-destructuring
+      this.tokenId = tokenIdOrOptions; // eslint-disable-line prefer-destructuring
+      this.tokenSecret = tokenSecret; // eslint-disable-line prefer-destructuring
+      this.config = config; // eslint-disable-line prefer-destructuring
     }
 
-    this.http = axios.create({
+    this.http = Axios.create({
       baseURL: this.config.baseUrl,
       headers: {
         'User-Agent': `Mux Node | ${pkg.version}`,
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      mode: 'cors',
       withCredentials: false,
       auth: {
         username: this.tokenId,
@@ -76,7 +83,7 @@ class Base extends EventEmitter {
     return url.startsWith(`/video/v1/`);
   }
 
-  set config(options = {}) {
+  set config(options: RequestOptions) {
     this._config = {
       baseUrl: 'https://api.mux.com',
       ...options,
@@ -87,8 +94,8 @@ class Base extends EventEmitter {
     return this._config;
   }
 
-  set tokenId(token = process.env.MUX_TOKEN_ID) {
-    this._tokenId = token;
+  set tokenId(token: string | null) {
+    this._tokenId = token || process.env.MUX_TOKEN_ID;
 
     if (typeof this._tokenId === 'undefined') {
       throw new Error('API Access Token must be provided.');
@@ -99,17 +106,15 @@ class Base extends EventEmitter {
     return this._tokenId;
   }
 
-  set tokenSecret(secret = process.env.MUX_TOKEN_SECRET) {
-    this._secret = secret;
+  set tokenSecret(secret: string | null) {
+    this._tokenSecret = secret || process.env.MUX_TOKEN_SECRET;
 
-    if (typeof this._secret === 'undefined' || this._secret === '') {
+    if (typeof this._tokenSecret === 'undefined' || this._tokenSecret === '') {
       throw new Error('API secret key must be provided');
     }
   }
 
   get tokenSecret() {
-    return this._secret;
+    return this._tokenSecret;
   }
 }
-
-module.exports = Base;

@@ -1,12 +1,17 @@
-const crypto = require('crypto');
+import crypto from 'crypto';
+
+export const HeaderScheme = {
+  V1: 'v1',
+} as const;
+export type HeaderScheme = typeof HeaderScheme[keyof typeof HeaderScheme];
 
 const DEFAULT_TOLERANCE = 300; // 5 minutes
-const EXPECTED_SCHEME = 'v1';
+const EXPECTED_SCHEME: HeaderScheme = HeaderScheme.V1;
 
 /**
  * Secure compare, from https://github.com/freewil/scmp
  */
-function secureCompare(_a, _b) {
+function secureCompare(_a: string, _b: string) {
   const a = Buffer.from(_a);
   const b = Buffer.from(_b);
 
@@ -32,10 +37,14 @@ function secureCompare(_a, _b) {
   return result === 0;
 }
 
-class VerifyHeader {
-  static parseHeader(header, scheme = EXPECTED_SCHEME) {
+export default class VerifyHeader {
+  static parseHeader(header?: string, scheme: HeaderScheme = HeaderScheme.V1) {
     if (typeof header !== 'string') {
       return null;
+    }
+
+    switch (scheme) {
+      case EXPECTED_SCHEME:
     }
 
     return header.split(',').reduce(
@@ -44,7 +53,7 @@ class VerifyHeader {
 
         if (kv[0] === 't') {
           /* eslint-disable no-param-reassign, prefer-destructuring */
-          accum.timestamp = kv[1];
+          accum.timestamp = parseInt(kv[1], 10);
         }
 
         if (kv[0] === scheme) {
@@ -60,14 +69,19 @@ class VerifyHeader {
     );
   }
 
-  static computeSignature(payload, secret) {
+  static computeSignature(payload: string | Buffer, secret: string | Buffer) {
     return crypto
       .createHmac('sha256', secret)
       .update(payload, 'utf8')
       .digest('hex');
   }
 
-  static verify(_payload, _header, secret, tolerance = DEFAULT_TOLERANCE) {
+  static verify(
+    _payload: string | Buffer,
+    _header: string | Buffer,
+    secret: string | Buffer,
+    tolerance: number = DEFAULT_TOLERANCE,
+  ) {
     const payload = Buffer.isBuffer(_payload)
       ? _payload.toString('utf8')
       : _payload;
@@ -110,4 +124,3 @@ class VerifyHeader {
   }
 }
 
-module.exports = VerifyHeader;

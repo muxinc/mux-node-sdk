@@ -1,4 +1,4 @@
-const VerifyHeader = require('./resources/verify_header');
+import VerifyHeader from './resources/verify_header';
 
 /**
  * Webhooks - Provides access to the Mux Webhooks signature verification
@@ -33,8 +33,8 @@ class Webhooks {
    *
    * @see https://docs.mux.com/docs/webhook-security
    */
-  static verifyHeader(...args) {
-    return VerifyHeader.verify(...args);
+  static verifyHeader(body: string, signature: string, secret: string) {
+    return VerifyHeader.verify(body, signature, secret);
   }
 }
 

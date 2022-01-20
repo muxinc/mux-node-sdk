@@ -16,3 +16,6 @@ node_modules/
 *.iml
 *.ipr
 .idea/
+
+# builds
+dist/

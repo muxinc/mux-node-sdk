@@ -18,6 +18,8 @@
   },
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
+    "watch": "yarn run -s build --watch",
     "docs": "esdoc",
     "test": "yarn mocha --recursive ./test",
     "test:unit": "mocha --recursive ./test/unit",
