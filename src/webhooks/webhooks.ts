@@ -11,7 +11,7 @@ import VerifyHeader from './resources/verify_header';
  * Webhooks.verifyHeader(body, signature, secret);
  *
  */
-class Webhooks {
+export default class Webhooks {
   /**
    * Verify a webhook signature. When enabled, Mux will send webhooks with a signature
    * in the http request header 'Mux-Signature'. You can use that signature to verify
@@ -37,5 +37,3 @@ class Webhooks {
     return VerifyHeader.verify(body, signature, secret);
   }
 }
-
-module.exports = Webhooks;

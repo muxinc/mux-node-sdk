@@ -2,7 +2,8 @@
  * Mux Signing Keys
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
+import { RequestOptions } from '../../RequestOptions';
 
 /**
  * @private Base signing-key path for the Mux API
@@ -24,7 +25,20 @@ const buildBasePath = (keyId) => `${PATH}/${keyId}`;
  * // Create a new signing key
  * Video.SigningKeys.create();
  */
-class SigningKeys extends Base {
+export default class SigningKeys extends Base {
+  constructor(base: Base)
+  constructor(config: RequestOptions)
+  constructor(accessToken: string, secret: string, config: RequestOptions)
+  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+    if (accessTokenOrConfigOrBase instanceof Base) {
+      super(accessTokenOrConfigOrBase);
+    } else if (typeof accessTokenOrConfigOrBase === 'object') {
+      super(accessTokenOrConfigOrBase);
+    } else {
+      super(accessTokenOrConfigOrBase, secret, config);
+    }
+  }
+
   /**
    * Creates a new Signing Key that can be used with the JWT module to sign URLs.
    * @extends Base
@@ -103,5 +117,3 @@ class SigningKeys extends Base {
     return this.http.get(PATH, { params });
   }
 }
-
-module.exports = SigningKeys;

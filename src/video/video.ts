@@ -3,13 +3,15 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-const Assets = require('./resources/assets');
-const Base = require('../base');
-const LiveStreams = require('./resources/liveStreams');
-const PlaybackIds = require('./resources/playbackIds');
-const Uploads = require('./resources/uploads');
-const SigningKeys = require('./resources/signingKeys');
-const DeliveryUsage = require('./resources/deliveryUsage');
+import Base from '../base';
+import { RequestOptions } from '../RequestOptions';
+
+import Assets from './resources/assets';
+import LiveStreams from './resources/liveStreams';
+import PlaybackIds from './resources/playbackIds';
+import Uploads from './resources/uploads';
+import SigningKeys from './resources/signingKeys';
+import DeliveryUsage from './resources/deliveryUsage';
 
 /**
  * @ignore
@@ -26,16 +28,25 @@ const DeliveryUsage = require('./resources/deliveryUsage');
  * // Create an asset playback ID
  * Video.Assets.createPlaybackId(assetId, { policy: 'public' });
  */
-class Video extends Base {
-  /**
-   * Video Constructor
-   *
-   * @param {string} accessToken - Mux API Access Token
-   * @param {string} secret - Mux API secret
-   * @constructor
-   */
-  constructor(...params) {
-    super(...params);
+export default class Video extends Base {
+  readonly Assets: Assets;
+  readonly LiveStreams: LiveStreams;
+  readonly PlaybackIds: PlaybackIds;
+  readonly Uploads: Uploads;
+  readonly SigningKeys: SigningKeys;
+  readonly DeliveryUsage: DeliveryUsage;
+
+  constructor(base: Base)
+  constructor(config: RequestOptions)
+  constructor(accessToken: string, secret: string, config: RequestOptions)
+  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+    if (accessTokenOrConfigOrBase instanceof Base) {
+      super(accessTokenOrConfigOrBase);
+    } else if (typeof accessTokenOrConfigOrBase === 'object') {
+      super(accessTokenOrConfigOrBase);
+    } else {
+      super(accessTokenOrConfigOrBase, secret, config);
+    }
 
     /** @type {Assets} */
     this.Assets = new Assets(this);
@@ -56,5 +67,3 @@ class Video extends Base {
     this.DeliveryUsage = new DeliveryUsage(this);
   }
 }
-
-module.exports = Video;

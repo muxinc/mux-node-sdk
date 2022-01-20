@@ -2,7 +2,8 @@
  * Mux Filters
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
+import { RequestOptions } from '../../RequestOptions';
 
 /**
  * @private Base filters path for the Mux API
@@ -20,7 +21,20 @@ const PATH = '/data/v1/filters';
  * // Lists all the filters broken out into basic and advanced
  * Data.Filters.list();
  */
-class Filters extends Base {
+export default class Filters extends Base {
+  constructor(base: Base)
+  constructor(config: RequestOptions)
+  constructor(accessToken: string, secret: string, config: RequestOptions)
+  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+    if (accessTokenOrConfigOrBase instanceof Base) {
+      super(accessTokenOrConfigOrBase);
+    } else if (typeof accessTokenOrConfigOrBase === 'object') {
+      super(accessTokenOrConfigOrBase);
+    } else {
+      super(accessTokenOrConfigOrBase, secret, config);
+    }
+  }
+
   /**
    * Lists the values for a filter along with a total count of related views
    *
@@ -61,5 +75,3 @@ class Filters extends Base {
     return this.http.get(PATH);
   }
 }
-
-module.exports = Filters;

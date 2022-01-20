@@ -2,7 +2,8 @@
  * Mux Errors
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
+import { RequestOptions } from '../../RequestOptions';
 
 /**
  * @private Base errors path for the Mux API
@@ -18,7 +19,20 @@ const PATH = '/data/v1/errors';
  * // Returns a list of playback errors filtered by the windows operating system
  * Data.Errors.list({ filters: ['operating_system:windows'] });
  */
-class Errors extends Base {
+export default class Errors extends Base {
+  constructor(base: Base)
+  constructor(config: RequestOptions)
+  constructor(accessToken: string, secret: string, config: RequestOptions)
+  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+    if (accessTokenOrConfigOrBase instanceof Base) {
+      super(accessTokenOrConfigOrBase);
+    } else if (typeof accessTokenOrConfigOrBase === 'object') {
+      super(accessTokenOrConfigOrBase);
+    } else {
+      super(accessTokenOrConfigOrBase, secret, config);
+    }
+  }
+
   /**
    * Returns a list of playback errors
    *
@@ -37,5 +51,3 @@ class Errors extends Base {
     return this.http.get(PATH, { params });
   }
 }
-
-module.exports = Errors;

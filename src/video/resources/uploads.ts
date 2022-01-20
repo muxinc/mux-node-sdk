@@ -2,7 +2,8 @@
  * Mux Assets
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
+import { RequestOptions } from '../../RequestOptions';
 
 /**
  * @private Base asset path for the Mux API
@@ -24,7 +25,20 @@ const buildBasePath = (uploadId) => `${PATH}/${uploadId}`;
  * // Create an upload
  * Video.Uploads.create({ new_asset_settings: { playback_policy: 'public' } });
  */
-class Uploads extends Base {
+export default class Uploads extends Base {
+  constructor(base: Base)
+  constructor(config: RequestOptions)
+  constructor(accessToken: string, secret: string, config: RequestOptions)
+  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+    if (accessTokenOrConfigOrBase instanceof Base) {
+      super(accessTokenOrConfigOrBase);
+    } else if (typeof accessTokenOrConfigOrBase === 'object') {
+      super(accessTokenOrConfigOrBase);
+    } else {
+      super(accessTokenOrConfigOrBase, secret, config);
+    }
+  }
+
   /**
    * Creates a direct upload with the specified JSON parameters
    * @extends Base
@@ -110,5 +124,3 @@ class Uploads extends Base {
     return this.http.get(PATH, { params });
   }
 }
-
-module.exports = Uploads;

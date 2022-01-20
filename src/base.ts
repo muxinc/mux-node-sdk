@@ -27,55 +27,66 @@ export default class Base extends EventEmitter {
   private _tokenSecret: string;
   private _config: RequestOptions;
 
+  constructor(muxBase: Base)
   constructor(requestOptions: RequestOptions)
   constructor(tokenId: string, tokenSecret: string, config: RequestOptions)
-  constructor(tokenIdOrOptions: string | RequestOptions, tokenSecret?: string, config?: RequestOptions) {
+  constructor(tokenIdOrOptionsOrBase: string | RequestOptions | Base, tokenSecret?: string, config?: RequestOptions) {
     super();
 
-    if (typeof(tokenIdOrOptions) === 'object') {
-      this.config = tokenIdOrOptions; // eslint-disable-line prefer-destructuring
-      this.tokenId = undefined;
-      this.tokenSecret = undefined;
+    if (tokenIdOrOptionsOrBase instanceof Base) {
+      // we could do this with Object.assign but I'd rather we be really explicit about what we copy.
+      this.config = tokenIdOrOptionsOrBase._config;
+      this._tokenId = tokenIdOrOptionsOrBase._tokenId;
+      this._tokenSecret = tokenIdOrOptionsOrBase._tokenSecret;
+
+      this.http = tokenIdOrOptionsOrBase.http;
     } else {
-      this.tokenId = tokenIdOrOptions; // eslint-disable-line prefer-destructuring
-      this.tokenSecret = tokenSecret; // eslint-disable-line prefer-destructuring
-      this.config = config; // eslint-disable-line prefer-destructuring
+      if (typeof(tokenIdOrOptionsOrBase) === 'object' && !(tokenIdOrOptionsOrBase instanceof Base)) {
+        this.config = tokenIdOrOptionsOrBase;
+        this.tokenId = undefined;
+        this.tokenSecret = undefined;
+      } else {
+        // without 'as' this complains of Base | string typing, but we have ruled out the Base case implicitly
+        this.tokenId = tokenIdOrOptionsOrBase as string;
+        this.tokenSecret = tokenSecret;
+        this.config = config;
+      }
+
+      this.http = Axios.create({
+        baseURL: this.config.baseUrl,
+        headers: {
+          'User-Agent': `Mux Node | ${pkg.version}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        withCredentials: false,
+        auth: {
+          username: this.tokenId,
+          password: this.tokenSecret,
+        },
+      });
+
+      this.http.interceptors.request.use((req) => {
+        this.emit('request', req);
+
+        return req;
+      });
+
+      this.http.interceptors.response.use(
+        (res) => {
+          this.emit('response', res);
+          if (this.isVideoUrl(res.config.url)) {
+            return res.data && res.data.data;
+          }
+
+          return res.data;
+        },
+        (errorRes) =>
+          Promise.reject(
+            (errorRes.response && errorRes.response.data.error) || errorRes
+          )
+      );
     }
-
-    this.http = Axios.create({
-      baseURL: this.config.baseUrl,
-      headers: {
-        'User-Agent': `Mux Node | ${pkg.version}`,
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      withCredentials: false,
-      auth: {
-        username: this.tokenId,
-        password: this.tokenSecret,
-      },
-    });
-
-    this.http.interceptors.request.use((req) => {
-      this.emit('request', req);
-
-      return req;
-    });
-
-    this.http.interceptors.response.use(
-      (res) => {
-        this.emit('response', res);
-        if (this.isVideoUrl(res.config.url)) {
-          return res.data && res.data.data;
-        }
-
-        return res.data;
-      },
-      (errorRes) =>
-        Promise.reject(
-          (errorRes.response && errorRes.response.data.error) || errorRes
-        )
-    );
   }
 
   // eslint-disable-next-line class-methods-use-this

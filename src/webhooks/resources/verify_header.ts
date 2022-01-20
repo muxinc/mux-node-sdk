@@ -69,7 +69,7 @@ export default class VerifyHeader {
     );
   }
 
-  static computeSignature(payload: string | Buffer, secret: string | Buffer) {
+  static computeSignature(payload: string, secret: string | Buffer) {
     return crypto
       .createHmac('sha256', secret)
       .update(payload, 'utf8')

@@ -2,7 +2,8 @@
  * Mux Assets
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
+import { RequestOptions } from '../../RequestOptions';
 
 /**
  * @private Base playback ID path for the Mux API
@@ -24,7 +25,20 @@ const buildBasePath = (playbackId) => `${PATH}/${playbackId}`;
  * // Retrieve an Asset or Live Stream  identifier associated with a Playback ID
  * Video.PlaybackIds.get(playbackId);
  */
-class PlaybackIds extends Base {
+export default class PlaybackIds extends Base {
+  constructor(base: Base)
+  constructor(config: RequestOptions)
+  constructor(accessToken: string, secret: string, config: RequestOptions)
+  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+    if (accessTokenOrConfigOrBase instanceof Base) {
+      super(accessTokenOrConfigOrBase);
+    } else if (typeof accessTokenOrConfigOrBase === 'object') {
+      super(accessTokenOrConfigOrBase);
+    } else {
+      super(accessTokenOrConfigOrBase, secret, config);
+    }
+  }
+
   /**
    * Retrieve an Asset or Live Stream  identifier associated with a Playback ID
    * @param {string} playbackId - The ID for playback
@@ -49,5 +63,3 @@ class PlaybackIds extends Base {
     return this.http.get(buildBasePath(playbackId));
   }
 }
-
-module.exports = PlaybackIds;

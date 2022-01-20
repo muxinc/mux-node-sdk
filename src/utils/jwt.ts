@@ -3,8 +3,8 @@
  * Note: Hacking this module into a class with static methods because ESDoc forces it. We'll revisit ESDoc later.
  * Documentationjs looks real nice.
  */
-const fs = require('fs');
-const jwt = require('jsonwebtoken');
+import fs from 'fs';
+import jwt from 'jsonwebtoken';
 
 const typeToClaim = (type) => {
   const typeMap = {
@@ -62,7 +62,7 @@ const getPrivateKey = (options) => {
  *
  * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' })
  */
-class JWT {
+export default class JWT {
   /**
    * Creates a new token to be used with a signed playback ID
    * @param {string} playbackId - The Playback ID (of type 'signed') that you'd like to generate a token for.
@@ -121,5 +121,3 @@ class JWT {
     return jwt.decode(token);
   }
 }
-
-module.exports = JWT;

@@ -3,14 +3,15 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-const Base = require('../base');
-const Errors = require('./resources/errors');
-const Exports = require('./resources/exports');
-const Filters = require('./resources/filters');
-const Incidents = require('./resources/incidents');
-const Metrics = require('./resources/metrics');
-const RealTime = require('./resources/real_time');
-const VideoViews = require('./resources/video_views');
+import Base from '../base';
+import { RequestOptions } from '../RequestOptions';
+import Errors from './resources/errors';
+import Exports from './resources/exports';
+import Filters from './resources/filters';
+import Incidents from './resources/incidents';
+import Metrics from './resources/metrics';
+import RealTime from './resources/real_time';
+import VideoViews from './resources/video_views';
 
 /**
  * @ignore
@@ -22,7 +23,15 @@ const VideoViews = require('./resources/video_views');
  * const { Data } = muxClient;
  *
  */
-class Data extends Base {
+export default class Data extends Base {
+  readonly Errors: Errors;
+  readonly Exports: Exports;
+  readonly Filters: Filters;
+  readonly Incidents: Incidents;
+  readonly Metrics: Metrics;
+  readonly RealTime: RealTime;
+  readonly VideoViews: VideoViews;
+
   /**
    * Data Constructor
    *
@@ -30,8 +39,18 @@ class Data extends Base {
    * @param {string} secret - Mux API secret
    * @constructor
    */
-  constructor(...params) {
-    super(...params);
+  constructor(base: Base)
+  constructor(config: RequestOptions)
+  constructor(accessToken: string, secret: string, config: RequestOptions)
+  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+    if (accessTokenOrConfigOrBase instanceof Base) {
+      super(accessTokenOrConfigOrBase);
+    } else if (typeof accessTokenOrConfigOrBase === 'object') {
+      super(accessTokenOrConfigOrBase);
+    } else {
+      super(accessTokenOrConfigOrBase, secret, config);
+    }
+
 
     /** @type {Errors} */
     this.Errors = new Errors(this);
@@ -55,5 +74,3 @@ class Data extends Base {
     this.VideoViews = new VideoViews(this);
   }
 }
-
-module.exports = Data;

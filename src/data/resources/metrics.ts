@@ -2,7 +2,8 @@
  * Mux Metrics
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
+import { RequestOptions } from '../../RequestOptions';
 
 /**
  * @private Base metrics path for the Mux API
@@ -20,7 +21,20 @@ const PATH = '/data/v1/metrics';
  * // List all of the values across every breakdown for a specific metric grouped by operating system
  * Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'operating_system' });
  */
-class Metrics extends Base {
+export default class Metrics extends Base {
+  constructor(base: Base)
+  constructor(config: RequestOptions)
+  constructor(accessToken: string, secret: string, config: RequestOptions)
+  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+    if (accessTokenOrConfigOrBase instanceof Base) {
+      super(accessTokenOrConfigOrBase);
+    } else if (typeof accessTokenOrConfigOrBase === 'object') {
+      super(accessTokenOrConfigOrBase);
+    } else {
+      super(accessTokenOrConfigOrBase, secret, config);
+    }
+  }
+
   /**
    * List the breakdown values for a specific metric
    *
@@ -138,5 +152,3 @@ class Metrics extends Base {
     return this.http.get(`${PATH}/${metricId}/timeseries`, { params });
   }
 }
-
-module.exports = Metrics;

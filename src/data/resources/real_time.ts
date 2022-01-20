@@ -2,7 +2,8 @@
  * Mux Real-Time
  * Copyright(c) 2020 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
+import { RequestOptions } from '../../RequestOptions';
 
 /**
  * @private Base real-time path for the Mux API
@@ -20,7 +21,20 @@ const PATH = '/data/v1/realtime';
  * // Returns a list of available real-time dimensions
  * Data.RealTime.dimensions();
  */
-class RealTime extends Base {
+export default class RealTime extends Base {
+  constructor(base: Base)
+  constructor(config: RequestOptions)
+  constructor(accessToken: string, secret: string, config: RequestOptions)
+  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+    if (accessTokenOrConfigOrBase instanceof Base) {
+      super(accessTokenOrConfigOrBase);
+    } else if (typeof accessTokenOrConfigOrBase === 'object') {
+      super(accessTokenOrConfigOrBase);
+    } else {
+      super(accessTokenOrConfigOrBase, secret, config);
+    }
+  }
+
   /**
    * List of available real-time dimensions
    *
@@ -142,4 +156,3 @@ class RealTime extends Base {
     });
   }
 }
-module.exports = RealTime;

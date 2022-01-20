@@ -2,7 +2,7 @@
  * Mux Live Streams
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
 
 /**
  * @private Base live stream path for the Mux API
@@ -29,7 +29,11 @@ const buildBasePath = (liveStreamId) => `${PATH}/${liveStreamId}`;
  *  new_asset_settings: { playback_policy: 'public' }
  * });
  */
-class LiveStreams extends Base {
+export default class LiveStreams extends Base {
+  constructor(base: Base) {
+    super(base);
+  }
+
   /**
    * Creates a Mux live stream with the specified JSON parameters
    * @param {Object} params - Live Stream JSON parameters (e.g playback_policy)
@@ -367,5 +371,3 @@ class LiveStreams extends Base {
     return this.http.put(`${buildBasePath(liveStreamId)}/enable`);
   }
 }
-
-module.exports = LiveStreams;

@@ -2,7 +2,7 @@
  * Mux DeliveryUsage
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
 
 /**
  * @private Base delivery usage path for the Mux API
@@ -18,7 +18,11 @@ const PATH = '/video/v1/delivery-usage';
  * // List delivery usage within a timeframe
  * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});
  */
-class DeliveryUsage extends Base {
+export default class DeliveryUsage extends Base {
+  constructor(base: Base) {
+    super(base);
+  }
+
   /**
    * List all delivery usage during a timeframe for a Mux Environment (tied to your access token)
    * @param {Object} params - Request JSON parameters (e.g timeframe)
@@ -36,5 +40,3 @@ class DeliveryUsage extends Base {
     return this.http.get(PATH, { params });
   }
 }
-
-module.exports = DeliveryUsage;

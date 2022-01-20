@@ -2,7 +2,8 @@
  * Mux Video Views
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
+import { RequestOptions } from '../../RequestOptions';
 
 /**
  * @private Base exports path for the Mux API
@@ -20,7 +21,20 @@ const PATH = '/data/v1/video-views';
  * // Results are ordered by view_end, according to what you provide for order_direction.
  * Data.VideoViews.list({order_direction: 'asc'});
  */
-class VideoViews extends Base {
+export default class VideoViews extends Base {
+  constructor(base: Base)
+  constructor(config: RequestOptions)
+  constructor(accessToken: string, secret: string, config: RequestOptions)
+  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+    if (accessTokenOrConfigOrBase instanceof Base) {
+      super(accessTokenOrConfigOrBase);
+    } else if (typeof accessTokenOrConfigOrBase === 'object') {
+      super(accessTokenOrConfigOrBase);
+    } else {
+      super(accessTokenOrConfigOrBase, secret, config);
+    }
+  }
+
   /**
    * Returns a list of video views for a property that occurred within the specified timeframe.
    * Results are ordered by view_end, according to what you provide for order_direction.
@@ -64,5 +78,3 @@ class VideoViews extends Base {
     return this.http.get(`${PATH}/${videoViewId}`);
   }
 }
-
-module.exports = VideoViews;

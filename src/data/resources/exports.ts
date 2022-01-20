@@ -2,7 +2,8 @@
  * Mux Exports
  * Copyright(c) 2018 Mux Inc.
  */
-const Base = require('../../base');
+import Base from '../../base';
+import { RequestOptions } from '../../RequestOptions';
 
 /**
  * @private Base exports path for the Mux API
@@ -19,7 +20,20 @@ const PATH = '/data/v1/exports';
  * // Lists the available video view exports along with URLs to retrieve them
  * Data.Exports.list();
  */
-class Exports extends Base {
+export default class Exports extends Base {
+  constructor(base: Base)
+  constructor(config: RequestOptions)
+  constructor(accessToken: string, secret: string, config: RequestOptions)
+  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+    if (accessTokenOrConfigOrBase instanceof Base) {
+      super(accessTokenOrConfigOrBase);
+    } else if (typeof accessTokenOrConfigOrBase === 'object') {
+      super(accessTokenOrConfigOrBase);
+    } else {
+      super(accessTokenOrConfigOrBase, secret, config);
+    }
+  }
+
   /**
    * Lists the available video view exports along with URLs to retrieve them
    * @extends Base
@@ -38,5 +52,3 @@ class Exports extends Base {
     return this.http.get(PATH);
   }
 }
-
-module.exports = Exports;
