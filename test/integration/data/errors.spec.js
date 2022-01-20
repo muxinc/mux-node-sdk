@@ -1,9 +1,10 @@
 const { expect } = require('chai');
 const nockBack = require('nock').back;
-const Mux = require('../../../src/mux');
+const Mux = require('../../../dist/mux');
 
 /** @test {Errors} */
 describe('Integration::Errors', () => {
+  console.log(Mux);
   const muxClient = new Mux();
   const { Data } = muxClient;
 

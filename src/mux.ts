@@ -43,7 +43,7 @@ import { RequestOptions } from './RequestOptions';
  * // Verify a webhook signature
  * Webhooks.verifyHeader(body, signature, secret);
  */
-export default class Mux extends Base {
+class Mux extends Base {
   static readonly JWT = JWT;
   static readonly Webhooks = Webhooks;
 
@@ -75,3 +75,7 @@ export default class Mux extends Base {
     this.Data = new Data(this);
   }
 }
+
+// because we have old clients who are using this, we will still need
+// to use old-style exports at the module edge.
+module.exports = Mux;

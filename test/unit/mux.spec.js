@@ -1,7 +1,7 @@
 const { expect } = require('chai');
-const Mux = require('../../src/mux');
-const MuxVideo = require('../../src/video/video');
-const MuxData = require('../../src/data/data');
+const Mux = require('../../dist/mux');
+const MuxVideo = require('../../dist/video/video');
+const MuxData = require('../../dist/data/data');
 
 /** @test {Mux} */
 describe('Unit::Mux', () => {
