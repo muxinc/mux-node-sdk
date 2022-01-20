@@ -2,7 +2,7 @@
  * Mux Exports
  * Copyright(c) 2018 Mux Inc.
  */
-import Base from '../../base';
+import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
 
 /**
@@ -20,7 +20,7 @@ const PATH = '/data/v1/exports';
  * // Lists the available video view exports along with URLs to retrieve them
  * Data.Exports.list();
  */
-export default class Exports extends Base {
+export class Exports extends Base {
   constructor(base: Base)
   constructor(config: RequestOptions)
   constructor(accessToken: string, secret: string, config: RequestOptions)

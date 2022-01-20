@@ -2,7 +2,7 @@
  * Mux Assets
  * Copyright(c) 2018 Mux Inc.
  */
-import Base from '../../base';
+import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
 
 /**
@@ -25,7 +25,7 @@ const buildBasePath = (uploadId) => `${PATH}/${uploadId}`;
  * // Create an upload
  * Video.Uploads.create({ new_asset_settings: { playback_policy: 'public' } });
  */
-export default class Uploads extends Base {
+export class Uploads extends Base {
   constructor(base: Base)
   constructor(config: RequestOptions)
   constructor(accessToken: string, secret: string, config: RequestOptions)

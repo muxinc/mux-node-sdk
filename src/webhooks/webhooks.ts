@@ -1,4 +1,4 @@
-import VerifyHeader from './resources/verify_header';
+import { VerifyHeader } from './resources/verify_header';
 
 /**
  * Webhooks - Provides access to the Mux Webhooks signature verification
@@ -11,7 +11,7 @@ import VerifyHeader from './resources/verify_header';
  * Webhooks.verifyHeader(body, signature, secret);
  *
  */
-export default class Webhooks {
+export class Webhooks {
   /**
    * Verify a webhook signature. When enabled, Mux will send webhooks with a signature
    * in the http request header 'Mux-Signature'. You can use that signature to verify

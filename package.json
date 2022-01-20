@@ -12,7 +12,7 @@
     "live streaming"
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
-  "main": "src/mux.js",
+  "main": "dist",
   "engines": {
     "node": ">=12"
   },

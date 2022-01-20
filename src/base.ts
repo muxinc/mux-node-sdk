@@ -20,7 +20,7 @@ const pkg = require('../package.json');
  * @property {string} requestOptions.auth.password - HTTP basic auth password (secret)
  *
  */
-export default class Base extends EventEmitter {
+export class Base extends EventEmitter {
   readonly http: AxiosInstance;
 
   private _tokenId: string;

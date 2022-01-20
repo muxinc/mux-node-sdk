@@ -2,7 +2,7 @@
  * Mux Metrics
  * Copyright(c) 2018 Mux Inc.
  */
-import Base from '../../base';
+import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
 
 /**
@@ -21,7 +21,7 @@ const PATH = '/data/v1/metrics';
  * // List all of the values across every breakdown for a specific metric grouped by operating system
  * Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'operating_system' });
  */
-export default class Metrics extends Base {
+export class Metrics extends Base {
   constructor(base: Base)
   constructor(config: RequestOptions)
   constructor(accessToken: string, secret: string, config: RequestOptions)

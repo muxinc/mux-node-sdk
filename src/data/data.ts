@@ -3,15 +3,16 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-import Base from '../base';
+import { Base } from '../base';
 import { RequestOptions } from '../RequestOptions';
-import Errors from './resources/errors';
-import Exports from './resources/exports';
-import Filters from './resources/filters';
-import Incidents from './resources/incidents';
-import Metrics from './resources/metrics';
-import RealTime from './resources/real_time';
-import VideoViews from './resources/video_views';
+
+import { Errors } from './resources/errors';
+import { Exports } from './resources/exports';
+import { Filters } from './resources/filters';
+import { Incidents } from './resources/incidents';
+import { Metrics } from './resources/metrics';
+import { RealTime } from './resources/real_time';
+import { VideoViews } from './resources/video_views';
 
 /**
  * @ignore
@@ -23,7 +24,7 @@ import VideoViews from './resources/video_views';
  * const { Data } = muxClient;
  *
  */
-export default class Data extends Base {
+export class Data extends Base {
   readonly Errors: Errors;
   readonly Exports: Exports;
   readonly Filters: Filters;

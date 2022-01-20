@@ -2,7 +2,7 @@
  * Mux DeliveryUsage
  * Copyright(c) 2018 Mux Inc.
  */
-import Base from '../../base';
+import { Base } from '../../base';
 
 /**
  * @private Base delivery usage path for the Mux API
@@ -18,7 +18,7 @@ const PATH = '/video/v1/delivery-usage';
  * // List delivery usage within a timeframe
  * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});
  */
-export default class DeliveryUsage extends Base {
+export class DeliveryUsage extends Base {
   constructor(base: Base) {
     super(base);
   }

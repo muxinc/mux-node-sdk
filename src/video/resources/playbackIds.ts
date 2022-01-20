@@ -2,7 +2,7 @@
  * Mux Assets
  * Copyright(c) 2018 Mux Inc.
  */
-import Base from '../../base';
+import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
 
 /**
@@ -25,7 +25,7 @@ const buildBasePath = (playbackId) => `${PATH}/${playbackId}`;
  * // Retrieve an Asset or Live Stream  identifier associated with a Playback ID
  * Video.PlaybackIds.get(playbackId);
  */
-export default class PlaybackIds extends Base {
+export class PlaybackIds extends Base {
   constructor(base: Base)
   constructor(config: RequestOptions)
   constructor(accessToken: string, secret: string, config: RequestOptions)

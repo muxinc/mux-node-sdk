@@ -62,7 +62,7 @@ const getPrivateKey = (options) => {
  *
  * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' })
  */
-export default class JWT {
+export class JWT {
   /**
    * Creates a new token to be used with a signed playback ID
    * @param {string} playbackId - The Playback ID (of type 'signed') that you'd like to generate a token for.

@@ -2,7 +2,7 @@
  * Mux Assets
  * Copyright(c) 2018 Mux Inc.
  */
-import Base from '../../base';
+import { Base } from '../../base';
 
 /**
  * @private Base asset path for the Mux API
@@ -24,7 +24,7 @@ const buildBasePath = (assetId) => `${PATH}/${assetId}`;
  * // Create an asset
  * Video.Assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
  */
-export default class Assets extends Base {
+export class Assets extends Base {
   constructor(base: Base) {
     super(base);
   }

@@ -2,7 +2,7 @@
  * Mux Video Views
  * Copyright(c) 2018 Mux Inc.
  */
-import Base from '../../base';
+import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
 
 /**
@@ -21,7 +21,7 @@ const PATH = '/data/v1/video-views';
  * // Results are ordered by view_end, according to what you provide for order_direction.
  * Data.VideoViews.list({order_direction: 'asc'});
  */
-export default class VideoViews extends Base {
+export class VideoViews extends Base {
   constructor(base: Base)
   constructor(config: RequestOptions)
   constructor(accessToken: string, secret: string, config: RequestOptions)

@@ -2,7 +2,7 @@
  * Mux Real-Time
  * Copyright(c) 2020 Mux Inc.
  */
-import Base from '../../base';
+import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
 
 /**
@@ -21,7 +21,7 @@ const PATH = '/data/v1/realtime';
  * // Returns a list of available real-time dimensions
  * Data.RealTime.dimensions();
  */
-export default class RealTime extends Base {
+export class RealTime extends Base {
   constructor(base: Base)
   constructor(config: RequestOptions)
   constructor(accessToken: string, secret: string, config: RequestOptions)

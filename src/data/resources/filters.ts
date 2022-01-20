@@ -2,7 +2,7 @@
  * Mux Filters
  * Copyright(c) 2018 Mux Inc.
  */
-import Base from '../../base';
+import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
 
 /**
@@ -21,7 +21,7 @@ const PATH = '/data/v1/filters';
  * // Lists all the filters broken out into basic and advanced
  * Data.Filters.list();
  */
-export default class Filters extends Base {
+export class Filters extends Base {
   constructor(base: Base)
   constructor(config: RequestOptions)
   constructor(accessToken: string, secret: string, config: RequestOptions)

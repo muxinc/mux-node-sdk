@@ -2,7 +2,7 @@
  * Mux Live Streams
  * Copyright(c) 2018 Mux Inc.
  */
-import Base from '../../base';
+import { Base } from '../../base';
 
 /**
  * @private Base live stream path for the Mux API
@@ -29,7 +29,7 @@ const buildBasePath = (liveStreamId) => `${PATH}/${liveStreamId}`;
  *  new_asset_settings: { playback_policy: 'public' }
  * });
  */
-export default class LiveStreams extends Base {
+export class LiveStreams extends Base {
   constructor(base: Base) {
     super(base);
   }

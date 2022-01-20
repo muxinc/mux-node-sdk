@@ -37,7 +37,7 @@ function secureCompare(_a: string, _b: string) {
   return result === 0;
 }
 
-export default class VerifyHeader {
+export class VerifyHeader {
   static parseHeader(header?: string, scheme: HeaderScheme = HeaderScheme.V1) {
     if (typeof header !== 'string') {
       return null;

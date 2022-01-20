@@ -2,7 +2,7 @@
  * Mux Incidents
  * Copyright(c) 2019 Mux Inc.
  */
-import Base from '../../base';
+import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
 
 /**
@@ -19,7 +19,7 @@ const PATH = '/data/v1/incidents';
  * // Returns a list of all open incidents
  * Data.Incidents.list({ status: 'open' });
  */
-export default class Incidents extends Base {
+export class Incidents extends Base {
   constructor(base: Base)
   constructor(config: RequestOptions)
   constructor(accessToken: string, secret: string, config: RequestOptions)

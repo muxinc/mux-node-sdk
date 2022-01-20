@@ -2,7 +2,7 @@
  * Mux Signing Keys
  * Copyright(c) 2018 Mux Inc.
  */
-import Base from '../../base';
+import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
 
 /**
@@ -25,7 +25,7 @@ const buildBasePath = (keyId) => `${PATH}/${keyId}`;
  * // Create a new signing key
  * Video.SigningKeys.create();
  */
-export default class SigningKeys extends Base {
+export class SigningKeys extends Base {
   constructor(base: Base)
   constructor(config: RequestOptions)
   constructor(accessToken: string, secret: string, config: RequestOptions)

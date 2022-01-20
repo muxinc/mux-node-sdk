@@ -2,7 +2,7 @@
  * Mux Errors
  * Copyright(c) 2018 Mux Inc.
  */
-import Base from '../../base';
+import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
 
 /**
@@ -19,7 +19,7 @@ const PATH = '/data/v1/errors';
  * // Returns a list of playback errors filtered by the windows operating system
  * Data.Errors.list({ filters: ['operating_system:windows'] });
  */
-export default class Errors extends Base {
+export class Errors extends Base {
   constructor(base: Base)
   constructor(config: RequestOptions)
   constructor(accessToken: string, secret: string, config: RequestOptions)

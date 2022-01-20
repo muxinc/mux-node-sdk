@@ -3,15 +3,15 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-import Base from '../base';
+import { Base } from '../base';
 import { RequestOptions } from '../RequestOptions';
 
-import Assets from './resources/assets';
-import LiveStreams from './resources/liveStreams';
-import PlaybackIds from './resources/playbackIds';
-import Uploads from './resources/uploads';
-import SigningKeys from './resources/signingKeys';
-import DeliveryUsage from './resources/deliveryUsage';
+import { Assets } from './resources/assets';
+import { LiveStreams } from './resources/liveStreams';
+import { PlaybackIds } from './resources/playbackIds';
+import { Uploads } from './resources/uploads';
+import { SigningKeys } from './resources/signingKeys';
+import { DeliveryUsage } from './resources/deliveryUsage';
 
 /**
  * @ignore
@@ -28,7 +28,7 @@ import DeliveryUsage from './resources/deliveryUsage';
  * // Create an asset playback ID
  * Video.Assets.createPlaybackId(assetId, { policy: 'public' });
  */
-export default class Video extends Base {
+export class Video extends Base {
   readonly Assets: Assets;
   readonly LiveStreams: LiveStreams;
   readonly PlaybackIds: PlaybackIds;
