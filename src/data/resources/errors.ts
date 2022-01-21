@@ -10,6 +10,29 @@ import { RequestOptions } from '../../RequestOptions';
  * */
 const PATH = '/data/v1/errors';
 
+export interface ViewError {
+  id: number;
+  percentage?: number;
+  notes?: string;
+  message?: string;
+  last_seen?: string;
+  description?: string;
+  count?: number;
+  code?: number;
+}
+
+
+export interface ErrorsParams {
+  filters?: Array<any>;
+  array?: Array<any>;
+}
+
+export interface ErrorsListResponse {
+  total_row_count: null;
+  timeframe: Array<number>;
+  data: Array<ViewError>;
+}
+
 /**
  * Errors Class - Provides access to the Mux Data Errors API
  * @extends Base
@@ -47,7 +70,7 @@ export class Errors extends Base {
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-errors
    */
-  list(params) {
+  list(params?: ErrorsParams): Promise<ErrorsListResponse> {
     return this.http.get(PATH, { params });
   }
 }

@@ -6,14 +6,23 @@
 import fs from 'fs';
 import jwt from 'jsonwebtoken';
 
-const TypeClaim = {
-  video: 'v',
-  thumbnail: 't',
-  gif: 'g',
-  storyboard: 's',
+export interface MuxJWTSignOptions {
+  keyId?: string;
+  keySecret?: string;
+  keyFilePath?: string;
+  type?: TypeClaim;
+  expiration?: string;
+  params?: Record<string, string>;
+}
+
+export enum TypeClaim {
+  video = 'v',
+  thumbnail = 't',
+  gif = 'g',
+  storyboard = 's',
 };
 
-const getSigningKey = (options) => {
+const getSigningKey = (options: MuxJWTSignOptions) => {
   const keyId = options.keyId || process.env.MUX_SIGNING_KEY;
   if (!keyId) {
     throw new TypeError('Signing Key ID required');
@@ -22,7 +31,7 @@ const getSigningKey = (options) => {
   return keyId;
 };
 
-const getPrivateKey = (options) => {
+const getPrivateKey = (options: MuxJWTSignOptions): string | Buffer => {
   let key;
   if (options.keySecret) {
     key = options.keySecret;
@@ -30,6 +39,10 @@ const getPrivateKey = (options) => {
     key = fs.readFileSync(options.keyFilePath);
   } else if (process.env.MUX_PRIVATE_KEY) {
     key = Buffer.from(process.env.MUX_PRIVATE_KEY, 'base64');
+  }
+
+  if (Buffer.isBuffer(key)) {
+    return key;
   }
 
   if (key) {
@@ -76,7 +89,7 @@ export class JWT {
    * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
    * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
    */
-  static sign(playbackId, options = {}) {
+  static sign(playbackId: string, options: MuxJWTSignOptions = {}) {
     const opts = {
       type: 'video',
       expiration: '7d',
@@ -87,6 +100,8 @@ export class JWT {
     const keyId = getSigningKey(options);
     const keySecret = getPrivateKey(options);
 
+    // TODO: come back through sometime and replace this with runtypes validation?
+    // @ts-ignore
     const typeClaim = TypeClaim[opts.type];
     if (!typeClaim) {
       throw new Error("Invalid signature type: " + opts.type);
@@ -118,7 +133,7 @@ export class JWT {
    * const decoded = Mux.JWT.decode(token);
    * // decoded will be the raw decoded JWT, so you'll see keys like `aud`, `exp`, etc.
    */
-  static decode(token) {
+  static decode(token: string) {
     return jwt.decode(token);
   }
 }

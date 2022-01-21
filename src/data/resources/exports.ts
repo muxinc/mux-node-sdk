@@ -10,6 +10,12 @@ import { RequestOptions } from '../../RequestOptions';
  * */
 const PATH = '/data/v1/exports';
 
+export interface ExportsListResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Array<string>;
+}
+
 /**
  * Exports Class - Provides access to the Mux Data Exports API
  *
@@ -48,7 +54,7 @@ export class Exports extends Base {
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-exports
    */
-  list() {
+  list(): Promise<ExportsListResponse> {
     return this.http.get(PATH);
   }
 }

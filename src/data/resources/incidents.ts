@@ -10,6 +10,58 @@ import { RequestOptions } from '../../RequestOptions';
  * */
 const PATH = '/data/v1/incidents';
 
+export interface Incident {
+  id: string;
+  threshold?: number;
+  status: string;
+  started_at: string;
+  severity?: string;
+  sample_size_unit?: string;
+  sample_size?: number;
+  resolved_at?: string;
+  notifications?: Array<any>;
+  notification_rules?: Array<any>;
+  measurement?: string;
+  measured_value_on_close?: number;
+  measured_value?: number;
+  incident_key?: string;
+  impact?: string;
+  error_description?: string;
+  description?: string;
+  breakdowns?: Array<any>;
+  affected_views_per_hour_on_open?: number;
+  affected_views_per_hour?: number;
+  affected_views?: number;
+}
+
+export interface IncidentsQueryParams {
+  limit?: number;
+  page?: number;
+  order_by?: string;
+  order_direction?: string;
+  status?: string;
+}
+
+export interface IncidentsRelatedQueryParams {
+  limit?: number;
+  page?: number;
+  order_by?: string;
+  order_direction?: string;
+}
+
+
+export declare interface IncidentsListResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Array<Incident>;
+}
+
+export declare interface IncidentsGetResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Incident;
+}
+
 /**
  * Incidents Class - Provides access to the Mux Data Incidents API
  * @extends Base
@@ -47,7 +99,7 @@ export class Incidents extends Base {
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-incidents
    */
-  list(params) {
+  list(params?: IncidentsQueryParams): Promise<IncidentsListResponse> {
     return this.http.get(PATH, { params });
   }
 
@@ -66,9 +118,9 @@ export class Incidents extends Base {
    *
    * @see https://docs.mux.com/api-reference/data#operation/get-incident
    */
-  get(incidentId) {
+  get(incidentId: string): Promise<IncidentsGetResponse> {
     if (!incidentId) {
-      throw new Error('An incident Id is required for incident details.');
+      throw new Error('An incident id is required for incident details.');
     }
     return this.http.get(`${PATH}/${incidentId}`);
   }
@@ -89,9 +141,9 @@ export class Incidents extends Base {
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-related-incidents
    */
-  related(incidentId, params) {
+  related(incidentId: string, params?: IncidentsRelatedQueryParams) {
     if (!incidentId) {
-      throw new Error('An incident Id is required for related incidents.');
+      throw new Error('An incident id is required for related incidents.');
     }
     return this.http.get(`${PATH}/${incidentId}/related`, { params });
   }

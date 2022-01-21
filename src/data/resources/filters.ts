@@ -10,6 +10,25 @@ import { RequestOptions } from '../../RequestOptions';
  * */
 const PATH = '/data/v1/filters';
 
+export interface FilterQueryParams {
+  filter_id: string;
+  limit?: number;
+  page?: number;
+  filters?: Array<string>;
+  timeframe?: Array<string>;
+}
+
+export interface FilterValue {
+  value: string;
+  total_count: number;
+}
+
+export declare interface FilterGetResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Array<FilterValue>;
+}
+
 /**
  * Filters Class - Provides access to the Mux Data Filters API
  *
@@ -51,7 +70,7 @@ export class Filters extends Base {
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-filter-values
    */
-  get(filterId, params) {
+  get(filterId: string, params?: FilterQueryParams): Promise<FilterGetResponse> {
     if (!filterId) {
       throw new Error('Filter Id is required to get filter information.');
     }
