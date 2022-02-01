@@ -6,6 +6,12 @@
 import fs from 'fs';
 import jwt from 'jsonwebtoken';
 
+export enum TypeClaim {
+  video = 'v',
+  thumbnail = 't',
+  gif = 'g',
+  storyboard = 's',
+}
 export interface MuxJWTSignOptions {
   keyId?: string;
   keySecret?: string;
@@ -13,13 +19,6 @@ export interface MuxJWTSignOptions {
   type?: TypeClaim;
   expiration?: string;
   params?: Record<string, string>;
-}
-
-export enum TypeClaim {
-  video = 'v',
-  thumbnail = 't',
-  gif = 'g',
-  storyboard = 's',
 }
 
 const getSigningKey = (options: MuxJWTSignOptions) => {
@@ -104,7 +103,7 @@ export class JWT {
     // @ts-ignore
     const typeClaim = TypeClaim[opts.type];
     if (!typeClaim) {
-      throw new Error('Invalid signature type: ' + opts.type);
+      throw new Error(`Invalid signature type: ${opts.type}`);
     }
 
     const tokenOptions: jwt.SignOptions = {
