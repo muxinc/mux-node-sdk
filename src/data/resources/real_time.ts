@@ -96,8 +96,6 @@ export interface RealTimeHistogramResponse {
   data: Array<RealTimeHistogramValue>;
 }
 
-
-
 /**
  * Real-Time Class - Provides access to the Mux Data Real-Time API
  *
@@ -110,10 +108,14 @@ export interface RealTimeHistogramResponse {
  * Data.RealTime.dimensions();
  */
 export class RealTime extends Base {
-  constructor(base: Base)
-  constructor(config: RequestOptions)
-  constructor(accessToken: string, secret: string, config: RequestOptions)
-  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+  constructor(base: Base);
+  constructor(config: RequestOptions);
+  constructor(accessToken: string, secret: string, config: RequestOptions);
+  constructor(
+    accessTokenOrConfigOrBase: string | RequestOptions | Base,
+    secret?: string,
+    config?: RequestOptions
+  ) {
     if (accessTokenOrConfigOrBase instanceof Base) {
       super(accessTokenOrConfigOrBase);
     } else if (typeof accessTokenOrConfigOrBase === 'object') {
@@ -177,7 +179,7 @@ export class RealTime extends Base {
    */
   breakdown(
     metricId: string,
-    params?: RealTimeBreakdownQueryParams,
+    params?: RealTimeBreakdownQueryParams
   ): Promise<RealTimeBreakdownResponse> {
     if (!metricId) {
       throw new Error(
@@ -211,7 +213,7 @@ export class RealTime extends Base {
    */
   histogramTimeseries(
     metricId: string,
-    params?: RealTimeHistogramQueryParams,
+    params?: RealTimeHistogramQueryParams
   ): Promise<RealTimeHistogramResponse> {
     if (!metricId) {
       throw new Error(
@@ -241,7 +243,7 @@ export class RealTime extends Base {
    */
   timeseries(
     metricId: string,
-    params?: RealTimeTimeseriesParams,
+    params?: RealTimeTimeseriesParams
   ): Promise<RealTimeTimeseriesResponse> {
     if (!metricId) {
       throw new Error(

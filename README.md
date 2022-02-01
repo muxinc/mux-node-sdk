@@ -100,7 +100,7 @@ Every function will return a chainable [Promise](https://developer.mozilla.org/e
 ```javascript
 Video.Assets.create({
   input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4',
-}).then(asset => {
+}).then((asset) => {
   /* Do things with the asset */
 });
 ```
@@ -212,11 +212,11 @@ const storyboardToken = Mux.JWT.sign('some-playback-id', {
 The SDK returns the `data` key for every object, because in the Mux API that's always the thing you actually want to see. Sometimes, however, it's useful to see more details about the request being made or the full response object. You can listen for `request` and `response` events to get these raw objects.
 
 ```javascript
-muxClient.on('request', req => {
+muxClient.on('request', (req) => {
   // Request will contain everything being sent such as `headers, method, base url, etc
 });
 
-muxClient.on('response', res => {
+muxClient.on('response', (res) => {
   // Response will include everything returned from the API, such as status codes/text, headers, etc
 });
 ```

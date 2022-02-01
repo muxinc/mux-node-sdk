@@ -3,7 +3,15 @@
  * Copyright(c) 2018 Mux Inc.
  */
 import { Base } from '../../base';
-import { CreateLiveStreamParams, CreatePlaybackIdParams, ListLiveStreamParams, LiveStream, PlaybackId, SimulcastTarget, SimulcastTargetParams } from '../domain';
+import {
+  CreateLiveStreamParams,
+  CreatePlaybackIdParams,
+  ListLiveStreamParams,
+  LiveStream,
+  PlaybackId,
+  SimulcastTarget,
+  SimulcastTargetParams,
+} from '../domain';
 
 /**
  * @private Base live stream path for the Mux API
@@ -175,7 +183,10 @@ export class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-live-stream-playback-id
    */
-  createPlaybackId(liveStreamId: string, params: CreatePlaybackIdParams): Promise<PlaybackId> {
+  createPlaybackId(
+    liveStreamId: string,
+    params: CreatePlaybackIdParams
+  ): Promise<PlaybackId> {
     if (!liveStreamId) {
       return Promise.reject(
         new Error(
@@ -246,7 +257,10 @@ export class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-live-stream-simulcast-target
    */
-  createSimulcastTarget(liveStreamId: string, params: SimulcastTargetParams): Promise<SimulcastTarget> {
+  createSimulcastTarget(
+    liveStreamId: string,
+    params: SimulcastTargetParams
+  ): Promise<SimulcastTarget> {
     if (!liveStreamId) {
       return Promise.reject(
         new Error('A live stream ID is required to create a simulcast target')
@@ -278,7 +292,10 @@ export class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-live-stream-simulcast-target
    */
-  getSimulcastTarget(liveStreamId: string, simulcastTargetId: string): Promise<SimulcastTarget> {
+  getSimulcastTarget(
+    liveStreamId: string,
+    simulcastTargetId: string
+  ): Promise<SimulcastTarget> {
     if (!liveStreamId) {
       return Promise.reject(
         new Error('A live stream ID is required to get a simulcast target')
@@ -309,7 +326,10 @@ export class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/delete-live-stream-simulcast-target
    */
-  deleteSimulcastTarget(liveStreamId: string, simulcastTargetId: string): Promise<any> {
+  deleteSimulcastTarget(
+    liveStreamId: string,
+    simulcastTargetId: string
+  ): Promise<any> {
     if (!liveStreamId) {
       return Promise.reject(
         new Error('A live stream ID is required to delete a simulcast target')

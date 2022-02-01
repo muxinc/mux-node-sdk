@@ -80,7 +80,7 @@ export class VerifyHeader {
     _payload: string | Buffer,
     _header: string | Buffer,
     secret: string | Buffer,
-    tolerance: number = DEFAULT_TOLERANCE,
+    tolerance: number = DEFAULT_TOLERANCE
   ) {
     const payload = Buffer.isBuffer(_payload)
       ? _payload.toString('utf8')
@@ -123,4 +123,3 @@ export class VerifyHeader {
     return true;
   }
 }
-

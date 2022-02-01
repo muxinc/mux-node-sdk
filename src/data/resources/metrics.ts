@@ -34,7 +34,6 @@ export interface MetricsOverallValue {
   global_value?: number;
 }
 
-
 export interface MetricsBreakdownValue {
   views?: number;
   value?: number;
@@ -119,8 +118,6 @@ export declare interface MetricsTimeseriesResponse {
   data: Array<Array<string>>;
 }
 
-
-
 /**
  * Metrics Class - Provides access to the Mux Data Metrics API
  *
@@ -133,10 +130,14 @@ export declare interface MetricsTimeseriesResponse {
  * Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'operating_system' });
  */
 export class Metrics extends Base {
-  constructor(base: Base)
-  constructor(config: RequestOptions)
-  constructor(accessToken: string, secret: string, config: RequestOptions)
-  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+  constructor(base: Base);
+  constructor(config: RequestOptions);
+  constructor(accessToken: string, secret: string, config: RequestOptions);
+  constructor(
+    accessTokenOrConfigOrBase: string | RequestOptions | Base,
+    secret?: string,
+    config?: RequestOptions
+  ) {
     if (accessTokenOrConfigOrBase instanceof Base) {
       super(accessTokenOrConfigOrBase);
     } else if (typeof accessTokenOrConfigOrBase === 'object') {
@@ -165,7 +166,7 @@ export class Metrics extends Base {
    */
   breakdown(
     metricId: string,
-    params?: MetricsBreakdownQueryParams,
+    params?: MetricsBreakdownQueryParams
   ): Promise<MetricsBreakdownResponse> {
     return this.http.get(`${PATH}/${metricId}/breakdown`, { params });
   }
@@ -187,7 +188,7 @@ export class Metrics extends Base {
    * @see https://docs.mux.com/api-reference/data#operation/list-all-metric-values
    */
   comparison(
-    params?: MetricsComparisonQueryParams,
+    params?: MetricsComparisonQueryParams
   ): Promise<MetricsComparisonResponse> {
     if (!params || (params && !params.value)) {
       throw new Error(
@@ -216,7 +217,7 @@ export class Metrics extends Base {
    */
   insights(
     metricId: string,
-    params?: MetricsInsightsQueryParams,
+    params?: MetricsInsightsQueryParams
   ): Promise<MetricsInsightsResponse> {
     if (!metricId) {
       throw new Error('A metric Id is required for insight metrics.');
@@ -243,7 +244,7 @@ export class Metrics extends Base {
    */
   overall(
     metricId: string,
-    params?: MetricsOverallQueryParams,
+    params?: MetricsOverallQueryParams
   ): Promise<MetricsOverallResponse> {
     if (!metricId) {
       throw new Error('A metric Id is required for overall metrics.');
@@ -269,7 +270,7 @@ export class Metrics extends Base {
    */
   timeseries(
     metricId: string,
-    params?: MetricsTimeseriesQueryParams,
+    params?: MetricsTimeseriesQueryParams
   ): Promise<MetricsTimeseriesResponse> {
     if (!metricId) {
       throw new Error('A metric Id is required for timeseries metrics.');

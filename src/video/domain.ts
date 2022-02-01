@@ -9,7 +9,6 @@ export interface SigningKey {
   private_key?: string;
 }
 
-
 export interface Identifier {
   type: 'asset' | 'live_stream';
   id: string;
@@ -20,7 +19,6 @@ export interface PlaybackIdentifier {
   object: Identifier;
   id: string;
 }
-
 
 export interface PlaybackId {
   id: string;
@@ -61,7 +59,6 @@ export interface VideoTrack {
 
 export type Track = VideoTrack | AudioTrack | TextTrack;
 
-
 export interface InputOverlaySettings {
   vertical_align?: 'top' | 'middle' | 'bottom';
   vertical_margin?: string;
@@ -71,7 +68,6 @@ export interface InputOverlaySettings {
   height?: string;
   opacity?: string;
 }
-
 
 export interface InputSettings {
   url: string;
@@ -85,7 +81,6 @@ export interface InputSettings {
   closed_captions?: boolean;
   passthrough?: string;
 }
-
 
 export interface CreateAssetParams {
   input: string | Array<InputSettings>;
@@ -163,7 +158,6 @@ export interface InputInfo {
   settings: InputOverlaySettings;
   file: InputFile;
 }
-
 
 export interface ListAssetParams {
   limit?: number;

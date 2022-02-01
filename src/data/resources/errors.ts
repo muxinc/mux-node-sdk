@@ -21,7 +21,6 @@ export interface ViewError {
   code?: number;
 }
 
-
 export interface ErrorsParams {
   filters?: Array<any>;
   array?: Array<any>;
@@ -43,10 +42,14 @@ export interface ErrorsListResponse {
  * Data.Errors.list({ filters: ['operating_system:windows'] });
  */
 export class Errors extends Base {
-  constructor(base: Base)
-  constructor(config: RequestOptions)
-  constructor(accessToken: string, secret: string, config: RequestOptions)
-  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+  constructor(base: Base);
+  constructor(config: RequestOptions);
+  constructor(accessToken: string, secret: string, config: RequestOptions);
+  constructor(
+    accessTokenOrConfigOrBase: string | RequestOptions | Base,
+    secret?: string,
+    config?: RequestOptions
+  ) {
     if (accessTokenOrConfigOrBase instanceof Base) {
       super(accessTokenOrConfigOrBase);
     } else if (typeof accessTokenOrConfigOrBase === 'object') {

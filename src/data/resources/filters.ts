@@ -41,10 +41,14 @@ export declare interface FilterGetResponse {
  * Data.Filters.list();
  */
 export class Filters extends Base {
-  constructor(base: Base)
-  constructor(config: RequestOptions)
-  constructor(accessToken: string, secret: string, config: RequestOptions)
-  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+  constructor(base: Base);
+  constructor(config: RequestOptions);
+  constructor(accessToken: string, secret: string, config: RequestOptions);
+  constructor(
+    accessTokenOrConfigOrBase: string | RequestOptions | Base,
+    secret?: string,
+    config?: RequestOptions
+  ) {
     if (accessTokenOrConfigOrBase instanceof Base) {
       super(accessTokenOrConfigOrBase);
     } else if (typeof accessTokenOrConfigOrBase === 'object') {
@@ -70,7 +74,10 @@ export class Filters extends Base {
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-filter-values
    */
-  get(filterId: string, params?: FilterQueryParams): Promise<FilterGetResponse> {
+  get(
+    filterId: string,
+    params?: FilterQueryParams
+  ): Promise<FilterGetResponse> {
     if (!filterId) {
       throw new Error('Filter Id is required to get filter information.');
     }

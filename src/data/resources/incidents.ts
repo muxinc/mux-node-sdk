@@ -49,7 +49,6 @@ export interface IncidentsRelatedQueryParams {
   order_direction?: string;
 }
 
-
 export declare interface IncidentsListResponse {
   total_row_count: number;
   timeframe: Array<number>;
@@ -72,10 +71,14 @@ export declare interface IncidentsGetResponse {
  * Data.Incidents.list({ status: 'open' });
  */
 export class Incidents extends Base {
-  constructor(base: Base)
-  constructor(config: RequestOptions)
-  constructor(accessToken: string, secret: string, config: RequestOptions)
-  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+  constructor(base: Base);
+  constructor(config: RequestOptions);
+  constructor(accessToken: string, secret: string, config: RequestOptions);
+  constructor(
+    accessTokenOrConfigOrBase: string | RequestOptions | Base,
+    secret?: string,
+    config?: RequestOptions
+  ) {
     if (accessTokenOrConfigOrBase instanceof Base) {
       super(accessTokenOrConfigOrBase);
     } else if (typeof accessTokenOrConfigOrBase === 'object') {

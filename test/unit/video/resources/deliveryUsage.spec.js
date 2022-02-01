@@ -1,7 +1,9 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const moxios = require('moxios');
-const { DeliveryUsage } = require('../../../../dist/video/resources/deliveryUsage');
+const {
+  DeliveryUsage,
+} = require('../../../../dist/video/resources/deliveryUsage');
 
 /** @test {DeliveryUsage} */
 describe('Unit::DeliveryUsage', () => {

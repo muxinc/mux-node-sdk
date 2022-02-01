@@ -1,8 +1,6 @@
 /* eslint no-underscore-dangle: ["error", { "allow": ["_config", "_tokenId", "_secret"] }] */
 
-import Axios, {
-  AxiosInstance,
-} from 'axios';
+import Axios, { AxiosInstance } from 'axios';
 import EventEmitter from 'events';
 import { RequestOptions } from './RequestOptions';
 
@@ -27,10 +25,14 @@ export class Base extends EventEmitter {
   private _tokenSecret!: string;
   private _config!: RequestOptions;
 
-  constructor(muxBase: Base)
-  constructor(requestOptions: RequestOptions)
-  constructor(tokenId: string, tokenSecret: string, config: RequestOptions)
-  constructor(tokenIdOrOptionsOrBase: string | RequestOptions | Base, tokenSecret?: string, config?: RequestOptions) {
+  constructor(muxBase: Base);
+  constructor(requestOptions: RequestOptions);
+  constructor(tokenId: string, tokenSecret: string, config: RequestOptions);
+  constructor(
+    tokenIdOrOptionsOrBase: string | RequestOptions | Base,
+    tokenSecret?: string,
+    config?: RequestOptions
+  ) {
     super();
 
     if (tokenIdOrOptionsOrBase instanceof Base) {
@@ -41,7 +43,10 @@ export class Base extends EventEmitter {
 
       this.http = tokenIdOrOptionsOrBase.http;
     } else {
-      if (typeof(tokenIdOrOptionsOrBase) === 'object' && !(tokenIdOrOptionsOrBase instanceof Base)) {
+      if (
+        typeof tokenIdOrOptionsOrBase === 'object' &&
+        !(tokenIdOrOptionsOrBase instanceof Base)
+      ) {
         this.config = tokenIdOrOptionsOrBase;
         this.tokenId = undefined;
         this.tokenSecret = undefined;
@@ -119,7 +124,7 @@ export class Base extends EventEmitter {
   }
 
   set tokenSecret(secret: string | undefined) {
-    const v = secret || process.env.MUX_TOKEN_SECRET
+    const v = secret || process.env.MUX_TOKEN_SECRET;
     if (!v || v.length === 0) {
       throw new Error('API secret key must be provided');
     }

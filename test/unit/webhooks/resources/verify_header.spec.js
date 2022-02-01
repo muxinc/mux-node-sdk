@@ -1,6 +1,8 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
-const { VerifyHeader } = require('../../../../dist/webhooks/resources/verify_header');
+const {
+  VerifyHeader,
+} = require('../../../../dist/webhooks/resources/verify_header');
 
 /** @test {VerifyHeader} */
 describe('Unit::VerifyHeader', () => {

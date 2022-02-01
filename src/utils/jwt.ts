@@ -20,7 +20,7 @@ export enum TypeClaim {
   thumbnail = 't',
   gif = 'g',
   storyboard = 's',
-};
+}
 
 const getSigningKey = (options: MuxJWTSignOptions) => {
   const keyId = options.keyId || process.env.MUX_SIGNING_KEY;
@@ -104,7 +104,7 @@ export class JWT {
     // @ts-ignore
     const typeClaim = TypeClaim[opts.type];
     if (!typeClaim) {
-      throw new Error("Invalid signature type: " + opts.type);
+      throw new Error('Invalid signature type: ' + opts.type);
     }
 
     const tokenOptions: jwt.SignOptions = {

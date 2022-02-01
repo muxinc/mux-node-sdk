@@ -40,10 +40,14 @@ export class Data extends Base {
    * @param {string} secret - Mux API secret
    * @constructor
    */
-  constructor(base: Base)
-  constructor(config: RequestOptions)
-  constructor(accessToken: string, secret: string, config: RequestOptions)
-  constructor(accessTokenOrConfigOrBase: string | RequestOptions | Base, secret?: string, config?: RequestOptions) {
+  constructor(base: Base);
+  constructor(config: RequestOptions);
+  constructor(accessToken: string, secret: string, config: RequestOptions);
+  constructor(
+    accessTokenOrConfigOrBase: string | RequestOptions | Base,
+    secret?: string,
+    config?: RequestOptions
+  ) {
     if (accessTokenOrConfigOrBase instanceof Base) {
       super(accessTokenOrConfigOrBase);
     } else if (typeof accessTokenOrConfigOrBase === 'object') {
@@ -51,7 +55,6 @@ export class Data extends Base {
     } else {
       super(accessTokenOrConfigOrBase, secret!, config!);
     }
-
 
     /** @type {Errors} */
     this.Errors = new Errors(this);

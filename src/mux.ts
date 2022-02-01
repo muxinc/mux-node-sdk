@@ -59,9 +59,13 @@ export class Mux extends Base {
    * @param {string='https://api.mux.com'} options.baseUrl - Change the base URL for API requests.
    * @constructor
    */
-  constructor(config: RequestOptions)
-  constructor(accessToken: string, secret: string, config: RequestOptions)
-  constructor(accessTokenOrConfig: string | RequestOptions, secret?: string, config?: RequestOptions) {
+  constructor(config: RequestOptions);
+  constructor(accessToken: string, secret: string, config: RequestOptions);
+  constructor(
+    accessTokenOrConfig: string | RequestOptions,
+    secret?: string,
+    config?: RequestOptions
+  ) {
     if (typeof accessTokenOrConfig === 'object') {
       super(accessTokenOrConfig);
     } else {
