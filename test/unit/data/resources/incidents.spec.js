@@ -47,7 +47,7 @@ describe('Unit::Incidents', () => {
     /** @test {Incidents.get} */
     it('throws an error if an incident Id is not provided', () => {
       expect(() => incidentsInstance.get()).to.throw(
-        'An incident Id is required for incident details.'
+        'An incident id is required for incident details.'
       );
     });
   });
@@ -57,7 +57,7 @@ describe('Unit::Incidents', () => {
     /** @test {Incidents.related} */
     it('throws an error if an incident Id is not provided', () => {
       expect(() => incidentsInstance.related()).to.throw(
-        'An incident Id is required for related incidents.'
+        'An incident id is required for related incidents.'
       );
     });
 
