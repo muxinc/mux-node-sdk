@@ -4,7 +4,6 @@ const Mux = require('../../../dist');
 
 /** @test {Errors} */
 describe('Integration::Errors', () => {
-  console.log(Mux);
   const muxClient = new Mux();
   const { Data } = muxClient;
 
