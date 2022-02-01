@@ -6,6 +6,7 @@
 import fs from 'fs';
 import jwt from 'jsonwebtoken';
 
+// eslint-disable-next-line no-shadow
 export enum TypeClaim {
   video = 'v',
   thumbnail = 't',
