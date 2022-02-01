@@ -4,6 +4,7 @@
  */
 import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
+import { SigningKey } from '../domain';
 
 /**
  * @private Base signing-key path for the Mux API
@@ -14,7 +15,7 @@ const PATH = '/video/v1/signing-keys';
  * @private
  * Build the base asset path for the Mux API
  * */
-const buildBasePath = (keyId) => `${PATH}/${keyId}`;
+const buildBasePath = (keyId: string) => `${PATH}/${keyId}`;
 
 /**
  * Signing Key Class - Provides access to the Mux Video Signing Key API
@@ -53,7 +54,7 @@ export class SigningKeys extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-url-signing-key
    */
-  create() {
+  create(): Promise<SigningKey> {
     return this.http.post(PATH, {});
   }
 
@@ -70,7 +71,7 @@ export class SigningKeys extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-url-signing-key
    */
-  get(keyId) {
+  get(keyId: string): Promise<SigningKey> {
     if (!keyId) {
       return Promise.reject(new Error('An signing key ID is required.'));
     }
@@ -90,7 +91,7 @@ export class SigningKeys extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/delete-url-signing-key
    */
-  del(keyId) {
+  del(keyId: string): Promise<any> {
     if (!keyId) {
       return Promise.reject(new Error('An signing key ID is required.'));
     }
@@ -113,7 +114,7 @@ export class SigningKeys extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/list-url-signing-keys
    */
-  list(params = {}) {
+  list(params: {} = {}): Promise<Array<SigningKey>> {
     return this.http.get(PATH, { params });
   }
 }

@@ -3,6 +3,7 @@
  * Copyright(c) 2018 Mux Inc.
  */
 import { Base } from '../../base';
+import { Asset, CreateAssetParams, CreatePlaybackIdParams, CreateTrackParams, InputInfo, ListAssetParams, PlaybackId, Track, UpdateMasterAccessParams, UpdateMp4SupportParams } from '../domain';
 
 /**
  * @private Base asset path for the Mux API
@@ -13,7 +14,8 @@ const PATH = '/video/v1/assets';
  * @private
  * Build the base asset path for the Mux API
  * */
-const buildBasePath = (assetId) => `${PATH}/${assetId}`;
+const buildBasePath = (assetId: string) => `${PATH}/${assetId}`;
+
 
 /**
  * Assets Class - Provides access to the Mux Video Assets API
@@ -42,7 +44,7 @@ export class Assets extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-asset
    */
-  create(params) {
+  create(params: CreateAssetParams): Promise<Asset> {
     if (!params) {
       return Promise.reject(
         new Error('Params are required for creating an asset')
@@ -65,7 +67,7 @@ export class Assets extends Base {
    *
    * @see hhttps://docs.mux.com/api-reference/video#operation/delete-asset
    */
-  del(assetId) {
+  del(assetId: string): Promise<any> {
     if (!assetId) {
       return Promise.reject(
         new Error('An asset ID is required to delete an asset')
@@ -87,7 +89,7 @@ export class Assets extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-asset
    */
-  get(assetId) {
+  get(assetId: string): Promise<Asset> {
     if (!assetId) {
       return Promise.reject(
         new Error('An asset ID is required to get an asset')
@@ -109,7 +111,7 @@ export class Assets extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-asset-input-info
    */
-  inputInfo(assetId) {
+  inputInfo(assetId: string): Promise<Array<InputInfo>> {
     if (!assetId) {
       return Promise.reject(
         new Error('An asset ID is required to get input-info')
@@ -130,7 +132,7 @@ export class Assets extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/list-assets
    */
-  list(params) {
+  list(params: ListAssetParams): Promise<Array<Asset>> {
     return this.http.get(PATH, { params });
   }
 
@@ -148,7 +150,7 @@ export class Assets extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-asset-playback-id
    */
-  playbackId(assetId, playbackId) {
+  playbackId(assetId: string, playbackId: string): Promise<PlaybackId> {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }
@@ -175,7 +177,7 @@ export class Assets extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-asset-playback-id
    */
-  createPlaybackId(assetId, params) {
+  createPlaybackId(assetId: string, params: CreatePlaybackIdParams): Promise<PlaybackId> {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }
@@ -200,7 +202,7 @@ export class Assets extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/delete-asset-playback-id
    */
-  deletePlaybackId(assetId, playbackId) {
+  deletePlaybackId(assetId: string, playbackId: string): Promise<any> {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }
@@ -232,7 +234,7 @@ export class Assets extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-asset-track
    */
-  createTrack(assetId, params) {
+  createTrack(assetId: string, params: CreateTrackParams): Promise<Track> {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }
@@ -257,7 +259,7 @@ export class Assets extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/delete-asset-track
    */
-  deleteTrack(assetId, trackId) {
+  deleteTrack(assetId: string, trackId: string): Promise<any> {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }
@@ -281,7 +283,7 @@ export class Assets extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/update-asset-mp4-support
    */
-  updateMp4Support(assetId, params) {
+  updateMp4Support(assetId: string, params: UpdateMp4SupportParams): Promise<Asset> {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }
@@ -305,7 +307,7 @@ export class Assets extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/update-asset-master-access
    */
-  updateMasterAccess(assetId, params) {
+  updateMasterAccess(assetId: string, params: UpdateMasterAccessParams): Promise<Asset> {
     if (!assetId) {
       return Promise.reject(new Error('An asset ID is required'));
     }

@@ -4,6 +4,7 @@
  */
 import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
+import { PlaybackIdentifier } from '../domain';
 
 /**
  * @private Base playback ID path for the Mux API
@@ -14,7 +15,7 @@ const PATH = '/video/v1/playback-ids';
  * @private
  * Build the base playback ID path for the Mux API
  * */
-const buildBasePath = (playbackId) => `${PATH}/${playbackId}`;
+const buildBasePath = (playbackId: string) => `${PATH}/${playbackId}`;
 
 /**
  * PlaybackIds Class - Provides access to the Mux Playback ID API
@@ -52,7 +53,7 @@ export class PlaybackIds extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-asset-or-livestream-id
    */
-  get(playbackId) {
+  get(playbackId: string): Promise<PlaybackIdentifier> {
     if (!playbackId) {
       return Promise.reject(
         new Error(

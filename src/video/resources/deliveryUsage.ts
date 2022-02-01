@@ -3,6 +3,7 @@
  * Copyright(c) 2018 Mux Inc.
  */
 import { Base } from '../../base';
+import { DeliveryReport, ListDeliveryUsageParams } from '../domain';
 
 /**
  * @private Base delivery usage path for the Mux API
@@ -36,7 +37,7 @@ export class DeliveryUsage extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/list-delivery-usage
    */
-  list(params) {
+  list(params: ListDeliveryUsageParams): Promise<Array<DeliveryReport>> {
     return this.http.get(PATH, { params });
   }
 }

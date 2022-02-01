@@ -4,6 +4,7 @@
  */
 import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
+import { CreateUploadParams, ListUploadParams, Upload } from '../domain';
 
 /**
  * @private Base asset path for the Mux API
@@ -14,7 +15,7 @@ const PATH = '/video/v1/uploads';
  * @private
  * Build the base asset path for the Mux API
  * */
-const buildBasePath = (uploadId) => `${PATH}/${uploadId}`;
+const buildBasePath = (uploadId: string) => `${PATH}/${uploadId}`;
 
 /**
  * Uploads Class - Provides access to the Mux Video Uploads API
@@ -56,7 +57,7 @@ export class Uploads extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-direct-upload
    */
-  create(params) {
+  create(params: CreateUploadParams): Promise<Upload> {
     if (!params) {
       return Promise.reject(
         new Error('Params are required for creating a direct upload')
@@ -79,7 +80,7 @@ export class Uploads extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/cancel-direct-upload
    */
-  cancel(uploadId) {
+  cancel(uploadId: string): Promise<any> {
     if (!uploadId) {
       return Promise.reject(new Error('An upload ID is required'));
     }
@@ -99,7 +100,7 @@ export class Uploads extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-direct-upload
    */
-  get(uploadId) {
+  get(uploadId: string): Promise<Upload> {
     if (!uploadId) {
       return Promise.reject(
         new Error('An upload ID is required to get an asset')
@@ -120,7 +121,7 @@ export class Uploads extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/list-direct-uploads
    */
-  list(params) {
+  list(params: ListUploadParams): Promise<Array<Upload>> {
     return this.http.get(PATH, { params });
   }
 }
