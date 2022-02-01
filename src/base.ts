@@ -1,4 +1,4 @@
-/* eslint no-underscore-dangle: ["error", { "allow": ["_config", "_tokenId", "_secret"] }] */
+/* eslint no-underscore-dangle: ["error", { "allow": ["_config", "_tokenId", "_tokenSecret"] }] */
 
 import Axios, { AxiosInstance } from 'axios';
 import EventEmitter from 'events';
