@@ -4,17 +4,12 @@
  */
 import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
+import { ExportsListResponse } from '../domain';
 
 /**
  * @private Base exports path for the Mux API
  * */
 const PATH = '/data/v1/exports';
-
-export interface ExportsListResponse {
-  total_row_count: number;
-  timeframe: Array<number>;
-  data: Array<string>;
-}
 
 /**
  * Exports Class - Provides access to the Mux Data Exports API

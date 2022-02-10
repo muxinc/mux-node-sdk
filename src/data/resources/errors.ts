@@ -4,33 +4,12 @@
  */
 import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
+import { ErrorsListResponse, ErrorsParams } from '../domain';
 
 /**
  * @private Base errors path for the Mux API
  * */
 const PATH = '/data/v1/errors';
-
-export interface ViewError {
-  id: number;
-  percentage?: number;
-  notes?: string;
-  message?: string;
-  last_seen?: string;
-  description?: string;
-  count?: number;
-  code?: number;
-}
-
-export interface ErrorsParams {
-  filters?: Array<any>;
-  array?: Array<any>;
-}
-
-export interface ErrorsListResponse {
-  total_row_count: null;
-  timeframe: Array<number>;
-  data: Array<ViewError>;
-}
 
 /**
  * Errors Class - Provides access to the Mux Data Errors API

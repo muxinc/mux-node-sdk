@@ -4,119 +4,12 @@
  */
 import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
+import { MetricsBreakdownQueryParams, MetricsBreakdownResponse, MetricsComparisonQueryParams, MetricsComparisonResponse, MetricsInsightsQueryParams, MetricsInsightsResponse, MetricsOverallQueryParams, MetricsOverallResponse, MetricsTimeseriesQueryParams, MetricsTimeseriesResponse } from '../domain';
 
 /**
  * @private Base metrics path for the Mux API
  * */
 const PATH = '/data/v1/metrics';
-
-export interface Metric {
-  value?: number;
-  type?: string;
-  name?: string;
-  metric?: string;
-  measurement?: string;
-}
-
-export interface Insight {
-  total_watch_time?: number;
-  total_views?: number;
-  negative_impact_score?: number;
-  metric?: number;
-  filter_value?: string;
-  filter_column?: string;
-}
-
-export interface MetricsOverallValue {
-  value?: number;
-  total_watch_time?: number;
-  total_views?: number;
-  global_value?: number;
-}
-
-export interface MetricsBreakdownValue {
-  views?: number;
-  value?: number;
-  total_watch_time?: number;
-  negative_impact?: number;
-  field?: string;
-}
-
-export interface MetricsComparisonValue {
-  watch_time?: number;
-  view_count?: number;
-  name?: string;
-  value?: number;
-  metric?: string;
-  items?: Array<Metric>;
-}
-
-export interface MetricsBreakdownQueryParams {
-  group_by: string;
-  measurement?: '95th' | 'median' | 'avg';
-  filters?: Array<string>;
-  limit?: number;
-  page?: number;
-  order_by?: 'negative_impact' | 'value' | 'views' | 'field';
-  order_direction?: 'asc' | 'desc';
-  timeframe?: Array<string>;
-}
-
-export interface MetricsComparisonQueryParams {
-  value: string;
-  dimension?: string;
-  filters?: Array<string>;
-  timeframe?: Array<string>;
-}
-
-export interface MetricsInsightsQueryParams {
-  measurement?: string;
-  order_direction?: string;
-  timeframe?: Array<string>;
-}
-
-export interface MetricsOverallQueryParams {
-  timeframe?: Array<string>;
-  filters?: Array<string>;
-  measurement?: '95th' | 'median' | 'avg';
-}
-
-export interface MetricsTimeseriesQueryParams {
-  filters?: Array<string>;
-  timeframe?: Array<string>;
-  measurement?: '95th' | 'median' | 'avg';
-  group_by?: string;
-}
-
-export declare interface MetricsBreakdownResponse {
-  total_row_count: number;
-  timeframe: Array<number>;
-  data: Array<MetricsBreakdownValue>;
-}
-
-export declare interface MetricsComparisonResponse {
-  total_row_count: number;
-  timeframe: Array<number>;
-  data: Array<MetricsComparisonValue>;
-}
-
-export declare interface MetricsInsightsResponse {
-  total_row_count: number;
-  timeframe: Array<number>;
-  data: Array<Insight>;
-}
-
-export declare interface MetricsOverallResponse {
-  total_row_count: number;
-  timeframe: Array<number>;
-  data: MetricsOverallValue;
-}
-
-export declare interface MetricsTimeseriesResponse {
-  total_row_count: number;
-  timeframe: Array<number>;
-  data: Array<Array<string>>;
-}
 
 /**
  * Metrics Class - Provides access to the Mux Data Metrics API

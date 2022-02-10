@@ -4,30 +4,12 @@
  */
 import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
+import { FilterGetResponse, FilterQueryParams } from '../domain';
 
 /**
  * @private Base filters path for the Mux API
  * */
 const PATH = '/data/v1/filters';
-
-export interface FilterQueryParams {
-  filter_id: string;
-  limit?: number;
-  page?: number;
-  filters?: Array<string>;
-  timeframe?: Array<string>;
-}
-
-export interface FilterValue {
-  value: string;
-  total_count: number;
-}
-
-export declare interface FilterGetResponse {
-  total_row_count: number;
-  timeframe: Array<number>;
-  data: Array<FilterValue>;
-}
 
 /**
  * Filters Class - Provides access to the Mux Data Filters API

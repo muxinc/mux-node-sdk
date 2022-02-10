@@ -4,97 +4,12 @@
  */
 import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
+import { RealTimeBreakdownQueryParams, RealTimeBreakdownResponse, RealTimeDimensionsResponse, RealTimeHistogramQueryParams, RealTimeHistogramResponse, RealTimeMetricsResponse, RealTimeTimeseriesParams, RealTimeTimeseriesResponse } from '../domain';
 
 /**
  * @private Base real-time path for the Mux API
  * */
 const PATH = '/data/v1/realtime';
-
-export interface RealTimeBreakdownQueryParams {
-  dimension: string;
-  timestamp?: number;
-  filters?: Array<string>;
-  order_by?:
-    | 'value'
-    | 'negative_impact'
-    | 'metric_value'
-    | 'concurrent_viewers';
-  order_direction?: 'asc' | 'desc';
-}
-
-export interface RealTimeTimeseriesParams {
-  filters?: Array<string>;
-}
-
-export interface RealTimeHistogramQueryParams {
-  filters?: Array<string>;
-}
-
-export interface RealTimeBreakdownValue {
-  value: string;
-  negative_impact: number;
-  metric_value: number;
-  concurrent_viewers: number;
-}
-
-export interface RealTimeDimensionsValue {
-  name: string;
-  display_name: string;
-}
-
-export interface RealTimeHistogramValue {
-  timestamp: string;
-  sum: number;
-  p95: number;
-  median: number;
-  max_percentage: number;
-  average: number;
-  bucket_values: Array<{
-    percentage: number;
-    count: number;
-  }>;
-}
-
-export interface RealTimeBreakdownResponse {
-  total_row_count: null;
-  timeframe: Array<number>;
-  data: Array<RealTimeBreakdownValue>;
-}
-
-export interface RealTimeDimensionsResponse {
-  total_row_count: null;
-  timeframe: Array<number>;
-  data: Array<RealTimeDimensionsValue>;
-}
-
-export interface RealTimeMetricsResponse {
-  total_row_count: null;
-  timeframe: Array<number>;
-  data: Array<{
-    name: string;
-    display_name: string;
-  }>;
-}
-
-export interface RealTimeTimeseriesResponse {
-  total_row_count: null;
-  timeframe: Array<number>;
-  data: Array<{
-    value: number;
-    date: string;
-    concurrent_viewers: number;
-  }>;
-}
-
-export interface RealTimeHistogramResponse {
-  total_row_count: null;
-  timeframe: Array<number>;
-  meta: {
-    buckets: Array<{ start: number; end: number }>;
-    bucket_unit: string;
-  };
-  data: Array<RealTimeHistogramValue>;
-}
 
 /**
  * Real-Time Class - Provides access to the Mux Data Real-Time API

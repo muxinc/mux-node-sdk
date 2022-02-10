@@ -4,62 +4,14 @@
  */
 import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
+import { IncidentsGetResponse, IncidentsListResponse, IncidentsQueryParams, IncidentsRelatedQueryParams } from '../domain';
 
 /**
  * @private Base incidents path for the Mux API
  * */
 const PATH = '/data/v1/incidents';
 
-export interface Incident {
-  id: string;
-  threshold?: number;
-  status: string;
-  started_at: string;
-  severity?: string;
-  sample_size_unit?: string;
-  sample_size?: number;
-  resolved_at?: string;
-  notifications?: Array<any>;
-  notification_rules?: Array<any>;
-  measurement?: string;
-  measured_value_on_close?: number;
-  measured_value?: number;
-  incident_key?: string;
-  impact?: string;
-  error_description?: string;
-  description?: string;
-  breakdowns?: Array<any>;
-  affected_views_per_hour_on_open?: number;
-  affected_views_per_hour?: number;
-  affected_views?: number;
-}
 
-export interface IncidentsQueryParams {
-  limit?: number;
-  page?: number;
-  order_by?: string;
-  order_direction?: string;
-  status?: string;
-}
-
-export interface IncidentsRelatedQueryParams {
-  limit?: number;
-  page?: number;
-  order_by?: string;
-  order_direction?: string;
-}
-
-export declare interface IncidentsListResponse {
-  total_row_count: number;
-  timeframe: Array<number>;
-  data: Array<Incident>;
-}
-
-export declare interface IncidentsGetResponse {
-  total_row_count: number;
-  timeframe: Array<number>;
-  data: Incident;
-}
 
 /**
  * Incidents Class - Provides access to the Mux Data Incidents API
