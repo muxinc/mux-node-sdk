@@ -64,5 +64,4 @@
     "url": "https://github.com/muxinc/mux-node-sdk/issues"
   },
   "homepage": "https://github.com/muxinc/mux-node-sdk#readme",
-  "types": "types/mux.d.ts"
 }
