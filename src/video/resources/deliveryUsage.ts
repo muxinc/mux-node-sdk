@@ -20,10 +20,6 @@ const PATH = '/video/v1/delivery-usage';
  * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});
  */
 export class DeliveryUsage extends Base {
-  constructor(base: Base) {
-    super(base);
-  }
-
   /**
    * List all delivery usage during a timeframe for a Mux Environment (tied to your access token)
    * @param {Object} params - Request JSON parameters (e.g timeframe)

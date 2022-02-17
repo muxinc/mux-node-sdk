@@ -39,10 +39,6 @@ const buildBasePath = (liveStreamId: string) => `${PATH}/${liveStreamId}`;
  * });
  */
 export class LiveStreams extends Base {
-  constructor(base: Base) {
-    super(base);
-  }
-
   /**
    * Creates a Mux live stream with the specified JSON parameters
    * @param {Object} params - Live Stream JSON parameters (e.g playback_policy)

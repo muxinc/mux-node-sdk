@@ -22,23 +22,6 @@ const PATH = '/data/v1/exports';
  * Data.Exports.list();
  */
 export class Exports extends Base {
-  constructor(base: Base);
-  constructor(config: RequestOptions);
-  constructor(accessToken: string, secret: string, config: RequestOptions);
-  constructor(
-    accessTokenOrConfigOrBase: string | RequestOptions | Base,
-    secret?: string,
-    config?: RequestOptions
-  ) {
-    if (accessTokenOrConfigOrBase instanceof Base) {
-      super(accessTokenOrConfigOrBase);
-    } else if (typeof accessTokenOrConfigOrBase === 'object') {
-      super(accessTokenOrConfigOrBase);
-    } else {
-      super(accessTokenOrConfigOrBase, secret!, config!);
-    }
-  }
-
   /**
    * Lists the available video view exports along with URLs to retrieve them
    * @extends Base

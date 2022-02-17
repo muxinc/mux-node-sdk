@@ -23,23 +23,6 @@ const PATH = '/data/v1/video-views';
  * Data.VideoViews.list({order_direction: 'asc'});
  */
 export class VideoViews extends Base {
-  constructor(base: Base);
-  constructor(config: RequestOptions);
-  constructor(accessToken: string, secret: string, config: RequestOptions);
-  constructor(
-    accessTokenOrConfigOrBase: string | RequestOptions | Base,
-    secret?: string,
-    config?: RequestOptions
-  ) {
-    if (accessTokenOrConfigOrBase instanceof Base) {
-      super(accessTokenOrConfigOrBase);
-    } else if (typeof accessTokenOrConfigOrBase === 'object') {
-      super(accessTokenOrConfigOrBase);
-    } else {
-      super(accessTokenOrConfigOrBase, secret!, config!);
-    }
-  }
-
   /**
    * Returns a list of video views for a property that occurred within the specified timeframe.
    * Results are ordered by view_end, according to what you provide for order_direction.

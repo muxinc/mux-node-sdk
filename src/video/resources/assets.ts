@@ -37,10 +37,6 @@ const buildBasePath = (assetId: string) => `${PATH}/${assetId}`;
  * Video.Assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
  */
 export class Assets extends Base {
-  constructor(base: Base) {
-    super(base);
-  }
-
   /**
    * Creates a Mux asset with the specified JSON parameters
    * @param {Object} params - Asset JSON parameters (e.g input)

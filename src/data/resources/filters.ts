@@ -23,23 +23,6 @@ const PATH = '/data/v1/filters';
  * Data.Filters.list();
  */
 export class Filters extends Base {
-  constructor(base: Base);
-  constructor(config: RequestOptions);
-  constructor(accessToken: string, secret: string, config: RequestOptions);
-  constructor(
-    accessTokenOrConfigOrBase: string | RequestOptions | Base,
-    secret?: string,
-    config?: RequestOptions
-  ) {
-    if (accessTokenOrConfigOrBase instanceof Base) {
-      super(accessTokenOrConfigOrBase);
-    } else if (typeof accessTokenOrConfigOrBase === 'object') {
-      super(accessTokenOrConfigOrBase);
-    } else {
-      super(accessTokenOrConfigOrBase, secret!, config!);
-    }
-  }
-
   /**
    * Lists the values for a filter along with a total count of related views
    *

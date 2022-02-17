@@ -27,23 +27,6 @@ const buildBasePath = (uploadId: string) => `${PATH}/${uploadId}`;
  * Video.Uploads.create({ new_asset_settings: { playback_policy: 'public' } });
  */
 export class Uploads extends Base {
-  constructor(base: Base);
-  constructor(config: RequestOptions);
-  constructor(accessToken: string, secret: string, config: RequestOptions);
-  constructor(
-    accessTokenOrConfigOrBase: string | RequestOptions | Base,
-    secret?: string,
-    config?: RequestOptions
-  ) {
-    if (accessTokenOrConfigOrBase instanceof Base) {
-      super(accessTokenOrConfigOrBase);
-    } else if (typeof accessTokenOrConfigOrBase === 'object') {
-      super(accessTokenOrConfigOrBase);
-    } else {
-      super(accessTokenOrConfigOrBase, secret!, config!);
-    }
-  }
-
   /**
    * Creates a direct upload with the specified JSON parameters
    * @extends Base

@@ -27,23 +27,6 @@ const buildBasePath = (keyId: string) => `${PATH}/${keyId}`;
  * Video.SigningKeys.create();
  */
 export class SigningKeys extends Base {
-  constructor(base: Base);
-  constructor(config: RequestOptions);
-  constructor(accessToken: string, secret: string, config: RequestOptions);
-  constructor(
-    accessTokenOrConfigOrBase: string | RequestOptions | Base,
-    secret?: string,
-    config?: RequestOptions
-  ) {
-    if (accessTokenOrConfigOrBase instanceof Base) {
-      super(accessTokenOrConfigOrBase);
-    } else if (typeof accessTokenOrConfigOrBase === 'object') {
-      super(accessTokenOrConfigOrBase);
-    } else {
-      super(accessTokenOrConfigOrBase, secret!, config!);
-    }
-  }
-
   /**
    * Creates a new Signing Key that can be used with the JWT module to sign URLs.
    * @extends Base
