@@ -4,7 +4,11 @@
  */
 import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
-import { VideoView, VideoViewsListResponse, VideoViewsQueryParams } from '../domain';
+import {
+  VideoView,
+  VideoViewsListResponse,
+  VideoViewsQueryParams,
+} from '../domain';
 
 /**
  * @private Base exports path for the Mux API

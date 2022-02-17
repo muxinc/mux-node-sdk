@@ -4,14 +4,17 @@
  */
 import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
-import { IncidentsGetResponse, IncidentsListResponse, IncidentsQueryParams, IncidentsRelatedQueryParams } from '../domain';
+import {
+  IncidentsGetResponse,
+  IncidentsListResponse,
+  IncidentsQueryParams,
+  IncidentsRelatedQueryParams,
+} from '../domain';
 
 /**
  * @private Base incidents path for the Mux API
  * */
 const PATH = '/data/v1/incidents';
-
-
 
 /**
  * Incidents Class - Provides access to the Mux Data Incidents API

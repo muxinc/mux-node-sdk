@@ -4,7 +4,18 @@
  */
 import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
-import { MetricsBreakdownQueryParams, MetricsBreakdownResponse, MetricsComparisonQueryParams, MetricsComparisonResponse, MetricsInsightsQueryParams, MetricsInsightsResponse, MetricsOverallQueryParams, MetricsOverallResponse, MetricsTimeseriesQueryParams, MetricsTimeseriesResponse } from '../domain';
+import {
+  MetricsBreakdownQueryParams,
+  MetricsBreakdownResponse,
+  MetricsComparisonQueryParams,
+  MetricsComparisonResponse,
+  MetricsInsightsQueryParams,
+  MetricsInsightsResponse,
+  MetricsOverallQueryParams,
+  MetricsOverallResponse,
+  MetricsTimeseriesQueryParams,
+  MetricsTimeseriesResponse,
+} from '../domain';
 
 /**
  * @private Base metrics path for the Mux API

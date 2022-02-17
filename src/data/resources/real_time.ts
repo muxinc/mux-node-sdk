@@ -4,7 +4,16 @@
  */
 import { Base } from '../../base';
 import { RequestOptions } from '../../RequestOptions';
-import { RealTimeBreakdownQueryParams, RealTimeBreakdownResponse, RealTimeDimensionsResponse, RealTimeHistogramQueryParams, RealTimeHistogramResponse, RealTimeMetricsResponse, RealTimeTimeseriesParams, RealTimeTimeseriesResponse } from '../domain';
+import {
+  RealTimeBreakdownQueryParams,
+  RealTimeBreakdownResponse,
+  RealTimeDimensionsResponse,
+  RealTimeHistogramQueryParams,
+  RealTimeHistogramResponse,
+  RealTimeMetricsResponse,
+  RealTimeTimeseriesParams,
+  RealTimeTimeseriesResponse,
+} from '../domain';
 
 /**
  * @private Base real-time path for the Mux API
