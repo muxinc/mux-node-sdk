@@ -25,7 +25,7 @@
     "test:unit": "mocha --recursive ./test/unit",
     "test:int": "NOCK_BACK_MODE=record mocha --recursive ./test/integration --timeout 10000",
     "test:int:wild": "NOCK_BACK_MODE=wild mocha --recursive ./test/integration --timeout 10000",
-    "format": "eslint src/** --no-error-on-unmatched-pattern",
+    "format": "eslint src/** test/** --no-error-on-unmatched-pattern",
     "lint": "yarn format"
   },
   "dependencies": {
