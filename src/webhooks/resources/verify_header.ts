@@ -44,8 +44,8 @@ export class VerifyHeader {
       return null;
     }
 
-    switch (scheme) {
-      case EXPECTED_SCHEME:
+    if (scheme !== EXPECTED_SCHEME) {
+      throw new Error(`Unrecognized header scheme: '${scheme}'`);
     }
 
     return header.split(',').reduce(
