@@ -73,13 +73,39 @@ const playbackId = await Video.Assets.createPlaybackId(asset.id, {
 
 Or, if you don't have the files online already, you can ingest one via the direct uploads API.
 
-Note: Since 2019, request has gone into maintenance mode. 
+However, before that, a word of warning on using request libraries.
+
+### Request Library Usage in Node
+
+Since 2019, `request` has gone into maintenance mode. 
 
 We must use an alternate request library such as `node-fetch`.
 
 `node-fetch` supports both CommonJS (`require` syntax) and ESM (`import` syntax). 
 
-[With v3, you must use ESM. For CommonJS, use v2.](https://github.com/node-fetch/node-fetch#commonjs)
+[With v3, you must use ESM only. For CommonJS, use v2.](https://github.com/node-fetch/node-fetch#commonjs)
+
+**With CommonJS**
+Install version 2 of `node-fetch`
+```
+npm install node-fetch@2
+```
+Then in your file:
+```javascript
+const fetch = require('node-fetch');
+```
+
+**With ES6**
+```
+npm install node-fetch
+```
+
+Then in your file:
+```javascript
+import fetch from 'node-fetch';
+```
+
+Back to using the direct uploads API if you don't files online already:
 
 ```javascript
 const fs = require('fs')
