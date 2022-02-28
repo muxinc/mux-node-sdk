@@ -40,6 +40,11 @@ that will allow you to access the Mux Data and Video APIs.
 
 ```javascript
 const Mux = require('@mux/mux-node');
+
+// make it possible to read credentials from .env files
+const dotenv = require('dotenv');
+dotenv.config();
+
 const { Video, Data } = new Mux(accessToken, secret);
 ```
 
