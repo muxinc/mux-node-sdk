@@ -86,6 +86,7 @@ We must use an alternate request library such as `node-fetch`.
 [With v3, you must use ESM only. For CommonJS, use v2.](https://github.com/node-fetch/node-fetch#commonjs)
 
 **With CommonJS**
+
 Install version 2 of `node-fetch`
 ```
 npm install node-fetch@2
