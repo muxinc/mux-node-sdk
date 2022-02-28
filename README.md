@@ -106,7 +106,7 @@ Then in your file:
 import fetch from 'node-fetch';
 ```
 
-Back to using the direct uploads API if you don't files online already:
+Back to using the direct uploads API if you don't have files online already:
 
 ```javascript
 const fs = require('fs')
