@@ -61,13 +61,9 @@ As an example, you can create a Mux asset and playback ID by using the below fun
 // Create an asset
 const asset = await Video.Assets.create({
   input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4',
-});
-```
-
-```javascript
-// ...then later, a playback ID for that asset
-const playbackId = await Video.Assets.createPlaybackId(asset.id, {
-  policy: 'public',
+  "playback_policy": [
+    "public" // makes playback ID available on the asset
+  ],
 });
 ```
 
