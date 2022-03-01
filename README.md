@@ -142,8 +142,8 @@ let asset = await Video.Assets.get(updatedUpload['asset_id']);
 **With ES6**
 
 ```javascript
-import fs from'fs';
-import fetch from'node-fetch';
+import fs from 'fs';
+import fetch from 'node-fetch';
 let upload = await Video.Uploads.create({
   new_asset_settings: { playback_policy: 'public' },
 });
