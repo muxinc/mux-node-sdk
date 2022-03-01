@@ -90,11 +90,7 @@ However, before that, a word of warning on using request libraries.
 
 Since 2019, `request` has gone into maintenance mode. 
 
-We must use an alternate request library such as `node-fetch`.
-
-`node-fetch` supports both CommonJS (`require` syntax) and ESM (`import` syntax). 
-
-[With v3, you must use ESM only. For CommonJS, use v2.](https://github.com/node-fetch/node-fetch#commonjs)
+We must use an alternate request library such as `node-fetch` [here](https://github.com/node-fetch/node-fetch/).
 
 **With CommonJS**
 
