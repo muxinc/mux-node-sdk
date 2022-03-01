@@ -40,6 +40,11 @@ that will allow you to access the Mux Data and Video APIs.
 
 ```javascript
 const Mux = require('@mux/mux-node');
+
+// make it possible to read credentials from .env files
+const dotenv = require('dotenv');
+dotenv.config();
+
 const { Video, Data } = new Mux(accessToken, secret);
 ```
 
@@ -69,13 +74,15 @@ const playbackId = await Video.Assets.createPlaybackId(asset.id, {
 Or, if you don't have the files online already, you can ingest one via the direct uploads API.
 
 ```javascript
-const request = require('request');
+const fs = require('fs')
+const fetch = require('node-fetch');
 let upload = await Video.Uploads.create({
   new_asset_settings: { playback_policy: 'public' },
 });
 
 // The URL you get back from the upload API is resumable, and the file can be uploaded using a `PUT` request (or a series of them).
-await fs.createReadStream('/path/to/your/file').pipe(request.put(upload.url));
+const readStream = await fs.createReadStream('/path/to/your/file');
+await fetch(upload.url, { method: 'PUT', body: readStream });
 
 // The upload may not be updated immediately, but shortly after the upload is finished you'll get a `video.asset.created` event and the upload will now have a status of `asset_created` and a new `asset_id` key.
 let updatedUpload = await Video.Uploads.get(upload.id);
