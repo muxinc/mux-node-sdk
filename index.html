@@ -53,6 +53,11 @@ an access token, visit the Mux Getting Started guide <a href="https://docs.mux.c
 <p>Require the <code>@mux/mux-node</code> npm module and create a Mux instance. Your Mux instance will have <code>Data</code> and <code>Video</code> properties
 that will allow you to access the Mux Data and Video APIs.</p>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">const Mux = require(&apos;@mux/mux-node&apos;);
+
+// make it possible to read credentials from .env files
+const dotenv = require(&apos;dotenv&apos;);
+dotenv.config();
+
 const { Video, Data } = new Mux(accessToken, secret);</code>
 </code></pre>
 <p>If a token ID and secret aren&apos;t included as parameters, the SDK will attempt to use the <code>MUX_TOKEN_ID</code> and <code>MUX_TOKEN_SECRET</code> environment variables.</p>
@@ -63,21 +68,21 @@ const muxClient = new Mux(); // Success!</code>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">// Create an asset
 const asset = await Video.Assets.create({
   input: &apos;https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4&apos;,
-});</code>
-</code></pre>
-<pre><code class="lang-javascript"><code class="source-code prettyprint">// ...then later, a playback ID for that asset
-const playbackId = await Video.Assets.createPlaybackId(asset.id, {
-  policy: &apos;public&apos;,
+  &quot;playback_policy&quot;: [
+    &quot;public&quot; // makes playback ID available on the asset
+  ],
 });</code>
 </code></pre>
 <p>Or, if you don&apos;t have the files online already, you can ingest one via the direct uploads API.</p>
-<pre><code class="lang-javascript"><code class="source-code prettyprint">const request = require(&apos;request&apos;);
+<pre><code class="lang-javascript"><code class="source-code prettyprint">const fs = require(&apos;fs&apos;)
+const fetch = require(&apos;node-fetch&apos;);
 let upload = await Video.Uploads.create({
   new_asset_settings: { playback_policy: &apos;public&apos; },
 });
 
 // The URL you get back from the upload API is resumable, and the file can be uploaded using a `PUT` request (or a series of them).
-await fs.createReadStream(&apos;/path/to/your/file&apos;).pipe(request.put(upload.url));
+const readStream = await fs.createReadStream(&apos;/path/to/your/file&apos;);
+await fetch(upload.url, { method: &apos;PUT&apos;, body: readStream });
 
 // The upload may not be updated immediately, but shortly after the upload is finished you&apos;ll get a `video.asset.created` event and the upload will now have a status of `asset_created` and a new `asset_id` key.
 let updatedUpload = await Video.Uploads.get(upload.id);
@@ -94,7 +99,7 @@ values across every breakdown for the <code>aggregate_startup_time</code> metric
 <h2 id="usage-details">Usage Details</h2><p>Every function will return a chainable <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>.</p>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">Video.Assets.create({
   input: &apos;https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4&apos;,
-}).then(asset =&gt; {
+}).then((asset) =&gt; {
   /* Do things with the asset */
 });</code>
 </code></pre>
@@ -188,11 +193,11 @@ const storyboardToken = Mux.JWT.sign(&apos;some-playback-id&apos;, {
 // https://image.mux.com/some-playback-id/storyboard.jpg?token=${token}</code>
 </code></pre>
 <h2 id="-code-request--code--and--code-response--code--events"><code>request</code> and <code>response</code> events</h2><p>The SDK returns the <code>data</code> key for every object, because in the Mux API that&apos;s always the thing you actually want to see. Sometimes, however, it&apos;s useful to see more details about the request being made or the full response object. You can listen for <code>request</code> and <code>response</code> events to get these raw objects.</p>
-<pre><code class="lang-javascript"><code class="source-code prettyprint">muxClient.on(&apos;request&apos;, req =&gt; {
+<pre><code class="lang-javascript"><code class="source-code prettyprint">muxClient.on(&apos;request&apos;, (req) =&gt; {
   // Request will contain everything being sent such as `headers, method, base url, etc
 });
 
-muxClient.on(&apos;response&apos;, res =&gt; {
+muxClient.on(&apos;response&apos;, (res) =&gt; {
   // Response will include everything returned from the API, such as status codes/text, headers, etc
 });</code>
 </code></pre>
