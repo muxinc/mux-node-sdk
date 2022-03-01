@@ -119,9 +119,31 @@ import fetch from 'node-fetch';
 
 Back to using the direct uploads API if you don't have files online already:
 
+**With CommonJS**
+
 ```javascript
 const fs = require('fs')
 const fetch = require('node-fetch');
+let upload = await Video.Uploads.create({
+  new_asset_settings: { playback_policy: 'public' },
+});
+
+// The URL you get back from the upload API is resumable, and the file can be uploaded using a `PUT` request (or a series of them).
+const readStream = await fs.createReadStream('/path/to/your/file');
+await fetch(upload.url, { method: 'PUT', body: readStream });
+
+// The upload may not be updated immediately, but shortly after the upload is finished you'll get a `video.asset.created` event and the upload will now have a status of `asset_created` and a new `asset_id` key.
+let updatedUpload = await Video.Uploads.get(upload.id);
+
+// Or you could decide to go get additional information about that new asset you created.
+let asset = await Video.Assets.get(updatedUpload['asset_id']);
+```
+
+**With ES6**
+
+```javascript
+import fs from'fs';
+import fetch from'node-fetch';
 let upload = await Video.Uploads.create({
   new_asset_settings: { playback_policy: 'public' },
 });
