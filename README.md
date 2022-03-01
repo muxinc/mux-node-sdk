@@ -48,6 +48,17 @@ dotenv.config();
 const { Video, Data } = new Mux(accessToken, secret);
 ```
 
+If you're using ESM, you can create a Mux instance like this instead:
+```javascript
+import Mux from '@mux/mux-node';
+
+// make it possible to read credentials from .env files
+import dotenv from 'dotenv';
+dotenv.config();
+
+const { Video, Data } = new Mux(accessToken, secret);
+```
+
 If a token ID and secret aren't included as parameters, the SDK will attempt to use the `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` environment variables.
 
 ```javascript
