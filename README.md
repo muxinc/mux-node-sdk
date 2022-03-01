@@ -40,6 +40,11 @@ that will allow you to access the Mux Data and Video APIs.
 
 ```javascript
 const Mux = require('@mux/mux-node');
+
+// make it possible to read credentials from .env files
+const dotenv = require('dotenv');
+dotenv.config();
+
 const { Video, Data } = new Mux(accessToken, secret);
 ```
 
@@ -56,26 +61,24 @@ As an example, you can create a Mux asset and playback ID by using the below fun
 // Create an asset
 const asset = await Video.Assets.create({
   input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4',
-});
-```
-
-```javascript
-// ...then later, a playback ID for that asset
-const playbackId = await Video.Assets.createPlaybackId(asset.id, {
-  policy: 'public',
+  "playback_policy": [
+    "public" // makes playback ID available on the asset
+  ],
 });
 ```
 
 Or, if you don't have the files online already, you can ingest one via the direct uploads API.
 
 ```javascript
-const request = require('request');
+const fs = require('fs')
+const fetch = require('node-fetch');
 let upload = await Video.Uploads.create({
   new_asset_settings: { playback_policy: 'public' },
 });
 
 // The URL you get back from the upload API is resumable, and the file can be uploaded using a `PUT` request (or a series of them).
-await fs.createReadStream('/path/to/your/file').pipe(request.put(upload.url));
+const readStream = await fs.createReadStream('/path/to/your/file');
+await fetch(upload.url, { method: 'PUT', body: readStream });
 
 // The upload may not be updated immediately, but shortly after the upload is finished you'll get a `video.asset.created` event and the upload will now have a status of `asset_created` and a new `asset_id` key.
 let updatedUpload = await Video.Uploads.get(upload.id);
@@ -100,7 +103,7 @@ Every function will return a chainable [Promise](https://developer.mozilla.org/e
 ```javascript
 Video.Assets.create({
   input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4',
-}).then(asset => {
+}).then((asset) => {
   /* Do things with the asset */
 });
 ```
@@ -212,11 +215,11 @@ const storyboardToken = Mux.JWT.sign('some-playback-id', {
 The SDK returns the `data` key for every object, because in the Mux API that's always the thing you actually want to see. Sometimes, however, it's useful to see more details about the request being made or the full response object. You can listen for `request` and `response` events to get these raw objects.
 
 ```javascript
-muxClient.on('request', req => {
+muxClient.on('request', (req) => {
   // Request will contain everything being sent such as `headers, method, base url, etc
 });
 
-muxClient.on('response', res => {
+muxClient.on('response', (res) => {
   // Response will include everything returned from the API, such as status codes/text, headers, etc
 });
 ```

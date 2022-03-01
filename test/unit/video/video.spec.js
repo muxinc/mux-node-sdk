@@ -1,11 +1,13 @@
 const { expect } = require('chai');
-const Video = require('../../../src/video/video');
-const Assets = require('../../../src/video/resources/assets');
-const LiveStreams = require('../../../src/video/resources/liveStreams');
-const Uploads = require('../../../src/video/resources/uploads');
-const PlaybackIds = require('../../../src/video/resources/playbackIds');
-const DeliveryUsage = require('../../../src/video/resources/deliveryUsage');
-const SigningKeys = require('../../../src/video/resources/signingKeys');
+const { Video } = require('../../../dist/video/video');
+const { Assets } = require('../../../dist/video/resources/assets');
+const { LiveStreams } = require('../../../dist/video/resources/liveStreams');
+const { Uploads } = require('../../../dist/video/resources/uploads');
+const { PlaybackIds } = require('../../../dist/video/resources/playbackIds');
+const {
+  DeliveryUsage,
+} = require('../../../dist/video/resources/deliveryUsage');
+const { SigningKeys } = require('../../../dist/video/resources/signingKeys');
 
 /** @test {Video} */
 describe('Unit::Video', () => {

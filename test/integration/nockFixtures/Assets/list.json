@@ -1,457 +1,457 @@
 [
-    {
-        "scope": "https://api.mux.com:443",
-        "method": "get",
-        "path": "/video/v1/assets",
-        "body": "",
-        "status": 200,
-        "response": {
-            "data": [
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "1dUwV9ij9gDuSPDawuJUcK3Sok01vlOZ6fI7vp4pUM78",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "dDO600WcSICbJ8cCJ3myxDio02xbRlCAMpVzUZaTl01Wbs",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "mlezvcG4Dj00Z7o4DAQgjyk1PycFmIR4cjQvu00MDvZ4E",
-                    "duration": 23.857167,
-                    "created_at": "1592366630",
-                    "aspect_ratio": "16:9"
-                },
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "bKWQbx9rdzIkv00oxvA00I4efuC2Q01c02tb2kVIl01ecqUg",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "riLN9IoSki01CjnTfHY6b27TdBdl01olh1goEz6LfePUk",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "2A26JHt8BSux2rz76ktBE92E2wn003z69TdxiYTb9Vzg",
-                    "duration": 23.857167,
-                    "created_at": "1592366587",
-                    "aspect_ratio": "16:9"
-                },
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "XCiyYlyHsgK8kn1TUQigEpxS0276CQzLh00gSbxkvfW4I",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "ddmJSc8UntQVXxEXFVOzkjH00Xm8qPdUsS9koygTPTjI",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "caJkGC6yGty2vJ1DEyJ7gIHBVh7j1uVoJa3AvWkc7bc",
-                    "duration": 23.857167,
-                    "created_at": "1592366571",
-                    "aspect_ratio": "16:9"
-                },
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "sa1gGyeycJYSXKQ7Fnq4tFBsCNIZvSZyrtWbJUjR00rM",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "K91I9y9BNNJQm5W3JErMnW02vv1xkNcbwMs42oFUFyps",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "Ik4JPaoUKtt2A0002VnXoFz8UfH8Ci9uGxDVgLInF8vho",
-                    "duration": 23.857167,
-                    "created_at": "1592366388",
-                    "aspect_ratio": "16:9"
-                },
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "8UrFDF2d5GHde8601PiiNkSVGt02uG007TKHr2yQFmtcKc",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "UUYD01IlQt3VQ1WaIX01z7DJK9YAXxxuSHFZr4xJGmrVE",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "Bilir9SZRF200bznneZKRD2qXHaj5o502Q1aQtL0102R9yU",
-                    "duration": 23.857167,
-                    "created_at": "1592366386",
-                    "aspect_ratio": "16:9"
-                },
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "00fBOa00xHbs6ajlbgqzHp02ZCKc5oFPrsf802Har8Cf2Hg",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "QdMJ6GjqlKopnZPKAFiLPimd3LFYd4kmammEuGCmiDo",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "sWb7UDy4X5tO6KCKdrTY6s6w9sMXk14SZ8mzki0200LFw",
-                    "duration": 23.857167,
-                    "created_at": "1592366156",
-                    "aspect_ratio": "16:9"
-                },
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "LBGXjUXO4nZvveJEgnbKIuK402A00aJvy27JS00Jrp7AMo",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "C00JLWs016IxBTh2mKsvI4VoFx2LtewaXmjddbkkD701XE",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "RghOXzJvu48DTI76qvc6N5xk2FgofNrTnXWYj9T84dM",
-                    "duration": 23.857167,
-                    "created_at": "1592366139",
-                    "aspect_ratio": "16:9"
-                },
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "7DFt02oebN00UUoe2qHPHv4EzpxymR8Sws00qNxKIBhmEU",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "XdBdwTMZG8l3cXM00F02atlsX2mgx62C8UP3oqqDrc9WU",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "MTvHODJd9vdrtPpbn6qGkBoWT00hCYV201CnCQW8RSnX8",
-                    "duration": 23.857167,
-                    "created_at": "1592366031",
-                    "aspect_ratio": "16:9"
-                },
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "J5DTIVavvn02r3VGAow6Dwa7t02b01G16G9HoE6ItAPKkk",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "JVoxQNP5QrMViQjMGz56JmZL3HTc6cE1j8kl01I8ZU28",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "ZSt3Bht01hrZBb02pgBnoL5euCgvGHInX66PaPqMe5FWo",
-                    "duration": 23.857167,
-                    "created_at": "1592365982",
-                    "aspect_ratio": "16:9"
-                },
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "PpjUsUnuJCGS97FTuRBZ7Ap3vq6QabP3WWUBerYk9ZY",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "01HK1ORKNjCxFbwA21wcCadFxuB4rC97zMpcLkh2ZpUE",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "3sQDvXdnFs8iEBia9gBkDRv3l5L19Omt02z8cVM2wDx00",
-                    "duration": 23.857167,
-                    "created_at": "1592365973",
-                    "aspect_ratio": "16:9"
-                },
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "iIilQNJI300KHGZ5FVAMCrhKlqegpfyAXf3H8f1Hrsgw",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "NKtXq97pMRbPNcLif00LW1Umk6KAHA5YAde01w9YLmzQM",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "SLBIvLmt71PQ7c6nE6f401axkCkHiaYxwMwHpIwI7j6c",
-                    "duration": 23.857167,
-                    "created_at": "1592365913",
-                    "aspect_ratio": "16:9"
-                },
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "7uLPn01r00T6jIK8Hk01Ocj01JezlEZh6Avm00UUVIS6iB300",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "qx102Ir0101DY5XakSBr3C2rXkBuDu2pdOLZN34pX9NCmg",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "5k8bA9zwvT33uMOEw4sE6YnPZP3GZG54F877zoY8O8A",
-                    "duration": 23.857167,
-                    "created_at": "1592365831",
-                    "aspect_ratio": "16:9"
-                },
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "DXGx4iiko02Ljg6EVyIENw00MSdySUuALiqU6opK5aY028",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "ybsHfhRDiJcDIh8EcmH8c2k9N4n01PH0001rj1QDdmNZRg",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "FygbqYmloUjQlLTWFwPtmaL02GTJTuIqeMMX9Jxntspo",
-                    "duration": 23.857167,
-                    "created_at": "1592365826",
-                    "aspect_ratio": "16:9"
-                },
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "8tfPS4ZzxY018PwX9V5CbzF8d7hseIsMMkZGjMBbMIYQ",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "mwlVhqzWRKBcUa3O8XaY02Fi1lm1c01297027025EXb5LR8",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "2YMYCXhuZqmtT27XveivXwLurhWC6YPfR8E01fjjhnv00",
-                    "duration": 23.857167,
-                    "created_at": "1592355275",
-                    "aspect_ratio": "16:9"
-                },
-                {
-                    "tracks": [
-                        {
-                            "type": "video",
-                            "max_width": 1920,
-                            "max_height": 1080,
-                            "max_frame_rate": 29.97,
-                            "id": "9a2EaXrtY8CorIa702qwdCGjFrXH02HsW7Xi3WLUaZLP8",
-                            "duration": 23.8238
-                        },
-                        {
-                            "type": "audio",
-                            "max_channels": 2,
-                            "max_channel_layout": "stereo",
-                            "id": "ahV6xUgbFeaf5GDALFtxDhBYX00goOCxi8CefZ8oaO9k",
-                            "duration": 23.823792
-                        }
-                    ],
-                    "status": "ready",
-                    "playback_ids": [
-                        {
-                            "policy": "public",
-                            "id": "G1bhk01UUshWJODOMTwE5y3tb8Ykm01CpLWa02xvyACM01k"
-                        }
-                    ],
-                    "passthrough": "do-not-delete-used-in-watch-this",
-                    "mp4_support": "none",
-                    "max_stored_resolution": "HD",
-                    "max_stored_frame_rate": 29.97,
-                    "master_access": "none",
-                    "id": "3xFmlKcV5X2xYq00pZweY64EVF1vcnIqnQ7cYYt01jlHE",
-                    "duration": 23.872,
-                    "created_at": "1587555674",
-                    "aspect_ratio": "16:9"
-                }
-            ]
+  {
+    "scope": "https://api.mux.com:443",
+    "method": "get",
+    "path": "/video/v1/assets",
+    "body": "",
+    "status": 200,
+    "response": {
+      "data": [
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "1dUwV9ij9gDuSPDawuJUcK3Sok01vlOZ6fI7vp4pUM78",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "dDO600WcSICbJ8cCJ3myxDio02xbRlCAMpVzUZaTl01Wbs",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "mlezvcG4Dj00Z7o4DAQgjyk1PycFmIR4cjQvu00MDvZ4E",
+          "duration": 23.857167,
+          "created_at": "1592366630",
+          "aspect_ratio": "16:9"
         },
-        "rawHeaders": [
-            "Cache-Control",
-            "max-age=0, private, must-revalidate",
-            "Content-Length",
-            "8248",
-            "Content-Type",
-            "application/json; charset=utf-8",
-            "Date",
-            "Wed, 17 Jun 2020 04:08:42 GMT",
-            "Server",
-            "Mux API Server v1.94.1",
-            "X-Request-Id",
-            "Fhk5R48r978zhq8AJCpB",
-            "Connection",
-            "close"
-        ],
-        "responseIsBinary": false
-    }
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "bKWQbx9rdzIkv00oxvA00I4efuC2Q01c02tb2kVIl01ecqUg",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "riLN9IoSki01CjnTfHY6b27TdBdl01olh1goEz6LfePUk",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "2A26JHt8BSux2rz76ktBE92E2wn003z69TdxiYTb9Vzg",
+          "duration": 23.857167,
+          "created_at": "1592366587",
+          "aspect_ratio": "16:9"
+        },
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "XCiyYlyHsgK8kn1TUQigEpxS0276CQzLh00gSbxkvfW4I",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "ddmJSc8UntQVXxEXFVOzkjH00Xm8qPdUsS9koygTPTjI",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "caJkGC6yGty2vJ1DEyJ7gIHBVh7j1uVoJa3AvWkc7bc",
+          "duration": 23.857167,
+          "created_at": "1592366571",
+          "aspect_ratio": "16:9"
+        },
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "sa1gGyeycJYSXKQ7Fnq4tFBsCNIZvSZyrtWbJUjR00rM",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "K91I9y9BNNJQm5W3JErMnW02vv1xkNcbwMs42oFUFyps",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "Ik4JPaoUKtt2A0002VnXoFz8UfH8Ci9uGxDVgLInF8vho",
+          "duration": 23.857167,
+          "created_at": "1592366388",
+          "aspect_ratio": "16:9"
+        },
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "8UrFDF2d5GHde8601PiiNkSVGt02uG007TKHr2yQFmtcKc",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "UUYD01IlQt3VQ1WaIX01z7DJK9YAXxxuSHFZr4xJGmrVE",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "Bilir9SZRF200bznneZKRD2qXHaj5o502Q1aQtL0102R9yU",
+          "duration": 23.857167,
+          "created_at": "1592366386",
+          "aspect_ratio": "16:9"
+        },
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "00fBOa00xHbs6ajlbgqzHp02ZCKc5oFPrsf802Har8Cf2Hg",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "QdMJ6GjqlKopnZPKAFiLPimd3LFYd4kmammEuGCmiDo",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "sWb7UDy4X5tO6KCKdrTY6s6w9sMXk14SZ8mzki0200LFw",
+          "duration": 23.857167,
+          "created_at": "1592366156",
+          "aspect_ratio": "16:9"
+        },
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "LBGXjUXO4nZvveJEgnbKIuK402A00aJvy27JS00Jrp7AMo",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "C00JLWs016IxBTh2mKsvI4VoFx2LtewaXmjddbkkD701XE",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "RghOXzJvu48DTI76qvc6N5xk2FgofNrTnXWYj9T84dM",
+          "duration": 23.857167,
+          "created_at": "1592366139",
+          "aspect_ratio": "16:9"
+        },
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "7DFt02oebN00UUoe2qHPHv4EzpxymR8Sws00qNxKIBhmEU",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "XdBdwTMZG8l3cXM00F02atlsX2mgx62C8UP3oqqDrc9WU",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "MTvHODJd9vdrtPpbn6qGkBoWT00hCYV201CnCQW8RSnX8",
+          "duration": 23.857167,
+          "created_at": "1592366031",
+          "aspect_ratio": "16:9"
+        },
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "J5DTIVavvn02r3VGAow6Dwa7t02b01G16G9HoE6ItAPKkk",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "JVoxQNP5QrMViQjMGz56JmZL3HTc6cE1j8kl01I8ZU28",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "ZSt3Bht01hrZBb02pgBnoL5euCgvGHInX66PaPqMe5FWo",
+          "duration": 23.857167,
+          "created_at": "1592365982",
+          "aspect_ratio": "16:9"
+        },
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "PpjUsUnuJCGS97FTuRBZ7Ap3vq6QabP3WWUBerYk9ZY",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "01HK1ORKNjCxFbwA21wcCadFxuB4rC97zMpcLkh2ZpUE",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "3sQDvXdnFs8iEBia9gBkDRv3l5L19Omt02z8cVM2wDx00",
+          "duration": 23.857167,
+          "created_at": "1592365973",
+          "aspect_ratio": "16:9"
+        },
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "iIilQNJI300KHGZ5FVAMCrhKlqegpfyAXf3H8f1Hrsgw",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "NKtXq97pMRbPNcLif00LW1Umk6KAHA5YAde01w9YLmzQM",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "SLBIvLmt71PQ7c6nE6f401axkCkHiaYxwMwHpIwI7j6c",
+          "duration": 23.857167,
+          "created_at": "1592365913",
+          "aspect_ratio": "16:9"
+        },
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "7uLPn01r00T6jIK8Hk01Ocj01JezlEZh6Avm00UUVIS6iB300",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "qx102Ir0101DY5XakSBr3C2rXkBuDu2pdOLZN34pX9NCmg",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "5k8bA9zwvT33uMOEw4sE6YnPZP3GZG54F877zoY8O8A",
+          "duration": 23.857167,
+          "created_at": "1592365831",
+          "aspect_ratio": "16:9"
+        },
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "DXGx4iiko02Ljg6EVyIENw00MSdySUuALiqU6opK5aY028",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "ybsHfhRDiJcDIh8EcmH8c2k9N4n01PH0001rj1QDdmNZRg",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "FygbqYmloUjQlLTWFwPtmaL02GTJTuIqeMMX9Jxntspo",
+          "duration": 23.857167,
+          "created_at": "1592365826",
+          "aspect_ratio": "16:9"
+        },
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "8tfPS4ZzxY018PwX9V5CbzF8d7hseIsMMkZGjMBbMIYQ",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "mwlVhqzWRKBcUa3O8XaY02Fi1lm1c01297027025EXb5LR8",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "2YMYCXhuZqmtT27XveivXwLurhWC6YPfR8E01fjjhnv00",
+          "duration": 23.857167,
+          "created_at": "1592355275",
+          "aspect_ratio": "16:9"
+        },
+        {
+          "tracks": [
+            {
+              "type": "video",
+              "max_width": 1920,
+              "max_height": 1080,
+              "max_frame_rate": 29.97,
+              "id": "9a2EaXrtY8CorIa702qwdCGjFrXH02HsW7Xi3WLUaZLP8",
+              "duration": 23.8238
+            },
+            {
+              "type": "audio",
+              "max_channels": 2,
+              "max_channel_layout": "stereo",
+              "id": "ahV6xUgbFeaf5GDALFtxDhBYX00goOCxi8CefZ8oaO9k",
+              "duration": 23.823792
+            }
+          ],
+          "status": "ready",
+          "playback_ids": [
+            {
+              "policy": "public",
+              "id": "G1bhk01UUshWJODOMTwE5y3tb8Ykm01CpLWa02xvyACM01k"
+            }
+          ],
+          "passthrough": "do-not-delete-used-in-watch-this",
+          "mp4_support": "none",
+          "max_stored_resolution": "HD",
+          "max_stored_frame_rate": 29.97,
+          "master_access": "none",
+          "id": "3xFmlKcV5X2xYq00pZweY64EVF1vcnIqnQ7cYYt01jlHE",
+          "duration": 23.872,
+          "created_at": "1587555674",
+          "aspect_ratio": "16:9"
+        }
+      ]
+    },
+    "rawHeaders": [
+      "Cache-Control",
+      "max-age=0, private, must-revalidate",
+      "Content-Length",
+      "8248",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Date",
+      "Wed, 17 Jun 2020 04:08:42 GMT",
+      "Server",
+      "Mux API Server v1.94.1",
+      "X-Request-Id",
+      "Fhk5R48r978zhq8AJCpB",
+      "Connection",
+      "close"
+    ],
+    "responseIsBinary": false
+  }
 ]

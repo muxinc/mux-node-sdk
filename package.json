@@ -12,18 +12,20 @@
     "live streaming"
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
-  "main": "src/mux.js",
+  "main": "dist",
   "engines": {
     "node": ">=12"
   },
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
+    "watch": "yarn run -s build --watch",
     "docs": "esdoc",
-    "test": "yarn mocha --recursive ./test",
-    "test:unit": "mocha --recursive ./test/unit",
+    "test": "yarn build && mocha --recursive ./test",
+    "test:unit": "yarn build && mocha --recursive ./test/unit",
     "test:int": "NOCK_BACK_MODE=record mocha --recursive ./test/integration --timeout 10000",
     "test:int:wild": "NOCK_BACK_MODE=wild mocha --recursive ./test/integration --timeout 10000",
-    "format": "eslint src/** test/** types/** --no-error-on-unmatched-pattern",
+    "format": "eslint src/** test/** --no-error-on-unmatched-pattern",
     "lint": "yarn format"
   },
   "dependencies": {
@@ -32,6 +34,8 @@
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/node": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
     "chai": "^4.3.4",
@@ -59,6 +63,5 @@
   "bugs": {
     "url": "https://github.com/muxinc/mux-node-sdk/issues"
   },
-  "homepage": "https://github.com/muxinc/mux-node-sdk#readme",
-  "types": "types/mux.d.ts"
+  "homepage": "https://github.com/muxinc/mux-node-sdk#readme"
 }

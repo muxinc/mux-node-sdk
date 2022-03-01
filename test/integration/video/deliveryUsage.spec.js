@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const nockBack = require('nock').back;
-const Mux = require('../../../src/mux');
+const Mux = require('../../../dist');
 
 /** @test {DeliveryUsage} */
 describe('Integration::DeliveryUsage', () => {

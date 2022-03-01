@@ -1,34 +1,31 @@
 [
-    {
-        "scope": "https://api.mux.com:443",
-        "method": "get",
-        "path": "/data/v1/realtime/metrics/playback-failure-percentage/breakdown?dimension=asn&timestamp=1592357452&filters[]=operating_system:windows&filters[]=country:US",
-        "body": "",
-        "status": 200,
-        "response": {
-            "total_row_count": null,
-            "timeframe": [
-                1592357452,
-                1592357452
-            ],
-            "data": []
-        },
-        "rawHeaders": [
-            "Cache-Control",
-            "max-age=0, private, must-revalidate",
-            "Content-Length",
-            "70",
-            "Content-Type",
-            "application/json; charset=utf-8",
-            "Date",
-            "Wed, 17 Jun 2020 01:31:25 GMT",
-            "Server",
-            "Mux API Server v1.94.1",
-            "X-Request-Id",
-            "FhkwsmBGFjO0RoUAAItJ",
-            "Connection",
-            "close"
-        ],
-        "responseIsBinary": false
-    }
+  {
+    "scope": "https://api.mux.com:443",
+    "method": "get",
+    "path": "/data/v1/realtime/metrics/playback-failure-percentage/breakdown?dimension=asn&timestamp=1592357452&filters[]=operating_system:windows&filters[]=country:US",
+    "body": "",
+    "status": 200,
+    "response": {
+      "total_row_count": null,
+      "timeframe": [1592357452, 1592357452],
+      "data": []
+    },
+    "rawHeaders": [
+      "Cache-Control",
+      "max-age=0, private, must-revalidate",
+      "Content-Length",
+      "70",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Date",
+      "Wed, 17 Jun 2020 01:31:25 GMT",
+      "Server",
+      "Mux API Server v1.94.1",
+      "X-Request-Id",
+      "FhkwsmBGFjO0RoUAAItJ",
+      "Connection",
+      "close"
+    ],
+    "responseIsBinary": false
+  }
 ]

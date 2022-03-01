@@ -32,6 +32,7 @@ module.exports = {
             ts: 'never',
           },
         ],
+        'import/prefer-default-export': 'off',
         'lines-between-class-members': 'off',
         'max-classes-per-file': 'off',
       },

@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const moxios = require('moxios');
-const LiveStreams = require('../../../../src/video/resources/liveStreams');
+const { LiveStreams } = require('../../../../dist/video/resources/liveStreams');
 
 /** @test {LiveStreams} */
 describe('Unit::LiveStreams', () => {

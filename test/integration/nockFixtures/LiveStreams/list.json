@@ -1,98 +1,96 @@
 [
-    {
-        "scope": "https://api.mux.com:443",
-        "method": "get",
-        "path": "/video/v1/live-streams",
-        "body": "",
-        "status": 200,
-        "response": {
-            "data": [
-                {
-                    "stream_key": "aa08e98f-8f37-d080-3a56-fcbede83f8e5",
-                    "status": "idle",
-                    "reconnect_window": 60,
-                    "id": "o00uAyztaReIgPjtkyth02nydO3xhhAJgfbEC5WYWsjG4",
-                    "created_at": "1592368931"
-                },
-                {
-                    "stream_key": "09f554f9-2cc6-c881-cce2-c2ecd1faedd2",
-                    "status": "idle",
-                    "reconnect_window": 60,
-                    "playback_ids": [
-                        {
-                            "policy": "signed",
-                            "id": "IkM3Du01X3CZ0101pHhMrvGqQVQKxj3zzG2fDebA8amtMw"
-                        }
-                    ],
-                    "new_asset_settings": {
-                        "playback_policies": [
-                            "signed"
-                        ]
-                    },
-                    "id": "hojSxQOnIJc26CCqRCZZTjUkJRtQvWwA8lwnUIAlNZs",
-                    "created_at": "1592355491"
-                },
-                {
-                    "stream_key": "a8e27d58-6343-585e-10d4-a7e25bbce2a2",
-                    "status": "idle",
-                    "reconnect_window": 60,
-                    "id": "01ECXoJyAfvmipj4CehHSa8GwwTegVJFWldPNofiFt7k",
-                    "created_at": "1592355490"
-                },
-                {
-                    "stream_key": "b9201ec3-9ad4-91f1-473f-9349277687dc",
-                    "status": "idle",
-                    "simulcast_targets": [
-                        {
-                            "url": "rtmp://live.example.com/app",
-                            "stream_key": "difvbfgi",
-                            "status": "idle",
-                            "id": "yZj891TUQbu3ZBos1kdPZZP01z74eULl00PRfLnOdC01YpEyuiR5DZOaQ"
-                        }
-                    ],
-                    "reconnect_window": 60,
-                    "id": "V00sMcNvBzJxUC6ki9bRuomTb2lr5Ut2LiByuMaIz802E",
-                    "created_at": "1592355489"
-                },
-                {
-                    "stream_key": "5e433ff3-cede-ed09-f5ee-0d8fd23a3225",
-                    "status": "idle",
-                    "reconnect_window": 60,
-                    "id": "5u1NTdNFH6q1qCBz4q8byy72fL2uDFTQG6uB5rcT0128",
-                    "created_at": "1592355412"
-                },
-                {
-                    "stream_key": "aefb5396-842b-c1bd-a9fb-c1a559b04e61",
-                    "status": "idle",
-                    "reconnect_window": 60,
-                    "id": "EKEcX011Tp00UiejY0001igWm5mrmsT9FvoCTXsACi1801Fg",
-                    "created_at": "1592355292"
-                },
-                {
-                    "stream_key": "9f2127b0-befe-b1f2-aa98-bf950cad5d1f",
-                    "status": "idle",
-                    "reconnect_window": 60,
-                    "id": "1JGx38UeL00tCe5mZTbo47JKoAf5OaXrzz2W026RKrakg",
-                    "created_at": "1592325534"
-                }
-            ]
+  {
+    "scope": "https://api.mux.com:443",
+    "method": "get",
+    "path": "/video/v1/live-streams",
+    "body": "",
+    "status": 200,
+    "response": {
+      "data": [
+        {
+          "stream_key": "aa08e98f-8f37-d080-3a56-fcbede83f8e5",
+          "status": "idle",
+          "reconnect_window": 60,
+          "id": "o00uAyztaReIgPjtkyth02nydO3xhhAJgfbEC5WYWsjG4",
+          "created_at": "1592368931"
         },
-        "rawHeaders": [
-            "Cache-Control",
-            "max-age=0, private, must-revalidate",
-            "Content-Length",
-            "1516",
-            "Content-Type",
-            "application/json; charset=utf-8",
-            "Date",
-            "Wed, 17 Jun 2020 04:42:14 GMT",
-            "Server",
-            "Mux API Server v1.94.1",
-            "X-Request-Id",
-            "Fhk7HA2R09F9YicAKaLB",
-            "Connection",
-            "close"
-        ],
-        "responseIsBinary": false
-    }
+        {
+          "stream_key": "09f554f9-2cc6-c881-cce2-c2ecd1faedd2",
+          "status": "idle",
+          "reconnect_window": 60,
+          "playback_ids": [
+            {
+              "policy": "signed",
+              "id": "IkM3Du01X3CZ0101pHhMrvGqQVQKxj3zzG2fDebA8amtMw"
+            }
+          ],
+          "new_asset_settings": {
+            "playback_policies": ["signed"]
+          },
+          "id": "hojSxQOnIJc26CCqRCZZTjUkJRtQvWwA8lwnUIAlNZs",
+          "created_at": "1592355491"
+        },
+        {
+          "stream_key": "a8e27d58-6343-585e-10d4-a7e25bbce2a2",
+          "status": "idle",
+          "reconnect_window": 60,
+          "id": "01ECXoJyAfvmipj4CehHSa8GwwTegVJFWldPNofiFt7k",
+          "created_at": "1592355490"
+        },
+        {
+          "stream_key": "b9201ec3-9ad4-91f1-473f-9349277687dc",
+          "status": "idle",
+          "simulcast_targets": [
+            {
+              "url": "rtmp://live.example.com/app",
+              "stream_key": "difvbfgi",
+              "status": "idle",
+              "id": "yZj891TUQbu3ZBos1kdPZZP01z74eULl00PRfLnOdC01YpEyuiR5DZOaQ"
+            }
+          ],
+          "reconnect_window": 60,
+          "id": "V00sMcNvBzJxUC6ki9bRuomTb2lr5Ut2LiByuMaIz802E",
+          "created_at": "1592355489"
+        },
+        {
+          "stream_key": "5e433ff3-cede-ed09-f5ee-0d8fd23a3225",
+          "status": "idle",
+          "reconnect_window": 60,
+          "id": "5u1NTdNFH6q1qCBz4q8byy72fL2uDFTQG6uB5rcT0128",
+          "created_at": "1592355412"
+        },
+        {
+          "stream_key": "aefb5396-842b-c1bd-a9fb-c1a559b04e61",
+          "status": "idle",
+          "reconnect_window": 60,
+          "id": "EKEcX011Tp00UiejY0001igWm5mrmsT9FvoCTXsACi1801Fg",
+          "created_at": "1592355292"
+        },
+        {
+          "stream_key": "9f2127b0-befe-b1f2-aa98-bf950cad5d1f",
+          "status": "idle",
+          "reconnect_window": 60,
+          "id": "1JGx38UeL00tCe5mZTbo47JKoAf5OaXrzz2W026RKrakg",
+          "created_at": "1592325534"
+        }
+      ]
+    },
+    "rawHeaders": [
+      "Cache-Control",
+      "max-age=0, private, must-revalidate",
+      "Content-Length",
+      "1516",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Date",
+      "Wed, 17 Jun 2020 04:42:14 GMT",
+      "Server",
+      "Mux API Server v1.94.1",
+      "X-Request-Id",
+      "Fhk7HA2R09F9YicAKaLB",
+      "Connection",
+      "close"
+    ],
+    "responseIsBinary": false
+  }
 ]
