@@ -62,10 +62,15 @@ export class Mux extends Base {
   constructor(config: RequestOptions);
   constructor(accessToken: string, secret: string, config: RequestOptions);
   constructor(
-    accessTokenOrConfig: string | RequestOptions,
+    accessTokenOrConfig?: string | RequestOptions,
     secret?: string,
     config?: RequestOptions
   ) {
+    // disabled because it's an overload issue; you can't have
+    // defaults in constructor overloads so you have to kind of fake it?
+    // eslint-disable-next-line no-param-reassign
+    accessTokenOrConfig = accessTokenOrConfig ?? {};
+
     if (typeof accessTokenOrConfig === 'object') {
       super(accessTokenOrConfig);
     } else {
