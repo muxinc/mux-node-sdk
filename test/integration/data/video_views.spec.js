@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const nockBack = require('nock').back;
-const Mux = require('../../../dist');
+const Mux = require('../../../dist').default;
 
 /** @test {VideoViews} */
 describe('Integration::VideoViews', () => {

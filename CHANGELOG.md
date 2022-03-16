@@ -3,4 +3,4 @@ Releases are primarily tracked in the Github [Releases panel](https://github.com
 # 5.0.0
 
 - mux-node-sdk is now TypeScript-native! 🎉
-- the top-level `Mux` class has now changed to a commonjs default export. This may break your imports, but should be a quick fix.
+- exports are now ESModule exports, not CommonJS exports; this means that, if you are using CJS `require`s, you will need to update to `require('@mux/mux-node').default`. The same holds true for direct imports from other files within `@mux/mux-node`'s structure.
