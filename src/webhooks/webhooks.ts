@@ -33,7 +33,11 @@ export class Webhooks {
    *
    * @see https://docs.mux.com/docs/webhook-security
    */
-  static verifyHeader(body: string, signature: string, secret: string) {
+  static verifyHeader(
+    body: string | Buffer,
+    signature: string,
+    secret: string
+  ) {
     return VerifyHeader.verify(body, signature, secret);
   }
 }
