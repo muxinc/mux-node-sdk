@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const moxios = require('moxios');
-const { Filters } = require('../../../../dist/data/resources/filters');
+const { Filters } = require('../../../../cjs/data/resources/filters');
 
 /** @test {Filters} */
 describe('Unit::Filters', () => {

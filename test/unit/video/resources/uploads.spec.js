@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const moxios = require('moxios');
-const { Uploads } = require('../../../../dist/video/resources/uploads');
+const { Uploads } = require('../../../../cjs/video/resources/uploads');
 
 /** @test {Uploads} */
 describe('Unit::Uploads', () => {

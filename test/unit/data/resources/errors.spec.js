@@ -1,5 +1,5 @@
 const moxios = require('moxios');
-const { Errors } = require('../../../../dist/data/resources/errors');
+const { Errors } = require('../../../../cjs/data/resources/errors');
 
 /** @test {Errors} */
 describe('Unit::Errors', () => {

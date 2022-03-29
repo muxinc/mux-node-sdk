@@ -2,9 +2,12 @@
 
 import Axios, { AxiosInstance } from 'axios';
 import EventEmitter from 'events';
-import { RequestOptions } from './RequestOptions';
+import fs from 'fs';
 
-const pkg = require('../package.json');
+import { RequestOptions } from './RequestOptions.js';
+
+const pkg = JSON.parse(fs.readFileSync('../package.json', 'utf-8'));
+const muxNodeVersion = pkg.version;
 
 /**
  * Mux Base Class - Simple base class to be extended by all child modules.
@@ -60,7 +63,7 @@ export class Base extends EventEmitter {
       this.http = Axios.create({
         baseURL: this.config.baseUrl,
         headers: {
-          'User-Agent': `Mux Node | ${pkg.version}`,
+          'User-Agent': `Mux Node | ${muxNodeVersion}`,
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
@@ -71,14 +74,14 @@ export class Base extends EventEmitter {
         },
       });
 
-      this.http.interceptors.request.use((req) => {
+      this.http.interceptors.request.use((req: any) => {
         this.emit('request', req);
 
         return req;
       });
 
       this.http.interceptors.response.use(
-        (res) => {
+        (res: any) => {
           this.emit('response', res);
           if (res.config.url && this.isVideoUrl(res.config.url)) {
             return res.data && res.data.data;
@@ -86,7 +89,7 @@ export class Base extends EventEmitter {
 
           return res.data;
         },
-        (errorRes) =>
+        (errorRes: any) =>
           Promise.reject(
             (errorRes.response && errorRes.response.data.error) || errorRes
           )

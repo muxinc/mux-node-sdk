@@ -2,13 +2,12 @@
  * Mux Video Views
  * Copyright(c) 2018 Mux Inc.
  */
-import { Base } from '../../base';
-import { RequestOptions } from '../../RequestOptions';
+import { Base } from '../../base.js';
 import {
   VideoView,
   VideoViewsListResponse,
   VideoViewsQueryParams,
-} from '../domain';
+} from '../domain.js';
 
 /**
  * @private Base exports path for the Mux API

@@ -2,9 +2,8 @@
  * Mux Exports
  * Copyright(c) 2018 Mux Inc.
  */
-import { Base } from '../../base';
-import { RequestOptions } from '../../RequestOptions';
-import { ExportsListResponse } from '../domain';
+import { Base } from '../../base.js';
+import { ExportsListResponse } from '../domain.js';
 
 /**
  * @private Base exports path for the Mux API

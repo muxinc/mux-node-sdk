@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const nockBack = require('nock').back;
-const Mux = require('../../../dist').default;
+const Mux = require('../../../cjs').default;
 
 /** @test {LiveStreams} */
 describe('Integration::LiveStreams', () => {
