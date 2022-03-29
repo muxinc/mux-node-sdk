@@ -2,12 +2,10 @@
 
 import Axios, { AxiosInstance } from 'axios';
 import EventEmitter from 'events';
-import fs from 'fs';
 
 import { RequestOptions } from './RequestOptions.js';
+import { VERSION } from './version.js';
 
-const pkg = JSON.parse(fs.readFileSync('../package.json', 'utf-8'));
-const muxNodeVersion = pkg.version;
 
 /**
  * Mux Base Class - Simple base class to be extended by all child modules.
@@ -63,7 +61,7 @@ export class Base extends EventEmitter {
       this.http = Axios.create({
         baseURL: this.config.baseUrl,
         headers: {
-          'User-Agent': `Mux Node | ${muxNodeVersion}`,
+          'User-Agent': `Mux Node | ${VERSION}`,
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
