@@ -2,9 +2,8 @@
  * Mux Signing Keys
  * Copyright(c) 2018 Mux Inc.
  */
-import { Base } from '../../base';
-import { RequestOptions } from '../../RequestOptions';
-import { SigningKey } from '../domain';
+import { Base } from '../../base.js';
+import { SigningKey } from '../domain.js';
 
 /**
  * @private Base signing-key path for the Mux API

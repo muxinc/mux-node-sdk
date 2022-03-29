@@ -12,14 +12,18 @@
     "live streaming"
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
-  "main": "dist",
+  "main": "./cjs/index.js",
+  "exports": "./esm/index.js",
   "engines": {
     "node": ">=12"
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "watch": "yarn run -s build --watch",
+    "build:cjs": "tsc --outDir cjs --module commonjs",
+    "build:esm": "tsc --outDir esm --module esnext --moduleResolution node",
+    "build": "yarn run build:cjs && yarn run build:esm",
+    "watch:esm": "yarn run -s build:esm --watch",
+    "watch:cjs": "yarn run -s build:cjs --watch",
     "docs": "esdoc",
     "test": "yarn build && mocha --recursive ./test",
     "test:unit": "yarn build && mocha --recursive ./test/unit",
@@ -29,7 +33,7 @@
     "lint": "yarn format"
   },
   "dependencies": {
-    "axios": "^0.25.0",
+    "axios": "^0.26.1",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
     "jsonwebtoken": "^8.5.1"
   },

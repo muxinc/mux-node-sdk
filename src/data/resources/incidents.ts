@@ -2,14 +2,13 @@
  * Mux Incidents
  * Copyright(c) 2019 Mux Inc.
  */
-import { Base } from '../../base';
-import { RequestOptions } from '../../RequestOptions';
+import { Base } from '../../base.js';
 import {
   IncidentsGetResponse,
   IncidentsListResponse,
   IncidentsQueryParams,
   IncidentsRelatedQueryParams,
-} from '../domain';
+} from '../domain.js';
 
 /**
  * @private Base incidents path for the Mux API

@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const path = require('path');
-const { JWT } = require('../../../dist/utils/jwt');
+const { JWT } = require('../../../cjs/utils/jwt');
 
 const TEST_ID = '01XNj9qIpoW3eU1sED8EqrFRy01J3VTZ01x';
 const TEST_SECRET =

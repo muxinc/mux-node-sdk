@@ -1,5 +1,5 @@
 const moxios = require('moxios');
-const { Exports } = require('../../../../dist/data/resources/exports');
+const { Exports } = require('../../../../cjs/data/resources/exports');
 
 /** @test {Exports} */
 describe('Unit::Exports', () => {

@@ -19,4 +19,10 @@ node_modules/
 
 # builds
 dist/
+esm/*
+esm/**/*
+!esm/index*
+cjs/*
+cjs/**/*
+!cjs/index*
 tsconfig.tsbuildinfo

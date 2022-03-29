@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const moxios = require('moxios');
-const { PlaybackIds } = require('../../../../dist/video/resources/playbackIds');
+const { PlaybackIds } = require('../../../../cjs/video/resources/playbackIds');
 
 /** @test {PlaybackIds} */
 describe('Unit::PlaybackIds', () => {

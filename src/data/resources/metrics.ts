@@ -2,8 +2,7 @@
  * Mux Metrics
  * Copyright(c) 2018 Mux Inc.
  */
-import { Base } from '../../base';
-import { RequestOptions } from '../../RequestOptions';
+import { Base } from '../../base.js';
 import {
   MetricsBreakdownQueryParams,
   MetricsBreakdownResponse,
@@ -15,7 +14,7 @@ import {
   MetricsOverallResponse,
   MetricsTimeseriesQueryParams,
   MetricsTimeseriesResponse,
-} from '../domain';
+} from '../domain.js';
 
 /**
  * @private Base metrics path for the Mux API

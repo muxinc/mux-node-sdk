@@ -3,13 +3,13 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-import { Base } from './base';
-import { Video } from './video/video';
-import { Data } from './data/data';
-import { Webhooks } from './webhooks/webhooks';
-import { JWT } from './utils/jwt';
+import { Base } from './base.js';
+import { Video } from './video/video.js';
+import { Data } from './data/data.js';
+import { Webhooks } from './webhooks/webhooks.js';
+import { JWT } from './utils/jwt.js';
 
-import { RequestOptions } from './RequestOptions';
+import { RequestOptions } from './RequestOptions.js';
 
 /**
  * Mux Class - Provides access to the Mux Video and Mux Data API

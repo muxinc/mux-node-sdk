@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const moxios = require('moxios');
-const { SigningKeys } = require('../../../../dist/video/resources/signingKeys');
+const { SigningKeys } = require('../../../../cjs/video/resources/signingKeys');
 
 /** @test {SigningKeys} */
 describe('Unit::SigningKeys', () => {

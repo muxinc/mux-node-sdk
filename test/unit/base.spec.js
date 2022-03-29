@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const moxios = require('moxios');
-const { Base } = require('../../dist/base');
+const { Base } = require('../../cjs/base');
 
 /** @test {Mux} */
 describe('Unit::Base', () => {

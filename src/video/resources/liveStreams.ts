@@ -2,7 +2,7 @@
  * Mux Live Streams
  * Copyright(c) 2018 Mux Inc.
  */
-import { Base } from '../../base';
+import { Base } from '../../base.js';
 import {
   CreateLiveStreamParams,
   CreatePlaybackIdParams,
@@ -11,7 +11,7 @@ import {
   PlaybackId,
   SimulcastTarget,
   SimulcastTargetParams,
-} from '../domain';
+} from '../domain.js';
 
 /**
  * @private Base live stream path for the Mux API

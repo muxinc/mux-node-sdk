@@ -2,9 +2,8 @@
  * Mux Assets
  * Copyright(c) 2018 Mux Inc.
  */
-import { Base } from '../../base';
-import { RequestOptions } from '../../RequestOptions';
-import { PlaybackIdentifier } from '../domain';
+import { Base } from '../../base.js';
+import { PlaybackIdentifier } from '../domain.js';
 
 /**
  * @private Base playback ID path for the Mux API
