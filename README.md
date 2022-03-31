@@ -32,6 +32,8 @@ yarn add @mux/mux-node
 
 ## Usage
 
+**Please note:** The instructions below are for _CommonJS_ modules and the use thereof (`require` in vanilla NodeJS). This library also exports an _experimental_ ESModule and all you should need to do is `import Mux from '@mux/mux-node'` in place of `require('@mux/mux-node')` below. If you run into any problems, please file an issue!
+
 To start, you will need a Mux access token and secret for your Mux environment. For more information on where to get
 an access token, visit the Mux Getting Started guide https://docs.mux.com/docs
 
