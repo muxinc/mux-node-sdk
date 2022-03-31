@@ -22,7 +22,7 @@
     "write-version": "echo \"export const VERSION = '$npm_package_version' as const;\" > ./src/version.ts",
     "build:cjs": "yarn run -s write-version && tsc --outDir cjs --module commonjs",
     "build:esm": "yarn run -s write-version && tsc --outDir esm --module esnext && yarn run build:esm:rename && yarn run build:esm:fixup",
-    "build:esm:rename": "cd esm && find . -name '*.js' -exec rename .js .mjs {} + && find . -name '*.js.map' -exec rename .js.map .mjs.map {} +",
+    "build:esm:rename": "cd esm && find . -name \"*.js\" -exec bash -c 'mv \"$1\" \"${1%.js}\".mjs' - '{}' +  && find . -name \"*.js.map\" -exec bash -c 'mv \"$1\" \"${1%.js.map}\".mjs.map' - '{}' +",
     "build:esm:fixup": "cd esm && find . -name '*.mjs' -exec sed -i 's,\\.js',\\.mjs',g' {} +",
     "build": "yarn run build:cjs && yarn run build:esm",
     "watch:esm": "yarn run -s build:esm --watch --preserveWatchOutput",
