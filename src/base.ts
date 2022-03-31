@@ -6,7 +6,6 @@ import EventEmitter from 'events';
 import { RequestOptions } from './RequestOptions.js';
 import { VERSION } from './version.js';
 
-
 /**
  * Mux Base Class - Simple base class to be extended by all child modules.
  *
