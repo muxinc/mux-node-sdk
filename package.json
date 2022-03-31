@@ -13,7 +13,10 @@
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
   "main": "./cjs/index.js",
-  "exports": "./esm/index.mjs",
+  "exports": {
+    "import": "./esm/index.mjs",
+    "require": "./cjs/index.js"
+  },
   "engines": {
     "node": ">=12"
   },
