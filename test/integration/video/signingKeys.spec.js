@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const nockBack = require('nock').back;
-const Mux = require('../../../cjs').default;
+const Mux = require('../../../cjs');
 
 /** @test {SigningKeys} */
 describe('Integration:SigningKeys', () => {

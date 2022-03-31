@@ -1,6 +1,8 @@
 const { expect } = require('chai');
 const nockBack = require('nock').back;
-const Mux = require('../../../cjs').default;
+const Mux = require('../../../cjs');
+
+console.log(Mux)
 
 /** @test {Errors} */
 describe('Integration::Errors', () => {
