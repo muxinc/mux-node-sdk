@@ -1,8 +1,8 @@
 import { expect } from 'chai';
-import Mux from '../../esm/index.js';
+import Mux from '../../esm/index.mjs';
 
 /** @test {Mux} */
-describe('Unit::Mux', () => {
+describe('ESM: Unit::Mux', () => {
   /** @test {Mux} */
   describe('Mux', () => {
     /** @test {Mux} */
