@@ -48,6 +48,17 @@ dotenv.config();
 const { Video, Data } = new Mux(accessToken, secret);
 ```
 
+If you receive the error:
+
+```
+TypeError: Mux is not a constructor
+```
+
+Use this instead:
+```
+const { Video, Data } = new Mux(accessToken, secret).default;
+```
+
 If a token ID and secret aren't included as parameters, the SDK will attempt to use the `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` environment variables.
 
 ```javascript
