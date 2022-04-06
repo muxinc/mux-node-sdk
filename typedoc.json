@@ -1,6 +1,5 @@
 {
   "entryPoints": [
-    "cjs/index.js",
     "src/RequestOptions.ts",
     "src/data/data.ts",
     "src/video/video.ts",
