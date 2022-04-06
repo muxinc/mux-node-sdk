@@ -67,9 +67,11 @@ const getPrivateKey = (options: MuxJWTSignOptions): string | Buffer => {
  * JWT - Signed URL token generation helpers
  *
  * @example
+ * ```
  * const Mux = require('@mux/mux-node');
  *
  * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' })
+ * ```
  */
 export class JWT {
   /**
@@ -84,10 +86,12 @@ export class JWT {
    * @returns {string} - Returns a token to be used with a signed URL.
    *
    * @example
+   * ```
    * const Mux = require('@mux/mux-node');
    *
    * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
    * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
+   * ```
    */
   static sign(playbackId: string, options: MuxJWTSignOptions = {}) {
     const opts = {
@@ -127,11 +131,13 @@ export class JWT {
    * @returns {Object} - If the token could be decoded, it returns the decoded token object
    *
    * @example
+   * ```
    * const Mux = require('@mux/mux-node');
    *
    * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
    * const decoded = Mux.JWT.decode(token);
    * // decoded will be the raw decoded JWT, so you'll see keys like `aud`, `exp`, etc.
+   * ```
    */
   static decode(token: string) {
     return jwt.decode(token);

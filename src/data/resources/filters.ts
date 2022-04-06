@@ -15,11 +15,13 @@ const PATH = '/data/v1/filters';
  *
  * @extends Base
  * @example
+ * ```
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;
  *
  * // Lists all the filters broken out into basic and advanced
  * Data.Filters.list();
+ * ```
  */
 export class Filters extends Base {
   /**
@@ -30,11 +32,13 @@ export class Filters extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
    * // Lists the values for a filter along with a total count of related views
    * Data.Filters.get('browser', { timeframe: ['7:days'] });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-filter-values
    */
@@ -53,11 +57,13 @@ export class Filters extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
    * // Lists the available video view exports along with URLs to retrieve them
    * Data.Filters.list();
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-filters
    */

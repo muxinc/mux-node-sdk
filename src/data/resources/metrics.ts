@@ -26,11 +26,13 @@ const PATH = '/data/v1/metrics';
  *
  * @extends Base
  * @example
+ * ```
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;
  *
  * // List all of the values across every breakdown for a specific metric grouped by operating system
  * Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'operating_system' });
+ * ```
  */
 export class Metrics extends Base {
   /**
@@ -42,11 +44,13 @@ export class Metrics extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
    * // List all of the values across every breakdown for a specific metric grouped by browser
    * Data.Metrics.breakdown('aggregate_startup_time', { group_by: 'browser' });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-breakdown-values
    */
@@ -64,12 +68,15 @@ export class Metrics extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
    * // List the breakdown values for a specific metric within the last 24 hours
+   * // Note: the value query parameter is required
    * Data.Metrics.comparison({ value: 'safari', timeframe: '24:hours', dimension: 'cdn' });
-   * Note: the value query parameter is required
+   * ```
+   * 
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-all-metric-values
    */
@@ -120,11 +127,13 @@ export class Metrics extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
    * // Get the overall value for a specific metric within the past 7 days
    * Data.Metrics.overall('aggregate_startup_time', { timeframe: ['7:days'] });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/get-overall-values
    */
@@ -146,11 +155,13 @@ export class Metrics extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
    * // Get timeseries data for a specific metric within the past 7 days
    * Data.Metrics.timeseries('aggregate_startup_time', { timeframe: ['7:days'] });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/get-metric-timeseries-data
    */

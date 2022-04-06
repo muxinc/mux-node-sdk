@@ -14,10 +14,12 @@ const PATH = '/data/v1/errors';
  * Errors Class - Provides access to the Mux Data Errors API
  * @extends Base
  * @example
+ * ```
  * const { Data } = new Mux(accessToken, secret);
  *
  * // Returns a list of playback errors filtered by the windows operating system
  * Data.Errors.list({ filters: ['operating_system:windows'] });
+ * ```
  */
 export class Errors extends Base {
   /**
@@ -27,10 +29,12 @@ export class Errors extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Data } = new Mux(accessToken, secret);
    *
    * // Returns a list of playback errors filtered by the windows operating system
    * Data.Errors.list({ filters: ['operating_system:windows'] });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-errors
    */

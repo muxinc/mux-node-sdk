@@ -20,10 +20,12 @@ const buildBasePath = (uploadId: string) => `${PATH}/${uploadId}`;
  * Uploads Class - Provides access to the Mux Video Uploads API
  *
  * @example
+ * ```
  * const { Video } = new Mux(accessToken, secret);
  *
  * // Create an upload
  * Video.Uploads.create({ new_asset_settings: { playback_policy: 'public' } });
+ * ```
  */
 export class Uploads extends Base {
   /**
@@ -33,6 +35,7 @@ export class Uploads extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Video } = muxClient;
    *
@@ -40,6 +43,8 @@ export class Uploads extends Base {
    * const upload = await Video.Uploads.create({new_asset_settings: {playback_policy: 'public'}});
    * // Now push a file to the URL returned.
    * fs.createReadStream(pathToFile).pipe(request.put(upload.url))
+   * 
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-direct-upload
    */
@@ -59,10 +64,12 @@ export class Uploads extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Cancels an upload
    * Video.Uploads.cancel(uploadId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/cancel-direct-upload
    */
@@ -79,10 +86,12 @@ export class Uploads extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Get an upload
    * Video.Uploads.get(uploadId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-direct-upload
    */
@@ -100,10 +109,12 @@ export class Uploads extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // List all uploads
    * Video.Uploads.list();
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/list-direct-uploads
    */

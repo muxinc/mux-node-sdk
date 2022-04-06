@@ -31,10 +31,12 @@ const buildBasePath = (assetId: string) => `${PATH}/${assetId}`;
  * Assets Class - Provides access to the Mux Video Assets API
  *
  * @example
+ * ```
  * const { Video } = new Mux(accessToken, secret);
- *
+ * 
  * // Create an asset
  * Video.Assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
+ * ```
  */
 export class Assets extends Base {
   /**
@@ -43,10 +45,12 @@ export class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Create an asset
    * Video.Assets.create({input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'});
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-asset
    */
@@ -66,10 +70,12 @@ export class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Delete an asset
    * Video.Assets.del(assetId);
+   * ```
    *
    * @see hhttps://docs.mux.com/api-reference/video#operation/delete-asset
    */
@@ -88,10 +94,12 @@ export class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Get an asset
    * Video.Assets.get(assetId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-asset
    */
@@ -110,10 +118,12 @@ export class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Get input info for an asset
    * Video.Assets.inputInfo(assetId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-asset-input-info
    */
@@ -149,10 +159,12 @@ export class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Retrieve an asset playbackId
    * Video.Assets.playbackId(assetId, playbackId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-asset-playback-id
    */
@@ -176,10 +188,12 @@ export class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Create an asset playback ID
    * Video.Assets.createPlaybackId(assetId, { policy: 'public' });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-asset-playback-id
    */
@@ -204,10 +218,12 @@ export class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Delete an asset playback ID
    * Video.Assets.deletePlaybackId(assetId, { policy: 'public' });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/delete-asset-playback-id
    */
@@ -231,6 +247,7 @@ export class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Create an asset text track
@@ -240,6 +257,7 @@ export class Assets extends Base {
    *   text_type: "subtitles",
    *   language_code: "en-US",
    * });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-asset-track
    */
@@ -261,10 +279,12 @@ export class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Delete an asset text track
    * Video.Assets.deleteTrack(assetId, trackId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/delete-asset-track
    */
@@ -285,10 +305,12 @@ export class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Updates mp4 support for an asset
    * Video.Assets.updateMp4Support(assetId, {mp4_support: "standard"});
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/update-asset-mp4-support
    */
@@ -312,10 +334,12 @@ export class Assets extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Update master access for an asset
    * Video.Assets.updateMasterAccess(assetId, {master_access: "temporary"});
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/update-asset-master-access
    */

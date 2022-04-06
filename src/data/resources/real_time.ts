@@ -24,11 +24,13 @@ const PATH = '/data/v1/realtime';
  *
  * @extends Base
  * @example
+ * ```
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;
  *
  * // Returns a list of available real-time dimensions
  * Data.RealTime.dimensions();
+ * ```
  */
 export class RealTime extends Base {
   /**
@@ -37,11 +39,13 @@ export class RealTime extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
    * // Returns a list of available real-time dimensions
    * Data.RealTime.dimensions();
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-realtime-dimensions
    */
@@ -55,11 +59,13 @@ export class RealTime extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
    * // Returns a list of available real-time metrics
    * Data.RealTime.metrics();
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-realtime-metrics
    */
@@ -75,11 +81,13 @@ export class RealTime extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
    * // List the breakdown information for current-concurrent-viewers by ASN for a specific time for the Windows operating system in the US
    * Data.RealTime.breakdown('current-concurrent-viewers', { dimension: 'asn', timestamp: 1547853000, filters: ['operating_system:windows', 'country:US'] });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/get-realtime-breakdown
    */
@@ -109,11 +117,13 @@ export class RealTime extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
    * // List histogram timeseries information for video-startup-time for the Windows operating system in the US
    * Data.RealTime.histogramTimeseries('video-startup-time', { filters: ['operating_system:windows', 'country:US'] });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/get-realtime-histogram-timeseries
    */
@@ -139,11 +149,13 @@ export class RealTime extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
    * // List timeseries information for the playback-failure-percentage metric along with the number of concurrent viewers for the Windows operating system in the US
    * Data.RealTime.timeseries('playback-failure-percentage', { filters: ['operating_system:windows', 'country:US'] });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/get-realtime-timeseries
    */

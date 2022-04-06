@@ -20,10 +20,12 @@ const buildBasePath = (keyId: string) => `${PATH}/${keyId}`;
  * Signing Key Class - Provides access to the Mux Video Signing Key API
  *
  * @example
+ * ```
  * const { Video } = new Mux(accessToken, secret);
  *
  * // Create a new signing key
  * Video.SigningKeys.create();
+ * ```
  */
 export class SigningKeys extends Base {
   /**
@@ -32,11 +34,13 @@ export class SigningKeys extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Video } = muxClient;
    *
    * // Create a new signing key
    * Video.SigningKeys.create();
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-url-signing-key
    */
@@ -50,10 +54,12 @@ export class SigningKeys extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Get a signing key
    * Video.SigningKeys.get(keyId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-url-signing-key
    */
@@ -70,10 +76,12 @@ export class SigningKeys extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Delete a signing key
    * Video.SigningKeys.del(keyId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/delete-url-signing-key
    */
@@ -93,10 +101,12 @@ export class SigningKeys extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // List all signing keys
    * Video.SigningKeys.list();
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/list-url-signing-keys
    */

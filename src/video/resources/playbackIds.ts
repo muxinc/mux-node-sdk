@@ -20,10 +20,12 @@ const buildBasePath = (playbackId: string) => `${PATH}/${playbackId}`;
  * PlaybackIds Class - Provides access to the Mux Playback ID API
  *
  * @example
+ * ```
  * const { Video } = new Mux(accessToken, secret);
  *
  * // Retrieve an Asset or Live Stream  identifier associated with a Playback ID
  * Video.PlaybackIds.get(playbackId);
+ * ```
  */
 export class PlaybackIds extends Base {
   /**
@@ -32,10 +34,12 @@ export class PlaybackIds extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Retrieve an Asset or Live Stream identifier associated with a Playback ID
    * Video.PlaybackIds.get(playbackId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-asset-or-livestream-id
    */

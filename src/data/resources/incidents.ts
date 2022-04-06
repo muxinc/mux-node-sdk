@@ -19,10 +19,12 @@ const PATH = '/data/v1/incidents';
  * Incidents Class - Provides access to the Mux Data Incidents API
  * @extends Base
  * @example
+ * ```
  * const { Data } = new Mux(accessToken, secret);
  *
  * // Returns a list of all open incidents
  * Data.Incidents.list({ status: 'open' });
+ * ```
  */
 export class Incidents extends Base {
   /**
@@ -32,10 +34,12 @@ export class Incidents extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Data } = new Mux(accessToken, secret);
    *
    * // Returns a list of all open incidents
    * Data.Incidents.list({ status: 'open' });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-incidents
    */
@@ -50,11 +54,13 @@ export class Incidents extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
    * //Returns the details for a single incident
    * Data.Incidents.get('ABCD1234');
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/get-incident
    */
@@ -73,11 +79,13 @@ export class Incidents extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
    * //Returns all the incidents that seem related to a specific incident
    * Data.Incidents.related('ABCD1234');
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-related-incidents
    */

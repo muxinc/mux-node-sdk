@@ -19,6 +19,7 @@ import { DeliveryUsage } from './resources/deliveryUsage.js';
  * Video Class - Provides access to the Mux Video API
  *
  * @example
+ * ```
  * const muxClient = new Mux(accessToken, secret);
  * const { Video } = muxClient;
  *
@@ -27,6 +28,7 @@ import { DeliveryUsage } from './resources/deliveryUsage.js';
  *
  * // Create an asset playback ID
  * Video.Assets.createPlaybackId(assetId, { policy: 'public' });
+ * ```
  */
 export class Video extends Base {
   readonly Assets: Assets;

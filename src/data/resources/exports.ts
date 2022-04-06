@@ -14,11 +14,13 @@ const PATH = '/data/v1/exports';
  * Exports Class - Provides access to the Mux Data Exports API
  *
  * @example
+ * ```
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;
  *
  * // Lists the available video view exports along with URLs to retrieve them
  * Data.Exports.list();
+ * ```
  */
 export class Exports extends Base {
   /**
@@ -27,11 +29,13 @@ export class Exports extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Data } = muxClient;
    *
    * // Lists the available video view exports along with URLs to retrieve them
    * Data.Exports.list();
+   * ```
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-exports
    */

@@ -29,6 +29,7 @@ const buildBasePath = (liveStreamId: string) => `${PATH}/${liveStreamId}`;
  *
  * @extends Base
  * @example
+ * ```
  * const muxClient = new Mux(accessToken, secret);
  * const { Video } = muxClient;
  *
@@ -37,6 +38,7 @@ const buildBasePath = (liveStreamId: string) => `${PATH}/${liveStreamId}`;
  *  playback_policy: 'public',
  *  new_asset_settings: { playback_policy: 'public' }
  * });
+ * ```
  */
 export class LiveStreams extends Base {
   /**
@@ -45,6 +47,7 @@ export class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const muxClient = new Mux(accessToken, secret);
    * const { Video } = muxClient;
    *
@@ -53,6 +56,7 @@ export class LiveStreams extends Base {
    *  playback_policy: 'public',
    *  new_asset_settings: { playback_policy: 'public' }
    * });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-live-stream
    */
@@ -66,10 +70,12 @@ export class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Delete a mux live stream
    * Video.LiveStreams.del(liveStreamId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/delete-live-stream
    */
@@ -88,10 +94,12 @@ export class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Get a live stream
    * Video.LiveStreams.get(liveStreamId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-live-stream
    */
@@ -109,10 +117,12 @@ export class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // List all live streams for a Mux Environment
    * Video.LiveStreams.list();
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/list-live-streams
    */
@@ -126,10 +136,12 @@ export class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Signal a live stream is finished
    * Video.LiveStreams.signalComplete(liveStreamId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/signal-live-stream-complete
    */
@@ -148,11 +160,13 @@ export class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Reset a live stream key if you want to immediately stop the current stream key
    * // from working and create a new stream key that can be used for future broadcasts.
    * Video.LiveStreams.resetStreamKey(liveStreamId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/reset-stream-key
    */
@@ -172,10 +186,12 @@ export class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Create a live stream playback ID
    * Video.LiveStreams.createPlaybackId(liveStreamId, { policy: 'public' });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-live-stream-playback-id
    */
@@ -211,10 +227,12 @@ export class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Delete a live stream playback ID
    * Video.LiveStreams.deletePlaybackId(liveStreamId, { policy: 'public' });
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/delete-live-stream-playback-id
    */
@@ -246,10 +264,12 @@ export class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Create a live simulcast target
    * Video.LiveStreams.createSimulcastTarget(liveStreamId, {url: 'rtmp://live.example.com/app', stream_key: 'difvbfgi', passthrough: 'Example Live Streaming service'});
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/create-live-stream-simulcast-target
    */
@@ -281,10 +301,12 @@ export class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Get a live simulcast target
    * Video.LiveStreams.getSimulcastTarget(liveStreamId, simulcastTargetId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/get-live-stream-simulcast-target
    */
@@ -315,10 +337,12 @@ export class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Delete a simulcast target
    * Video.LiveStreams.deleteSimulcastTarget(liveStreamId, simulcastTargetId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/delete-live-stream-simulcast-target
    */
@@ -350,10 +374,12 @@ export class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Disable a live stream
    * Video.LiveStreams.disable(liveStreamId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/disable-live-stream
    */
@@ -372,10 +398,12 @@ export class LiveStreams extends Base {
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
+   * ```
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Enable a Live Stream
    * Video.LiveStreams.enable(liveStreamId);
+   * ```
    *
    * @see https://docs.mux.com/api-reference/video#operation/enable-live-stream
    */

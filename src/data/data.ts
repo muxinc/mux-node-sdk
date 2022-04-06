@@ -20,8 +20,10 @@ import { VideoViews } from './resources/video_views.js';
  * Data Class - Provides access to the Mux Data API
  *
  * @example
+ * ```
  * const muxClient = new Mux(accessToken, secret);
  * const { Data } = muxClient;
+ * ```
  *
  */
 export class Data extends Base {

@@ -8,7 +8,6 @@ import { VerifyHeader } from './resources/verify_header.js';
  * const Mux = require('@mux/mux-node');
  * const { Webhooks } = Mux;
  * 
- *
  * // Verify a webhook signature
  * Webhooks.verifyHeader(body, signature, secret);
  * ```

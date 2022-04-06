@@ -22,6 +22,7 @@ import { RequestOptions } from './RequestOptions.js';
  * @type {Webhooks}
  * @property {Webhooks} Mux.Webhooks provides access to verifying Webhooks signatures
  * @example
+ * ```
  * const muxClient = new Mux(accessToken, secret);
  * const { Video, Data, Webhooks } = muxClient;
  *
@@ -42,6 +43,7 @@ import { RequestOptions } from './RequestOptions.js';
 
  * // Verify a webhook signature
  * Webhooks.verifyHeader(body, signature, secret);
+ * ```
  */
 export class Mux extends Base {
   static readonly JWT = JWT;
