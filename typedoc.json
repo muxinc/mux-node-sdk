@@ -3,6 +3,7 @@
     "src/index.ts",
     "src/RequestOptions.ts",
     "src/data/data.ts",
+    "src/video/video.ts",
     "src/utils/jwt.ts",
     "src/webhooks/webhooks.ts"
   ],
