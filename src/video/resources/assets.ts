@@ -2,7 +2,7 @@
  * Mux Assets
  * Copyright(c) 2018 Mux Inc.
  */
-import { Base } from '../../base';
+import { Base } from '../../base.js';
 import {
   Asset,
   CreateAssetParams,
@@ -14,7 +14,7 @@ import {
   Track,
   UpdateMasterAccessParams,
   UpdateMp4SupportParams,
-} from '../domain';
+} from '../domain.js';
 
 /**
  * @private Base asset path for the Mux API

@@ -2,8 +2,8 @@
  * Mux DeliveryUsage
  * Copyright(c) 2018 Mux Inc.
  */
-import { Base } from '../../base';
-import { DeliveryReport, ListDeliveryUsageParams } from '../domain';
+import { Base } from '../../base.js';
+import { DeliveryReport, ListDeliveryUsageParams } from '../domain.js';
 
 /**
  * @private Base delivery usage path for the Mux API

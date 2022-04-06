@@ -3,16 +3,16 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-import { Base } from '../base';
-import { RequestOptions } from '../RequestOptions';
+import { Base } from '../base.js';
+import { RequestOptions } from '../RequestOptions.js';
 
-import { Errors } from './resources/errors';
-import { Exports } from './resources/exports';
-import { Filters } from './resources/filters';
-import { Incidents } from './resources/incidents';
-import { Metrics } from './resources/metrics';
-import { RealTime } from './resources/real_time';
-import { VideoViews } from './resources/video_views';
+import { Errors } from './resources/errors.js';
+import { Exports } from './resources/exports.js';
+import { Filters } from './resources/filters.js';
+import { Incidents } from './resources/incidents.js';
+import { Metrics } from './resources/metrics.js';
+import { RealTime } from './resources/real_time.js';
+import { VideoViews } from './resources/video_views.js';
 
 /**
  * @ignore

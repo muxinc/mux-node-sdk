@@ -12,14 +12,24 @@
     "live streaming"
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
-  "main": "dist",
+  "main": "./cjs/index.js",
+  "exports": {
+    "import": "./esm/index.mjs",
+    "require": "./cjs/index.js"
+  },
   "engines": {
     "node": ">=12"
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "watch": "yarn run -s build --watch",
+    "write-version": "echo \"export const VERSION = '$npm_package_version' as const;\" > ./src/version.ts",
+    "build:cjs": "yarn run -s write-version && tsc --outDir cjs --module commonjs",
+    "build:esm": "yarn run -s write-version && tsc --outDir esm --module esnext && yarn run build:esm:rename && yarn run build:esm:fixup",
+    "build:esm:rename": "cd esm && find . -name \"*.js\" -exec bash -c 'mv \"$1\" \"${1%.js}\".mjs' - '{}' +  && find . -name \"*.js.map\" -exec bash -c 'mv \"$1\" \"${1%.js.map}\".mjs.map' - '{}' +",
+    "build:esm:fixup": "cd esm && find . -name '*.mjs' -exec sed -i 's,\\.js',\\.mjs',g' {} +",
+    "build": "yarn run build:cjs && yarn run build:esm",
+    "watch:esm": "yarn run -s build:esm --watch --preserveWatchOutput",
+    "watch:cjs": "yarn run -s build:cjs --watch --preserveWatchOutput",
     "docs": "typedoc --logLevel Verbose",
     "test": "yarn build && mocha --recursive ./test",
     "test:unit": "yarn build && mocha --recursive ./test/unit",
@@ -29,7 +39,7 @@
     "lint": "yarn format"
   },
   "dependencies": {
-    "axios": "^0.25.0",
+    "axios": "^0.26.1",
     "jsonwebtoken": "^8.5.1",
     "typedoc": "^0.22.13",
     "typedoc-plugin-missing-exports": "^0.22.6"

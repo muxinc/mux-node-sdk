@@ -2,9 +2,8 @@
  * Mux Filters
  * Copyright(c) 2018 Mux Inc.
  */
-import { Base } from '../../base';
-import { RequestOptions } from '../../RequestOptions';
-import { FilterGetResponse, FilterQueryParams } from '../domain';
+import { Base } from '../../base.js';
+import { FilterGetResponse, FilterQueryParams } from '../domain.js';
 
 /**
  * @private Base filters path for the Mux API

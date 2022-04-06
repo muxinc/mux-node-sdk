@@ -1,4 +1,4 @@
-import { VerifyHeader } from './resources/verify_header';
+import { VerifyHeader } from './resources/verify_header.js';
 
 /**
  * Webhooks - Provides access to the Mux Webhooks signature verification
