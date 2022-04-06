@@ -20,7 +20,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "yarn run -s build --watch",
-    "docs": "typedoc",
+    "docs": "typedoc --logLevel Verbose",
     "test": "yarn build && mocha --recursive ./test",
     "test:unit": "yarn build && mocha --recursive ./test/unit",
     "test:int": "NOCK_BACK_MODE=record mocha --recursive ./test/integration --timeout 10000",
@@ -31,7 +31,8 @@
   "dependencies": {
     "axios": "^0.25.0",
     "jsonwebtoken": "^8.5.1",
-    "typedoc": "^0.22.13"
+    "typedoc": "^0.22.13",
+    "typedoc-plugin-missing-exports": "^0.22.6"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^8.5.8",
