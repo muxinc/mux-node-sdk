@@ -1,0 +1,11 @@
+{
+  "entryPoints": [
+    "src/index.ts",
+    "src/RequestOptions.ts",
+    "src/video/video.ts",
+    "src/data/data.ts",
+    "src/utils/jwt.ts",
+    "src/webhooks/webhooks.ts"
+  ],
+  "out": "docs"
+}

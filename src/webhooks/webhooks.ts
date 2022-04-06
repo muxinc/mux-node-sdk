@@ -4,12 +4,14 @@ import { VerifyHeader } from './resources/verify_header';
  * Webhooks - Provides access to the Mux Webhooks signature verification
  *
  * @example
+ *  ```typescript
  * const Mux = require('@mux/mux-node');
  * const { Webhooks } = Mux;
+ * 
  *
  * // Verify a webhook signature
  * Webhooks.verifyHeader(body, signature, secret);
- *
+ * ```
  */
 export class Webhooks {
   /**
@@ -25,12 +27,13 @@ export class Webhooks {
    * @throws {Error} throw error when a webhook signature verification fails.
    *
    * @example
+   * ```typescript
    * const Mux = require('@mux/mux-node');
    * const { Webhooks } = Mux;
    *
    * // Verify a webhook signature
    * Webhooks.verifyHeader(body, signature, secret);
-   *
+   * ```
    * @see https://docs.mux.com/docs/webhook-security
    */
   static verifyHeader(

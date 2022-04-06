@@ -20,7 +20,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "yarn run -s build --watch",
-    "docs": "esdoc",
+    "docs": "typedoc",
     "test": "yarn build && mocha --recursive ./test",
     "test:unit": "yarn build && mocha --recursive ./test/unit",
     "test:int": "NOCK_BACK_MODE=record mocha --recursive ./test/integration --timeout 10000",
@@ -30,8 +30,8 @@
   },
   "dependencies": {
     "axios": "^0.25.0",
-    "esdoc-ecmascript-proposal-plugin": "^1.0.0",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "typedoc": "^0.22.13"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^8.5.8",
@@ -39,9 +39,6 @@
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
     "chai": "^4.3.4",
-    "esdoc": "^1.0.4",
-    "esdoc-node": "^1.0.5",
-    "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^8.7.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
