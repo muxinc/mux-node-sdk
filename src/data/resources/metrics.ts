@@ -39,8 +39,7 @@ export class Metrics extends Base {
    * List the breakdown values for a specific metric
    *
    * @param {string} metricId - The metric name/id for see https://api-docs.mux.com/#breakdown-get for a list of all metric ids
-   * @param {Object} params - example: {group_by: 'browser'}
-   * NOTE: the group_by query parameter is required
+   * @param {Object} params - ```example: {group_by: 'browser'} // NOTE: the group_by query parameter is required```
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
