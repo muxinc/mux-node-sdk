@@ -29,7 +29,24 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  </ul>
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/mux.js~Mux.html">Mux</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#data-resources">data/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/errors.js~Errors.html">Errors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/exports.js~Exports.html">Exports</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/filters.js~Filters.html">Filters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/incidents.js~Incidents.html">Incidents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/metrics.js~Metrics.html">Metrics</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/real_time.js~RealTime.html">RealTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/data/resources/video_views.js~VideoViews.html">VideoViews</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/utils/jwt.js~JWT.html">JWT</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#video-resources">video/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/assets.js~Assets.html">Assets</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/deliveryUsage.js~DeliveryUsage.html">DeliveryUsage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/liveStreams.js~LiveStreams.html">LiveStreams</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/playbackIds.js~PlaybackIds.html">PlaybackIds</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/signingKeys.js~SigningKeys.html">SigningKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/video/resources/uploads.js~Uploads.html">Uploads</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks">webhooks</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/webhooks.js~Webhooks.html">Webhooks</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#webhooks-resources">webhooks/resources</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/webhooks/resources/verify_header.js~VerifyHeader.html">VerifyHeader</a></span></span></li>
+</ul>
 </div>
 </nav>
 
@@ -37,7 +54,7 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
 const sinon = require(&apos;sinon&apos;);
 const moxios = require(&apos;moxios&apos;);
-const { LiveStreams } = require(&apos;../../../../dist/video/resources/liveStreams&apos;);
+const LiveStreams = require(&apos;../../../../src/video/resources/liveStreams&apos;);
 
 /** @test {LiveStreams} */
 describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
@@ -84,10 +101,10 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
     it(&apos;throws an error when a live stream ID is not given&apos;, () =&gt;
       testLiveStreams
         .del()
-        .then((res) =&gt; {
+        .then(res =&gt; {
           expect(res).to.not.exist;
         })
-        .catch((err) =&gt; {
+        .catch(err =&gt; {
           expect(err).to.exist;
           expect(err.message).to.equal(
             &apos;A live stream ID is required to delete a live stream&apos;
@@ -98,7 +115,7 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
   /** @test {LiveStreams.list} */
   describe(&apos;LiveStreams.list&apos;, () =&gt; {
     /** @test {LiveStreams.list} */
-    it(&apos;makes a GET request to list 100 live streams offset by 2 pages&apos;, (done) =&gt; {
+    it(&apos;makes a GET request to list 100 live streams offset by 2 pages&apos;, done =&gt; {
       moxios.stubRequest(&apos;/video/v1/live-streams?limit=100&amp;page=2&apos;, {
         status: 200,
         responseText: &apos;{&quot;data&quot;: {&quot;list&quot;: true}}&apos;,
@@ -120,10 +137,10 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
     it(&apos;throws an error when a live stream ID is not given&apos;, () =&gt;
       testLiveStreams
         .get()
-        .then((res) =&gt; {
+        .then(res =&gt; {
           expect(res).to.not.exist;
         })
-        .catch((err) =&gt; {
+        .catch(err =&gt; {
           expect(err).to.exist;
           expect(err.message).to.equal(
             &apos;A live stream ID is required to get a live stream&apos;
@@ -137,10 +154,10 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
     it(&apos;throws an error when a live stream ID is not given&apos;, () =&gt;
       testLiveStreams
         .signalComplete()
-        .then((res) =&gt; {
+        .then(res =&gt; {
           expect(res).to.not.exist;
         })
-        .catch((err) =&gt; {
+        .catch(err =&gt; {
           expect(err).to.exist;
           expect(err.message).to.equal(
             &apos;A live stream ID is required to signal a stream is complete&apos;
@@ -154,10 +171,10 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
     it(&apos;throws an error when a live stream ID is not given&apos;, () =&gt;
       testLiveStreams
         .resetStreamKey()
-        .then((res) =&gt; {
+        .then(res =&gt; {
           expect(res).to.not.exist;
         })
-        .catch((err) =&gt; {
+        .catch(err =&gt; {
           expect(err).to.exist;
           expect(err.message).to.equal(
             &apos;A live stream ID is required to reset a live stream key&apos;
@@ -171,10 +188,10 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
     it(&apos;throws an error if a live stream ID is not given&apos;, () =&gt;
       testLiveStreams
         .createPlaybackId()
-        .then((res) =&gt; {
+        .then(res =&gt; {
           expect(res).to.not.exist;
         })
-        .catch((err) =&gt; {
+        .catch(err =&gt; {
           expect(err).to.exist;
           expect(err.message).to.equal(
             &apos;A live stream ID is required to create a live stream playback ID&apos;
@@ -188,10 +205,10 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
     it(&apos;throws an error if a live stream ID is not given&apos;, () =&gt;
       testLiveStreams
         .deletePlaybackId()
-        .then((res) =&gt; {
+        .then(res =&gt; {
           expect(res).to.not.exist;
         })
-        .catch((err) =&gt; {
+        .catch(err =&gt; {
           expect(err).to.exist;
           expect(err.message).to.equal(
             &apos;A live stream ID is required to delete a live stream playback ID&apos;
@@ -205,10 +222,10 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
     it(&apos;throws an error if a live stream ID is not given&apos;, () =&gt;
       testLiveStreams
         .createSimulcastTarget()
-        .then((res) =&gt; {
+        .then(res =&gt; {
           expect(res).to.not.exist;
         })
-        .catch((err) =&gt; {
+        .catch(err =&gt; {
           expect(err).to.exist;
           expect(err.message).to.equal(
             &apos;A live stream ID is required to create a simulcast target&apos;
@@ -222,10 +239,10 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
     it(&apos;throws an error if a live stream ID is not given&apos;, () =&gt;
       testLiveStreams
         .getSimulcastTarget()
-        .then((res) =&gt; {
+        .then(res =&gt; {
           expect(res).to.not.exist;
         })
-        .catch((err) =&gt; {
+        .catch(err =&gt; {
           expect(err).to.exist;
           expect(err.message).to.equal(
             &apos;A live stream ID is required to get a simulcast target&apos;
@@ -236,10 +253,10 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
     it(&apos;throws an error if a simulcast target id is not given&apos;, () =&gt;
       testLiveStreams
         .getSimulcastTarget(&apos;testLiveStream&apos;)
-        .then((res) =&gt; {
+        .then(res =&gt; {
           expect(res).to.not.exist;
         })
-        .catch((err) =&gt; {
+        .catch(err =&gt; {
           expect(err).to.exist;
           expect(err.message).to.equal(
             &apos;A simulcast target ID is required to get a simulcast target&apos;
@@ -253,10 +270,10 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
     it(&apos;throws an error if a live stream ID is not given&apos;, () =&gt;
       testLiveStreams
         .deleteSimulcastTarget()
-        .then((res) =&gt; {
+        .then(res =&gt; {
           expect(res).to.not.exist;
         })
-        .catch((err) =&gt; {
+        .catch(err =&gt; {
           expect(err).to.exist;
           expect(err.message).to.equal(
             &apos;A live stream ID is required to delete a simulcast target&apos;
@@ -267,10 +284,10 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
     it(&apos;throws an error if a simulcast target id is not given&apos;, () =&gt;
       testLiveStreams
         .deleteSimulcastTarget(&apos;testLiveStream&apos;)
-        .then((res) =&gt; {
+        .then(res =&gt; {
           expect(res).to.not.exist;
         })
-        .catch((err) =&gt; {
+        .catch(err =&gt; {
           expect(err).to.exist;
           expect(err.message).to.equal(
             &apos;A simulcast target ID is required to delete a simulcast target&apos;
@@ -284,10 +301,10 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
     it(&apos;throws an error if a live stream ID is not given&apos;, () =&gt;
       testLiveStreams
         .enable()
-        .then((res) =&gt; {
+        .then(res =&gt; {
           expect(res).to.not.exist;
         })
-        .catch((err) =&gt; {
+        .catch(err =&gt; {
           expect(err).to.exist;
           expect(err.message).to.equal(
             &apos;A live stream ID is required to enable a live stream&apos;
@@ -301,10 +318,10 @@ describe(&apos;Unit::LiveStreams&apos;, () =&gt; {
     it(&apos;throws an error if a live stream ID is not given&apos;, () =&gt;
       testLiveStreams
         .disable()
-        .then((res) =&gt; {
+        .then(res =&gt; {
           expect(res).to.not.exist;
         })
-        .catch((err) =&gt; {
+        .catch(err =&gt; {
           expect(err).to.exist;
           expect(err.message).to.equal(
             &apos;A live stream ID is required to disable a live stream&apos;
