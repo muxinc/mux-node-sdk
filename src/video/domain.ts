@@ -230,7 +230,7 @@ export interface LiveStream {
   new_asset_settings?: Asset;
   passthrough?: string;
   reconnect_window?: number;
-  latency_mode?: 'low' | 'reduced';
+  latency_mode?: 'low' | 'reduced' | 'standard';
   simulcast_targets?: Array<SimulcastTarget>;
   test?: boolean;
 }
@@ -240,7 +240,7 @@ export interface CreateLiveStreamParams {
   playback_policy?: PlaybackIdPolicy | Array<PlaybackIdPolicy>;
   new_asset_settings?: Partial<CreateAssetParams>;
   passthrough?: string;
-  latency_mode?: 'low' | 'reduced';
+  latency_mode?: 'low' | 'reduced' | 'standard';
   simulcast_targets?: Array<SimulcastTargetParams>;
   test?: boolean;
 }
