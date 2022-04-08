@@ -1,0 +1,58 @@
+[
+  {
+    "scope": "https://api.mux.com:443",
+    "method": "POST",
+    "path": "/video/v1/live-streams",
+    "body": {
+      "max_continuous_duration": 21600
+    },
+    "status": 201,
+    "response": {
+      "data": {
+        "stream_key": "fb766a73-4832-73d5-7a52-e57aa7240eac",
+        "status": "idle",
+        "max_continuous_duration": 21600,
+        "id": "bvfUsiVL8JQ3YczWjjtyn02gsQBwyZAi8",
+        "created_at": "1631283502"
+      }
+    },
+    "rawHeaders": [
+      "Cache-Control",
+      "max-age=0, private, must-revalidate",
+      "Content-Length",
+      "164",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Date",
+      "Fri, 10 Sep 2021 14:18:21 GMT",
+      "Server",
+      "Mux API Server v1.129.1",
+      "X-Request-Id",
+      "FqN7s8GK_KKqDWsBOetC",
+      "Connection",
+      "close"
+    ],
+    "responseIsBinary": false
+  },
+  {
+    "scope": "https://api.mux.com:443",
+    "method": "DELETE",
+    "path": "/video/v1/live-streams/bvfUsiVL8JQ3YczWjjtyn02gsQBwyZAi8",
+    "body": "",
+    "status": 204,
+    "response": "",
+    "rawHeaders": [
+      "Cache-Control",
+      "max-age=0, private, must-revalidate",
+      "Date",
+      "Fri, 10 Sep 2021 14:18:21 GMT",
+      "Server",
+      "Mux API Server v1.129.1",
+      "X-Request-Id",
+      "FqN7s9J7X7Hqp4oB_ZQB",
+      "Connection",
+      "close"
+    ],
+    "responseIsBinary": false
+  }
+]

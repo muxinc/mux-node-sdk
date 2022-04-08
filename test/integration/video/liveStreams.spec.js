@@ -73,6 +73,19 @@ describe('Integration::LiveStreams', () => {
       await Video.LiveStreams.del(stream.id);
       nockDone();
     });
+
+    it('creates a live stream with a max continuous duration', async () => {
+      const { nockDone } = await nockBack(
+        'LiveStreams/createWithMaxContinuousDuration.json'
+      );
+      const stream = await Video.LiveStreams.create({
+        max_continuous_duration: 21600,
+      });
+
+      expect(stream.max_continuous_duration).to.equal(21600);
+      await Video.LiveStreams.del(stream.id);
+      nockDone();
+    });
   });
 
   /** @test {LiveStreams.del} */

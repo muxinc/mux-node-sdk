@@ -233,6 +233,7 @@ export interface LiveStream {
   reduced_latency?: boolean;
   latency_mode?: 'low' | 'reduced' | 'standard';
   simulcast_targets?: Array<SimulcastTarget>;
+  max_continuous_duration?: number;
   test?: boolean;
 }
 
@@ -244,6 +245,7 @@ export interface CreateLiveStreamParams {
   reduced_latency?: boolean;
   latency_mode?: 'low' | 'reduced' | 'standard';
   simulcast_targets?: Array<SimulcastTargetParams>;
+  max_continuous_duration?: number;
   test?: boolean;
 }
 
