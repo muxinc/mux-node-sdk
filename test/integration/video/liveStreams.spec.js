@@ -37,13 +37,39 @@ describe('Integration::LiveStreams', () => {
       nockDone();
     });
 
-    it('creates a low_latency live stream', async () => {
+    it('creates a low latency live stream', async () => {
       const { nockDone } = await nockBack('LiveStreams/createLowLatency.json');
       const stream = await Video.LiveStreams.create({
-        low_latency: true,
+        latency_mode: 'low',
       });
 
-      expect(stream.low_latency).to.be.true;
+      expect(stream.latency_mode).to.equal('low');
+      await Video.LiveStreams.del(stream.id);
+      nockDone();
+    });
+
+    it('creates a reduced latency live stream', async () => {
+      const { nockDone } = await nockBack(
+        'LiveStreams/createReducedLatency.json'
+      );
+      const stream = await Video.LiveStreams.create({
+        latency_mode: 'reduced',
+      });
+
+      expect(stream.latency_mode).to.equal('reduced');
+      await Video.LiveStreams.del(stream.id);
+      nockDone();
+    });
+
+    it('creates a standard latency live stream', async () => {
+      const { nockDone } = await nockBack(
+        'LiveStreams/createStandardLatency.json'
+      );
+      const stream = await Video.LiveStreams.create({
+        latency_mode: 'standard',
+      });
+
+      expect(stream.latency_mode).to.equal('standard');
       await Video.LiveStreams.del(stream.id);
       nockDone();
     });

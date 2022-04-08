@@ -4,14 +4,14 @@
     "method": "POST",
     "path": "/video/v1/live-streams",
     "body": {
-      "latency_mode": "low"
+      "latency_mode": "standard"
     },
     "status": 201,
     "response": {
       "data": {
         "stream_key": "fb766a73-4832-73d5-7a52-e57aa7240eac",
         "status": "idle",
-        "latency_mode": "low",
+        "latency_mode": "standard",
         "id": "bvfUsiVL8JQ3YczWjjtyn02gsQBwyZAi8",
         "created_at": "1631283502"
       }
