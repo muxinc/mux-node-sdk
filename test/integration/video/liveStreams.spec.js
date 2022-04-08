@@ -63,7 +63,7 @@ describe('Integration::LiveStreams', () => {
 
     it('creates a standard latency live stream', async () => {
       const { nockDone } = await nockBack(
-        'LiveStreams/createReducedLatency.json'
+        'LiveStreams/createStandardLatency.json'
       );
       const stream = await Video.LiveStreams.create({
         latency_mode: 'standard',
