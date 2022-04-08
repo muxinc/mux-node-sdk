@@ -230,6 +230,7 @@ export interface LiveStream {
   new_asset_settings?: Asset;
   passthrough?: string;
   reconnect_window?: number;
+  reduced_latency?: boolean;
   latency_mode?: 'low' | 'reduced' | 'standard';
   simulcast_targets?: Array<SimulcastTarget>;
   test?: boolean;
