@@ -249,6 +249,13 @@ export interface CreateLiveStreamParams {
   test?: boolean;
 }
 
+export interface UpdateLiveStreamParams {
+  passthrough?: string;
+  latency_mode?: 'low' | 'reduced' | 'standard';
+  reconnect_window?: number;
+  max_continuous_duration?: number;
+}
+
 export interface ListLiveStreamParams {
   limit?: number;
   page?: number;

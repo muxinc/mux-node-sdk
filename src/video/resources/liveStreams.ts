@@ -11,6 +11,7 @@ import {
   PlaybackId,
   SimulcastTarget,
   SimulcastTargetParams,
+  UpdateLiveStreamParams,
 } from '../domain';
 
 /**
@@ -61,6 +62,23 @@ export class LiveStreams extends Base {
   }
 
   /**
+   * Updates a Mux Live Stream
+   * @param {string} liveStreamId - The ID for the live stream intended for updating
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @example
+   * const { Video } = new Mux(accessToken, secret);
+   *
+   * // Update a Mux live stream
+   * Video.LiveStreams.update(liveStreamId, { passthrough: 'sample string' });
+   *
+   * @see https://docs.mux.com/api-reference/video#operation/update-live-stream
+   */
+  update(liveStreamId: string, params: UpdateLiveStreamParams): Promise<LiveStream> {
+    return this.http.patch(buildBasePath(liveStreamId), params);
+  }
+
+  /**
    * Deletes a Mux Live Stream
    * @param {string} liveStreamId - The ID for the live stream intended for deletion
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
@@ -68,7 +86,7 @@ export class LiveStreams extends Base {
    * @example
    * const { Video } = new Mux(accessToken, secret);
    *
-   * // Delete a mux live stream
+   * // Delete a Mux live stream
    * Video.LiveStreams.del(liveStreamId);
    *
    * @see https://docs.mux.com/api-reference/video#operation/delete-live-stream

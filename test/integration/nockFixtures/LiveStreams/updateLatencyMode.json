@@ -1,0 +1,87 @@
+[
+  {
+    "scope": "https://api.mux.com:443",
+    "method": "post",
+    "path": "/video/v1/live-streams",
+    "body": "",
+    "status": 201,
+    "response": {
+      "data": {
+        "stream_key": "ec99a497-1aeb-7882-dab6-812d1aa0a79b",
+        "status": "idle",
+        "reconnect_window": 60,
+        "id": "LV01mZznDnrbAEgGHgdk25Vz0001ralKFHXArhHPgjjCTk",
+        "created_at": "1592368932"
+      }
+    },
+    "rawHeaders": [
+      "Cache-Control",
+      "max-age=0, private, must-revalidate",
+      "Content-Length",
+      "180",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Date",
+      "Wed, 17 Jun 2020 04:42:12 GMT",
+      "Server",
+      "Mux API Server v1.94.1",
+      "X-Request-Id",
+      "Fhk7G4rJsiTjm_wAFO_B",
+      "Connection",
+      "close"
+    ],
+    "responseIsBinary": false
+  },
+  {
+    "scope": "https://api.mux.com:443",
+    "method": "PATCH",
+    "path": "/video/v1/live-streams/LV01mZznDnrbAEgGHgdk25Vz0001ralKFHXArhHPgjjCTk",
+    "body": {
+      "latency_mode": "low"
+    },
+    "status": 200,
+    "response": {
+      "data": {
+        "stream_key": "ec99a497-1aeb-7882-dab6-812d1aa0a79b",
+        "status": "idle",
+        "latency_mode": "low",
+        "id": "LV01mZznDnrbAEgGHgdk25Vz0001ralKFHXArhHPgjjCTk",
+        "created_at": "1592368932"
+      }
+    },
+    "rawHeaders": [
+      "Cache-Control",
+      "max-age=0, private, must-revalidate",
+      "Date",
+      "Fri, 10 Sep 2021 14:18:21 GMT",
+      "Server",
+      "Mux API Server v1.129.1",
+      "X-Request-Id",
+      "FqN7s9J7X7Hqp4oB_ZQB",
+      "Connection",
+      "close"
+    ],
+    "responseIsBinary": false
+  },
+  {
+    "scope": "https://api.mux.com:443",
+    "method": "delete",
+    "path": "/video/v1/live-streams/LV01mZznDnrbAEgGHgdk25Vz0001ralKFHXArhHPgjjCTk",
+    "body": "",
+    "status": 204,
+    "response": "",
+    "rawHeaders": [
+      "Cache-Control",
+      "max-age=0, private, must-revalidate",
+      "Date",
+      "Wed, 17 Jun 2020 04:42:13 GMT",
+      "Server",
+      "Mux API Server v1.94.1",
+      "X-Request-Id",
+      "Fhk7G8w1dy5dVnkAKaCB",
+      "Connection",
+      "close"
+    ],
+    "responseIsBinary": false
+  }
+]
