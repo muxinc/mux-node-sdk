@@ -241,6 +241,7 @@ export interface CreateLiveStreamParams {
   playback_policy?: PlaybackIdPolicy | Array<PlaybackIdPolicy>;
   new_asset_settings?: Partial<CreateAssetParams>;
   passthrough?: string;
+  reduced_latency?: boolean;
   latency_mode?: 'low' | 'reduced' | 'standard';
   simulcast_targets?: Array<SimulcastTargetParams>;
   test?: boolean;
