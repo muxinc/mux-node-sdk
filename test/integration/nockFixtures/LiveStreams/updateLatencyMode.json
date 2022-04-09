@@ -8,6 +8,7 @@
     "response": {
       "data": {
         "stream_key": "ec99a497-1aeb-7882-dab6-812d1aa0a79b",
+        "latency_mode": "standard",
         "status": "idle",
         "reconnect_window": 60,
         "id": "LV01mZznDnrbAEgGHgdk25Vz0001ralKFHXArhHPgjjCTk",
