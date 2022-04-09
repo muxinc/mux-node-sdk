@@ -1,4 +1,6 @@
-const { expect } = require('chai');
+const { expect, assert } = require('chai');
+// this throws unexpected console formatting errors
+// const { assert } = require('console');
 const nockBack = require('nock').back;
 const Mux = require('../../../dist').default;
 
@@ -99,11 +101,64 @@ describe('Integration::LiveStreams', () => {
       try {
         const stream = await Video.LiveStreams.update(testStream.id, {
           max_continuous_duration: 28800,
-         });
+        });
 
-         expect(stream.max_continuous_duration).to.equal(28800);
+        expect(stream.max_continuous_duration).to.equal(28800);
       } catch (err) {
-        console.log(err.message)
+        assert.fail(err.message)
+      }
+
+      await Video.LiveStreams.del(testStream.id);
+      nockDone();
+    });
+
+    it('updates a live stream with a new reconnect window', async () => {
+      const { nockDone } = await nockBack(
+        'LiveStreams/updateReconnectWindow.json'
+      );
+      const testStream = await Video.LiveStreams.create();
+      try {
+        const stream = await Video.LiveStreams.update(testStream.id, {
+          reconnect_window: 120,
+        });
+
+        expect(stream.reconnect_window).to.equal(120);
+      } catch (err) {
+        assert.fail(err.message)
+      }
+
+      await Video.LiveStreams.del(testStream.id);
+      nockDone();
+    });
+
+    it('updates a live stream with a new passthrough', async () => {
+      const { nockDone } = await nockBack('LiveStreams/updatePassthrough.json');
+      const testStream = await Video.LiveStreams.create();
+      try {
+        const stream = await Video.LiveStreams.update(testStream.id, {
+          passthrough: 'sample-text',
+        });
+
+        expect(stream.passthrough).to.equal('sample-text');
+      } catch (err) {
+        assert.fail(err.message)
+      }
+
+      await Video.LiveStreams.del(testStream.id);
+      nockDone();
+    });
+
+    it('updates a live stream with a new latency mode', async () => {
+      const { nockDone } = await nockBack('LiveStreams/updateLatencyMode.json');
+      const testStream = await Video.LiveStreams.create();
+      try {
+        const stream = await Video.LiveStreams.update(testStream.id, {
+          latency_mode: 'low',
+        });
+
+        expect(stream.latency_mode).to.equal('low');
+      } catch (err) {
+        assert.fail(err.message)
       }
 
       await Video.LiveStreams.del(testStream.id);

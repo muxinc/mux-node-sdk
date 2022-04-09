@@ -74,7 +74,10 @@ export class LiveStreams extends Base {
    *
    * @see https://docs.mux.com/api-reference/video#operation/update-live-stream
    */
-  update(liveStreamId: string, params: UpdateLiveStreamParams): Promise<LiveStream> {
+  update(
+    liveStreamId: string,
+    params: UpdateLiveStreamParams
+  ): Promise<LiveStream> {
     return this.http.patch(buildBasePath(liveStreamId), params);
   }
 
