@@ -105,7 +105,7 @@ describe('Integration::LiveStreams', () => {
 
         expect(stream.max_continuous_duration).to.equal(28800);
       } catch (err) {
-        assert.fail(err.message)
+        assert.fail(err.message);
       }
 
       await Video.LiveStreams.del(testStream.id);
@@ -124,7 +124,7 @@ describe('Integration::LiveStreams', () => {
 
         expect(stream.reconnect_window).to.equal(120);
       } catch (err) {
-        assert.fail(err.message)
+        assert.fail(err.message);
       }
 
       await Video.LiveStreams.del(testStream.id);
@@ -141,7 +141,7 @@ describe('Integration::LiveStreams', () => {
 
         expect(stream.passthrough).to.equal('sample-text');
       } catch (err) {
-        assert.fail(err.message)
+        assert.fail(err.message);
       }
 
       await Video.LiveStreams.del(testStream.id);
@@ -158,7 +158,7 @@ describe('Integration::LiveStreams', () => {
 
         expect(stream.latency_mode).to.equal('low');
       } catch (err) {
-        assert.fail(err.message)
+        assert.fail(err.message);
       }
 
       await Video.LiveStreams.del(testStream.id);
