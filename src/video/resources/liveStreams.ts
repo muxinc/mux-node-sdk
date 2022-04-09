@@ -64,13 +64,19 @@ export class LiveStreams extends Base {
   /**
    * Updates a Mux Live Stream
    * @param {string} liveStreamId - The ID for the live stream intended for updating
+   * @param {Object} params - Live Stream JSON parameters (e.g. passthrough, max_continuous_duration, reconnect_window, latency_mode)
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Update a Mux live stream
-   * Video.LiveStreams.update(liveStreamId, { passthrough: 'sample string' });
+   * // Only valid for streams with a 'standard' latency_mode.
+   * Video.LiveStreams.update(liveStreamId, { passthrough: 'sample string', max_continuous_duration: 28800, reconnect_window: 120 });
+   * 
+   * // Update a Mux live stream latency_mode
+   * // Streams with a 'low' or 'reduced' latency_mode will always have a 0 second reconnect_window.
+   * Video.LiveStreams.update(liveStreamId, { latency_mode: 'reduced' });
    *
    * @see https://docs.mux.com/api-reference/video#operation/update-live-stream
    */

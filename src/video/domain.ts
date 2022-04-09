@@ -188,6 +188,10 @@ export interface UpdateMasterAccessParams {
   master_access: AssetMasterAccess;
 }
 
+export interface UpdateAssetParams {
+  passthrough: string;
+}
+
 export interface ListDeliveryUsageParams {
   limit?: number;
   page?: number;
