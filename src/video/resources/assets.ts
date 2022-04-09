@@ -316,7 +316,7 @@ export class Assets extends Base {
    * const { Video } = new Mux(accessToken, secret);
    *
    * // Update master access for an asset
-   * Video.Assets.updateMasterAccess(assetId, {master_access: "temporary"});
+   * Video.Assets.updateMasterAccess(assetId, { master_access: "temporary" });
    *
    * @see https://docs.mux.com/api-reference/video#operation/update-asset-master-access
    */

@@ -38,7 +38,7 @@ export class Uploads extends Base {
    * const { Video } = muxClient;
    *
    * // Create a new upload
-   * const upload = await Video.Uploads.create({new_asset_settings: {playback_policy: 'public'}});
+   * const upload = await Video.Uploads.create({ new_asset_settings: {playback_policy: 'public'} });
    * // Now push a file to the URL returned.
    * fs.createReadStream(pathToFile).pipe(request.put(upload.url))
    *

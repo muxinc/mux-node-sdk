@@ -17,7 +17,7 @@ const PATH = '/video/v1/delivery-usage';
  * const { Video } = new Mux(accessToken, secret);
  *
  * // List delivery usage within a timeframe
- * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});
+ * Video.DeliveryUsage.list({ timeframe: [1574076240, 1573471440] });
  */
 export class DeliveryUsage extends Base {
   /**
@@ -29,7 +29,7 @@ export class DeliveryUsage extends Base {
    * const { Video } = new Mux(accessToken, secret);
    *
    * // List all delivery usage for a Mux Environment within a timeframe
-   * Video.DeliveryUsage.list({timeframe: [1574076240, 1573471440]});
+   * Video.DeliveryUsage.list({ timeframe: [1574076240, 1573471440] });
    *
    * @see https://docs.mux.com/api-reference/video#operation/list-delivery-usage
    */
