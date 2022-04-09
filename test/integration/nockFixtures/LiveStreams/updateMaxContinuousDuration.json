@@ -9,6 +9,7 @@
       "data": {
         "stream_key": "ec99a497-1aeb-7882-dab6-812d1aa0a79b",
         "status": "idle",
+        "max_continuous_duration": 43200,
         "reconnect_window": 60,
         "id": "LV01mZznDnrbAEgGHgdk25Vz0001ralKFHXArhHPgjjCTk",
         "created_at": "1592368932"
