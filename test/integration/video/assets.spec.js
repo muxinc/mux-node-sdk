@@ -5,6 +5,8 @@ const Mux = require('../../../dist').default;
 const TEST_VIDEO =
   'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';
 
+const CLIP_ID = 'pX00BFft402qPaGNZHkkaBBOb1mdiNxiWFo00B9JEjRFfU';
+
 /** @test {Assets} */
 describe('Integration::Assets', () => {
   const muxClient = new Mux();
@@ -18,6 +20,24 @@ describe('Integration::Assets', () => {
       const asset = await Video.Assets.create({ input: TEST_VIDEO });
       expect(asset.status).to.equal('preparing');
       expect(asset.id).to.exist;
+      await Video.Assets.del(asset.id);
+      nockDone();
+    });
+  });
+
+  /** @test {Assets.create} */
+  describe('Assets.create', () => {
+    /** @test {Assets.create} */
+    it('creates a clip from an asset', async () => {
+      const { nockDone } = await nockBack('Assets/createFromClip.json');
+      const asset = await Video.Assets.create({
+        input: `mux://assets/${CLIP_ID}`,
+      });
+      expect(asset.status).to.equal('preparing');
+      expect(asset.id).to.exist;
+      expect(asset.source_asset_id).to.exist;
+      expect(asset.source_asset_id).to.be.a('string');
+      expect(asset.source_asset_id).to.equal(CLIP_ID);
       await Video.Assets.del(asset.id);
       nockDone();
     });
