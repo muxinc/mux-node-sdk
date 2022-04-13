@@ -73,7 +73,7 @@ export class LiveStreams extends Base {
    * // Update a Mux live stream
    * // Only valid for streams with a 'standard' latency_mode.
    * Video.LiveStreams.update(liveStreamId, { passthrough: 'sample string', max_continuous_duration: 28800, reconnect_window: 120 });
-   * 
+   *
    * // Update a Mux live stream latency_mode
    * // Streams with a 'low' or 'reduced' latency_mode will always have a 0 second reconnect_window.
    * Video.LiveStreams.update(liveStreamId, { latency_mode: 'reduced' });
