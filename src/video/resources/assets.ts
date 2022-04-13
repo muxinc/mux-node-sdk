@@ -12,7 +12,6 @@ import {
   ListAssetParams,
   PlaybackId,
   Track,
-  UpdateAssetParams,
   UpdateMasterAccessParams,
   UpdateMp4SupportParams,
 } from '../domain';
@@ -332,25 +331,5 @@ export class Assets extends Base {
       return Promise.reject(new Error('params.master_access is required'));
     }
     return this.http.put(`${buildBasePath(assetId)}/master-access`, params);
-  }
-
-    /**
-   * Update an asset
-   * @param {Object} params - asset update JSON parameters
-   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
-   *
-   * @example
-   * const { Video } = new Mux(accessToken, secret);
-   *
-   * // Update an asset
-   * Video.Assets.update(assetId, { passthrough: "sample-text" });
-   *
-   * @see https://docs.mux.com/api-reference/video#operation/update-asset
-   */
-  update(
-    assetId: string,
-    params: UpdateAssetParams
-  ): Promise<Asset> {
-    return this.http.patch(buildBasePath(assetId), params)
   }
 }
