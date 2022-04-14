@@ -42,7 +42,7 @@ describe('Integration::Assets', () => {
       nockDone();
     });
   });
-  
+
   /** @test {Assets.del} */
   describe('Assets.del', () => {
     /** @test {Assets.del} */
