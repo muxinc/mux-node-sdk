@@ -2,7 +2,16 @@
 
 # Mux Node
 
-![build status](https://api.travis-ci.org/muxinc/mux-node-sdk.svg?branch=master) ![npm version](https://badge.fury.io/js/%40mux%2Fmux-node.svg)
+<p align="center">
+  <a href="https://www.npmjs.com/package/@mux/mux-node"><img src="https://img.shields.io/npm/v/@mux/mux-node" title="NPM" /></a>
+  <a href="https://github.com/muxinc/mux-php/workflows/Integration%20Test"><img src="https://github.com/muxinc/mux-php/workflows/Integration%20Test/badge.svg" title="CI" /></a>
+</p>
+<p align="center">
+  <a href="https://www.npmjs.com/package/@mux/mux-node">NPM</a> |
+  <a href="https://muxinc.github.io/mux-node-sdk">Package Docs</a> |
+  <a href="https://docs.mux.com">Mux Docs</a> |
+  <a href="https://docs.mux.com/api-reference">Mux API Reference </a>
+</p>
 
 Official Mux API wrapper for Node projects, supporting both Mux Data and Mux Video.
 
