@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@mux/mux-node"><img src="https://img.shields.io/npm/v/@mux/mux-node" title="NPM" /></a>
-  <a href="https://github.com/muxinc/mux-php/workflows/Integration%20Test"><img src="https://github.com/muxinc/mux-php/workflows/Integration%20Test/badge.svg" title="CI" /></a>
+  <a href="https://github.com/muxinc/mux-node-sdk/actions/workflows/ci.yml"><img src="https://github.com/muxinc/mux-node-sdk/actions/workflows/ci.yml/badge.svg" title="CI" /></a>
 </p>
 <p align="center">
   <a href="https://www.npmjs.com/package/@mux/mux-node">NPM</a> |
