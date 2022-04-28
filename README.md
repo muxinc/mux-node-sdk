@@ -1,6 +1,6 @@
 ![Mux Node Banner](github-nodejs-sdk.png)
 
-# Mux Node
+<h1 align="center"><pre>@mux/mux-node</pre></h1>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@mux/mux-node"><img src="https://img.shields.io/npm/v/@mux/mux-node" title="NPM" /></a>
