@@ -18,7 +18,7 @@
     "live streaming"
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
-  "main": "./dist/index.j",
+  "main": "./dist/index.js",
   "module": "./dist/index.modern.js",
   "unpkg": "./dist/index.umd.js",
   "engines": {
