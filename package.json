@@ -21,6 +21,7 @@
   "author": "Mux <help@mux.com> (https://mux.com/)",
   "main": "./dist/index.cjs",
   "module": "./dist/index.modern.js",
+  "browser": "./dist/index.modern.js",
   "unpkg": "./dist/index.umd.js",
   "engines": {
     "node": ">=12"
