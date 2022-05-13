@@ -3,8 +3,9 @@
   "type": "module",
   "source": "src/index.ts",
   "exports": {
-    "require": "./dist/index.js",
-    "default": "./dist/index.modern.js"
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.cjs",
+    "import": "./dist/index.modern.js"
   },
   "version": "5.0.0-rc.5",
   "description": "Mux API wrapper",
@@ -18,7 +19,7 @@
     "live streaming"
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.modern.js",
   "unpkg": "./dist/index.umd.js",
   "engines": {
@@ -38,7 +39,9 @@
   },
   "dependencies": {
     "axios": "^0.25.0",
+    "crypto": "^1.0.1",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
+    "events": "^3.3.0",
     "jsonwebtoken": "^8.5.1",
     "microbundle": "^0.15.0"
   },
