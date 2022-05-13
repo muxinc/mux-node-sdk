@@ -1,5 +1,11 @@
 {
   "name": "@mux/mux-node",
+  "type": "module",
+  "source": "src/index.ts",
+  "exports": {
+    "require": "./dist/index.js",
+    "default": "./dist/index.modern.js"
+  },
   "version": "5.0.0-rc.5",
   "description": "Mux API wrapper",
   "keywords": [
@@ -12,13 +18,15 @@
     "live streaming"
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
-  "main": "dist",
+  "main": "./dist/index.j",
+  "module": "./dist/index.modern.js",
+  "unpkg": "./dist/index.umd.js",
   "engines": {
     "node": ">=12"
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "microbundle",
     "watch": "yarn run -s build --watch",
     "docs": "esdoc",
     "test": "yarn build && mocha --recursive ./test",
@@ -31,7 +39,8 @@
   "dependencies": {
     "axios": "^0.25.0",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "microbundle": "^0.15.0"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^8.5.8",
