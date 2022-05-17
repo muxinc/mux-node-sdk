@@ -1,12 +1,6 @@
 {
   "name": "@mux/mux-node",
   "type": "module",
-  "source": "src/index.ts",
-  "exports": {
-    "require": "./dist/index.cjs",
-    "default": "./dist/index.cjs",
-    "import": "./dist/index.mjs"
-  },
   "version": "5.0.0-rc.5",
   "description": "Mux API wrapper",
   "keywords": [
@@ -19,10 +13,15 @@
     "live streaming"
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
+  "source": "src/index.ts",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.module.mjs",
   "browser": "./dist/index.mjs",
-  "unpkg": "./dist/index.js",
+  "unpkg": "./dist/index.umd.js",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.modern.js"
+  },
   "engines": {
     "node": ">=12"
   },
