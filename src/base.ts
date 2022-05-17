@@ -4,7 +4,6 @@ import Axios, { AxiosInstance } from 'axios';
 import EventEmitter from 'events';
 import { RequestOptions } from './RequestOptions';
 
-const pkg = require('../package.json');
 
 /**
  * Mux Base Class - Simple base class to be extended by all child modules.
@@ -60,7 +59,7 @@ export class Base extends EventEmitter {
       this.http = Axios.create({
         baseURL: this.config.baseUrl,
         headers: {
-          'User-Agent': `Mux Node | ${pkg.version}`,
+          'User-Agent': `Mux Node | ${process.env.npm_package_version}`,
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
