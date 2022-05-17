@@ -37,6 +37,13 @@ module.exports = {
         'max-classes-per-file': 'off',
       },
     },
+    {
+      files: ['*.spec.js'],
+      rules: {
+        'import/extensions': 'off',
+        'import/no-unresolved': 'off'
+      }
+    }
   ],
   parser: '@typescript-eslint/parser',
 };
