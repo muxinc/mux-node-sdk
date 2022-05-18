@@ -9,7 +9,7 @@ describe('ESM: Unit::Mux', () => {
     it('exposes Mux via ESM default', () => {
       const muxClient = new Mux('testKey', 'testSecret');
 
-      expect(muxClient).to.to.be.an.instanceof(Mux);
+      expect(muxClient).to.be.an.instanceof(Mux);
     });
   });
 });

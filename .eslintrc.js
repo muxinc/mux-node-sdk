@@ -10,7 +10,15 @@ module.exports = {
     'no-unused-expressions': 0,
     'chai-friendly/no-unused-expressions': 2,
     'prettier/prettier': 'error',
-    'extensions': 0,
+    'import/extensions': [
+      1,
+      {
+        js: 'ignorePackages',
+        json: 'ignorePackages',
+        mjs: 'ignorePackages',
+        cjs: 'ignorePackages',
+      },
+    ],
     'import/no-unresolved': 0,
   },
   overrides: [
