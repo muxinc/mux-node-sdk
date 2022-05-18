@@ -3,15 +3,15 @@
  * Copyright(c) 2018 Mux Inc.
  */
 
-import { Base } from '../base';
-import { RequestOptions } from '../RequestOptions';
+import { Base } from '../base.js';
+import { RequestOptions } from '../RequestOptions.js';
 
-import { Assets } from './resources/assets';
-import { LiveStreams } from './resources/liveStreams';
-import { PlaybackIds } from './resources/playbackIds';
-import { Uploads } from './resources/uploads';
-import { SigningKeys } from './resources/signingKeys';
-import { DeliveryUsage } from './resources/deliveryUsage';
+import { Assets } from './resources/assets.js';
+import { LiveStreams } from './resources/liveStreams.js';
+import { PlaybackIds } from './resources/playbackIds.js';
+import { Uploads } from './resources/uploads.js';
+import { SigningKeys } from './resources/signingKeys.js';
+import { DeliveryUsage } from './resources/deliveryUsage.js';
 
 /**
  * @ignore

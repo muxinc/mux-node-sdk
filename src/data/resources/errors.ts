@@ -2,9 +2,8 @@
  * Mux Errors
  * Copyright(c) 2018 Mux Inc.
  */
-import { Base } from '../../base';
-import { RequestOptions } from '../../RequestOptions';
-import { ErrorsListResponse, ErrorsParams } from '../domain';
+import { Base } from '../../base.js';
+import { ErrorsListResponse, ErrorsParams } from '../domain.js';
 
 /**
  * @private Base errors path for the Mux API

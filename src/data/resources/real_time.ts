@@ -2,8 +2,7 @@
  * Mux Real-Time
  * Copyright(c) 2020 Mux Inc.
  */
-import { Base } from '../../base';
-import { RequestOptions } from '../../RequestOptions';
+import { Base } from '../../base.js';
 import {
   RealTimeBreakdownQueryParams,
   RealTimeBreakdownResponse,
@@ -13,7 +12,7 @@ import {
   RealTimeMetricsResponse,
   RealTimeTimeseriesParams,
   RealTimeTimeseriesResponse,
-} from '../domain';
+} from '../domain.js';
 
 /**
  * @private Base real-time path for the Mux API

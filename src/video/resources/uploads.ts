@@ -2,9 +2,8 @@
  * Mux Assets
  * Copyright(c) 2018 Mux Inc.
  */
-import { Base } from '../../base';
-import { RequestOptions } from '../../RequestOptions';
-import { CreateUploadParams, ListUploadParams, Upload } from '../domain';
+import { Base } from '../../base.js';
+import { CreateUploadParams, ListUploadParams, Upload } from '../domain.js';
 
 /**
  * @private Base asset path for the Mux API
