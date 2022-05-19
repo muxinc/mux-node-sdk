@@ -7,13 +7,13 @@ import {
 } from '../domain.js';
 
 /**
- * @private Base playback ID path for the Mux API
+ * @private Base playback restriction path for the Mux API
  * */
 const PATH = '/video/v1/playback-restrictions';
 
 /**
  * @private
- * Build the base playback ID path for the Mux API
+ * Build the base playback restriction path for the Mux API
  * */
 const buildBasePath = (restrictionId: string) => `${PATH}/${restrictionId}`;
 
