@@ -11,6 +11,8 @@ import {
   PlaybackId,
   SimulcastTarget,
   SimulcastTargetParams,
+  UpdateLiveStreamEmbeddedSubtitlesParams,
+  UpdateLiveStreamParams,
 } from '../domain.js';
 
 /**
@@ -41,7 +43,7 @@ const buildBasePath = (liveStreamId: string) => `${PATH}/${liveStreamId}`;
 export class LiveStreams extends Base {
   /**
    * Creates a Mux live stream with the specified JSON parameters
-   * @param {Object} params - Live Stream JSON parameters (e.g playback_policy)
+   * @param {Object} params - Live Stream JSON parameters
    * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
    *
    * @example
@@ -58,6 +60,24 @@ export class LiveStreams extends Base {
    */
   create(params: CreateLiveStreamParams): Promise<LiveStream> {
     return this.http.post(PATH, params);
+  }
+
+  /**
+   * Updates an existing livestream with new parameters.
+   *
+   * @param {string} liveStreamId - the ID of the live stream
+   * @param {Object} params - Live Stream JSON parameters (e.g playback_policy)
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   */
+  async update(
+    liveStreamId: string,
+    params: UpdateLiveStreamParams
+  ): Promise<LiveStream> {
+    if (!liveStreamId || !params) {
+      throw new Error('assetId and params are required.');
+    }
+
+    return this.http.patch(buildBasePath(liveStreamId), params);
   }
 
   /**
@@ -240,6 +260,27 @@ export class LiveStreams extends Base {
   }
 
   /**
+   * Return a live stream playback id
+   * @param {string} liveStreamId - The ID for the live stream
+   * @param {string} playbackId - The ID for the playbackId
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   *
+   * @see https://docs.mux.com/api-reference/video#operation/get-asset-playback-id
+   */
+  playbackId(liveStreamId: string, playbackId: string): Promise<PlaybackId> {
+    if (!liveStreamId) {
+      return Promise.reject(new Error('A live stream ID is required'));
+    }
+
+    if (!playbackId) {
+      return Promise.reject(new Error('A playback ID is required'));
+    }
+    return this.http.get(
+      `${buildBasePath(liveStreamId)}/playback-ids/${playbackId}`
+    );
+  }
+
+  /**
    * Create a simulcast target
    * @param {string} liveStreamId - The ID for the live stream
    * @param {Object} params - Simulcast Target JSON parameters (e.g url and stream_key)
@@ -341,6 +382,27 @@ export class LiveStreams extends Base {
     }
     return this.http.delete(
       `${buildBasePath(liveStreamId)}/simulcast-targets/${simulcastTargetId}`
+    );
+  }
+
+  /**
+   * Configures a live stream to receive embedded closed captions.
+   * The resulting Asset's subtitle text track will have `closed_captions: true` set.
+   * @param {string} liveStreamId - The ID for the live stream
+   * @param {string} params - Embedded subtitles parameters.
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   */
+  async updateEmbeddedSubtitles(
+    liveStreamId: string,
+    params: UpdateLiveStreamEmbeddedSubtitlesParams
+  ): Promise<LiveStream> {
+    if (!liveStreamId || !params) {
+      throw new Error('liveStreamId and params are required.');
+    }
+
+    return this.http.put(
+      `${buildBasePath(liveStreamId)}/embedded-subtitles`,
+      params
     );
   }
 
