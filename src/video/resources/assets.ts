@@ -12,6 +12,7 @@ import {
   ListAssetParams,
   PlaybackId,
   Track,
+  UpdateAssetParams,
   UpdateMasterAccessParams,
   UpdateMp4SupportParams,
 } from '../domain.js';
@@ -58,6 +59,21 @@ export class Assets extends Base {
     }
 
     return this.http.post(PATH, params);
+  }
+
+  /**
+   * Updates an existing asset with new parameters.
+   *
+   * @param {string} assetId - the ID of the asset
+   * @param {Object} params - Asset JSON parameters (e.g passthrough)
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   */
+  async update(assetId: string, params: UpdateAssetParams): Promise<Asset> {
+    if (!assetId || !params) {
+      throw new Error('assetId and params are required.');
+    }
+
+    return this.http.patch(buildBasePath(assetId), params);
   }
 
   /**

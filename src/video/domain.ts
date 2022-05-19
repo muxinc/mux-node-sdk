@@ -3,6 +3,8 @@ export type AssetMp4Support = 'none' | 'standard';
 export type AssetMasterAccess = 'none' | 'temporary';
 export type TrackStatus = 'preparing' | 'ready' | 'errored';
 
+export type LatencyMode = 'low' | 'reduced' | 'standard';
+
 export interface SigningKey {
   id: string;
   created_at: string;
@@ -91,6 +93,10 @@ export interface CreateAssetParams {
   test?: boolean;
   master_access?: AssetMasterAccess;
   per_title_encode?: boolean;
+}
+
+export interface UpdateAssetParams {
+  passthrough?: string;
 }
 
 export interface StaticRendition {
@@ -231,7 +237,7 @@ export interface LiveStream {
   passthrough?: string;
   reconnect_window?: number;
   reduced_latency?: boolean;
-  latency_mode?: 'low' | 'reduced' | 'standard';
+  latency_mode?: LatencyMode;
   simulcast_targets?: Array<SimulcastTarget>;
   test?: boolean;
 }
@@ -242,9 +248,16 @@ export interface CreateLiveStreamParams {
   new_asset_settings?: Partial<CreateAssetParams>;
   passthrough?: string;
   reduced_latency?: boolean;
-  latency_mode?: 'low' | 'reduced' | 'standard';
+  latency_mode?: LatencyMode;
   simulcast_targets?: Array<SimulcastTargetParams>;
   test?: boolean;
+}
+
+export interface UpdateLiveStreamParams {
+  passthrough?: string;
+  latency_mode?: LatencyMode;
+  reconnect_window?: number;
+  max_continuous_duration?: number;
 }
 
 export interface ListLiveStreamParams {
@@ -280,4 +293,47 @@ export interface ListUploadParams {
   limit?: number;
   page?: number;
   upload_id?: string;
+}
+
+export interface GetAssetPlaybackIdResponse {
+  data: PlaybackId;
+}
+
+export interface GetLiveStreamPlaybackIdResponse {
+  data: PlaybackId;
+}
+
+export interface LiveStreamEmbeddedSubtitleSettings {
+  name: string;
+  passthrough?: string;
+  language_code?: string;
+  language_channel?: 'cc1';
+}
+
+export interface UpdateLiveStreamEmbeddedSubtitlesParams {
+  embedded_subtitles: Array<LiveStreamEmbeddedSubtitleSettings>;
+}
+
+export interface ReferrerDomainRestriction {
+  allowed_domains?: Array<string>;
+  allow_no_referrer?: boolean;
+}
+
+export interface CreatePlaybackRestrictionParams {
+  referrer?: ReferrerDomainRestriction;
+}
+
+export interface PlaybackRestriction {
+  id: string;
+  created_at: string;
+  updated_at?: string;
+  referrer?: ReferrerDomainRestriction;
+}
+
+export interface PlaybackRestrictionResponse {
+  data: PlaybackRestriction;
+}
+
+export interface ListPlaybackRestrictionsResponse {
+  data: Array<PlaybackRestriction>;
 }
