@@ -12,6 +12,7 @@ import { PlaybackIds } from './resources/playbackIds.js';
 import { Uploads } from './resources/uploads.js';
 import { SigningKeys } from './resources/signingKeys.js';
 import { DeliveryUsage } from './resources/deliveryUsage.js';
+import { PlaybackRestrictions } from './resources/playbackRestrictions.js';
 
 /**
  * @ignore
@@ -32,6 +33,7 @@ export class Video extends Base {
   readonly Assets: Assets;
   readonly LiveStreams: LiveStreams;
   readonly PlaybackIds: PlaybackIds;
+  readonly PlaybackRestrictions: PlaybackRestrictions;
   readonly Uploads: Uploads;
   readonly SigningKeys: SigningKeys;
   readonly DeliveryUsage: DeliveryUsage;
@@ -69,5 +71,8 @@ export class Video extends Base {
 
     /** @Type {DeliveryUsage} */
     this.DeliveryUsage = new DeliveryUsage(this);
+
+    /** @Type {PlaybackRestrictions} */
+    this.PlaybackRestrictions = new PlaybackRestrictions(this);
   }
 }
