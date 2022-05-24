@@ -13,6 +13,7 @@ import { Uploads } from './resources/uploads.js';
 import { SigningKeys } from './resources/signingKeys.js';
 import { DeliveryUsage } from './resources/deliveryUsage.js';
 import { PlaybackRestrictions } from './resources/playbackRestrictions.js';
+import { Spaces } from './resources/spaces.js';
 
 /**
  * @ignore
@@ -37,6 +38,7 @@ export class Video extends Base {
   readonly Uploads: Uploads;
   readonly SigningKeys: SigningKeys;
   readonly DeliveryUsage: DeliveryUsage;
+  readonly Spaces: Spaces;
 
   constructor(base: Base);
   constructor(config: RequestOptions);
@@ -74,5 +76,8 @@ export class Video extends Base {
 
     /** @Type {PlaybackRestrictions} */
     this.PlaybackRestrictions = new PlaybackRestrictions(this);
+
+    /** @Type {Spaces} */
+    this.Spaces = new Spaces(this);
   }
 }

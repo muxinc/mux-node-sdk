@@ -337,3 +337,73 @@ export interface PlaybackRestrictionResponse {
 export interface ListPlaybackRestrictionsResponse {
   data: Array<PlaybackRestriction>;
 }
+
+export type SpaceStatus = 'idle' | 'active';
+export type BroadcastStatus = 'idle' | 'active';
+export type BroadcastLayout = 'gallery' | 'active-speaker';
+export type BroadcastResolution =
+  | '1920x1080'
+  | '1280x720'
+  | '1080x1920'
+  | '720x1280'
+  | '1080x1080'
+  | '720x720';
+
+export interface Broadcast {
+  id: string;
+  live_stream_id: string;
+  status: BroadcastStatus;
+  layout: BroadcastLayout;
+  resolution: BroadcastResolution;
+
+  passthrough?: string;
+  background?: string;
+}
+
+export interface Space {
+  id: string;
+  created_at: string;
+  type: 'server';
+  status: SpaceStatus;
+  passthrough?: string;
+  broadcasts?: Array<Broadcast>;
+}
+
+export interface CreateBroadcastRequest {
+  live_stream_id: string;
+
+  passthrough?: string;
+  layout?: BroadcastLayout;
+  resolution?: BroadcastResolution;
+}
+
+export interface CreateSpaceRequest {
+  type?: 'server';
+  passthrough?: string;
+  broadcasts?: Array<CreateBroadcastRequest>;
+}
+
+export interface SpaceResponse {
+  data: Space;
+}
+
+export interface BroadcastResponse {
+  data: Broadcast;
+}
+
+export interface ListSpacesRequest {
+  limit?: number;
+  page?: number;
+}
+
+export interface ListSpacesResponse {
+  data: Array<Space>;
+}
+
+export interface StartSpaceBroadcastResponse {
+  data: {};
+}
+
+export interface StopSpaceBroadcastResponse {
+  data: {};
+}
