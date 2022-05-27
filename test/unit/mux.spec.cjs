@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 const { expect } = require('chai');
 const { Mux } = require('../../cjs/mux');
@@ -31,10 +32,16 @@ describe('Unit::Mux', () => {
 
     it('instantiates with two args', () => {
       const m = new Mux('token', 'secret');
+
+      expect(m._tokenId).to.be.eq('token');
+      expect(m._tokenSecret).to.be.eq('secret');
     });
 
     it('instantiates with three args', () => {
       const m = new Mux('token', 'secret', {});
+
+      expect(m._tokenId).to.be.eq('token');
+      expect(m._tokenSecret).to.be.eq('secret');
     });
   });
 });
