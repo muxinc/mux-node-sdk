@@ -27,7 +27,7 @@ export class Base extends EventEmitter {
 
   constructor(muxBase: Base);
   constructor(requestOptions: RequestOptions);
-  constructor(accessToken: string, secret: string);
+  constructor(tokenId: string, tokenSecret: string);
   constructor(tokenId: string, tokenSecret: string, config: RequestOptions);
   constructor(
     tokenIdOrOptionsOrBase: string | RequestOptions | Base,
