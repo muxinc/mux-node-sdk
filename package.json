@@ -1,6 +1,6 @@
 {
   "name": "@mux/mux-node",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Mux API wrapper",
   "keywords": [
     "mux",
