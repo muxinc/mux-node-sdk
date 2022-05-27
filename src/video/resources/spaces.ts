@@ -53,6 +53,7 @@ export class Spaces extends Base {
 
   constructor(base: Base);
   constructor(config: RequestOptions);
+  constructor(accessToken: string, secret: string);
   constructor(accessToken: string, secret: string, config: RequestOptions);
   constructor(
     accessTokenOrConfigOrBase: string | RequestOptions | Base,
@@ -64,7 +65,7 @@ export class Spaces extends Base {
     } else if (typeof accessTokenOrConfigOrBase === 'object') {
       super(accessTokenOrConfigOrBase);
     } else {
-      super(accessTokenOrConfigOrBase, secret!, config!);
+      super(accessTokenOrConfigOrBase, secret!, config ?? {});
     }
 
     this.Broadcasts = new Broadcasts(this);

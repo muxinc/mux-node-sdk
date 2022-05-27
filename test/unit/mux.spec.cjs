@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-unused-vars */
 const { expect } = require('chai');
 const { Mux } = require('../../cjs/mux');
 const MuxVideo = require('../../cjs/video/video').Video;
@@ -24,6 +26,22 @@ describe('Unit::Mux', () => {
     /** @test {Mux.Webhooks} */
     it('exposes Webhooks.verifyHeader', () => {
       expect(Mux.Webhooks.verifyHeader).to.be.a('function');
+    });
+
+    // no no-arg/one-arg test here because the they rely on env vars and breaks test parallelism to fiddle with
+
+    it('instantiates with two args', () => {
+      const m = new Mux('token', 'secret');
+
+      expect(m._tokenId).to.be.eq('token');
+      expect(m._tokenSecret).to.be.eq('secret');
+    });
+
+    it('instantiates with three args', () => {
+      const m = new Mux('token', 'secret', {});
+
+      expect(m._tokenId).to.be.eq('token');
+      expect(m._tokenSecret).to.be.eq('secret');
     });
   });
 });
