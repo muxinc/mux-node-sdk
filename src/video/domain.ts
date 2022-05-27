@@ -264,6 +264,7 @@ export interface ListLiveStreamParams {
   limit?: number;
   page?: number;
   live_stream_id?: string;
+  status?: string;
   upload_id?: string;
 }
 
