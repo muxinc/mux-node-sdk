@@ -61,6 +61,7 @@ export class Mux extends Base {
    */
   constructor();
   constructor(config: RequestOptions);
+  constructor(accessToken: string, secret: string);
   constructor(accessToken: string, secret: string, config: RequestOptions);
   constructor(
     accessTokenOrConfig?: string | RequestOptions,
@@ -75,7 +76,7 @@ export class Mux extends Base {
     if (typeof accessTokenOrConfig === 'object') {
       super(accessTokenOrConfig);
     } else {
-      super(accessTokenOrConfig, secret!, config!);
+      super(accessTokenOrConfig, secret!, config ?? {});
     }
 
     /** @type {Video} */

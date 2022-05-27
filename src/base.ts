@@ -27,6 +27,7 @@ export class Base extends EventEmitter {
 
   constructor(muxBase: Base);
   constructor(requestOptions: RequestOptions);
+  constructor(accessToken: string, secret: string);
   constructor(tokenId: string, tokenSecret: string, config: RequestOptions);
   constructor(
     tokenIdOrOptionsOrBase: string | RequestOptions | Base,
@@ -54,7 +55,7 @@ export class Base extends EventEmitter {
         // without 'as' this complains of Base | string typing, but we have ruled out the Base case implicitly
         this.tokenId = tokenIdOrOptionsOrBase as string;
         this.tokenSecret = tokenSecret;
-        this.config = config!;
+        this.config = config ?? {};
       }
 
       this.http = Axios.create({
