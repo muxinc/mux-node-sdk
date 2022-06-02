@@ -17,7 +17,7 @@ export interface MuxJWTSignOptions {
   keyId?: string;
   keySecret?: string;
   keyFilePath?: string;
-  type?: TypeClaim;
+  type?: string;
   expiration?: string;
   params?: Record<string, string>;
 }
