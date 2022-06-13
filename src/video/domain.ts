@@ -242,6 +242,17 @@ export interface LiveStream {
   test?: boolean;
 }
 
+export interface LiveStreamEmbeddedSubtitleSettings {
+  name: string;
+  passthrough?: string;
+  language_code?: string;
+  language_channel?: 'cc1';
+}
+
+export interface UpdateLiveStreamEmbeddedSubtitlesParams {
+  embedded_subtitles: Array<LiveStreamEmbeddedSubtitleSettings>;
+}
+
 export interface CreateLiveStreamParams {
   reconnect_window?: number;
   playback_policy?: PlaybackIdPolicy | Array<PlaybackIdPolicy>;
@@ -306,17 +317,6 @@ export interface GetAssetPlaybackIdResponse {
 
 export interface GetLiveStreamPlaybackIdResponse {
   data: PlaybackId;
-}
-
-export interface LiveStreamEmbeddedSubtitleSettings {
-  name: string;
-  passthrough?: string;
-  language_code?: string;
-  language_channel?: 'cc1';
-}
-
-export interface UpdateLiveStreamEmbeddedSubtitlesParams {
-  embedded_subtitles: Array<LiveStreamEmbeddedSubtitleSettings>;
 }
 
 export interface ReferrerDomainRestriction {
