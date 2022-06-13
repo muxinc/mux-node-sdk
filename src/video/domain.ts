@@ -251,6 +251,7 @@ export interface CreateLiveStreamParams {
   latency_mode?: LatencyMode;
   simulcast_targets?: Array<SimulcastTargetParams>;
   test?: boolean;
+  audio_only?: boolean;
 }
 
 export interface UpdateLiveStreamParams {
