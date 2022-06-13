@@ -252,6 +252,8 @@ export interface CreateLiveStreamParams {
   simulcast_targets?: Array<SimulcastTargetParams>;
   test?: boolean;
   audio_only?: boolean;
+  max_continuous_duration?: number;
+  embedded_subtitles: Array<LiveStreamEmbeddedSubtitleSettings>;
 }
 
 export interface UpdateLiveStreamParams {
