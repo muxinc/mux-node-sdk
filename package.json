@@ -12,20 +12,21 @@
     "live streaming"
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
-  "main": "./cjs/index.js",
+  "main": "./lib/mux.js",
   "exports": {
-    "import": "./esm/index.mjs",
-    "require": "./cjs/index.js"
+    "import": "./lib/mux.mjs",
+    "require": "./lib/mux.js"
   },
+  "files": [
+    "./lib"
+  ],
   "engines": {
     "node": ">=12"
   },
   "license": "MIT",
   "scripts": {
     "write-version": "echo \"export const VERSION = '$npm_package_version' as const;\" > ./src/version.ts",
-    "build:cjs": "yarn run -s write-version && tsc --outDir cjs --module commonjs",
-    "build:esm": "yarn run -s write-version && tsc --outDir esm --module esnext",
-    "build": "yarn run build:cjs && yarn run build:esm",
+    "build": "yarn run -s write-version && tsc -b ./ && tsup",
     "watch:esm": "yarn run -s build:esm --watch --preserveWatchOutput",
     "watch:cjs": "yarn run -s build:cjs --watch --preserveWatchOutput",
     "docs": "esdoc",
