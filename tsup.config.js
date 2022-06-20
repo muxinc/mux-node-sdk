@@ -5,7 +5,7 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   minify: true,
-  entryPoints: ['src/mux.ts'],
+  entry: ['src'],
   format: ['esm', 'cjs'],
   outDir: 'lib',
   target: 'node12',
