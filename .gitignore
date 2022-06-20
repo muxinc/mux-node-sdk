@@ -28,3 +28,4 @@ cjs/**/*
 !cjs/index*
 !cjs/package.json
 tsconfig.tsbuildinfo
+lib/
