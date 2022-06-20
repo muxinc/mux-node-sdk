@@ -1,3 +1,4 @@
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
@@ -8,4 +9,5 @@ export default defineConfig({
   format: ['esm', 'cjs'],
   outDir: 'lib',
   target: 'node12',
-})
+  treeshake: true,
+});
