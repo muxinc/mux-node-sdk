@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const moxios = require('moxios');
 const sinon = require('sinon');
-const { Incidents } = require('../../../../cjs/data/resources/incidents');
+const { Incidents } = require('../../../../lib/data/resources/incidents');
 
 /** @test {Incidents} */
 describe('Unit::Incidents', () => {

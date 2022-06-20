@@ -1,9 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 const { expect } = require('chai');
-const { Mux } = require('../../cjs/mux');
-const MuxVideo = require('../../cjs/video/video').Video;
-const MuxData = require('../../cjs/data/data').Data;
+const { Mux } = require('../../lib/mux');
+const MuxVideo = require('../../lib/video/video').Video;
+const MuxData = require('../../lib/data/data').Data;
 
 /** @test {Mux} */
 describe('Unit::Mux', () => {

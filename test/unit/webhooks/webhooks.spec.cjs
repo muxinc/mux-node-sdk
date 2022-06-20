@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
-const { Webhooks } = require('../../../cjs/webhooks/webhooks');
+const { Webhooks } = require('../../../lib/webhooks/webhooks');
 
 /** @test {Webhooks} */
 describe('Unit::Webhooks', () => {

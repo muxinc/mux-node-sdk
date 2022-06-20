@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const moxios = require('moxios');
-const { RealTime } = require('../../../../cjs/data/resources/real_time');
+const { RealTime } = require('../../../../lib/data/resources/real_time');
 
 /** @test {RealTime} */
 describe('Unit::RealTime', () => {
