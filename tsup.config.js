@@ -10,4 +10,5 @@ export default defineConfig({
   outDir: 'lib',
   target: 'node12',
   treeshake: true,
+  splitting: false,
 });
