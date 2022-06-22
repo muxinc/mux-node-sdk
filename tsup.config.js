@@ -4,11 +4,11 @@ import { defineConfig } from 'tsup';
 export default defineConfig({
   sourcemap: true,
   clean: true,
-  minify: true,
+  minify: false,
   entry: ['src'],
   format: ['esm', 'cjs'],
-  outDir: 'lib',
+  outDir: 'dist',
   target: 'node12',
-  treeshake: true,
+  treeshake: false,
   splitting: false,
 });
