@@ -8,7 +8,7 @@ export default defineConfig({
   entry: ['src'],
   format: ['esm', 'cjs'],
   outDir: 'dist',
-  target: 'node12',
+  target: 'node14',
   treeshake: false,
   splitting: false,
 });
