@@ -10,5 +10,14 @@ export default defineConfig({
   outDir: 'dist',
   target: 'node14',
   treeshake: false,
+  esbuildOptions: (options, context) => {
+    // eslint-disable-next-line no-param-reassign
+    options.footer = {
+      js:
+        context.format === 'cjs'
+          ? 'module.exports = module.exports.default || module.exports;'
+          : '',
+    };
+  },
   splitting: false,
 });

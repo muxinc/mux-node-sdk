@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 const { expect } = require('chai');
-const { Mux } = require('../../dist/mux');
+const Mux = require('../../dist/mux.js');
 const MuxVideo = require('../../dist/video/video').Video;
 const MuxData = require('../../dist/data/data').Data;
 
