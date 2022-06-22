@@ -27,8 +27,8 @@
   "scripts": {
     "write-version": "echo \"export const VERSION = '$npm_package_version' as const;\" > ./src/version.ts",
     "build": "yarn run -s write-version && tsc -b ./ && tsup",
-    "watch:esm": "yarn run -s build:esm --watch --preserveWatchOutput",
-    "watch:cjs": "yarn run -s build:cjs --watch --preserveWatchOutput",
+    "tsc": "tsc",
+    "tsc:watch": "tsc --watch --preserveWatchOutput",
     "docs": "esdoc",
     "test": "yarn build && mocha --recursive ./test",
     "test:unit": "yarn build && mocha --recursive ./test/unit",
