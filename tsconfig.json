@@ -13,7 +13,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "rootDir": "src",
-    "outDir": "lib",
+    "outDir": "dist",
     "composite": true,
     "removeComments": false,
     "strict": true,
