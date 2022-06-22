@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const nockBack = require('nock').back;
-const { Mux } = require('../../../lib/mux.js');
+const { Mux } = require('../../../dist/mux.js');
 
 /** @test {Metrics} */
 describe('Integration::Metrics', () => {

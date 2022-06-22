@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Mux } from '../../lib/mux.mjs';
+import { Mux } from '../../dist/mux.mjs';
 
 /** @test {Mux} */
 describe('ESM: Unit::Mux', () => {

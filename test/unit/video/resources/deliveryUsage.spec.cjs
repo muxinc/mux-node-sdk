@@ -3,7 +3,7 @@ const sinon = require('sinon');
 const moxios = require('moxios');
 const {
   DeliveryUsage,
-} = require('../../../../lib/video/resources/deliveryUsage');
+} = require('../../../../dist/video/resources/deliveryUsage');
 
 /** @test {DeliveryUsage} */
 describe('Unit::DeliveryUsage', () => {

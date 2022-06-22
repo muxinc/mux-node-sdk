@@ -1,11 +1,11 @@
 const { expect } = require('chai');
-const { Data } = require('../../../lib/data/data');
-const { Metrics } = require('../../../lib/data/resources/metrics');
-const { Filters } = require('../../../lib/data/resources/filters');
-const { Errors } = require('../../../lib/data/resources/errors');
-const { VideoViews } = require('../../../lib/data/resources/video_views');
-const { Exports } = require('../../../lib/data/resources/exports');
-const { Incidents } = require('../../../lib/data/resources/incidents');
+const { Data } = require('../../../dist/data/data');
+const { Metrics } = require('../../../dist/data/resources/metrics');
+const { Filters } = require('../../../dist/data/resources/filters');
+const { Errors } = require('../../../dist/data/resources/errors');
+const { VideoViews } = require('../../../dist/data/resources/video_views');
+const { Exports } = require('../../../dist/data/resources/exports');
+const { Incidents } = require('../../../dist/data/resources/incidents');
 
 /** @test {Data} */
 describe('Unit::Data', () => {

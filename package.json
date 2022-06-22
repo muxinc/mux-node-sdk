@@ -12,10 +12,10 @@
     "live streaming"
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
-  "main": "./lib/mux.js",
+  "main": "./dist/mux.js",
   "exports": {
-    "import": "./lib/mux.mjs",
-    "require": "./lib/mux.js"
+    "import": "./dist/mux.mjs",
+    "require": "./dist/mux.js"
   },
   "files": [
     "./lib"
