@@ -96,12 +96,19 @@ export declare interface IncidentsGetResponse {
   data: Incident;
 }
 
+export type MetricsMeasurementValue =
+  | '95th'
+  | 'median'
+  | 'avg'
+  | 'count'
+  | 'sum';
+
 export interface Metric {
   value?: number;
   type?: string;
   name?: string;
   metric?: string;
-  measurement?: string;
+  measurement?: MetricsMeasurementValue;
 }
 
 export interface Insight {
@@ -139,7 +146,7 @@ export interface MetricsComparisonValue {
 
 export interface MetricsBreakdownQueryParams {
   group_by: string;
-  measurement?: '95th' | 'median' | 'avg';
+  measurement?: MetricsMeasurementValue;
   filters?: Array<string>;
   limit?: number;
   page?: number;
@@ -156,7 +163,7 @@ export interface MetricsComparisonQueryParams {
 }
 
 export interface MetricsInsightsQueryParams {
-  measurement?: string;
+  measurement?: MetricsMeasurementValue;
   order_direction?: string;
   timeframe?: Array<string>;
 }
@@ -164,13 +171,13 @@ export interface MetricsInsightsQueryParams {
 export interface MetricsOverallQueryParams {
   timeframe?: Array<string>;
   filters?: Array<string>;
-  measurement?: '95th' | 'median' | 'avg';
+  measurement?: MetricsMeasurementValue;
 }
 
 export interface MetricsTimeseriesQueryParams {
   filters?: Array<string>;
   timeframe?: Array<string>;
-  measurement?: '95th' | 'median' | 'avg';
+  measurement?: MetricsMeasurementValue;
   group_by?: string;
 }
 
