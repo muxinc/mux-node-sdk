@@ -26,7 +26,8 @@
         "manual": {
           "index": "./manual/index.md",
           "globalIndex": true,
-          "files": ["./manual/overview.md"]
+          "files": ["./manual/overview.md"],
+          "asset": "./assets"
         },
         "test": {
           "source": "./test/",

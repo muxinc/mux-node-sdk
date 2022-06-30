@@ -1,4 +1,4 @@
-![Mux Node Banner](github-nodejs-sdk.png)
+<img src="./manual/asset/github-nodejs-sdk.png" alt="Mux Node Banner" width="800" box-shadow="none" />
 
 <h1 align="center"><pre>@mux/mux-node</pre></h1>
 
@@ -72,8 +72,8 @@ As an example, you can create a Mux asset and playback ID by using the below fun
 // Create an asset
 const asset = await Video.Assets.create({
   input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4',
-  "playback_policy": [
-    "public" // makes playback ID available on the asset
+  playback_policy: [
+    'public', // makes playback ID available on the asset
   ],
 });
 ```
@@ -81,7 +81,7 @@ const asset = await Video.Assets.create({
 Or, if you don't have the files online already, you can ingest one via the direct uploads API.
 
 ```javascript
-const fs = require('fs')
+const fs = require('fs');
 const fetch = require('node-fetch');
 let upload = await Video.Uploads.create({
   new_asset_settings: { playback_policy: 'public' },
@@ -189,7 +189,7 @@ app.listen(3000, () => {
 });
 ```
 
-## JWT Helpers <small>([API Reference](https://muxinc.github.io/mux-node-sdk/class/src/utils/jwt.js~JWT.html))</small>
+## JWT Helpers ([API Reference](https://muxinc.github.io/mux-node-sdk/class/src/utils/jwt.js~JWT.html))
 
 You can use any JWT-compatible library, but we've included some light helpers in the SDK to make it easier to get up and running.
 
