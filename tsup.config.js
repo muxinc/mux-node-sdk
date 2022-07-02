@@ -11,13 +11,12 @@ export default defineConfig({
   target: 'node14',
   treeshake: false,
   esbuildOptions: (options, context) => {
-    // eslint-disable-next-line no-param-reassign
-    options.footer = {
-      js:
-        context.format === 'cjs'
-          ? 'module.exports = module.exports.default || module.exports;'
-          : '',
-    };
+    if (context.format === 'cjs') {
+      // eslint-disable-next-line no-param-reassign
+      options.footer = {
+        js: 'module.exports = module.exports.default || module.exports;',
+      };
+    }
   },
   splitting: false,
 });
