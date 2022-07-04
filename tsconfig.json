@@ -14,8 +14,6 @@
     "baseUrl": ".",
     "rootDir": "src",
     "outDir": "dist",
-    "composite": true,
-    "removeComments": false,
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
