@@ -2,9 +2,9 @@
   "compilerOptions": {
     /* Basic Options */
     "incremental": true,
-    "target": "es2020",
+    "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020"],
+    "lib": ["es2015"],
     "allowJs": true,
     "checkJs": true,
     "declaration": true,
@@ -19,6 +19,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
+    "composite": true
   },
   "include": ["src/**/*.js", "src/**/*.ts"]
 }
