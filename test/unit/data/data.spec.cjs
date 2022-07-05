@@ -30,12 +30,13 @@ describe('Unit::Data', () => {
     it('creates a new Data instance', () => {
       const TestData = new Data(testApiKey, testSecret);
       expect(() => new Data(testApiKey, testSecret)).to.not.throw();
-      expect(TestData.Metrics).to.be.an.instanceof(Metrics);
-      expect(TestData.Errors).to.be.an.instanceof(Errors);
-      expect(TestData.Exports).to.be.an.instanceof(Exports);
-      expect(TestData.VideoViews).to.be.an.instanceof(VideoViews);
-      expect(TestData.Filters).to.be.an.instanceof(Filters);
-      expect(TestData.Incidents).to.be.an.instanceof(Incidents);
+      // nominative equality because referential equality is weird in these tests
+      expect(TestData.Metrics.constructor.name).to.eq(Metrics.name);
+      expect(TestData.Errors.constructor.name).to.eq(Errors.name);
+      expect(TestData.Exports.constructor.name).to.eq(Exports.name);
+      expect(TestData.VideoViews.constructor.name).to.eq(VideoViews.name);
+      expect(TestData.Filters.constructor.name).to.eq(Filters.name);
+      expect(TestData.Incidents.constructor.name).to.eq(Incidents.name);
     });
   });
 });

