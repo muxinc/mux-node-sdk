@@ -12,6 +12,7 @@ import {
   SimulcastTarget,
   SimulcastTargetParams,
   UpdateLiveStreamEmbeddedSubtitlesParams,
+  UpdateLiveStreamGeneratedSubtitlesParams,
   UpdateLiveStreamParams,
 } from '../domain.js';
 
@@ -402,6 +403,26 @@ export class LiveStreams extends Base {
 
     return this.http.put(
       `${buildBasePath(liveStreamId)}/embedded-subtitles`,
+      params
+    );
+  }
+
+  /**
+   * Configures a live stream to receive generated closed captions.
+   * @param {string} liveStreamId - The ID for the live stream
+   * @param {string} params - Generated subtitles parameters.
+   * @returns {Promise} - Returns a resolved Promise with a response from the Mux API
+   */
+  async updateGeneratedSubtitles(
+    liveStreamId: string,
+    params: UpdateLiveStreamGeneratedSubtitlesParams
+  ): Promise<LiveStream> {
+    if (!liveStreamId || !params) {
+      throw new Error('liveStreamId and params are required.');
+    }
+
+    return this.http.put(
+      `${buildBasePath(liveStreamId)}/generated-subtitles`,
       params
     );
   }
