@@ -14,7 +14,7 @@ import { SigningKeys } from './resources/signingKeys.js';
 import { DeliveryUsage } from './resources/deliveryUsage.js';
 import { PlaybackRestrictions } from './resources/playbackRestrictions.js';
 import { Spaces } from './resources/spaces.js';
-import { TranscriptionVocabularies } from './resources/transcriptionVocabularies';
+import { TranscriptionVocabularies } from './resources/transcriptionVocabularies.js';
 
 /**
  * @ignore
