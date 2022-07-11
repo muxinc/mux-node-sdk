@@ -69,4 +69,22 @@ describe('Integration::TranscriptionVocabularies', () => {
         (err) => expect(err).to.exist
       ));
   });
+
+  /** @test {TranscriptionVocabularies.delete} */
+  describe('TranscriptionVocabularies.delete', () => {
+    /** @test {TranscriptionVocabularies.delete} */
+    it('deletes a transcription vocabulary', async () => {
+      const { nockDone } = await nockBack(
+        'TranscriptionVocabularies/delete.json'
+      );
+      const testTranscriptionVocabulary =
+        await Video.TranscriptionVocabularies.create({ name: 'Test' });
+
+      await Video.TranscriptionVocabularies.delete(
+        testTranscriptionVocabulary.id
+      );
+
+      nockDone();
+    });
+  });
 });
