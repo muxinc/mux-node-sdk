@@ -70,6 +70,42 @@ describe('Integration::TranscriptionVocabularies', () => {
       ));
   });
 
+  /** @test {TranscriptionVocabularies.update} */
+  describe('TranscriptionVocabularies.update', () => {
+    /** @test {TranscriptionVocabularies.update} */
+    it('updates a transcription vocabulary', async () => {
+      const { nockDone } = await nockBack(
+        'TranscriptionVocabularies/update.json'
+      );
+      const testTranscriptionVocabulary =
+        await Video.TranscriptionVocabularies.create({
+          name: 'Mux Test Vocabulary',
+          phrases: ['goinky'],
+        });
+
+      expect(testTranscriptionVocabulary.phrases).to.include('goinky');
+
+      const updatedTranscriptionVocabulary =
+        await Video.TranscriptionVocabularies.update(
+          testTranscriptionVocabulary.id,
+          { phrases: ['roinky'] }
+        );
+
+      expect(updatedTranscriptionVocabulary.phrases).to.include('roinky');
+
+      await Video.TranscriptionVocabularies.delete(
+        testTranscriptionVocabulary.id
+      );
+      nockDone();
+    });
+
+    /** @test {TranscriptionVocabularies.update} */
+    it('fails to update a transcription vocabulary if given an incorrect transcription vocabulary id', () =>
+      Video.TranscriptionVocabularies.update('somefakeid').catch(
+        (err) => expect(err).to.exist
+      ));
+  });
+
   /** @test {TranscriptionVocabularies.delete} */
   describe('TranscriptionVocabularies.delete', () => {
     /** @test {TranscriptionVocabularies.delete} */
