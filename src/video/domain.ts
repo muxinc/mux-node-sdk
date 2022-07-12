@@ -226,6 +226,13 @@ export interface SimulcastTarget {
   url: string;
 }
 
+export interface LiveStreamGeneratedSubtitleSettings {
+  name: string;
+  passthrough?: string;
+  language_code?: string;
+  transcription_vocabulary_ids?: Array<string>;
+}
+
 export interface LiveStream {
   id?: string;
   created_at?: string;
@@ -241,6 +248,7 @@ export interface LiveStream {
   latency_mode?: LatencyMode;
   simulcast_targets?: Array<SimulcastTarget>;
   test?: boolean;
+  generated_subtitles?: Array<LiveStreamGeneratedSubtitleSettings>;
 }
 
 export interface LiveStreamEmbeddedSubtitleSettings {
@@ -252,6 +260,10 @@ export interface LiveStreamEmbeddedSubtitleSettings {
 
 export interface UpdateLiveStreamEmbeddedSubtitlesParams {
   embedded_subtitles: Array<LiveStreamEmbeddedSubtitleSettings>;
+}
+
+export interface UpdateLiveStreamGeneratedSubtitlesParams {
+  generated_subtitles: Array<LiveStreamGeneratedSubtitleSettings>;
 }
 
 export interface CreateLiveStreamParams {
@@ -412,4 +424,26 @@ export interface StartSpaceBroadcastResponse {
 
 export interface StopSpaceBroadcastResponse {
   data: {};
+}
+
+export interface TranscriptionVocabulary {
+  id: string;
+  name: string;
+  phrases: string[];
+  created_at: string;
+  updated_at?: string;
+}
+
+export interface UpsertTranscriptionVocabularyParams {
+  name: string;
+  phrases: string[];
+  passthrough?: string;
+}
+
+export interface ListTranscriptionVocabulariesResponse {
+  data: Array<TranscriptionVocabulary>;
+}
+
+export interface TranscriptionVocabularyResponse {
+  data: TranscriptionVocabulary;
 }

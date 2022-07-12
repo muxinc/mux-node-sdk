@@ -1,0 +1,57 @@
+[
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "POST",
+        "path": "/video/v1/transcription-vocabularies",
+        "body": {
+            "name": "Test"
+        },
+        "status": 201,
+        "response": {
+            "data": {
+                "updated_at": "1657554180",
+                "name": "Test",
+                "id": "UnpQb91VlJTT9Q2Nsg8XEGldCCY8PBgrThiTJwzCzec",
+                "created_at": "1657554180"
+            }
+        },
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Content-Length",
+            "127",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Date",
+            "Mon, 11 Jul 2022 15:43:00 GMT",
+            "Server",
+            "Mux API Server v1.159.12",
+            "X-Request-Id",
+            "FwDQvsvzUTxC4_ULCnED",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    },
+    {
+        "scope": "https://api.mux.com:443",
+        "method": "DELETE",
+        "path": "/video/v1/transcription-vocabularies/UnpQb91VlJTT9Q2Nsg8XEGldCCY8PBgrThiTJwzCzec",
+        "body": "",
+        "status": 204,
+        "response": "",
+        "rawHeaders": [
+            "Cache-Control",
+            "max-age=0, private, must-revalidate",
+            "Date",
+            "Mon, 11 Jul 2022 15:43:00 GMT",
+            "Server",
+            "Mux API Server v1.159.12",
+            "X-Request-Id",
+            "FwDQvtcznw9jTygLCnKD",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    }
+]

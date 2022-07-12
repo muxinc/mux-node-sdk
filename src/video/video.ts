@@ -1,6 +1,6 @@
 /*!
  * Mux Video
- * Copyright(c) 2018 Mux Inc.
+ * Copyright(c) 2022 Mux Inc.
  */
 
 import { Base } from '../base.js';
@@ -14,6 +14,7 @@ import { SigningKeys } from './resources/signingKeys.js';
 import { DeliveryUsage } from './resources/deliveryUsage.js';
 import { PlaybackRestrictions } from './resources/playbackRestrictions.js';
 import { Spaces } from './resources/spaces.js';
+import { TranscriptionVocabularies } from './resources/transcriptionVocabularies.js';
 
 /**
  * @ignore
@@ -39,6 +40,7 @@ export class Video extends Base {
   readonly SigningKeys: SigningKeys;
   readonly DeliveryUsage: DeliveryUsage;
   readonly Spaces: Spaces;
+  readonly TranscriptionVocabularies: TranscriptionVocabularies;
 
   constructor(base: Base);
   constructor(config: RequestOptions);
@@ -79,5 +81,8 @@ export class Video extends Base {
 
     /** @Type {Spaces} */
     this.Spaces = new Spaces(this);
+
+    /** @Type {TranscriptionVocabularies} */
+    this.TranscriptionVocabularies = new TranscriptionVocabularies(this);
   }
 }
