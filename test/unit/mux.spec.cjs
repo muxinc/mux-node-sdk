@@ -1,9 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-vars */
 const { expect } = require('chai');
-const { Mux } = require('../../cjs/mux');
-const MuxVideo = require('../../cjs/video/video').Video;
-const MuxData = require('../../cjs/data/data').Data;
+const Mux = require('../../dist/mux.js');
+const MuxVideo = require('../../dist/video/video').Video;
+const MuxData = require('../../dist/data/data').Data;
 
 /** @test {Mux} */
 describe('Unit::Mux', () => {
@@ -13,8 +13,9 @@ describe('Unit::Mux', () => {
     it('exposes Mux Video and Data as instance methods', () => {
       const muxClient = new Mux('testKey', 'testSecret');
       const { Video, Data } = muxClient;
-      expect(Video).to.to.be.an.instanceof(MuxVideo);
-      expect(Data).to.to.be.an.instanceof(MuxData);
+      // nominative equality because referential equality is weird in these tests
+      expect(Video.constructor.name).to.eq(MuxVideo.name);
+      expect(Data.constructor.name).to.eq(MuxData.name);
     });
 
     /** @test {Mux.JTW} */

@@ -12,22 +12,23 @@
     "live streaming"
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
-  "main": "./cjs/index.js",
+  "main": "./dist/mux.js",
   "exports": {
-    "import": "./esm/index.mjs",
-    "require": "./cjs/index.js"
+    "import": "./dist/mux.mjs",
+    "require": "./dist/mux.js"
   },
+  "files": [
+    "./dist"
+  ],
   "engines": {
     "node": ">=12"
   },
   "license": "MIT",
   "scripts": {
     "write-version": "echo \"export const VERSION = '$npm_package_version' as const;\" > ./src/version.ts",
-    "build:cjs": "yarn run -s write-version && tsc --outDir cjs --module commonjs",
-    "build:esm": "yarn run -s write-version && tsc --outDir esm --module esnext",
-    "build": "yarn run build:cjs && yarn run build:esm",
-    "watch:esm": "yarn run -s build:esm --watch --preserveWatchOutput",
-    "watch:cjs": "yarn run -s build:cjs --watch --preserveWatchOutput",
+    "build": "yarn run -s write-version && tsup && tsc -b ./",
+    "tsc": "tsc",
+    "tsc:watch": "tsc --watch --preserveWatchOutput",
     "docs": "esdoc",
     "test": "yarn build && mocha --recursive ./test",
     "test:unit": "yarn build && mocha --recursive ./test/unit",
@@ -62,6 +63,7 @@
     "nock": "^13.2.2",
     "prettier": "^2.5.1",
     "sinon": "^12.0.1",
+    "tsup": "^6.1.2",
     "typescript": "^4.5.4"
   },
   "repository": {

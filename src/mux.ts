@@ -43,7 +43,7 @@ import { RequestOptions } from './RequestOptions.js';
  * // Verify a webhook signature
  * Webhooks.verifyHeader(body, signature, secret);
  */
-export class Mux extends Base {
+export default class Mux extends Base {
   static readonly JWT = JWT;
   static readonly Webhooks = Webhooks;
 

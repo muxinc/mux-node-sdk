@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const nockBack = require('nock').back;
-const Mux = require('../../../cjs');
+const Mux = require('../../../dist/mux.js');
 
 const TEST_VIDEO =
   'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4';
