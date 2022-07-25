@@ -37,6 +37,8 @@ export class Filters extends Base {
    * Data.Filters.get('browser', { timeframe: ['7:days'] });
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-filter-values
+   *
+   * @deprecated The method should not be used, you should use Dimensions.get instead
    */
   get(
     filterId: string,
@@ -64,6 +66,8 @@ export class Filters extends Base {
    * Data.Filters.list();
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-filters
+   *
+   * @deprecated The method should not be used, you should use Dimensions.list instead
    */
   list() {
     process.emitWarning(
