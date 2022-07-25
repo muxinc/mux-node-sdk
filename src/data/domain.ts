@@ -34,12 +34,26 @@ export interface FilterQueryParams {
   timeframe?: Array<string>;
 }
 
+export interface DimensionQueryParams {
+  dimension_id: string;
+  limit?: number;
+  page?: number;
+  filters?: Array<string>;
+  timeframe?: Array<string>;
+}
+
 export interface FilterValue {
   value: string;
   total_count: number;
 }
 
 export declare interface FilterGetResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Array<FilterValue>;
+}
+
+export declare interface DimensionGetResponse {
   total_row_count: number;
   timeframe: Array<number>;
   data: Array<FilterValue>;
