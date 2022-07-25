@@ -42,7 +42,10 @@ export class Filters extends Base {
     filterId: string,
     params?: FilterQueryParams
   ): Promise<FilterGetResponse> {
-    process.emitWarning( 'The Filter API has been deprecated, please use Dimension instead','DeprecatedWarning');
+    process.emitWarning(
+      'The Filter API has been deprecated, please use Dimension instead',
+      'DeprecatedWarning'
+    );
     if (!filterId) {
       throw new Error('Filter Id is required to get filter information.');
     }
@@ -63,7 +66,10 @@ export class Filters extends Base {
    * @see https://docs.mux.com/api-reference/data#operation/list-filters
    */
   list() {
-    process.emitWarning( 'The Filter API has been deprecated, please use Dimension instead','DeprecatedWarning');
+    process.emitWarning(
+      'The Filter API has been deprecated, please use Dimension instead',
+      'DeprecatedWarning'
+    );
     return this.http.get(PATH);
   }
 }
