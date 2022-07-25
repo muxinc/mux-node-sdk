@@ -37,11 +37,17 @@ export class Filters extends Base {
    * Data.Filters.get('browser', { timeframe: ['7:days'] });
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-filter-values
+   *
+   * @deprecated The method should not be used, you should use Dimensions.get instead
    */
   get(
     filterId: string,
     params?: FilterQueryParams
   ): Promise<FilterGetResponse> {
+    process.emitWarning(
+      'The Filter API has been deprecated, please use Dimension instead',
+      'DeprecatedWarning'
+    );
     if (!filterId) {
       throw new Error('Filter Id is required to get filter information.');
     }
@@ -60,8 +66,14 @@ export class Filters extends Base {
    * Data.Filters.list();
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-filters
+   *
+   * @deprecated The method should not be used, you should use Dimensions.list instead
    */
   list() {
+    process.emitWarning(
+      'The Filter API has been deprecated, please use Dimension instead',
+      'DeprecatedWarning'
+    );
     return this.http.get(PATH);
   }
 }

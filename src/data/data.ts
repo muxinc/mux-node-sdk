@@ -1,6 +1,6 @@
 /*!
  * Mux Data
- * Copyright(c) 2018 Mux Inc.
+ * Copyright(c) 2022 Mux Inc.
  */
 
 import { Base } from '../base.js';
@@ -9,6 +9,7 @@ import { RequestOptions } from '../RequestOptions.js';
 import { Errors } from './resources/errors.js';
 import { Exports } from './resources/exports.js';
 import { Filters } from './resources/filters.js';
+import { Dimensions } from './resources/dimensions.js';
 import { Incidents } from './resources/incidents.js';
 import { Metrics } from './resources/metrics.js';
 import { RealTime } from './resources/real_time.js';
@@ -28,6 +29,7 @@ export class Data extends Base {
   readonly Errors: Errors;
   readonly Exports: Exports;
   readonly Filters: Filters;
+  readonly Dimensions: Dimensions;
   readonly Incidents: Incidents;
   readonly Metrics: Metrics;
   readonly RealTime: RealTime;
@@ -64,6 +66,9 @@ export class Data extends Base {
 
     /** @type {Filters} */
     this.Filters = new Filters(this);
+
+    /** @type {Dimensions} */
+    this.Dimensions = new Dimensions(this);
 
     /** @type {Incidents} */
     this.Incidents = new Incidents(this);
