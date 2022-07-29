@@ -40,6 +40,25 @@ describe('Unit::LiveStreams', () => {
       expect(TestLiveStreams.tokenId).to.equal(testApiKey);
       expect(TestLiveStreams.tokenSecret).to.equal(testSecret);
     });
+
+    /** @test {LiveStreams} */
+    it('creates a new LiveStreams instance with reconnect_slate_url', () => {
+      const TestLiveStreams = new LiveStreams(testApiKey, testSecret);
+      expect(() => new LiveStreams(testApiKey, testSecret)).to.not.throw();
+      expect(TestLiveStreams.tokenId).to.equal(testApiKey);
+      expect(TestLiveStreams.tokenSecret).to.equal(testSecret);
+      expect(() => new LiveStreams(testApiKey, testSecret).create({
+        "playback_policy": [
+          "public"
+        ],
+        "new_asset_settings": {
+          "playback_policy": [
+            "public"
+          ]
+        },
+        "reconnect_slate_url": "https://image.mux.com/01PZNlAJ72GcEBkoBj3PZ9kvKrFre00B8lzfyrm3302o004/thumbnail.png",
+      })).to.not.throw();
+    });
   });
 
   /** @test {LiveStreams.del} */
