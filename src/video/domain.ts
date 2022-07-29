@@ -249,6 +249,8 @@ export interface LiveStream {
   simulcast_targets?: Array<SimulcastTarget>;
   test?: boolean;
   generated_subtitles?: Array<LiveStreamGeneratedSubtitleSettings>;
+  use_slate_for_standard_latency?: boolean;
+  reconnect_slate_url?: string;
 }
 
 export interface LiveStreamEmbeddedSubtitleSettings {
@@ -278,6 +280,8 @@ export interface CreateLiveStreamParams {
   audio_only?: boolean;
   max_continuous_duration?: number;
   embedded_subtitles: Array<LiveStreamEmbeddedSubtitleSettings>;
+  use_slate_for_standard_latency?: boolean;
+  reconnect_slate_url?: string;
 }
 
 export interface UpdateLiveStreamParams {
@@ -285,6 +289,8 @@ export interface UpdateLiveStreamParams {
   latency_mode?: LatencyMode;
   reconnect_window?: number;
   max_continuous_duration?: number;
+  use_slate_for_standard_latency?: boolean;
+  reconnect_slate_url?: string;
 }
 
 export interface ListLiveStreamParams {
