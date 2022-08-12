@@ -26,6 +26,22 @@ export interface ExportsListResponse {
   data: Array<string>;
 }
 
+export interface ViewExportFile {
+  version: number;
+  type: 'csv';
+  path: string;
+}
+export interface ViewExport {
+  export_date: string;
+  files: ViewExportFile[];
+}
+
+export interface ExportsViewsListResponse {
+  total_row_count: number;
+  timeframe: Array<number>;
+  data: Array<ViewExport>;
+}
+
 export interface FilterQueryParams {
   filter_id: string;
   limit?: number;
