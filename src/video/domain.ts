@@ -5,6 +5,14 @@ export type TrackStatus = 'preparing' | 'ready' | 'errored';
 
 export type LatencyMode = 'low' | 'reduced' | 'standard';
 
+export type RecordingTimesType = 'content' | 'slate';
+
+export interface RecordingTimes {
+  started_at: string;
+  duration: number;
+  type?: RecordingTimesType;
+}
+
 export interface SigningKey {
   id: string;
   created_at: string;
@@ -113,6 +121,19 @@ export interface StaticRenditions {
   files: Array<StaticRendition>;
 }
 
+export interface NonStandardInputReasons {
+  video_codec?: string;
+  audio_codec?: string;
+  video_gop_size?: string;
+  video_frame_rate?: string;
+  video_resolution?: string;
+  video_bitrate?: string;
+  pixel_aspect_ratio?: string;
+  video_edit_list?: string;
+  audio_edit_list?: string;
+  unexpected_media_file_parameters?: string;
+}
+
 export declare interface AssetMaster {
   status: 'ready' | 'preparing' | 'errored';
   url: string;
@@ -142,6 +163,12 @@ export interface Asset {
   master?: AssetMaster;
   passthrough?: string;
   errors?: AssetError;
+  upload_id?: string;
+  live_stream_id?: string;
+  normalize_audio?: boolean;
+  recording_times?: Array<RecordingTimes>;
+  non_standard_input_reasons?: NonStandardInputReasons;
+  test: boolean;
 }
 
 export interface InputTrack {
