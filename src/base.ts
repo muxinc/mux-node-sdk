@@ -3,7 +3,7 @@
 import Axios, { AxiosInstance } from 'axios';
 import EventEmitter from 'events';
 
-import { RequestOptions } from './RequestOptions.js';
+import { RequestOptions, RequestParams } from './RequestOptions.js';
 import { VERSION } from './version.js';
 
 /**
@@ -58,7 +58,7 @@ export class Base extends EventEmitter {
         this.config = config ?? {};
       }
 
-      this.http = Axios.create({
+      const request: RequestParams = {
         baseURL: this.config.baseUrl,
         headers: {
           'User-Agent': `Mux Node | ${VERSION}`,
@@ -70,7 +70,15 @@ export class Base extends EventEmitter {
           username: this._tokenId,
           password: this._tokenSecret,
         },
-      });
+      };
+
+      if (this.config.platform?.name) {
+        request.headers[
+          'x-source-platform'
+        ] = `${this.config.platform?.name} | ${this.config.platform?.version}`;
+      }
+
+      this.http = Axios.create(request);
 
       this.http.interceptors.request.use((req: any) => {
         this.emit('request', req);
