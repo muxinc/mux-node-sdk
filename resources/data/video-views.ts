@@ -1,0 +1,387 @@
+// File generated from our OpenAPI spec by Stainless.
+
+import * as Core from '~/core';
+import { APIResource } from '~/resource';
+import { isRequestOptions } from '~/core';
+import { MorePages, MorePagesParams } from '~/pagination';
+
+export class VideoViews extends APIResource {
+  /**
+   * Returns the details of a video view.
+   */
+  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<VideoViewResponse>> {
+    return this.get(`/data/v1/video-views/${id}`, options);
+  }
+
+  /**
+   * Returns a list of video views which match the filters and have a `view_end`
+   * within the specified timeframe.
+   */
+  list(
+    query?: VideoViewListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<AbridgedVideoViewsMorePages>;
+  list(options?: Core.RequestOptions): Core.PagePromise<AbridgedVideoViewsMorePages>;
+  list(
+    query: VideoViewListParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<AbridgedVideoViewsMorePages> {
+    if (isRequestOptions(query)) {
+      return this.list({}, query);
+    }
+
+    return this.getAPIList('/data/v1/video-views', AbridgedVideoViewsMorePages, { query, ...options });
+  }
+}
+
+export class AbridgedVideoViewsMorePages extends MorePages<AbridgedVideoView> {}
+
+export interface AbridgedVideoView {
+  country_code?: string | null;
+
+  error_type_id?: number | null;
+
+  id?: string;
+
+  player_error_code?: string | null;
+
+  player_error_message?: string | null;
+
+  total_row_count?: number;
+
+  video_title?: string | null;
+
+  view_end?: string;
+
+  view_start?: string;
+
+  viewer_application_name?: string | null;
+
+  viewer_os_family?: string | null;
+}
+
+export interface AbridgedVideoView {
+  data?: Array<AbridgedVideoView>;
+
+  timeframe?: Array<number>;
+
+  total_row_count?: number;
+}
+
+export interface VideoViewResponse {
+  data?: VideoViewResponse.Data;
+
+  timeframe?: Array<number>;
+}
+
+export namespace VideoViewResponse {
+  export interface Data {
+    asn?: number | null;
+
+    asn_name?: string | null;
+
+    buffering_count?: number | null;
+
+    buffering_duration?: number | null;
+
+    buffering_rate?: string | null;
+
+    cdn?: string | null;
+
+    city?: string | null;
+
+    continent_code?: string | null;
+
+    country_code?: string | null;
+
+    country_name?: string | null;
+
+    custom_1?: string | null;
+
+    custom_2?: string | null;
+
+    custom_3?: string | null;
+
+    custom_4?: string | null;
+
+    custom_5?: string | null;
+
+    error_type_id?: number | null;
+
+    events?: Array<Data.Events>;
+
+    exit_before_video_start?: boolean;
+
+    experiment_name?: string | null;
+
+    id?: string;
+
+    inserted_at?: string;
+
+    isp?: string | null;
+
+    latitude?: string | null;
+
+    longitude?: string | null;
+
+    metro?: string | null;
+
+    mux_api_version?: string;
+
+    mux_embed_version?: string | null;
+
+    mux_viewer_id?: string;
+
+    page_load_time?: number | null;
+
+    page_type?: string | null;
+
+    page_url?: string | null;
+
+    platform_description?: string | null;
+
+    platform_summary?: string | null;
+
+    playback_score?: string | null;
+
+    player_autoplay?: boolean;
+
+    player_error_code?: string | null;
+
+    player_error_message?: string | null;
+
+    player_height?: number | null;
+
+    player_instance_id?: string | null;
+
+    player_language?: string | null;
+
+    player_load_time?: number | null;
+
+    player_mux_plugin_name?: string | null;
+
+    player_mux_plugin_version?: string | null;
+
+    player_name?: string | null;
+
+    player_poster?: string | null;
+
+    player_preload?: boolean;
+
+    player_remote_played?: boolean | null;
+
+    player_software?: string | null;
+
+    player_software_version?: string | null;
+
+    player_source_domain?: string | null;
+
+    player_source_duration?: number | null;
+
+    player_source_height?: number | null;
+
+    player_source_host_name?: string | null;
+
+    player_source_stream_type?: string | null;
+
+    player_source_type?: string | null;
+
+    player_source_url?: string | null;
+
+    player_source_width?: number | null;
+
+    player_startup_time?: number | null;
+
+    player_version?: string | null;
+
+    player_view_count?: number | null;
+
+    player_width?: number | null;
+
+    preroll_ad_asset_hostname?: string | null;
+
+    preroll_ad_tag_hostname?: string | null;
+
+    preroll_played?: boolean | null;
+
+    preroll_requested?: boolean | null;
+
+    property_id?: number;
+
+    quality_score?: string | null;
+
+    rebuffer_percentage?: string | null;
+
+    rebuffering_score?: string | null;
+
+    region?: string | null;
+
+    requests_for_first_preroll?: number | null;
+
+    session_id?: string;
+
+    short_time?: string;
+
+    startup_score?: string | null;
+
+    sub_property_id?: string | null;
+
+    time_to_first_frame?: number | null;
+
+    updated_at?: string;
+
+    used_fullscreen?: boolean;
+
+    video_content_type?: string | null;
+
+    video_duration?: number | null;
+
+    video_encoding_variant?: string | null;
+
+    video_id?: string | null;
+
+    video_language?: string | null;
+
+    video_producer?: string | null;
+
+    video_series?: string | null;
+
+    video_startup_preroll_load_time?: number | null;
+
+    video_startup_preroll_request_time?: number | null;
+
+    video_stream_type?: string | null;
+
+    video_title?: string | null;
+
+    video_variant_id?: string | null;
+
+    video_variant_name?: string | null;
+
+    view_average_request_latency?: number | null;
+
+    view_average_request_throughput?: number | null;
+
+    view_end?: string;
+
+    view_error_id?: number | null;
+
+    view_id?: string;
+
+    view_max_downscale_percentage?: string | null;
+
+    view_max_playhead_position?: string | null;
+
+    view_max_request_latency?: number | null;
+
+    view_max_upscale_percentage?: string | null;
+
+    view_playing_time?: string | null;
+
+    view_seek_count?: number | null;
+
+    view_seek_duration?: number | null;
+
+    view_session_id?: string | null;
+
+    view_start?: string;
+
+    view_total_content_playback_time?: number | null;
+
+    view_total_downscaling?: string | null;
+
+    view_total_upscaling?: string | null;
+
+    viewer_application_engine?: string | null;
+
+    viewer_application_name?: string | null;
+
+    viewer_application_version?: string | null;
+
+    viewer_connection_type?: string | null;
+
+    viewer_device_category?: string | null;
+
+    viewer_device_manufacturer?: string | null;
+
+    viewer_device_model?: string | null;
+
+    viewer_device_name?: string | null;
+
+    viewer_experience_score?: string | null;
+
+    viewer_os_architecture?: string | null;
+
+    viewer_os_family?: string | null;
+
+    viewer_os_version?: string | null;
+
+    viewer_user_agent?: string | null;
+
+    viewer_user_id?: string | null;
+
+    watch_time?: number | null;
+
+    watched?: boolean;
+
+    weighted_average_bitrate?: number | null;
+  }
+
+  export namespace Data {
+    export interface Events {
+      event_time?: number;
+
+      name?: string;
+
+      playback_time?: number;
+
+      viewer_time?: number;
+    }
+  }
+}
+
+export interface VideoViewListParams extends MorePagesParams {
+  /**
+   * Filter video views by the provided error ID (as returned in the error_type_id
+   * field in the list video views endpoint). If you provide any as the error ID,
+   * this will filter the results to those with any error.
+   */
+  error_id?: number;
+
+  /**
+   * Limit the results to rows that match conditions from provided key:value pairs.
+   * Must be provided as an array query string parameter.
+   *
+   * To exclude rows that match a certain condition, prepend a `!` character to the
+   * dimension.
+   *
+   * Possible filter names are the same as returned by the List Filters endpoint.
+   *
+   * Example:
+   *
+   * - `filters[]=operating_system:windows&filters[]=!country:US`
+   */
+  'filters[]'?: Array<string>;
+
+  /**
+   * Sort order.
+   */
+  order_direction?: 'asc' | 'desc';
+
+  /**
+   * Timeframe window to limit results by. Must be provided as an array query string
+   * parameter (e.g. timeframe[]=).
+   *
+   * Accepted formats are...
+   *
+   * - array of epoch timestamps e.g. `timeframe[]=1498867200&timeframe[]=1498953600`
+   * - duration string e.g. `timeframe[]=24:hours or timeframe[]=7:days`
+   */
+  'timeframe[]'?: Array<string>;
+
+  /**
+   * Viewer ID to filter results by. This value may be provided by the integration,
+   * or may be created by Mux.
+   */
+  viewer_id?: string;
+}
