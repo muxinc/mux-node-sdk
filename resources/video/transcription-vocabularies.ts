@@ -103,10 +103,6 @@ export interface CreateTranscriptionVocabularyRequest {
 }
 
 export interface TranscriptionVocabulary {
-  data?: Array<TranscriptionVocabulary>;
-}
-
-export interface TranscriptionVocabulary {
   /**
    * Time the Transcription Vocabulary was created, defined as a Unix timestamp
    * (seconds since epoch).

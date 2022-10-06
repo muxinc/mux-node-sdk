@@ -678,6 +678,12 @@ export namespace Asset {
   }
 }
 
+export interface DimensionValue {
+  total_count?: number;
+
+  value?: string;
+}
+
 export interface ListDimensionValuesResponse {
   data?: Array<DimensionValue>;
 
@@ -692,10 +698,4 @@ export namespace ListDimensionValuesResponse {
 
     value?: string;
   }
-}
-
-export interface DimensionValue {
-  total_count?: number;
-
-  value?: string;
 }

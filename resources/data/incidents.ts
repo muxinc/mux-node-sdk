@@ -143,22 +143,6 @@ export interface IncidentResponse {
   timeframe?: Array<number>;
 }
 
-export interface Incident {
-  data?: Array<Incident>;
-
-  timeframe?: Array<number>;
-
-  total_row_count?: number;
-}
-
-export interface Incident {
-  data?: Array<Incident>;
-
-  timeframe?: Array<number>;
-
-  total_row_count?: number;
-}
-
 export interface IncidentListParams extends MorePagesParams {
   /**
    * Value to order the results by

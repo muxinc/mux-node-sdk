@@ -494,10 +494,6 @@ export namespace GetAssetPlaybackIdResponse {
   }
 }
 
-export interface Asset {
-  data?: Array<Shared.Asset>;
-}
-
 export interface UpdateAssetMasterRequest {
   /**
    * Add or remove access to the master version of the video.

@@ -60,14 +60,6 @@ export interface AbridgedVideoView {
   viewer_os_family?: string | null;
 }
 
-export interface AbridgedVideoView {
-  data?: Array<AbridgedVideoView>;
-
-  timeframe?: Array<number>;
-
-  total_row_count?: number;
-}
-
 export interface VideoViewResponse {
   data?: VideoViewResponse.Data;
 

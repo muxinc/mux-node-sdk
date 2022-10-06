@@ -444,10 +444,6 @@ export namespace GetLiveStreamPlaybackIdResponse {
 }
 
 export interface LiveStream {
-  data?: Array<LiveStream>;
-}
-
-export interface LiveStream {
   /**
    * The Asset that is currently being created if there is an active broadcast.
    */

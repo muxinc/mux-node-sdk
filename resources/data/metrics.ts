@@ -210,14 +210,6 @@ export namespace ListAllMetricValuesResponse {
   }
 }
 
-export interface BreakdownValue {
-  data?: Array<BreakdownValue>;
-
-  timeframe?: Array<number>;
-
-  total_row_count?: number;
-}
-
 export interface ListInsightsResponse {
   data?: Array<ListInsightsResponse.Data>;
 

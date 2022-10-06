@@ -47,14 +47,6 @@ export interface FilterValue {
   value?: string;
 }
 
-export interface FilterValue {
-  data?: Array<FilterValue>;
-
-  timeframe?: Array<number>;
-
-  total_row_count?: number;
-}
-
 export interface ListFiltersResponse {
   data?: ListFiltersResponse.Data;
 

@@ -196,10 +196,6 @@ export interface CreateSpaceRequest {
 }
 
 export interface Space {
-  data: Array<Space>;
-}
-
-export interface Space {
   /**
    * Time the space was created, defined as a Unix timestamp (seconds since epoch).
    */
