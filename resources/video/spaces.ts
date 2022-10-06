@@ -4,6 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import { NoMorePages, NoMorePagesParams } from '~/pagination';
+import * as Shared from '~/resources/shared';
 
 export class Spaces extends APIResource {
   /**
@@ -173,43 +174,13 @@ export interface BroadcastResponse {
  * and `stop` APIs.
  */
 
-export interface CreateBroadcastRequest {
-  /**
-   * The ID of the live stream that you want to broadcast to.
-   */
-  live_stream_id: string;
-
-  /**
-   * URL of an image to display as the background of the broadcast. Its dimensions
-   * should match the provided resolution.
-   */
-  background?: string;
-
-  /**
-   * The layout used when broadcasting the space. Defaults to `gallery` if not set.
-   */
-  layout?: 'gallery' | 'active-speaker';
-
-  /**
-   * Arbitrary user-supplied metadata that will be included in the broadcast details
-   * and related webhooks. Max: 255 characters.
-   */
-  passthrough?: string;
-
-  /**
-   * The resolution of the composited video sent to the live stream. Defaults to
-   * `1920x1080` if not set.
-   */
-  resolution?: '1920x1080' | '1280x720' | '1080x1920' | '720x1280' | '1080x1080' | '720x720';
-}
-
 export interface CreateSpaceRequest {
   /**
    * An array of broadcast destinations you want to stream the space to. **Note:** By
    * default only a single broadcast destination can be specified. Contact Mux
    * support if you need more.
    */
-  broadcasts?: Array<CreateBroadcastRequest>;
+  broadcasts?: Array<Shared.CreateBroadcastRequest>;
 
   /**
    * Arbitrary user-supplied metadata that will be included in the space details and
@@ -222,6 +193,10 @@ export interface CreateSpaceRequest {
    * travels through Mux's video infrastructure. Defaults to `server` if not set.
    */
   type?: 'server';
+}
+
+export interface Space {
+  data: Array<Space>;
 }
 
 export interface Space {
@@ -295,7 +270,7 @@ export interface SpaceCreateParams {
    * default only a single broadcast destination can be specified. Contact Mux
    * support if you need more.
    */
-  broadcasts?: Array<CreateBroadcastRequest>;
+  broadcasts?: Array<Shared.CreateBroadcastRequest>;
 
   /**
    * Arbitrary user-supplied metadata that will be included in the space details and

@@ -56,6 +56,10 @@ export class SigningKeys extends APIResource {
 export class SigningKeysNoMorePages extends NoMorePages<SigningKey> {}
 
 export interface SigningKey {
+  data?: Array<SigningKey>;
+}
+
+export interface SigningKey {
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
    */

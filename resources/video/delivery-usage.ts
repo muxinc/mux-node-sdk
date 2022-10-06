@@ -72,6 +72,19 @@ export interface DeliveryReport {
   passthrough?: string;
 }
 
+export interface DeliveryReport {
+  data?: Array<DeliveryReport>;
+
+  /**
+   * Number of assets returned in this response. Default value is 100.
+   */
+  limit?: number;
+
+  timeframe?: Array<number>;
+
+  total_row_count?: number;
+}
+
 export interface DeliveryUsageListParams extends MorePagesParams {
   /**
    * Filter response to return delivery usage for this asset only. You cannot specify

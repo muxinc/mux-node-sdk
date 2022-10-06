@@ -70,6 +70,10 @@ export interface CreateUploadRequest {
 }
 
 export interface Upload {
+  data?: Array<Upload>;
+}
+
+export interface Upload {
   /**
    * Only set once the upload is in the `asset_created` state.
    */

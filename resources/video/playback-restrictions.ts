@@ -105,6 +105,10 @@ export namespace CreatePlaybackRestrictionRequest {
 }
 
 export interface PlaybackRestriction {
+  data?: Array<PlaybackRestriction>;
+}
+
+export interface PlaybackRestriction {
   /**
    * Time the Playback Restriction was created, defined as a Unix timestamp (seconds
    * since epoch).

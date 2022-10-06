@@ -1,5 +1,59 @@
 // File generated from our OpenAPI spec by Stainless.
 
+export interface CreatePlaybackIdResponse {
+  data?: CreatePlaybackIdResponse.Data;
+}
+
+export namespace CreatePlaybackIdResponse {
+  export interface Data {
+    /**
+     * Unique identifier for the PlaybackID
+     */
+    id?: string;
+
+    /**
+     * - `public` playback IDs are accessible by constructing an HLS URL like
+     *   `https://stream.mux.com/${PLAYBACK_ID}`
+     *
+     * - `signed` playback IDs should be used with tokens
+     *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
+     *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
+     *   for details about creating tokens.
+     */
+    policy?: 'public' | 'signed';
+  }
+}
+
+export interface CreateBroadcastRequest {
+  /**
+   * The ID of the live stream that you want to broadcast to.
+   */
+  live_stream_id: string;
+
+  /**
+   * URL of an image to display as the background of the broadcast. Its dimensions
+   * should match the provided resolution.
+   */
+  background?: string;
+
+  /**
+   * The layout used when broadcasting the space. Defaults to `gallery` if not set.
+   */
+  layout?: 'gallery' | 'active-speaker';
+
+  /**
+   * Arbitrary user-supplied metadata that will be included in the broadcast details
+   * and related webhooks. Max: 255 characters.
+   */
+  passthrough?: string;
+
+  /**
+   * The resolution of the composited video sent to the live stream. Defaults to
+   * `1920x1080` if not set.
+   */
+  resolution?: '1920x1080' | '1280x720' | '1080x1920' | '720x1280' | '1080x1080' | '720x720';
+}
+
 export interface CreateAssetRequest {
   /**
    * An array of objects that each describe an input file to be used to create the
@@ -200,30 +254,6 @@ export namespace CreateAssetRequest {
        */
       width?: string;
     }
-  }
-}
-
-export interface CreatePlaybackIdResponse {
-  data?: CreatePlaybackIdResponse.Data;
-}
-
-export namespace CreatePlaybackIdResponse {
-  export interface Data {
-    /**
-     * Unique identifier for the PlaybackID
-     */
-    id?: string;
-
-    /**
-     * - `public` playback IDs are accessible by constructing an HLS URL like
-     *   `https://stream.mux.com/${PLAYBACK_ID}`
-     *
-     * - `signed` playback IDs should be used with tokens
-     *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
-     *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
-     *   for details about creating tokens.
-     */
-    policy?: 'public' | 'signed';
   }
 }
 
@@ -646,4 +676,26 @@ export namespace Asset {
      */
     video_resolution?: string;
   }
+}
+
+export interface ListDimensionValuesResponse {
+  data?: Array<DimensionValue>;
+
+  timeframe?: Array<number>;
+
+  total_row_count?: number;
+}
+
+export namespace ListDimensionValuesResponse {
+  export interface Data {
+    total_count?: number;
+
+    value?: string;
+  }
+}
+
+export interface DimensionValue {
+  total_count?: number;
+
+  value?: string;
 }

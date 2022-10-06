@@ -4,6 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import { MorePages, MorePagesParams } from '~/pagination';
+import * as Shared from '~/resources/shared';
 
 export class Dimensions extends APIResource {
   /**
@@ -39,21 +40,7 @@ export class Dimensions extends APIResource {
   }
 }
 
-export class DimensionValuesMorePages extends MorePages<DimensionValue> {}
-
-export interface DimensionValue {
-  total_count?: number;
-
-  value?: string;
-}
-
-export interface DimensionValue {
-  data?: Array<DimensionValue>;
-
-  timeframe?: Array<number>;
-
-  total_row_count?: number;
-}
+export class DimensionValuesMorePages extends MorePages<Shared.DimensionValue> {}
 
 export interface ListDimensionsResponse {
   data?: ListDimensionsResponse.Data;
