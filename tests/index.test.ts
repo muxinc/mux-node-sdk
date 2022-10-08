@@ -19,34 +19,35 @@ describe('instantiate client', () => {
   test('with minimal arguments', () => {
     // fails if no api key provided
     expect(() => {
-      new Mux();
+      new Mux({ muxTokenSecret: 'MUX_TOKEN_SECRET' });
     }).toThrow();
 
     // set api key via env var
     process.env['MUX_API_KEY'] = 'env var api key';
-    const client = new Mux();
+    const client = new Mux({ muxTokenSecret: 'MUX_TOKEN_SECRET' });
     expect(client.apiKey).toBe('env var api key');
+    expect(client.muxTokenSecret).toBe('MUX_TOKEN_SECRET');
   });
 
   test('with apiKey argument', () => {
     process.env['MUX_API_KEY'] = 'env var api key';
 
-    const client = new Mux({ apiKey: 'another api key' });
+    const client = new Mux({ apiKey: 'another api key', muxTokenSecret: 'MUX_TOKEN_SECRET' });
     expect(client.apiKey).toBe('another api key');
   });
 
   test('with options argument', () => {
     process.env['MUX_API_KEY'] = 'env var api key';
 
-    // apiKey
-    const client = new Mux({ apiKey: 'my api key' });
+    // apiKey and custom options
+    const client = new Mux({ apiKey: 'my api key', muxTokenSecret: 'MUX_TOKEN_SECRET' });
     expect(client.apiKey).toBe('my api key');
   });
 
   test('with disabled authentication', () => {
     process.env['MUX_API_KEY'] = 'env var api key';
 
-    const client = new Mux({ apiKey: null });
+    const client = new Mux({ apiKey: null, muxTokenSecret: 'MUX_TOKEN_SECRET' });
     expect(client.apiKey).toBeNull();
   });
 });

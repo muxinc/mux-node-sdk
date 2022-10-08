@@ -24,6 +24,7 @@ import Mux from 'mux';
 
 const mux = new Mux({
   apiKey: 'my api key', // defaults to process.env["MUX_API_KEY"]
+  muxTokenSecret: 'MUX_TOKEN_SECRET',
 });
 
 async function main() {
@@ -44,6 +45,7 @@ import Mux from 'mux';
 
 const mux = new Mux({
   apiKey: 'my api key', // defaults to process.env["MUX_API_KEY"]
+  muxTokenSecret: 'MUX_TOKEN_SECRET',
 });
 
 async function main() {
@@ -105,6 +107,7 @@ You can use the `maxRetries` option to configure or disable this:
 // Configure the default for all requests:
 const mux = new Mux({
   maxRetries: 0, // default is 2
+  muxTokenSecret: 'MUX_TOKEN_SECRET',
 });
 
 // Or, configure per-request:
@@ -122,6 +125,7 @@ Requests time out after 60 seconds by default. You can configure this with a `ti
 // Configure the default for all requests:
 const mux = new Mux({
   timeout: 20 * 1000, // 20 seconds (default is 60s)
+  muxTokenSecret: 'MUX_TOKEN_SECRET',
 });
 
 // Override per-request:
@@ -164,6 +168,7 @@ import HttpsProxyAgent from 'https-proxy-agent';
 // Configure the default for all requests:
 const mux = new Mux({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
+  muxTokenSecret: 'MUX_TOKEN_SECRET',
 });
 
 // Override per-request:

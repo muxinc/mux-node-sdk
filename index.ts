@@ -13,10 +13,13 @@ type Config = {
   baseURL?: string;
   timeout?: number;
   httpAgent?: Agent;
+  muxTokenSecret?: string | null;
 };
 
 export class Mux extends Core.APIClient {
-  constructor(config?: Config) {
+  muxTokenSecret: string;
+
+  constructor(config: Config) {
     const options: Config = {
       apiKey: process.env['MUX_API_KEY'] || '',
       baseURL: 'https://api.mux.com',
@@ -35,13 +38,21 @@ export class Mux extends Core.APIClient {
       timeout: options.timeout,
       httpAgent: options.httpAgent,
     });
+
+    const muxTokenSecret = config.muxTokenSecret || process.env['secret'];
+    if (!muxTokenSecret) {
+      throw new Error(
+        "The secret environment variable is missing or empty; either provide it, or instantiate the Mux client with an muxTokenSecret option, like new Mux({ muxTokenSecret: 'MUX_TOKEN_SECRET' }).",
+      );
+    }
+    this.muxTokenSecret = muxTokenSecret;
   }
 
   video: API.VideoResource = new API.VideoResource(this);
   data: API.Data = new API.Data(this);
 
   protected override authHeaders(): Core.Headers {
-    const creds = `Basic 44c819de-4add-4c9f-b2e9-384a0a71bede:INKxCoZ+cX6l1yrR6vqzYHVaeFEcqvZShznWM1U/No8KsV7h6Jxu1XXuTUQ91sdiGONK3H7NE7H`;
+    const creds = `${this.apiKey}:${this.muxTokenSecret}`;
     const Authorization = `Basic ${Buffer.from(creds).toString('base64')}`;
     return { Authorization };
   }

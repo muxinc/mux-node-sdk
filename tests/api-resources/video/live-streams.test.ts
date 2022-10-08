@@ -1,7 +1,11 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Mux from '~/index';
-const mux = new Mux({ apiKey: 'something1234', baseURL: 'http://127.0.0.1:4010' });
+const mux = new Mux({
+  apiKey: 'something1234',
+  baseURL: 'http://127.0.0.1:4010',
+  muxTokenSecret: 'MUX_TOKEN_SECRET',
+});
 
 describe('resource live_streams', () => {
   test('create: only required params', async () => {
