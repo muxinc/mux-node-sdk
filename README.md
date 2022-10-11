@@ -49,8 +49,6 @@ const mux = new Mux({
 });
 
 async function main() {
-  const params: Mux.AssetRetrieveParams = undefined;
-
   const asset: Mux.AssetResponse = await mux.video.assets.retrieve()
 
 }
