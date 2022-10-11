@@ -7,52 +7,53 @@ import type { Agent } from 'http';
 
 type Config = {
   /**
-   * Defaults to to process.env["MUX_API_KEY"]. Set it to null if you want to send unauthenticated requests.
+   * Defaults to to process.env["MUX_TOKEN_ID"]. Set it to null if you want to send unauthenticated requests.
    */
-  apiKey?: string | null;
+  tokenId?: string | null;
   baseURL?: string;
   timeout?: number;
   httpAgent?: Agent;
-  muxTokenSecret?: string | null;
+  tokenSecret?: string | null;
 };
 
 export class Mux extends Core.APIClient {
-  muxTokenSecret: string;
+  tokenId: string | null;
+  tokenSecret: string;
 
   constructor(config: Config) {
     const options: Config = {
-      apiKey: process.env['MUX_API_KEY'] || '',
+      tokenId: process.env['MUX_TOKEN_ID'] || '',
       baseURL: 'https://api.mux.com',
       ...config,
     };
 
-    if (!options.apiKey && options.apiKey !== null) {
+    if (!options.tokenId && options.tokenId !== null) {
       throw new Error(
-        "The MUX_API_KEY environment variable is missing or empty; either provide it, or instantiate the Mux client with an apiKey option, like new Mux({apiKey: 'my api key'}).",
+        "The MUX_TOKEN_ID environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenId option, like new Mux({tokenId: 'my token id'}).",
       );
     }
 
     super({
-      apiKey: options.apiKey,
       baseURL: options.baseURL!,
       timeout: options.timeout,
       httpAgent: options.httpAgent,
     });
+    this.tokenId = options.tokenId;
 
-    const muxTokenSecret = config.muxTokenSecret || process.env['secret'];
-    if (!muxTokenSecret) {
+    const tokenSecret = config.tokenSecret || process.env['MUX_TOKEN_SECRET'];
+    if (!tokenSecret) {
       throw new Error(
-        "The secret environment variable is missing or empty; either provide it, or instantiate the Mux client with an muxTokenSecret option, like new Mux({ muxTokenSecret: 'MUX_TOKEN_SECRET' }).",
+        "The MUX_TOKEN_SECRET environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenSecret option, like new Mux({ tokenSecret: 'my secret' }).",
       );
     }
-    this.muxTokenSecret = muxTokenSecret;
+    this.tokenSecret = tokenSecret;
   }
 
   video: API.VideoResource = new API.VideoResource(this);
   data: API.Data = new API.Data(this);
 
   protected override authHeaders(): Core.Headers {
-    const creds = `${this.apiKey}:${this.muxTokenSecret}`;
+    const creds = `${this.tokenId}:${this.tokenSecret}`;
     const Authorization = `Basic ${Buffer.from(creds).toString('base64')}`;
     return { Authorization };
   }

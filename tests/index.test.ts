@@ -17,37 +17,37 @@ describe('instantiate client', () => {
   });
 
   test('with minimal arguments', () => {
-    // fails if no api key provided
+    // fails if no access token provided
     expect(() => {
-      new Mux({ muxTokenSecret: 'MUX_TOKEN_SECRET' });
+      new Mux({ tokenSecret: 'my secret' });
     }).toThrow();
 
-    // set api key via env var
-    process.env['MUX_API_KEY'] = 'env var api key';
-    const client = new Mux({ muxTokenSecret: 'MUX_TOKEN_SECRET' });
-    expect(client.apiKey).toBe('env var api key');
-    expect(client.muxTokenSecret).toBe('MUX_TOKEN_SECRET');
+    // set access token via env var
+    process.env['MUX_TOKEN_ID'] = 'env var token id';
+    const client = new Mux({ tokenSecret: 'my secret' });
+    expect(client.tokenId).toBe('env var token id');
+    expect(client.tokenSecret).toBe('my secret');
   });
 
-  test('with apiKey argument', () => {
-    process.env['MUX_API_KEY'] = 'env var api key';
+  test('with tokenId argument', () => {
+    process.env['MUX_TOKEN_ID'] = 'env var token id';
 
-    const client = new Mux({ apiKey: 'another api key', muxTokenSecret: 'MUX_TOKEN_SECRET' });
-    expect(client.apiKey).toBe('another api key');
+    const client = new Mux({ tokenId: 'another token id', tokenSecret: 'my secret' });
+    expect(client.tokenId).toBe('another token id');
   });
 
   test('with options argument', () => {
-    process.env['MUX_API_KEY'] = 'env var api key';
+    process.env['MUX_TOKEN_ID'] = 'env var token id';
 
-    // apiKey and custom options
-    const client = new Mux({ apiKey: 'my api key', muxTokenSecret: 'MUX_TOKEN_SECRET' });
-    expect(client.apiKey).toBe('my api key');
+    // tokenId and custom options
+    const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
+    expect(client.tokenId).toBe('my token id');
   });
 
   test('with disabled authentication', () => {
-    process.env['MUX_API_KEY'] = 'env var api key';
+    process.env['MUX_TOKEN_ID'] = 'env var token id';
 
-    const client = new Mux({ apiKey: null, muxTokenSecret: 'MUX_TOKEN_SECRET' });
-    expect(client.apiKey).toBeNull();
+    const client = new Mux({ tokenId: null, tokenSecret: 'my secret' });
+    expect(client.tokenId).toBeNull();
   });
 });

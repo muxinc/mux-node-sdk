@@ -32,7 +32,6 @@ const DEFAULT_TIMEOUT = 60 * 1000; // 60s
 type Fetch = (url: RequestInfo, init?: RequestInit) => Promise<Response>;
 
 export abstract class APIClient {
-  apiKey: string | null;
   baseURL: string;
   maxRetries: number;
   timeout: number;
@@ -42,19 +41,16 @@ export abstract class APIClient {
   protected idempotencyHeader?: string;
 
   constructor({
-    apiKey,
     baseURL,
     maxRetries = DEFAULT_MAX_RETRIES,
     timeout = DEFAULT_TIMEOUT,
     httpAgent,
   }: {
-    apiKey: string | null;
     baseURL: string;
     maxRetries?: number;
     timeout: number | undefined;
     httpAgent: Agent | undefined;
   }) {
-    this.apiKey = apiKey;
     this.baseURL = baseURL;
     this.maxRetries = validatePositiveInteger('maxRetries', maxRetries);
     this.timeout = validatePositiveInteger('timeout', timeout);
