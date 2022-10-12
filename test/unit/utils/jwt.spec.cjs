@@ -72,6 +72,18 @@ describe('Utils::JWT', () => {
       expect(decoded.aud).to.eq('s');
     });
 
+    it('maps type real-time to rt', () => {
+      const options = {
+        keyId: TEST_ID,
+        keySecret: TEST_SECRET,
+        type: 'real-time',
+      };
+      const token = JWT.sign('space-id', options);
+      expect(token).to.be.a('string');
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq('rt');
+    });
+
     it('takes a file path for a secret', () => {
       const options = {
         keyId: TEST_ID,

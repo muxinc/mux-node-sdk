@@ -12,6 +12,7 @@ export enum TypeClaim {
   thumbnail = 't',
   gif = 'g',
   storyboard = 's',
+  'real-time' = 'rt',
 }
 export interface MuxJWTSignOptions {
   keyId?: string;
