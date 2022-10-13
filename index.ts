@@ -7,41 +7,53 @@ import type { Agent } from 'http';
 
 type Config = {
   /**
-   * Defaults to to process.env["MUX_API_KEY"]. Set it to null if you want to send unauthenticated requests.
+   * Defaults to to process.env["MUX_TOKEN_ID"]. Set it to null if you want to send unauthenticated requests.
    */
-  apiKey?: string | null;
+  tokenId?: string | null;
   baseURL?: string;
   timeout?: number;
   httpAgent?: Agent;
+  tokenSecret?: string | null;
 };
 
 export class Mux extends Core.APIClient {
-  constructor(config?: Config) {
+  tokenId: string | null;
+  tokenSecret: string;
+
+  constructor(config: Config) {
     const options: Config = {
-      apiKey: process.env['MUX_API_KEY'] || '',
+      tokenId: process.env['MUX_TOKEN_ID'] || '',
       baseURL: 'https://api.mux.com',
       ...config,
     };
 
-    if (!options.apiKey && options.apiKey !== null) {
+    if (!options.tokenId && options.tokenId !== null) {
       throw new Error(
-        "The MUX_API_KEY environment variable is missing or empty; either provide it, or instantiate the Mux client with an apiKey option, like new Mux({apiKey: 'my api key'}).",
+        "The MUX_TOKEN_ID environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenId option, like new Mux({tokenId: 'my token id'}).",
       );
     }
 
     super({
-      apiKey: options.apiKey,
       baseURL: options.baseURL!,
       timeout: options.timeout,
       httpAgent: options.httpAgent,
     });
+    this.tokenId = options.tokenId;
+
+    const tokenSecret = config.tokenSecret || process.env['MUX_TOKEN_SECRET'];
+    if (!tokenSecret) {
+      throw new Error(
+        "The MUX_TOKEN_SECRET environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenSecret option, like new Mux({ tokenSecret: 'my secret' }).",
+      );
+    }
+    this.tokenSecret = tokenSecret;
   }
 
   video: API.VideoResource = new API.VideoResource(this);
   data: API.Data = new API.Data(this);
 
   protected override authHeaders(): Core.Headers {
-    const creds = `Basic 44c819de-4add-4c9f-b2e9-384a0a71bede:INKxCoZ+cX6l1yrR6vqzYHVaeFEcqvZShznWM1U/No8KsV7h6Jxu1XXuTUQ91sdiGONK3H7NE7H`;
+    const creds = `${this.tokenId}:${this.tokenSecret}`;
     const Authorization = `Basic ${Buffer.from(creds).toString('base64')}`;
     return { Authorization };
   }

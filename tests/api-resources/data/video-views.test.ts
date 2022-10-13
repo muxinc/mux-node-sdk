@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Mux from '~/index';
-const mux = new Mux({ apiKey: 'something1234', baseURL: 'http://127.0.0.1:4010' });
+const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
 describe('resource video_views', () => {
   test('retrieve', async () => {
