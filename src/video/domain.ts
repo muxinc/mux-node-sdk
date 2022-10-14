@@ -306,7 +306,7 @@ export interface CreateLiveStreamParams {
   test?: boolean;
   audio_only?: boolean;
   max_continuous_duration?: number;
-  embedded_subtitles: Array<LiveStreamEmbeddedSubtitleSettings>;
+  embedded_subtitles?: Array<LiveStreamEmbeddedSubtitleSettings>;
   use_slate_for_standard_latency?: boolean;
   reconnect_slate_url?: string;
 }
