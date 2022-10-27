@@ -2,7 +2,6 @@
 import * as Core from './core';
 import * as Pagination from './pagination';
 import * as API from './resources';
-
 import type { Agent } from 'http';
 
 type Config = {
@@ -78,13 +77,13 @@ export class Mux extends Core.APIClient {
 }
 
 export namespace Mux {
-  export import MorePages = Pagination.MorePages;
-  export import MorePagesParams = Pagination.MorePagesParams;
-  export import MorePagesResponse = Pagination.MorePagesResponse;
+  export import PageWithTotal = Pagination.PageWithTotal;
+  export import PageWithTotalParams = Pagination.PageWithTotalParams;
+  export import PageWithTotalResponse = Pagination.PageWithTotalResponse;
 
-  export import NoMorePages = Pagination.NoMorePages;
-  export import NoMorePagesParams = Pagination.NoMorePagesParams;
-  export import NoMorePagesResponse = Pagination.NoMorePagesResponse;
+  export import BasePage = Pagination.BasePage;
+  export import BasePageParams = Pagination.BasePageParams;
+  export import BasePageResponse = Pagination.BasePageResponse;
 }
 
 exports = module.exports = Mux;

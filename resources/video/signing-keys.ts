@@ -3,7 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { NoMorePages, NoMorePagesParams } from '~/pagination';
+import { BasePage, BasePageParams } from '~/pagination';
 
 export class SigningKeys extends APIResource {
   /**
@@ -11,8 +11,10 @@ export class SigningKeys extends APIResource {
    * generate a 2048-bit RSA key-pair and return the private key and a generated
    * key-id; the public key will be stored at Mux to validate signed tokens.
    */
-  create(options?: Core.RequestOptions): Promise<Core.APIResponse<SigningKeyResponse>> {
-    return this.post('/video/v1/signing-keys', options);
+  async create(options?: Core.RequestOptions): Promise<SigningKey> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post('/video/v1/signing-keys', options)) as any;
+    return response.data;
   }
 
   /**
@@ -21,39 +23,41 @@ export class SigningKeys extends APIResource {
    * and Mux will return the corresponding signing key information. **The private key
    * is not returned in this response.**
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<SigningKeyResponse>> {
-    return this.get(`/video/v1/signing-keys/${id}`, options);
+  async retrieve(signingKeyId: string, options?: Core.RequestOptions): Promise<SigningKey> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.get(`/video/v1/signing-keys/${signingKeyId}`, options)) as any;
+    return response.data;
   }
 
   /**
    * Returns a list of URL signing keys.
    */
-  list(query?: SigningKeyListParams, options?: Core.RequestOptions): Core.PagePromise<SigningKeysNoMorePages>;
-  list(options?: Core.RequestOptions): Core.PagePromise<SigningKeysNoMorePages>;
+  list(query?: SigningKeyListParams, options?: Core.RequestOptions): Core.PagePromise<SigningKeysBasePage>;
+  list(options?: Core.RequestOptions): Core.PagePromise<SigningKeysBasePage>;
   list(
     query: SigningKeyListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<SigningKeysNoMorePages> {
+  ): Core.PagePromise<SigningKeysBasePage> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
 
-    return this.getAPIList('/video/v1/signing-keys', SigningKeysNoMorePages, { query, ...options });
+    return this.getAPIList('/video/v1/signing-keys', SigningKeysBasePage, { query, ...options });
   }
 
   /**
    * Deletes an existing signing key. Use with caution, as this will invalidate any
    * existing signatures and no URLs can be signed using the key again.
    */
-  del(id: string, options?: Core.RequestOptions): Promise<void> {
-    return this.delete(`/video/v1/signing-keys/${id}`, {
+  del(signingKeyId: string, options?: Core.RequestOptions): Promise<void> {
+    return this.delete(`/video/v1/signing-keys/${signingKeyId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
   }
 }
 
-export class SigningKeysNoMorePages extends NoMorePages<SigningKey> {}
+export class SigningKeysBasePage extends BasePage<SigningKey> {}
 
 export interface SigningKey {
   /**
@@ -78,4 +82,4 @@ export interface SigningKeyResponse {
   data?: SigningKey;
 }
 
-export interface SigningKeyListParams extends NoMorePagesParams {}
+export interface SigningKeyListParams extends BasePageParams {}

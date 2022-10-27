@@ -8,53 +8,46 @@ export class PlaybackIds extends APIResource {
    * Retrieves the Identifier of the Asset or Live Stream associated with the
    * Playback ID.
    */
-  retrieve(
-    id: string,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetAssetOrLiveStreamIdResponse>> {
-    return this.get(`/video/v1/playback-ids/${id}`, options);
+  async retrieve(playbackId: string, options?: Core.RequestOptions): Promise<PlaybackIdRetrieveResponse> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.get(`/video/v1/playback-ids/${playbackId}`, options)) as any;
+    return response.data;
   }
 }
 
-export interface GetAssetOrLiveStreamIdResponse {
-  data?: GetAssetOrLiveStreamIdResponse.Data;
+export interface PlaybackIdRetrieveResponse {
+  /**
+   * The Playback ID used to retrieve the corresponding asset or the live stream ID
+   */
+  id?: string;
+
+  /**
+   * Describes the Asset or LiveStream object associated with the playback ID.
+   */
+  object?: PlaybackIdRetrieveResponse.Object;
+
+  /**
+   * - `public` playback IDs are accessible by constructing an HLS URL like
+   *   `https://stream.mux.com/${PLAYBACK_ID}`
+   *
+   * - `signed` playback IDs should be used with tokens
+   *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
+   *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
+   *   for details about creating tokens.
+   */
+  policy?: 'public' | 'signed';
 }
 
-export namespace GetAssetOrLiveStreamIdResponse {
-  export interface Data {
+export namespace PlaybackIdRetrieveResponse {
+  export interface Object {
     /**
-     * The Playback ID used to retrieve the corresponding asset or the live stream ID
+     * The identifier of the object.
      */
     id?: string;
 
     /**
-     * Describes the Asset or LiveStream object associated with the playback ID.
+     * Identifies the object type associated with the playback ID.
      */
-    object?: Data.Object;
-
-    /**
-     * - `public` playback IDs are accessible by constructing an HLS URL like
-     *   `https://stream.mux.com/${PLAYBACK_ID}`
-     *
-     * - `signed` playback IDs should be used with tokens
-     *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
-     *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
-     *   for details about creating tokens.
-     */
-    policy?: 'public' | 'signed';
-  }
-
-  export namespace Data {
-    export interface Object {
-      /**
-       * The identifier of the object.
-       */
-      id?: string;
-
-      /**
-       * Identifies the object type associated with the playback ID.
-       */
-      type?: 'asset' | 'live_stream';
-    }
+    type?: 'asset' | 'live_stream';
   }
 }

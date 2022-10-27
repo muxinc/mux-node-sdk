@@ -3,7 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { MorePages, MorePagesParams } from '~/pagination';
+import { PageWithTotal, PageWithTotalParams } from '~/pagination';
 
 export class DeliveryUsageResource extends APIResource {
   /**
@@ -13,21 +13,21 @@ export class DeliveryUsageResource extends APIResource {
   list(
     query?: DeliveryUsageListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DeliveryReportsMorePages>;
-  list(options?: Core.RequestOptions): Core.PagePromise<DeliveryReportsMorePages>;
+  ): Core.PagePromise<DeliveryReportsPageWithTotal>;
+  list(options?: Core.RequestOptions): Core.PagePromise<DeliveryReportsPageWithTotal>;
   list(
     query: DeliveryUsageListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DeliveryReportsMorePages> {
+  ): Core.PagePromise<DeliveryReportsPageWithTotal> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
 
-    return this.getAPIList('/video/v1/delivery-usage', DeliveryReportsMorePages, { query, ...options });
+    return this.getAPIList('/video/v1/delivery-usage', DeliveryReportsPageWithTotal, { query, ...options });
   }
 }
 
-export class DeliveryReportsMorePages extends MorePages<DeliveryReport> {}
+export class DeliveryReportsPageWithTotal extends PageWithTotal<DeliveryReport> {}
 
 export interface DeliveryReport {
   /**
@@ -72,7 +72,7 @@ export interface DeliveryReport {
   passthrough?: string;
 }
 
-export interface DeliveryUsageListParams extends MorePagesParams {
+export interface DeliveryUsageListParams extends PageWithTotalParams {
   /**
    * Filter response to return delivery usage for this asset only. You cannot specify
    * both the `asset_id` and `live_stream_id` parameters together.

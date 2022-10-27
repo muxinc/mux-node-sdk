@@ -8,14 +8,14 @@ export class RealTimeResource extends APIResource {
   /**
    * Lists available real-time dimensions.
    */
-  listDimensions(options?: Core.RequestOptions): Promise<Core.APIResponse<ListRealTimeDimensionsResponse>> {
+  listDimensions(options?: Core.RequestOptions): Promise<Core.APIResponse<RealTimeDimensionsResponse>> {
     return this.get('/data/v1/realtime/dimensions', options);
   }
 
   /**
    * Lists available real-time metrics.
    */
-  listMetrics(options?: Core.RequestOptions): Promise<Core.APIResponse<ListRealTimeMetricsResponse>> {
+  listMetrics(options?: Core.RequestOptions): Promise<Core.APIResponse<RealTimeMetricsResponse>> {
     return this.get('/data/v1/realtime/metrics', options);
   }
 
@@ -24,48 +24,66 @@ export class RealTimeResource extends APIResource {
    * number of concurrent viewers and negative impact score.
    */
   retrieveBreakdown(
-    id: string,
+    realtimeMetricId:
+      | 'current-concurrent-viewers'
+      | 'current-rebuffering-percentage'
+      | 'exits-before-video-start'
+      | 'playback-failure-percentage'
+      | 'current-average-bitrate',
     query?: RealTimeRetrieveBreakdownParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetRealTimeBreakdownResponse>>;
+  ): Promise<Core.APIResponse<RealTimeBreakdownResponse>>;
   retrieveBreakdown(
-    id: string,
+    realtimeMetricId:
+      | 'current-concurrent-viewers'
+      | 'current-rebuffering-percentage'
+      | 'exits-before-video-start'
+      | 'playback-failure-percentage'
+      | 'current-average-bitrate',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetRealTimeBreakdownResponse>>;
+  ): Promise<Core.APIResponse<RealTimeBreakdownResponse>>;
   retrieveBreakdown(
-    id: string,
+    realtimeMetricId:
+      | 'current-concurrent-viewers'
+      | 'current-rebuffering-percentage'
+      | 'exits-before-video-start'
+      | 'playback-failure-percentage'
+      | 'current-average-bitrate',
     query: RealTimeRetrieveBreakdownParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetRealTimeBreakdownResponse>> {
+  ): Promise<Core.APIResponse<RealTimeBreakdownResponse>> {
     if (isRequestOptions(query)) {
-      return this.retrieveBreakdown(id, {}, query);
+      return this.retrieveBreakdown(realtimeMetricId, {}, query);
     }
 
-    return this.get(`/data/v1/realtime/metrics/${id}/breakdown`, { query, ...options });
+    return this.get(`/data/v1/realtime/metrics/${realtimeMetricId}/breakdown`, { query, ...options });
   }
 
   /**
    * Gets histogram timeseries information for a specific metric.
    */
   retrieveHistogramTimeseries(
-    id: string,
+    realtimeHistogramMetricId: 'video-startup-time',
     query?: RealTimeRetrieveHistogramTimeseriesParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetRealTimeHistogramTimeseriesResponse>>;
+  ): Promise<Core.APIResponse<RealTimeHistogramTimeseriesResponse>>;
   retrieveHistogramTimeseries(
-    id: string,
+    realtimeHistogramMetricId: 'video-startup-time',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetRealTimeHistogramTimeseriesResponse>>;
+  ): Promise<Core.APIResponse<RealTimeHistogramTimeseriesResponse>>;
   retrieveHistogramTimeseries(
-    id: string,
+    realtimeHistogramMetricId: 'video-startup-time',
     query: RealTimeRetrieveHistogramTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetRealTimeHistogramTimeseriesResponse>> {
+  ): Promise<Core.APIResponse<RealTimeHistogramTimeseriesResponse>> {
     if (isRequestOptions(query)) {
-      return this.retrieveHistogramTimeseries(id, {}, query);
+      return this.retrieveHistogramTimeseries(realtimeHistogramMetricId, {}, query);
     }
 
-    return this.get(`/data/v1/realtime/metrics/${id}/histogram-timeseries`, { query, ...options });
+    return this.get(`/data/v1/realtime/metrics/${realtimeHistogramMetricId}/histogram-timeseries`, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -73,36 +91,51 @@ export class RealTimeResource extends APIResource {
    * concurrent viewers.
    */
   retrieveTimeseries(
-    id: string,
+    realtimeMetricId:
+      | 'current-concurrent-viewers'
+      | 'current-rebuffering-percentage'
+      | 'exits-before-video-start'
+      | 'playback-failure-percentage'
+      | 'current-average-bitrate',
     query?: RealTimeRetrieveTimeseriesParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetRealTimeTimeseriesResponse>>;
+  ): Promise<Core.APIResponse<RealTimeTimeseriesResponse>>;
   retrieveTimeseries(
-    id: string,
+    realtimeMetricId:
+      | 'current-concurrent-viewers'
+      | 'current-rebuffering-percentage'
+      | 'exits-before-video-start'
+      | 'playback-failure-percentage'
+      | 'current-average-bitrate',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetRealTimeTimeseriesResponse>>;
+  ): Promise<Core.APIResponse<RealTimeTimeseriesResponse>>;
   retrieveTimeseries(
-    id: string,
+    realtimeMetricId:
+      | 'current-concurrent-viewers'
+      | 'current-rebuffering-percentage'
+      | 'exits-before-video-start'
+      | 'playback-failure-percentage'
+      | 'current-average-bitrate',
     query: RealTimeRetrieveTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetRealTimeTimeseriesResponse>> {
+  ): Promise<Core.APIResponse<RealTimeTimeseriesResponse>> {
     if (isRequestOptions(query)) {
-      return this.retrieveTimeseries(id, {}, query);
+      return this.retrieveTimeseries(realtimeMetricId, {}, query);
     }
 
-    return this.get(`/data/v1/realtime/metrics/${id}/timeseries`, { query, ...options });
+    return this.get(`/data/v1/realtime/metrics/${realtimeMetricId}/timeseries`, { query, ...options });
   }
 }
 
-export interface GetRealTimeBreakdownResponse {
-  data?: Array<GetRealTimeBreakdownResponse.Data>;
+export interface RealTimeBreakdownResponse {
+  data?: Array<RealTimeBreakdownResponse.Data>;
 
   timeframe?: Array<number>;
 
   total_row_count?: number;
 }
 
-export namespace GetRealTimeBreakdownResponse {
+export namespace RealTimeBreakdownResponse {
   export interface Data {
     concurrent_viewers?: number;
 
@@ -116,17 +149,33 @@ export namespace GetRealTimeBreakdownResponse {
   }
 }
 
-export interface GetRealTimeHistogramTimeseriesResponse {
-  data?: Array<GetRealTimeHistogramTimeseriesResponse.Data>;
-
-  meta?: GetRealTimeHistogramTimeseriesResponse.Meta;
+export interface RealTimeDimensionsResponse {
+  data?: Array<RealTimeDimensionsResponse.Data>;
 
   timeframe?: Array<number>;
 
   total_row_count?: number;
 }
 
-export namespace GetRealTimeHistogramTimeseriesResponse {
+export namespace RealTimeDimensionsResponse {
+  export interface Data {
+    display_name?: string;
+
+    name?: string;
+  }
+}
+
+export interface RealTimeHistogramTimeseriesResponse {
+  data?: Array<RealTimeHistogramTimeseriesResponse.Data>;
+
+  meta?: RealTimeHistogramTimeseriesResponse.Meta;
+
+  timeframe?: Array<number>;
+
+  total_row_count?: number;
+}
+
+export namespace RealTimeHistogramTimeseriesResponse {
   export interface Meta {
     buckets?: Array<Meta.Buckets>;
   }
@@ -164,53 +213,37 @@ export namespace GetRealTimeHistogramTimeseriesResponse {
   }
 }
 
-export interface GetRealTimeTimeseriesResponse {
-  data?: Array<GetRealTimeTimeseriesResponse.Data>;
+export interface RealTimeMetricsResponse {
+  data?: Array<RealTimeMetricsResponse.Data>;
 
   timeframe?: Array<number>;
 
   total_row_count?: number;
 }
 
-export namespace GetRealTimeTimeseriesResponse {
+export namespace RealTimeMetricsResponse {
+  export interface Data {
+    display_name?: string;
+
+    name?: string;
+  }
+}
+
+export interface RealTimeTimeseriesResponse {
+  data?: Array<RealTimeTimeseriesResponse.Data>;
+
+  timeframe?: Array<number>;
+
+  total_row_count?: number;
+}
+
+export namespace RealTimeTimeseriesResponse {
   export interface Data {
     concurrent_viewers?: number;
 
     date?: string;
 
     value?: number;
-  }
-}
-
-export interface ListRealTimeDimensionsResponse {
-  data?: Array<ListRealTimeDimensionsResponse.Data>;
-
-  timeframe?: Array<number>;
-
-  total_row_count?: number;
-}
-
-export namespace ListRealTimeDimensionsResponse {
-  export interface Data {
-    display_name?: string;
-
-    name?: string;
-  }
-}
-
-export interface ListRealTimeMetricsResponse {
-  data?: Array<ListRealTimeMetricsResponse.Data>;
-
-  timeframe?: Array<number>;
-
-  total_row_count?: number;
-}
-
-export namespace ListRealTimeMetricsResponse {
-  export interface Data {
-    display_name?: string;
-
-    name?: string;
   }
 }
 

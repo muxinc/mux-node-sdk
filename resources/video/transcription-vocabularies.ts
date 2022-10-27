@@ -3,17 +3,19 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { NoMorePages, NoMorePagesParams } from '~/pagination';
+import { BasePage, BasePageParams } from '~/pagination';
 
 export class TranscriptionVocabularies extends APIResource {
   /**
    * Create a new Transcription Vocabulary.
    */
-  create(
+  async create(
     body: TranscriptionVocabularyCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<TranscriptionVocabularyResponse>> {
-    return this.post('/video/v1/transcription-vocabularies', { body, ...options });
+  ): Promise<TranscriptionVocabulary> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post('/video/v1/transcription-vocabularies', { body, ...options })) as any;
+    return response.data;
   }
 
   /**
@@ -22,11 +24,16 @@ export class TranscriptionVocabularies extends APIResource {
    * corresponding Transcription Vocabulary information. The same information is
    * returned when creating a Transcription Vocabulary.
    */
-  retrieve(
-    id: string,
+  async retrieve(
+    transcriptionVocabularyId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<TranscriptionVocabularyResponse>> {
-    return this.get(`/video/v1/transcription-vocabularies/${id}`, options);
+  ): Promise<TranscriptionVocabulary> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.get(
+      `/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`,
+      options,
+    )) as any;
+    return response.data;
   }
 
   /**
@@ -34,12 +41,17 @@ export class TranscriptionVocabularies extends APIResource {
    * Transcription Vocabularies are allowed while associated live streams are active.
    * However, updates will not be applied to those streams while they are active.
    */
-  update(
-    id: string,
+  async update(
+    transcriptionVocabularyId: string,
     body: TranscriptionVocabularyUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<TranscriptionVocabularyResponse>> {
-    return this.put(`/video/v1/transcription-vocabularies/${id}`, { body, ...options });
+  ): Promise<TranscriptionVocabulary> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.put(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
+      body,
+      ...options,
+    })) as any;
+    return response.data;
   }
 
   /**
@@ -48,17 +60,17 @@ export class TranscriptionVocabularies extends APIResource {
   list(
     query?: TranscriptionVocabularyListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<TranscriptionVocabulariesNoMorePages>;
-  list(options?: Core.RequestOptions): Core.PagePromise<TranscriptionVocabulariesNoMorePages>;
+  ): Core.PagePromise<TranscriptionVocabulariesBasePage>;
+  list(options?: Core.RequestOptions): Core.PagePromise<TranscriptionVocabulariesBasePage>;
   list(
     query: TranscriptionVocabularyListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<TranscriptionVocabulariesNoMorePages> {
+  ): Core.PagePromise<TranscriptionVocabulariesBasePage> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
 
-    return this.getAPIList('/video/v1/transcription-vocabularies', TranscriptionVocabulariesNoMorePages, {
+    return this.getAPIList('/video/v1/transcription-vocabularies', TranscriptionVocabulariesBasePage, {
       query,
       ...options,
     });
@@ -71,17 +83,17 @@ export class TranscriptionVocabularies extends APIResource {
    * in the deleted Transcription Vocabulary will remain attached to those streams
    * while they are active.
    */
-  del(id: string, options?: Core.RequestOptions): Promise<void> {
-    return this.delete(`/video/v1/transcription-vocabularies/${id}`, {
+  del(transcriptionVocabularyId: string, options?: Core.RequestOptions): Promise<void> {
+    return this.delete(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
   }
 }
 
-export class TranscriptionVocabulariesNoMorePages extends NoMorePages<TranscriptionVocabulary> {}
+export class TranscriptionVocabulariesBasePage extends BasePage<TranscriptionVocabulary> {}
 
-export interface CreateTranscriptionVocabularyRequest {
+export interface CreateTranscriptionVocabularyParams {
   /**
    * Phrases, individual words, or proper names to include in the Transcription
    * Vocabulary. When the Transcription Vocabulary is attached to a live stream's
@@ -148,7 +160,7 @@ export interface TranscriptionVocabularyResponse {
   data?: TranscriptionVocabulary;
 }
 
-export interface UpdateTranscriptionVocabularyRequest {
+export interface UpdateTranscriptionVocabularyParams {
   /**
    * Phrases, individual words, or proper names to include in the Transcription
    * Vocabulary. When the Transcription Vocabulary is attached to a live stream's
@@ -211,4 +223,4 @@ export interface TranscriptionVocabularyUpdateParams {
   passthrough?: string;
 }
 
-export interface TranscriptionVocabularyListParams extends NoMorePagesParams {}
+export interface TranscriptionVocabularyListParams extends BasePageParams {}

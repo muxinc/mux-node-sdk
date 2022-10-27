@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 export interface CreatePlaybackIdResponse {
-  data?: CreatePlaybackIdResponse.Data;
+  data?: PlaybackId;
 }
 
 export namespace CreatePlaybackIdResponse {
@@ -24,7 +24,7 @@ export namespace CreatePlaybackIdResponse {
   }
 }
 
-export interface CreateBroadcastRequest {
+export interface CreateBroadcastParams {
   /**
    * The ID of the live stream that you want to broadcast to.
    */
@@ -54,13 +54,13 @@ export interface CreateBroadcastRequest {
   resolution?: '1920x1080' | '1280x720' | '1080x1920' | '720x1280' | '1080x1080' | '720x720';
 }
 
-export interface CreateAssetRequest {
+export interface CreateAssetParams {
   /**
    * An array of objects that each describe an input file to be used to create the
    * asset. As a shortcut, input can also be a string URL for a file when only one
    * input file is used. See `input[].url` for requirements.
    */
-  input?: Array<CreateAssetRequest.Input>;
+  input?: Array<CreateAssetParams.Input>;
 
   /**
    * Specify what level (if any) of support for master access. Master access can be
@@ -115,7 +115,7 @@ export interface CreateAssetRequest {
   test?: boolean;
 }
 
-export namespace CreateAssetRequest {
+export namespace CreateAssetParams {
   export interface Input {
     /**
      * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
@@ -350,7 +350,7 @@ export interface Asset {
    * [Play your videos](https://docs.mux.com/guides/video/play-your-videos) for more
    * details.
    */
-  playback_ids?: Array<Asset.PlaybackIds>;
+  playback_ids?: Array<PlaybackId>;
 
   /**
    * An array of individual live stream recording sessions. A recording session is
@@ -390,7 +390,7 @@ export interface Asset {
   /**
    * The individual media tracks that make up an asset.
    */
-  tracks?: Array<Asset.Tracks>;
+  tracks?: Array<Track>;
 
   /**
    * Unique identifier for the Direct Upload. This is an optional parameter added
@@ -698,4 +698,132 @@ export namespace ListDimensionValuesResponse {
 
     value?: string;
   }
+}
+
+export interface PlaybackId {
+  /**
+   * Unique identifier for the PlaybackID
+   */
+  id?: string;
+
+  /**
+   * - `public` playback IDs are accessible by constructing an HLS URL like
+   *   `https://stream.mux.com/${PLAYBACK_ID}`
+   *
+   * - `signed` playback IDs should be used with tokens
+   *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
+   *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
+   *   for details about creating tokens.
+   */
+  policy?: 'public' | 'signed';
+}
+
+export interface Track {
+  /**
+   * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
+   * This parameter is only set for `text` type and `subtitles` text type tracks.
+   */
+  closed_captions?: boolean;
+
+  /**
+   * The duration in seconds of the track media. This parameter is not set for `text`
+   * type tracks. This field is optional and may not be set. The top level `duration`
+   * field of an asset will always be set.
+   */
+  duration?: number;
+
+  /**
+   * Unique identifier for the Track
+   */
+  id?: string;
+
+  /**
+   * The language code value represents [BCP 47](https://tools.ietf.org/html/bcp47)
+   * specification compliant value. For example, `en` for English or `en-US` for the
+   * US version of English. This parameter is only set for `text` type and
+   * `subtitles` text type tracks.
+   */
+  language_code?: string;
+
+  /**
+   * Only set for the `audio` type track.
+   */
+  max_channel_layout?: string;
+
+  /**
+   * The maximum number of audio channels the track supports. Only set for the
+   * `audio` type track.
+   */
+  max_channels?: number;
+
+  /**
+   * The maximum frame rate available for the track. Only set for the `video` type
+   * track. This field may return `-1` if the frame rate of the input cannot be
+   * reliably determined.
+   */
+  max_frame_rate?: number;
+
+  /**
+   * The maximum height in pixels available for the track. Only set for the `video`
+   * type track.
+   */
+  max_height?: number;
+
+  /**
+   * The maximum width in pixels available for the track. Only set for the `video`
+   * type track.
+   */
+  max_width?: number;
+
+  /**
+   * The name of the track containing a human-readable description. The hls manifest
+   * will associate a subtitle text track with this value. For example, the value is
+   * "English" for subtitles text track for the `language_code` value of `en-US`.
+   * This parameter is only set for `text` type and `subtitles` text type tracks.
+   */
+  name?: string;
+
+  /**
+   * Arbitrary user-supplied metadata set for the track either when creating the
+   * asset or track. This parameter is only set for `text` type tracks. Max 255
+   * characters.
+   */
+  passthrough?: string;
+
+  /**
+   * The status of the track. This parameter is only set for `text` type tracks.
+   */
+  status?: 'preparing' | 'ready' | 'errored';
+
+  /**
+   * The source of the text contained in a Track of type `text`. Valid `text_source`
+   * values are listed below.
+   *
+   * - `uploaded`: Tracks uploaded to Mux as caption or subtitle files using the
+   *   Create Asset Track API.
+   * - `embedded`: Tracks extracted from an embedded stream of CEA-608 closed
+   *   captions.
+   * - `generated_live`: Tracks generated by automatic speech recognition on a live
+   *   stream configured with `generated_subtitles`. If an Asset has both
+   *   `generated_live` and `generated_live_final` tracks that are `ready`, then only
+   *   the `generated_live_final` track will be included during playback.
+   * - `generated_live_final`: Tracks generated by automatic speech recognition on a
+   *   live stream using `generated_subtitles`. The accuracy, timing, and formatting
+   *   of these subtitles is improved compared to the corresponding `generated_live`
+   *   tracks. However, `generated_live_final` tracks will not be available in
+   *   `ready` status until the live stream ends. If an Asset has both
+   *   `generated_live` and `generated_live_final` tracks that are `ready`, then only
+   *   the `generated_live_final` track will be included during playback.
+   */
+  text_source?: 'uploaded' | 'embedded' | 'generated_live' | 'generated_live_final';
+
+  /**
+   * This parameter is only set for `text` type tracks.
+   */
+  text_type?: 'subtitles';
+
+  /**
+   * The type of track
+   */
+  type?: 'video' | 'audio' | 'text';
 }

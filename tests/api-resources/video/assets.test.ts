@@ -193,17 +193,6 @@ describe('resource assets', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('retrieve_input_info', async () => {
-    const response = await mux.video.assets.retrieveInputInfo('string');
-  });
-
-  test('retrieve_input_info: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      mux.video.assets.retrieveInputInfo('string', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
   test('retrieve_playback_id', async () => {
     const response = await mux.video.assets.retrievePlaybackId('string', 'string');
   });
@@ -224,10 +213,10 @@ describe('resource assets', () => {
   });
 
   test('update_mp4_support: only required params', async () => {
-    const response = await mux.video.assets.updateMp4Support('string', {});
+    const response = await mux.video.assets.updateMP4Support('string', {});
   });
 
   test('update_mp4_support: required and optional params', async () => {
-    const response = await mux.video.assets.updateMp4Support('string', { mp4_support: 'standard' });
+    const response = await mux.video.assets.updateMP4Support('string', { mp4_support: 'standard' });
   });
 });

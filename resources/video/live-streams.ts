@@ -3,7 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { NoMorePages, NoMorePagesParams } from '~/pagination';
+import { BasePage, BasePageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
 
 export class LiveStreams extends APIResource {
@@ -11,11 +11,10 @@ export class LiveStreams extends APIResource {
    * Creates a new live stream. Once created, an encoder can connect to Mux via the
    * specified stream key and begin streaming to an audience.
    */
-  create(
-    body: LiveStreamCreateParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LiveStreamResponse>> {
-    return this.post('/video/v1/live-streams', { body, ...options });
+  async create(body: LiveStreamCreateParams, options?: Core.RequestOptions): Promise<LiveStream> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post('/video/v1/live-streams', { body, ...options })) as any;
+    return response.data;
   }
 
   /**
@@ -24,8 +23,10 @@ export class LiveStreams extends APIResource {
    * will return the corresponding live stream information. The same information is
    * returned when creating a live stream.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LiveStreamResponse>> {
-    return this.get(`/video/v1/live-streams/${id}`, options);
+  async retrieve(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStream> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.get(`/video/v1/live-streams/${liveStreamId}`, options)) as any;
+    return response.data;
   }
 
   /**
@@ -35,28 +36,33 @@ export class LiveStreams extends APIResource {
    * information returned will be the same after update as for subsequent get live
    * stream requests.
    */
-  update(
-    id: string,
+  async update(
+    liveStreamId: string,
     body: LiveStreamUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LiveStreamResponse>> {
-    return this.patch(`/video/v1/live-streams/${id}`, { body, ...options });
+  ): Promise<LiveStream> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.patch(`/video/v1/live-streams/${liveStreamId}`, {
+      body,
+      ...options,
+    })) as any;
+    return response.data;
   }
 
   /**
    * Lists the live streams that currently exist in the current environment.
    */
-  list(query?: LiveStreamListParams, options?: Core.RequestOptions): Core.PagePromise<LiveStreamsNoMorePages>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LiveStreamsNoMorePages>;
+  list(query?: LiveStreamListParams, options?: Core.RequestOptions): Core.PagePromise<LiveStreamsBasePage>;
+  list(options?: Core.RequestOptions): Core.PagePromise<LiveStreamsBasePage>;
   list(
     query: LiveStreamListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LiveStreamsNoMorePages> {
+  ): Core.PagePromise<LiveStreamsBasePage> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
 
-    return this.getAPIList('/video/v1/live-streams', LiveStreamsNoMorePages, { query, ...options });
+    return this.getAPIList('/video/v1/live-streams', LiveStreamsBasePage, { query, ...options });
   }
 
   /**
@@ -64,8 +70,8 @@ export class LiveStreams extends APIResource {
    * currently active and being streamed to, ingest will be terminated and the
    * encoder will be disconnected.
    */
-  del(id: string, options?: Core.RequestOptions): Promise<void> {
-    return this.delete(`/video/v1/live-streams/${id}`, {
+  del(liveStreamId: string, options?: Core.RequestOptions): Promise<void> {
+    return this.delete(`/video/v1/live-streams/${liveStreamId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -82,23 +88,27 @@ export class LiveStreams extends APIResource {
    * with the encoder. This 60s timeframe is meant to give encoder operators a chance
    * to disconnect from their end.
    */
-  complete(
-    id: string,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<SignalLiveStreamCompleteResponse>> {
-    return this.put(`/video/v1/live-streams/${id}/complete`, options);
+  async complete(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStreamCompleteResponse> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/complete`, options)) as any;
+    return response.data;
   }
 
   /**
    * Create a new playback ID for this live stream, through which a viewer can watch
    * the streamed content of the live stream.
    */
-  createPlaybackId(
-    id: string,
+  async createPlaybackId(
+    liveStreamId: string,
     body: LiveStreamCreatePlaybackIdParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Shared.CreatePlaybackIdResponse>> {
-    return this.post(`/video/v1/live-streams/${id}/playback-ids`, { body, ...options });
+  ): Promise<Shared.PlaybackId> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post(`/video/v1/live-streams/${liveStreamId}/playback-ids`, {
+      body,
+      ...options,
+    })) as any;
+    return response.data;
   }
 
   /**
@@ -106,12 +116,17 @@ export class LiveStreams extends APIResource {
    * be created when the parent live stream is in idle state. Only one simulcast
    * target can be created at a time with this API.
    */
-  createSimulcastTarget(
-    id: string,
+  async createSimulcastTarget(
+    liveStreamId: string,
     body: LiveStreamCreateSimulcastTargetParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<SimulcastTargetResponse>> {
-    return this.post(`/video/v1/live-streams/${id}/simulcast-targets`, { body, ...options });
+  ): Promise<LiveStreamCreateSimulcastTargetResponse> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post(`/video/v1/live-streams/${liveStreamId}/simulcast-targets`, {
+      body,
+      ...options,
+    })) as any;
+    return response.data;
   }
 
   /**
@@ -120,8 +135,8 @@ export class LiveStreams extends APIResource {
    * fail immediately. However, current viewers will be able to continue watching the
    * stream for some period of time.
    */
-  deletePlaybackId(liveStreamId: string, id: string, options?: Core.RequestOptions): Promise<void> {
-    return this.delete(`/video/v1/live-streams/${liveStreamId}/playback-ids/${id}`, {
+  deletePlaybackId(liveStreamId: string, playbackId: string, options?: Core.RequestOptions): Promise<void> {
+    return this.delete(`/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -132,8 +147,12 @@ export class LiveStreams extends APIResource {
    * the simulcast target. Simulcast Target can only be deleted when the parent live
    * stream is in idle state.
    */
-  deleteSimulcastTarget(liveStreamId: string, id: string, options?: Core.RequestOptions): Promise<void> {
-    return this.delete(`/video/v1/live-streams/${liveStreamId}/simulcast-targets/${id}`, {
+  deleteSimulcastTarget(
+    liveStreamId: string,
+    simulcastTargetId: string,
+    options?: Core.RequestOptions,
+  ): Promise<void> {
+    return this.delete(`/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -148,35 +167,49 @@ export class LiveStreams extends APIResource {
    * Mux also closes the encoder connection immediately. Any attempt from the encoder
    * to re-establish connection will fail till the live stream is re-enabled.
    */
-  disable(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<DisableLiveStreamResponse>> {
-    return this.put(`/video/v1/live-streams/${id}/disable`, options);
+  async disable(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStreamDisableResponse> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/disable`, options)) as any;
+    return response.data;
   }
 
   /**
    * Enables a live stream, allowing it to accept an incoming RTMP stream.
    */
-  enable(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<EnableLiveStreamResponse>> {
-    return this.put(`/video/v1/live-streams/${id}/enable`, options);
+  async enable(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStreamEnableResponse> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/enable`, options)) as any;
+    return response.data;
   }
 
   /**
    * Reset a live stream key if you want to immediately stop the current stream key
    * from working and create a new stream key that can be used for future broadcasts.
    */
-  resetStreamKey(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<LiveStreamResponse>> {
-    return this.post(`/video/v1/live-streams/${id}/reset-stream-key`, options);
+  async resetStreamKey(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStream> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post(
+      `/video/v1/live-streams/${liveStreamId}/reset-stream-key`,
+      options,
+    )) as any;
+    return response.data;
   }
 
   /**
    * Fetches information about a live stream's playback ID, through which a viewer
    * can watch the streamed content from this live stream.
    */
-  retrievePlaybackId(
+  async retrievePlaybackId(
     liveStreamId: string,
-    id: string,
+    playbackId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetLiveStreamPlaybackIdResponse>> {
-    return this.get(`/video/v1/live-streams/${liveStreamId}/playback-ids/${id}`, options);
+  ): Promise<Shared.PlaybackId> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.get(
+      `/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`,
+      options,
+    )) as any;
+    return response.data;
   }
 
   /**
@@ -185,24 +218,34 @@ export class LiveStreams extends APIResource {
    * returned in the response of create simulcast target request, and Mux will return
    * the corresponding information.
    */
-  retrieveSimulcastTarget(
+  async retrieveSimulcastTarget(
     liveStreamId: string,
-    id: string,
+    simulcastTargetId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<SimulcastTargetResponse>> {
-    return this.get(`/video/v1/live-streams/${liveStreamId}/simulcast-targets/${id}`, options);
+  ): Promise<LiveStreamCreateSimulcastTargetResponse> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.get(
+      `/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`,
+      options,
+    )) as any;
+    return response.data;
   }
 
   /**
    * Configures a live stream to receive embedded closed captions. The resulting
    * Asset's subtitle text track will have `closed_captions: true` set.
    */
-  updateEmbeddedSubtitles(
-    id: string,
+  async updateEmbeddedSubtitles(
+    liveStreamId: string,
     body: LiveStreamUpdateEmbeddedSubtitlesParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LiveStreamResponse>> {
-    return this.put(`/video/v1/live-streams/${id}/embedded-subtitles`, { body, ...options });
+  ): Promise<LiveStream> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/embedded-subtitles`, {
+      body,
+      ...options,
+    })) as any;
+    return response.data;
   }
 
   /**
@@ -210,18 +253,23 @@ export class LiveStreams extends APIResource {
    * configuration. Automatic speech recognition subtitles can be removed by sending
    * an empty array in the request payload.
    */
-  updateGeneratedSubtitles(
-    id: string,
+  async updateGeneratedSubtitles(
+    liveStreamId: string,
     body: LiveStreamUpdateGeneratedSubtitlesParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<LiveStreamResponse>> {
-    return this.put(`/video/v1/live-streams/${id}/generated-subtitles`, { body, ...options });
+  ): Promise<LiveStream> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/generated-subtitles`, {
+      body,
+      ...options,
+    })) as any;
+    return response.data;
   }
 }
 
-export class LiveStreamsNoMorePages extends NoMorePages<LiveStream> {}
+export class LiveStreamsBasePage extends BasePage<LiveStream> {}
 
-export interface CreateLiveStreamRequest {
+export interface CreateLiveStreamParams {
   /**
    * Force the live stream to only process the audio track when the value is set to
    * true. Mux drops the video track if broadcasted.
@@ -231,7 +279,7 @@ export interface CreateLiveStreamRequest {
   /**
    * Describe the embedded closed caption contents of the incoming live stream.
    */
-  embedded_subtitles?: Array<CreateLiveStreamRequest.EmbeddedSubtitles>;
+  embedded_subtitles?: Array<CreateLiveStreamParams.EmbeddedSubtitles>;
 
   /**
    * Configure the incoming live stream to include subtitles created with automatic
@@ -246,7 +294,7 @@ export interface CreateLiveStreamRequest {
    * `generated_live_final` tracks that are `ready`, then only the
    * `generated_live_final` track will be included during playback.
    */
-  generated_subtitles?: Array<CreateLiveStreamRequest.GeneratedSubtitles>;
+  generated_subtitles?: Array<CreateLiveStreamParams.GeneratedSubtitles>;
 
   /**
    * Latency is the time from when the streamer transmits a frame of video to when
@@ -271,7 +319,7 @@ export interface CreateLiveStreamRequest {
    */
   max_continuous_duration?: number;
 
-  new_asset_settings?: Shared.CreateAssetRequest;
+  new_asset_settings?: Shared.CreateAssetParams;
 
   passthrough?: string;
 
@@ -309,7 +357,7 @@ export interface CreateLiveStreamRequest {
    */
   reduced_latency?: boolean;
 
-  simulcast_targets?: Array<CreateLiveStreamRequest.SimulcastTargets>;
+  simulcast_targets?: Array<CreateLiveStreamParams.SimulcastTargets>;
 
   /**
    * Marks the live stream as a test live stream when the value is set to true. A
@@ -329,7 +377,7 @@ export interface CreateLiveStreamRequest {
   use_slate_for_standard_latency?: boolean;
 }
 
-export namespace CreateLiveStreamRequest {
+export namespace CreateLiveStreamParams {
   export interface EmbeddedSubtitles {
     /**
      * CEA-608 caption channel to read data from.
@@ -395,51 +443,6 @@ export namespace CreateLiveStreamRequest {
      * service to send the parent live stream to.
      */
     stream_key?: string;
-  }
-}
-
-export interface CreatePlaybackIdRequest {
-  /**
-   * - `public` playback IDs are accessible by constructing an HLS URL like
-   *   `https://stream.mux.com/${PLAYBACK_ID}`
-   *
-   * - `signed` playback IDs should be used with tokens
-   *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
-   *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
-   *   for details about creating tokens.
-   */
-  policy?: 'public' | 'signed';
-}
-
-export interface DisableLiveStreamResponse {
-  data?: unknown;
-}
-
-export interface EnableLiveStreamResponse {
-  data?: unknown;
-}
-
-export interface GetLiveStreamPlaybackIdResponse {
-  data?: GetLiveStreamPlaybackIdResponse.Data;
-}
-
-export namespace GetLiveStreamPlaybackIdResponse {
-  export interface Data {
-    /**
-     * Unique identifier for the PlaybackID
-     */
-    id?: string;
-
-    /**
-     * - `public` playback IDs are accessible by constructing an HLS URL like
-     *   `https://stream.mux.com/${PLAYBACK_ID}`
-     *
-     * - `signed` playback IDs should be used with tokens
-     *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
-     *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
-     *   for details about creating tokens.
-     */
-    policy?: 'public' | 'signed';
   }
 }
 
@@ -509,7 +512,7 @@ export interface LiveStream {
    */
   max_continuous_duration?: number;
 
-  new_asset_settings?: Shared.CreateAssetRequest;
+  new_asset_settings?: Shared.CreateAssetParams;
 
   /**
    * Arbitrary user-supplied metadata set for the asset. Max 255 characters.
@@ -521,7 +524,7 @@ export interface LiveStream {
    * [Play your videos](https://docs.mux.com/guides/video/play-your-videos) for more
    * details.
    */
-  playback_ids?: Array<LiveStream.PlaybackIds>;
+  playback_ids?: Array<Shared.PlaybackId>;
 
   /**
    * An array of strings with the most recent Assets that were created from this live
@@ -566,7 +569,7 @@ export interface LiveStream {
    * "restream") a live stream to a third-party streaming service.
    * [See the Stream live to 3rd party platforms guide](https://docs.mux.com/guides/video/stream-live-to-3rd-party-platforms).
    */
-  simulcast_targets?: Array<LiveStream.SimulcastTargets>;
+  simulcast_targets?: Array<LiveStreamCreateSimulcastTargetResponse>;
 
   /**
    * `idle` indicates that there is no active broadcast. `active` indicates that
@@ -599,24 +602,6 @@ export interface LiveStream {
 }
 
 export namespace LiveStream {
-  export interface PlaybackIds {
-    /**
-     * Unique identifier for the PlaybackID
-     */
-    id?: string;
-
-    /**
-     * - `public` playback IDs are accessible by constructing an HLS URL like
-     *   `https://stream.mux.com/${PLAYBACK_ID}`
-     *
-     * - `signed` playback IDs should be used with tokens
-     *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
-     *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
-     *   for details about creating tokens.
-     */
-    policy?: 'public' | 'signed';
-  }
-
   export interface EmbeddedSubtitles {
     /**
      * CEA-608 caption channel to read data from.
@@ -664,114 +649,16 @@ export namespace LiveStream {
      */
     transcription_vocabulary_ids?: Array<string>;
   }
-
-  export interface SimulcastTargets {
-    /**
-     * ID of the Simulcast Target
-     */
-    id?: string;
-
-    /**
-     * Arbitrary user-supplied metadata set when creating a simulcast target.
-     */
-    passthrough?: string;
-
-    /**
-     * The current status of the simulcast target. See Statuses below for detailed
-     * description.
-     *
-     * - `idle`: Default status. When the parent live stream is in disconnected status,
-     *   simulcast targets will be idle state.
-     * - `starting`: The simulcast target transitions into this state when the parent
-     *   live stream transition into connected state.
-     * - `broadcasting`: The simulcast target has successfully connected to the third
-     *   party live streaming service and is pushing video to that service.
-     * - `errored`: The simulcast target encountered an error either while attempting
-     *   to connect to the third party live streaming service, or mid-broadcasting.
-     *   Compared to other errored statuses in the Mux Video API, a simulcast may
-     *   transition back into the broadcasting state if a connection with the service
-     *   can be re-established.
-     */
-    status?: 'idle' | 'starting' | 'broadcasting' | 'errored';
-
-    /**
-     * Stream Key represents an stream identifier for the third party live streaming
-     * service to simulcast the parent live stream too.
-     */
-    stream_key?: string;
-
-    /**
-     * RTMP hostname including the application name for the third party live streaming
-     * service.
-     */
-    url?: string;
-  }
 }
 
-export interface LiveStreamResponse {
-  data?: LiveStream;
-}
-
-export interface SignalLiveStreamCompleteResponse {
-  data?: unknown;
-}
-
-export interface SimulcastTargetResponse {
-  data?: SimulcastTargetResponse.Data;
-}
-
-export namespace SimulcastTargetResponse {
-  export interface Data {
-    /**
-     * ID of the Simulcast Target
-     */
-    id?: string;
-
-    /**
-     * Arbitrary user-supplied metadata set when creating a simulcast target.
-     */
-    passthrough?: string;
-
-    /**
-     * The current status of the simulcast target. See Statuses below for detailed
-     * description.
-     *
-     * - `idle`: Default status. When the parent live stream is in disconnected status,
-     *   simulcast targets will be idle state.
-     * - `starting`: The simulcast target transitions into this state when the parent
-     *   live stream transition into connected state.
-     * - `broadcasting`: The simulcast target has successfully connected to the third
-     *   party live streaming service and is pushing video to that service.
-     * - `errored`: The simulcast target encountered an error either while attempting
-     *   to connect to the third party live streaming service, or mid-broadcasting.
-     *   Compared to other errored statuses in the Mux Video API, a simulcast may
-     *   transition back into the broadcasting state if a connection with the service
-     *   can be re-established.
-     */
-    status?: 'idle' | 'starting' | 'broadcasting' | 'errored';
-
-    /**
-     * Stream Key represents an stream identifier for the third party live streaming
-     * service to simulcast the parent live stream too.
-     */
-    stream_key?: string;
-
-    /**
-     * RTMP hostname including the application name for the third party live streaming
-     * service.
-     */
-    url?: string;
-  }
-}
-
-export interface UpdateLiveStreamEmbeddedSubtitlesRequest {
+export interface LiveStreamEmbeddedSubtitlesParams {
   /**
    * Describe the embedded closed caption contents of the incoming live stream.
    */
-  embedded_subtitles?: Array<UpdateLiveStreamEmbeddedSubtitlesRequest.EmbeddedSubtitles>;
+  embedded_subtitles?: Array<LiveStreamEmbeddedSubtitlesParams.EmbeddedSubtitles>;
 }
 
-export namespace UpdateLiveStreamEmbeddedSubtitlesRequest {
+export namespace LiveStreamEmbeddedSubtitlesParams {
   export interface EmbeddedSubtitles {
     /**
      * CEA-608 caption channel to read data from.
@@ -796,15 +683,15 @@ export namespace UpdateLiveStreamEmbeddedSubtitlesRequest {
   }
 }
 
-export interface UpdateLiveStreamGeneratedSubtitlesRequest {
+export interface LiveStreamGeneratedSubtitlesParams {
   /**
    * Update automated speech recognition subtitle configuration for a live stream. At
    * most one subtitle track is allowed.
    */
-  generated_subtitles?: Array<UpdateLiveStreamGeneratedSubtitlesRequest.GeneratedSubtitles>;
+  generated_subtitles?: Array<LiveStreamGeneratedSubtitlesParams.GeneratedSubtitles>;
 }
 
-export namespace UpdateLiveStreamGeneratedSubtitlesRequest {
+export namespace LiveStreamGeneratedSubtitlesParams {
   export interface GeneratedSubtitles {
     /**
      * The language to generate subtitles in.
@@ -831,7 +718,20 @@ export namespace UpdateLiveStreamGeneratedSubtitlesRequest {
   }
 }
 
-export interface UpdateLiveStreamRequest {
+export interface PlaybackIdParams {
+  /**
+   * - `public` playback IDs are accessible by constructing an HLS URL like
+   *   `https://stream.mux.com/${PLAYBACK_ID}`
+   *
+   * - `signed` playback IDs should be used with tokens
+   *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
+   *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
+   *   for details about creating tokens.
+   */
+  policy?: 'public' | 'signed';
+}
+
+export interface UpdateLiveStreamParams {
   /**
    * Latency is the time from when the streamer transmits a frame of video to when
    * you see it in the player. Set this as an alternative to setting low latency or
@@ -884,6 +784,54 @@ export interface UpdateLiveStreamRequest {
   use_slate_for_standard_latency?: boolean;
 }
 
+type LiveStreamCompleteResponse = Record<string, Record<string, unknown>>;
+
+export interface LiveStreamCreateSimulcastTargetResponse {
+  /**
+   * ID of the Simulcast Target
+   */
+  id?: string;
+
+  /**
+   * Arbitrary user-supplied metadata set when creating a simulcast target.
+   */
+  passthrough?: string;
+
+  /**
+   * The current status of the simulcast target. See Statuses below for detailed
+   * description.
+   *
+   * - `idle`: Default status. When the parent live stream is in disconnected status,
+   *   simulcast targets will be idle state.
+   * - `starting`: The simulcast target transitions into this state when the parent
+   *   live stream transition into connected state.
+   * - `broadcasting`: The simulcast target has successfully connected to the third
+   *   party live streaming service and is pushing video to that service.
+   * - `errored`: The simulcast target encountered an error either while attempting
+   *   to connect to the third party live streaming service, or mid-broadcasting.
+   *   Compared to other errored statuses in the Mux Video API, a simulcast may
+   *   transition back into the broadcasting state if a connection with the service
+   *   can be re-established.
+   */
+  status?: 'idle' | 'starting' | 'broadcasting' | 'errored';
+
+  /**
+   * Stream Key represents an stream identifier for the third party live streaming
+   * service to simulcast the parent live stream too.
+   */
+  stream_key?: string;
+
+  /**
+   * RTMP hostname including the application name for the third party live streaming
+   * service.
+   */
+  url?: string;
+}
+
+type LiveStreamDisableResponse = Record<string, Record<string, unknown>>;
+
+type LiveStreamEnableResponse = Record<string, Record<string, unknown>>;
+
 export interface LiveStreamCreateParams {
   /**
    * Force the live stream to only process the audio track when the value is set to
@@ -934,7 +882,7 @@ export interface LiveStreamCreateParams {
    */
   max_continuous_duration?: number;
 
-  new_asset_settings?: Shared.CreateAssetRequest;
+  new_asset_settings?: Shared.CreateAssetParams;
 
   passthrough?: string;
 
@@ -1114,7 +1062,7 @@ export interface LiveStreamUpdateParams {
   use_slate_for_standard_latency?: boolean;
 }
 
-export interface LiveStreamListParams extends NoMorePagesParams {
+export interface LiveStreamListParams extends BasePageParams {
   /**
    * Filter response to return live streams with the specified status only
    */

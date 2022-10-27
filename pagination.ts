@@ -1,13 +1,13 @@
 // File generated from our OpenAPI spec by Stainless.
-import { AbstractPage, APIResponse, APIClient, FinalRequestOptions } from './core';
+import { AbstractPage, APIResponse, APIClient, FinalRequestOptions, PageInfo } from './core';
 
-export interface MorePagesResponse<Item> {
+export interface PageWithTotalResponse<Item> {
   data: Array<Item>;
 
   total_row_count?: number;
 }
 
-export interface MorePagesParams {
+export interface PageWithTotalParams {
   /**
    * Number of items to include in the response
    */
@@ -19,14 +19,14 @@ export interface MorePagesParams {
   page?: number;
 }
 
-export class MorePages<Item> extends AbstractPage<Item> implements MorePagesResponse<Item> {
+export class PageWithTotal<Item> extends AbstractPage<Item> implements PageWithTotalResponse<Item> {
   data: Array<Item>;
 
   total_row_count: number;
 
   constructor(
     client: APIClient,
-    response: APIResponse<MorePagesResponse<Item>>,
+    response: APIResponse<PageWithTotalResponse<Item>>,
     options: FinalRequestOptions,
   ) {
     super(client, response, options);
@@ -39,20 +39,30 @@ export class MorePages<Item> extends AbstractPage<Item> implements MorePagesResp
     return this.data;
   }
 
-  nextPageParams(): Partial<MorePagesParams> | null {
-    const query = this.options.query as MorePagesParams;
+  // @deprecated Please use `nextPageInfo()` instead
+  nextPageParams(): Partial<PageWithTotalParams> | null {
+    const info = this.nextPageInfo();
+    if (!info) return null;
+    if ('params' in info) return info.params;
+    const params = Object.fromEntries(info.url.searchParams);
+    if (!Object.keys(params).length) return null;
+    return params;
+  }
+
+  nextPageInfo(): PageInfo | null {
+    const query = this.options.query as PageWithTotalParams;
     const currentPage = query?.page ?? 1;
     if (currentPage >= this.total_row_count) return null;
 
-    return { page: currentPage + 1 };
+    return { params: { page: currentPage + 1 } };
   }
 }
 
-export interface NoMorePagesResponse<Item> {
+export interface BasePageResponse<Item> {
   data: Array<Item>;
 }
 
-export interface NoMorePagesParams {
+export interface BasePageParams {
   /**
    * Number of items to include in the response
    */
@@ -64,12 +74,12 @@ export interface NoMorePagesParams {
   page?: number;
 }
 
-export class NoMorePages<Item> extends AbstractPage<Item> implements NoMorePagesResponse<Item> {
+export class BasePage<Item> extends AbstractPage<Item> implements BasePageResponse<Item> {
   data: Array<Item>;
 
   constructor(
     client: APIClient,
-    response: APIResponse<NoMorePagesResponse<Item>>,
+    response: APIResponse<BasePageResponse<Item>>,
     options: FinalRequestOptions,
   ) {
     super(client, response, options);
@@ -81,9 +91,19 @@ export class NoMorePages<Item> extends AbstractPage<Item> implements NoMorePages
     return this.data;
   }
 
-  nextPageParams(): Partial<NoMorePagesParams> | null {
-    const query = this.options.query as NoMorePagesParams;
+  // @deprecated Please use `nextPageInfo()` instead
+  nextPageParams(): Partial<BasePageParams> | null {
+    const info = this.nextPageInfo();
+    if (!info) return null;
+    if ('params' in info) return info.params;
+    const params = Object.fromEntries(info.url.searchParams);
+    if (!Object.keys(params).length) return null;
+    return params;
+  }
+
+  nextPageInfo(): PageInfo | null {
+    const query = this.options.query as BasePageParams;
     const currentPage = query?.page ?? 1;
-    return { page: currentPage + 1 };
+    return { params: { page: currentPage + 1 } };
   }
 }

@@ -3,7 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { NoMorePages, NoMorePagesParams } from '~/pagination';
+import { BasePage, BasePageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
 
 export class Spaces extends APIResource {
@@ -11,8 +11,10 @@ export class Spaces extends APIResource {
    * Create a new space. Spaces are used to build
    * [real-time video applications.](https://mux.com/real-time-video)
    */
-  create(body: SpaceCreateParams, options?: Core.RequestOptions): Promise<Core.APIResponse<SpaceResponse>> {
-    return this.post('/video/v1/spaces', { body, ...options });
+  async create(body: SpaceCreateParams, options?: Core.RequestOptions): Promise<Space> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post('/video/v1/spaces', { body, ...options })) as any;
+    return response.data;
   }
 
   /**
@@ -21,31 +23,33 @@ export class Spaces extends APIResource {
    * return the information about the corresponding space. The same information is
    * returned when creating a space.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<SpaceResponse>> {
-    return this.get(`/video/v1/spaces/${id}`, options);
+  async retrieve(spaceId: string, options?: Core.RequestOptions): Promise<Space> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.get(`/video/v1/spaces/${spaceId}`, options)) as any;
+    return response.data;
   }
 
   /**
    * List all spaces in the current enviroment.
    */
-  list(query?: SpaceListParams, options?: Core.RequestOptions): Core.PagePromise<SpacesNoMorePages>;
-  list(options?: Core.RequestOptions): Core.PagePromise<SpacesNoMorePages>;
+  list(query?: SpaceListParams, options?: Core.RequestOptions): Core.PagePromise<SpacesBasePage>;
+  list(options?: Core.RequestOptions): Core.PagePromise<SpacesBasePage>;
   list(
     query: SpaceListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<SpacesNoMorePages> {
+  ): Core.PagePromise<SpacesBasePage> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
 
-    return this.getAPIList('/video/v1/spaces', SpacesNoMorePages, { query, ...options });
+    return this.getAPIList('/video/v1/spaces', SpacesBasePage, { query, ...options });
   }
 
   /**
    * Deletes a space. Spaces can only be deleted when `idle`.
    */
-  del(id: string, options?: Core.RequestOptions): Promise<void> {
-    return this.delete(`/video/v1/spaces/${id}`, {
+  del(spaceId: string, options?: Core.RequestOptions): Promise<void> {
+    return this.delete(`/video/v1/spaces/${spaceId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -57,20 +61,22 @@ export class Spaces extends APIResource {
    * single broadcast destination can be specified. Contact Mux support if you need
    * more.
    */
-  createBroadcast(
-    id: string,
+  async createBroadcast(
+    spaceId: string,
     body: SpaceCreateBroadcastParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<BroadcastResponse>> {
-    return this.post(`/video/v1/spaces/${id}/broadcasts`, { body, ...options });
+  ): Promise<Broadcast> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post(`/video/v1/spaces/${spaceId}/broadcasts`, { body, ...options })) as any;
+    return response.data;
   }
 
   /**
    * Deletes a single broadcast of a specific space. Broadcasts can only be deleted
    * when `idle`.
    */
-  deleteBroadcast(spaceId: string, id: string, options?: Core.RequestOptions): Promise<void> {
-    return this.delete(`/video/v1/spaces/${spaceId}/broadcasts/${id}`, {
+  deleteBroadcast(spaceId: string, broadcastId: string, options?: Core.RequestOptions): Promise<void> {
+    return this.delete(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -79,24 +85,34 @@ export class Spaces extends APIResource {
   /**
    * Retrieves the details of a broadcast of a specific space.
    */
-  retrieveBroadcast(
+  async retrieveBroadcast(
     spaceId: string,
-    id: string,
+    broadcastId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<BroadcastResponse>> {
-    return this.get(`/video/v1/spaces/${spaceId}/broadcasts/${id}`, options);
+  ): Promise<Broadcast> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.get(
+      `/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`,
+      options,
+    )) as any;
+    return response.data;
   }
 
   /**
    * Starts broadcasting a space to the associated destination. Broadcasts can only
    * be started when the space is `active` (when there are participants connected).
    */
-  startBroadcast(
+  async startBroadcast(
     spaceId: string,
-    id: string,
+    broadcastId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<StartSpaceBroadcastRequest>> {
-    return this.post(`/video/v1/spaces/${spaceId}/broadcasts/${id}/start`, options);
+  ): Promise<SpaceStartBroadcastResponse> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post(
+      `/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/start`,
+      options,
+    )) as any;
+    return response.data;
   }
 
   /**
@@ -104,16 +120,21 @@ export class Spaces extends APIResource {
    * This API also automatically calls `complete` on the destination live stream.
    * Broadcasts are also automatically stopped when a space becomes idle.
    */
-  stopBroadcast(
+  async stopBroadcast(
     spaceId: string,
-    id: string,
+    broadcastId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<StopSpaceBroadcastRequest>> {
-    return this.post(`/video/v1/spaces/${spaceId}/broadcasts/${id}/stop`, options);
+  ): Promise<SpaceStopBroadcastResponse> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post(
+      `/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/stop`,
+      options,
+    )) as any;
+    return response.data;
   }
 }
 
-export class SpacesNoMorePages extends NoMorePages<Space> {}
+export class SpacesBasePage extends BasePage<Space> {}
 
 export interface Broadcast {
   /**
@@ -174,27 +195,6 @@ export interface BroadcastResponse {
  * and `stop` APIs.
  */
 
-export interface CreateSpaceRequest {
-  /**
-   * An array of broadcast destinations you want to stream the space to. **Note:** By
-   * default only a single broadcast destination can be specified. Contact Mux
-   * support if you need more.
-   */
-  broadcasts?: Array<Shared.CreateBroadcastRequest>;
-
-  /**
-   * Arbitrary user-supplied metadata that will be included in the space details and
-   * related webhooks. Max: 255 characters.
-   */
-  passthrough?: string;
-
-  /**
-   * Specify the network architecture of the space. In `server` spaces, all video
-   * travels through Mux's video infrastructure. Defaults to `server` if not set.
-   */
-  type?: 'server';
-}
-
 export interface Space {
   /**
    * Time the space was created, defined as a Unix timestamp (seconds since epoch).
@@ -238,35 +238,13 @@ export interface Space {
   passthrough?: string;
 }
 
-export interface SpaceResponse {
-  data: Space;
-}
-
-/**
- * The status of the space. Spaces are `idle` when there are no participants
- * connected, and `active` when there are participants connected.
- */
-
-/**
- * Specify the network architecture of the space. In `server` spaces, all video
- * travels through Mux's video infrastructure. Defaults to `server` if not set.
- */
-
-export interface StartSpaceBroadcastRequest {
-  data?: unknown;
-}
-
-export interface StopSpaceBroadcastRequest {
-  data?: unknown;
-}
-
-export interface SpaceCreateParams {
+export interface SpaceParams {
   /**
    * An array of broadcast destinations you want to stream the space to. **Note:** By
    * default only a single broadcast destination can be specified. Contact Mux
    * support if you need more.
    */
-  broadcasts?: Array<Shared.CreateBroadcastRequest>;
+  broadcasts?: Array<Shared.CreateBroadcastParams>;
 
   /**
    * Arbitrary user-supplied metadata that will be included in the space details and
@@ -281,7 +259,46 @@ export interface SpaceCreateParams {
   type?: 'server';
 }
 
-export interface SpaceListParams extends NoMorePagesParams {}
+export interface SpaceResponse {
+  data: Space;
+}
+
+/**
+ * The status of the space. Spaces are `idle` when there are no participants
+ * connected, and `active` when there are participants connected.
+ */
+
+/**
+ * Specify the network architecture of the space. In `server` spaces, all video
+ * travels through Mux's video infrastructure. Defaults to `server` if not set.
+ */
+
+type SpaceStartBroadcastResponse = Record<string, Record<string, unknown>>;
+
+type SpaceStopBroadcastResponse = Record<string, Record<string, unknown>>;
+
+export interface SpaceCreateParams {
+  /**
+   * An array of broadcast destinations you want to stream the space to. **Note:** By
+   * default only a single broadcast destination can be specified. Contact Mux
+   * support if you need more.
+   */
+  broadcasts?: Array<Shared.CreateBroadcastParams>;
+
+  /**
+   * Arbitrary user-supplied metadata that will be included in the space details and
+   * related webhooks. Max: 255 characters.
+   */
+  passthrough?: string;
+
+  /**
+   * Specify the network architecture of the space. In `server` spaces, all video
+   * travels through Mux's video infrastructure. Defaults to `server` if not set.
+   */
+  type?: 'server';
+}
+
+export interface SpaceListParams extends BasePageParams {}
 
 export interface SpaceCreateBroadcastParams {
   /**

@@ -3,7 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { MorePages, MorePagesParams } from '~/pagination';
+import { PageWithTotal, PageWithTotalParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
 
 export class Dimensions extends APIResource {
@@ -12,7 +12,7 @@ export class Dimensions extends APIResource {
    *
    * Note: This API replaces the list-filters API call.
    */
-  list(options?: Core.RequestOptions): Promise<Core.APIResponse<ListDimensionsResponse>> {
+  list(options?: Core.RequestOptions): Promise<Core.APIResponse<DimensionsResponse>> {
     return this.get('/data/v1/dimensions', options);
   }
 
@@ -21,36 +21,42 @@ export class Dimensions extends APIResource {
    *
    * Note: This API replaces the list-filter-values API call.
    */
-  listDimensionValues(
-    id: string,
-    query?: DimensionListDimensionValuesParams,
+  listValues(
+    dimensionId: string,
+    query?: DimensionListValuesParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DimensionValuesMorePages>;
-  listDimensionValues(id: string, options?: Core.RequestOptions): Core.PagePromise<DimensionValuesMorePages>;
-  listDimensionValues(
-    id: string,
-    query: DimensionListDimensionValuesParams | Core.RequestOptions = {},
+  ): Core.PagePromise<DimensionValuesPageWithTotal>;
+  listValues(
+    dimensionId: string,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DimensionValuesMorePages> {
+  ): Core.PagePromise<DimensionValuesPageWithTotal>;
+  listValues(
+    dimensionId: string,
+    query: DimensionListValuesParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<DimensionValuesPageWithTotal> {
     if (isRequestOptions(query)) {
-      return this.listDimensionValues(id, {}, query);
+      return this.listValues(dimensionId, {}, query);
     }
 
-    return this.getAPIList(`/data/v1/dimensions/${id}`, DimensionValuesMorePages, { query, ...options });
+    return this.getAPIList(`/data/v1/dimensions/${dimensionId}`, DimensionValuesPageWithTotal, {
+      query,
+      ...options,
+    });
   }
 }
 
-export class DimensionValuesMorePages extends MorePages<Shared.DimensionValue> {}
+export class DimensionValuesPageWithTotal extends PageWithTotal<Shared.DimensionValue> {}
 
-export interface ListDimensionsResponse {
-  data?: ListDimensionsResponse.Data;
+export interface DimensionsResponse {
+  data?: DimensionsResponse.Data;
 
   timeframe?: Array<number>;
 
   total_row_count?: number;
 }
 
-export namespace ListDimensionsResponse {
+export namespace DimensionsResponse {
   export interface Data {
     advanced?: Array<string>;
 
@@ -58,7 +64,7 @@ export namespace ListDimensionsResponse {
   }
 }
 
-export interface DimensionListDimensionValuesParams extends MorePagesParams {
+export interface DimensionListValuesParams extends PageWithTotalParams {
   /**
    * Limit the results to rows that match conditions from provided key:value pairs.
    * Must be provided as an array query string parameter.

@@ -3,14 +3,14 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { MorePages, MorePagesParams } from '~/pagination';
+import { PageWithTotal, PageWithTotalParams } from '~/pagination';
 
 export class VideoViews extends APIResource {
   /**
    * Returns the details of a video view.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<VideoViewResponse>> {
-    return this.get(`/data/v1/video-views/${id}`, options);
+  retrieve(videoViewId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<VideoViewResponse>> {
+    return this.get(`/data/v1/video-views/${videoViewId}`, options);
   }
 
   /**
@@ -20,21 +20,21 @@ export class VideoViews extends APIResource {
   list(
     query?: VideoViewListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AbridgedVideoViewsMorePages>;
-  list(options?: Core.RequestOptions): Core.PagePromise<AbridgedVideoViewsMorePages>;
+  ): Core.PagePromise<AbridgedVideoViewsPageWithTotal>;
+  list(options?: Core.RequestOptions): Core.PagePromise<AbridgedVideoViewsPageWithTotal>;
   list(
     query: VideoViewListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AbridgedVideoViewsMorePages> {
+  ): Core.PagePromise<AbridgedVideoViewsPageWithTotal> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
 
-    return this.getAPIList('/data/v1/video-views', AbridgedVideoViewsMorePages, { query, ...options });
+    return this.getAPIList('/data/v1/video-views', AbridgedVideoViewsPageWithTotal, { query, ...options });
   }
 }
 
-export class AbridgedVideoViewsMorePages extends MorePages<AbridgedVideoView> {}
+export class AbridgedVideoViewsPageWithTotal extends PageWithTotal<AbridgedVideoView> {}
 
 export interface AbridgedVideoView {
   country_code?: string | null;
@@ -332,7 +332,7 @@ export namespace VideoViewResponse {
   }
 }
 
-export interface VideoViewListParams extends MorePagesParams {
+export interface VideoViewListParams extends PageWithTotalParams {
   /**
    * Filter video views by the provided error ID (as returned in the error_type_id
    * field in the list video views endpoint). If you provide any as the error ID,

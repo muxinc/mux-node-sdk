@@ -3,7 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { MorePages, MorePagesParams } from '~/pagination';
+import { PageWithTotal, PageWithTotalParams } from '~/pagination';
 
 export class Filters extends APIResource {
   /**
@@ -11,7 +11,7 @@ export class Filters extends APIResource {
    *
    * Lists all the filters broken out into basic and advanced.
    */
-  list(options?: Core.RequestOptions): Promise<Core.APIResponse<ListFiltersResponse>> {
+  list(options?: Core.RequestOptions): Promise<Core.APIResponse<FiltersResponse>> {
     return this.get('/data/v1/filters', options);
   }
 
@@ -20,26 +20,26 @@ export class Filters extends APIResource {
    *
    * Lists the values for a filter along with a total count of related views.
    */
-  listFilterValues(
-    id: string,
-    query?: FilterListFilterValuesParams,
+  listValues(
+    filterId: string,
+    query?: FilterListValuesParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<FilterValuesMorePages>;
-  listFilterValues(id: string, options?: Core.RequestOptions): Core.PagePromise<FilterValuesMorePages>;
-  listFilterValues(
-    id: string,
-    query: FilterListFilterValuesParams | Core.RequestOptions = {},
+  ): Core.PagePromise<FilterValuesPageWithTotal>;
+  listValues(filterId: string, options?: Core.RequestOptions): Core.PagePromise<FilterValuesPageWithTotal>;
+  listValues(
+    filterId: string,
+    query: FilterListValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<FilterValuesMorePages> {
+  ): Core.PagePromise<FilterValuesPageWithTotal> {
     if (isRequestOptions(query)) {
-      return this.listFilterValues(id, {}, query);
+      return this.listValues(filterId, {}, query);
     }
 
-    return this.getAPIList(`/data/v1/filters/${id}`, FilterValuesMorePages, { query, ...options });
+    return this.getAPIList(`/data/v1/filters/${filterId}`, FilterValuesPageWithTotal, { query, ...options });
   }
 }
 
-export class FilterValuesMorePages extends MorePages<FilterValue> {}
+export class FilterValuesPageWithTotal extends PageWithTotal<FilterValue> {}
 
 export interface FilterValue {
   total_count?: number;
@@ -47,15 +47,15 @@ export interface FilterValue {
   value?: string;
 }
 
-export interface ListFiltersResponse {
-  data?: ListFiltersResponse.Data;
+export interface FiltersResponse {
+  data?: FiltersResponse.Data;
 
   timeframe?: Array<number>;
 
   total_row_count?: number;
 }
 
-export namespace ListFiltersResponse {
+export namespace FiltersResponse {
   export interface Data {
     advanced?: Array<string>;
 
@@ -63,7 +63,7 @@ export namespace ListFiltersResponse {
   }
 }
 
-export interface FilterListFilterValuesParams extends MorePagesParams {
+export interface FilterListValuesParams extends PageWithTotalParams {
   /**
    * Limit the results to rows that match conditions from provided key:value pairs.
    * Must be provided as an array query string parameter.

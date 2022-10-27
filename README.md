@@ -28,7 +28,7 @@ const mux = new Mux({
 });
 
 async function main() {
-  const asset = await mux.video.assets.retrieve();
+  const asset = await mux.video.assets.retrieve('t02rm...');
 
   console.log(asset.data.aspect_ratio);
 }
@@ -49,7 +49,7 @@ const mux = new Mux({
 });
 
 async function main() {
-  const asset: Mux.AssetResponse = await mux.video.assets.retrieve()
+  const asset: Mux.Asset = await mux.video.assets.retrieve('t02rm...');
 
 }
 main().catch(console.error)
@@ -65,7 +65,7 @@ a subclass of `APIError` will be thrown:
 
 ```ts
 async function main() {
-  const asset = await mux.video.assets.retrieve()
+  const asset = await mux.video.assets.retrieve('t02rm...')
     .catch((err) => {
       if (err instanceof Mux.APIError) {
         console.log(err.status); // 400
@@ -109,7 +109,7 @@ const mux = new Mux({
 });
 
 // Or, configure per-request:
-mux.video.assets.retrieve({
+mux.video.assets.retrieve('t02rm...', {
   maxRetries: 5,
 });
 ```
@@ -127,7 +127,7 @@ const mux = new Mux({
 });
 
 // Override per-request:
-mux.video.assets.retrieve({
+mux.video.assets.retrieve('t02rm...', {
   timeout: 5 * 1000,
 });
 ```
@@ -170,7 +170,7 @@ const mux = new Mux({
 });
 
 // Override per-request:
-mux.video.assets.retrieve({
+mux.video.assets.retrieve('t02rm...', {
   baseURL: 'http://localhost:8080/test-api',
   httpAgent: new http.Agent({ keepAlive: false }),
 })

@@ -3,55 +3,58 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { MorePages, MorePagesParams } from '~/pagination';
+import { PageWithTotal, PageWithTotalParams } from '~/pagination';
 
 export class Incidents extends APIResource {
   /**
    * Returns the details of an incident.
    */
-  retrieve(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<IncidentResponse>> {
-    return this.get(`/data/v1/incidents/${id}`, options);
+  retrieve(incidentId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<IncidentResponse>> {
+    return this.get(`/data/v1/incidents/${incidentId}`, options);
   }
 
   /**
    * Returns a list of incidents.
    */
-  list(query?: IncidentListParams, options?: Core.RequestOptions): Core.PagePromise<IncidentsMorePages>;
-  list(options?: Core.RequestOptions): Core.PagePromise<IncidentsMorePages>;
+  list(query?: IncidentListParams, options?: Core.RequestOptions): Core.PagePromise<IncidentsPageWithTotal>;
+  list(options?: Core.RequestOptions): Core.PagePromise<IncidentsPageWithTotal>;
   list(
     query: IncidentListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<IncidentsMorePages> {
+  ): Core.PagePromise<IncidentsPageWithTotal> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
 
-    return this.getAPIList('/data/v1/incidents', IncidentsMorePages, { query, ...options });
+    return this.getAPIList('/data/v1/incidents', IncidentsPageWithTotal, { query, ...options });
   }
 
   /**
    * Returns all the incidents that seem related to a specific incident.
    */
   listRelated(
-    id: string,
+    incidentId: string,
     query?: IncidentListRelatedParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<IncidentsMorePages>;
-  listRelated(id: string, options?: Core.RequestOptions): Core.PagePromise<IncidentsMorePages>;
+  ): Core.PagePromise<IncidentsPageWithTotal>;
+  listRelated(incidentId: string, options?: Core.RequestOptions): Core.PagePromise<IncidentsPageWithTotal>;
   listRelated(
-    id: string,
+    incidentId: string,
     query: IncidentListRelatedParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<IncidentsMorePages> {
+  ): Core.PagePromise<IncidentsPageWithTotal> {
     if (isRequestOptions(query)) {
-      return this.listRelated(id, {}, query);
+      return this.listRelated(incidentId, {}, query);
     }
 
-    return this.getAPIList(`/data/v1/incidents/${id}/related`, IncidentsMorePages, { query, ...options });
+    return this.getAPIList(`/data/v1/incidents/${incidentId}/related`, IncidentsPageWithTotal, {
+      query,
+      ...options,
+    });
   }
 }
 
-export class IncidentsMorePages extends MorePages<Incident> {}
+export class IncidentsPageWithTotal extends PageWithTotal<Incident> {}
 
 export interface Incident {
   affected_views?: number;
@@ -143,7 +146,7 @@ export interface IncidentResponse {
   timeframe?: Array<number>;
 }
 
-export interface IncidentListParams extends MorePagesParams {
+export interface IncidentListParams extends PageWithTotalParams {
   /**
    * Value to order the results by
    */
@@ -165,7 +168,7 @@ export interface IncidentListParams extends MorePagesParams {
   status?: 'open' | 'closed' | 'expired';
 }
 
-export interface IncidentListRelatedParams extends MorePagesParams {
+export interface IncidentListRelatedParams extends PageWithTotalParams {
   /**
    * Value to order the results by
    */

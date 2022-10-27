@@ -8,12 +8,12 @@ export class Errors extends APIResource {
   /**
    * Returns a list of errors.
    */
-  list(query?: ErrorListParams, options?: Core.RequestOptions): Promise<Core.APIResponse<ListErrorsResponse>>;
-  list(options?: Core.RequestOptions): Promise<Core.APIResponse<ListErrorsResponse>>;
+  list(query?: ErrorListParams, options?: Core.RequestOptions): Promise<Core.APIResponse<ErrorsResponse>>;
+  list(options?: Core.RequestOptions): Promise<Core.APIResponse<ErrorsResponse>>;
   list(
     query: ErrorListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ListErrorsResponse>> {
+  ): Promise<Core.APIResponse<ErrorsResponse>> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -22,15 +22,15 @@ export class Errors extends APIResource {
   }
 }
 
-export interface ListErrorsResponse {
-  data?: Array<ListErrorsResponse.Data>;
+export interface ErrorsResponse {
+  data?: Array<ErrorsResponse.Data>;
 
   timeframe?: Array<number>;
 
   total_row_count?: number;
 }
 
-export namespace ListErrorsResponse {
+export namespace ErrorsResponse {
   export interface Data {
     /**
      * The error code

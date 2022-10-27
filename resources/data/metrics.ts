@@ -3,7 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { MorePages, MorePagesParams } from '~/pagination';
+import { PageWithTotal, PageWithTotalParams } from '~/pagination';
 
 export class Metrics extends APIResource {
   /**
@@ -12,12 +12,12 @@ export class Metrics extends APIResource {
   list(
     query?: MetricListParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ListAllMetricValuesResponse>>;
-  list(options?: Core.RequestOptions): Promise<Core.APIResponse<ListAllMetricValuesResponse>>;
+  ): Promise<Core.APIResponse<AllMetricValuesResponse>>;
+  list(options?: Core.RequestOptions): Promise<Core.APIResponse<AllMetricValuesResponse>>;
   list(
     query: MetricListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ListAllMetricValuesResponse>> {
+  ): Promise<Core.APIResponse<AllMetricValuesResponse>> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -29,21 +29,105 @@ export class Metrics extends APIResource {
    * List the breakdown values for a specific metric.
    */
   listBreakdown(
-    id: string,
+    metricId:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'max_downscale_percentage'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_failure_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate',
     query?: MetricListBreakdownParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<BreakdownValuesMorePages>;
-  listBreakdown(id: string, options?: Core.RequestOptions): Core.PagePromise<BreakdownValuesMorePages>;
+  ): Core.PagePromise<BreakdownValuesPageWithTotal>;
   listBreakdown(
-    id: string,
+    metricId:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'max_downscale_percentage'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_failure_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate',
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<BreakdownValuesPageWithTotal>;
+  listBreakdown(
+    metricId:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'max_downscale_percentage'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_failure_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate',
     query: MetricListBreakdownParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<BreakdownValuesMorePages> {
+  ): Core.PagePromise<BreakdownValuesPageWithTotal> {
     if (isRequestOptions(query)) {
-      return this.listBreakdown(id, {}, query);
+      return this.listBreakdown(metricId, {}, query);
     }
 
-    return this.getAPIList(`/data/v1/metrics/${id}/breakdown`, BreakdownValuesMorePages, {
+    return this.getAPIList(`/data/v1/metrics/${metricId}/breakdown`, BreakdownValuesPageWithTotal, {
       query,
       ...options,
     });
@@ -55,21 +139,105 @@ export class Metrics extends APIResource {
    * metric.
    */
   listInsights(
-    id: string,
+    metricId:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'max_downscale_percentage'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_failure_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate',
     query?: MetricListInsightsParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ListInsightsResponse>>;
-  listInsights(id: string, options?: Core.RequestOptions): Promise<Core.APIResponse<ListInsightsResponse>>;
+  ): Promise<Core.APIResponse<InsightsResponse>>;
   listInsights(
-    id: string,
+    metricId:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'max_downscale_percentage'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_failure_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate',
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<InsightsResponse>>;
+  listInsights(
+    metricId:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'max_downscale_percentage'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_failure_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate',
     query: MetricListInsightsParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ListInsightsResponse>> {
+  ): Promise<Core.APIResponse<InsightsResponse>> {
     if (isRequestOptions(query)) {
-      return this.listInsights(id, {}, query);
+      return this.listInsights(metricId, {}, query);
     }
 
-    return this.get(`/data/v1/metrics/${id}/insights`, { query, ...options });
+    return this.get(`/data/v1/metrics/${metricId}/insights`, { query, ...options });
   }
 
   /**
@@ -77,24 +245,105 @@ export class Metrics extends APIResource {
    * count, watch time, and the Mux Global metric value for the metric.
    */
   retrieveOverall(
-    id: string,
+    metricId:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'max_downscale_percentage'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_failure_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate',
     query?: MetricRetrieveOverallParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetOverallValuesResponse>>;
+  ): Promise<Core.APIResponse<OverallValuesResponse>>;
   retrieveOverall(
-    id: string,
+    metricId:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'max_downscale_percentage'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_failure_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetOverallValuesResponse>>;
+  ): Promise<Core.APIResponse<OverallValuesResponse>>;
   retrieveOverall(
-    id: string,
+    metricId:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'max_downscale_percentage'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_failure_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate',
     query: MetricRetrieveOverallParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetOverallValuesResponse>> {
+  ): Promise<Core.APIResponse<OverallValuesResponse>> {
     if (isRequestOptions(query)) {
-      return this.retrieveOverall(id, {}, query);
+      return this.retrieveOverall(metricId, {}, query);
     }
 
-    return this.get(`/data/v1/metrics/${id}/overall`, { query, ...options });
+    return this.get(`/data/v1/metrics/${metricId}/overall`, { query, ...options });
   }
 
   /**
@@ -109,78 +358,119 @@ export class Metrics extends APIResource {
    *   metric value
    */
   retrieveTimeseries(
-    id: string,
+    metricId:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'max_downscale_percentage'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_failure_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate',
     query?: MetricRetrieveTimeseriesParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetMetricTimeseriesDataResponse>>;
+  ): Promise<Core.APIResponse<MetricTimeseriesDataResponse>>;
   retrieveTimeseries(
-    id: string,
+    metricId:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'max_downscale_percentage'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_failure_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetMetricTimeseriesDataResponse>>;
+  ): Promise<Core.APIResponse<MetricTimeseriesDataResponse>>;
   retrieveTimeseries(
-    id: string,
+    metricId:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'max_downscale_percentage'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_failure_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate',
     query: MetricRetrieveTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<GetMetricTimeseriesDataResponse>> {
+  ): Promise<Core.APIResponse<MetricTimeseriesDataResponse>> {
     if (isRequestOptions(query)) {
-      return this.retrieveTimeseries(id, {}, query);
+      return this.retrieveTimeseries(metricId, {}, query);
     }
 
-    return this.get(`/data/v1/metrics/${id}/timeseries`, { query, ...options });
+    return this.get(`/data/v1/metrics/${metricId}/timeseries`, { query, ...options });
   }
 }
 
-export class BreakdownValuesMorePages extends MorePages<BreakdownValue> {}
+export class BreakdownValuesPageWithTotal extends PageWithTotal<BreakdownValue> {}
 
-export interface BreakdownValue {
-  field?: string;
-
-  negative_impact?: number;
-
-  total_watch_time?: number;
-
-  value?: number;
-
-  views?: number;
-}
-
-export interface GetMetricTimeseriesDataResponse {
-  data?: Array<Array<string>>;
+export interface AllMetricValuesResponse {
+  data?: Array<AllMetricValuesResponse.Data>;
 
   timeframe?: Array<number>;
 
   total_row_count?: number;
 }
 
-export interface GetOverallValuesResponse {
-  data?: GetOverallValuesResponse.Data;
-
-  timeframe?: Array<number>;
-
-  total_row_count?: number;
-}
-
-export namespace GetOverallValuesResponse {
-  export interface Data {
-    global_value?: number;
-
-    total_views?: number;
-
-    total_watch_time?: number;
-
-    value?: number;
-  }
-}
-
-export interface ListAllMetricValuesResponse {
-  data?: Array<ListAllMetricValuesResponse.Data>;
-
-  timeframe?: Array<number>;
-
-  total_row_count?: number;
-}
-
-export namespace ListAllMetricValuesResponse {
+export namespace AllMetricValuesResponse {
   export interface Data {
     items?: Array<Data.Items>;
 
@@ -210,15 +500,27 @@ export namespace ListAllMetricValuesResponse {
   }
 }
 
-export interface ListInsightsResponse {
-  data?: Array<ListInsightsResponse.Data>;
+export interface BreakdownValue {
+  field?: string;
+
+  negative_impact?: number;
+
+  total_watch_time?: number;
+
+  value?: number;
+
+  views?: number;
+}
+
+export interface InsightsResponse {
+  data?: Array<InsightsResponse.Data>;
 
   timeframe?: Array<number>;
 
   total_row_count?: number;
 }
 
-export namespace ListInsightsResponse {
+export namespace InsightsResponse {
   export interface Data {
     filter_column?: string;
 
@@ -231,6 +533,34 @@ export namespace ListInsightsResponse {
     total_views?: number;
 
     total_watch_time?: number;
+  }
+}
+
+export interface MetricTimeseriesDataResponse {
+  data?: Array<Array<string>>;
+
+  timeframe?: Array<number>;
+
+  total_row_count?: number;
+}
+
+export interface OverallValuesResponse {
+  data?: OverallValuesResponse.Data;
+
+  timeframe?: Array<number>;
+
+  total_row_count?: number;
+}
+
+export namespace OverallValuesResponse {
+  export interface Data {
+    global_value?: number;
+
+    total_views?: number;
+
+    total_watch_time?: number;
+
+    value?: number;
   }
 }
 
@@ -312,7 +642,7 @@ export interface MetricListParams {
   value?: string;
 }
 
-export interface MetricListBreakdownParams extends MorePagesParams {
+export interface MetricListBreakdownParams extends PageWithTotalParams {
   /**
    * Limit the results to rows that match conditions from provided key:value pairs.
    * Must be provided as an array query string parameter.
