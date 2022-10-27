@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-class-members */
 /*!
  * JWT - Signed URL Helpers
  * Note: Hacking this module into a class with static methods because ESDoc forces it. We'll revisit ESDoc later.
@@ -79,7 +80,7 @@ export class JWT {
    * @param {Object} options - Configuration options to use when creating the token
    * @param {string} [options.keyId] - The signing key ID to use. If not specified, process.env.MUX_SIGNING_KEY is attempted
    * @param {string} [options.keySecret] - The signing key secret. If not specified, process.env.MUX_PRIVATE_KEY is used.
-   * @param {string} [options.type=video] - Type of token this will be. Valid types are `video`, `thumbnail`, `gif`, or `storyboard`
+   * @param {string} [options.type=video] - Type of token this will be. Valid types are `video`, `thumbnail`, `gif`, `storyboard`, or `real-time`
    * @param {string} [options.expiration=7d] - Length of time for the token to be valid.
    * @param {Object} [options.params] - Any additional query params you'd use with a public url. For example, with a thumbnail this would be values such as `time`.
    * @returns {string} - Returns a token to be used with a signed URL.
@@ -90,9 +91,48 @@ export class JWT {
    * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
    * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
    */
-  static sign(playbackId: string, options: MuxJWTSignOptions = {}) {
+  static sign(playbackId: string, options?: MuxJWTSignOptions): string;
+  /**
+   * Creates a new token according to type and subject
+   * @param {string} subject - The subject you'd like to generate a token for.
+   * @param {string} type - The type of service this token is intended for. Valid types are `video`, `thumbnail`, `gif`, `storyboard`, or `real-time`
+   * @param {Object} options - Configuration options to use when creating the token
+   * @param {string} [options.keyId] - The signing key ID to use. If not specified, process.env.MUX_SIGNING_KEY is attempted
+   * @param {string} [options.keySecret] - The signing key secret. If not specified, process.env.MUX_PRIVATE_KEY is used.
+   * @param {string} [options.type=video] - Type of token this will be. Valid types are `video`, `thumbnail`, `gif`, `storyboard`, or `real-time`
+   * @param {string} [options.expiration=7d] - Length of time for the token to be valid.
+   * @param {Object} [options.params] - Any additional query params you'd use with a public url. For example, with a thumbnail this would be values such as `time`.
+   * @returns {string} - Returns a token to be used with a signed URL.
+   *
+   * @example
+   * const Mux = require('@mux/mux-node');
+   *
+   * const token = Mux.JWT.sign('space-id', 'real-time', { keyId: 'your key id', keySecret: 'your key secret' });
+   * // Now you can use the token to join a space
+   */
+  static sign(
+    subject: string,
+    type: string,
+    options?: MuxJWTSignOptions
+  ): string;
+  static sign(
+    subject: string,
+    typeOrOptions?: string | MuxJWTSignOptions,
+    subjectTypeOptions?: MuxJWTSignOptions | undefined
+  ) {
+    let options = {};
+    let type = 'video';
+    if (subjectTypeOptions) {
+      options = subjectTypeOptions;
+      if (typeof typeOrOptions === 'string') {
+        type = typeOrOptions;
+      }
+    }
+    if (typeof typeOrOptions !== 'string' && typeOrOptions) {
+      options = typeOrOptions;
+    }
     const opts = {
-      type: 'video',
+      type,
       expiration: '7d',
       params: {},
       ...options,
@@ -110,7 +150,7 @@ export class JWT {
 
     const tokenOptions: jwt.SignOptions = {
       keyid: keyId,
-      subject: playbackId,
+      subject,
       audience: typeClaim,
       expiresIn: opts.expiration,
       noTimestamp: true,

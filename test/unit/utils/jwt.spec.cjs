@@ -84,6 +84,17 @@ describe('Utils::JWT', () => {
       expect(decoded.aud).to.eq('rt');
     });
 
+    it('supports passing type in as a second parameter', () => {
+      const options = {
+        keyId: TEST_ID,
+        keySecret: TEST_SECRET,
+      };
+      const token = JWT.sign('space-id', 'real-time', options);
+      expect(token).to.be.a('string');
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq('rt');
+    });
+
     it('takes a file path for a secret', () => {
       const options = {
         keyId: TEST_ID,
