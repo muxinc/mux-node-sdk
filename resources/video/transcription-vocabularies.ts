@@ -13,7 +13,6 @@ export class TranscriptionVocabularies extends APIResource {
     body: TranscriptionVocabularyCreateParams,
     options?: Core.RequestOptions,
   ): Promise<TranscriptionVocabulary> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.post('/video/v1/transcription-vocabularies', { body, ...options })) as any;
     return response.data;
   }
@@ -28,7 +27,6 @@ export class TranscriptionVocabularies extends APIResource {
     transcriptionVocabularyId: string,
     options?: Core.RequestOptions,
   ): Promise<TranscriptionVocabulary> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.get(
       `/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`,
       options,
@@ -46,7 +44,6 @@ export class TranscriptionVocabularies extends APIResource {
     body: TranscriptionVocabularyUpdateParams,
     options?: Core.RequestOptions,
   ): Promise<TranscriptionVocabulary> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.put(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
       body,
       ...options,

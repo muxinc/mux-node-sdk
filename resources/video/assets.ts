@@ -11,7 +11,6 @@ export class Assets extends APIResource {
    * Create a new Mux Video asset.
    */
   async create(body: AssetCreateParams, options?: Core.RequestOptions): Promise<Shared.Asset> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.post('/video/v1/assets', { body, ...options })) as any;
     return response.data;
   }
@@ -23,7 +22,6 @@ export class Assets extends APIResource {
    * when creating an asset.
    */
   async retrieve(assetId: string, options?: Core.RequestOptions): Promise<Shared.Asset> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.get(`/video/v1/assets/${assetId}`, options)) as any;
     return response.data;
   }
@@ -37,7 +35,6 @@ export class Assets extends APIResource {
     body: AssetUpdateParams,
     options?: Core.RequestOptions,
   ): Promise<Shared.Asset> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.patch(`/video/v1/assets/${assetId}`, { body, ...options })) as any;
     return response.data;
   }
@@ -76,7 +73,6 @@ export class Assets extends APIResource {
     body: AssetCreatePlaybackIdParams,
     options?: Core.RequestOptions,
   ): Promise<Shared.PlaybackId> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.post(`/video/v1/assets/${assetId}/playback-ids`, {
       body,
       ...options,
@@ -92,7 +88,6 @@ export class Assets extends APIResource {
     body: AssetCreateTrackParams,
     options?: Core.RequestOptions,
   ): Promise<Shared.Track> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.post(`/video/v1/assets/${assetId}/tracks`, { body, ...options })) as any;
     return response.data;
   }
@@ -129,7 +124,6 @@ export class Assets extends APIResource {
     playbackId: string,
     options?: Core.RequestOptions,
   ): Promise<Shared.PlaybackId> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.get(
       `/video/v1/assets/${assetId}/playback-ids/${playbackId}`,
       options,
@@ -149,7 +143,6 @@ export class Assets extends APIResource {
     body: AssetUpdateMasterAccessParams,
     options?: Core.RequestOptions,
   ): Promise<Shared.Asset> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.put(`/video/v1/assets/${assetId}/master-access`, {
       body,
       ...options,
@@ -169,7 +162,6 @@ export class Assets extends APIResource {
     body: AssetUpdateMP4SupportParams,
     options?: Core.RequestOptions,
   ): Promise<Shared.Asset> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.put(`/video/v1/assets/${assetId}/mp4-support`, { body, ...options })) as any;
     return response.data;
   }

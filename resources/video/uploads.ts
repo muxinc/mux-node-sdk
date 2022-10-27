@@ -12,7 +12,6 @@ export class Uploads extends APIResource {
    * ingest to Mux.
    */
   async create(body: UploadCreateParams, options?: Core.RequestOptions): Promise<Upload> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.post('/video/v1/uploads', { body, ...options })) as any;
     return response.data;
   }
@@ -21,7 +20,6 @@ export class Uploads extends APIResource {
    * Fetches information about a single direct upload in the current environment.
    */
   async retrieve(uploadId: string, options?: Core.RequestOptions): Promise<Upload> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.get(`/video/v1/uploads/${uploadId}`, options)) as any;
     return response.data;
   }
@@ -48,7 +46,6 @@ export class Uploads extends APIResource {
    * the upload is still in the `waiting` state.
    */
   async cancel(uploadId: string, options?: Core.RequestOptions): Promise<Upload> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.put(`/video/v1/uploads/${uploadId}/cancel`, options)) as any;
     return response.data;
   }

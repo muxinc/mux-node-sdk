@@ -12,7 +12,6 @@ export class SigningKeys extends APIResource {
    * key-id; the public key will be stored at Mux to validate signed tokens.
    */
   async create(options?: Core.RequestOptions): Promise<SigningKey> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.post('/video/v1/signing-keys', options)) as any;
     return response.data;
   }
@@ -24,7 +23,6 @@ export class SigningKeys extends APIResource {
    * is not returned in this response.**
    */
   async retrieve(signingKeyId: string, options?: Core.RequestOptions): Promise<SigningKey> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.get(`/video/v1/signing-keys/${signingKeyId}`, options)) as any;
     return response.data;
   }

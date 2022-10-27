@@ -9,7 +9,6 @@ export class PlaybackIds extends APIResource {
    * Playback ID.
    */
   async retrieve(playbackId: string, options?: Core.RequestOptions): Promise<PlaybackIdRetrieveResponse> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.get(`/video/v1/playback-ids/${playbackId}`, options)) as any;
     return response.data;
   }

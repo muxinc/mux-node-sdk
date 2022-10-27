@@ -12,7 +12,6 @@ export class LiveStreams extends APIResource {
    * specified stream key and begin streaming to an audience.
    */
   async create(body: LiveStreamCreateParams, options?: Core.RequestOptions): Promise<LiveStream> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.post('/video/v1/live-streams', { body, ...options })) as any;
     return response.data;
   }
@@ -24,7 +23,6 @@ export class LiveStreams extends APIResource {
    * returned when creating a live stream.
    */
   async retrieve(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStream> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.get(`/video/v1/live-streams/${liveStreamId}`, options)) as any;
     return response.data;
   }
@@ -41,7 +39,6 @@ export class LiveStreams extends APIResource {
     body: LiveStreamUpdateParams,
     options?: Core.RequestOptions,
   ): Promise<LiveStream> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.patch(`/video/v1/live-streams/${liveStreamId}`, {
       body,
       ...options,
@@ -89,7 +86,6 @@ export class LiveStreams extends APIResource {
    * to disconnect from their end.
    */
   async complete(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStreamCompleteResponse> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/complete`, options)) as any;
     return response.data;
   }
@@ -103,7 +99,6 @@ export class LiveStreams extends APIResource {
     body: LiveStreamCreatePlaybackIdParams,
     options?: Core.RequestOptions,
   ): Promise<Shared.PlaybackId> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.post(`/video/v1/live-streams/${liveStreamId}/playback-ids`, {
       body,
       ...options,
@@ -121,7 +116,6 @@ export class LiveStreams extends APIResource {
     body: LiveStreamCreateSimulcastTargetParams,
     options?: Core.RequestOptions,
   ): Promise<LiveStreamCreateSimulcastTargetResponse> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.post(`/video/v1/live-streams/${liveStreamId}/simulcast-targets`, {
       body,
       ...options,
@@ -168,7 +162,6 @@ export class LiveStreams extends APIResource {
    * to re-establish connection will fail till the live stream is re-enabled.
    */
   async disable(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStreamDisableResponse> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/disable`, options)) as any;
     return response.data;
   }
@@ -177,7 +170,6 @@ export class LiveStreams extends APIResource {
    * Enables a live stream, allowing it to accept an incoming RTMP stream.
    */
   async enable(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStreamEnableResponse> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/enable`, options)) as any;
     return response.data;
   }
@@ -187,7 +179,6 @@ export class LiveStreams extends APIResource {
    * from working and create a new stream key that can be used for future broadcasts.
    */
   async resetStreamKey(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStream> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.post(
       `/video/v1/live-streams/${liveStreamId}/reset-stream-key`,
       options,
@@ -204,7 +195,6 @@ export class LiveStreams extends APIResource {
     playbackId: string,
     options?: Core.RequestOptions,
   ): Promise<Shared.PlaybackId> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.get(
       `/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`,
       options,
@@ -223,7 +213,6 @@ export class LiveStreams extends APIResource {
     simulcastTargetId: string,
     options?: Core.RequestOptions,
   ): Promise<LiveStreamCreateSimulcastTargetResponse> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.get(
       `/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`,
       options,
@@ -240,7 +229,6 @@ export class LiveStreams extends APIResource {
     body: LiveStreamUpdateEmbeddedSubtitlesParams,
     options?: Core.RequestOptions,
   ): Promise<LiveStream> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/embedded-subtitles`, {
       body,
       ...options,
@@ -258,7 +246,6 @@ export class LiveStreams extends APIResource {
     body: LiveStreamUpdateGeneratedSubtitlesParams,
     options?: Core.RequestOptions,
   ): Promise<LiveStream> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/generated-subtitles`, {
       body,
       ...options,

@@ -13,7 +13,6 @@ export class PlaybackRestrictions extends APIResource {
     body: PlaybackRestrictionCreateParams,
     options?: Core.RequestOptions,
   ): Promise<PlaybackRestriction> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.post('/video/v1/playback-restrictions', { body, ...options })) as any;
     return response.data;
   }
@@ -22,7 +21,6 @@ export class PlaybackRestrictions extends APIResource {
    * Retrieves a Playback Restriction associated with the unique identifier.
    */
   async retrieve(playbackRestrictionId: string, options?: Core.RequestOptions): Promise<PlaybackRestriction> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.get(
       `/video/v1/playback-restrictions/${playbackRestrictionId}`,
       options,
@@ -72,7 +70,6 @@ export class PlaybackRestrictions extends APIResource {
     body: PlaybackRestrictionUpdateReferrerParams,
     options?: Core.RequestOptions,
   ): Promise<PlaybackRestriction> {
-    // Note that this method does not support accessing responseHeaders
     const response = (await this.put(`/video/v1/playback-restrictions/${playbackRestrictionId}/referrer`, {
       body,
       ...options,
