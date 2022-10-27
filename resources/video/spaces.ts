@@ -12,7 +12,7 @@ export class Spaces extends APIResource {
    * [real-time video applications.](https://mux.com/real-time-video)
    */
   async create(body: SpaceCreateParams, options?: Core.RequestOptions): Promise<Space> {
-    const response = (await this.post('/video/v1/spaces', { body, ...options })) as any;
+    const response = await this.post<any, any>('/video/v1/spaces', { body, ...options });
     return response.data;
   }
 
@@ -23,7 +23,7 @@ export class Spaces extends APIResource {
    * returned when creating a space.
    */
   async retrieve(spaceId: string, options?: Core.RequestOptions): Promise<Space> {
-    const response = (await this.get(`/video/v1/spaces/${spaceId}`, options)) as any;
+    const response = await this.get<any, any>(`/video/v1/spaces/${spaceId}`, options);
     return response.data;
   }
 
@@ -64,7 +64,10 @@ export class Spaces extends APIResource {
     body: SpaceCreateBroadcastParams,
     options?: Core.RequestOptions,
   ): Promise<Broadcast> {
-    const response = (await this.post(`/video/v1/spaces/${spaceId}/broadcasts`, { body, ...options })) as any;
+    const response = await this.post<any, any>(`/video/v1/spaces/${spaceId}/broadcasts`, {
+      body,
+      ...options,
+    });
     return response.data;
   }
 
@@ -87,10 +90,10 @@ export class Spaces extends APIResource {
     broadcastId: string,
     options?: Core.RequestOptions,
   ): Promise<Broadcast> {
-    const response = (await this.get(
+    const response = await this.get<any, any>(
       `/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`,
       options,
-    )) as any;
+    );
     return response.data;
   }
 
@@ -103,10 +106,10 @@ export class Spaces extends APIResource {
     broadcastId: string,
     options?: Core.RequestOptions,
   ): Promise<SpaceStartBroadcastResponse> {
-    const response = (await this.post(
+    const response = await this.post<any, any>(
       `/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/start`,
       options,
-    )) as any;
+    );
     return response.data;
   }
 
@@ -120,10 +123,10 @@ export class Spaces extends APIResource {
     broadcastId: string,
     options?: Core.RequestOptions,
   ): Promise<SpaceStopBroadcastResponse> {
-    const response = (await this.post(
+    const response = await this.post<any, any>(
       `/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/stop`,
       options,
-    )) as any;
+    );
     return response.data;
   }
 }

@@ -9,7 +9,7 @@ export class PlaybackIds extends APIResource {
    * Playback ID.
    */
   async retrieve(playbackId: string, options?: Core.RequestOptions): Promise<PlaybackIdRetrieveResponse> {
-    const response = (await this.get(`/video/v1/playback-ids/${playbackId}`, options)) as any;
+    const response = await this.get<any, any>(`/video/v1/playback-ids/${playbackId}`, options);
     return response.data;
   }
 }

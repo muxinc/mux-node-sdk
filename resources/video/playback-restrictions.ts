@@ -13,7 +13,7 @@ export class PlaybackRestrictions extends APIResource {
     body: PlaybackRestrictionCreateParams,
     options?: Core.RequestOptions,
   ): Promise<PlaybackRestriction> {
-    const response = (await this.post('/video/v1/playback-restrictions', { body, ...options })) as any;
+    const response = await this.post<any, any>('/video/v1/playback-restrictions', { body, ...options });
     return response.data;
   }
 
@@ -21,10 +21,10 @@ export class PlaybackRestrictions extends APIResource {
    * Retrieves a Playback Restriction associated with the unique identifier.
    */
   async retrieve(playbackRestrictionId: string, options?: Core.RequestOptions): Promise<PlaybackRestriction> {
-    const response = (await this.get(
+    const response = await this.get<any, any>(
       `/video/v1/playback-restrictions/${playbackRestrictionId}`,
       options,
-    )) as any;
+    );
     return response.data;
   }
 
@@ -70,10 +70,10 @@ export class PlaybackRestrictions extends APIResource {
     body: PlaybackRestrictionUpdateReferrerParams,
     options?: Core.RequestOptions,
   ): Promise<PlaybackRestriction> {
-    const response = (await this.put(`/video/v1/playback-restrictions/${playbackRestrictionId}/referrer`, {
-      body,
-      ...options,
-    })) as any;
+    const response = await this.put<any, any>(
+      `/video/v1/playback-restrictions/${playbackRestrictionId}/referrer`,
+      { body, ...options },
+    );
     return response.data;
   }
 }

@@ -13,7 +13,7 @@ export class TranscriptionVocabularies extends APIResource {
     body: TranscriptionVocabularyCreateParams,
     options?: Core.RequestOptions,
   ): Promise<TranscriptionVocabulary> {
-    const response = (await this.post('/video/v1/transcription-vocabularies', { body, ...options })) as any;
+    const response = await this.post<any, any>('/video/v1/transcription-vocabularies', { body, ...options });
     return response.data;
   }
 
@@ -27,10 +27,10 @@ export class TranscriptionVocabularies extends APIResource {
     transcriptionVocabularyId: string,
     options?: Core.RequestOptions,
   ): Promise<TranscriptionVocabulary> {
-    const response = (await this.get(
+    const response = await this.get<any, any>(
       `/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`,
       options,
-    )) as any;
+    );
     return response.data;
   }
 
@@ -44,10 +44,10 @@ export class TranscriptionVocabularies extends APIResource {
     body: TranscriptionVocabularyUpdateParams,
     options?: Core.RequestOptions,
   ): Promise<TranscriptionVocabulary> {
-    const response = (await this.put(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
-      body,
-      ...options,
-    })) as any;
+    const response = await this.put<any, any>(
+      `/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`,
+      { body, ...options },
+    );
     return response.data;
   }
 
