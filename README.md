@@ -5,7 +5,7 @@
 The Mux Node library provides convenient access to the Mux REST API from applications written in server-side JavaScript.
 It includes TypeScript definitions for all request params and response fields.
 
-![GIF showcasing mux usage](./showcase.gif)
+https://user-images.githubusercontent.com/59429/198728116-9c7292d5-0571-4087-ba8c-42566cd47a91.mp4
 
 ## Documentation
 
