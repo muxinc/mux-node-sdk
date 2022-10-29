@@ -16,7 +16,11 @@ let nodeFetch: typeof NodeFetch | undefined = undefined;
 let getDefaultAgent = (_url: string): Agent | undefined => undefined;
 if (isNode) {
   /* eslint-disable @typescript-eslint/no-var-requires */
-  nodeFetch = require('node-fetch');
+  // NB: `node-fetch` has both named exports and a default export that is the `fetch` function
+  // we want to use. In most runtime environments, just using `require` gets us the function,
+  // but in some bundling/runtime systems it only gives us the object of named exports.
+  // So we explicitly ask for the `default` export, which works everywhere.
+  nodeFetch = require('node-fetch').default;
   const HttpAgent: typeof KeepAliveAgent = require('agentkeepalive');
   const HttpsAgent = HttpAgent.HttpsAgent;
   /* eslint-enable @typescript-eslint/no-var-requires */
