@@ -357,14 +357,6 @@ export interface ListUploadParams {
   upload_id?: string;
 }
 
-export interface GetAssetPlaybackIdResponse {
-  data: PlaybackId;
-}
-
-export interface GetLiveStreamPlaybackIdResponse {
-  data: PlaybackId;
-}
-
 export interface ReferrerDomainRestriction {
   allowed_domains?: Array<string>;
   allow_no_referrer?: boolean;
@@ -379,14 +371,6 @@ export interface PlaybackRestriction {
   created_at: string;
   updated_at?: string;
   referrer?: ReferrerDomainRestriction;
-}
-
-export interface PlaybackRestrictionResponse {
-  data: PlaybackRestriction;
-}
-
-export interface ListPlaybackRestrictionsResponse {
-  data: Array<PlaybackRestriction>;
 }
 
 export type SpaceStatus = 'idle' | 'active';
@@ -434,29 +418,9 @@ export interface CreateSpaceRequest {
   broadcasts?: Array<CreateBroadcastRequest>;
 }
 
-export interface SpaceResponse {
-  data: Space;
-}
-
-export interface BroadcastResponse {
-  data: Broadcast;
-}
-
 export interface ListSpacesRequest {
   limit?: number;
   page?: number;
-}
-
-export interface ListSpacesResponse {
-  data: Array<Space>;
-}
-
-export interface StartSpaceBroadcastResponse {
-  data: {};
-}
-
-export interface StopSpaceBroadcastResponse {
-  data: {};
 }
 
 export interface TranscriptionVocabulary {
@@ -471,12 +435,4 @@ export interface UpsertTranscriptionVocabularyParams {
   name: string;
   phrases: string[];
   passthrough?: string;
-}
-
-export interface ListTranscriptionVocabulariesResponse {
-  data: Array<TranscriptionVocabulary>;
-}
-
-export interface TranscriptionVocabularyResponse {
-  data: TranscriptionVocabulary;
 }
