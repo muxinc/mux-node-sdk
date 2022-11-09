@@ -8,16 +8,16 @@ const TEST_SECRET =
 
 /** @test {Mux.Utils.JWT} */
 describe('Utils::JWT', () => {
-  /** @test {Mux.Utils.JWT.sign} */
+  /** @test {Mux.Utils.JWT.signPlaybackId} */
   describe('sign', () => {
-    /** @test {Mux.Utils.JWT.sign} */
+    /** @test {Mux.Utils.JWT.signPlaybackId} */
     it('defaults to video and includes an expiration', () => {
       const options = {
         keyId: TEST_ID,
         keySecret: TEST_SECRET,
       };
 
-      const token = JWT.sign('some-playback-id', options);
+      const token = JWT.signPlaybackId('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('v');
@@ -30,7 +30,7 @@ describe('Utils::JWT', () => {
         keySecret: TEST_SECRET,
         type: 'video',
       };
-      const token = JWT.sign('some-playback-id', options);
+      const token = JWT.signPlaybackId('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('v');
@@ -42,7 +42,7 @@ describe('Utils::JWT', () => {
         keySecret: TEST_SECRET,
         type: 'thumbnail',
       };
-      const token = JWT.sign('some-playback-id', options);
+      const token = JWT.signPlaybackId('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('t');
@@ -54,7 +54,7 @@ describe('Utils::JWT', () => {
         keySecret: TEST_SECRET,
         type: 'gif',
       };
-      const token = JWT.sign('some-playback-id', options);
+      const token = JWT.signPlaybackId('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('g');
@@ -66,7 +66,7 @@ describe('Utils::JWT', () => {
         keySecret: TEST_SECRET,
         type: 'storyboard',
       };
-      const token = JWT.sign('some-playback-id', options);
+      const token = JWT.signPlaybackId('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('s');
@@ -79,7 +79,7 @@ describe('Utils::JWT', () => {
         type: 'gif',
       };
 
-      const token = JWT.sign('some-playback-id', options);
+      const token = JWT.signPlaybackId('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('g');
@@ -92,7 +92,7 @@ describe('Utils::JWT', () => {
         type: 'gif',
       };
 
-      const token = JWT.sign('some-playback-id', options);
+      const token = JWT.signPlaybackId('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('g');
@@ -110,8 +110,8 @@ describe('Utils::JWT', () => {
         expiration: 60 * 60 * 3,
       };
 
-      const token1 = JWT.sign('some-playback-id', options1);
-      const token2 = JWT.sign('some-playback-id', options2);
+      const token1 = JWT.signPlaybackId('some-playback-id', options1);
+      const token2 = JWT.signPlaybackId('some-playback-id', options2);
       expect(token1).to.be.a('string');
       expect(token2).to.be.a('string');
 
