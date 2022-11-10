@@ -23,7 +23,7 @@ export class Broadcasts extends Base {
     return this.http.get(BROADCAST_PATH(spaceId, broadcastId));
   }
 
-  delete(spaceId: string, broadcastId: string): Promise<Broadcast> {
+  delete(spaceId: string, broadcastId: string): Promise<any> {
     return this.http.delete(BROADCAST_PATH(spaceId, broadcastId));
   }
 

@@ -88,6 +88,32 @@ export class JWT {
    *
    * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
    * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
+   *
+   * @deprecated This method should not be used, you should use signPlaybackId instead
+   */
+  static sign(playbackId: string, options: MuxJWTSignOptions = {}) {
+    process.emitWarning(
+      'The JWT.sign() method has been deprecated, please use JWT.signPlaybackId() instead',
+      'DeprecatedWarning'
+    );
+    return this.signPlaybackId(playbackId, options);
+  }
+  /**
+   * Creates a new token to be used with a signed playback ID
+   * @param {string} playbackId - The Playback ID (of type 'signed') that you'd like to generate a token for.
+   * @param {Object} options - Configuration options to use when creating the token
+   * @param {string} [options.keyId] - The signing key ID to use. If not specified, process.env.MUX_SIGNING_KEY is attempted
+   * @param {string} [options.keySecret] - The signing key secret. If not specified, process.env.MUX_PRIVATE_KEY is used.
+   * @param {string} [options.type=video] - Type of token this will be. Valid types are `video`, `thumbnail`, `gif`, or `storyboard`
+   * @param {string} [options.expiration=7d] - Length of time for the token to be valid.
+   * @param {Object} [options.params] - Any additional query params you'd use with a public url. For example, with a thumbnail this would be values such as `time`.
+   * @returns {string} - Returns a token to be used with a signed URL.
+   *
+   * @example
+   * const Mux = require('@mux/mux-node');
+   *
+   * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
+   * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
    */
   static signPlaybackId(playbackId: string, options: MuxJWTSignOptions = {}) {
     const opts = {
@@ -124,7 +150,6 @@ export class JWT {
    * @param {Object} options - Configuration options to use when creating the token
    * @param {string} [options.keyId] - The signing key ID to use. If not specified, process.env.MUX_SIGNING_KEY is attempted
    * @param {string} [options.keySecret] - The signing key secret. If not specified, process.env.MUX_PRIVATE_KEY is used.
-   * @param {string} [options.type=rt] - Type of token this will be. Which is rt for Real-time
    * @param {string} [options.expiration=7d] - Length of time for the token to be valid.
    * @param {Object} [options.params] - Any additional query params you'd use with a public url.
    * @returns {string} - Returns a token to be used with a signed URL.
@@ -136,7 +161,6 @@ export class JWT {
    */
   static signSpaceId(spaceId: string, options: MuxJWTSignOptions = {}) {
     const opts = {
-      type: 'rt',
       expiration: '7d',
       params: {},
       ...options,
@@ -145,14 +169,10 @@ export class JWT {
     const keyId = getSigningKey(options);
     const keySecret = getPrivateKey(options);
 
-    if (opts.type !== 'rt') {
-      throw new Error(`Invalid signature type: ${opts.type}`);
-    }
-
     const tokenOptions: jwt.SignOptions = {
       keyid: keyId,
       subject: spaceId,
-      audience: opts.type,
+      audience: 'rt',
       expiresIn: opts.expiration,
       noTimestamp: true,
       algorithm: 'RS256',
