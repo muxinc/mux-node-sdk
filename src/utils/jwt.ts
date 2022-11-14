@@ -12,6 +12,7 @@ export enum TypeClaim {
   thumbnail = 't',
   gif = 'g',
   storyboard = 's',
+  stats = 'playback_id',
 }
 export interface MuxJWTSignOptions {
   keyId?: string;
@@ -78,7 +79,7 @@ export class JWT {
    * @param {Object} options - Configuration options to use when creating the token
    * @param {string} [options.keyId] - The signing key ID to use. If not specified, process.env.MUX_SIGNING_KEY is attempted
    * @param {string} [options.keySecret] - The signing key secret. If not specified, process.env.MUX_PRIVATE_KEY is used.
-   * @param {string} [options.type=video] - Type of token this will be. Valid types are `video`, `thumbnail`, `gif`, or `storyboard`
+   * @param {string} [options.type=video] - Type of token this will be. Valid types are `video`, `thumbnail`, `gif`, `storyboard` or `stats`
    * @param {string} [options.expiration=7d] - Length of time for the token to be valid.
    * @param {Object} [options.params] - Any additional query params you'd use with a public url. For example, with a thumbnail this would be values such as `time`.
    * @returns {string} - Returns a token to be used with a signed URL.
@@ -104,7 +105,7 @@ export class JWT {
    * @param {Object} options - Configuration options to use when creating the token
    * @param {string} [options.keyId] - The signing key ID to use. If not specified, process.env.MUX_SIGNING_KEY is attempted
    * @param {string} [options.keySecret] - The signing key secret. If not specified, process.env.MUX_PRIVATE_KEY is used.
-   * @param {string} [options.type=video] - Type of token this will be. Valid types are `video`, `thumbnail`, `gif`, or `storyboard`
+   * @param {string} [options.type=video] - Type of token this will be. Valid types are `video`, `thumbnail`, `gif`, `storyboard` or `stats`
    * @param {string} [options.expiration=7d] - Length of time for the token to be valid.
    * @param {Object} [options.params] - Any additional query params you'd use with a public url. For example, with a thumbnail this would be values such as `time`.
    * @returns {string} - Returns a token to be used with a signed URL.
