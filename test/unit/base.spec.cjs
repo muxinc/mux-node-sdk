@@ -36,6 +36,74 @@ describe('Unit::Base', () => {
       expect(childBase.tokenSecret).to.be.eq(parentBase.tokenSecret);
     });
 
+    it('allows the source platform header to be defined', () => {
+      const name = 'Some cool platform';
+      const version = '1.0.0';
+      const options = {
+        platform: {
+          name,
+          version
+        }
+      };
+      const baseClient = new Base(options);
+      const headers = baseClient.http.defaults.headers;
+      const sourcePlatformHeader = headers['x-source-platform'];
+      expect(sourcePlatformHeader).to.not.be.undefined;
+      expect(sourcePlatformHeader).to.equal(`${name} | ${version}`);
+    });
+
+    it('validates that the source platform header does not have a pipe character in the name', () => {
+      const name = 'Some | cool | platform';
+      const version = '1.0.0';
+      const options = {
+        platform: {
+          name,
+          version
+        }
+      };
+      const proxy = (options) => new Base(options);
+      const baseClientBound = proxy.bind(this, options);
+      expect(baseClientBound).to.throw('Platform name cannot contain a "|" value.');
+    });
+
+    it('validates that the source platform header does not have a pipe character in the version', () => {
+      const name = 'Some cool platform';
+      const version = '1.0.0 | beta';
+      const options = {
+        platform: {
+          name,
+          version
+        }
+      };
+      const proxy = (options) => new Base(options);
+      const baseClientBound = proxy.bind(this, options);
+      expect(baseClientBound).to.throw('Platform version cannot contain a "|" value.');
+    });
+
+    it('allows the source platform header to have a name and not a version', () => {
+      const name = 'Some cool platform';
+      const options = {
+        platform: { name }
+      };
+      const baseClient = new Base(options);
+      const headers = baseClient.http.defaults.headers;
+      const sourcePlatformHeader = headers['x-source-platform'];
+      expect(sourcePlatformHeader).to.not.be.null;
+      expect(sourcePlatformHeader).to.not.be.undefined;
+      expect(sourcePlatformHeader).to.equal(`${name} | undefined`);
+    });
+
+    it('ignore the source platform header setting if no name is provided', () => {
+      const version = '1.0.0';
+      const options = {
+        platform: { version }
+      };
+      const baseClient = new Base(options);
+      const headers = baseClient.http.defaults.headers;
+      const sourcePlatformHeader = headers['x-source-platform'];
+      expect(sourcePlatformHeader).to.be.undefined;
+    });
+
     describe('http requests', () => {
       let baseClient;
 
