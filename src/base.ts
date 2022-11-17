@@ -73,6 +73,14 @@ export class Base extends EventEmitter {
       };
 
       if (this.config.platform?.name) {
+        if (this.config.platform?.name?.includes('|')) {
+          throw new Error('Platform name cannot contain a "|" value.');
+        }
+
+        if (this.config.platform?.version?.includes('|')) {
+          throw new Error('Platform version cannot contain a "|" value.');
+        }
+
         request.headers[
           'x-source-platform'
         ] = `${this.config.platform?.name} | ${this.config.platform?.version}`;
