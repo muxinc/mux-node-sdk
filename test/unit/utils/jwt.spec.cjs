@@ -8,16 +8,16 @@ const TEST_SECRET =
 
 /** @test {Mux.Utils.JWT} */
 describe('Utils::JWT', () => {
-  /** @test {Mux.Utils.JWT.sign} */
-  describe('sign', () => {
-    /** @test {Mux.Utils.JWT.sign} */
+  /** @test {Mux.Utils.JWT.signPlaybackId} */
+  describe('signPlaybackId', () => {
+    /** @test {Mux.Utils.JWT.signPlaybackId} */
     it('defaults to video and includes an expiration', () => {
       const options = {
         keyId: TEST_ID,
         keySecret: TEST_SECRET,
       };
 
-      const token = JWT.sign('some-playback-id', options);
+      const token = JWT.signPlaybackId('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('v');
@@ -30,7 +30,7 @@ describe('Utils::JWT', () => {
         keySecret: TEST_SECRET,
         type: 'video',
       };
-      const token = JWT.sign('some-playback-id', options);
+      const token = JWT.signPlaybackId('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('v');
@@ -42,7 +42,7 @@ describe('Utils::JWT', () => {
         keySecret: TEST_SECRET,
         type: 'thumbnail',
       };
-      const token = JWT.sign('some-playback-id', options);
+      const token = JWT.signPlaybackId('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('t');
@@ -54,7 +54,7 @@ describe('Utils::JWT', () => {
         keySecret: TEST_SECRET,
         type: 'gif',
       };
-      const token = JWT.sign('some-playback-id', options);
+      const token = JWT.signPlaybackId('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('g');
@@ -66,7 +66,7 @@ describe('Utils::JWT', () => {
         keySecret: TEST_SECRET,
         type: 'storyboard',
       };
-      const token = JWT.sign('some-playback-id', options);
+      const token = JWT.signPlaybackId('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('s');
@@ -79,7 +79,7 @@ describe('Utils::JWT', () => {
         type: 'gif',
       };
 
-      const token = JWT.sign('some-playback-id', options);
+      const token = JWT.signPlaybackId('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('g');
@@ -92,7 +92,7 @@ describe('Utils::JWT', () => {
         type: 'gif',
       };
 
-      const token = JWT.sign('some-playback-id', options);
+      const token = JWT.signPlaybackId('some-playback-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('g');
@@ -110,8 +110,72 @@ describe('Utils::JWT', () => {
         expiration: 60 * 60 * 3,
       };
 
-      const token1 = JWT.sign('some-playback-id', options1);
-      const token2 = JWT.sign('some-playback-id', options2);
+      const token1 = JWT.signPlaybackId('some-playback-id', options1);
+      const token2 = JWT.signPlaybackId('some-playback-id', options2);
+      expect(token1).to.be.a('string');
+      expect(token2).to.be.a('string');
+
+      const decoded1 = JWT.decode(token1);
+      const decoded2 = JWT.decode(token2);
+      expect(decoded1.exp).to.be.closeTo(decoded2.exp, 2);
+    });
+  });
+  /** @test {Mux.Utils.JWT.signSpaceId} */
+  describe('signSpaceId', () => {
+    /** @test {Mux.Utils.JWT.signPlaybackId} */
+    it('defaults to rt and includes an expiration', () => {
+      const options = {
+        keyId: TEST_ID,
+        keySecret: TEST_SECRET,
+      };
+
+      const token = JWT.signSpaceId('some-space-id', options);
+      expect(token).to.be.a('string');
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq('rt');
+      expect(decoded.exp).to.be.greaterThan(new Date().getTime() / 1000);
+    });
+
+    it('takes a file path for a secret', () => {
+      const options = {
+        keyId: TEST_ID,
+        keyFilePath: path.join(__dirname, 'example-private-key.pem'),
+        type: 'rt',
+      };
+
+      const token = JWT.signSpaceId('some-space-id', options);
+      expect(token).to.be.a('string');
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq('rt');
+    });
+
+    it('falls back to using environment variables for the key and secret', () => {
+      process.env.MUX_SIGNING_KEY = TEST_ID;
+      process.env.MUX_PRIVATE_KEY = TEST_SECRET;
+      const options = {
+        type: 'rt',
+      };
+
+      const token = JWT.signSpaceId('some-space-id', options);
+      expect(token).to.be.a('string');
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq('rt');
+    });
+
+    it('accepts a timestamp or time shorthand', () => {
+      const options1 = {
+        keyId: TEST_ID,
+        keySecret: TEST_SECRET,
+        expiration: '3h',
+      };
+
+      const options2 = {
+        ...options1,
+        expiration: 60 * 60 * 3,
+      };
+
+      const token1 = JWT.signSpaceId('some-space-id', options1);
+      const token2 = JWT.signSpaceId('some-space-id', options2);
       expect(token1).to.be.a('string');
       expect(token2).to.be.a('string');
 

@@ -1,14 +1,11 @@
 import { Base } from '../../base.js';
 import { RequestOptions } from '../../RequestOptions.js';
 import {
-  BroadcastResponse,
+  Broadcast,
   CreateBroadcastRequest,
   CreateSpaceRequest,
   ListSpacesRequest,
-  ListSpacesResponse,
-  SpaceResponse,
-  StartSpaceBroadcastResponse,
-  StopSpaceBroadcastResponse,
+  Space,
 } from '../domain.js';
 
 const BASE_PATH = '/video/v1/spaces';
@@ -18,32 +15,23 @@ const BROADCAST_PATH = (spaceId: string, broadcastId: string) =>
   `${SPACE_PATH(spaceId)}/broadcasts/${broadcastId}`;
 
 export class Broadcasts extends Base {
-  create(
-    spaceId: string,
-    request: CreateBroadcastRequest
-  ): Promise<BroadcastResponse> {
+  create(spaceId: string, request: CreateBroadcastRequest): Promise<Broadcast> {
     return this.http.post(`${SPACE_PATH(spaceId)}/broadcasts`, request);
   }
 
-  get(spaceId: string, broadcastId: string): Promise<BroadcastResponse> {
+  get(spaceId: string, broadcastId: string): Promise<Broadcast> {
     return this.http.get(BROADCAST_PATH(spaceId, broadcastId));
   }
 
-  delete(spaceId: string, broadcastId: string): Promise<BroadcastResponse> {
+  delete(spaceId: string, broadcastId: string): Promise<any> {
     return this.http.delete(BROADCAST_PATH(spaceId, broadcastId));
   }
 
-  start(
-    spaceId: string,
-    broadcastId: string
-  ): Promise<StartSpaceBroadcastResponse> {
+  start(spaceId: string, broadcastId: string): Promise<any> {
     return this.http.post(`${BROADCAST_PATH(spaceId, broadcastId)}/start`);
   }
 
-  stop(
-    spaceId: string,
-    broadcastId: string
-  ): Promise<StopSpaceBroadcastResponse> {
+  stop(spaceId: string, broadcastId: string): Promise<any> {
     return this.http.post(`${BROADCAST_PATH(spaceId, broadcastId)}/stop`);
   }
 }
@@ -71,19 +59,19 @@ export class Spaces extends Base {
     this.Broadcasts = new Broadcasts(this);
   }
 
-  create(req: CreateSpaceRequest): Promise<SpaceResponse> {
+  create(req: CreateSpaceRequest): Promise<Space> {
     return this.http.post(BASE_PATH, req);
   }
 
-  list(params: ListSpacesRequest): Promise<ListSpacesResponse> {
+  list(params: ListSpacesRequest): Promise<Array<Space>> {
     return this.http.get(BASE_PATH, { params });
   }
 
-  get(spaceId: string): Promise<SpaceResponse> {
+  get(spaceId: string): Promise<Space> {
     return this.http.get(SPACE_PATH(spaceId));
   }
 
-  delete(spaceId: string): Promise<SpaceResponse> {
+  delete(spaceId: string): Promise<Space> {
     return this.http.delete(SPACE_PATH(spaceId));
   }
 }

@@ -20,7 +20,8 @@ describe('Unit::Mux', () => {
 
     /** @test {Mux.JTW} */
     it('exposes JWT Helper utilities as static methods', () => {
-      expect(Mux.JWT.sign).to.be.a('function');
+      expect(Mux.JWT.signPlaybackId).to.be.a('function');
+      expect(Mux.JWT.signSpaceId).to.be.a('function');
       expect(Mux.JWT.decode).to.be.a('function');
     });
 

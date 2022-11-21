@@ -1,8 +1,7 @@
 import { Base } from '../../base.js';
 import {
   UpsertTranscriptionVocabularyParams,
-  ListTranscriptionVocabulariesResponse,
-  TranscriptionVocabularyResponse,
+  TranscriptionVocabulary,
 } from '../domain.js';
 
 /**
@@ -20,17 +19,15 @@ const buildBasePath = (transcriptionVocabularyId: string) =>
 export class TranscriptionVocabularies extends Base {
   create(
     transcriptionVocabulary: UpsertTranscriptionVocabularyParams
-  ): Promise<TranscriptionVocabularyResponse> {
+  ): Promise<TranscriptionVocabulary> {
     return this.http.post(PATH, transcriptionVocabulary);
   }
 
-  list(): Promise<ListTranscriptionVocabulariesResponse> {
+  list(): Promise<Array<TranscriptionVocabulary>> {
     return this.http.get(PATH);
   }
 
-  get(
-    transcriptionVocabularyId: string
-  ): Promise<TranscriptionVocabularyResponse> {
+  get(transcriptionVocabularyId: string): Promise<TranscriptionVocabulary> {
     return this.http.get(buildBasePath(transcriptionVocabularyId));
   }
 
@@ -41,7 +38,7 @@ export class TranscriptionVocabularies extends Base {
   update(
     transcriptionVocabularyId: string,
     transcriptionVocabulary: UpsertTranscriptionVocabularyParams
-  ): Promise<TranscriptionVocabularyResponse> {
+  ): Promise<TranscriptionVocabulary> {
     return this.http.put(
       `${buildBasePath(transcriptionVocabularyId)}`,
       transcriptionVocabulary

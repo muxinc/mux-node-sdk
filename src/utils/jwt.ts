@@ -12,6 +12,7 @@ export enum TypeClaim {
   thumbnail = 't',
   gif = 'g',
   storyboard = 's',
+  stats = 'playback_id',
 }
 export interface MuxJWTSignOptions {
   keyId?: string;
@@ -78,7 +79,33 @@ export class JWT {
    * @param {Object} options - Configuration options to use when creating the token
    * @param {string} [options.keyId] - The signing key ID to use. If not specified, process.env.MUX_SIGNING_KEY is attempted
    * @param {string} [options.keySecret] - The signing key secret. If not specified, process.env.MUX_PRIVATE_KEY is used.
-   * @param {string} [options.type=video] - Type of token this will be. Valid types are `video`, `thumbnail`, `gif`, or `storyboard`
+   * @param {string} [options.type=video] - Type of token this will be. Valid types are `video`, `thumbnail`, `gif`, `storyboard` or `stats`
+   * @param {string} [options.expiration=7d] - Length of time for the token to be valid.
+   * @param {Object} [options.params] - Any additional query params you'd use with a public url. For example, with a thumbnail this would be values such as `time`.
+   * @returns {string} - Returns a token to be used with a signed URL.
+   *
+   * @example
+   * const Mux = require('@mux/mux-node');
+   *
+   * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
+   * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
+   *
+   * @deprecated This method should not be used, you should use signPlaybackId instead
+   */
+  static sign(playbackId: string, options: MuxJWTSignOptions = {}) {
+    process.emitWarning(
+      'The JWT.sign() method has been deprecated, please use JWT.signPlaybackId() instead',
+      'DeprecatedWarning'
+    );
+    return this.signPlaybackId(playbackId, options);
+  }
+  /**
+   * Creates a new token to be used with a signed playback ID
+   * @param {string} playbackId - The Playback ID (of type 'signed') that you'd like to generate a token for.
+   * @param {Object} options - Configuration options to use when creating the token
+   * @param {string} [options.keyId] - The signing key ID to use. If not specified, process.env.MUX_SIGNING_KEY is attempted
+   * @param {string} [options.keySecret] - The signing key secret. If not specified, process.env.MUX_PRIVATE_KEY is used.
+   * @param {string} [options.type=video] - Type of token this will be. Valid types are `video`, `thumbnail`, `gif`, `storyboard` or `stats`
    * @param {string} [options.expiration=7d] - Length of time for the token to be valid.
    * @param {Object} [options.params] - Any additional query params you'd use with a public url. For example, with a thumbnail this would be values such as `time`.
    * @returns {string} - Returns a token to be used with a signed URL.
@@ -89,7 +116,7 @@ export class JWT {
    * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
    * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
    */
-  static sign(playbackId: string, options: MuxJWTSignOptions = {}) {
+  static signPlaybackId(playbackId: string, options: MuxJWTSignOptions = {}) {
     const opts = {
       type: 'video',
       expiration: '7d',
@@ -111,6 +138,42 @@ export class JWT {
       keyid: keyId,
       subject: playbackId,
       audience: typeClaim,
+      expiresIn: opts.expiration,
+      noTimestamp: true,
+      algorithm: 'RS256',
+    };
+
+    return jwt.sign(opts.params, keySecret, tokenOptions);
+  }
+  /**
+   * Creates a new token to be used with a signed Space ID
+   * @param {string} spaceId - The Space ID (of type 'signed') that you'd like to generate a token for.
+   * @param {Object} options - Configuration options to use when creating the token
+   * @param {string} [options.keyId] - The signing key ID to use. If not specified, process.env.MUX_SIGNING_KEY is attempted
+   * @param {string} [options.keySecret] - The signing key secret. If not specified, process.env.MUX_PRIVATE_KEY is used.
+   * @param {string} [options.expiration=7d] - Length of time for the token to be valid.
+   * @param {Object} [options.params] - Any additional query params you'd use with a public url.
+   * @returns {string} - Returns a token to be used with a signed URL.
+   *
+   * @example
+   * const Mux = require('@mux/mux-node');
+   *
+   * const token = Mux.JWT.signSpaceId('some-space-id', { keyId: 'your key id', keySecret: 'your key secret' });
+   */
+  static signSpaceId(spaceId: string, options: MuxJWTSignOptions = {}) {
+    const opts = {
+      expiration: '7d',
+      params: {},
+      ...options,
+    };
+
+    const keyId = getSigningKey(options);
+    const keySecret = getPrivateKey(options);
+
+    const tokenOptions: jwt.SignOptions = {
+      keyid: keyId,
+      subject: spaceId,
+      audience: 'rt',
       expiresIn: opts.expiration,
       noTimestamp: true,
       algorithm: 'RS256',

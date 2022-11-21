@@ -1,8 +1,7 @@
 import { Base } from '../../base.js';
 import {
   CreatePlaybackRestrictionParams,
-  ListPlaybackRestrictionsResponse,
-  PlaybackRestrictionResponse,
+  PlaybackRestriction,
   ReferrerDomainRestriction,
 } from '../domain.js';
 
@@ -20,26 +19,26 @@ const buildBasePath = (restrictionId: string) => `${PATH}/${restrictionId}`;
 export class PlaybackRestrictions extends Base {
   create(
     restriction: CreatePlaybackRestrictionParams
-  ): Promise<PlaybackRestrictionResponse> {
+  ): Promise<PlaybackRestriction> {
     return this.http.post(PATH, restriction);
   }
 
-  list(): Promise<ListPlaybackRestrictionsResponse> {
+  list(): Promise<Array<PlaybackRestriction>> {
     return this.http.get(PATH);
   }
 
-  get(restrictionId: string): Promise<PlaybackRestrictionResponse> {
+  get(restrictionId: string): Promise<PlaybackRestriction> {
     return this.http.get(buildBasePath(restrictionId));
   }
 
-  delete(restrictionId: string): Promise<PlaybackRestrictionResponse> {
+  delete(restrictionId: string): Promise<PlaybackRestriction> {
     return this.http.delete(buildBasePath(restrictionId));
   }
 
   putReferrer(
     restrictionId: string,
     referrer: ReferrerDomainRestriction
-  ): Promise<PlaybackRestrictionResponse> {
+  ): Promise<PlaybackRestriction> {
     return this.http.put(`${buildBasePath(restrictionId)}/referrer`, referrer);
   }
 }
