@@ -86,3 +86,6 @@ export default class Mux extends Base {
     this.Data = new Data(this);
   }
 }
+
+export * from './data/domain';
+export * from './video/domain';
