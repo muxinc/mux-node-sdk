@@ -1,7 +1,7 @@
 {
   "name": "@mux/mux-node",
-  "version": "6.4.0",
-  "description": "Mux API wrapper",
+  "version": "7.0.0",
+  "description": "Mux SDK for NodeJS",
   "keywords": [
     "mux",
     "video",
