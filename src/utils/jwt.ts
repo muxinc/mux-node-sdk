@@ -70,7 +70,7 @@ const getPrivateKey = (options: MuxJWTSignOptions): string | Buffer => {
  * @example
  * const Mux = require('@mux/mux-node');
  *
- * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' })
+ * const token = Mux.JWT.signPlaybackId('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' })
  */
 export class JWT {
   /**
