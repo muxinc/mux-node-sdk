@@ -179,6 +179,10 @@ export class JWT {
       algorithm: 'RS256',
     };
 
+    if (!spaceId) {
+      throw new TypeError('A valid Space ID is required');
+    }
+
     return jwt.sign(opts.params, keySecret, tokenOptions);
   }
 
