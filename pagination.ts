@@ -2,7 +2,7 @@
 import { AbstractPage, APIResponse, APIClient, FinalRequestOptions, PageInfo } from './core';
 
 export interface PageWithTotalResponse<Item> {
-  data: Array<Item>;
+  data?: Array<Item>;
 
   total_row_count?: number;
 }
@@ -59,7 +59,7 @@ export class PageWithTotal<Item> extends AbstractPage<Item> implements PageWithT
 }
 
 export interface BasePageResponse<Item> {
-  data: Array<Item>;
+  data?: Array<Item>;
 }
 
 export interface BasePageParams {

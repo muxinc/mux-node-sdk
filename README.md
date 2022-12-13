@@ -5,7 +5,7 @@
 The Mux Node library provides convenient access to the Mux REST API from applications written in server-side JavaScript.
 It includes TypeScript definitions for all request params and response fields.
 
-https://user-images.githubusercontent.com/59429/198728116-9c7292d5-0571-4087-ba8c-42566cd47a91.mp4
+![GIF showcasing mux usage](./showcase.gif)
 
 ## Documentation
 
@@ -34,7 +34,7 @@ async function main() {
 
   console.log(asset.data.aspect_ratio);
 }
-main().catch(console.error)
+main().catch(console.error);
 ```
 
 ### Usage with TypeScript
@@ -51,10 +51,9 @@ const mux = new Mux({
 });
 
 async function main() {
-  const asset: Mux.Asset = await mux.video.assets.retrieve('t02rm...');
-
+  const asset: Mux.AssetResponse = await mux.video.assets.retrieve('t02rm...');
 }
-main().catch(console.error)
+main().catch(console.error);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -67,18 +66,16 @@ a subclass of `APIError` will be thrown:
 
 ```ts
 async function main() {
-  const asset = await mux.video.assets.retrieve('t02rm...')
-    .catch((err) => {
-      if (err instanceof Mux.APIError) {
-        console.log(err.status); // 400
-        console.log(err.name); // BadRequestError
+  const asset = await mux.video.assets.retrieve('t02rm...').catch((err) => {
+    if (err instanceof Mux.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
 
-        console.log(err.headers); // {server: 'nginx', ...}
-      }
-    })
-
+      console.log(err.headers); // {server: 'nginx', ...}
+    }
+  });
 }
-main().catch(console.error)
+main().catch(console.error);
 ```
 
 Error codes are as followed:
@@ -143,7 +140,7 @@ Note that requests which time out will be [retried twice by default](#retries).
 List methods in the Mux API are paginated.
 Use `for await … of` syntax to iterate through items across all pages.
 
-```js
+```ts
 async function fetchAllVideoAssets(params) {
   const allVideoAssets = [];
   // Automatically fetches more pages as needed.
@@ -151,7 +148,7 @@ async function fetchAllVideoAssets(params) {
     allVideoAssets.push(asset);
   }
   return allVideoAssets;
-};
+}
 ```
 
 ## Configuring an HTTP(S) Agent (e.g., for proxies)
@@ -189,6 +186,10 @@ or open an issue with questions, bugs, or suggestions.
 
 ## Requirements
 
-Node.js version 12 or higher.
+The following runtimes are supported:
+
+- Node.js version 12 or higher.
+- Deno v1.28.0 or higher (experimental).
+  Use `import Mux from "npm:mux"`.
 
 If you are interested in other runtime environments, please open or upvote an issue on Github.

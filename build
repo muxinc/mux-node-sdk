@@ -5,8 +5,8 @@ rm -rf dist/*
 
 yarn tsn check-version.ts
 
-tsc -p tsconfig.cjs.json
-
-tsc-alias -p tsconfig.cjs.json
+# build node:
+yarn tsc -p tsconfig.cjs.json
+yarn tsc-alias -p tsconfig.cjs.json
 
 yarn prettier --write .

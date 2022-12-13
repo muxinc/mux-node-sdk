@@ -4,7 +4,6 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import { BasePage, BasePageParams } from '~/pagination';
-import * as Shared from '~/resources/shared';
 
 export class Spaces extends APIResource {
   /**
@@ -12,7 +11,8 @@ export class Spaces extends APIResource {
    * [real-time video applications.](https://mux.com/real-time-video)
    */
   async create(body: SpaceCreateParams, options?: Core.RequestOptions): Promise<Space> {
-    const response = await this.post<any, any>('/video/v1/spaces', { body, ...options });
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post('/video/v1/spaces', { body, ...options })) as any;
     return response.data;
   }
 
@@ -23,7 +23,8 @@ export class Spaces extends APIResource {
    * returned when creating a space.
    */
   async retrieve(spaceId: string, options?: Core.RequestOptions): Promise<Space> {
-    const response = await this.get<any, any>(`/video/v1/spaces/${spaceId}`, options);
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.get(`/video/v1/spaces/${spaceId}`, options)) as any;
     return response.data;
   }
 
@@ -64,10 +65,8 @@ export class Spaces extends APIResource {
     body: SpaceCreateBroadcastParams,
     options?: Core.RequestOptions,
   ): Promise<Broadcast> {
-    const response = await this.post<any, any>(`/video/v1/spaces/${spaceId}/broadcasts`, {
-      body,
-      ...options,
-    });
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post(`/video/v1/spaces/${spaceId}/broadcasts`, { body, ...options })) as any;
     return response.data;
   }
 
@@ -90,10 +89,11 @@ export class Spaces extends APIResource {
     broadcastId: string,
     options?: Core.RequestOptions,
   ): Promise<Broadcast> {
-    const response = await this.get<any, any>(
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.get(
       `/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`,
       options,
-    );
+    )) as any;
     return response.data;
   }
 
@@ -106,10 +106,11 @@ export class Spaces extends APIResource {
     broadcastId: string,
     options?: Core.RequestOptions,
   ): Promise<SpaceStartBroadcastResponse> {
-    const response = await this.post<any, any>(
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post(
       `/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/start`,
       options,
-    );
+    )) as any;
     return response.data;
   }
 
@@ -123,10 +124,11 @@ export class Spaces extends APIResource {
     broadcastId: string,
     options?: Core.RequestOptions,
   ): Promise<SpaceStopBroadcastResponse> {
-    const response = await this.post<any, any>(
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post(
       `/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/stop`,
       options,
-    );
+    )) as any;
     return response.data;
   }
 }
@@ -142,7 +144,7 @@ export interface Broadcast {
   /**
    * The layout used when broadcasting the space. Defaults to `gallery` if not set.
    */
-  layout: 'gallery' | 'active-speaker';
+  layout: BroadcastLayout;
 
   /**
    * The ID of the live stream that the broadcast will be sent to.
@@ -153,13 +155,13 @@ export interface Broadcast {
    * The resolution of the composited video sent to the live stream. Defaults to
    * `1920x1080` if not set.
    */
-  resolution: '1920x1080' | '1280x720' | '1080x1920' | '720x1280' | '1080x1080' | '720x720';
+  resolution: BroadcastResolution;
 
   /**
    * The status of the broadcast. You can start and stop broadcasts with the `start`
    * and `stop` APIs.
    */
-  status: 'idle' | 'active';
+  status: BroadcastStatus;
 
   /**
    * URL of an image to display as the background of the broadcast. Its dimensions
@@ -177,11 +179,19 @@ export interface Broadcast {
 /**
  * The layout used when broadcasting the space. Defaults to `gallery` if not set.
  */
+export type BroadcastLayout = 'gallery' | 'active-speaker';
 
 /**
  * The resolution of the composited video sent to the live stream. Defaults to
  * `1920x1080` if not set.
  */
+export type BroadcastResolution =
+  | '1920x1080'
+  | '1280x720'
+  | '1080x1920'
+  | '720x1280'
+  | '1080x1080'
+  | '720x720';
 
 export interface BroadcastResponse {
   data: Broadcast;
@@ -191,6 +201,7 @@ export interface BroadcastResponse {
  * The status of the broadcast. You can start and stop broadcasts with the `start`
  * and `stop` APIs.
  */
+export type BroadcastStatus = 'idle' | 'active';
 
 export interface Space {
   /**
@@ -207,13 +218,13 @@ export interface Space {
    * The status of the space. Spaces are `idle` when there are no participants
    * connected, and `active` when there are participants connected.
    */
-  status: 'idle' | 'active';
+  status: SpaceStatus;
 
   /**
    * Specify the network architecture of the space. In `server` spaces, all video
    * travels through Mux's video infrastructure. Defaults to `server` if not set.
    */
-  type: 'server';
+  type: SpaceType;
 
   /**
    * Unique identifier for the current lifecycle of the space. Only set when the
@@ -241,7 +252,7 @@ export interface SpaceParams {
    * default only a single broadcast destination can be specified. Contact Mux
    * support if you need more.
    */
-  broadcasts?: Array<Shared.CreateBroadcastParams>;
+  broadcasts?: Array<SpaceParams.Broadcasts>;
 
   /**
    * Arbitrary user-supplied metadata that will be included in the space details and
@@ -253,7 +264,39 @@ export interface SpaceParams {
    * Specify the network architecture of the space. In `server` spaces, all video
    * travels through Mux's video infrastructure. Defaults to `server` if not set.
    */
-  type?: 'server';
+  type?: SpaceType;
+}
+
+export namespace SpaceParams {
+  export interface Broadcasts {
+    /**
+     * The ID of the live stream that you want to broadcast to.
+     */
+    live_stream_id: string;
+
+    /**
+     * URL of an image to display as the background of the broadcast. Its dimensions
+     * should match the provided resolution.
+     */
+    background?: string;
+
+    /**
+     * The layout used when broadcasting the space. Defaults to `gallery` if not set.
+     */
+    layout?: BroadcastLayout;
+
+    /**
+     * Arbitrary user-supplied metadata that will be included in the broadcast details
+     * and related webhooks. Max: 255 characters.
+     */
+    passthrough?: string;
+
+    /**
+     * The resolution of the composited video sent to the live stream. Defaults to
+     * `1920x1080` if not set.
+     */
+    resolution?: BroadcastResolution;
+  }
 }
 
 export interface SpaceResponse {
@@ -264,15 +307,17 @@ export interface SpaceResponse {
  * The status of the space. Spaces are `idle` when there are no participants
  * connected, and `active` when there are participants connected.
  */
+export type SpaceStatus = 'idle' | 'active';
 
 /**
  * Specify the network architecture of the space. In `server` spaces, all video
  * travels through Mux's video infrastructure. Defaults to `server` if not set.
  */
+export type SpaceType = 'server';
 
-type SpaceStartBroadcastResponse = Record<string, Record<string, unknown>>;
+type SpaceStartBroadcastResponse = Record<string, unknown>;
 
-type SpaceStopBroadcastResponse = Record<string, Record<string, unknown>>;
+type SpaceStopBroadcastResponse = Record<string, unknown>;
 
 export interface SpaceCreateParams {
   /**
@@ -280,7 +325,7 @@ export interface SpaceCreateParams {
    * default only a single broadcast destination can be specified. Contact Mux
    * support if you need more.
    */
-  broadcasts?: Array<Shared.CreateBroadcastParams>;
+  broadcasts?: Array<SpaceCreateParams.Broadcasts>;
 
   /**
    * Arbitrary user-supplied metadata that will be included in the space details and
@@ -292,7 +337,39 @@ export interface SpaceCreateParams {
    * Specify the network architecture of the space. In `server` spaces, all video
    * travels through Mux's video infrastructure. Defaults to `server` if not set.
    */
-  type?: 'server';
+  type?: SpaceType;
+}
+
+export namespace SpaceCreateParams {
+  export interface Broadcasts {
+    /**
+     * The ID of the live stream that you want to broadcast to.
+     */
+    live_stream_id: string;
+
+    /**
+     * URL of an image to display as the background of the broadcast. Its dimensions
+     * should match the provided resolution.
+     */
+    background?: string;
+
+    /**
+     * The layout used when broadcasting the space. Defaults to `gallery` if not set.
+     */
+    layout?: BroadcastLayout;
+
+    /**
+     * Arbitrary user-supplied metadata that will be included in the broadcast details
+     * and related webhooks. Max: 255 characters.
+     */
+    passthrough?: string;
+
+    /**
+     * The resolution of the composited video sent to the live stream. Defaults to
+     * `1920x1080` if not set.
+     */
+    resolution?: BroadcastResolution;
+  }
 }
 
 export interface SpaceListParams extends BasePageParams {}
@@ -312,7 +389,7 @@ export interface SpaceCreateBroadcastParams {
   /**
    * The layout used when broadcasting the space. Defaults to `gallery` if not set.
    */
-  layout?: 'gallery' | 'active-speaker';
+  layout?: BroadcastLayout;
 
   /**
    * Arbitrary user-supplied metadata that will be included in the broadcast details
@@ -324,5 +401,5 @@ export interface SpaceCreateBroadcastParams {
    * The resolution of the composited video sent to the live stream. Defaults to
    * `1920x1080` if not set.
    */
-  resolution?: '1920x1080' | '1280x720' | '1080x1920' | '720x1280' | '1080x1080' | '720x720';
+  resolution?: BroadcastResolution;
 }

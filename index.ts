@@ -3,6 +3,7 @@ import * as Core from './core';
 import * as Pagination from './pagination';
 import * as API from './resources';
 import type { Agent } from 'http';
+import * as FileFromPath from 'formdata-node/file-from-path';
 
 type Config = {
   /**
@@ -76,7 +77,26 @@ export class Mux extends Core.APIClient {
   static InternalServerError = Core.InternalServerError;
 }
 
+export const {
+  APIError,
+
+  APIConnectionError,
+  APIConnectionTimeoutError,
+
+  BadRequestError,
+  AuthenticationError,
+  PermissionDeniedError,
+  NotFoundError,
+  ConflictError,
+  UnprocessableEntityError,
+  RateLimitError,
+  InternalServerError,
+} = Mux;
+
 export namespace Mux {
+  // Helper functions
+  export import fileFromPath = FileFromPath.fileFromPath;
+
   export import PageWithTotal = Pagination.PageWithTotal;
   export import PageWithTotalParams = Pagination.PageWithTotalParams;
   export import PageWithTotalResponse = Pagination.PageWithTotalResponse;

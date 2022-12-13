@@ -10,8 +10,9 @@ export class Assets extends APIResource {
   /**
    * Create a new Mux Video asset.
    */
-  async create(body: AssetCreateParams, options?: Core.RequestOptions): Promise<Shared.Asset> {
-    const response = await this.post<any, any>('/video/v1/assets', { body, ...options });
+  async create(body: AssetCreateParams, options?: Core.RequestOptions): Promise<Asset> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post('/video/v1/assets', { body, ...options })) as any;
     return response.data;
   }
 
@@ -21,8 +22,9 @@ export class Assets extends APIResource {
    * return the corresponding asset information. The same information is returned
    * when creating an asset.
    */
-  async retrieve(assetId: string, options?: Core.RequestOptions): Promise<Shared.Asset> {
-    const response = await this.get<any, any>(`/video/v1/assets/${assetId}`, options);
+  async retrieve(assetId: string, options?: Core.RequestOptions): Promise<Asset> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.get(`/video/v1/assets/${assetId}`, options)) as any;
     return response.data;
   }
 
@@ -30,12 +32,9 @@ export class Assets extends APIResource {
    * Updates the details of an already-created Asset with the provided Asset ID. This
    * currently supports only the `passthrough` field.
    */
-  async update(
-    assetId: string,
-    body: AssetUpdateParams,
-    options?: Core.RequestOptions,
-  ): Promise<Shared.Asset> {
-    const response = await this.patch<any, any>(`/video/v1/assets/${assetId}`, { body, ...options });
+  async update(assetId: string, body: AssetUpdateParams, options?: Core.RequestOptions): Promise<Asset> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.patch(`/video/v1/assets/${assetId}`, { body, ...options })) as any;
     return response.data;
   }
 
@@ -73,10 +72,11 @@ export class Assets extends APIResource {
     body: AssetCreatePlaybackIdParams,
     options?: Core.RequestOptions,
   ): Promise<Shared.PlaybackId> {
-    const response = await this.post<any, any>(`/video/v1/assets/${assetId}/playback-ids`, {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post(`/video/v1/assets/${assetId}/playback-ids`, {
       body,
       ...options,
-    });
+    })) as any;
     return response.data;
   }
 
@@ -87,8 +87,9 @@ export class Assets extends APIResource {
     assetId: string,
     body: AssetCreateTrackParams,
     options?: Core.RequestOptions,
-  ): Promise<Shared.Track> {
-    const response = await this.post<any, any>(`/video/v1/assets/${assetId}/tracks`, { body, ...options });
+  ): Promise<AssetCreateTrackResponse> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post(`/video/v1/assets/${assetId}/tracks`, { body, ...options })) as any;
     return response.data;
   }
 
@@ -124,10 +125,11 @@ export class Assets extends APIResource {
     playbackId: string,
     options?: Core.RequestOptions,
   ): Promise<Shared.PlaybackId> {
-    const response = await this.get<any, any>(
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.get(
       `/video/v1/assets/${assetId}/playback-ids/${playbackId}`,
       options,
-    );
+    )) as any;
     return response.data;
   }
 
@@ -142,11 +144,12 @@ export class Assets extends APIResource {
     assetId: string,
     body: AssetUpdateMasterAccessParams,
     options?: Core.RequestOptions,
-  ): Promise<Shared.Asset> {
-    const response = await this.put<any, any>(`/video/v1/assets/${assetId}/master-access`, {
+  ): Promise<Asset> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.put(`/video/v1/assets/${assetId}/master-access`, {
       body,
       ...options,
-    });
+    })) as any;
     return response.data;
   }
 
@@ -161,16 +164,307 @@ export class Assets extends APIResource {
     assetId: string,
     body: AssetUpdateMP4SupportParams,
     options?: Core.RequestOptions,
-  ): Promise<Shared.Asset> {
-    const response = await this.put<any, any>(`/video/v1/assets/${assetId}/mp4-support`, {
-      body,
-      ...options,
-    });
+  ): Promise<Asset> {
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.put(`/video/v1/assets/${assetId}/mp4-support`, { body, ...options })) as any;
     return response.data;
   }
 }
 
-export class AssetsBasePage extends BasePage<Shared.Asset> {}
+export class AssetsBasePage extends BasePage<Asset> {}
+
+export interface Asset {
+  /**
+   * The aspect ratio of the asset in the form of `width:height`, for example `16:9`.
+   */
+  aspect_ratio?: string;
+
+  /**
+   * Time the Asset was created, defined as a Unix timestamp (seconds since epoch).
+   */
+  created_at?: string;
+
+  /**
+   * The duration of the asset in seconds (max duration for a single asset is 12
+   * hours).
+   */
+  duration?: number;
+
+  /**
+   * Object that describes any errors that happened when processing this asset.
+   */
+  errors?: Asset.Errors;
+
+  /**
+   * Unique identifier for the Asset. Max 255 characters.
+   */
+  id?: string;
+
+  /**
+   * Indicates whether the live stream that created this asset is currently `active`
+   * and not in `idle` state. This is an optional parameter added when the asset is
+   * created from a live stream.
+   */
+  is_live?: boolean;
+
+  /**
+   * Unique identifier for the live stream. This is an optional parameter added when
+   * the asset is created from a live stream.
+   */
+  live_stream_id?: string;
+
+  /**
+   * An object containing the current status of Master Access and the link to the
+   * Master MP4 file when ready. This object does not exist if `master_acess` is set
+   * to `none` and when the temporary URL expires.
+   */
+  master?: Asset.Master;
+
+  master_access?: 'temporary' | 'none';
+
+  /**
+   * The maximum frame rate that has been stored for the asset. The asset may be
+   * delivered at lower frame rates depending on the device and bandwidth, however it
+   * cannot be delivered at a higher value than is stored. This field may return -1
+   * if the frame rate of the input cannot be reliably determined.
+   */
+  max_stored_frame_rate?: number;
+
+  /**
+   * The maximum resolution that has been stored for the asset. The asset may be
+   * delivered at lower resolutions depending on the device and bandwidth, however it
+   * cannot be delivered at a higher value than is stored.
+   */
+  max_stored_resolution?: 'Audio only' | 'SD' | 'HD' | 'FHD' | 'UHD';
+
+  mp4_support?: 'standard' | 'none';
+
+  /**
+   * An object containing one or more reasons the input file is non-standard. See
+   * [the guide on minimizing processing time](https://docs.mux.com/guides/video/minimize-processing-time)
+   * for more information on what a standard input is defined as. This object only
+   * exists on on-demand assets that have non-standard inputs, so if missing you can
+   * assume the input qualifies as standard.
+   */
+  non_standard_input_reasons?: Asset.NonStandardInputReasons;
+
+  /**
+   * Normalize the audio track loudness level. This parameter is only applicable to
+   * on-demand (not live) assets.
+   */
+  normalize_audio?: boolean;
+
+  /**
+   * Arbitrary user-supplied metadata set for the asset. Max 255 characters.
+   */
+  passthrough?: string;
+
+  per_title_encode?: boolean;
+
+  /**
+   * An array of Playback ID objects. Use these to create HLS playback URLs. See
+   * [Play your videos](https://docs.mux.com/guides/video/play-your-videos) for more
+   * details.
+   */
+  playback_ids?: Array<Shared.PlaybackId>;
+
+  /**
+   * An array of individual live stream recording sessions. A recording session is
+   * created on each encoder connection during the live stream. Additionally any time
+   * slate media is inserted during brief interruptions in the live stream media or
+   * times when the live streaming software disconnects, a recording session
+   * representing the slate media will be added with a "slate" type.
+   */
+  recording_times?: Array<Asset.RecordingTimes>;
+
+  /**
+   * Asset Identifier of the video used as the source for creating the clip.
+   */
+  source_asset_id?: string;
+
+  /**
+   * An object containing the current status of any static renditions (mp4s). The
+   * object does not exist if no static renditions have been requested. See
+   * [Download your videos](https://docs.mux.com/guides/video/download-your-videos)
+   * for more information.
+   */
+  static_renditions?: Asset.StaticRenditions;
+
+  /**
+   * The status of the asset.
+   */
+  status?: 'preparing' | 'ready' | 'errored';
+
+  /**
+   * True means this live stream is a test asset. A test asset can help evaluate the
+   * Mux Video APIs without incurring any cost. There is no limit on number of test
+   * assets created. Test assets are watermarked with the Mux logo, limited to 10
+   * seconds, and deleted after 24 hrs.
+   */
+  test?: boolean;
+
+  /**
+   * The individual media tracks that make up an asset.
+   */
+  tracks?: Array<AssetCreateTrackResponse>;
+
+  /**
+   * Unique identifier for the Direct Upload. This is an optional parameter added
+   * when the asset is created from a direct upload.
+   */
+  upload_id?: string;
+}
+
+export namespace Asset {
+  export interface Errors {
+    /**
+     * Error messages with more details.
+     */
+    messages?: Array<string>;
+
+    /**
+     * The type of error that occurred for this asset.
+     */
+    type?: string;
+  }
+
+  export interface Master {
+    status?: 'ready' | 'preparing' | 'errored';
+
+    /**
+     * The temporary URL to the master version of the video, as an MP4 file. This URL
+     * will expire after 24 hours.
+     */
+    url?: string;
+  }
+
+  export interface StaticRenditions {
+    /**
+     * Array of file objects.
+     */
+    files?: Array<StaticRenditions.Files>;
+
+    /**
+     * Indicates the status of downloadable MP4 versions of this asset.
+     */
+    status?: 'ready' | 'preparing' | 'disabled' | 'errored';
+  }
+
+  export namespace StaticRenditions {
+    export interface Files {
+      /**
+       * The bitrate in bits per second
+       */
+      bitrate?: number;
+
+      /**
+       * Extension of the static rendition file
+       */
+      ext?: 'mp4' | 'm4a';
+
+      /**
+       * The file size in bytes
+       */
+      filesize?: string;
+
+      /**
+       * The height of the static rendition's file in pixels
+       */
+      height?: number;
+
+      name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'audio.m4a';
+
+      /**
+       * The width of the static rendition's file in pixels
+       */
+      width?: number;
+    }
+  }
+
+  export interface RecordingTimes {
+    /**
+     * The duration of the live stream recorded. The time value is in seconds.
+     */
+    duration?: number;
+
+    /**
+     * The time at which the recording for the live stream started. The time value is
+     * Unix epoch time represented in ISO 8601 format.
+     */
+    started_at?: string;
+
+    /**
+     * The type of media represented by the recording session, either `content` for
+     * normal stream content or `slate` for slate media inserted during stream
+     * interruptions.
+     */
+    type?: 'content' | 'slate';
+  }
+
+  export interface NonStandardInputReasons {
+    /**
+     * The audio codec used on the input file. Non-AAC audio codecs are non-standard.
+     */
+    audio_codec?: string;
+
+    /**
+     * Audio Edit List reason indicates that the input file's audio track contains a
+     * complex Edit Decision List.
+     */
+    audio_edit_list?: 'non-standard';
+
+    /**
+     * The video pixel aspect ratio of the input file.
+     */
+    pixel_aspect_ratio?: string;
+
+    /**
+     * A catch-all reason when the input file in created with non-standard encoding
+     * parameters.
+     */
+    unexpected_media_file_parameters?: 'non-standard';
+
+    /**
+     * The video bitrate of the input file is `high`. This parameter is present when
+     * the average bitrate of any key frame interval (also known as Group of Pictures
+     * or GOP) is higher than what's considered standard which typically is 16 Mbps.
+     */
+    video_bitrate?: 'high';
+
+    /**
+     * The video codec used on the input file. For example, the input file encoded with
+     * `hevc` video codec is non-standard and the value of this parameter is `hevc`.
+     */
+    video_codec?: string;
+
+    /**
+     * Video Edit List reason indicates that the input file's video track contains a
+     * complex Edit Decision List.
+     */
+    video_edit_list?: 'non-standard';
+
+    /**
+     * The video frame rate of the input file. Video with average frames per second
+     * (fps) less than 5 or greater than 120 is non-standard. A `-1` frame rate value
+     * indicates Mux could not determine the frame rate of the video track.
+     */
+    video_frame_rate?: string;
+
+    /**
+     * The video key frame Interval (also called as Group of Picture or GOP) of the
+     * input file is `high`. This parameter is present when the gop is greater than 20
+     * seconds.
+     */
+    video_gop_size?: 'high';
+
+    /**
+     * The video resolution of the input file. Video resolution higher than 2048 pixels
+     * on any one dimension (height or width) is considered non-standard, The
+     * resolution value is presented as `width` x `height` in pixels.
+     */
+    video_resolution?: string;
+  }
+}
 
 export interface AssetMasterParams {
   /**
@@ -186,12 +480,126 @@ export interface AssetMP4SupportParams {
   mp4_support?: 'standard' | 'none';
 }
 
+export interface AssetResponse {
+  data?: Asset;
+}
+
 export interface UpdateAssetParams {
   /**
    * Arbitrary metadata set for the Asset. Max 255 characters. In order to clear this
    * value, the field should be included with an empty string value.
    */
   passthrough?: string;
+}
+
+export interface AssetCreateTrackResponse {
+  /**
+   * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
+   * This parameter is only set for `text` type and `subtitles` text type tracks.
+   */
+  closed_captions?: boolean;
+
+  /**
+   * The duration in seconds of the track media. This parameter is not set for `text`
+   * type tracks. This field is optional and may not be set. The top level `duration`
+   * field of an asset will always be set.
+   */
+  duration?: number;
+
+  /**
+   * Unique identifier for the Track
+   */
+  id?: string;
+
+  /**
+   * The language code value represents [BCP 47](https://tools.ietf.org/html/bcp47)
+   * specification compliant value. For example, `en` for English or `en-US` for the
+   * US version of English. This parameter is only set for `text` type and
+   * `subtitles` text type tracks.
+   */
+  language_code?: string;
+
+  /**
+   * Only set for the `audio` type track.
+   */
+  max_channel_layout?: string;
+
+  /**
+   * The maximum number of audio channels the track supports. Only set for the
+   * `audio` type track.
+   */
+  max_channels?: number;
+
+  /**
+   * The maximum frame rate available for the track. Only set for the `video` type
+   * track. This field may return `-1` if the frame rate of the input cannot be
+   * reliably determined.
+   */
+  max_frame_rate?: number;
+
+  /**
+   * The maximum height in pixels available for the track. Only set for the `video`
+   * type track.
+   */
+  max_height?: number;
+
+  /**
+   * The maximum width in pixels available for the track. Only set for the `video`
+   * type track.
+   */
+  max_width?: number;
+
+  /**
+   * The name of the track containing a human-readable description. The hls manifest
+   * will associate a subtitle text track with this value. For example, the value is
+   * "English" for subtitles text track for the `language_code` value of `en-US`.
+   * This parameter is only set for `text` type and `subtitles` text type tracks.
+   */
+  name?: string;
+
+  /**
+   * Arbitrary user-supplied metadata set for the track either when creating the
+   * asset or track. This parameter is only set for `text` type tracks. Max 255
+   * characters.
+   */
+  passthrough?: string;
+
+  /**
+   * The status of the track. This parameter is only set for `text` type tracks.
+   */
+  status?: 'preparing' | 'ready' | 'errored';
+
+  /**
+   * The source of the text contained in a Track of type `text`. Valid `text_source`
+   * values are listed below.
+   *
+   * - `uploaded`: Tracks uploaded to Mux as caption or subtitle files using the
+   *   Create Asset Track API.
+   * - `embedded`: Tracks extracted from an embedded stream of CEA-608 closed
+   *   captions.
+   * - `generated_live`: Tracks generated by automatic speech recognition on a live
+   *   stream configured with `generated_subtitles`. If an Asset has both
+   *   `generated_live` and `generated_live_final` tracks that are `ready`, then only
+   *   the `generated_live_final` track will be included during playback.
+   * - `generated_live_final`: Tracks generated by automatic speech recognition on a
+   *   live stream using `generated_subtitles`. The accuracy, timing, and formatting
+   *   of these subtitles is improved compared to the corresponding `generated_live`
+   *   tracks. However, `generated_live_final` tracks will not be available in
+   *   `ready` status until the live stream ends. If an Asset has both
+   *   `generated_live` and `generated_live_final` tracks that are `ready`, then only
+   *   the `generated_live_final` track will be included during playback.
+   */
+  text_source?: 'uploaded' | 'embedded' | 'generated_live' | 'generated_live_final';
+
+  /**
+   * This parameter is only set for `text` type tracks.
+   */
+  text_type?: 'subtitles';
+
+  /**
+   * The type of track
+   */
+  type?: 'video' | 'audio' | 'text';
 }
 
 export interface AssetCreateParams {

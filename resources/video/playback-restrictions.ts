@@ -13,7 +13,8 @@ export class PlaybackRestrictions extends APIResource {
     body: PlaybackRestrictionCreateParams,
     options?: Core.RequestOptions,
   ): Promise<PlaybackRestriction> {
-    const response = await this.post<any, any>('/video/v1/playback-restrictions', { body, ...options });
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.post('/video/v1/playback-restrictions', { body, ...options })) as any;
     return response.data;
   }
 
@@ -21,10 +22,11 @@ export class PlaybackRestrictions extends APIResource {
    * Retrieves a Playback Restriction associated with the unique identifier.
    */
   async retrieve(playbackRestrictionId: string, options?: Core.RequestOptions): Promise<PlaybackRestriction> {
-    const response = await this.get<any, any>(
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.get(
       `/video/v1/playback-restrictions/${playbackRestrictionId}`,
       options,
-    );
+    )) as any;
     return response.data;
   }
 
@@ -70,10 +72,11 @@ export class PlaybackRestrictions extends APIResource {
     body: PlaybackRestrictionUpdateReferrerParams,
     options?: Core.RequestOptions,
   ): Promise<PlaybackRestriction> {
-    const response = await this.put<any, any>(
-      `/video/v1/playback-restrictions/${playbackRestrictionId}/referrer`,
-      { body, ...options },
-    );
+    // Note that this method does not support accessing responseHeaders
+    const response = (await this.put(`/video/v1/playback-restrictions/${playbackRestrictionId}/referrer`, {
+      body,
+      ...options,
+    })) as any;
     return response.data;
   }
 }
@@ -193,28 +196,23 @@ export namespace PlaybackRestrictionCreateParams {
 
 export interface PlaybackRestrictionListParams extends BasePageParams {}
 
-export type PlaybackRestrictionUpdateReferrerParams =
-  PlaybackRestrictionUpdateReferrerParams.ReferrerDomainRestriction;
+export interface PlaybackRestrictionUpdateReferrerParams {
+  /**
+   * A boolean to determine whether to allow or deny HTTP requests without `Referer`
+   * HTTP request header. Playback requests coming from non-web/native applications
+   * like iOS, Android or smart TVs will not have a `Referer` HTTP header. Set this
+   * value to `true` to allow these playback requests.
+   */
+  allow_no_referrer?: boolean;
 
-export namespace PlaybackRestrictionUpdateReferrerParams {
-  export interface ReferrerDomainRestriction {
-    /**
-     * A boolean to determine whether to allow or deny HTTP requests without `Referer`
-     * HTTP request header. Playback requests coming from non-web/native applications
-     * like iOS, Android or smart TVs will not have a `Referer` HTTP header. Set this
-     * value to `true` to allow these playback requests.
-     */
-    allow_no_referrer?: boolean;
-
-    /**
-     * List of domains allowed to play videos. Possible values are
-     *
-     * - `[]` Empty Array indicates deny video playback requests for all domains
-     * - `["*"]` A Single Wildcard `*` entry means allow video playback requests from
-     *   any domain
-     * - `["*.example.com", "foo.com"]` A list of up to 10 domains or valid dns-style
-     *   wildcards
-     */
-    allowed_domains?: Array<string>;
-  }
+  /**
+   * List of domains allowed to play videos. Possible values are
+   *
+   * - `[]` Empty Array indicates deny video playback requests for all domains
+   * - `["*"]` A Single Wildcard `*` entry means allow video playback requests from
+   *   any domain
+   * - `["*.example.com", "foo.com"]` A list of up to 10 domains or valid dns-style
+   *   wildcards
+   */
+  allowed_domains?: Array<string>;
 }
