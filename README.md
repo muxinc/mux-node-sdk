@@ -30,7 +30,7 @@ const mux = new Mux({
 });
 
 async function main() {
-  const asset = await mux.video.assets.retrieve('t02rm...');
+  const asset = await mux.video.assets.create();
 
   console.log(asset.data.aspect_ratio);
 }
@@ -51,7 +51,7 @@ const mux = new Mux({
 });
 
 async function main() {
-  const asset: Mux.AssetResponse = await mux.video.assets.retrieve('t02rm...');
+  const asset: Mux.AssetResponse = await mux.video.assets.create();
 }
 main().catch(console.error);
 ```
@@ -66,7 +66,7 @@ a subclass of `APIError` will be thrown:
 
 ```ts
 async function main() {
-  const asset = await mux.video.assets.retrieve('t02rm...').catch((err) => {
+  const liveStream = await mux.video.liveStreams.create().catch((err) => {
     if (err instanceof Mux.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -141,13 +141,13 @@ List methods in the Mux API are paginated.
 Use `for await … of` syntax to iterate through items across all pages.
 
 ```ts
-async function fetchAllVideoAssets(params) {
-  const allVideoAssets = [];
+async function fetchAllVideoDeliveryUsages(params) {
+  const allVideoDeliveryUsages = [];
   // Automatically fetches more pages as needed.
-  for await (const asset of mux.video.assets.list()) {
-    allVideoAssets.push(asset);
+  for await (const deliveryUsage of mux.video.deliveryUsage.list()) {
+    allVideoDeliveryUsages.push(deliveryUsage);
   }
-  return allVideoAssets;
+  return allVideoDeliveryUsages;
 }
 ```
 
