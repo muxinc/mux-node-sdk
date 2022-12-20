@@ -3,7 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { PageWithTotal, PageWithTotalParams } from '~/pagination';
+import { BasePage, BasePageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
 
 export class Dimensions extends APIResource {
@@ -25,28 +25,25 @@ export class Dimensions extends APIResource {
     dimensionId: string,
     query?: DimensionListValuesParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DimensionValuesPageWithTotal>;
-  listValues(
-    dimensionId: string,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<DimensionValuesPageWithTotal>;
+  ): Core.PagePromise<DimensionValuesBasePage>;
+  listValues(dimensionId: string, options?: Core.RequestOptions): Core.PagePromise<DimensionValuesBasePage>;
   listValues(
     dimensionId: string,
     query: DimensionListValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DimensionValuesPageWithTotal> {
+  ): Core.PagePromise<DimensionValuesBasePage> {
     if (isRequestOptions(query)) {
       return this.listValues(dimensionId, {}, query);
     }
 
-    return this.getAPIList(`/data/v1/dimensions/${dimensionId}`, DimensionValuesPageWithTotal, {
+    return this.getAPIList(`/data/v1/dimensions/${dimensionId}`, DimensionValuesBasePage, {
       query,
       ...options,
     });
   }
 }
 
-export class DimensionValuesPageWithTotal extends PageWithTotal<Shared.DimensionValue> {}
+export class DimensionValuesBasePage extends BasePage<Shared.DimensionValue> {}
 
 export interface DimensionsResponse {
   data?: DimensionsResponse.Data;
@@ -64,7 +61,7 @@ export namespace DimensionsResponse {
   }
 }
 
-export interface DimensionListValuesParams extends PageWithTotalParams {
+export interface DimensionListValuesParams extends BasePageParams {
   /**
    * Limit the results to rows that match conditions from provided key:value pairs.
    * Must be provided as an array query string parameter.

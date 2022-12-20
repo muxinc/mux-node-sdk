@@ -3,7 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { PageWithTotal, PageWithTotalParams } from '~/pagination';
+import { BasePage, BasePageParams } from '~/pagination';
 
 export class Filters extends APIResource {
   /**
@@ -24,22 +24,22 @@ export class Filters extends APIResource {
     filterId: string,
     query?: FilterListValuesParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<FilterValuesPageWithTotal>;
-  listValues(filterId: string, options?: Core.RequestOptions): Core.PagePromise<FilterValuesPageWithTotal>;
+  ): Core.PagePromise<FilterValuesBasePage>;
+  listValues(filterId: string, options?: Core.RequestOptions): Core.PagePromise<FilterValuesBasePage>;
   listValues(
     filterId: string,
     query: FilterListValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<FilterValuesPageWithTotal> {
+  ): Core.PagePromise<FilterValuesBasePage> {
     if (isRequestOptions(query)) {
       return this.listValues(filterId, {}, query);
     }
 
-    return this.getAPIList(`/data/v1/filters/${filterId}`, FilterValuesPageWithTotal, { query, ...options });
+    return this.getAPIList(`/data/v1/filters/${filterId}`, FilterValuesBasePage, { query, ...options });
   }
 }
 
-export class FilterValuesPageWithTotal extends PageWithTotal<FilterValue> {}
+export class FilterValuesBasePage extends BasePage<FilterValue> {}
 
 export interface FilterValue {
   total_count?: number;
@@ -63,7 +63,7 @@ export namespace FiltersResponse {
   }
 }
 
-export interface FilterListValuesParams extends PageWithTotalParams {
+export interface FilterListValuesParams extends BasePageParams {
   /**
    * Limit the results to rows that match conditions from provided key:value pairs.
    * Must be provided as an array query string parameter.

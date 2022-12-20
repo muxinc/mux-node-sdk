@@ -3,7 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { PageWithTotal, PageWithTotalParams } from '~/pagination';
+import { BasePage, BasePageParams } from '~/pagination';
 
 export class Metrics extends APIResource {
   /**
@@ -59,7 +59,7 @@ export class Metrics extends APIResource {
       | 'weighted_average_bitrate',
     query?: MetricListBreakdownParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<BreakdownValuesPageWithTotal>;
+  ): Core.PagePromise<BreakdownValuesBasePage>;
   listBreakdown(
     metricId:
       | 'aggregate_startup_time'
@@ -90,7 +90,7 @@ export class Metrics extends APIResource {
       | 'views'
       | 'weighted_average_bitrate',
     options?: Core.RequestOptions,
-  ): Core.PagePromise<BreakdownValuesPageWithTotal>;
+  ): Core.PagePromise<BreakdownValuesBasePage>;
   listBreakdown(
     metricId:
       | 'aggregate_startup_time'
@@ -122,12 +122,12 @@ export class Metrics extends APIResource {
       | 'weighted_average_bitrate',
     query: MetricListBreakdownParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<BreakdownValuesPageWithTotal> {
+  ): Core.PagePromise<BreakdownValuesBasePage> {
     if (isRequestOptions(query)) {
       return this.listBreakdown(metricId, {}, query);
     }
 
-    return this.getAPIList(`/data/v1/metrics/${metricId}/breakdown`, BreakdownValuesPageWithTotal, {
+    return this.getAPIList(`/data/v1/metrics/${metricId}/breakdown`, BreakdownValuesBasePage, {
       query,
       ...options,
     });
@@ -460,7 +460,7 @@ export class Metrics extends APIResource {
   }
 }
 
-export class BreakdownValuesPageWithTotal extends PageWithTotal<BreakdownValue> {}
+export class BreakdownValuesBasePage extends BasePage<BreakdownValue> {}
 
 export interface AllMetricValuesResponse {
   data?: Array<AllMetricValuesResponse.Data>;
@@ -642,7 +642,7 @@ export interface MetricListParams {
   value?: string;
 }
 
-export interface MetricListBreakdownParams extends PageWithTotalParams {
+export interface MetricListBreakdownParams extends BasePageParams {
   /**
    * Limit the results to rows that match conditions from provided key:value pairs.
    * Must be provided as an array query string parameter.

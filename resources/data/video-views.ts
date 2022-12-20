@@ -3,7 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { PageWithTotal, PageWithTotalParams } from '~/pagination';
+import { BasePage, BasePageParams } from '~/pagination';
 
 export class VideoViews extends APIResource {
   /**
@@ -20,21 +20,21 @@ export class VideoViews extends APIResource {
   list(
     query?: VideoViewListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AbridgedVideoViewsPageWithTotal>;
-  list(options?: Core.RequestOptions): Core.PagePromise<AbridgedVideoViewsPageWithTotal>;
+  ): Core.PagePromise<AbridgedVideoViewsBasePage>;
+  list(options?: Core.RequestOptions): Core.PagePromise<AbridgedVideoViewsBasePage>;
   list(
     query: VideoViewListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AbridgedVideoViewsPageWithTotal> {
+  ): Core.PagePromise<AbridgedVideoViewsBasePage> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
 
-    return this.getAPIList('/data/v1/video-views', AbridgedVideoViewsPageWithTotal, { query, ...options });
+    return this.getAPIList('/data/v1/video-views', AbridgedVideoViewsBasePage, { query, ...options });
   }
 }
 
-export class AbridgedVideoViewsPageWithTotal extends PageWithTotal<AbridgedVideoView> {}
+export class AbridgedVideoViewsBasePage extends BasePage<AbridgedVideoView> {}
 
 export interface AbridgedVideoView {
   country_code?: string | null;
@@ -332,7 +332,7 @@ export namespace VideoViewResponse {
   }
 }
 
-export interface VideoViewListParams extends PageWithTotalParams {
+export interface VideoViewListParams extends BasePageParams {
   /**
    * Filter video views by the provided error ID (as returned in the error_type_id
    * field in the list video views endpoint). If you provide any as the error ID,
