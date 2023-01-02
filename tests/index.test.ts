@@ -17,11 +17,6 @@ describe('instantiate client', () => {
   });
 
   test('with minimal arguments', () => {
-    // fails if no access token provided
-    expect(() => {
-      new Mux({ tokenSecret: 'my secret' });
-    }).toThrow();
-
     // set access token via env var
     process.env['MUX_TOKEN_ID'] = 'env var token id';
     const client = new Mux({ tokenSecret: 'my secret' });
@@ -45,9 +40,9 @@ describe('instantiate client', () => {
   });
 
   test('with disabled authentication', () => {
-    process.env['MUX_TOKEN_ID'] = 'env var token id';
-
-    const client = new Mux({ tokenId: null, tokenSecret: 'my secret' });
-    expect(client.tokenId).toBeNull();
+    // fails if no access token provided
+    expect(() => {
+      new Mux({ tokenSecret: 'my secret' });
+    }).toThrow();
   });
 });

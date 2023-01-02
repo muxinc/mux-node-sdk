@@ -9,7 +9,7 @@ type Config = {
   /**
    * Defaults to to process.env["MUX_TOKEN_ID"]. Set it to null if you want to send unauthenticated requests.
    */
-  tokenId?: string | null;
+  tokenId?: string;
   baseURL?: string;
   timeout?: number;
   httpAgent?: Agent;
@@ -17,7 +17,7 @@ type Config = {
 };
 
 export class Mux extends Core.APIClient {
-  tokenId: string | null;
+  tokenId: string;
   tokenSecret: string;
 
   constructor(config: Config) {

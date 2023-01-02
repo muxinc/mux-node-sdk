@@ -95,6 +95,11 @@ export abstract class APIClient {
   }
 
   /**
+   * Override this to add your own headers validation:
+   */
+  protected validateHeaders(headers: Headers, customHeaders: Headers) {}
+
+  /**
    * Override this to add your own qs.stringify options, for example:
    *
    *  {
@@ -134,10 +139,9 @@ export abstract class APIClient {
     return this.requestAPIList(Page, { method: 'get', path, ...opts });
   }
 
-  async request<Req extends {}, Rsp>(
+  buildRequest<Req extends {}>(
     options: FinalRequestOptions<Req>,
-    retriesRemaining = options.maxRetries ?? this.maxRetries,
-  ): Promise<APIResponse<Rsp>> {
+  ): { req: RequestInit; url: string; timeout: number } {
     const { method, path, query, headers: headers = {} } = options;
     const body =
       options.body instanceof Readable ? options.body
@@ -155,16 +159,31 @@ export abstract class APIClient {
       headers[this.idempotencyHeader] = options.idempotencyKey;
     }
 
+    const reqHeaders: Record<string, string> = {
+      ...(contentLength && { 'Content-Length': contentLength }),
+      ...this.defaultHeaders(),
+      ...headers,
+    };
+
+    // Strip any headers being explicitly omitted with null
+    Object.keys(reqHeaders).forEach((key) => reqHeaders[key] === null && delete reqHeaders[key]);
+
     const req: RequestInit = {
       method,
       ...(body && { body }),
-      headers: {
-        ...(contentLength && { 'Content-Length': contentLength }),
-        ...this.defaultHeaders(),
-        ...headers,
-      },
+      headers: reqHeaders,
       ...(httpAgent && { agent: httpAgent }),
     };
+
+    this.validateHeaders(reqHeaders, headers);
+    return { req, url, timeout };
+  }
+
+  async request<Req extends {}, Rsp>(
+    options: FinalRequestOptions<Req>,
+    retriesRemaining = options.maxRetries ?? this.maxRetries,
+  ): Promise<APIResponse<Rsp>> {
+    const { req, url, timeout } = this.buildRequest(options);
 
     this.debug('request', url, options, req.headers);
 
