@@ -7,15 +7,6 @@ import { BasePage, BasePageParams } from '~/pagination';
 
 export class Filters extends APIResource {
   /**
-   * The API has been replaced by the list-dimensions API call.
-   *
-   * Lists all the filters broken out into basic and advanced.
-   */
-  list(options?: Core.RequestOptions): Promise<Core.APIResponse<FiltersResponse>> {
-    return this.get('/data/v1/filters', options);
-  }
-
-  /**
    * The API has been replaced by the list-dimension-values API call.
    *
    * Lists the values for a filter along with a total count of related views.

@@ -5,15 +5,6 @@ import { APIResource } from '~/resource';
 
 export class Exports extends APIResource {
   /**
-   * The API has been replaced by the list-exports-views API call.
-   *
-   * Lists the available video view exports along with URLs to retrieve them.
-   */
-  list(options?: Core.RequestOptions): Promise<Core.APIResponse<ExportsResponse>> {
-    return this.get('/data/v1/exports', options);
-  }
-
-  /**
    * Lists the available video view exports along with URLs to retrieve them.
    */
   listVideoViews(options?: Core.RequestOptions): Promise<Core.APIResponse<VideoViewExportsResponse>> {
