@@ -5,7 +5,7 @@ import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import { PageWithTotal, PageWithTotalParams } from '~/pagination';
 
-export class DeliveryUsageResource extends APIResource {
+export class DeliveryUsage extends APIResource {
   /**
    * Returns a list of delivery usage records and their associated Asset IDs or Live
    * Stream IDs.

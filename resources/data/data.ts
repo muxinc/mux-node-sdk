@@ -7,7 +7,7 @@ import { Exports } from './exports';
 import { Filters } from './filters';
 import { Incidents } from './incidents';
 import { Metrics } from './metrics';
-import { RealTimeResource } from './real-time';
+import { RealTime } from './real-time';
 import { VideoViews } from './video-views';
 
 export class Data extends APIResource {
@@ -17,6 +17,6 @@ export class Data extends APIResource {
   filters: Filters = new Filters(this.client);
   incidents: Incidents = new Incidents(this.client);
   metrics: Metrics = new Metrics(this.client);
-  realTime: RealTimeResource = new RealTimeResource(this.client);
+  realTime: RealTime = new RealTime(this.client);
   videoViews: VideoViews = new VideoViews(this.client);
 }

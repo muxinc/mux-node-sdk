@@ -1,4 +1,5 @@
 // File generated from our OpenAPI spec by Stainless.
+import qs from 'qs';
 import * as Core from './core';
 import * as Pagination from './pagination';
 import * as API from './resources';
@@ -49,7 +50,7 @@ export class Mux extends Core.APIClient {
     this.tokenSecret = tokenSecret;
   }
 
-  video: API.VideoResource = new API.VideoResource(this);
+  video: API.Video = new API.Video(this);
   data: API.Data = new API.Data(this);
 
   protected override authHeaders(): Core.Headers {

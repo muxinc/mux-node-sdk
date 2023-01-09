@@ -4,7 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 
-export class RealTimeResource extends APIResource {
+export class RealTime extends APIResource {
   /**
    * Lists available real-time dimensions.
    */

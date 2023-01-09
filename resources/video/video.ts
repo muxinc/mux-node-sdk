@@ -2,7 +2,7 @@
 
 import { APIResource } from '~/resource';
 import { Assets } from './assets';
-import { DeliveryUsageResource } from './delivery-usage';
+import { DeliveryUsage } from './delivery-usage';
 import { LiveStreams } from './live-streams';
 import { PlaybackIds } from './playback-ids';
 import { PlaybackRestrictions } from './playback-restrictions';
@@ -11,9 +11,9 @@ import { Spaces } from './spaces';
 import { TranscriptionVocabularies } from './transcription-vocabularies';
 import { Uploads } from './uploads';
 
-export class VideoResource extends APIResource {
+export class Video extends APIResource {
   assets: Assets = new Assets(this.client);
-  deliveryUsage: DeliveryUsageResource = new DeliveryUsageResource(this.client);
+  deliveryUsage: DeliveryUsage = new DeliveryUsage(this.client);
   liveStreams: LiveStreams = new LiveStreams(this.client);
   playbackIds: PlaybackIds = new PlaybackIds(this.client);
   playbackRestrictions: PlaybackRestrictions = new PlaybackRestrictions(this.client);
