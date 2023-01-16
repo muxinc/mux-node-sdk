@@ -8,9 +8,8 @@ Models:
 - <code><a href="./resources/video/assets.ts">AssetMasterParams</a></code>
 - <code><a href="./resources/video/assets.ts">AssetMP4SupportParams</a></code>
 - <code><a href="./resources/video/assets.ts">AssetResponse</a></code>
-- <code><a href="./resources/video/assets.ts">UpdateAssetParams</a></code>
-- <code><a href="./resources/video/assets.ts">PlaybackId</a></code>
 - <code><a href="./resources/video/assets.ts">Track</a></code>
+- <code><a href="./resources/video/assets.ts">UpdateAssetParams</a></code>
 
 Methods:
 
@@ -48,7 +47,6 @@ Models:
 - <code><a href="./resources/video/live-streams.ts">PlaybackIdParams</a></code>
 - <code><a href="./resources/video/live-streams.ts">UpdateLiveStreamParams</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamCompleteResponse</a></code>
-- <code><a href="./resources/video/live-streams.ts">PlaybackId</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamCreateSimulcastTargetResponse</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamDisableResponse</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamEnableResponse</a></code>
@@ -181,8 +179,8 @@ Methods:
 
 Models:
 
-- <code><a href="./resources/data/dimensions.ts">DimensionsResponse</a></code>
 - <code><a href="./resources/data/dimensions.ts">DimensionValue</a></code>
+- <code><a href="./resources/data/dimensions.ts">DimensionsResponse</a></code>
 
 Methods:
 

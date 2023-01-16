@@ -4,7 +4,6 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import { BasePage, BasePageParams } from '~/pagination';
-import * as Shared from '~/resources/shared';
 
 export class Dimensions extends APIResource {
   /**
@@ -43,7 +42,13 @@ export class Dimensions extends APIResource {
   }
 }
 
-export class DimensionValuesBasePage extends BasePage<Shared.DimensionValue> {}
+export class DimensionValuesBasePage extends BasePage<DimensionValue> {}
+
+export interface DimensionValue {
+  total_count?: number;
+
+  value?: string;
+}
 
 export interface DimensionsResponse {
   data?: DimensionsResponse.Data;
