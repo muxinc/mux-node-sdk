@@ -69,9 +69,9 @@ export class Assets extends APIResource {
    */
   async createPlaybackId(
     assetId: string,
-    body: AssetCreatePlaybackIdParams,
+    body: AssetCreatePlaybackIDParams,
     options?: Core.RequestOptions,
-  ): Promise<Shared.PlaybackId> {
+  ): Promise<Shared.PlaybackID> {
     // Note that this method does not support accessing responseHeaders
     const response = (await this.post(`/video/v1/assets/${assetId}/playback-ids`, {
       body,
@@ -124,7 +124,7 @@ export class Assets extends APIResource {
     assetId: string,
     playbackId: string,
     options?: Core.RequestOptions,
-  ): Promise<Shared.PlaybackId> {
+  ): Promise<Shared.PlaybackID> {
     // Note that this method does not support accessing responseHeaders
     const response = (await this.get(
       `/video/v1/assets/${assetId}/playback-ids/${playbackId}`,
@@ -266,7 +266,7 @@ export interface Asset {
    * [Play your videos](https://docs.mux.com/guides/video/play-your-videos) for more
    * details.
    */
-  playback_ids?: Array<Shared.PlaybackId>;
+  playback_ids?: Array<Shared.PlaybackID>;
 
   /**
    * An array of individual live stream recording sessions. A recording session is
@@ -825,7 +825,7 @@ export interface AssetListParams extends BasePageParams {
   upload_id?: string;
 }
 
-export interface AssetCreatePlaybackIdParams {
+export interface AssetCreatePlaybackIDParams {
   /**
    * - `public` playback IDs are accessible by constructing an HLS URL like
    *   `https://stream.mux.com/${PLAYBACK_ID}`

@@ -100,9 +100,9 @@ export class LiveStreams extends APIResource {
    */
   async createPlaybackId(
     liveStreamId: string,
-    body: LiveStreamCreatePlaybackIdParams,
+    body: LiveStreamCreatePlaybackIDParams,
     options?: Core.RequestOptions,
-  ): Promise<Shared.PlaybackId> {
+  ): Promise<Shared.PlaybackID> {
     // Note that this method does not support accessing responseHeaders
     const response = (await this.post(`/video/v1/live-streams/${liveStreamId}/playback-ids`, {
       body,
@@ -203,7 +203,7 @@ export class LiveStreams extends APIResource {
     liveStreamId: string,
     playbackId: string,
     options?: Core.RequestOptions,
-  ): Promise<Shared.PlaybackId> {
+  ): Promise<Shared.PlaybackID> {
     // Note that this method does not support accessing responseHeaders
     const response = (await this.get(
       `/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`,
@@ -727,7 +727,7 @@ export interface LiveStream {
    * [Play your videos](https://docs.mux.com/guides/video/play-your-videos) for more
    * details.
    */
-  playback_ids?: Array<Shared.PlaybackId>;
+  playback_ids?: Array<Shared.PlaybackID>;
 
   /**
    * An array of strings with the most recent Assets that were created from this live
@@ -1124,7 +1124,7 @@ export namespace LiveStreamGeneratedSubtitlesParams {
   }
 }
 
-export interface PlaybackIdParams {
+export interface PlaybackIDParams {
   /**
    * - `public` playback IDs are accessible by constructing an HLS URL like
    *   `https://stream.mux.com/${PLAYBACK_ID}`
@@ -1683,7 +1683,7 @@ export interface LiveStreamListParams extends BasePageParams {
   stream_key?: string;
 }
 
-export interface LiveStreamCreatePlaybackIdParams {
+export interface LiveStreamCreatePlaybackIDParams {
   /**
    * - `public` playback IDs are accessible by constructing an HLS URL like
    *   `https://stream.mux.com/${PLAYBACK_ID}`

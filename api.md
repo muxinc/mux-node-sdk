@@ -18,11 +18,11 @@ Methods:
 - <code title="patch /video/v1/assets/{ASSET_ID}">client.video.assets.<a href="./resources/video/assets.ts">update</a>(assetId, { ...params }) -> Promise<Asset></code>
 - <code title="get /video/v1/assets">client.video.assets.<a href="./resources/video/assets.ts">list</a>({ ...params }) -> Core.PagePromise<AssetsBasePage></code>
 - <code title="delete /video/v1/assets/{ASSET_ID}">client.video.assets.<a href="./resources/video/assets.ts">del</a>(assetId) -> Promise<void></code>
-- <code title="post /video/v1/assets/{ASSET_ID}/playback-ids">client.video.assets.<a href="./resources/video/assets.ts">createPlaybackId</a>(assetId, { ...params }) -> Promise<PlaybackId></code>
+- <code title="post /video/v1/assets/{ASSET_ID}/playback-ids">client.video.assets.<a href="./resources/video/assets.ts">createPlaybackId</a>(assetId, { ...params }) -> Promise<PlaybackID></code>
 - <code title="post /video/v1/assets/{ASSET_ID}/tracks">client.video.assets.<a href="./resources/video/assets.ts">createTrack</a>(assetId, { ...params }) -> Promise<Track></code>
 - <code title="delete /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}">client.video.assets.<a href="./resources/video/assets.ts">deletePlaybackId</a>(assetId, playbackId) -> Promise<void></code>
 - <code title="delete /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}">client.video.assets.<a href="./resources/video/assets.ts">deleteTrack</a>(assetId, trackId) -> Promise<void></code>
-- <code title="get /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}">client.video.assets.<a href="./resources/video/assets.ts">retrievePlaybackId</a>(assetId, playbackId) -> Promise<PlaybackId></code>
+- <code title="get /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}">client.video.assets.<a href="./resources/video/assets.ts">retrievePlaybackId</a>(assetId, playbackId) -> Promise<PlaybackID></code>
 - <code title="put /video/v1/assets/{ASSET_ID}/master-access">client.video.assets.<a href="./resources/video/assets.ts">updateMasterAccess</a>(assetId, { ...params }) -> Promise<Asset></code>
 - <code title="put /video/v1/assets/{ASSET_ID}/mp4-support">client.video.assets.<a href="./resources/video/assets.ts">updateMP4Support</a>(assetId, { ...params }) -> Promise<Asset></code>
 
@@ -44,7 +44,7 @@ Models:
 - <code><a href="./resources/video/live-streams.ts">LiveStream</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamEmbeddedSubtitlesParams</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamGeneratedSubtitlesParams</a></code>
-- <code><a href="./resources/video/live-streams.ts">PlaybackIdParams</a></code>
+- <code><a href="./resources/video/live-streams.ts">PlaybackIDParams</a></code>
 - <code><a href="./resources/video/live-streams.ts">UpdateLiveStreamParams</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamCompleteResponse</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamCreateSimulcastTargetResponse</a></code>
@@ -59,27 +59,27 @@ Methods:
 - <code title="get /video/v1/live-streams">client.video.liveStreams.<a href="./resources/video/live-streams.ts">list</a>({ ...params }) -> Core.PagePromise<LiveStreamsBasePage></code>
 - <code title="delete /video/v1/live-streams/{LIVE_STREAM_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">del</a>(liveStreamId) -> Promise<void></code>
 - <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/complete">client.video.liveStreams.<a href="./resources/video/live-streams.ts">complete</a>(liveStreamId) -> Promise<LiveStreamCompleteResponse></code>
-- <code title="post /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids">client.video.liveStreams.<a href="./resources/video/live-streams.ts">createPlaybackId</a>(liveStreamId, { ...params }) -> Promise<PlaybackId></code>
+- <code title="post /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids">client.video.liveStreams.<a href="./resources/video/live-streams.ts">createPlaybackId</a>(liveStreamId, { ...params }) -> Promise<PlaybackID></code>
 - <code title="post /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets">client.video.liveStreams.<a href="./resources/video/live-streams.ts">createSimulcastTarget</a>(liveStreamId, { ...params }) -> Promise<LiveStreamCreateSimulcastTargetResponse></code>
 - <code title="delete /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">deletePlaybackId</a>(liveStreamId, playbackId) -> Promise<void></code>
 - <code title="delete /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">deleteSimulcastTarget</a>(liveStreamId, simulcastTargetId) -> Promise<void></code>
 - <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/disable">client.video.liveStreams.<a href="./resources/video/live-streams.ts">disable</a>(liveStreamId) -> Promise<LiveStreamDisableResponse></code>
 - <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/enable">client.video.liveStreams.<a href="./resources/video/live-streams.ts">enable</a>(liveStreamId) -> Promise<LiveStreamEnableResponse></code>
 - <code title="post /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key">client.video.liveStreams.<a href="./resources/video/live-streams.ts">resetStreamKey</a>(liveStreamId) -> Promise<LiveStream></code>
-- <code title="get /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">retrievePlaybackId</a>(liveStreamId, playbackId) -> Promise<PlaybackId></code>
+- <code title="get /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">retrievePlaybackId</a>(liveStreamId, playbackId) -> Promise<PlaybackID></code>
 - <code title="get /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">retrieveSimulcastTarget</a>(liveStreamId, simulcastTargetId) -> Promise<LiveStreamCreateSimulcastTargetResponse></code>
 - <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles">client.video.liveStreams.<a href="./resources/video/live-streams.ts">updateEmbeddedSubtitles</a>(liveStreamId, { ...params }) -> Promise<LiveStream></code>
 - <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/generated-subtitles">client.video.liveStreams.<a href="./resources/video/live-streams.ts">updateGeneratedSubtitles</a>(liveStreamId, { ...params }) -> Promise<LiveStream></code>
 
-## PlaybackIds
+## PlaybackIDs
 
 Models:
 
-- <code><a href="./resources/video/playback-ids.ts">PlaybackIdRetrieveResponse</a></code>
+- <code><a href="./resources/video/playback-ids.ts">PlaybackIDRetrieveResponse</a></code>
 
 Methods:
 
-- <code title="get /video/v1/playback-ids/{PLAYBACK_ID}">client.video.playbackIds.<a href="./resources/video/playback-ids.ts">retrieve</a>(playbackId) -> Promise<PlaybackIdRetrieveResponse></code>
+- <code title="get /video/v1/playback-ids/{PLAYBACK_ID}">client.video.playbackIds.<a href="./resources/video/playback-ids.ts">retrieve</a>(playbackId) -> Promise<PlaybackIDRetrieveResponse></code>
 
 ## PlaybackRestrictions
 

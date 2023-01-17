@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless.
 
-export interface PlaybackId {
+export interface PlaybackID {
   /**
    * Unique identifier for the PlaybackID
    */

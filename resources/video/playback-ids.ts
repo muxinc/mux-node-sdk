@@ -3,19 +3,19 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 
-export class PlaybackIds extends APIResource {
+export class PlaybackIDs extends APIResource {
   /**
    * Retrieves the Identifier of the Asset or Live Stream associated with the
    * Playback ID.
    */
-  async retrieve(playbackId: string, options?: Core.RequestOptions): Promise<PlaybackIdRetrieveResponse> {
+  async retrieve(playbackId: string, options?: Core.RequestOptions): Promise<PlaybackIDRetrieveResponse> {
     // Note that this method does not support accessing responseHeaders
     const response = (await this.get(`/video/v1/playback-ids/${playbackId}`, options)) as any;
     return response.data;
   }
 }
 
-export interface PlaybackIdRetrieveResponse {
+export interface PlaybackIDRetrieveResponse {
   /**
    * The Playback ID used to retrieve the corresponding asset or the live stream ID
    */
@@ -24,7 +24,7 @@ export interface PlaybackIdRetrieveResponse {
   /**
    * Describes the Asset or LiveStream object associated with the playback ID.
    */
-  object?: PlaybackIdRetrieveResponse.Object;
+  object?: PlaybackIDRetrieveResponse.Object;
 
   /**
    * - `public` playback IDs are accessible by constructing an HLS URL like
@@ -38,7 +38,7 @@ export interface PlaybackIdRetrieveResponse {
   policy?: 'public' | 'signed';
 }
 
-export namespace PlaybackIdRetrieveResponse {
+export namespace PlaybackIDRetrieveResponse {
   export interface Object {
     /**
      * The identifier of the object.
