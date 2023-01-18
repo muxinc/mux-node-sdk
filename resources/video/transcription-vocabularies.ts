@@ -83,7 +83,10 @@ export class TranscriptionVocabularies extends APIResource {
    * in the deleted Transcription Vocabulary will remain attached to those streams
    * while they are active.
    */
-  del(transcriptionVocabularyId: string, options?: Core.RequestOptions): Promise<void> {
+  del(
+    transcriptionVocabularyId: string,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Promise<void>>> {
     return this.delete(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

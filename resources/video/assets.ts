@@ -57,7 +57,7 @@ export class Assets extends APIResource {
   /**
    * Deletes a video asset and all its data.
    */
-  del(assetId: string, options?: Core.RequestOptions): Promise<void> {
+  del(assetId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
     return this.delete(`/video/v1/assets/${assetId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -99,7 +99,11 @@ export class Assets extends APIResource {
    * underlying asset; a viewer who started playback before the playback ID was
    * deleted may be able to watch the entire video for a limited duration.
    */
-  deletePlaybackId(assetId: string, playbackId: string, options?: Core.RequestOptions): Promise<void> {
+  deletePlaybackId(
+    assetId: string,
+    playbackId: string,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Promise<void>>> {
     return this.delete(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -110,7 +114,11 @@ export class Assets extends APIResource {
    * Removes a text track from an asset. Audio and video tracks on assets cannot be
    * removed.
    */
-  deleteTrack(assetId: string, trackId: string, options?: Core.RequestOptions): Promise<void> {
+  deleteTrack(
+    assetId: string,
+    trackId: string,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Promise<void>>> {
     return this.delete(`/video/v1/assets/${assetId}/tracks/${trackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

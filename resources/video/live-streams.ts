@@ -70,7 +70,7 @@ export class LiveStreams extends APIResource {
    * currently active and being streamed to, ingest will be terminated and the
    * encoder will be disconnected.
    */
-  del(liveStreamId: string, options?: Core.RequestOptions): Promise<void> {
+  del(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
     return this.delete(`/video/v1/live-streams/${liveStreamId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -135,7 +135,11 @@ export class LiveStreams extends APIResource {
    * fail immediately. However, current viewers will be able to continue watching the
    * stream for some period of time.
    */
-  deletePlaybackId(liveStreamId: string, playbackId: string, options?: Core.RequestOptions): Promise<void> {
+  deletePlaybackId(
+    liveStreamId: string,
+    playbackId: string,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Promise<void>>> {
     return this.delete(`/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -151,7 +155,7 @@ export class LiveStreams extends APIResource {
     liveStreamId: string,
     simulcastTargetId: string,
     options?: Core.RequestOptions,
-  ): Promise<void> {
+  ): Promise<Core.APIResponse<Promise<void>>> {
     return this.delete(`/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

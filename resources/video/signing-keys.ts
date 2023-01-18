@@ -49,7 +49,7 @@ export class SigningKeys extends APIResource {
    * Deletes an existing signing key. Use with caution, as this will invalidate any
    * existing signatures and no URLs can be signed using the key again.
    */
-  del(signingKeyId: string, options?: Core.RequestOptions): Promise<void> {
+  del(signingKeyId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
     return this.delete(`/video/v1/signing-keys/${signingKeyId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

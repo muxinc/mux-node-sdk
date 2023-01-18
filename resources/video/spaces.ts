@@ -47,7 +47,7 @@ export class Spaces extends APIResource {
   /**
    * Deletes a space. Spaces can only be deleted when `idle`.
    */
-  del(spaceId: string, options?: Core.RequestOptions): Promise<void> {
+  del(spaceId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
     return this.delete(`/video/v1/spaces/${spaceId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -74,7 +74,11 @@ export class Spaces extends APIResource {
    * Deletes a single broadcast of a specific space. Broadcasts can only be deleted
    * when `idle`.
    */
-  deleteBroadcast(spaceId: string, broadcastId: string, options?: Core.RequestOptions): Promise<void> {
+  deleteBroadcast(
+    spaceId: string,
+    broadcastId: string,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Promise<void>>> {
     return this.delete(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

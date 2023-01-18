@@ -55,7 +55,10 @@ export class PlaybackRestrictions extends APIResource {
   /**
    * Deletes a single Playback Restriction.
    */
-  del(playbackRestrictionId: string, options?: Core.RequestOptions): Promise<void> {
+  del(
+    playbackRestrictionId: string,
+    options?: Core.RequestOptions,
+  ): Promise<Core.APIResponse<Promise<void>>> {
     return this.delete(`/video/v1/playback-restrictions/${playbackRestrictionId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
