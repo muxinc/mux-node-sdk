@@ -1194,7 +1194,7 @@ export interface UpdateLiveStreamParams {
   use_slate_for_standard_latency?: boolean;
 }
 
-type LiveStreamCompleteResponse = Record<string, unknown>;
+export type LiveStreamCompleteResponse = Record<string, unknown>;
 
 export interface LiveStreamCreateSimulcastTargetResponse {
   /**
@@ -1238,9 +1238,9 @@ export interface LiveStreamCreateSimulcastTargetResponse {
   url?: string;
 }
 
-type LiveStreamDisableResponse = Record<string, unknown>;
+export type LiveStreamDisableResponse = Record<string, unknown>;
 
-type LiveStreamEnableResponse = Record<string, unknown>;
+export type LiveStreamEnableResponse = Record<string, unknown>;
 
 export interface LiveStreamCreateParams {
   /**

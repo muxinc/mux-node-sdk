@@ -319,9 +319,9 @@ export type SpaceStatus = 'idle' | 'active';
  */
 export type SpaceType = 'server';
 
-type SpaceStartBroadcastResponse = Record<string, unknown>;
+export type SpaceStartBroadcastResponse = Record<string, unknown>;
 
-type SpaceStopBroadcastResponse = Record<string, unknown>;
+export type SpaceStopBroadcastResponse = Record<string, unknown>;
 
 export interface SpaceCreateParams {
   /**
