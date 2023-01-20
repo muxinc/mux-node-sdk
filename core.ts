@@ -827,9 +827,22 @@ export const ensurePresent = <T>(value: T | null | undefined): T => {
 
 export const coerceInteger = (value: unknown): number => {
   if (typeof value === 'number') return Math.round(value);
-  if (typeof value === 'string') return parseInt(value);
+  if (typeof value === 'string') return parseInt(value, 10);
 
   throw new Error(`Could not coerce ${value} (type: ${typeof value}) into a number`);
+};
+
+export const coerceFloat = (value: unknown): number => {
+  if (typeof value === 'number') return value;
+  if (typeof value === 'string') return parseFloat(value);
+
+  throw new Error(`Could not coerce ${value} (type: ${typeof value}) into a number`);
+};
+
+export const coerceBoolean = (value: unknown): boolean => {
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'string') return value === 'true';
+  return Boolean(value);
 };
 
 // https://stackoverflow.com/a/34491287
