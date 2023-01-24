@@ -2,16 +2,16 @@
 import { AbstractPage, APIResponse, APIClient, FinalRequestOptions, PageInfo } from './core';
 
 export interface PageWithTotalResponse<Item> {
-  data?: Array<Item>;
+  data: Array<Item>;
 
   /**
    * Number of assets returned in this response. Default value is 100.
    */
-  limit?: number;
+  limit: number;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export interface PageWithTotalParams {
@@ -42,10 +42,10 @@ export class PageWithTotal<Item> extends AbstractPage<Item> implements PageWithT
   ) {
     super(client, response, options);
 
-    this.data = response.data || [];
-    this.total_row_count = response.total_row_count || 0;
-    this.timeframe = response.timeframe || [];
-    this.limit = response.limit || 0;
+    this.data = response.data;
+    this.total_row_count = response.total_row_count;
+    this.timeframe = response.timeframe;
+    this.limit = response.limit;
   }
 
   getPaginatedItems(): Item[] {
@@ -72,7 +72,7 @@ export class PageWithTotal<Item> extends AbstractPage<Item> implements PageWithT
 }
 
 export interface BasePageResponse<Item> {
-  data?: Array<Item>;
+  data: Array<Item>;
 }
 
 export interface BasePageParams {
@@ -97,7 +97,7 @@ export class BasePage<Item> extends AbstractPage<Item> implements BasePageRespon
   ) {
     super(client, response, options);
 
-    this.data = response.data || [];
+    this.data = response.data;
   }
 
   getPaginatedItems(): Item[] {

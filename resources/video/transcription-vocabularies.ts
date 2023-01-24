@@ -161,7 +161,7 @@ export interface TranscriptionVocabulary {
 export type TranscriptionVocabularyPhrase = string;
 
 export interface TranscriptionVocabularyResponse {
-  data?: TranscriptionVocabulary;
+  data: TranscriptionVocabulary;
 }
 
 export interface UpdateTranscriptionVocabularyParams {

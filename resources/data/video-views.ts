@@ -61,9 +61,9 @@ export interface AbridgedVideoView {
 }
 
 export interface VideoViewResponse {
-  data?: VideoViewResponse.Data;
+  data: VideoViewResponse.Data;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 }
 
 export namespace VideoViewResponse {

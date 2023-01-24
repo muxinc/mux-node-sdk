@@ -39,11 +39,11 @@ export interface FilterValue {
 }
 
 export interface FiltersResponse {
-  data?: FiltersResponse.Data;
+  data: FiltersResponse.Data;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export namespace FiltersResponse {

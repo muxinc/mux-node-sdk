@@ -51,11 +51,11 @@ export interface DimensionValue {
 }
 
 export interface DimensionsResponse {
-  data?: DimensionsResponse.Data;
+  data: DimensionsResponse.Data;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export namespace DimensionsResponse {

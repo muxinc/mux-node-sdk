@@ -489,7 +489,7 @@ export interface AssetMP4SupportParams {
 }
 
 export interface AssetResponse {
-  data?: Asset;
+  data: Asset;
 }
 
 export interface Track {

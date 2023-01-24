@@ -463,11 +463,11 @@ export class Metrics extends APIResource {
 export class BreakdownValuesBasePage extends BasePage<BreakdownValue> {}
 
 export interface AllMetricValuesResponse {
-  data?: Array<AllMetricValuesResponse.Data>;
+  data: Array<AllMetricValuesResponse.Data>;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export namespace AllMetricValuesResponse {
@@ -513,11 +513,11 @@ export interface BreakdownValue {
 }
 
 export interface InsightsResponse {
-  data?: Array<InsightsResponse.Data>;
+  data: Array<InsightsResponse.Data>;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export namespace InsightsResponse {
@@ -537,19 +537,19 @@ export namespace InsightsResponse {
 }
 
 export interface MetricTimeseriesDataResponse {
-  data?: Array<Array<string>>;
+  data: Array<Array<string>>;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export interface OverallValuesResponse {
-  data?: OverallValuesResponse.Data;
+  data: OverallValuesResponse.Data;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export namespace OverallValuesResponse {

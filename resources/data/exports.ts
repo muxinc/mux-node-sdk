@@ -13,19 +13,19 @@ export class Exports extends APIResource {
 }
 
 export interface ExportsResponse {
-  data?: Array<string>;
+  data: Array<string>;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export interface VideoViewExportsResponse {
-  data?: Array<VideoViewExportsResponse.Data>;
+  data: Array<VideoViewExportsResponse.Data>;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export namespace VideoViewExportsResponse {

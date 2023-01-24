@@ -141,9 +141,9 @@ export namespace Incident {
 }
 
 export interface IncidentResponse {
-  data?: Incident;
+  data: Incident;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 }
 
 export interface IncidentListParams extends BasePageParams {

@@ -23,11 +23,11 @@ export class Errors extends APIResource {
 }
 
 export interface ErrorsResponse {
-  data?: Array<ErrorsResponse.Data>;
+  data: Array<ErrorsResponse.Data>;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export namespace ErrorsResponse {

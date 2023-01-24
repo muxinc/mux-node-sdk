@@ -79,7 +79,7 @@ export interface SigningKey {
 }
 
 export interface SigningKeyResponse {
-  data?: SigningKey;
+  data: SigningKey;
 }
 
 export interface SigningKeyListParams extends BasePageParams {}

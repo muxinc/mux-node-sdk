@@ -164,7 +164,7 @@ export namespace PlaybackRestrictionParams {
 }
 
 export interface PlaybackRestrictionResponse {
-  data?: PlaybackRestriction;
+  data: PlaybackRestriction;
 }
 
 export interface PlaybackRestrictionCreateParams {

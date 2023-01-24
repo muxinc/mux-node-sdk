@@ -128,11 +128,11 @@ export class RealTime extends APIResource {
 }
 
 export interface RealTimeBreakdownResponse {
-  data?: Array<RealTimeBreakdownResponse.Data>;
+  data: Array<RealTimeBreakdownResponse.Data>;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export namespace RealTimeBreakdownResponse {
@@ -150,11 +150,11 @@ export namespace RealTimeBreakdownResponse {
 }
 
 export interface RealTimeDimensionsResponse {
-  data?: Array<RealTimeDimensionsResponse.Data>;
+  data: Array<RealTimeDimensionsResponse.Data>;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export namespace RealTimeDimensionsResponse {
@@ -166,13 +166,13 @@ export namespace RealTimeDimensionsResponse {
 }
 
 export interface RealTimeHistogramTimeseriesResponse {
-  data?: Array<RealTimeHistogramTimeseriesResponse.Data>;
+  data: Array<RealTimeHistogramTimeseriesResponse.Data>;
 
-  meta?: RealTimeHistogramTimeseriesResponse.Meta;
+  meta: RealTimeHistogramTimeseriesResponse.Meta;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export namespace RealTimeHistogramTimeseriesResponse {
@@ -214,11 +214,11 @@ export namespace RealTimeHistogramTimeseriesResponse {
 }
 
 export interface RealTimeMetricsResponse {
-  data?: Array<RealTimeMetricsResponse.Data>;
+  data: Array<RealTimeMetricsResponse.Data>;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export namespace RealTimeMetricsResponse {
@@ -230,11 +230,11 @@ export namespace RealTimeMetricsResponse {
 }
 
 export interface RealTimeTimeseriesResponse {
-  data?: Array<RealTimeTimeseriesResponse.Data>;
+  data: Array<RealTimeTimeseriesResponse.Data>;
 
-  timeframe?: Array<number>;
+  timeframe: Array<number>;
 
-  total_row_count?: number;
+  total_row_count: number;
 }
 
 export namespace RealTimeTimeseriesResponse {

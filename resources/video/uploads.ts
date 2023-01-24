@@ -340,7 +340,7 @@ export namespace UploadParams {
 }
 
 export interface UploadResponse {
-  data?: Upload;
+  data: Upload;
 }
 
 export interface UploadCreateParams {
