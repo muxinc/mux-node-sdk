@@ -19,7 +19,7 @@ export enum DataTypeClaim {
   video = 'video_id',
   asset = 'asset_id',
   playback = 'playback_id',
-  live_stream = 'livestream_id'
+  live_stream = 'livestream_id',
 }
 
 export interface MuxJWTSignOptions {
