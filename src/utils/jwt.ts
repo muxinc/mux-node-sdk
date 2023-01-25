@@ -211,7 +211,7 @@ export class JWT {
    * const token = Mux.JWT.sign('some-id', { type: 'video', keyId: 'your key id', keySecret: 'your key secret' });
    * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
    */
-  static signStats(Id: string, options: MuxJWTSignOptions = {}) {
+  static signViewerCounts(Id: string, options: MuxJWTSignOptions = {}) {
     const opts = {
       type: 'video',
       expiration: '7d',
