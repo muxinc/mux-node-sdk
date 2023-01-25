@@ -15,6 +15,7 @@ export enum TypeClaim {
   stats = 'playback_id',
 }
 
+// eslint-disable-next-line no-shadow
 export enum DataTypeClaim {
   video = 'video_id',
   asset = 'asset_id',
