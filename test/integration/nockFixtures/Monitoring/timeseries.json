@@ -2,7 +2,7 @@
   {
     "scope": "https://api.mux.com:443",
     "method": "get",
-    "path": "/data/v1/realtime/metrics/playback-failure-percentage/timeseries?filters[]=operating_system:windows&filters[]=country:US",
+    "path": "/data/v1/monitoring/metrics/playback-failure-percentage/timeseries?filters[]=operating_system:windows&filters[]=country:US",
     "body": "",
     "status": 200,
     "response": {

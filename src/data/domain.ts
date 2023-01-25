@@ -446,3 +446,89 @@ export interface RealTimeHistogramResponse {
   };
   data: Array<RealTimeHistogramValue>;
 }
+
+export interface MonitoringBreakdownQueryParams {
+  dimension: string;
+  timestamp?: number;
+  filters?: Array<string>;
+  order_by?:
+    | 'value'
+    | 'negative_impact'
+    | 'metric_value'
+    | 'concurrent_viewers';
+  order_direction?: 'asc' | 'desc';
+}
+
+export interface MonitoringTimeseriesParams {
+  filters?: Array<string>;
+}
+
+export interface MonitoringHistogramQueryParams {
+  filters?: Array<string>;
+}
+
+export interface MonitoringBreakdownValue {
+  value: string;
+  negative_impact: number;
+  metric_value: number;
+  concurrent_viewers: number;
+}
+
+export interface MonitoringDimensionsValue {
+  name: string;
+  display_name: string;
+}
+
+export interface MonitoringHistogramValue {
+  timestamp: string;
+  sum: number;
+  p95: number;
+  median: number;
+  max_percentage: number;
+  average: number;
+  bucket_values: Array<{
+    percentage: number;
+    count: number;
+  }>;
+}
+
+export interface MonitoringBreakdownResponse {
+  total_row_count: null;
+  timeframe: Array<number>;
+  data: Array<MonitoringBreakdownValue>;
+}
+
+export interface MonitoringDimensionsResponse {
+  total_row_count: null;
+  timeframe: Array<number>;
+  data: Array<MonitoringDimensionsValue>;
+}
+
+export interface MonitoringMetricsResponse {
+  total_row_count: null;
+  timeframe: Array<number>;
+  data: Array<{
+    name: string;
+    display_name: string;
+  }>;
+}
+
+export interface MonitoringTimeseriesResponse {
+  total_row_count: null;
+  timeframe: Array<number>;
+  data: Array<{
+    value: number;
+    date: string;
+    concurrent_viewers: number;
+  }>;
+}
+
+export interface MonitoringHistogramResponse {
+  total_row_count: null;
+  timeframe: Array<number>;
+  meta: {
+    buckets: Array<{ start: number; end: number }>;
+    bucket_unit: string;
+  };
+  data: Array<MonitoringHistogramValue>;
+}

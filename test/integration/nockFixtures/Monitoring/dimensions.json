@@ -2,7 +2,7 @@
   {
     "scope": "https://api.mux.com:443",
     "method": "get",
-    "path": "/data/v1/realtime/dimensions",
+    "path": "/data/v1/monitoring/dimensions",
     "body": "",
     "status": 200,
     "response": {
