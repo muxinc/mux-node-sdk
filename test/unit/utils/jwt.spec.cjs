@@ -185,8 +185,8 @@ describe('Utils::JWT', () => {
     });
   });
 
-  describe('signData', () => {
-    /** @test {Mux.Utils.JWT.signData} */
+  describe('signStats', () => {
+    /** @test {Mux.Utils.JWT.signStats} */
     it('defaults to rt and includes an expiration', () => {
       const options = {
         type: 'video',
@@ -194,7 +194,7 @@ describe('Utils::JWT', () => {
         keySecret: TEST_SECRET,
       };
 
-      const token = JWT.signData('some-space-id', options);
+      const token = JWT.signStats('some-space-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('video_id');
@@ -208,7 +208,7 @@ describe('Utils::JWT', () => {
         type: 'video',
       };
 
-      const token = JWT.signData('some-space-id', options);
+      const token = JWT.signStats('some-space-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('video_id');
@@ -221,7 +221,7 @@ describe('Utils::JWT', () => {
         type: 'video',
       };
 
-      const token = JWT.signData('some-space-id', options);
+      const token = JWT.signStats('some-space-id', options);
       expect(token).to.be.a('string');
       const decoded = JWT.decode(token);
       expect(decoded.aud).to.eq('video_id');
@@ -239,8 +239,8 @@ describe('Utils::JWT', () => {
         expiration: 60 * 60 * 3,
       };
 
-      const token1 = JWT.signData('some-space-id', options1);
-      const token2 = JWT.signData('some-space-id', options2);
+      const token1 = JWT.signStats('some-space-id', options1);
+      const token2 = JWT.signStats('some-space-id', options2);
       expect(token1).to.be.a('string');
       expect(token2).to.be.a('string');
 

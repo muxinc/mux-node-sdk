@@ -195,7 +195,7 @@ export class JWT {
   }
 
   /**
-   * Creates a new token to be used with a signed playback ID
+   * Creates a new token to be used with a signed statistics request
    * @param {string} Id - The ID of the object that you'd like to generate a token for
    * @param {Object} options - Configuration options to use when creating the token
    * @param {string} [options.keyId] - The signing key ID to use. If not specified, process.env.MUX_SIGNING_KEY is attempted
@@ -211,7 +211,7 @@ export class JWT {
    * const token = Mux.JWT.sign('some-id', { type: 'video', keyId: 'your key id', keySecret: 'your key secret' });
    * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
    */
-  static signData(Id: string, options: MuxJWTSignOptions = {}) {
+  static signStats(Id: string, options: MuxJWTSignOptions = {}) {
     const opts = {
       type: 'video',
       expiration: '7d',
