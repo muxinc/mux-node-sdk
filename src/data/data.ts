@@ -79,10 +79,10 @@ export class Data extends Base {
     this.Metrics = new Metrics(this);
 
     /** @type {RealTime} */
-    this.RealTime = new Monitoring(this);
+    this.RealTime = new RealTime(this);
 
     /** @type {Monitoring} */
-    this.RealTime = new Monitoring(this);
+    this.Monitoring = new Monitoring(this);
 
     /** @type {VideoViews} */
     this.VideoViews = new VideoViews(this);

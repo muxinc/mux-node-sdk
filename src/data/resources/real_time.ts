@@ -44,6 +44,8 @@ export class RealTime extends Base {
    * Data.RealTime.dimensions();
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-realtime-dimensions
+   *
+   * @deprecated The method should not be used, you should use Monitoring.dimensions() instead
    */
   dimensions(): Promise<RealTimeDimensionsResponse> {
     return this.http.get(`${PATH}/dimensions`);
@@ -62,6 +64,8 @@ export class RealTime extends Base {
    * Data.RealTime.metrics();
    *
    * @see https://docs.mux.com/api-reference/data#operation/list-realtime-metrics
+   *
+   * @deprecated The method should not be used, you should use Monitoring.metrics() instead
    */
   metrics(): Promise<RealTimeMetricsResponse> {
     return this.http.get(`${PATH}/metrics`);
@@ -82,6 +86,8 @@ export class RealTime extends Base {
    * Data.RealTime.breakdown('current-concurrent-viewers', { dimension: 'asn', timestamp: 1547853000, filters: ['operating_system:windows', 'country:US'] });
    *
    * @see https://docs.mux.com/api-reference/data#operation/get-realtime-breakdown
+   *
+   * @deprecated The method should not be used, you should use Monitoring.breakdown() instead
    */
   breakdown(
     metricId: string,
@@ -116,6 +122,8 @@ export class RealTime extends Base {
    * Data.RealTime.histogramTimeseries('video-startup-time', { filters: ['operating_system:windows', 'country:US'] });
    *
    * @see https://docs.mux.com/api-reference/data#operation/get-realtime-histogram-timeseries
+   *
+   * @deprecated The method should not be used, you should use Monitoring.histogramTimeseries() instead
    */
   histogramTimeseries(
     metricId: string,
@@ -146,6 +154,8 @@ export class RealTime extends Base {
    * Data.RealTime.timeseries('playback-failure-percentage', { filters: ['operating_system:windows', 'country:US'] });
    *
    * @see https://docs.mux.com/api-reference/data#operation/get-realtime-timeseries
+   *
+   * @deprecated The method should not be used, you should use Monitoring.timeseries() instead
    */
   timeseries(
     metricId: string,
