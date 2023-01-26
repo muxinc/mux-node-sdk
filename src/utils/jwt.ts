@@ -122,7 +122,7 @@ export class JWT {
    * @example
    * const Mux = require('@mux/mux-node');
    *
-   * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
+   * const token = Mux.JWT.signPlaybackId('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
    * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
    */
   static signPlaybackId(playbackId: string, options: MuxJWTSignOptions = {}) {
@@ -204,13 +204,13 @@ export class JWT {
    * @param {string} [options.type=video] - Type of token this will be. Valid types are `video`, `asset`, `playback`, or `live_stream`
    * @param {string} [options.expiration=7d] - Length of time for the token to be valid.
    * @param {Object} [options.params] - Any additional query params you'd use with a public url. For example, with a thumbnail this would be values such as `time`.
-   * @returns {string} - Returns a token to be used with a signed URL.
+   * @returns {string} - Returns a token to be used with a viewer count URL.
    *
    * @example
    * const Mux = require('@mux/mux-node');
    *
-   * const token = Mux.JWT.sign('some-id', { type: 'video', keyId: 'your key id', keySecret: 'your key secret' });
-   * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
+   * const token = Mux.JWT.signViewerCounts('some-id', { type: 'video', keyId: 'your key id', keySecret: 'your key secret' });
+   * // Now you can use the token in a url: `https://stats.mux.com/counts?token=${token}`
    */
   static signViewerCounts(Id: string, options: MuxJWTSignOptions = {}) {
     const opts = {
