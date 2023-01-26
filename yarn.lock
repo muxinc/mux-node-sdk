@@ -825,11 +825,6 @@
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.6.tgz#250a7b16c3b91f672a24552ec64678eeb1d3a08d"
   integrity sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==
 
-"@types/web@^0.0.53":
-  version "0.0.53"
-  resolved "https://registry.yarnpkg.com/@types/web/-/web-0.0.53.tgz#d413ced7b3437b028dcf021c035dd1cb83233ada"
-  integrity sha512-ULJJgHevSiiD/QaSWcpAfWHXHEaeXUXGGJ82XVderV4TAWdI22NFyjWcRfzJwjEIdUi0gvfVRlTFDeLTZpvF4Q==
-
 "@types/yargs-parser@*":
   version "21.0.0"
   resolved "https://registry.yarnpkg.com/@types/yargs-parser/-/yargs-parser-21.0.0.tgz#0c60e537fa790f5f9472ed2776c2b71ec117351b"

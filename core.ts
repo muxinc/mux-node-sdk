@@ -1,37 +1,13 @@
 import qs from 'qs';
 
 import type { Agent } from 'http';
-import type NodeFetch from 'node-fetch';
 import type { RequestInfo, RequestInit, Response } from 'node-fetch';
-import type KeepAliveAgent from 'agentkeepalive';
-import { AbortController as AbortControllerPolyfill } from 'abort-controller';
 import { FormData, File, Blob } from 'formdata-node';
 import { FormDataEncoder } from 'form-data-encoder';
 import { Readable } from 'stream';
 
 import { VERSION } from './version';
-
-const isNode = typeof process !== 'undefined' && typeof Deno === 'undefined';
-let nodeFetch: typeof NodeFetch | undefined = undefined;
-let getDefaultAgent = (_url: string): Agent | undefined => undefined;
-if (isNode) {
-  /* eslint-disable @typescript-eslint/no-var-requires */
-  nodeFetch = require('node-fetch').default;
-  const HttpAgent: typeof KeepAliveAgent = require('agentkeepalive');
-  const HttpsAgent = HttpAgent.HttpsAgent;
-  /* eslint-enable @typescript-eslint/no-var-requires */
-
-  const defaultHttpAgent = new HttpAgent({ keepAlive: true });
-  const defaultHttpsAgent = new HttpsAgent({ keepAlive: true });
-  getDefaultAgent = (url: string) => (url.startsWith('https') ? defaultHttpsAgent : defaultHttpAgent);
-}
-
-AbortController ??= AbortControllerPolyfill;
-
-const DEFAULT_MAX_RETRIES = 2;
-const DEFAULT_TIMEOUT = 60 * 1000; // 60s
-
-type Fetch = (url: RequestInfo, init?: RequestInit) => Promise<Response>;
+import { Fetch, getDefaultAgent, getFetch } from './fetch-polyfill';
 
 export abstract class APIClient {
   baseURL: string;
@@ -44,8 +20,8 @@ export abstract class APIClient {
 
   constructor({
     baseURL,
-    maxRetries = DEFAULT_MAX_RETRIES,
-    timeout = DEFAULT_TIMEOUT,
+    maxRetries = 2,
+    timeout = 60 * 1000, // 60s
     httpAgent,
   }: {
     baseURL: string;
@@ -58,18 +34,7 @@ export abstract class APIClient {
     this.timeout = validatePositiveInteger('timeout', timeout);
     this.httpAgent = httpAgent;
 
-    if (isNode) {
-      this.fetch = nodeFetch!;
-    } else {
-      // For other environments, use a global fetch function expected to already be present
-      if (typeof fetch === 'undefined' || typeof fetch !== 'function') {
-        throw new Error(
-          `Unexpected; running in a non-Node environment without a global "fetch" function defined.`,
-        );
-      }
-      // For now, we just pretend that Fetch is the same type as NodeFetch.
-      this.fetch = fetch as unknown as Fetch;
-    }
+    this.fetch = getFetch();
   }
 
   protected authHeaders(): Headers {
