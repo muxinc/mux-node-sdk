@@ -33,7 +33,7 @@ if (isProbablyNode) {
   }
 }
 
-AbortController ??= AbortControllerPolyfill;
+AbortController ??= AbortControllerPolyfill as typeof AbortController;
 
 export type Fetch = (url: RequestInfo, init?: RequestInit) => Promise<Response>;
 

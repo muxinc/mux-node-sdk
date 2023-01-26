@@ -18,7 +18,7 @@
     "fix": "eslint --fix --ext ts,js ."
   },
   "dependencies": {
-    "@types/node": "^17.0.21",
+    "@types/node": "^18.11.18",
     "@types/node-fetch": "^2.6.1",
     "@types/qs": "^6.9.7",
     "abort-controller": "^3.0.0",
@@ -32,10 +32,10 @@
   "devDependencies": {
     "mux": "link:.",
     "@types/jest": "^27.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
     "eslint": "^8.22.0",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.33.0",
     "jest": "^28.1.0",
     "prettier": "rattrayalex/prettier#postfix-ternaries",
     "ts-jest": "^28.0.2",
