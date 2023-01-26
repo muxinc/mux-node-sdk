@@ -2,7 +2,7 @@
   {
     "scope": "https://api.mux.com:443",
     "method": "get",
-    "path": "/data/v1/realtime/metrics/playback-failure-percentage/breakdown?dimension=asn&timestamp=1592357452&filters[]=operating_system:windows&filters[]=country:US",
+    "path": "/data/v1/monitoring/metrics/playback-failure-percentage/breakdown?dimension=asn&timestamp=1592357452&filters[]=operating_system:windows&filters[]=country:US",
     "body": "",
     "status": 200,
     "response": {

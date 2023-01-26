@@ -13,6 +13,7 @@ import { Dimensions } from './resources/dimensions.js';
 import { Incidents } from './resources/incidents.js';
 import { Metrics } from './resources/metrics.js';
 import { RealTime } from './resources/real_time.js';
+import { Monitoring } from './resources/monitoring.js';
 import { VideoViews } from './resources/video_views.js';
 
 /**
@@ -33,6 +34,7 @@ export class Data extends Base {
   readonly Incidents: Incidents;
   readonly Metrics: Metrics;
   readonly RealTime: RealTime;
+  readonly Monitoring: Monitoring;
   readonly VideoViews: VideoViews;
 
   /**
@@ -78,6 +80,9 @@ export class Data extends Base {
 
     /** @type {RealTime} */
     this.RealTime = new RealTime(this);
+
+    /** @type {Monitoring} */
+    this.Monitoring = new Monitoring(this);
 
     /** @type {VideoViews} */
     this.VideoViews = new VideoViews(this);
