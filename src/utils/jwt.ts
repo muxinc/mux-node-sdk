@@ -14,6 +14,15 @@ export enum TypeClaim {
   storyboard = 's',
   stats = 'playback_id',
 }
+
+// eslint-disable-next-line no-shadow
+export enum DataTypeClaim {
+  video = 'video_id',
+  asset = 'asset_id',
+  playback = 'playback_id',
+  live_stream = 'livestream_id',
+}
+
 export interface MuxJWTSignOptions {
   keyId?: string;
   keySecret?: string;
@@ -113,7 +122,7 @@ export class JWT {
    * @example
    * const Mux = require('@mux/mux-node');
    *
-   * const token = Mux.JWT.sign('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
+   * const token = Mux.JWT.signPlaybackId('some-playback-id', { keyId: 'your key id', keySecret: 'your key secret' });
    * // Now you can use the token in a url: `https://stream.mux.com/some-playback-id.m3u8?token=${token}`
    */
   static signPlaybackId(playbackId: string, options: MuxJWTSignOptions = {}) {
@@ -182,6 +191,53 @@ export class JWT {
     if (!spaceId) {
       throw new TypeError('A valid Space ID is required');
     }
+
+    return jwt.sign(opts.params, keySecret, tokenOptions);
+  }
+
+  /**
+   * Creates a new token to be used with a signed statistics request
+   * @param {string} Id - The ID of the object that you'd like to generate a token for
+   * @param {Object} options - Configuration options to use when creating the token
+   * @param {string} [options.keyId] - The signing key ID to use. If not specified, process.env.MUX_SIGNING_KEY is attempted
+   * @param {string} [options.keySecret] - The signing key secret. If not specified, process.env.MUX_PRIVATE_KEY is used.
+   * @param {string} [options.type=video] - Type of token this will be. Valid types are `video`, `asset`, `playback`, or `live_stream`
+   * @param {string} [options.expiration=7d] - Length of time for the token to be valid.
+   * @param {Object} [options.params] - Any additional query params you'd use with a public url. For example, with a thumbnail this would be values such as `time`.
+   * @returns {string} - Returns a token to be used with a viewer count URL.
+   *
+   * @example
+   * const Mux = require('@mux/mux-node');
+   *
+   * const token = Mux.JWT.signViewerCounts('some-id', { type: 'video', keyId: 'your key id', keySecret: 'your key secret' });
+   * // Now you can use the token in a url: `https://stats.mux.com/counts?token=${token}`
+   */
+  static signViewerCounts(Id: string, options: MuxJWTSignOptions = {}) {
+    const opts = {
+      type: 'video',
+      expiration: '7d',
+      params: {},
+      ...options,
+    };
+
+    const keyId = getSigningKey(options);
+    const keySecret = getPrivateKey(options);
+
+    // TODO: come back through sometime and replace this with runtypes validation?
+    // @ts-ignore
+    const typeClaim = DataTypeClaim[opts.type];
+    if (!typeClaim) {
+      throw new Error(`Invalid signature type: ${opts.type}`);
+    }
+
+    const tokenOptions: jwt.SignOptions = {
+      keyid: keyId,
+      subject: Id,
+      audience: typeClaim,
+      expiresIn: opts.expiration,
+      noTimestamp: true,
+      algorithm: 'RS256',
+    };
 
     return jwt.sign(opts.params, keySecret, tokenOptions);
   }

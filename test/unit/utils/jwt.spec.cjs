@@ -184,4 +184,69 @@ describe('Utils::JWT', () => {
       expect(decoded1.exp).to.be.closeTo(decoded2.exp, 2);
     });
   });
+
+  describe('signViewerCounts', () => {
+    /** @test {Mux.Utils.JWT.signViewerCounts} */
+    it('defaults to rt and includes an expiration', () => {
+      const options = {
+        type: 'video',
+        keyId: TEST_ID,
+        keySecret: TEST_SECRET,
+      };
+
+      const token = JWT.signViewerCounts('some-video-id', options);
+      expect(token).to.be.a('string');
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq('video_id');
+      expect(decoded.exp).to.be.greaterThan(new Date().getTime() / 1000);
+    });
+
+    it('takes a file path for a secret', () => {
+      const options = {
+        keyId: TEST_ID,
+        keyFilePath: path.join(__dirname, 'example-private-key.pem'),
+        type: 'video',
+      };
+
+      const token = JWT.signViewerCounts('some-video-id', options);
+      expect(token).to.be.a('string');
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq('video_id');
+    });
+
+    it('falls back to using environment variables for the key and secret', () => {
+      process.env.MUX_SIGNING_KEY = TEST_ID;
+      process.env.MUX_PRIVATE_KEY = TEST_SECRET;
+      const options = {
+        type: 'video',
+      };
+
+      const token = JWT.signViewerCounts('some-video-id', options);
+      expect(token).to.be.a('string');
+      const decoded = JWT.decode(token);
+      expect(decoded.aud).to.eq('video_id');
+    });
+
+    it('accepts a timestamp or time shorthand', () => {
+      const options1 = {
+        keyId: TEST_ID,
+        keySecret: TEST_SECRET,
+        expiration: '3h',
+      };
+
+      const options2 = {
+        ...options1,
+        expiration: 60 * 60 * 3,
+      };
+
+      const token1 = JWT.signViewerCounts('some-video-id', options1);
+      const token2 = JWT.signViewerCounts('some-video-id', options2);
+      expect(token1).to.be.a('string');
+      expect(token2).to.be.a('string');
+
+      const decoded1 = JWT.decode(token1);
+      const decoded2 = JWT.decode(token2);
+      expect(decoded1.exp).to.be.closeTo(decoded2.exp, 2);
+    });
+  });
 });
