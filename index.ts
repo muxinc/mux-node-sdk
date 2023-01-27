@@ -7,9 +7,7 @@ import type { Agent } from 'http';
 import * as FileFromPath from 'formdata-node/file-from-path';
 
 type Config = {
-  /**
-   * Defaults to to process.env["MUX_TOKEN_ID"]. Set it to null if you want to send unauthenticated requests.
-   */
+  /* Defaults to to process.env["MUX_TOKEN_ID"].  */
   tokenId?: string;
   baseURL?: string;
   timeout?: number;
@@ -30,7 +28,7 @@ export class Mux extends Core.APIClient {
 
     if (!options.tokenId && options.tokenId !== null) {
       throw new Error(
-        "The MUX_TOKEN_ID environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenId option, like new Mux({tokenId: 'my token id'}).",
+        "The MUX_TOKEN_ID environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenId option, like new Mux({ tokenId: 'my token id' }).",
       );
     }
 
