@@ -47,9 +47,9 @@ Models:
 - <code><a href="./resources/video/live-streams.ts">PlaybackIDParams</a></code>
 - <code><a href="./resources/video/live-streams.ts">UpdateLiveStreamParams</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamCompleteResponse</a></code>
-- <code><a href="./resources/video/live-streams.ts">LiveStreamCreateSimulcastTargetResponse</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamDisableResponse</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamEnableResponse</a></code>
+- <code><a href="./resources/video/live-streams.ts">LiveStreamCreateSimulcastTargetResponse</a></code>
 
 Methods:
 

@@ -1196,6 +1196,10 @@ export interface UpdateLiveStreamParams {
 
 export type LiveStreamCompleteResponse = Record<string, unknown>;
 
+export type LiveStreamDisableResponse = Record<string, unknown>;
+
+export type LiveStreamEnableResponse = Record<string, unknown>;
+
 export interface LiveStreamCreateSimulcastTargetResponse {
   /**
    * ID of the Simulcast Target
@@ -1237,10 +1241,6 @@ export interface LiveStreamCreateSimulcastTargetResponse {
    */
   url?: string;
 }
-
-export type LiveStreamDisableResponse = Record<string, unknown>;
-
-export type LiveStreamEnableResponse = Record<string, unknown>;
 
 export interface LiveStreamCreateParams {
   /**
