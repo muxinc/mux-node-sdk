@@ -4,7 +4,7 @@ export const HeaderScheme = {
   V1: 'v1',
 } as const;
 // eslint-disable-next-line no-redeclare
-export type HeaderScheme = typeof HeaderScheme[keyof typeof HeaderScheme];
+export type HeaderScheme = (typeof HeaderScheme)[keyof typeof HeaderScheme];
 
 const DEFAULT_TOLERANCE = 300; // 5 minutes
 const EXPECTED_SCHEME: HeaderScheme = HeaderScheme.V1;
