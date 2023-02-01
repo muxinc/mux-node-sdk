@@ -7,7 +7,9 @@ import type { Agent } from 'http';
 import * as FileFromPath from 'formdata-node/file-from-path';
 
 type Config = {
-  /* Defaults to to process.env["MUX_TOKEN_ID"].  */
+  /**
+   * Defaults to process.env["MUX_TOKEN_ID"].
+   */
   tokenId?: string;
   baseURL?: string;
   timeout?: number;
@@ -15,6 +17,7 @@ type Config = {
   tokenSecret?: string | null;
 };
 
+/** Instantiate the API Client. */
 export class Mux extends Core.APIClient {
   tokenId: string;
   tokenSecret: string;
