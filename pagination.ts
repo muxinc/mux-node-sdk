@@ -66,8 +66,6 @@ export class PageWithTotal<Item> extends AbstractPage<Item> implements PageWithT
   nextPageInfo(): PageInfo | null {
     const query = this.options.query as PageWithTotalParams;
     const currentPage = query?.page ?? 1;
-    if (currentPage >= this.total_row_count) return null;
-
     return { params: { page: currentPage + 1 } };
   }
 }
