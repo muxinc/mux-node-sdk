@@ -33,7 +33,11 @@ if (isProbablyNode) {
   }
 }
 
-AbortController ??= AbortControllerPolyfill as typeof AbortController;
+// Polyfill global object if needed.
+AbortController =
+  typeof AbortController !== undefined ? AbortController : (
+    (AbortControllerPolyfill as typeof AbortController)
+  );
 
 export type Fetch = (url: RequestInfo, init?: RequestInit) => Promise<Response>;
 
