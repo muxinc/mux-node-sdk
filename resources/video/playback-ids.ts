@@ -2,6 +2,7 @@
 
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
+import * as Shared from '~/resources/shared';
 
 export class PlaybackIDs extends APIResource {
   /**
@@ -35,7 +36,7 @@ export interface PlaybackIDRetrieveResponse {
    *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
    *   for details about creating tokens.
    */
-  policy?: 'public' | 'signed';
+  policy?: Shared.PlaybackPolicy;
 }
 
 export namespace PlaybackIDRetrieveResponse {

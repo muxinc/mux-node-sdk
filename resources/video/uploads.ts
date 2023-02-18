@@ -5,6 +5,7 @@ import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as Assets from '~/resources/video/assets';
 import { BasePage, BasePageParams } from '~/pagination';
+import * as Shared from '~/resources/shared';
 
 export class Uploads extends APIResource {
   /**
@@ -185,7 +186,7 @@ export namespace UploadParams {
      * single string name can be used in place of the array in the case of only one
      * playback policy.
      */
-    playback_policy?: Array<'public' | 'signed'>;
+    playback_policy?: Array<Shared.PlaybackPolicy>;
 
     /**
      * Marks the asset as a test asset when the value is set to true. A Test asset can
@@ -413,7 +414,7 @@ export namespace UploadCreateParams {
      * single string name can be used in place of the array in the case of only one
      * playback policy.
      */
-    playback_policy?: Array<'public' | 'signed'>;
+    playback_policy?: Array<Shared.PlaybackPolicy>;
 
     /**
      * Marks the asset as a test asset when the value is set to true. A Test asset can

@@ -327,7 +327,7 @@ export interface CreateLiveStreamParams {
 
   passthrough?: string;
 
-  playback_policy?: Array<'public' | 'signed'>;
+  playback_policy?: Array<Shared.PlaybackPolicy>;
 
   /**
    * The URL of the image file that Mux should download and use as slate media during
@@ -432,7 +432,7 @@ export namespace CreateLiveStreamParams {
      * single string name can be used in place of the array in the case of only one
      * playback policy.
      */
-    playback_policy?: Array<'public' | 'signed'>;
+    playback_policy?: Array<Shared.PlaybackPolicy>;
 
     /**
      * Marks the asset as a test asset when the value is set to true. A Test asset can
@@ -859,7 +859,7 @@ export namespace LiveStream {
      * single string name can be used in place of the array in the case of only one
      * playback policy.
      */
-    playback_policy?: Array<'public' | 'signed'>;
+    playback_policy?: Array<Shared.PlaybackPolicy>;
 
     /**
      * Marks the asset as a test asset when the value is set to true. A Test asset can
@@ -1138,7 +1138,7 @@ export interface PlaybackIDParams {
    *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
    *   for details about creating tokens.
    */
-  policy?: 'public' | 'signed';
+  policy?: Shared.PlaybackPolicy;
 }
 
 export interface UpdateLiveStreamParams {
@@ -1296,7 +1296,7 @@ export interface LiveStreamCreateParams {
 
   passthrough?: string;
 
-  playback_policy?: Array<'public' | 'signed'>;
+  playback_policy?: Array<Shared.PlaybackPolicy>;
 
   /**
    * The URL of the image file that Mux should download and use as slate media during
@@ -1401,7 +1401,7 @@ export namespace LiveStreamCreateParams {
      * single string name can be used in place of the array in the case of only one
      * playback policy.
      */
-    playback_policy?: Array<'public' | 'signed'>;
+    playback_policy?: Array<Shared.PlaybackPolicy>;
 
     /**
      * Marks the asset as a test asset when the value is set to true. A Test asset can
@@ -1697,7 +1697,7 @@ export interface LiveStreamCreatePlaybackIDParams {
    *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
    *   for details about creating tokens.
    */
-  policy?: 'public' | 'signed';
+  policy?: Shared.PlaybackPolicy;
 }
 
 export interface LiveStreamCreateSimulcastTargetParams {

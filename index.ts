@@ -109,6 +109,7 @@ export namespace Mux {
   export import BasePageResponse = Pagination.BasePageResponse;
 
   export import PlaybackID = API.PlaybackID;
+  export import PlaybackPolicy = API.PlaybackPolicy;
 }
 
 exports = module.exports = Mux;

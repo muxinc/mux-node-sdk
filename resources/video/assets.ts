@@ -660,7 +660,7 @@ export interface AssetCreateParams {
    * single string name can be used in place of the array in the case of only one
    * playback policy.
    */
-  playback_policy?: Array<'public' | 'signed'>;
+  playback_policy?: Array<Shared.PlaybackPolicy>;
 
   /**
    * Marks the asset as a test asset when the value is set to true. A Test asset can
@@ -843,7 +843,7 @@ export interface AssetCreatePlaybackIDParams {
    *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
    *   for details about creating tokens.
    */
-  policy?: 'public' | 'signed';
+  policy?: Shared.PlaybackPolicy;
 }
 
 export interface AssetCreateTrackParams {
