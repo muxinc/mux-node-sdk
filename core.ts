@@ -5,6 +5,7 @@ import type { RequestInfo, RequestInit, Response } from 'node-fetch';
 import { FormData, File, Blob } from 'formdata-node';
 import { FormDataEncoder } from 'form-data-encoder';
 import { Readable } from 'stream';
+import { timingSafeEqual as _timingSafeEqual } from 'crypto';
 
 import { VERSION } from './version';
 import { Fetch, getDefaultAgent, getFetch } from './fetch-polyfill';
@@ -853,3 +854,12 @@ export const getHeader = (headers: HeadersLike, key: string): string | null | un
   }
   return value;
 };
+
+/**
+ * Compare two array buffers or data views in a way that timing based attacks
+ * cannot gain information about the platform.
+ */
+export function timingSafeEqual(a: NodeJS.ArrayBufferView, b: NodeJS.ArrayBufferView): boolean {
+  if (a.byteLength != b.byteLength) return false;
+  return _timingSafeEqual(a, b);
+}
