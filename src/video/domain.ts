@@ -107,18 +107,25 @@ export interface UpdateAssetParams {
   passthrough?: string;
 }
 
-export interface StaticRendition {
+export interface StaticRenditionVideo {
   name: 'low.mp4' | 'medium.mp4' | 'high.mp4';
   ext: 'mp4';
   height: number;
   width: number;
   bitrate: number;
-  filesize: number;
+  filesize: string;
+}
+
+export interface StaticRenditionAudio {
+  name: 'audio.m4a';
+  ext: 'm4a';
+  bitrate: number;
+  filesize: string;
 }
 
 export interface StaticRenditions {
   status: 'ready' | 'preparing' | 'errored';
-  files: Array<StaticRendition>;
+  files: Array<StaticRenditionVideo> | Array<StaticRenditionAudio>;
 }
 
 export interface NonStandardInputReasons {
