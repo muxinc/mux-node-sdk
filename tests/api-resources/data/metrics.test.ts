@@ -40,11 +40,11 @@ describe('resource metrics', () => {
   });
 
   test('list_breakdown: only required params', async () => {
-    const response = await mux.data.metrics.listBreakdown('aggregate_startup_time');
+    const response = await mux.data.metrics.listBreakdown('video_startup_time');
   });
 
   test('list_breakdown: required and optional params', async () => {
-    const response = await mux.data.metrics.listBreakdown('aggregate_startup_time', {
+    const response = await mux.data.metrics.listBreakdown('video_startup_time', {
       group_by: 'asn',
       measurement: '95th',
       'filters[]': ['string', 'string', 'string'],
@@ -59,7 +59,7 @@ describe('resource metrics', () => {
   test('list_breakdown: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.metrics.listBreakdown('aggregate_startup_time', { path: '/_stainless_unknown_path' }),
+      mux.data.metrics.listBreakdown('video_startup_time', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
@@ -67,7 +67,7 @@ describe('resource metrics', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.metrics.listBreakdown(
-        'aggregate_startup_time',
+        'video_startup_time',
         {
           group_by: 'asn',
           measurement: '95th',
@@ -84,11 +84,11 @@ describe('resource metrics', () => {
   });
 
   test('list_insights: only required params', async () => {
-    const response = await mux.data.metrics.listInsights('aggregate_startup_time');
+    const response = await mux.data.metrics.listInsights('video_startup_time');
   });
 
   test('list_insights: required and optional params', async () => {
-    const response = await mux.data.metrics.listInsights('aggregate_startup_time', {
+    const response = await mux.data.metrics.listInsights('video_startup_time', {
       measurement: '95th',
       order_direction: 'asc',
       'timeframe[]': ['string', 'string', 'string'],
@@ -98,7 +98,7 @@ describe('resource metrics', () => {
   test('list_insights: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.metrics.listInsights('aggregate_startup_time', { path: '/_stainless_unknown_path' }),
+      mux.data.metrics.listInsights('video_startup_time', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
@@ -106,7 +106,7 @@ describe('resource metrics', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.metrics.listInsights(
-        'aggregate_startup_time',
+        'video_startup_time',
         { measurement: '95th', order_direction: 'asc', 'timeframe[]': ['string', 'string', 'string'] },
         { path: '/_stainless_unknown_path' },
       ),
@@ -114,11 +114,11 @@ describe('resource metrics', () => {
   });
 
   test('retrieve_overall: only required params', async () => {
-    const response = await mux.data.metrics.retrieveOverall('aggregate_startup_time');
+    const response = await mux.data.metrics.retrieveOverall('video_startup_time');
   });
 
   test('retrieve_overall: required and optional params', async () => {
-    const response = await mux.data.metrics.retrieveOverall('aggregate_startup_time', {
+    const response = await mux.data.metrics.retrieveOverall('video_startup_time', {
       'timeframe[]': ['string', 'string', 'string'],
       'filters[]': ['string', 'string', 'string'],
       measurement: '95th',
@@ -128,7 +128,7 @@ describe('resource metrics', () => {
   test('retrieve_overall: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.metrics.retrieveOverall('aggregate_startup_time', { path: '/_stainless_unknown_path' }),
+      mux.data.metrics.retrieveOverall('video_startup_time', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
@@ -136,7 +136,7 @@ describe('resource metrics', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.metrics.retrieveOverall(
-        'aggregate_startup_time',
+        'video_startup_time',
         {
           'timeframe[]': ['string', 'string', 'string'],
           'filters[]': ['string', 'string', 'string'],
@@ -148,11 +148,11 @@ describe('resource metrics', () => {
   });
 
   test('retrieve_timeseries: only required params', async () => {
-    const response = await mux.data.metrics.retrieveTimeseries('aggregate_startup_time');
+    const response = await mux.data.metrics.retrieveTimeseries('video_startup_time');
   });
 
   test('retrieve_timeseries: required and optional params', async () => {
-    const response = await mux.data.metrics.retrieveTimeseries('aggregate_startup_time', {
+    const response = await mux.data.metrics.retrieveTimeseries('video_startup_time', {
       'timeframe[]': ['string', 'string', 'string'],
       'filters[]': ['string', 'string', 'string'],
       measurement: '95th',
@@ -164,7 +164,7 @@ describe('resource metrics', () => {
   test('retrieve_timeseries: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.metrics.retrieveTimeseries('aggregate_startup_time', { path: '/_stainless_unknown_path' }),
+      mux.data.metrics.retrieveTimeseries('video_startup_time', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
@@ -172,7 +172,7 @@ describe('resource metrics', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.metrics.retrieveTimeseries(
-        'aggregate_startup_time',
+        'video_startup_time',
         {
           'timeframe[]': ['string', 'string', 'string'],
           'filters[]': ['string', 'string', 'string'],

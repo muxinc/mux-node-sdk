@@ -5,13 +5,13 @@ const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010'
 
 describe('resource video_views', () => {
   test('retrieve', async () => {
-    const response = await mux.data.videoViews.retrieve('string');
+    const response = await mux.data.videoViews.retrieve('abcd1234');
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.videoViews.retrieve('string', { path: '/_stainless_unknown_path' }),
+      mux.data.videoViews.retrieve('abcd1234', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 

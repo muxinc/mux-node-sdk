@@ -16,11 +16,11 @@ describe('resource dimensions', () => {
   });
 
   test('list_values: only required params', async () => {
-    const response = await mux.data.dimensions.listValues('string');
+    const response = await mux.data.dimensions.listValues('abcd1234');
   });
 
   test('list_values: required and optional params', async () => {
-    const response = await mux.data.dimensions.listValues('string', {
+    const response = await mux.data.dimensions.listValues('abcd1234', {
       limit: 0,
       page: 0,
       'filters[]': ['string', 'string', 'string'],
@@ -31,7 +31,7 @@ describe('resource dimensions', () => {
   test('list_values: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.dimensions.listValues('string', { path: '/_stainless_unknown_path' }),
+      mux.data.dimensions.listValues('abcd1234', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
@@ -39,7 +39,7 @@ describe('resource dimensions', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.dimensions.listValues(
-        'string',
+        'abcd1234',
         {
           limit: 0,
           page: 0,

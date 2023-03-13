@@ -5,14 +5,14 @@ const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010'
 
 describe('resource incidents', () => {
   test('retrieve', async () => {
-    const response = await mux.data.incidents.retrieve('string');
+    const response = await mux.data.incidents.retrieve('abcd1234');
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(mux.data.incidents.retrieve('string', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Mux.NotFoundError,
-    );
+    await expect(
+      mux.data.incidents.retrieve('abcd1234', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('list: only required params', async () => {
@@ -55,11 +55,11 @@ describe('resource incidents', () => {
   });
 
   test('list_related: only required params', async () => {
-    const response = await mux.data.incidents.listRelated('string');
+    const response = await mux.data.incidents.listRelated('abcd1234');
   });
 
   test('list_related: required and optional params', async () => {
-    const response = await mux.data.incidents.listRelated('string', {
+    const response = await mux.data.incidents.listRelated('abcd1234', {
       limit: 0,
       page: 0,
       order_by: 'negative_impact',
@@ -70,7 +70,7 @@ describe('resource incidents', () => {
   test('list_related: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.incidents.listRelated('string', { path: '/_stainless_unknown_path' }),
+      mux.data.incidents.listRelated('abcd1234', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
@@ -78,7 +78,7 @@ describe('resource incidents', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.incidents.listRelated(
-        'string',
+        'abcd1234',
         { limit: 0, page: 0, order_by: 'negative_impact', order_direction: 'asc' },
         { path: '/_stainless_unknown_path' },
       ),
