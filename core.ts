@@ -152,7 +152,8 @@ export abstract class APIClient {
 
     this.debug('request', url, options, req.headers);
 
-    const response = await this.fetchWithTimeout(url, req, timeout).catch(castToError);
+    const controller = new AbortController();
+    const response = await this.fetchWithTimeout(url, req, timeout, controller).catch(castToError);
 
     if (response instanceof Error) {
       if (retriesRemaining) return this.retryRequest(options, retriesRemaining);
@@ -178,6 +179,11 @@ export abstract class APIClient {
       throw err;
     }
 
+    if (options.stream) {
+      // TODO: see if any cast can be removed
+      return new Stream<Rsp>(response, controller) as any;
+    }
+
     const contentType = response.headers.get('content-type');
     if (contentType?.includes('application/json')) {
       const json = await response.json();
@@ -194,12 +200,12 @@ export abstract class APIClient {
       this.debug('response', response.status, url, responseHeaders, json);
 
       return json as APIResponse<Rsp>;
-    } else {
-      // TODO handle blob, arraybuffer, other content types, etc.
-      const text = response.text();
-      this.debug('response', response.status, url, responseHeaders, text);
-      return text as Promise<any>;
     }
+
+    // TODO handle blob, arraybuffer, other content types, etc.
+    const text = response.text();
+    this.debug('response', response.status, url, responseHeaders, text);
+    return text as Promise<any>;
   }
 
   requestAPIList<Item = unknown, PageClass extends AbstractPage<Item> = AbstractPage<Item>>(
@@ -220,8 +226,12 @@ export abstract class APIClient {
     return url.toString();
   }
 
-  async fetchWithTimeout(url: RequestInfo, { signal, ...options }: RequestInit = {}, ms: number) {
-    const controller = new AbortController();
+  async fetchWithTimeout(
+    url: RequestInfo,
+    { signal, ...options }: RequestInit = {},
+    ms: number,
+    controller: AbortController,
+  ) {
     if (signal) signal.addEventListener('abort', controller.abort);
 
     const timeout = setTimeout(() => controller.abort(), ms);
@@ -443,6 +453,47 @@ export class PagePromise<
   }
 }
 
+export class Stream<Item> implements AsyncIterable<Item>, APIResponse<Stream<Item>> {
+  response: Response;
+  responseHeaders: Headers;
+
+  private controller: AbortController;
+
+  constructor(response: Response, controller: AbortController) {
+    this.response = response;
+    this.controller = controller;
+    this.responseHeaders = createResponseHeaders(response.headers);
+  }
+
+  async *[Symbol.asyncIterator](): AsyncIterator<Item, any, undefined> {
+    if (!this.response.body) {
+      // TODO: abort?
+      throw new Error(`Attempted to iterate over a response with no body`);
+    }
+
+    for await (const chunk of this.response.body) {
+      let text;
+      if (chunk instanceof Buffer) {
+        text = chunk.toString();
+      } else {
+        text = chunk;
+      }
+
+      if (text.startsWith('data: ')) {
+        text = text.substring(6);
+      }
+
+      if (text.startsWith('[DONE]')) {
+        break;
+      }
+
+      yield JSON.parse(text);
+    }
+
+    this.controller.abort();
+  }
+}
+
 export const createResponseHeaders = (
   headers: Awaited<ReturnType<Fetch>>['headers'],
 ): Record<string, string> => {
@@ -468,6 +519,7 @@ export type RequestOptions<Req extends {} = Record<string, unknown> | Readable> 
   headers?: Headers | undefined;
 
   maxRetries?: number;
+  stream?: boolean | undefined;
   timeout?: number;
   httpAgent?: Agent;
   idempotencyKey?: string;
@@ -484,6 +536,7 @@ const requestOptionsKeys: KeysEnum<RequestOptions> = {
   headers: true,
 
   maxRetries: true,
+  stream: true,
   timeout: true,
   httpAgent: true,
   idempotencyKey: true,
