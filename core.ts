@@ -180,7 +180,8 @@ export abstract class APIClient {
     }
 
     if (options.stream) {
-      // TODO: see if any cast can be removed
+      // Note: there is an invariant here that isn't represented in the type system
+      // that if you set `stream: true` the response type must also be `Stream<T>`
       return new Stream<Rsp>(response, controller) as any;
     }
 
@@ -456,8 +457,7 @@ export class PagePromise<
 export class Stream<Item> implements AsyncIterable<Item>, APIResponse<Stream<Item>> {
   response: Response;
   responseHeaders: Headers;
-
-  private controller: AbortController;
+  controller: AbortController;
 
   constructor(response: Response, controller: AbortController) {
     this.response = response;
@@ -467,7 +467,7 @@ export class Stream<Item> implements AsyncIterable<Item>, APIResponse<Stream<Ite
 
   async *[Symbol.asyncIterator](): AsyncIterator<Item, any, undefined> {
     if (!this.response.body) {
-      // TODO: abort?
+      this.controller.abort();
       throw new Error(`Attempted to iterate over a response with no body`);
     }
 
