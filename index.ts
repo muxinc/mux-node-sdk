@@ -96,6 +96,8 @@ export const {
   InternalServerError,
 } = Mux;
 
+export import fileFromPath = FileFromPath.fileFromPath;
+
 export namespace Mux {
   // Helper functions
   export import fileFromPath = FileFromPath.fileFromPath;
