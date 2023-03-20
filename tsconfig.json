@@ -13,6 +13,7 @@
     },
 
     "declaration": true,
+    "declarationMap": true,
     "outDir": "dist",
     "pretty": true,
     "sourceMap": true,
