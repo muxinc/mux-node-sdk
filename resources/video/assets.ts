@@ -3,8 +3,8 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
-import { BasePage, BasePageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
+import { BasePage, BasePageParams } from '~/pagination';
 
 export class Assets extends APIResource {
   /**

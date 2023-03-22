@@ -4,8 +4,8 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as Assets from '~/resources/video/assets';
-import { BasePage, BasePageParams } from '~/pagination';
 import * as Shared from '~/resources/shared';
+import { BasePage, BasePageParams } from '~/pagination';
 
 export class Uploads extends APIResource {
   /**
