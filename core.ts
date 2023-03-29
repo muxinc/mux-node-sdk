@@ -144,6 +144,15 @@ export abstract class APIClient {
     return { req, url, timeout };
   }
 
+  protected makeStatusError(
+    status: number | undefined,
+    error: Object | undefined,
+    message: string | undefined,
+    headers: Headers | undefined,
+  ) {
+    return APIError.generate(status, error, message, headers);
+  }
+
   async request<Req extends {}, Rsp>(
     options: FinalRequestOptions<Req>,
     retriesRemaining = options.maxRetries ?? this.maxRetries,
@@ -174,8 +183,7 @@ export abstract class APIClient {
 
       this.debug('response', response.status, url, responseHeaders, errMessage);
 
-      const err = APIError.generate(response.status, errJSON, errMessage, responseHeaders);
-
+      const err = this.makeStatusError(response.status, errJSON, errMessage, responseHeaders);
       throw err;
     }
 
