@@ -15,7 +15,8 @@
   "main": "./dist/mux.js",
   "exports": {
     "import": "./dist/mux.mjs",
-    "require": "./dist/mux.js"
+    "require": "./dist/mux.js",
+    "types": "./dist/mux.d.ts"
   },
   "files": [
     "./dist"
