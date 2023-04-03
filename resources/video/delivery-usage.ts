@@ -22,7 +22,6 @@ export class DeliveryUsage extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-
     return this.getAPIList('/video/v1/delivery-usage', DeliveryReportsPageWithTotal, { query, ...options });
   }
 }

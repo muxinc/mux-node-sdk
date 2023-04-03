@@ -40,7 +40,6 @@ export class Spaces extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-
     return this.getAPIList('/video/v1/spaces', SpacesBasePage, { query, ...options });
   }
 
@@ -374,16 +373,41 @@ export namespace SpaceCreateParams {
      */
     resolution?: BroadcastResolution;
   }
+
+  export interface Broadcasts {
+    /**
+     * The ID of the live stream that you want to broadcast to.
+     */
+    live_stream_id: string;
+
+    /**
+     * URL of an image to display as the background of the broadcast. Its dimensions
+     * should match the provided resolution.
+     */
+    background?: string;
+
+    /**
+     * The layout used when broadcasting the space. Defaults to `gallery` if not set.
+     */
+    layout?: BroadcastLayout;
+
+    /**
+     * Arbitrary user-supplied metadata that will be included in the broadcast details
+     * and related webhooks. Max: 255 characters.
+     */
+    passthrough?: string;
+
+    /**
+     * The resolution of the composited video sent to the live stream. Defaults to
+     * `1920x1080` if not set.
+     */
+    resolution?: BroadcastResolution;
+  }
 }
 
 export interface SpaceListParams extends BasePageParams {}
 
 export interface SpaceCreateBroadcastParams {
-  /**
-   * The ID of the live stream that you want to broadcast to.
-   */
-  live_stream_id: string;
-
   /**
    * URL of an image to display as the background of the broadcast. Its dimensions
    * should match the provided resolution.
@@ -394,6 +418,11 @@ export interface SpaceCreateBroadcastParams {
    * The layout used when broadcasting the space. Defaults to `gallery` if not set.
    */
   layout?: BroadcastLayout;
+
+  /**
+   * The ID of the live stream that you want to broadcast to.
+   */
+  live_stream_id: string;
 
   /**
    * Arbitrary user-supplied metadata that will be included in the broadcast details

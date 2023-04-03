@@ -29,7 +29,6 @@ export class VideoViews extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-
     return this.getAPIList('/data/v1/video-views', AbridgedVideoViewsBasePage, { query, ...options });
   }
 }

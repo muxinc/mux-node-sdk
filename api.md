@@ -95,7 +95,7 @@ Methods:
 - <code title="get /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}">client.video.playbackRestrictions.<a href="./resources/video/playback-restrictions.ts">retrieve</a>(playbackRestrictionId) -> PlaybackRestriction</code>
 - <code title="get /video/v1/playback-restrictions">client.video.playbackRestrictions.<a href="./resources/video/playback-restrictions.ts">list</a>({ ...params }) -> PlaybackRestrictionsBasePage</code>
 - <code title="delete /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}">client.video.playbackRestrictions.<a href="./resources/video/playback-restrictions.ts">del</a>(playbackRestrictionId) -> Promise<void></code>
-- <code title="put /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/referrer">client.video.playbackRestrictions.<a href="./resources/video/playback-restrictions.ts">updateReferrer</a>(playbackRestrictionId, { ...params }) -> PlaybackRestriction</code>
+- <code title="put /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/referrer">client.video.playbackRestrictions.<a href="./resources/video/playback-restrictions.ts">updateReferrer</a>(playbackRestrictionId) -> PlaybackRestriction</code>
 
 ## SigningKeys
 

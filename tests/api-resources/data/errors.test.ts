@@ -4,15 +4,8 @@ import Mux from '~/index';
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
 describe('resource errors', () => {
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await mux.data.errors.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await mux.data.errors.list({
-      'filters[]': ['string', 'string', 'string'],
-      'timeframe[]': ['string', 'string', 'string'],
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {

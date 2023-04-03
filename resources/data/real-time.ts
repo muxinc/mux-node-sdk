@@ -55,7 +55,6 @@ export class RealTime extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieveBreakdown(realtimeMetricId, {}, query);
     }
-
     return this.get(`/data/v1/realtime/metrics/${realtimeMetricId}/breakdown`, { query, ...options });
   }
 
@@ -79,7 +78,6 @@ export class RealTime extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieveHistogramTimeseries(realtimeHistogramMetricId, {}, query);
     }
-
     return this.get(`/data/v1/realtime/metrics/${realtimeHistogramMetricId}/histogram-timeseries`, {
       query,
       ...options,
@@ -122,7 +120,6 @@ export class RealTime extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieveTimeseries(realtimeMetricId, {}, query);
     }
-
     return this.get(`/data/v1/realtime/metrics/${realtimeMetricId}/timeseries`, { query, ...options });
   }
 }

@@ -15,20 +15,8 @@ describe('resource video_views', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await mux.data.videoViews.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await mux.data.videoViews.list({
-      limit: 0,
-      page: 0,
-      viewer_id: 'string',
-      error_id: 0,
-      order_direction: 'asc',
-      'filters[]': ['string', 'string', 'string'],
-      'timeframe[]': ['string', 'string', 'string'],
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -43,13 +31,13 @@ describe('resource video_views', () => {
     await expect(
       mux.data.videoViews.list(
         {
-          limit: 0,
-          page: 0,
-          viewer_id: 'string',
           error_id: 0,
-          order_direction: 'asc',
           'filters[]': ['string', 'string', 'string'],
+          limit: 0,
+          order_direction: 'asc',
+          page: 0,
           'timeframe[]': ['string', 'string', 'string'],
+          viewer_id: 'string',
         },
         { path: '/_stainless_unknown_path' },
       ),

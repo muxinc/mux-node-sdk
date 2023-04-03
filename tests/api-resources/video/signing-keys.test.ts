@@ -26,12 +26,8 @@ describe('resource signing_keys', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await mux.video.signingKeys.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await mux.video.signingKeys.list({ limit: 0, page: 0 });
   });
 
   test('list: request options instead of params are passed correctly', async () => {

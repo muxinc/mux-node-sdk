@@ -4,14 +4,8 @@ import Mux from '~/index';
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
 describe('resource playback_restrictions', () => {
-  test('create: only required params', async () => {
-    const response = await mux.video.playbackRestrictions.create({});
-  });
-
-  test('create: required and optional params', async () => {
-    const response = await mux.video.playbackRestrictions.create({
-      referrer: { allowed_domains: ['string', 'string', 'string'], allow_no_referrer: true },
-    });
+  test('create', async () => {
+    const response = await mux.video.playbackRestrictions.create({ referrer: {} });
   });
 
   test('retrieve', async () => {
@@ -25,12 +19,8 @@ describe('resource playback_restrictions', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await mux.video.playbackRestrictions.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await mux.video.playbackRestrictions.list({ page: 0, limit: 0 });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -43,7 +33,7 @@ describe('resource playback_restrictions', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.video.playbackRestrictions.list({ page: 0, limit: 0 }, { path: '/_stainless_unknown_path' }),
+      mux.video.playbackRestrictions.list({ limit: 0, page: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
@@ -58,14 +48,7 @@ describe('resource playback_restrictions', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('update_referrer: only required params', async () => {
+  test('update_referrer', async () => {
     const response = await mux.video.playbackRestrictions.updateReferrer('string', {});
-  });
-
-  test('update_referrer: required and optional params', async () => {
-    const response = await mux.video.playbackRestrictions.updateReferrer('string', {
-      allowed_domains: ['string', 'string', 'string'],
-      allow_no_referrer: true,
-    });
   });
 });

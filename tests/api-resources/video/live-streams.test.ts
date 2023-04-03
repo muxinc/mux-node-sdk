@@ -4,124 +4,23 @@ import Mux from '~/index';
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
 describe('resource live_streams', () => {
-  test('create: only required params', async () => {
-    const response = await mux.video.liveStreams.create({});
-  });
-
-  test('create: required and optional params', async () => {
+  test('create', async () => {
     const response = await mux.video.liveStreams.create({
-      playback_policy: ['public', 'public', 'public'],
-      new_asset_settings: {
-        input: [
-          {
-            url: 'string',
-            overlay_settings: {
-              vertical_align: 'top',
-              vertical_margin: 'string',
-              horizontal_align: 'left',
-              horizontal_margin: 'string',
-              width: 'string',
-              height: 'string',
-              opacity: 'string',
-            },
-            start_time: 0,
-            end_time: 0,
-            type: 'video',
-            text_type: 'subtitles',
-            language_code: 'string',
-            name: 'string',
-            closed_captions: true,
-            passthrough: 'string',
-          },
-          {
-            url: 'string',
-            overlay_settings: {
-              vertical_align: 'top',
-              vertical_margin: 'string',
-              horizontal_align: 'left',
-              horizontal_margin: 'string',
-              width: 'string',
-              height: 'string',
-              opacity: 'string',
-            },
-            start_time: 0,
-            end_time: 0,
-            type: 'video',
-            text_type: 'subtitles',
-            language_code: 'string',
-            name: 'string',
-            closed_captions: true,
-            passthrough: 'string',
-          },
-          {
-            url: 'string',
-            overlay_settings: {
-              vertical_align: 'top',
-              vertical_margin: 'string',
-              horizontal_align: 'left',
-              horizontal_margin: 'string',
-              width: 'string',
-              height: 'string',
-              opacity: 'string',
-            },
-            start_time: 0,
-            end_time: 0,
-            type: 'video',
-            text_type: 'subtitles',
-            language_code: 'string',
-            name: 'string',
-            closed_captions: true,
-            passthrough: 'string',
-          },
-        ],
-        playback_policy: ['public', 'public', 'public'],
-        per_title_encode: true,
-        passthrough: 'string',
-        mp4_support: 'none',
-        normalize_audio: true,
-        master_access: 'none',
-        test: true,
-      },
-      reconnect_window: 0,
-      use_slate_for_standard_latency: true,
-      reconnect_slate_url: 'string',
-      passthrough: 'string',
       audio_only: true,
-      embedded_subtitles: [
-        { name: 'string', passthrough: 'string', language_code: 'string', language_channel: 'cc1' },
-        { name: 'string', passthrough: 'string', language_code: 'string', language_channel: 'cc1' },
-        { name: 'string', passthrough: 'string', language_code: 'string', language_channel: 'cc1' },
-      ],
-      generated_subtitles: [
-        {
-          name: 'string',
-          passthrough: 'string',
-          language_code: 'en',
-          transcription_vocabulary_ids: ['string', 'string', 'string'],
-        },
-        {
-          name: 'string',
-          passthrough: 'string',
-          language_code: 'en',
-          transcription_vocabulary_ids: ['string', 'string', 'string'],
-        },
-        {
-          name: 'string',
-          passthrough: 'string',
-          language_code: 'en',
-          transcription_vocabulary_ids: ['string', 'string', 'string'],
-        },
-      ],
-      reduced_latency: true,
-      low_latency: true,
+      embedded_subtitles: [{}, {}, {}],
+      generated_subtitles: [{}, {}, {}],
       latency_mode: 'low',
-      test: true,
-      simulcast_targets: [
-        { passthrough: 'string', stream_key: 'string', url: 'string' },
-        { passthrough: 'string', stream_key: 'string', url: 'string' },
-        { passthrough: 'string', stream_key: 'string', url: 'string' },
-      ],
+      low_latency: true,
       max_continuous_duration: 60,
+      new_asset_settings: {},
+      passthrough: 'string',
+      playback_policy: ['public', 'public', 'public'],
+      reconnect_slate_url: 'string',
+      reconnect_window: 0,
+      reduced_latency: true,
+      simulcast_targets: [{ url: 'string' }, { url: 'string' }, { url: 'string' }],
+      test: true,
+      use_slate_for_standard_latency: true,
     });
   });
 
@@ -136,32 +35,19 @@ describe('resource live_streams', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('update: only required params', async () => {
-    const response = await mux.video.liveStreams.update('string', {});
-  });
-
-  test('update: required and optional params', async () => {
+  test('update', async () => {
     const response = await mux.video.liveStreams.update('string', {
-      passthrough: 'string',
       latency_mode: 'low',
+      max_continuous_duration: 60,
+      passthrough: 'string',
+      reconnect_slate_url: 'string',
       reconnect_window: 0,
       use_slate_for_standard_latency: true,
-      reconnect_slate_url: 'string',
-      max_continuous_duration: 60,
     });
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await mux.video.liveStreams.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await mux.video.liveStreams.list({
-      limit: 0,
-      page: 0,
-      stream_key: 'string',
-      status: 'active',
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -175,7 +61,7 @@ describe('resource live_streams', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.video.liveStreams.list(
-        { limit: 0, page: 0, stream_key: 'string', status: 'active' },
+        { limit: 0, page: 0, status: 'active', stream_key: 'string' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
@@ -203,16 +89,16 @@ describe('resource live_streams', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('create_playback_id: only required params', async () => {
-    const response = await mux.video.liveStreams.createPlaybackId('string', {});
-  });
-
-  test('create_playback_id: required and optional params', async () => {
+  test('create_playback_id', async () => {
     const response = await mux.video.liveStreams.createPlaybackId('string', { policy: 'public' });
   });
 
   test('create_simulcast_target: only required params', async () => {
-    const response = await mux.video.liveStreams.createSimulcastTarget('string', { url: 'string' });
+    const response = await mux.video.liveStreams.createSimulcastTarget('string', {
+      passthrough: 'string',
+      stream_key: 'string',
+      url: 'string',
+    });
   });
 
   test('create_simulcast_target: required and optional params', async () => {
@@ -300,46 +186,15 @@ describe('resource live_streams', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('update_embedded_subtitles: only required params', async () => {
-    const response = await mux.video.liveStreams.updateEmbeddedSubtitles('string', {});
-  });
-
-  test('update_embedded_subtitles: required and optional params', async () => {
+  test('update_embedded_subtitles', async () => {
     const response = await mux.video.liveStreams.updateEmbeddedSubtitles('string', {
-      embedded_subtitles: [
-        { name: 'string', passthrough: 'string', language_code: 'string', language_channel: 'cc1' },
-        { name: 'string', passthrough: 'string', language_code: 'string', language_channel: 'cc1' },
-        { name: 'string', passthrough: 'string', language_code: 'string', language_channel: 'cc1' },
-      ],
+      embedded_subtitles: [{}, {}, {}],
     });
   });
 
-  test('update_generated_subtitles: only required params', async () => {
-    const response = await mux.video.liveStreams.updateGeneratedSubtitles('string', {});
-  });
-
-  test('update_generated_subtitles: required and optional params', async () => {
+  test('update_generated_subtitles', async () => {
     const response = await mux.video.liveStreams.updateGeneratedSubtitles('string', {
-      generated_subtitles: [
-        {
-          name: 'string',
-          passthrough: 'string',
-          language_code: 'en',
-          transcription_vocabulary_ids: ['string', 'string', 'string'],
-        },
-        {
-          name: 'string',
-          passthrough: 'string',
-          language_code: 'en',
-          transcription_vocabulary_ids: ['string', 'string', 'string'],
-        },
-        {
-          name: 'string',
-          passthrough: 'string',
-          language_code: 'en',
-          transcription_vocabulary_ids: ['string', 'string', 'string'],
-        },
-      ],
+      generated_subtitles: [{}, {}, {}],
     });
   });
 });

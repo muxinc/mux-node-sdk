@@ -17,7 +17,6 @@ export class Errors extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-
     return this.get('/data/v1/errors', { query, ...options });
   }
 }

@@ -6,6 +6,8 @@ const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010'
 describe('resource transcription_vocabularies', () => {
   test('create: only required params', async () => {
     const response = await mux.video.transcriptionVocabularies.create({
+      name: 'string',
+      passthrough: 'string',
       phrases: [
         'x',
         'x',
@@ -1014,6 +1016,7 @@ describe('resource transcription_vocabularies', () => {
   test('create: required and optional params', async () => {
     const response = await mux.video.transcriptionVocabularies.create({
       name: 'string',
+      passthrough: 'string',
       phrases: [
         'x',
         'x',
@@ -2016,7 +2019,6 @@ describe('resource transcription_vocabularies', () => {
         'x',
         'x',
       ],
-      passthrough: 'string',
     });
   });
 
@@ -2033,6 +2035,8 @@ describe('resource transcription_vocabularies', () => {
 
   test('update: only required params', async () => {
     const response = await mux.video.transcriptionVocabularies.update('string', {
+      name: 'string',
+      passthrough: 'string',
       phrases: [
         'x',
         'x',
@@ -3041,6 +3045,7 @@ describe('resource transcription_vocabularies', () => {
   test('update: required and optional params', async () => {
     const response = await mux.video.transcriptionVocabularies.update('string', {
       name: 'string',
+      passthrough: 'string',
       phrases: [
         'x',
         'x',
@@ -4043,16 +4048,11 @@ describe('resource transcription_vocabularies', () => {
         'x',
         'x',
       ],
-      passthrough: 'string',
     });
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await mux.video.transcriptionVocabularies.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await mux.video.transcriptionVocabularies.list({ limit: 0, page: 0 });
   });
 
   test('list: request options instead of params are passed correctly', async () => {

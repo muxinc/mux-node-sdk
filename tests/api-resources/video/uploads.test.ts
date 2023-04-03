@@ -5,12 +5,16 @@ const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010'
 
 describe('resource uploads', () => {
   test('create: only required params', async () => {
-    const response = await mux.video.uploads.create({ new_asset_settings: {} });
+    const response = await mux.video.uploads.create({
+      cors_origin: 'string',
+      new_asset_settings: {},
+      test: true,
+      timeout: 60,
+    });
   });
 
   test('create: required and optional params', async () => {
     const response = await mux.video.uploads.create({
-      timeout: 60,
       cors_origin: 'string',
       new_asset_settings: {
         input: [
@@ -84,6 +88,7 @@ describe('resource uploads', () => {
         test: true,
       },
       test: true,
+      timeout: 60,
     });
   });
 
@@ -98,12 +103,8 @@ describe('resource uploads', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await mux.video.uploads.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await mux.video.uploads.list({ limit: 0, page: 0 });
   });
 
   test('list: request options instead of params are passed correctly', async () => {

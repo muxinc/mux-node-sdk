@@ -4,37 +4,11 @@ import Mux from '~/index';
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
 describe('resource spaces', () => {
-  test('create: only required params', async () => {
-    const response = await mux.video.spaces.create({});
-  });
-
-  test('create: required and optional params', async () => {
+  test('create', async () => {
     const response = await mux.video.spaces.create({
-      type: 'server',
+      broadcasts: [{ live_stream_id: 'string' }, { live_stream_id: 'string' }, { live_stream_id: 'string' }],
       passthrough: 'string',
-      broadcasts: [
-        {
-          passthrough: 'string',
-          live_stream_id: 'string',
-          layout: 'gallery',
-          background: 'string',
-          resolution: '1920x1080',
-        },
-        {
-          passthrough: 'string',
-          live_stream_id: 'string',
-          layout: 'gallery',
-          background: 'string',
-          resolution: '1920x1080',
-        },
-        {
-          passthrough: 'string',
-          live_stream_id: 'string',
-          layout: 'gallery',
-          background: 'string',
-          resolution: '1920x1080',
-        },
-      ],
+      type: 'server',
     });
   });
 
@@ -49,12 +23,8 @@ describe('resource spaces', () => {
     );
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await mux.video.spaces.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await mux.video.spaces.list({ limit: 0, page: 0 });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -83,15 +53,21 @@ describe('resource spaces', () => {
   });
 
   test('create_broadcast: only required params', async () => {
-    const response = await mux.video.spaces.createBroadcast('string', { live_stream_id: 'string' });
+    const response = await mux.video.spaces.createBroadcast('string', {
+      background: 'string',
+      layout: 'gallery',
+      live_stream_id: 'string',
+      passthrough: 'string',
+      resolution: '1920x1080',
+    });
   });
 
   test('create_broadcast: required and optional params', async () => {
     const response = await mux.video.spaces.createBroadcast('string', {
-      passthrough: 'string',
-      live_stream_id: 'string',
-      layout: 'gallery',
       background: 'string',
+      layout: 'gallery',
+      live_stream_id: 'string',
+      passthrough: 'string',
       resolution: '1920x1080',
     });
   });

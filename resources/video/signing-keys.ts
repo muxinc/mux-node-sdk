@@ -41,7 +41,6 @@ export class SigningKeys extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-
     return this.getAPIList('/video/v1/signing-keys', SigningKeysBasePage, { query, ...options });
   }
 

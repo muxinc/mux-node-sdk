@@ -25,7 +25,6 @@ export class Incidents extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-
     return this.getAPIList('/data/v1/incidents', IncidentsBasePage, { query, ...options });
   }
 
@@ -46,7 +45,6 @@ export class Incidents extends APIResource {
     if (isRequestOptions(query)) {
       return this.listRelated(incidentId, {}, query);
     }
-
     return this.getAPIList(`/data/v1/incidents/${incidentId}/related`, IncidentsBasePage, {
       query,
       ...options,

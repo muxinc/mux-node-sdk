@@ -34,7 +34,6 @@ export class Dimensions extends APIResource {
     if (isRequestOptions(query)) {
       return this.listValues(dimensionId, {}, query);
     }
-
     return this.getAPIList(`/data/v1/dimensions/${dimensionId}`, DimensionValuesBasePage, {
       query,
       ...options,

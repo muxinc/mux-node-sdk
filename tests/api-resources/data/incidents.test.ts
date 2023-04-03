@@ -15,19 +15,8 @@ describe('resource incidents', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await mux.data.incidents.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await mux.data.incidents.list({
-      limit: 0,
-      page: 0,
-      order_by: 'negative_impact',
-      order_direction: 'asc',
-      status: 'open',
-      severity: 'warning',
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -43,28 +32,19 @@ describe('resource incidents', () => {
       mux.data.incidents.list(
         {
           limit: 0,
-          page: 0,
           order_by: 'negative_impact',
           order_direction: 'asc',
-          status: 'open',
+          page: 0,
           severity: 'warning',
+          status: 'open',
         },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('list_related: only required params', async () => {
+  test('list_related', async () => {
     const response = await mux.data.incidents.listRelated('abcd1234');
-  });
-
-  test('list_related: required and optional params', async () => {
-    const response = await mux.data.incidents.listRelated('abcd1234', {
-      limit: 0,
-      page: 0,
-      order_by: 'negative_impact',
-      order_direction: 'asc',
-    });
   });
 
   test('list_related: request options instead of params are passed correctly', async () => {
@@ -79,7 +59,7 @@ describe('resource incidents', () => {
     await expect(
       mux.data.incidents.listRelated(
         'abcd1234',
-        { limit: 0, page: 0, order_by: 'negative_impact', order_direction: 'asc' },
+        { limit: 0, order_by: 'negative_impact', order_direction: 'asc', page: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);

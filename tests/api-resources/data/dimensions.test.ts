@@ -15,17 +15,8 @@ describe('resource dimensions', () => {
     );
   });
 
-  test('list_values: only required params', async () => {
+  test('list_values', async () => {
     const response = await mux.data.dimensions.listValues('abcd1234');
-  });
-
-  test('list_values: required and optional params', async () => {
-    const response = await mux.data.dimensions.listValues('abcd1234', {
-      limit: 0,
-      page: 0,
-      'filters[]': ['string', 'string', 'string'],
-      'timeframe[]': ['string', 'string', 'string'],
-    });
   });
 
   test('list_values: request options instead of params are passed correctly', async () => {
@@ -41,9 +32,9 @@ describe('resource dimensions', () => {
       mux.data.dimensions.listValues(
         'abcd1234',
         {
+          'filters[]': ['string', 'string', 'string'],
           limit: 0,
           page: 0,
-          'filters[]': ['string', 'string', 'string'],
           'timeframe[]': ['string', 'string', 'string'],
         },
         { path: '/_stainless_unknown_path' },

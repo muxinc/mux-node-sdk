@@ -4,80 +4,15 @@ import Mux from '~/index';
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
 describe('resource assets', () => {
-  test('create: only required params', async () => {
-    const response = await mux.video.assets.create({});
-  });
-
-  test('create: required and optional params', async () => {
+  test('create', async () => {
     const response = await mux.video.assets.create({
-      input: [
-        {
-          url: 'string',
-          overlay_settings: {
-            vertical_align: 'top',
-            vertical_margin: 'string',
-            horizontal_align: 'left',
-            horizontal_margin: 'string',
-            width: 'string',
-            height: 'string',
-            opacity: 'string',
-          },
-          start_time: 0,
-          end_time: 0,
-          type: 'video',
-          text_type: 'subtitles',
-          language_code: 'string',
-          name: 'string',
-          closed_captions: true,
-          passthrough: 'string',
-        },
-        {
-          url: 'string',
-          overlay_settings: {
-            vertical_align: 'top',
-            vertical_margin: 'string',
-            horizontal_align: 'left',
-            horizontal_margin: 'string',
-            width: 'string',
-            height: 'string',
-            opacity: 'string',
-          },
-          start_time: 0,
-          end_time: 0,
-          type: 'video',
-          text_type: 'subtitles',
-          language_code: 'string',
-          name: 'string',
-          closed_captions: true,
-          passthrough: 'string',
-        },
-        {
-          url: 'string',
-          overlay_settings: {
-            vertical_align: 'top',
-            vertical_margin: 'string',
-            horizontal_align: 'left',
-            horizontal_margin: 'string',
-            width: 'string',
-            height: 'string',
-            opacity: 'string',
-          },
-          start_time: 0,
-          end_time: 0,
-          type: 'video',
-          text_type: 'subtitles',
-          language_code: 'string',
-          name: 'string',
-          closed_captions: true,
-          passthrough: 'string',
-        },
-      ],
-      playback_policy: ['public', 'public', 'public'],
-      per_title_encode: true,
-      passthrough: 'string',
+      input: [{}, {}, {}],
+      master_access: 'none',
       mp4_support: 'none',
       normalize_audio: true,
-      master_access: 'none',
+      passthrough: 'string',
+      per_title_encode: true,
+      playback_policy: ['public', 'public', 'public'],
       test: true,
     });
   });
@@ -93,25 +28,12 @@ describe('resource assets', () => {
     );
   });
 
-  test('update: only required params', async () => {
-    const response = await mux.video.assets.update('string', {});
-  });
-
-  test('update: required and optional params', async () => {
+  test('update', async () => {
     const response = await mux.video.assets.update('string', { passthrough: 'string' });
   });
 
-  test('list: only required params', async () => {
+  test('list', async () => {
     const response = await mux.video.assets.list();
-  });
-
-  test('list: required and optional params', async () => {
-    const response = await mux.video.assets.list({
-      limit: 0,
-      page: 0,
-      live_stream_id: 'string',
-      upload_id: 'string',
-    });
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -125,7 +47,7 @@ describe('resource assets', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.video.assets.list(
-        { limit: 0, page: 0, live_stream_id: 'string', upload_id: 'string' },
+        { limit: 0, live_stream_id: 'string', page: 0, upload_id: 'string' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
@@ -142,32 +64,31 @@ describe('resource assets', () => {
     );
   });
 
-  test('create_playback_id: only required params', async () => {
-    const response = await mux.video.assets.createPlaybackId('string', {});
-  });
-
-  test('create_playback_id: required and optional params', async () => {
+  test('create_playback_id', async () => {
     const response = await mux.video.assets.createPlaybackId('string', { policy: 'public' });
   });
 
   test('create_track: only required params', async () => {
     const response = await mux.video.assets.createTrack('string', {
-      url: 'string',
-      type: 'text',
-      text_type: 'subtitles',
+      closed_captions: true,
       language_code: 'string',
+      name: 'string',
+      passthrough: 'string',
+      text_type: 'subtitles',
+      type: 'text',
+      url: 'string',
     });
   });
 
   test('create_track: required and optional params', async () => {
     const response = await mux.video.assets.createTrack('string', {
-      url: 'string',
-      type: 'text',
-      text_type: 'subtitles',
+      closed_captions: true,
       language_code: 'string',
       name: 'string',
-      closed_captions: true,
       passthrough: 'string',
+      text_type: 'subtitles',
+      type: 'text',
+      url: 'string',
     });
   });
 
@@ -204,19 +125,11 @@ describe('resource assets', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('update_master_access: only required params', async () => {
-    const response = await mux.video.assets.updateMasterAccess('string', {});
-  });
-
-  test('update_master_access: required and optional params', async () => {
+  test('update_master_access', async () => {
     const response = await mux.video.assets.updateMasterAccess('string', { master_access: 'temporary' });
   });
 
-  test('update_mp4_support: only required params', async () => {
-    const response = await mux.video.assets.updateMP4Support('string', {});
-  });
-
-  test('update_mp4_support: required and optional params', async () => {
+  test('update_mp4_support', async () => {
     const response = await mux.video.assets.updateMP4Support('string', { mp4_support: 'standard' });
   });
 });

@@ -69,7 +69,6 @@ export class TranscriptionVocabularies extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-
     return this.getAPIList('/video/v1/transcription-vocabularies', TranscriptionVocabulariesBasePage, {
       query,
       ...options,
@@ -187,14 +186,6 @@ export interface UpdateTranscriptionVocabularyParams {
 
 export interface TranscriptionVocabularyCreateParams {
   /**
-   * Phrases, individual words, or proper names to include in the Transcription
-   * Vocabulary. When the Transcription Vocabulary is attached to a live stream's
-   * `generated_subtitles`, the probability of successful speech recognition for
-   * these words or phrases is boosted.
-   */
-  phrases: Array<TranscriptionVocabularyPhrase>;
-
-  /**
    * The user-supplied name of the Transcription Vocabulary.
    */
   name?: string;
@@ -204,18 +195,18 @@ export interface TranscriptionVocabularyCreateParams {
    * characters.
    */
   passthrough?: string;
+
+  /**
+   * Phrases, individual words, or proper names to include in the Transcription
+   * Vocabulary. When the Transcription Vocabulary is attached to a live stream's
+   * `generated_subtitles`, the probability of successful speech recognition for
+   * these words or phrases is boosted.
+   */
+  phrases: Array<TranscriptionVocabularyPhrase>;
 }
 
 export interface TranscriptionVocabularyUpdateParams {
   /**
-   * Phrases, individual words, or proper names to include in the Transcription
-   * Vocabulary. When the Transcription Vocabulary is attached to a live stream's
-   * `generated_subtitles`, the probability of successful speech recognition for
-   * these words or phrases is boosted.
-   */
-  phrases: Array<TranscriptionVocabularyPhrase>;
-
-  /**
    * The user-supplied name of the Transcription Vocabulary.
    */
   name?: string;
@@ -225,6 +216,14 @@ export interface TranscriptionVocabularyUpdateParams {
    * characters.
    */
   passthrough?: string;
+
+  /**
+   * Phrases, individual words, or proper names to include in the Transcription
+   * Vocabulary. When the Transcription Vocabulary is attached to a live stream's
+   * `generated_subtitles`, the probability of successful speech recognition for
+   * these words or phrases is boosted.
+   */
+  phrases: Array<TranscriptionVocabularyPhrase>;
 }
 
 export interface TranscriptionVocabularyListParams extends BasePageParams {}
