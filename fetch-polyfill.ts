@@ -25,8 +25,8 @@ if (isProbablyNode) {
     const KeepAliveHttpAgent: typeof KeepAliveAgent = require('agentkeepalive');
     /* eslint-enable @typescript-eslint/no-var-requires */
 
-    defaultHttpAgent = new KeepAliveHttpAgent({ keepAlive: true });
-    defaultHttpsAgent = new KeepAliveHttpAgent.HttpsAgent({ keepAlive: true });
+    defaultHttpAgent = new KeepAliveHttpAgent({ keepAlive: true, freeSocketTimeout: 60 * 1000 });
+    defaultHttpsAgent = new KeepAliveHttpAgent.HttpsAgent({ keepAlive: true, freeSocketTimeout: 60 * 1000 });
   } catch (e) {
     // We can fall back to a built-in "fetch".
     nodeFetchImportError = e;
