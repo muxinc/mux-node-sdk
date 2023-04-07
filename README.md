@@ -136,7 +136,7 @@ Note that requests which time out will be [retried twice by default](#retries).
 ## Auto-pagination
 
 List methods in the Mux API are paginated.
-Use `for await … of` syntax to iterate through items across all pages.
+You can use `for await … of` syntax to iterate through items across all pages:
 
 ```ts
 async function fetchAllVideoDeliveryUsages(params) {
@@ -146,6 +146,21 @@ async function fetchAllVideoDeliveryUsages(params) {
     allVideoDeliveryUsages.push(deliveryUsage);
   }
   return allVideoDeliveryUsages;
+}
+```
+
+Alternatively, you can make request a single page at a time:
+
+```ts
+let page = await mux.video.deliveryUsage.list();
+for (const deliveryUsage of page.data) {
+  console.log(deliveryUsage);
+}
+
+// Convenience methods are provided for manually paginating:
+while (page.hasNextPage()) {
+  page = page.getNextPage();
+  // ...
 }
 ```
 
