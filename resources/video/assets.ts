@@ -473,20 +473,6 @@ export namespace Asset {
   }
 }
 
-export interface AssetMasterParams {
-  /**
-   * Add or remove access to the master version of the video.
-   */
-  master_access?: 'temporary' | 'none';
-}
-
-export interface AssetMP4SupportParams {
-  /**
-   * String value for the level of mp4 support
-   */
-  mp4_support?: 'standard' | 'none';
-}
-
 export interface AssetResponse {
   data: Asset;
 }
@@ -599,14 +585,6 @@ export interface Track {
    * The type of track
    */
   type?: 'video' | 'audio' | 'text';
-}
-
-export interface UpdateAssetParams {
-  /**
-   * Arbitrary metadata set for the Asset. Max 255 characters. In order to clear this
-   * value, the field should be included with an empty string value.
-   */
-  passthrough?: string;
 }
 
 export interface AssetCreateParams {

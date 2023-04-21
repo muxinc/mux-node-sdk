@@ -95,27 +95,6 @@ export class TranscriptionVocabularies extends APIResource {
 
 export class TranscriptionVocabulariesBasePage extends BasePage<TranscriptionVocabulary> {}
 
-export interface CreateTranscriptionVocabularyParams {
-  /**
-   * Phrases, individual words, or proper names to include in the Transcription
-   * Vocabulary. When the Transcription Vocabulary is attached to a live stream's
-   * `generated_subtitles`, the probability of successful speech recognition for
-   * these words or phrases is boosted.
-   */
-  phrases: Array<TranscriptionVocabularyPhrase>;
-
-  /**
-   * The user-supplied name of the Transcription Vocabulary.
-   */
-  name?: string;
-
-  /**
-   * Arbitrary user-supplied metadata set for the Transcription Vocabulary. Max 255
-   * characters.
-   */
-  passthrough?: string;
-}
-
 export interface TranscriptionVocabulary {
   /**
    * Time the Transcription Vocabulary was created, defined as a Unix timestamp
@@ -161,27 +140,6 @@ export type TranscriptionVocabularyPhrase = string;
 
 export interface TranscriptionVocabularyResponse {
   data: TranscriptionVocabulary;
-}
-
-export interface UpdateTranscriptionVocabularyParams {
-  /**
-   * Phrases, individual words, or proper names to include in the Transcription
-   * Vocabulary. When the Transcription Vocabulary is attached to a live stream's
-   * `generated_subtitles`, the probability of successful speech recognition for
-   * these words or phrases is boosted.
-   */
-  phrases: Array<TranscriptionVocabularyPhrase>;
-
-  /**
-   * The user-supplied name of the Transcription Vocabulary.
-   */
-  name?: string;
-
-  /**
-   * Arbitrary user-supplied metadata set for the Transcription Vocabulary. Max 255
-   * characters.
-   */
-  passthrough?: string;
 }
 
 export interface TranscriptionVocabularyCreateParams {

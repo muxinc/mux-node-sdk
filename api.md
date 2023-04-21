@@ -5,11 +5,8 @@
 Models:
 
 - <code><a href="./resources/video/assets.ts">Asset</a></code>
-- <code><a href="./resources/video/assets.ts">AssetMasterParams</a></code>
-- <code><a href="./resources/video/assets.ts">AssetMP4SupportParams</a></code>
 - <code><a href="./resources/video/assets.ts">AssetResponse</a></code>
 - <code><a href="./resources/video/assets.ts">Track</a></code>
-- <code><a href="./resources/video/assets.ts">UpdateAssetParams</a></code>
 
 Methods:
 
@@ -40,12 +37,7 @@ Methods:
 
 Models:
 
-- <code><a href="./resources/video/live-streams.ts">CreateLiveStreamParams</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStream</a></code>
-- <code><a href="./resources/video/live-streams.ts">LiveStreamEmbeddedSubtitlesParams</a></code>
-- <code><a href="./resources/video/live-streams.ts">LiveStreamGeneratedSubtitlesParams</a></code>
-- <code><a href="./resources/video/live-streams.ts">PlaybackIDParams</a></code>
-- <code><a href="./resources/video/live-streams.ts">UpdateLiveStreamParams</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamCompleteResponse</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamDisableResponse</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamEnableResponse</a></code>
@@ -86,7 +78,6 @@ Methods:
 Models:
 
 - <code><a href="./resources/video/playback-restrictions.ts">PlaybackRestriction</a></code>
-- <code><a href="./resources/video/playback-restrictions.ts">PlaybackRestrictionParams</a></code>
 - <code><a href="./resources/video/playback-restrictions.ts">PlaybackRestrictionResponse</a></code>
 
 Methods:
@@ -121,7 +112,6 @@ Models:
 - <code><a href="./resources/video/spaces.ts">BroadcastResponse</a></code>
 - <code><a href="./resources/video/spaces.ts">BroadcastStatus</a></code>
 - <code><a href="./resources/video/spaces.ts">Space</a></code>
-- <code><a href="./resources/video/spaces.ts">SpaceParams</a></code>
 - <code><a href="./resources/video/spaces.ts">SpaceResponse</a></code>
 - <code><a href="./resources/video/spaces.ts">SpaceStatus</a></code>
 - <code><a href="./resources/video/spaces.ts">SpaceType</a></code>
@@ -144,11 +134,9 @@ Methods:
 
 Models:
 
-- <code><a href="./resources/video/transcription-vocabularies.ts">CreateTranscriptionVocabularyParams</a></code>
 - <code><a href="./resources/video/transcription-vocabularies.ts">TranscriptionVocabulary</a></code>
 - <code><a href="./resources/video/transcription-vocabularies.ts">TranscriptionVocabularyPhrase</a></code>
 - <code><a href="./resources/video/transcription-vocabularies.ts">TranscriptionVocabularyResponse</a></code>
-- <code><a href="./resources/video/transcription-vocabularies.ts">UpdateTranscriptionVocabularyParams</a></code>
 
 Methods:
 
@@ -163,7 +151,6 @@ Methods:
 Models:
 
 - <code><a href="./resources/video/uploads.ts">Upload</a></code>
-- <code><a href="./resources/video/uploads.ts">UploadParams</a></code>
 - <code><a href="./resources/video/uploads.ts">UploadResponse</a></code>
 
 Methods:
