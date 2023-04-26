@@ -490,6 +490,11 @@ export namespace LiveStream {
   }
 
   export namespace NewAssetSettings {
+    /**
+     * An array of objects that each describe an input file to be used to create the
+     * asset. As a shortcut, `input` can also be a string URL for a file when only one
+     * input file is used. See `input[].url` for requirements.
+     */
     export interface Input {
       /**
        * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
@@ -575,6 +580,11 @@ export namespace LiveStream {
     }
 
     export namespace Input {
+      /**
+       * An object that describes how the image file referenced in URL should be placed
+       * over the video (i.e. watermarking). Ensure that the URL is active and persists
+       * the entire lifespan of the video object.
+       */
       export interface OverlaySettings {
         /**
          * How tall the overlay should appear. Can be expressed as a percent ("10%") or as
@@ -899,6 +909,11 @@ export namespace LiveStreamCreateParams {
   }
 
   export namespace NewAssetSettings {
+    /**
+     * An array of objects that each describe an input file to be used to create the
+     * asset. As a shortcut, `input` can also be a string URL for a file when only one
+     * input file is used. See `input[].url` for requirements.
+     */
     export interface Input {
       /**
        * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
@@ -984,6 +999,11 @@ export namespace LiveStreamCreateParams {
     }
 
     export namespace Input {
+      /**
+       * An object that describes how the image file referenced in URL should be placed
+       * over the video (i.e. watermarking). Ensure that the URL is active and persists
+       * the entire lifespan of the video object.
+       */
       export interface OverlaySettings {
         /**
          * How tall the overlay should appear. Can be expressed as a percent ("10%") or as
@@ -1217,6 +1237,11 @@ export namespace LiveStreamCreateParams {
   }
 
   export namespace NewAssetSettings {
+    /**
+     * An array of objects that each describe an input file to be used to create the
+     * asset. As a shortcut, `input` can also be a string URL for a file when only one
+     * input file is used. See `input[].url` for requirements.
+     */
     export interface Input {
       /**
        * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
@@ -1302,6 +1327,11 @@ export namespace LiveStreamCreateParams {
     }
 
     export namespace Input {
+      /**
+       * An object that describes how the image file referenced in URL should be placed
+       * over the video (i.e. watermarking). Ensure that the URL is active and persists
+       * the entire lifespan of the video object.
+       */
       export interface OverlaySettings {
         /**
          * How tall the overlay should appear. Can be expressed as a percent ("10%") or as

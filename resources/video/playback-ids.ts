@@ -40,6 +40,9 @@ export interface PlaybackIDRetrieveResponse {
 }
 
 export namespace PlaybackIDRetrieveResponse {
+  /**
+   * Describes the Asset or LiveStream object associated with the playback ID.
+   */
   export interface Object {
     /**
      * The identifier of the object.

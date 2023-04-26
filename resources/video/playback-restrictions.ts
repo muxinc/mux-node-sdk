@@ -110,6 +110,9 @@ export interface PlaybackRestriction {
 }
 
 export namespace PlaybackRestriction {
+  /**
+   * A list of domains allowed to play your videos.
+   */
   export interface Referrer {
     /**
      * A boolean to determine whether to allow or deny HTTP requests without `Referer`
@@ -144,6 +147,9 @@ export interface PlaybackRestrictionCreateParams {
 }
 
 export namespace PlaybackRestrictionCreateParams {
+  /**
+   * A list of domains allowed to play your videos.
+   */
   export interface Referrer {
     /**
      * A boolean to determine whether to allow or deny HTTP requests without `Referer`
@@ -165,6 +171,9 @@ export namespace PlaybackRestrictionCreateParams {
     allowed_domains?: Array<string>;
   }
 
+  /**
+   * A list of domains allowed to play your videos.
+   */
   export interface Referrer {
     /**
      * A boolean to determine whether to allow or deny HTTP requests without `Referer`

@@ -323,6 +323,9 @@ export interface Asset {
 }
 
 export namespace Asset {
+  /**
+   * Object that describes any errors that happened when processing this asset.
+   */
   export interface Errors {
     /**
      * Error messages with more details.
@@ -335,6 +338,11 @@ export namespace Asset {
     type?: string;
   }
 
+  /**
+   * An object containing the current status of Master Access and the link to the
+   * Master MP4 file when ready. This object does not exist if `master_acess` is set
+   * to `none` and when the temporary URL expires.
+   */
   export interface Master {
     status?: 'ready' | 'preparing' | 'errored';
 
@@ -345,6 +353,12 @@ export namespace Asset {
     url?: string;
   }
 
+  /**
+   * An object containing the current status of any static renditions (mp4s). The
+   * object does not exist if no static renditions have been requested. See
+   * [Download your videos](https://docs.mux.com/guides/video/download-your-videos)
+   * for more information.
+   */
   export interface StaticRenditions {
     /**
      * Array of file objects.
@@ -408,6 +422,13 @@ export namespace Asset {
     type?: 'content' | 'slate';
   }
 
+  /**
+   * An object containing one or more reasons the input file is non-standard. See
+   * [the guide on minimizing processing time](https://docs.mux.com/guides/video/minimize-processing-time)
+   * for more information on what a standard input is defined as. This object only
+   * exists on on-demand assets that have non-standard inputs, so if missing you can
+   * assume the input qualifies as standard.
+   */
   export interface NonStandardInputReasons {
     /**
      * The audio codec used on the input file. Non-AAC audio codecs are non-standard.
@@ -649,6 +670,11 @@ export interface AssetCreateParams {
 }
 
 export namespace AssetCreateParams {
+  /**
+   * An array of objects that each describe an input file to be used to create the
+   * asset. As a shortcut, `input` can also be a string URL for a file when only one
+   * input file is used. See `input[].url` for requirements.
+   */
   export interface Input {
     /**
      * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
@@ -734,6 +760,11 @@ export namespace AssetCreateParams {
   }
 
   export namespace Input {
+    /**
+     * An object that describes how the image file referenced in URL should be placed
+     * over the video (i.e. watermarking). Ensure that the URL is active and persists
+     * the entire lifespan of the video object.
+     */
     export interface OverlaySettings {
       /**
        * How tall the overlay should appear. Can be expressed as a percent ("10%") or as
@@ -789,6 +820,11 @@ export namespace AssetCreateParams {
     }
   }
 
+  /**
+   * An array of objects that each describe an input file to be used to create the
+   * asset. As a shortcut, `input` can also be a string URL for a file when only one
+   * input file is used. See `input[].url` for requirements.
+   */
   export interface Input {
     /**
      * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
@@ -874,6 +910,11 @@ export namespace AssetCreateParams {
   }
 
   export namespace Input {
+    /**
+     * An object that describes how the image file referenced in URL should be placed
+     * over the video (i.e. watermarking). Ensure that the URL is active and persists
+     * the entire lifespan of the video object.
+     */
     export interface OverlaySettings {
       /**
        * How tall the overlay should appear. Can be expressed as a percent ("10%") or as
