@@ -7,7 +7,10 @@ const main = () => {
   if (typeof version !== 'string') {
     throw `Unexpected type for the package.json version field; got ${typeof version}, expected string`;
   }
-  fs.writeFileSync('version.ts', `export const VERSION = '${version}';\n`);
+
+  const contents = fs.readFileSync('version.ts', 'utf8');
+  const output = contents.replace(/(export const VERSION = ')(.*)(')/g, `$1${version}$3`);
+  fs.writeFileSync('version.ts', output);
 };
 
 if (require.main === module) {
