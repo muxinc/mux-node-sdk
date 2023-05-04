@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Mux from '~/index';
+
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
 describe('resource assets', () => {
@@ -53,22 +54,22 @@ describe('resource assets', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('delete', async () => {
+  test('del', async () => {
     const response = await mux.video.assets.del('string');
   });
 
-  test('delete: request options instead of params are passed correctly', async () => {
+  test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(mux.video.assets.del('string', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Mux.NotFoundError,
     );
   });
 
-  test('create_playback_id', async () => {
+  test('createPlaybackId', async () => {
     const response = await mux.video.assets.createPlaybackId('string', { policy: 'public' });
   });
 
-  test('create_track: only required params', async () => {
+  test('createTrack: only required params', async () => {
     const response = await mux.video.assets.createTrack('string', {
       closed_captions: true,
       language_code: 'string',
@@ -80,7 +81,7 @@ describe('resource assets', () => {
     });
   });
 
-  test('create_track: required and optional params', async () => {
+  test('createTrack: required and optional params', async () => {
     const response = await mux.video.assets.createTrack('string', {
       closed_captions: true,
       language_code: 'string',
@@ -92,44 +93,44 @@ describe('resource assets', () => {
     });
   });
 
-  test('delete_playback_id', async () => {
+  test('deletePlaybackId', async () => {
     const response = await mux.video.assets.deletePlaybackId('string', 'string');
   });
 
-  test('delete_playback_id: request options instead of params are passed correctly', async () => {
+  test('deletePlaybackId: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.video.assets.deletePlaybackId('string', 'string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('delete_track', async () => {
+  test('deleteTrack', async () => {
     const response = await mux.video.assets.deleteTrack('string', 'string');
   });
 
-  test('delete_track: request options instead of params are passed correctly', async () => {
+  test('deleteTrack: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.video.assets.deleteTrack('string', 'string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('retrieve_playback_id', async () => {
+  test('retrievePlaybackId', async () => {
     const response = await mux.video.assets.retrievePlaybackId('string', 'string');
   });
 
-  test('retrieve_playback_id: request options instead of params are passed correctly', async () => {
+  test('retrievePlaybackId: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.video.assets.retrievePlaybackId('string', 'string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('update_master_access', async () => {
+  test('updateMasterAccess', async () => {
     const response = await mux.video.assets.updateMasterAccess('string', { master_access: 'temporary' });
   });
 
-  test('update_mp4_support', async () => {
+  test('updateMP4Support', async () => {
     const response = await mux.video.assets.updateMP4Support('string', { mp4_support: 'standard' });
   });
 });

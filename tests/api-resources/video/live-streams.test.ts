@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Mux from '~/index';
+
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
-describe('resource live_streams', () => {
+describe('resource liveStreams', () => {
   test('create', async () => {
     const response = await mux.video.liveStreams.create({
       audio_only: true,
@@ -67,11 +68,11 @@ describe('resource live_streams', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('delete', async () => {
+  test('del', async () => {
     const response = await mux.video.liveStreams.del('string');
   });
 
-  test('delete: request options instead of params are passed correctly', async () => {
+  test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(mux.video.liveStreams.del('string', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Mux.NotFoundError,
@@ -89,11 +90,11 @@ describe('resource live_streams', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('create_playback_id', async () => {
+  test('createPlaybackId', async () => {
     const response = await mux.video.liveStreams.createPlaybackId('string', { policy: 'public' });
   });
 
-  test('create_simulcast_target: only required params', async () => {
+  test('createSimulcastTarget: only required params', async () => {
     const response = await mux.video.liveStreams.createSimulcastTarget('string', {
       passthrough: 'string',
       stream_key: 'string',
@@ -101,7 +102,7 @@ describe('resource live_streams', () => {
     });
   });
 
-  test('create_simulcast_target: required and optional params', async () => {
+  test('createSimulcastTarget: required and optional params', async () => {
     const response = await mux.video.liveStreams.createSimulcastTarget('string', {
       passthrough: 'string',
       stream_key: 'string',
@@ -109,22 +110,22 @@ describe('resource live_streams', () => {
     });
   });
 
-  test('delete_playback_id', async () => {
+  test('deletePlaybackId', async () => {
     const response = await mux.video.liveStreams.deletePlaybackId('string', 'string');
   });
 
-  test('delete_playback_id: request options instead of params are passed correctly', async () => {
+  test('deletePlaybackId: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.video.liveStreams.deletePlaybackId('string', 'string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('delete_simulcast_target', async () => {
+  test('deleteSimulcastTarget', async () => {
     const response = await mux.video.liveStreams.deleteSimulcastTarget('string', 'string');
   });
 
-  test('delete_simulcast_target: request options instead of params are passed correctly', async () => {
+  test('deleteSimulcastTarget: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.video.liveStreams.deleteSimulcastTarget('string', 'string', { path: '/_stainless_unknown_path' }),
@@ -153,46 +154,46 @@ describe('resource live_streams', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('reset_stream_key', async () => {
+  test('resetStreamKey', async () => {
     const response = await mux.video.liveStreams.resetStreamKey('string');
   });
 
-  test('reset_stream_key: request options instead of params are passed correctly', async () => {
+  test('resetStreamKey: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.video.liveStreams.resetStreamKey('string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('retrieve_playback_id', async () => {
+  test('retrievePlaybackId', async () => {
     const response = await mux.video.liveStreams.retrievePlaybackId('string', 'string');
   });
 
-  test('retrieve_playback_id: request options instead of params are passed correctly', async () => {
+  test('retrievePlaybackId: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.video.liveStreams.retrievePlaybackId('string', 'string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('retrieve_simulcast_target', async () => {
+  test('retrieveSimulcastTarget', async () => {
     const response = await mux.video.liveStreams.retrieveSimulcastTarget('string', 'string');
   });
 
-  test('retrieve_simulcast_target: request options instead of params are passed correctly', async () => {
+  test('retrieveSimulcastTarget: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.video.liveStreams.retrieveSimulcastTarget('string', 'string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('update_embedded_subtitles', async () => {
+  test('updateEmbeddedSubtitles', async () => {
     const response = await mux.video.liveStreams.updateEmbeddedSubtitles('string', {
       embedded_subtitles: [{}, {}, {}],
     });
   });
 
-  test('update_generated_subtitles', async () => {
+  test('updateGeneratedSubtitles', async () => {
     const response = await mux.video.liveStreams.updateGeneratedSubtitles('string', {
       generated_subtitles: [{}, {}, {}],
     });

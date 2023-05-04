@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Mux from '~/index';
+
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
-describe('resource transcription_vocabularies', () => {
+describe('resource transcriptionVocabularies', () => {
   test('create: only required params', async () => {
     const response = await mux.video.transcriptionVocabularies.create({
       name: 'string',
@@ -4069,11 +4070,11 @@ describe('resource transcription_vocabularies', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('delete', async () => {
+  test('del', async () => {
     const response = await mux.video.transcriptionVocabularies.del('string');
   });
 
-  test('delete: request options instead of params are passed correctly', async () => {
+  test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.video.transcriptionVocabularies.del('string', { path: '/_stainless_unknown_path' }),

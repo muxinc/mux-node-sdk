@@ -1,43 +1,44 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Mux from '~/index';
+
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
-describe('resource real_time', () => {
-  test('list_dimensions', async () => {
+describe('resource realTime', () => {
+  test('listDimensions', async () => {
     const response = await mux.data.realTime.listDimensions();
   });
 
-  test('list_dimensions: request options instead of params are passed correctly', async () => {
+  test('listDimensions: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(mux.data.realTime.listDimensions({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Mux.NotFoundError,
     );
   });
 
-  test('list_metrics', async () => {
+  test('listMetrics', async () => {
     const response = await mux.data.realTime.listMetrics();
   });
 
-  test('list_metrics: request options instead of params are passed correctly', async () => {
+  test('listMetrics: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(mux.data.realTime.listMetrics({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Mux.NotFoundError,
     );
   });
 
-  test('retrieve_breakdown', async () => {
+  test('retrieveBreakdown', async () => {
     const response = await mux.data.realTime.retrieveBreakdown('current-concurrent-viewers');
   });
 
-  test('retrieve_breakdown: request options instead of params are passed correctly', async () => {
+  test('retrieveBreakdown: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.realTime.retrieveBreakdown('current-concurrent-viewers', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('retrieve_breakdown: request options and params are passed correctly', async () => {
+  test('retrieveBreakdown: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.realTime.retrieveBreakdown(
@@ -54,11 +55,11 @@ describe('resource real_time', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('retrieve_histogram_timeseries', async () => {
+  test('retrieveHistogramTimeseries', async () => {
     const response = await mux.data.realTime.retrieveHistogramTimeseries('video-startup-time');
   });
 
-  test('retrieve_histogram_timeseries: request options instead of params are passed correctly', async () => {
+  test('retrieveHistogramTimeseries: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.realTime.retrieveHistogramTimeseries('video-startup-time', {
@@ -67,7 +68,7 @@ describe('resource real_time', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('retrieve_histogram_timeseries: request options and params are passed correctly', async () => {
+  test('retrieveHistogramTimeseries: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.realTime.retrieveHistogramTimeseries(
@@ -78,11 +79,11 @@ describe('resource real_time', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('retrieve_timeseries', async () => {
+  test('retrieveTimeseries', async () => {
     const response = await mux.data.realTime.retrieveTimeseries('current-concurrent-viewers');
   });
 
-  test('retrieve_timeseries: request options instead of params are passed correctly', async () => {
+  test('retrieveTimeseries: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.realTime.retrieveTimeseries('current-concurrent-viewers', {
@@ -91,7 +92,7 @@ describe('resource real_time', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('retrieve_timeseries: request options and params are passed correctly', async () => {
+  test('retrieveTimeseries: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.realTime.retrieveTimeseries(

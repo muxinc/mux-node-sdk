@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Mux from '~/index';
+
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
-describe('resource signing_keys', () => {
+describe('resource signingKeys', () => {
   test('create', async () => {
     const response = await mux.video.signingKeys.create();
   });
@@ -44,11 +45,11 @@ describe('resource signing_keys', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('delete', async () => {
+  test('del', async () => {
     const response = await mux.video.signingKeys.del('string');
   });
 
-  test('delete: request options instead of params are passed correctly', async () => {
+  test('del: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(mux.video.signingKeys.del('string', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Mux.NotFoundError,

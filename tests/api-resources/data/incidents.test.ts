@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Mux from '~/index';
+
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
 describe('resource incidents', () => {
@@ -43,18 +44,18 @@ describe('resource incidents', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('list_related', async () => {
+  test('listRelated', async () => {
     const response = await mux.data.incidents.listRelated('abcd1234');
   });
 
-  test('list_related: request options instead of params are passed correctly', async () => {
+  test('listRelated: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.incidents.listRelated('abcd1234', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('list_related: request options and params are passed correctly', async () => {
+  test('listRelated: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.incidents.listRelated(
