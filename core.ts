@@ -479,12 +479,22 @@ export class Stream<Item> implements AsyncIterable<Item>, APIResponse<Stream<Ite
       throw new Error(`Attempted to iterate over a response with no body`);
     }
 
+    let awaitingPingData = false;
     for await (const chunk of this.response.body) {
       let text;
       if (chunk instanceof Buffer) {
         text = chunk.toString();
       } else {
         text = chunk;
+      }
+
+      if (text.startsWith('event: ping')) {
+        awaitingPingData = true;
+        continue;
+      }
+      if (awaitingPingData) {
+        awaitingPingData = false;
+        continue;
       }
 
       if (text.startsWith('data: ')) {
