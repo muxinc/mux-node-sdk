@@ -47,17 +47,32 @@ describe('Unit::LiveStreams', () => {
       expect(() => new LiveStreams(testApiKey, testSecret)).to.not.throw();
       expect(TestLiveStreams.tokenId).to.equal(testApiKey);
       expect(TestLiveStreams.tokenSecret).to.equal(testSecret);
-      expect(() => new LiveStreams(testApiKey, testSecret).create({
-        "playback_policy": [
-          "public"
-        ],
-        "new_asset_settings": {
-          "playback_policy": [
-            "public"
-          ]
-        },
-        "reconnect_slate_url": "https://image.mux.com/01PZNlAJ72GcEBkoBj3PZ9kvKrFre00B8lzfyrm3302o004/thumbnail.png",
-      })).to.not.throw();
+      expect(() =>
+        new LiveStreams(testApiKey, testSecret).create({
+          playback_policy: ['public'],
+          new_asset_settings: {
+            playback_policy: ['public'],
+          },
+          reconnect_slate_url:
+            'https://image.mux.com/01PZNlAJ72GcEBkoBj3PZ9kvKrFre00B8lzfyrm3302o004/thumbnail.png',
+        })
+      ).to.not.throw();
+    });
+
+    it('creates a new Livestream instance with generated_subtitles', () => {
+      expect(() =>
+        new LiveStreams(testApiKey, testSecret).create({
+          playback_policy: ['public'],
+          new_asset_settings: {
+            playback_policy: ['public'],
+          },
+          generated_subtitles: [
+            {
+              name: 'sub-en-001',
+            },
+          ],
+        })
+      ).to.not.throw();
     });
   });
 
