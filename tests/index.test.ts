@@ -16,6 +16,15 @@ describe('instantiate client', () => {
     process.env = env;
   });
 
+  test('maxRetries option is correctly set', () => {
+    const client = new Mux({ maxRetries: 1, tokenSecret: 'my secret', tokenId: 'my token id' });
+    expect(client.maxRetries).toEqual(1);
+
+    // default
+    const client2 = new Mux({ tokenSecret: 'my secret', tokenId: 'my token id' });
+    expect(client2.maxRetries).toEqual(2);
+  });
+
   test('with minimal arguments', () => {
     // set access token via env var
     process.env['MUX_TOKEN_ID'] = 'env var token id';

@@ -9,6 +9,8 @@ import { Readable } from 'stream';
 import { VERSION } from './version';
 import { Fetch, getDefaultAgent, getFetch } from './fetch-polyfill';
 
+const MAX_RETRIES = 2;
+
 export abstract class APIClient {
   baseURL: string;
   maxRetries: number;
@@ -20,17 +22,17 @@ export abstract class APIClient {
 
   constructor({
     baseURL,
-    maxRetries = 2,
+    maxRetries,
     timeout = 60 * 1000, // 60s
     httpAgent,
   }: {
     baseURL: string;
-    maxRetries?: number;
+    maxRetries?: number | undefined;
     timeout: number | undefined;
     httpAgent: Agent | undefined;
   }) {
     this.baseURL = baseURL;
-    this.maxRetries = validatePositiveInteger('maxRetries', maxRetries);
+    this.maxRetries = validatePositiveInteger('maxRetries', maxRetries ?? MAX_RETRIES);
     this.timeout = validatePositiveInteger('timeout', timeout);
     this.httpAgent = httpAgent;
 

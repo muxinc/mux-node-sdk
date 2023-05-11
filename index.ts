@@ -15,6 +15,7 @@ type Config = {
   baseURL?: string;
   timeout?: number;
   httpAgent?: Agent;
+  maxRetries?: number;
   tokenSecret?: string | null;
 };
 
@@ -40,6 +41,7 @@ export class Mux extends Core.APIClient {
       baseURL: options.baseURL!,
       timeout: options.timeout,
       httpAgent: options.httpAgent,
+      maxRetries: options.maxRetries,
     });
     this.tokenId = options.tokenId;
 
