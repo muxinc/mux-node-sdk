@@ -65,7 +65,7 @@
     "prettier": "^2.5.1",
     "sinon": "^15.0.1",
     "tsup": "^6.1.2",
-    "typescript": "^4.5.4"
+    "typescript": "^5.0.4"
   },
   "resolutions": {
     "jsdom": "^16.5.0",
