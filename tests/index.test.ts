@@ -16,6 +16,26 @@ describe('instantiate client', () => {
     process.env = env;
   });
 
+  describe('baseUrl', () => {
+    test('trailing slash', () => {
+      const client = new Mux({
+        baseURL: 'http://localhost:5000/custom/path/',
+        tokenSecret: 'my secret',
+        tokenId: 'my token id',
+      });
+      expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
+    });
+
+    test('no trailing slash', () => {
+      const client = new Mux({
+        baseURL: 'http://localhost:5000/custom/path',
+        tokenSecret: 'my secret',
+        tokenId: 'my token id',
+      });
+      expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
+    });
+  });
+
   test('maxRetries option is correctly set', () => {
     const client = new Mux({ maxRetries: 1, tokenSecret: 'my secret', tokenId: 'my token id' });
     expect(client.maxRetries).toEqual(1);

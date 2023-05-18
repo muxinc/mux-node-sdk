@@ -228,7 +228,10 @@ export abstract class APIClient {
   }
 
   buildURL<Req>(path: string, query: Req | undefined): string {
-    const url = isAbsoluteURL(path) ? new URL(path) : new URL(this.baseURL + path);
+    const url =
+      isAbsoluteURL(path) ?
+        new URL(path)
+      : new URL(this.baseURL + (this.baseURL.endsWith('/') && path.startsWith('/') ? path.slice(1) : path));
 
     if (query) {
       url.search = qs.stringify(query, this.qsOptions());
