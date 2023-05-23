@@ -484,33 +484,43 @@ export class Stream<Item> implements AsyncIterable<Item>, APIResponse<Stream<Ite
       throw new Error(`Attempted to iterate over a response with no body`);
     }
 
-    let awaitingPingData = false;
     for await (const chunk of this.response.body) {
-      let text;
+      let text, done;
       if (chunk instanceof Buffer) {
         text = chunk.toString();
       } else {
         text = chunk;
       }
 
-      if (text.startsWith('event: ping')) {
-        awaitingPingData = true;
-        continue;
-      }
-      if (awaitingPingData) {
-        awaitingPingData = false;
-        continue;
+      // https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#event_stream_format
+      const messages = text.split('\n\n');
+      for (const msg of messages) {
+        let data = '';
+        for (const line of msg.split('\n')) {
+          if (line.startsWith('event: ping')) {
+            break;
+          }
+          if (line.startsWith('data: [DONE]')) {
+            done = true;
+            break;
+          }
+
+          if (line.startsWith('data: ')) {
+            data += line.substring(6);
+          }
+        }
+
+        if (!data) continue;
+        try {
+          yield JSON.parse(data);
+        } catch (e) {
+          console.error(`Could not parse message into JSON:`, data);
+          console.error(`From chunk:`, text);
+          throw e;
+        }
       }
 
-      if (text.startsWith('data: ')) {
-        text = text.substring(6);
-      }
-
-      if (text.startsWith('[DONE]')) {
-        break;
-      }
-
-      yield JSON.parse(text);
+      if (done) break;
     }
 
     this.controller.abort();
