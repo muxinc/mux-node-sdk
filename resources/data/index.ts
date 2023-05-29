@@ -13,10 +13,10 @@ export {
   MetricTimeseriesDataResponse,
   OverallValuesResponse,
   MetricListParams,
-  MetricListBreakdownParams,
-  MetricListInsightsParams,
-  MetricRetrieveOverallParams,
-  MetricRetrieveTimeseriesParams,
+  MetricGetInsightsParams,
+  MetricGetOverallValuesParams,
+  MetricGetTimeseriesParams,
+  MetricListBreakdownValuesParams,
   BreakdownValuesBasePage,
 } from './metrics';
 export {
@@ -35,6 +35,7 @@ export {
   IncidentListRelatedParams,
   IncidentsBasePage,
 } from './incidents';
+export { MonitoringListDimensionsResponse } from './monitoring';
 export {
   RealTimeBreakdownResponse,
   RealTimeDimensionsResponse,

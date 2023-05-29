@@ -28,7 +28,7 @@ export class Uploads extends APIResource {
   }
 
   /**
-   * Lists currently extant direct uploads in the current environment.
+   * Lists direct uploads in the current environment.
    */
   list(query?: UploadListParams, options?: Core.RequestOptions): Core.PagePromise<UploadsBasePage>;
   list(options?: Core.RequestOptions): Core.PagePromise<UploadsBasePage>;

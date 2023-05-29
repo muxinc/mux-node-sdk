@@ -6,14 +6,16 @@ import { isRequestOptions } from '~/core';
 
 export class RealTime extends APIResource {
   /**
-   * Lists available real-time dimensions.
+   * Lists available real-time dimensions. This API is now deprecated, please use the
+   * `List Monitoring Dimensions` API.
    */
   listDimensions(options?: Core.RequestOptions): Promise<Core.APIResponse<RealTimeDimensionsResponse>> {
     return this.get('/data/v1/realtime/dimensions', options);
   }
 
   /**
-   * Lists available real-time metrics.
+   * Lists available real-time metrics. This API is now deprecated, please use the
+   * `List Monitoring Metrics` API.
    */
   listMetrics(options?: Core.RequestOptions): Promise<Core.APIResponse<RealTimeMetricsResponse>> {
     return this.get('/data/v1/realtime/metrics', options);
@@ -21,7 +23,8 @@ export class RealTime extends APIResource {
 
   /**
    * Gets breakdown information for a specific dimension and metric along with the
-   * number of concurrent viewers and negative impact score.
+   * number of concurrent viewers and negative impact score. This API is now
+   * deprecated, please use the `Get Monitoring Breakdown` API.
    */
   retrieveBreakdown(
     realtimeMetricId:
@@ -59,7 +62,8 @@ export class RealTime extends APIResource {
   }
 
   /**
-   * Gets histogram timeseries information for a specific metric.
+   * Gets histogram timeseries information for a specific metric. This API is now
+   * deprecated, please use the `Get Monitoring Histogram Timeseries` API.
    */
   retrieveHistogramTimeseries(
     realtimeHistogramMetricId: 'video-startup-time',
@@ -86,7 +90,8 @@ export class RealTime extends APIResource {
 
   /**
    * Gets Time series information for a specific metric along with the number of
-   * concurrent viewers.
+   * concurrent viewers. This API is now deprecated, please use the
+   * `Get Monitoring Timeseries` API.
    */
   retrieveTimeseries(
     realtimeMetricId:
@@ -324,4 +329,10 @@ export interface RealTimeRetrieveTimeseriesParams {
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
   'filters[]'?: Array<string>;
+
+  /**
+   * Timestamp to use as the start of the timeseries data. This value must be
+   * provided as a unix timestamp. Defaults to 30 minutes ago.
+   */
+  timestamp?: number;
 }

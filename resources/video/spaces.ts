@@ -104,17 +104,15 @@ export class Spaces extends APIResource {
    * Starts broadcasting a space to the associated destination. Broadcasts can only
    * be started when the space is `active` (when there are participants connected).
    */
-  async startBroadcast(
+  startBroadcast(
     spaceId: string,
     broadcastId: string,
     options?: Core.RequestOptions,
-  ): Promise<SpaceStartBroadcastResponse> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post(
-      `/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/start`,
-      options,
-    )) as any;
-    return response.data;
+  ): Promise<Core.APIResponse<Promise<void>>> {
+    return this.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/start`, {
+      ...options,
+      headers: { Accept: '', ...options?.headers },
+    });
   }
 
   /**
@@ -122,17 +120,15 @@ export class Spaces extends APIResource {
    * This API also automatically calls `complete` on the destination live stream.
    * Broadcasts are also automatically stopped when a space becomes idle.
    */
-  async stopBroadcast(
+  stopBroadcast(
     spaceId: string,
     broadcastId: string,
     options?: Core.RequestOptions,
-  ): Promise<SpaceStopBroadcastResponse> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post(
-      `/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/stop`,
-      options,
-    )) as any;
-    return response.data;
+  ): Promise<Core.APIResponse<Promise<void>>> {
+    return this.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/stop`, {
+      ...options,
+      headers: { Accept: '', ...options?.headers },
+    });
   }
 }
 
@@ -145,7 +141,15 @@ export interface Broadcast {
   id: string;
 
   /**
-   * The layout used when broadcasting the space. Defaults to `gallery` if not set.
+   * The layout used when broadcasting the space.
+   *
+   * The `gallery` layout will show participants in a grid that automatically resizes
+   * each participant’s stream to best fit up to 10 participants in the window. The
+   * `active-speaker` layout will show only the current active speaker, without a
+   * border. The `crop` layout uses as much of the available space as possible to
+   * show the participant's stream.
+   *
+   * Defaults to `gallery` if not set.
    */
   layout: BroadcastLayout;
 
@@ -180,9 +184,17 @@ export interface Broadcast {
 }
 
 /**
- * The layout used when broadcasting the space. Defaults to `gallery` if not set.
+ * The layout used when broadcasting the space.
+ *
+ * The `gallery` layout will show participants in a grid that automatically resizes
+ * each participant’s stream to best fit up to 10 participants in the window. The
+ * `active-speaker` layout will show only the current active speaker, without a
+ * border. The `crop` layout uses as much of the available space as possible to
+ * show the participant's stream.
+ *
+ * Defaults to `gallery` if not set.
  */
-export type BroadcastLayout = 'gallery' | 'active-speaker';
+export type BroadcastLayout = 'gallery' | 'active-speaker' | 'crop';
 
 /**
  * The resolution of the composited video sent to the live stream. Defaults to
@@ -265,10 +277,6 @@ export type SpaceStatus = 'idle' | 'active';
  */
 export type SpaceType = 'server';
 
-export type SpaceStartBroadcastResponse = Record<string, unknown>;
-
-export type SpaceStopBroadcastResponse = Record<string, unknown>;
-
 export interface SpaceCreateParams {
   /**
    * An array of broadcast destinations you want to stream the space to. **Note:** By
@@ -304,7 +312,15 @@ export namespace SpaceCreateParams {
     background?: string;
 
     /**
-     * The layout used when broadcasting the space. Defaults to `gallery` if not set.
+     * The layout used when broadcasting the space.
+     *
+     * The `gallery` layout will show participants in a grid that automatically resizes
+     * each participant’s stream to best fit up to 10 participants in the window. The
+     * `active-speaker` layout will show only the current active speaker, without a
+     * border. The `crop` layout uses as much of the available space as possible to
+     * show the participant's stream.
+     *
+     * Defaults to `gallery` if not set.
      */
     layout?: BroadcastLayout;
 
@@ -334,7 +350,15 @@ export namespace SpaceCreateParams {
     background?: string;
 
     /**
-     * The layout used when broadcasting the space. Defaults to `gallery` if not set.
+     * The layout used when broadcasting the space.
+     *
+     * The `gallery` layout will show participants in a grid that automatically resizes
+     * each participant’s stream to best fit up to 10 participants in the window. The
+     * `active-speaker` layout will show only the current active speaker, without a
+     * border. The `crop` layout uses as much of the available space as possible to
+     * show the participant's stream.
+     *
+     * Defaults to `gallery` if not set.
      */
     layout?: BroadcastLayout;
 
@@ -362,7 +386,15 @@ export interface SpaceCreateBroadcastParams {
   background?: string;
 
   /**
-   * The layout used when broadcasting the space. Defaults to `gallery` if not set.
+   * The layout used when broadcasting the space.
+   *
+   * The `gallery` layout will show participants in a grid that automatically resizes
+   * each participant’s stream to best fit up to 10 participants in the window. The
+   * `active-speaker` layout will show only the current active speaker, without a
+   * border. The `crop` layout uses as much of the available space as possible to
+   * show the participant's stream.
+   *
+   * Defaults to `gallery` if not set.
    */
   layout?: BroadcastLayout;
 

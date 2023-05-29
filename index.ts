@@ -56,6 +56,7 @@ export class Mux extends Core.APIClient {
 
   video: API.Video = new API.Video(this);
   data: API.Data = new API.Data(this);
+  system: API.System = new API.System(this);
 
   protected override authHeaders(): Core.Headers {
     const credentials = `${this.tokenId}:${this.tokenSecret}`;

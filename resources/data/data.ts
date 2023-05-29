@@ -2,6 +2,7 @@
 
 import { APIResource } from '~/resource';
 import { Dimensions } from './dimensions';
+import { Monitoring } from './monitoring/monitoring';
 import { Errors } from './errors';
 import { Exports } from './exports';
 import { Filters } from './filters';
@@ -12,6 +13,7 @@ import { VideoViews } from './video-views';
 
 export class Data extends APIResource {
   dimensions: Dimensions = new Dimensions(this.client);
+  monitoring: Monitoring = new Monitoring(this.client);
   errors: Errors = new Errors(this.client);
   exports: Exports = new Exports(this.client);
   filters: Filters = new Filters(this.client);

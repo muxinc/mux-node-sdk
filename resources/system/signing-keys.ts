@@ -13,24 +13,24 @@ export class SigningKeys extends APIResource {
    */
   async create(options?: Core.RequestOptions): Promise<SigningKey> {
     // Note that this method does not support accessing responseHeaders
-    const response = (await this.post('/video/v1/signing-keys', options)) as any;
+    const response = (await this.post('/system/v1/signing-keys', options)) as any;
     return response.data;
   }
 
   /**
-   * Retrieves the details of a URL signing key that has previously been created.
-   * Supply the unique signing key ID that was returned from your previous request,
-   * and Mux will return the corresponding signing key information. **The private key
-   * is not returned in this response.**
+   * Retrieves the details of a signing key that has previously been created. Supply
+   * the unique signing key ID that was returned from your previous request, and Mux
+   * will return the corresponding signing key information. **The private key is not
+   * returned in this response.**
    */
   async retrieve(signingKeyId: string, options?: Core.RequestOptions): Promise<SigningKey> {
     // Note that this method does not support accessing responseHeaders
-    const response = (await this.get(`/video/v1/signing-keys/${signingKeyId}`, options)) as any;
+    const response = (await this.get(`/system/v1/signing-keys/${signingKeyId}`, options)) as any;
     return response.data;
   }
 
   /**
-   * Returns a list of URL signing keys.
+   * Returns a list of signing keys.
    */
   list(query?: SigningKeyListParams, options?: Core.RequestOptions): Core.PagePromise<SigningKeysBasePage>;
   list(options?: Core.RequestOptions): Core.PagePromise<SigningKeysBasePage>;
@@ -41,15 +41,15 @@ export class SigningKeys extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/video/v1/signing-keys', SigningKeysBasePage, { query, ...options });
+    return this.getAPIList('/system/v1/signing-keys', SigningKeysBasePage, { query, ...options });
   }
 
   /**
    * Deletes an existing signing key. Use with caution, as this will invalidate any
-   * existing signatures and no URLs can be signed using the key again.
+   * existing signatures and no JWTs can be signed using the key again.
    */
   del(signingKeyId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
-    return this.delete(`/video/v1/signing-keys/${signingKeyId}`, {
+    return this.delete(`/system/v1/signing-keys/${signingKeyId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });

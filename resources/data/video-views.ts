@@ -71,6 +71,8 @@ export namespace VideoViewResponse {
 
     asn_name?: string | null;
 
+    asset_id?: string | null;
+
     buffering_count?: number | null;
 
     buffering_duration?: number | null;
@@ -89,6 +91,8 @@ export namespace VideoViewResponse {
 
     custom_1?: string | null;
 
+    custom_10?: string | null;
+
     custom_2?: string | null;
 
     custom_3?: string | null;
@@ -96,6 +100,16 @@ export namespace VideoViewResponse {
     custom_4?: string | null;
 
     custom_5?: string | null;
+
+    custom_6?: string | null;
+
+    custom_7?: string | null;
+
+    custom_8?: string | null;
+
+    custom_9?: string | null;
+
+    environment_id?: string;
 
     error_type_id?: number | null;
 
@@ -113,11 +127,17 @@ export namespace VideoViewResponse {
 
     latitude?: string | null;
 
+    live_stream_id?: string | null;
+
+    live_stream_latency?: number | null;
+
     longitude?: string | null;
 
     metro?: string | null;
 
     mux_api_version?: string;
+
+    mux_embed?: string | null;
 
     mux_embed_version?: string | null;
 
@@ -133,11 +153,15 @@ export namespace VideoViewResponse {
 
     platform_summary?: string | null;
 
+    playback_id?: string | null;
+
     playback_score?: string | null;
 
     player_autoplay?: boolean;
 
     player_error_code?: string | null;
+
+    player_error_context?: string | null;
 
     player_error_message?: string | null;
 
@@ -253,9 +277,15 @@ export namespace VideoViewResponse {
 
     view_average_request_throughput?: number | null;
 
+    view_drm_type?: string | null;
+
+    view_dropped_frame_count?: number | null;
+
     view_end?: string;
 
     view_error_id?: number | null;
+
+    view_has_ad?: boolean;
 
     view_id?: string;
 

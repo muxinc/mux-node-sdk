@@ -453,6 +453,12 @@ export namespace Asset {
     unexpected_media_file_parameters?: 'non-standard';
 
     /**
+     * The video pixel format, as a string, returned by libav. Considered non-standard
+     * if not one of yuv420p or yuvj420p.
+     */
+    unsupported_pixel_format?: string;
+
+    /**
      * The video bitrate of the input file is `high`. This parameter is present when
      * the average bitrate of any key frame interval (also known as Group of Pictures
      * or GOP) is higher than what's considered standard which typically is 16 Mbps.
@@ -573,7 +579,7 @@ export interface Track {
   /**
    * The status of the track. This parameter is only set for `text` type tracks.
    */
-  status?: 'preparing' | 'ready' | 'errored';
+  status?: 'preparing' | 'ready' | 'errored' | 'deleted';
 
   /**
    * The source of the text contained in a Track of type `text`. Valid `text_source`

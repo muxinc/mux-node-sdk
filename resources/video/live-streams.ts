@@ -87,10 +87,11 @@ export class LiveStreams extends APIResource {
    * with the encoder. This 60s timeframe is meant to give encoder operators a chance
    * to disconnect from their end.
    */
-  async complete(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStreamCompleteResponse> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/complete`, options)) as any;
-    return response.data;
+  complete(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
+    return this.put(`/video/v1/live-streams/${liveStreamId}/complete`, {
+      ...options,
+      headers: { Accept: '', ...options?.headers },
+    });
   }
 
   /**
@@ -170,19 +171,21 @@ export class LiveStreams extends APIResource {
    * Mux also closes the encoder connection immediately. Any attempt from the encoder
    * to re-establish connection will fail till the live stream is re-enabled.
    */
-  async disable(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStreamDisableResponse> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/disable`, options)) as any;
-    return response.data;
+  disable(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
+    return this.put(`/video/v1/live-streams/${liveStreamId}/disable`, {
+      ...options,
+      headers: { Accept: '', ...options?.headers },
+    });
   }
 
   /**
    * Enables a live stream, allowing it to accept an incoming RTMP stream.
    */
-  async enable(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStreamEnableResponse> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/enable`, options)) as any;
-    return response.data;
+  enable(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
+    return this.put(`/video/v1/live-streams/${liveStreamId}/enable`, {
+      ...options,
+      headers: { Accept: '', ...options?.headers },
+    });
   }
 
   /**
@@ -353,8 +356,8 @@ export interface LiveStream {
   playback_ids?: Array<Shared.PlaybackID>;
 
   /**
-   * An array of strings with the most recent Assets that were created from this live
-   * stream.
+   * An array of strings with the most recent Asset IDs that were created from this
+   * Live Stream. The most recently generated Asset ID is the last entry in the list.
    */
   recent_asset_ids?: Array<string>;
 
@@ -371,6 +374,11 @@ export interface LiveStream {
    * to a drop in the network, the Reconnect Window is the time in seconds that Mux
    * should wait for the streaming software to reconnect before considering the live
    * stream finished and completing the recorded asset. **Max**: 1800s (30 minutes).
+   *
+   * If not specified directly, Standard Latency streams have a Reconnect Window of
+   * 60 seconds; Reduced and Low Latency streams have a default of 0 seconds, or no
+   * Reconnect Window. For that reason, we suggest specifying a value other than zero
+   * for Reduced and Low Latency streams.
    *
    * Reduced and Low Latency streams with a Reconnect Window greater than zero will
    * insert slate media into the recorded asset while waiting for the streaming
@@ -645,7 +653,7 @@ export namespace LiveStream {
     /**
      * CEA-608 caption channel to read data from.
      */
-    language_channel?: 'cc1';
+    language_channel?: 'cc1' | 'cc2' | 'cc3' | 'cc4';
 
     /**
      * The language of the closed caption stream. Value must be BCP 47 compliant.
@@ -689,12 +697,6 @@ export namespace LiveStream {
     transcription_vocabulary_ids?: Array<string>;
   }
 }
-
-export type LiveStreamCompleteResponse = Record<string, unknown>;
-
-export type LiveStreamDisableResponse = Record<string, unknown>;
-
-export type LiveStreamEnableResponse = Record<string, unknown>;
 
 export interface LiveStreamCreateSimulcastTargetResponse {
   /**
@@ -808,6 +810,11 @@ export interface LiveStreamCreateParams {
    * should wait for the streaming software to reconnect before considering the live
    * stream finished and completing the recorded asset. Defaults to 60 seconds on the
    * API if not specified.
+   *
+   * If not specified directly, Standard Latency streams have a Reconnect Window of
+   * 60 seconds; Reduced and Low Latency streams have a default of 0 seconds, or no
+   * Reconnect Window. For that reason, we suggest specifying a value other than zero
+   * for Reduced and Low Latency streams.
    *
    * Reduced and Low Latency streams with a Reconnect Window greater than zero will
    * insert slate media into the recorded asset while waiting for the streaming
@@ -1064,7 +1071,7 @@ export namespace LiveStreamCreateParams {
     /**
      * CEA-608 caption channel to read data from.
      */
-    language_channel?: 'cc1';
+    language_channel?: 'cc1' | 'cc2' | 'cc3' | 'cc4';
 
     /**
      * The language of the closed caption stream. Value must be BCP 47 compliant.
@@ -1131,7 +1138,7 @@ export namespace LiveStreamCreateParams {
     /**
      * CEA-608 caption channel to read data from.
      */
-    language_channel?: 'cc1';
+    language_channel?: 'cc1' | 'cc2' | 'cc3' | 'cc4';
 
     /**
      * The language of the closed caption stream. Value must be BCP 47 compliant.
@@ -1444,6 +1451,11 @@ export interface LiveStreamUpdateParams {
    * should wait for the streaming software to reconnect before considering the live
    * stream finished and completing the recorded asset.
    *
+   * If not specified directly, Standard Latency streams have a Reconnect Window of
+   * 60 seconds; Reduced and Low Latency streams have a default of 0 seconds, or no
+   * Reconnect Window. For that reason, we suggest specifying a value other than zero
+   * for Reduced and Low Latency streams.
+   *
    * Reduced and Low Latency streams with a Reconnect Window greater than zero will
    * insert slate media into the recorded asset while waiting for the streaming
    * software to reconnect or when there are brief interruptions in the live stream
@@ -1519,7 +1531,7 @@ export namespace LiveStreamUpdateEmbeddedSubtitlesParams {
     /**
      * CEA-608 caption channel to read data from.
      */
-    language_channel?: 'cc1';
+    language_channel?: 'cc1' | 'cc2' | 'cc3' | 'cc4';
 
     /**
      * The language of the closed caption stream. Value must be BCP 47 compliant.
@@ -1542,7 +1554,7 @@ export namespace LiveStreamUpdateEmbeddedSubtitlesParams {
     /**
      * CEA-608 caption channel to read data from.
      */
-    language_channel?: 'cc1';
+    language_channel?: 'cc1' | 'cc2' | 'cc3' | 'cc4';
 
     /**
      * The language of the closed caption stream. Value must be BCP 47 compliant.

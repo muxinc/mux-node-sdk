@@ -38,9 +38,6 @@ Methods:
 Models:
 
 - <code><a href="./resources/video/live-streams.ts">LiveStream</a></code>
-- <code><a href="./resources/video/live-streams.ts">LiveStreamCompleteResponse</a></code>
-- <code><a href="./resources/video/live-streams.ts">LiveStreamDisableResponse</a></code>
-- <code><a href="./resources/video/live-streams.ts">LiveStreamEnableResponse</a></code>
 - <code><a href="./resources/video/live-streams.ts">LiveStreamCreateSimulcastTargetResponse</a></code>
 
 Methods:
@@ -50,13 +47,13 @@ Methods:
 - <code title="patch /video/v1/live-streams/{LIVE_STREAM_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">update</a>(liveStreamId, { ...params }) -> LiveStream</code>
 - <code title="get /video/v1/live-streams">client.video.liveStreams.<a href="./resources/video/live-streams.ts">list</a>({ ...params }) -> LiveStreamsBasePage</code>
 - <code title="delete /video/v1/live-streams/{LIVE_STREAM_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">del</a>(liveStreamId) -> Promise<void></code>
-- <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/complete">client.video.liveStreams.<a href="./resources/video/live-streams.ts">complete</a>(liveStreamId) -> LiveStreamCompleteResponse</code>
+- <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/complete">client.video.liveStreams.<a href="./resources/video/live-streams.ts">complete</a>(liveStreamId) -> Promise<void></code>
 - <code title="post /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids">client.video.liveStreams.<a href="./resources/video/live-streams.ts">createPlaybackId</a>(liveStreamId, { ...params }) -> PlaybackID</code>
 - <code title="post /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets">client.video.liveStreams.<a href="./resources/video/live-streams.ts">createSimulcastTarget</a>(liveStreamId, { ...params }) -> LiveStreamCreateSimulcastTargetResponse</code>
 - <code title="delete /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">deletePlaybackId</a>(liveStreamId, playbackId) -> Promise<void></code>
 - <code title="delete /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">deleteSimulcastTarget</a>(liveStreamId, simulcastTargetId) -> Promise<void></code>
-- <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/disable">client.video.liveStreams.<a href="./resources/video/live-streams.ts">disable</a>(liveStreamId) -> LiveStreamDisableResponse</code>
-- <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/enable">client.video.liveStreams.<a href="./resources/video/live-streams.ts">enable</a>(liveStreamId) -> LiveStreamEnableResponse</code>
+- <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/disable">client.video.liveStreams.<a href="./resources/video/live-streams.ts">disable</a>(liveStreamId) -> Promise<void></code>
+- <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/enable">client.video.liveStreams.<a href="./resources/video/live-streams.ts">enable</a>(liveStreamId) -> Promise<void></code>
 - <code title="post /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key">client.video.liveStreams.<a href="./resources/video/live-streams.ts">resetStreamKey</a>(liveStreamId) -> LiveStream</code>
 - <code title="get /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">retrievePlaybackId</a>(liveStreamId, playbackId) -> PlaybackID</code>
 - <code title="get /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">retrieveSimulcastTarget</a>(liveStreamId, simulcastTargetId) -> LiveStreamCreateSimulcastTargetResponse</code>
@@ -88,20 +85,6 @@ Methods:
 - <code title="delete /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}">client.video.playbackRestrictions.<a href="./resources/video/playback-restrictions.ts">del</a>(playbackRestrictionId) -> Promise<void></code>
 - <code title="put /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/referrer">client.video.playbackRestrictions.<a href="./resources/video/playback-restrictions.ts">updateReferrer</a>(playbackRestrictionId) -> PlaybackRestriction</code>
 
-## SigningKeys
-
-Models:
-
-- <code><a href="./resources/video/signing-keys.ts">SigningKey</a></code>
-- <code><a href="./resources/video/signing-keys.ts">SigningKeyResponse</a></code>
-
-Methods:
-
-- <code title="post /video/v1/signing-keys">client.video.signingKeys.<a href="./resources/video/signing-keys.ts">create</a>() -> SigningKey</code>
-- <code title="get /video/v1/signing-keys/{SIGNING_KEY_ID}">client.video.signingKeys.<a href="./resources/video/signing-keys.ts">retrieve</a>(signingKeyId) -> SigningKey</code>
-- <code title="get /video/v1/signing-keys">client.video.signingKeys.<a href="./resources/video/signing-keys.ts">list</a>({ ...params }) -> SigningKeysBasePage</code>
-- <code title="delete /video/v1/signing-keys/{SIGNING_KEY_ID}">client.video.signingKeys.<a href="./resources/video/signing-keys.ts">del</a>(signingKeyId) -> Promise<void></code>
-
 ## Spaces
 
 Models:
@@ -115,8 +98,6 @@ Models:
 - <code><a href="./resources/video/spaces.ts">SpaceResponse</a></code>
 - <code><a href="./resources/video/spaces.ts">SpaceStatus</a></code>
 - <code><a href="./resources/video/spaces.ts">SpaceType</a></code>
-- <code><a href="./resources/video/spaces.ts">SpaceStartBroadcastResponse</a></code>
-- <code><a href="./resources/video/spaces.ts">SpaceStopBroadcastResponse</a></code>
 
 Methods:
 
@@ -127,8 +108,8 @@ Methods:
 - <code title="post /video/v1/spaces/{SPACE_ID}/broadcasts">client.video.spaces.<a href="./resources/video/spaces.ts">createBroadcast</a>(spaceId, { ...params }) -> Broadcast</code>
 - <code title="delete /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}">client.video.spaces.<a href="./resources/video/spaces.ts">deleteBroadcast</a>(spaceId, broadcastId) -> Promise<void></code>
 - <code title="get /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}">client.video.spaces.<a href="./resources/video/spaces.ts">retrieveBroadcast</a>(spaceId, broadcastId) -> Broadcast</code>
-- <code title="post /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/start">client.video.spaces.<a href="./resources/video/spaces.ts">startBroadcast</a>(spaceId, broadcastId) -> SpaceStartBroadcastResponse</code>
-- <code title="post /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/stop">client.video.spaces.<a href="./resources/video/spaces.ts">stopBroadcast</a>(spaceId, broadcastId) -> SpaceStopBroadcastResponse</code>
+- <code title="post /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/start">client.video.spaces.<a href="./resources/video/spaces.ts">startBroadcast</a>(spaceId, broadcastId) -> Promise<void></code>
+- <code title="post /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/stop">client.video.spaces.<a href="./resources/video/spaces.ts">stopBroadcast</a>(spaceId, broadcastId) -> Promise<void></code>
 
 ## TranscriptionVocabularies
 
@@ -173,6 +154,34 @@ Methods:
 
 - <code title="get /data/v1/dimensions">client.data.dimensions.<a href="./resources/data/dimensions.ts">list</a>() -> DimensionsResponse</code>
 - <code title="get /data/v1/dimensions/{DIMENSION_ID}">client.data.dimensions.<a href="./resources/data/dimensions.ts">listValues</a>(dimensionId, { ...params }) -> DimensionValuesBasePage</code>
+
+## Monitoring
+
+Models:
+
+- <code><a href="./resources/data/monitoring/monitoring.ts">MonitoringListDimensionsResponse</a></code>
+
+Methods:
+
+- <code title="get /data/v1/monitoring/dimensions">client.data.monitoring.<a href="./resources/data/monitoring/monitoring.ts">listDimensions</a>() -> MonitoringListDimensionsResponse</code>
+
+### Metrics
+
+Models:
+
+- <code><a href="./resources/data/monitoring/metrics.ts">MetricListResponse</a></code>
+- <code><a href="./resources/data/monitoring/metrics.ts">MetricGetBreakdownResponse</a></code>
+- <code><a href="./resources/data/monitoring/metrics.ts">MetricGetTimeseriesResponse</a></code>
+- <code><a href="./resources/data/monitoring/metrics.ts">MetricGetBreakdownTimeseriesResponse</a></code>
+- <code><a href="./resources/data/monitoring/metrics.ts">MetricGetHistogramTimeseriesResponse</a></code>
+
+Methods:
+
+- <code title="get /data/v1/monitoring/metrics">client.data.monitoring.metrics.<a href="./resources/data/monitoring/metrics.ts">list</a>() -> MetricListResponse</code>
+- <code title="get /data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/breakdown">client.data.monitoring.metrics.<a href="./resources/data/monitoring/metrics.ts">getBreakdown</a>(monitoringMetricId, { ...params }) -> MetricGetBreakdownResponse</code>
+- <code title="get /data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/breakdown-timeseries">client.data.monitoring.metrics.<a href="./resources/data/monitoring/metrics.ts">getBreakdownTimeseries</a>(monitoringMetricId, { ...params }) -> MetricGetBreakdownTimeseriesResponse</code>
+- <code title="get /data/v1/monitoring/metrics/{MONITORING_HISTOGRAM_METRIC_ID}/histogram-timeseries">client.data.monitoring.metrics.<a href="./resources/data/monitoring/metrics.ts">getHistogramTimeseries</a>(monitoringHistogramMetricId, { ...params }) -> MetricGetHistogramTimeseriesResponse</code>
+- <code title="get /data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/timeseries">client.data.monitoring.metrics.<a href="./resources/data/monitoring/metrics.ts">getTimeseries</a>(monitoringMetricId, { ...params }) -> MetricGetTimeseriesResponse</code>
 
 ## Errors
 
@@ -232,10 +241,10 @@ Models:
 Methods:
 
 - <code title="get /data/v1/metrics/comparison">client.data.metrics.<a href="./resources/data/metrics.ts">list</a>({ ...params }) -> AllMetricValuesResponse</code>
-- <code title="get /data/v1/metrics/{METRIC_ID}/breakdown">client.data.metrics.<a href="./resources/data/metrics.ts">listBreakdown</a>(metricId, { ...params }) -> BreakdownValuesBasePage</code>
-- <code title="get /data/v1/metrics/{METRIC_ID}/insights">client.data.metrics.<a href="./resources/data/metrics.ts">listInsights</a>(metricId, { ...params }) -> InsightsResponse</code>
-- <code title="get /data/v1/metrics/{METRIC_ID}/overall">client.data.metrics.<a href="./resources/data/metrics.ts">retrieveOverall</a>(metricId, { ...params }) -> OverallValuesResponse</code>
-- <code title="get /data/v1/metrics/{METRIC_ID}/timeseries">client.data.metrics.<a href="./resources/data/metrics.ts">retrieveTimeseries</a>(metricId, { ...params }) -> MetricTimeseriesDataResponse</code>
+- <code title="get /data/v1/metrics/{METRIC_ID}/insights">client.data.metrics.<a href="./resources/data/metrics.ts">getInsights</a>(metricId, { ...params }) -> InsightsResponse</code>
+- <code title="get /data/v1/metrics/{METRIC_ID}/overall">client.data.metrics.<a href="./resources/data/metrics.ts">getOverallValues</a>(metricId, { ...params }) -> OverallValuesResponse</code>
+- <code title="get /data/v1/metrics/{METRIC_ID}/timeseries">client.data.metrics.<a href="./resources/data/metrics.ts">getTimeseries</a>(metricId, { ...params }) -> MetricTimeseriesDataResponse</code>
+- <code title="get /data/v1/metrics/{METRIC_ID}/breakdown">client.data.metrics.<a href="./resources/data/metrics.ts">listBreakdownValues</a>(metricId, { ...params }) -> BreakdownValuesBasePage</code>
 
 ## RealTime
 
@@ -266,3 +275,19 @@ Methods:
 
 - <code title="get /data/v1/video-views/{VIDEO_VIEW_ID}">client.data.videoViews.<a href="./resources/data/video-views.ts">retrieve</a>(videoViewId) -> VideoViewResponse</code>
 - <code title="get /data/v1/video-views">client.data.videoViews.<a href="./resources/data/video-views.ts">list</a>({ ...params }) -> AbridgedVideoViewsBasePage</code>
+
+# System
+
+## SigningKeys
+
+Models:
+
+- <code><a href="./resources/system/signing-keys.ts">SigningKey</a></code>
+- <code><a href="./resources/system/signing-keys.ts">SigningKeyResponse</a></code>
+
+Methods:
+
+- <code title="post /system/v1/signing-keys">client.system.signingKeys.<a href="./resources/system/signing-keys.ts">create</a>() -> SigningKey</code>
+- <code title="get /system/v1/signing-keys/{SIGNING_KEY_ID}">client.system.signingKeys.<a href="./resources/system/signing-keys.ts">retrieve</a>(signingKeyId) -> SigningKey</code>
+- <code title="get /system/v1/signing-keys">client.system.signingKeys.<a href="./resources/system/signing-keys.ts">list</a>({ ...params }) -> SigningKeysBasePage</code>
+- <code title="delete /system/v1/signing-keys/{SIGNING_KEY_ID}">client.system.signingKeys.<a href="./resources/system/signing-keys.ts">del</a>(signingKeyId) -> Promise<void></code>

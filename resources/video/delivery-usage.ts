@@ -61,6 +61,12 @@ export interface DeliveryReport {
   delivered_seconds?: number;
 
   /**
+   * Seconds delivered broken into resolution tiers. Each tier will only be displayed
+   * if there was content delivered in the tier.
+   */
+  delivered_seconds_by_resolution?: DeliveryReport.DeliveredSecondsByResolution;
+
+  /**
    * Unique identifier for the live stream that created the asset.
    */
   live_stream_id?: string;
@@ -69,6 +75,46 @@ export interface DeliveryReport {
    * The `passthrough` value for the asset.
    */
   passthrough?: string;
+}
+
+export namespace DeliveryReport {
+  /**
+   * Seconds delivered broken into resolution tiers. Each tier will only be displayed
+   * if there was content delivered in the tier.
+   */
+  export interface DeliveredSecondsByResolution {
+    /**
+     * Total number of delivered seconds during this time window that had a resolution
+     * larger than the 720p tier but less than or equal to the 1440p tier (over 921,600
+     * and <= 2,073,600 pixels total).
+     */
+    tier_1080p?: number;
+
+    /**
+     * Total number of delivered seconds during this time window that had a resolution
+     * larger than the 1080p tier but less than or equal to the 2160p tier (over
+     * 2,073,600 and <= 4,194,304 pixels total).
+     */
+    tier_1440p?: number;
+
+    /**
+     * Total number of delivered seconds during this time window that had a resolution
+     * larger than the 1440p tier (over 4,194,304 pixels total).
+     */
+    tier_2160p?: number;
+
+    /**
+     * Total number of delivered seconds during this time window that had a resolution
+     * within the 720p tier (up to 921,600 pixels total, based on typical 1280x720).
+     */
+    tier_720p?: number;
+
+    /**
+     * Total number of delivered seconds during this time window that had a resolution
+     * of audio only.
+     */
+    tier_audio_only?: number;
+  }
 }
 
 export interface DeliveryUsageListParams extends PageWithTotalParams {
