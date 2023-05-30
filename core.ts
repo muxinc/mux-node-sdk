@@ -146,6 +146,14 @@ export abstract class APIClient {
     return { req, url, timeout };
   }
 
+  /**
+   * Used as a callback for mutating the given `RequestInit` object.
+   *
+   * This is useful for cases where you want to add certain headers based off of
+   * the request properties, e.g. `method` or `url`.
+   */
+  protected async prepareRequest(request: RequestInit, { url }: { url: string }): Promise<void> {}
+
   protected makeStatusError(
     status: number | undefined,
     error: Object | undefined,
@@ -160,6 +168,7 @@ export abstract class APIClient {
     retriesRemaining = options.maxRetries ?? this.maxRetries,
   ): Promise<APIResponse<Rsp>> {
     const { req, url, timeout } = this.buildRequest(options);
+    await this.prepareRequest(req, { url });
 
     this.debug('request', url, options, req.headers);
 
