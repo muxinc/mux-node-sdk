@@ -16,6 +16,7 @@ type Config = {
   timeout?: number;
   httpAgent?: Agent;
   maxRetries?: number;
+  defaultHeaders?: Core.Headers;
   tokenSecret?: string | null;
 };
 
@@ -23,6 +24,8 @@ type Config = {
 export class Mux extends Core.APIClient {
   tokenId: string;
   tokenSecret: string;
+
+  private _options: Config;
 
   constructor(config: Config) {
     const options: Config = {
@@ -44,6 +47,7 @@ export class Mux extends Core.APIClient {
       maxRetries: options.maxRetries,
     });
     this.tokenId = options.tokenId;
+    this._options = options;
 
     const tokenSecret = config.tokenSecret || process.env['MUX_TOKEN_SECRET'];
     if (!tokenSecret) {
@@ -57,6 +61,13 @@ export class Mux extends Core.APIClient {
   video: API.Video = new API.Video(this);
   data: API.Data = new API.Data(this);
   system: API.System = new API.System(this);
+
+  protected override defaultHeaders(): Core.Headers {
+    return {
+      ...super.defaultHeaders(),
+      ...this._options.defaultHeaders,
+    };
+  }
 
   protected override authHeaders(): Core.Headers {
     const credentials = `${this.tokenId}:${this.tokenSecret}`;
