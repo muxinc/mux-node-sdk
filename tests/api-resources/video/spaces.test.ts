@@ -6,11 +6,7 @@ const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010'
 
 describe('resource spaces', () => {
   test('create', async () => {
-    const response = await mux.video.spaces.create({
-      broadcasts: [{ live_stream_id: 'string' }, { live_stream_id: 'string' }, { live_stream_id: 'string' }],
-      passthrough: 'string',
-      type: 'server',
-    });
+    const response = await mux.video.spaces.create({});
   });
 
   test('retrieve', async () => {
@@ -54,20 +50,14 @@ describe('resource spaces', () => {
   });
 
   test('createBroadcast: only required params', async () => {
-    const response = await mux.video.spaces.createBroadcast('string', {
-      background: 'string',
-      layout: 'gallery',
-      live_stream_id: 'string',
-      passthrough: 'string',
-      resolution: '1920x1080',
-    });
+    const response = await mux.video.spaces.createBroadcast('string', { live_stream_id: 'string' });
   });
 
   test('createBroadcast: required and optional params', async () => {
     const response = await mux.video.spaces.createBroadcast('string', {
+      live_stream_id: 'string',
       background: 'string',
       layout: 'gallery',
-      live_stream_id: 'string',
       passthrough: 'string',
       resolution: '1920x1080',
     });

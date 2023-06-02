@@ -6,7 +6,7 @@ const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010'
 
 describe('resource playbackRestrictions', () => {
   test('create', async () => {
-    const response = await mux.video.playbackRestrictions.create({ referrer: {} });
+    const response = await mux.video.playbackRestrictions.create({});
   });
 
   test('retrieve', async () => {

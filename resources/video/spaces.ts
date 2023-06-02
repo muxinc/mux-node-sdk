@@ -336,49 +336,16 @@ export namespace SpaceCreateParams {
      */
     resolution?: BroadcastResolution;
   }
-
-  export interface Broadcasts {
-    /**
-     * The ID of the live stream that you want to broadcast to.
-     */
-    live_stream_id: string;
-
-    /**
-     * URL of an image to display as the background of the broadcast. Its dimensions
-     * should match the provided resolution.
-     */
-    background?: string;
-
-    /**
-     * The layout used when broadcasting the space.
-     *
-     * The `gallery` layout will show participants in a grid that automatically resizes
-     * each participant’s stream to best fit up to 10 participants in the window. The
-     * `active-speaker` layout will show only the current active speaker, without a
-     * border. The `crop` layout uses as much of the available space as possible to
-     * show the participant's stream.
-     *
-     * Defaults to `gallery` if not set.
-     */
-    layout?: BroadcastLayout;
-
-    /**
-     * Arbitrary user-supplied metadata that will be included in the broadcast details
-     * and related webhooks. Max: 255 characters.
-     */
-    passthrough?: string;
-
-    /**
-     * The resolution of the composited video sent to the live stream. Defaults to
-     * `1920x1080` if not set.
-     */
-    resolution?: BroadcastResolution;
-  }
 }
 
 export interface SpaceListParams extends BasePageParams {}
 
 export interface SpaceCreateBroadcastParams {
+  /**
+   * The ID of the live stream that you want to broadcast to.
+   */
+  live_stream_id: string;
+
   /**
    * URL of an image to display as the background of the broadcast. Its dimensions
    * should match the provided resolution.
@@ -397,11 +364,6 @@ export interface SpaceCreateBroadcastParams {
    * Defaults to `gallery` if not set.
    */
   layout?: BroadcastLayout;
-
-  /**
-   * The ID of the live stream that you want to broadcast to.
-   */
-  live_stream_id: string;
 
   /**
    * Arbitrary user-supplied metadata that will be included in the broadcast details

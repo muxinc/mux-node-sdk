@@ -6,23 +6,7 @@ const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010'
 
 describe('resource liveStreams', () => {
   test('create', async () => {
-    const response = await mux.video.liveStreams.create({
-      audio_only: true,
-      embedded_subtitles: [{}, {}, {}],
-      generated_subtitles: [{}, {}, {}],
-      latency_mode: 'low',
-      low_latency: true,
-      max_continuous_duration: 60,
-      new_asset_settings: {},
-      passthrough: 'string',
-      playback_policy: ['public', 'public', 'public'],
-      reconnect_slate_url: 'string',
-      reconnect_window: 0,
-      reduced_latency: true,
-      simulcast_targets: [{ url: 'string' }, { url: 'string' }, { url: 'string' }],
-      test: true,
-      use_slate_for_standard_latency: true,
-    });
+    const response = await mux.video.liveStreams.create({});
   });
 
   test('retrieve', async () => {
@@ -37,14 +21,7 @@ describe('resource liveStreams', () => {
   });
 
   test('update', async () => {
-    const response = await mux.video.liveStreams.update('string', {
-      latency_mode: 'low',
-      max_continuous_duration: 60,
-      passthrough: 'string',
-      reconnect_slate_url: 'string',
-      reconnect_window: 0,
-      use_slate_for_standard_latency: true,
-    });
+    const response = await mux.video.liveStreams.update('string', {});
   });
 
   test('list', async () => {
@@ -91,22 +68,18 @@ describe('resource liveStreams', () => {
   });
 
   test('createPlaybackId', async () => {
-    const response = await mux.video.liveStreams.createPlaybackId('string', { policy: 'public' });
+    const response = await mux.video.liveStreams.createPlaybackId('string', {});
   });
 
   test('createSimulcastTarget: only required params', async () => {
-    const response = await mux.video.liveStreams.createSimulcastTarget('string', {
-      passthrough: 'string',
-      stream_key: 'string',
-      url: 'string',
-    });
+    const response = await mux.video.liveStreams.createSimulcastTarget('string', { url: 'string' });
   });
 
   test('createSimulcastTarget: required and optional params', async () => {
     const response = await mux.video.liveStreams.createSimulcastTarget('string', {
+      url: 'string',
       passthrough: 'string',
       stream_key: 'string',
-      url: 'string',
     });
   });
 
@@ -188,14 +161,10 @@ describe('resource liveStreams', () => {
   });
 
   test('updateEmbeddedSubtitles', async () => {
-    const response = await mux.video.liveStreams.updateEmbeddedSubtitles('string', {
-      embedded_subtitles: [{}, {}, {}],
-    });
+    const response = await mux.video.liveStreams.updateEmbeddedSubtitles('string', {});
   });
 
   test('updateGeneratedSubtitles', async () => {
-    const response = await mux.video.liveStreams.updateGeneratedSubtitles('string', {
-      generated_subtitles: [{}, {}, {}],
-    });
+    const response = await mux.video.liveStreams.updateGeneratedSubtitles('string', {});
   });
 });

@@ -6,16 +6,7 @@ const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010'
 
 describe('resource assets', () => {
   test('create', async () => {
-    const response = await mux.video.assets.create({
-      input: [{}, {}, {}],
-      master_access: 'none',
-      mp4_support: 'none',
-      normalize_audio: true,
-      passthrough: 'string',
-      per_title_encode: true,
-      playback_policy: ['public', 'public', 'public'],
-      test: true,
-    });
+    const response = await mux.video.assets.create({});
   });
 
   test('retrieve', async () => {
@@ -30,7 +21,7 @@ describe('resource assets', () => {
   });
 
   test('update', async () => {
-    const response = await mux.video.assets.update('string', { passthrough: 'string' });
+    const response = await mux.video.assets.update('string', {});
   });
 
   test('list', async () => {
@@ -66,15 +57,12 @@ describe('resource assets', () => {
   });
 
   test('createPlaybackId', async () => {
-    const response = await mux.video.assets.createPlaybackId('string', { policy: 'public' });
+    const response = await mux.video.assets.createPlaybackId('string', {});
   });
 
   test('createTrack: only required params', async () => {
     const response = await mux.video.assets.createTrack('string', {
-      closed_captions: true,
       language_code: 'string',
-      name: 'string',
-      passthrough: 'string',
       text_type: 'subtitles',
       type: 'text',
       url: 'string',
@@ -83,13 +71,13 @@ describe('resource assets', () => {
 
   test('createTrack: required and optional params', async () => {
     const response = await mux.video.assets.createTrack('string', {
-      closed_captions: true,
       language_code: 'string',
-      name: 'string',
-      passthrough: 'string',
       text_type: 'subtitles',
       type: 'text',
       url: 'string',
+      closed_captions: true,
+      name: 'string',
+      passthrough: 'string',
     });
   });
 
@@ -127,10 +115,10 @@ describe('resource assets', () => {
   });
 
   test('updateMasterAccess', async () => {
-    const response = await mux.video.assets.updateMasterAccess('string', { master_access: 'temporary' });
+    const response = await mux.video.assets.updateMasterAccess('string', {});
   });
 
   test('updateMP4Support', async () => {
-    const response = await mux.video.assets.updateMP4Support('string', { mp4_support: 'standard' });
+    const response = await mux.video.assets.updateMP4Support('string', {});
   });
 });

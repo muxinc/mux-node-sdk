@@ -6,17 +6,11 @@ const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010'
 
 describe('resource uploads', () => {
   test('create: only required params', async () => {
-    const response = await mux.video.uploads.create({
-      cors_origin: 'string',
-      new_asset_settings: {},
-      test: true,
-      timeout: 60,
-    });
+    const response = await mux.video.uploads.create({ new_asset_settings: {} });
   });
 
   test('create: required and optional params', async () => {
     const response = await mux.video.uploads.create({
-      cors_origin: 'string',
       new_asset_settings: {
         input: [
           {
@@ -88,6 +82,7 @@ describe('resource uploads', () => {
         master_access: 'none',
         test: true,
       },
+      cors_origin: 'string',
       test: true,
       timeout: 60,
     });

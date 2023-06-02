@@ -7,8 +7,6 @@ const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010'
 describe('resource transcriptionVocabularies', () => {
   test('create: only required params', async () => {
     const response = await mux.video.transcriptionVocabularies.create({
-      name: 'string',
-      passthrough: 'string',
       phrases: [
         'x',
         'x',
@@ -1016,8 +1014,6 @@ describe('resource transcriptionVocabularies', () => {
 
   test('create: required and optional params', async () => {
     const response = await mux.video.transcriptionVocabularies.create({
-      name: 'string',
-      passthrough: 'string',
       phrases: [
         'x',
         'x',
@@ -2020,6 +2016,8 @@ describe('resource transcriptionVocabularies', () => {
         'x',
         'x',
       ],
+      name: 'string',
+      passthrough: 'string',
     });
   });
 
@@ -2036,8 +2034,6 @@ describe('resource transcriptionVocabularies', () => {
 
   test('update: only required params', async () => {
     const response = await mux.video.transcriptionVocabularies.update('string', {
-      name: 'string',
-      passthrough: 'string',
       phrases: [
         'x',
         'x',
@@ -3045,8 +3041,6 @@ describe('resource transcriptionVocabularies', () => {
 
   test('update: required and optional params', async () => {
     const response = await mux.video.transcriptionVocabularies.update('string', {
-      name: 'string',
-      passthrough: 'string',
       phrases: [
         'x',
         'x',
@@ -4049,6 +4043,8 @@ describe('resource transcriptionVocabularies', () => {
         'x',
         'x',
       ],
+      name: 'string',
+      passthrough: 'string',
     });
   });
 
