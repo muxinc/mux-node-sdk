@@ -7,6 +7,7 @@ import { FormDataEncoder } from 'form-data-encoder';
 import { Readable } from 'stream';
 
 import { VERSION } from './version';
+import { Stream } from './streaming';
 import { Fetch, getDefaultAgent, getFetch } from './fetch-polyfill';
 
 const MAX_RETRIES = 2;
@@ -476,66 +477,6 @@ export class PagePromise<
   }
 }
 
-export class Stream<Item> implements AsyncIterable<Item>, APIResponse<Stream<Item>> {
-  response: Response;
-  responseHeaders: Headers;
-  controller: AbortController;
-
-  constructor(response: Response, controller: AbortController) {
-    this.response = response;
-    this.controller = controller;
-    this.responseHeaders = createResponseHeaders(response.headers);
-  }
-
-  async *[Symbol.asyncIterator](): AsyncIterator<Item, any, undefined> {
-    if (!this.response.body) {
-      this.controller.abort();
-      throw new Error(`Attempted to iterate over a response with no body`);
-    }
-
-    for await (const chunk of this.response.body) {
-      let text, done;
-      if (chunk instanceof Buffer) {
-        text = chunk.toString();
-      } else {
-        text = chunk;
-      }
-
-      // https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#event_stream_format
-      const messages = text.split('\n\n');
-      for (const msg of messages) {
-        let data = '';
-        for (const line of msg.split('\n')) {
-          if (line.startsWith('event: ping')) {
-            break;
-          }
-          if (line.startsWith('data: [DONE]')) {
-            done = true;
-            break;
-          }
-
-          if (line.startsWith('data: ')) {
-            data += line.substring(6);
-          }
-        }
-
-        if (!data) continue;
-        try {
-          yield JSON.parse(data);
-        } catch (e) {
-          console.error(`Could not parse message into JSON:`, data);
-          console.error(`From chunk:`, text);
-          throw e;
-        }
-      }
-
-      if (done) break;
-    }
-
-    this.controller.abort();
-  }
-}
-
 export const createResponseHeaders = (
   headers: Awaited<ReturnType<Fetch>>['headers'],
 ): Record<string, string> => {
@@ -774,7 +715,7 @@ const getPlatformHeaders = () => {
   return (_platformHeaders ??= getPlatformProperties());
 };
 
-const safeJSON = (text: string) => {
+export const safeJSON = (text: string) => {
   try {
     return JSON.parse(text);
   } catch (err) {
