@@ -82,6 +82,8 @@ export class Stream<Item> implements AsyncIterable<Item>, APIResponse<Stream<Ite
       throw new Error(`Attempted to iterate over a response with no body`);
     }
 
+    const lineDecoder = new LineDecoder();
+
     for await (const chunk of this.response.body) {
       let text;
       if (chunk instanceof Buffer) {
@@ -90,10 +92,15 @@ export class Stream<Item> implements AsyncIterable<Item>, APIResponse<Stream<Ite
         text = chunk;
       }
 
-      for (let line of text.split('\n')) {
+      for (const line of lineDecoder.decode(text)) {
         const sse = this.decoder.decode(line);
         if (sse) yield sse;
       }
+    }
+
+    for (const line of lineDecoder.flush()) {
+      const sse = this.decoder.decode(line);
+      if (sse) yield sse;
     }
 
     this.controller.abort();
@@ -109,6 +116,69 @@ export class Stream<Item> implements AsyncIterable<Item>, APIResponse<Stream<Ite
         throw e;
       }
     }
+  }
+}
+
+const NEWLINE_CHARS = '\n\r\x0b\x0c\x1c\x1d\x1e\x85\u2028\u2029';
+
+/**
+ * A re-implementation of httpx's `LineDecoder` in Python that handles incrementally
+ * reading lines from text.
+ *
+ * https://github.com/encode/httpx/blob/920333ea98118e9cf617f246905d7b202510941c/httpx/_decoders.py#L258
+ */
+class LineDecoder {
+  buffer: string[];
+  trailingCR: boolean;
+
+  constructor() {
+    this.buffer = [];
+    this.trailingCR = false;
+  }
+
+  decode(text: string): string[] {
+    if (this.trailingCR) {
+      text = '\r' + text;
+      this.trailingCR = false;
+    }
+    if (text.endsWith('\r')) {
+      this.trailingCR = true;
+      text = text.slice(0, -1);
+    }
+
+    if (!text) {
+      return [];
+    }
+
+    const trailing_newline = NEWLINE_CHARS.includes(text.slice(-1));
+    let lines = text.split(/\r\n|[\n\r\x0b\x0c\x1c\x1d\x1e\x85\u2028\u2029]/g);
+
+    if (lines.length === 1 && !trailing_newline) {
+      this.buffer.push(lines[0]!);
+      return [];
+    }
+
+    if (this.buffer.length > 0) {
+      lines = [this.buffer.join('') + lines[0], ...lines.slice(1)];
+      this.buffer = [];
+    }
+
+    if (!trailing_newline) {
+      this.buffer = [lines.pop() || ''];
+    }
+
+    return lines;
+  }
+
+  flush(): string[] {
+    if (!this.buffer.length && !this.trailingCR) {
+      return [];
+    }
+
+    const lines = [this.buffer.join('')];
+    this.buffer = [];
+    this.trailingCR = false;
+    return lines;
   }
 }
 
