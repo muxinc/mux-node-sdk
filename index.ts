@@ -4,6 +4,7 @@ import qs from 'qs';
 import * as Core from './core';
 import * as Pagination from './pagination';
 import * as API from './resources';
+import * as Errors from '~/error';
 import type { Agent } from 'http';
 import * as FileFromPath from 'formdata-node/file-from-path';
 
@@ -79,36 +80,32 @@ export class Mux extends Core.APIClient {
     return { arrayFormat: 'comma' };
   }
 
-  static APIError = Core.APIError;
-
-  static APIConnectionError = Core.APIConnectionError;
-  static APIConnectionTimeoutError = Core.APIConnectionTimeoutError;
-
-  static BadRequestError = Core.BadRequestError;
-  static AuthenticationError = Core.AuthenticationError;
-  static PermissionDeniedError = Core.PermissionDeniedError;
-  static NotFoundError = Core.NotFoundError;
-  static ConflictError = Core.ConflictError;
-  static UnprocessableEntityError = Core.UnprocessableEntityError;
-  static RateLimitError = Core.RateLimitError;
-  static InternalServerError = Core.InternalServerError;
+  static APIError = Errors.APIError;
+  static APIConnectionError = Errors.APIConnectionError;
+  static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
+  static NotFoundError = Errors.NotFoundError;
+  static ConflictError = Errors.ConflictError;
+  static RateLimitError = Errors.RateLimitError;
+  static BadRequestError = Errors.BadRequestError;
+  static AuthenticationError = Errors.AuthenticationError;
+  static InternalServerError = Errors.InternalServerError;
+  static PermissionDeniedError = Errors.PermissionDeniedError;
+  static UnprocessableEntityError = Errors.UnprocessableEntityError;
 }
 
 export const {
   APIError,
-
   APIConnectionError,
   APIConnectionTimeoutError,
-
-  BadRequestError,
-  AuthenticationError,
-  PermissionDeniedError,
   NotFoundError,
   ConflictError,
-  UnprocessableEntityError,
   RateLimitError,
+  BadRequestError,
+  AuthenticationError,
   InternalServerError,
-} = Mux;
+  PermissionDeniedError,
+  UnprocessableEntityError,
+} = Errors;
 
 export import fileFromPath = FileFromPath.fileFromPath;
 
