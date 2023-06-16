@@ -102,19 +102,26 @@ export class Stream<Item> implements AsyncIterable<Item>, APIResponse<Stream<Ite
       const sse = this.decoder.decode(line);
       if (sse) yield sse;
     }
-
-    this.controller.abort();
   }
 
   async *[Symbol.asyncIterator](): AsyncIterator<Item, any, undefined> {
-    for await (const sse of this.iterMessages()) {
-      try {
-        yield JSON.parse(sse.data);
-      } catch (e) {
-        console.error(`Could not parse message into JSON:`, sse.data);
-        console.error(`From chunk:`, sse.raw);
-        throw e;
+    try {
+      for await (const sse of this.iterMessages()) {
+        try {
+          yield JSON.parse(sse.data);
+        } catch (e) {
+          console.error(`Could not parse message into JSON:`, sse.data);
+          console.error(`From chunk:`, sse.raw);
+          throw e;
+        }
       }
+    } catch (e) {
+      // If the user calls `stream.controller.abort()`, we should exit without throwing.
+      if (e instanceof Error && e.name === 'AbortError') return;
+      throw e;
+    } finally {
+      // If the user `break`s, abort the ongoing request.
+      this.controller.abort();
     }
   }
 }
