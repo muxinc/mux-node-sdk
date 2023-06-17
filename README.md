@@ -200,7 +200,7 @@ We are keen for your feedback; please open an [issue](https://www.github.com/mux
 
 The following runtimes are supported:
 
-- Node.js version 12 or higher.
+- Node.js 16 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
 - Deno v1.28.0 or higher (experimental).
   Use `import Mux from "npm:mux"`.
 
