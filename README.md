@@ -30,7 +30,7 @@ const mux = new Mux({
 async function main() {
   const asset = await mux.video.assets.create();
 
-  console.log(asset.data.aspect_ratio);
+  console.log(asset.aspect_ratio);
 }
 main().catch(console.error);
 ```
