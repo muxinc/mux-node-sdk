@@ -695,7 +695,7 @@ export const multipartFormRequestOptions = <T extends {} = Record<string, unknow
   return getMultipartRequestOptions(createForm(opts.body), opts);
 };
 
-const createForm = <T = Record<string, unknown>>(body: T | undefined): FormData => {
+export const createForm = <T = Record<string, unknown>>(body: T | undefined): FormData => {
   const form = new FormData();
   Object.entries(body || {}).forEach(([key, value]) => addFormValue(form, key, value));
   return form;
@@ -714,9 +714,13 @@ const getMultipartRequestOptions = <T extends {} = Record<string, unknown>>(
 };
 
 const addFormValue = (form: FormData, key: string, value: unknown) => {
-  if (value == null) {
+  if (typeof value === 'undefined') {
+    return;
+  }
+
+  if (value === null) {
     throw new TypeError(
-      `null is not a valid form data value, if you want to pass null then you need to use the string 'null'`,
+      `Received null for "${key}"; to omit a property from FormData, pass undefined instead.`,
     );
   }
 
