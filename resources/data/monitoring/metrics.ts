@@ -22,7 +22,8 @@ export class Metrics extends APIResource {
       | 'current-rebuffering-percentage'
       | 'exits-before-video-start'
       | 'playback-failure-percentage'
-      | 'current-average-bitrate',
+      | 'current-average-bitrate'
+      | 'video-startup-failure-percentage',
     query?: MetricGetBreakdownParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<MetricGetBreakdownResponse>>;
@@ -32,7 +33,8 @@ export class Metrics extends APIResource {
       | 'current-rebuffering-percentage'
       | 'exits-before-video-start'
       | 'playback-failure-percentage'
-      | 'current-average-bitrate',
+      | 'current-average-bitrate'
+      | 'video-startup-failure-percentage',
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<MetricGetBreakdownResponse>>;
   getBreakdown(
@@ -41,7 +43,8 @@ export class Metrics extends APIResource {
       | 'current-rebuffering-percentage'
       | 'exits-before-video-start'
       | 'playback-failure-percentage'
-      | 'current-average-bitrate',
+      | 'current-average-bitrate'
+      | 'video-startup-failure-percentage',
     query: MetricGetBreakdownParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<MetricGetBreakdownResponse>> {
@@ -53,6 +56,7 @@ export class Metrics extends APIResource {
 
   /**
    * Gets timeseries of breakdown information for a specific dimension and metric.
+   * Each datapoint in the response represents 5 seconds worth of data.
    */
   getBreakdownTimeseries(
     monitoringMetricId:
@@ -60,7 +64,8 @@ export class Metrics extends APIResource {
       | 'current-rebuffering-percentage'
       | 'exits-before-video-start'
       | 'playback-failure-percentage'
-      | 'current-average-bitrate',
+      | 'current-average-bitrate'
+      | 'video-startup-failure-percentage',
     query?: MetricGetBreakdownTimeseriesParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<MetricGetBreakdownTimeseriesResponse>>;
@@ -70,7 +75,8 @@ export class Metrics extends APIResource {
       | 'current-rebuffering-percentage'
       | 'exits-before-video-start'
       | 'playback-failure-percentage'
-      | 'current-average-bitrate',
+      | 'current-average-bitrate'
+      | 'video-startup-failure-percentage',
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<MetricGetBreakdownTimeseriesResponse>>;
   getBreakdownTimeseries(
@@ -79,7 +85,8 @@ export class Metrics extends APIResource {
       | 'current-rebuffering-percentage'
       | 'exits-before-video-start'
       | 'playback-failure-percentage'
-      | 'current-average-bitrate',
+      | 'current-average-bitrate'
+      | 'video-startup-failure-percentage',
     query: MetricGetBreakdownTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<MetricGetBreakdownTimeseriesResponse>> {
@@ -128,7 +135,8 @@ export class Metrics extends APIResource {
       | 'current-rebuffering-percentage'
       | 'exits-before-video-start'
       | 'playback-failure-percentage'
-      | 'current-average-bitrate',
+      | 'current-average-bitrate'
+      | 'video-startup-failure-percentage',
     query?: MetricGetTimeseriesParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<MetricGetTimeseriesResponse>>;
@@ -138,7 +146,8 @@ export class Metrics extends APIResource {
       | 'current-rebuffering-percentage'
       | 'exits-before-video-start'
       | 'playback-failure-percentage'
-      | 'current-average-bitrate',
+      | 'current-average-bitrate'
+      | 'video-startup-failure-percentage',
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<MetricGetTimeseriesResponse>>;
   getTimeseries(
@@ -147,7 +156,8 @@ export class Metrics extends APIResource {
       | 'current-rebuffering-percentage'
       | 'exits-before-video-start'
       | 'playback-failure-percentage'
-      | 'current-average-bitrate',
+      | 'current-average-bitrate'
+      | 'video-startup-failure-percentage',
     query: MetricGetTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<MetricGetTimeseriesResponse>> {
@@ -370,11 +380,9 @@ export interface MetricGetBreakdownTimeseriesParams {
   'filters[]'?: Array<string>;
 
   /**
-   * Number of items to include in an individual array. In Monitoring Breakdown
-   * Timeseries, this applies to the individual data point.
+   * Number of items to include in each timestamp's `value` list.
    *
-   * In Monitoring Breakdown Timeseries API, the default is 10, and the maximum
-   * is 100.
+   * The default is 10, and the maximum is 100.
    */
   limit?: number;
 
@@ -392,10 +400,8 @@ export interface MetricGetBreakdownTimeseriesParams {
    * Timeframe window to limit results by. Must be provided as an array query string
    * parameter (e.g. timeframe[]=).
    *
-   * Accepted formats are...
-   *
-   * - array of epoch timestamps e.g. `timeframe[]=1498867200&timeframe[]=1498953600`
-   * - duration string e.g. `timeframe[]=24:hours or timeframe[]=7:days`
+   * The default for this is the last 60 seconds of available data. Timeframes larger
+   * than 10 minutes are not allowed, and must be within the last 24 hours.
    */
   'timeframe[]'?: Array<string>;
 }
