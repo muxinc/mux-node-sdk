@@ -4,6 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { BasePage, BasePageParams } from '~/pagination';
 
 export class Assets extends APIResource {
@@ -907,4 +908,18 @@ export interface AssetUpdateMP4SupportParams {
    * String value for the level of mp4 support
    */
   mp4_support?: 'standard' | 'none';
+}
+
+export namespace Assets {
+  export import Asset = API.Asset;
+  export import AssetResponse = API.AssetResponse;
+  export import Track = API.Track;
+  export import AssetsBasePage = API.AssetsBasePage;
+  export import AssetCreateParams = API.AssetCreateParams;
+  export import AssetUpdateParams = API.AssetUpdateParams;
+  export import AssetListParams = API.AssetListParams;
+  export import AssetCreatePlaybackIDParams = API.AssetCreatePlaybackIDParams;
+  export import AssetCreateTrackParams = API.AssetCreateTrackParams;
+  export import AssetUpdateMasterAccessParams = API.AssetUpdateMasterAccessParams;
+  export import AssetUpdateMP4SupportParams = API.AssetUpdateMP4SupportParams;
 }

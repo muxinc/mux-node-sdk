@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { Metrics } from './metrics';
+import * as API from './';
 
 export class Monitoring extends APIResource {
   metrics: Metrics = new Metrics(this.client);
@@ -29,4 +30,19 @@ export namespace MonitoringListDimensionsResponse {
 
     name?: string;
   }
+}
+
+export namespace Monitoring {
+  export import MonitoringListDimensionsResponse = API.MonitoringListDimensionsResponse;
+
+  export import Metrics = API.Metrics;
+  export import MetricListResponse = API.MetricListResponse;
+  export import MetricGetBreakdownResponse = API.MetricGetBreakdownResponse;
+  export import MetricGetTimeseriesResponse = API.MetricGetTimeseriesResponse;
+  export import MetricGetBreakdownTimeseriesResponse = API.MetricGetBreakdownTimeseriesResponse;
+  export import MetricGetHistogramTimeseriesResponse = API.MetricGetHistogramTimeseriesResponse;
+  export import MetricGetBreakdownParams = API.MetricGetBreakdownParams;
+  export import MetricGetBreakdownTimeseriesParams = API.MetricGetBreakdownTimeseriesParams;
+  export import MetricGetHistogramTimeseriesParams = API.MetricGetHistogramTimeseriesParams;
+  export import MetricGetTimeseriesParams = API.MetricGetTimeseriesParams;
 }

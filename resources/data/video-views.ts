@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { BasePage, BasePageParams } from '~/pagination';
 
 export class VideoViews extends APIResource {
@@ -405,4 +406,11 @@ export interface VideoViewListParams extends BasePageParams {
    * or may be created by Mux.
    */
   viewer_id?: string;
+}
+
+export namespace VideoViews {
+  export import AbridgedVideoView = API.AbridgedVideoView;
+  export import VideoViewResponse = API.VideoViewResponse;
+  export import AbridgedVideoViewsBasePage = API.AbridgedVideoViewsBasePage;
+  export import VideoViewListParams = API.VideoViewListParams;
 }

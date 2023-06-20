@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { BasePage, BasePageParams } from '~/pagination';
 
 export class SigningKeys extends APIResource {
@@ -82,3 +83,10 @@ export interface SigningKeyResponse {
 }
 
 export interface SigningKeyListParams extends BasePageParams {}
+
+export namespace SigningKeys {
+  export import SigningKey = API.SigningKey;
+  export import SigningKeyResponse = API.SigningKeyResponse;
+  export import SigningKeysBasePage = API.SigningKeysBasePage;
+  export import SigningKeyListParams = API.SigningKeyListParams;
+}

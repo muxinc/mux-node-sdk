@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { BasePage, BasePageParams } from '~/pagination';
 
 export class TranscriptionVocabularies extends APIResource {
@@ -185,3 +186,13 @@ export interface TranscriptionVocabularyUpdateParams {
 }
 
 export interface TranscriptionVocabularyListParams extends BasePageParams {}
+
+export namespace TranscriptionVocabularies {
+  export import TranscriptionVocabulary = API.TranscriptionVocabulary;
+  export import TranscriptionVocabularyPhrase = API.TranscriptionVocabularyPhrase;
+  export import TranscriptionVocabularyResponse = API.TranscriptionVocabularyResponse;
+  export import TranscriptionVocabulariesBasePage = API.TranscriptionVocabulariesBasePage;
+  export import TranscriptionVocabularyCreateParams = API.TranscriptionVocabularyCreateParams;
+  export import TranscriptionVocabularyUpdateParams = API.TranscriptionVocabularyUpdateParams;
+  export import TranscriptionVocabularyListParams = API.TranscriptionVocabularyListParams;
+}

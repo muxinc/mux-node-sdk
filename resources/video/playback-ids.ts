@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 
 export class PlaybackIDs extends APIResource {
   /**
@@ -54,4 +55,8 @@ export namespace PlaybackIDRetrieveResponse {
      */
     type?: 'asset' | 'live_stream';
   }
+}
+
+export namespace PlaybackIDs {
+  export import PlaybackIDRetrieveResponse = API.PlaybackIDRetrieveResponse;
 }

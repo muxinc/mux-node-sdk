@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 
 export class Metrics extends APIResource {
   /**
@@ -444,4 +445,16 @@ export interface MetricGetTimeseriesParams {
    * provided as a unix timestamp. Defaults to 30 minutes ago.
    */
   timestamp?: number;
+}
+
+export namespace Metrics {
+  export import MetricListResponse = API.MetricListResponse;
+  export import MetricGetBreakdownResponse = API.MetricGetBreakdownResponse;
+  export import MetricGetTimeseriesResponse = API.MetricGetTimeseriesResponse;
+  export import MetricGetBreakdownTimeseriesResponse = API.MetricGetBreakdownTimeseriesResponse;
+  export import MetricGetHistogramTimeseriesResponse = API.MetricGetHistogramTimeseriesResponse;
+  export import MetricGetBreakdownParams = API.MetricGetBreakdownParams;
+  export import MetricGetBreakdownTimeseriesParams = API.MetricGetBreakdownTimeseriesParams;
+  export import MetricGetHistogramTimeseriesParams = API.MetricGetHistogramTimeseriesParams;
+  export import MetricGetTimeseriesParams = API.MetricGetTimeseriesParams;
 }

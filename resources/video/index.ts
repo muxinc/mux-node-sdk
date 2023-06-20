@@ -12,6 +12,7 @@ export {
   AssetUpdateMasterAccessParams,
   AssetUpdateMP4SupportParams,
   AssetsBasePage,
+  Assets,
 } from './assets';
 export {
   Broadcast,
@@ -27,8 +28,14 @@ export {
   SpaceListParams,
   SpaceCreateBroadcastParams,
   SpacesBasePage,
+  Spaces,
 } from './spaces';
-export { DeliveryReport, DeliveryUsageListParams, DeliveryReportsPageWithTotal } from './delivery-usage';
+export {
+  DeliveryReport,
+  DeliveryUsageListParams,
+  DeliveryReportsPageWithTotal,
+  DeliveryUsage,
+} from './delivery-usage';
 export {
   LiveStream,
   LiveStreamCreateSimulcastTargetResponse,
@@ -40,8 +47,9 @@ export {
   LiveStreamUpdateEmbeddedSubtitlesParams,
   LiveStreamUpdateGeneratedSubtitlesParams,
   LiveStreamsBasePage,
+  LiveStreams,
 } from './live-streams';
-export { PlaybackIDRetrieveResponse } from './playback-ids';
+export { PlaybackIDRetrieveResponse, PlaybackIDs } from './playback-ids';
 export {
   PlaybackRestriction,
   PlaybackRestrictionResponse,
@@ -49,6 +57,7 @@ export {
   PlaybackRestrictionListParams,
   PlaybackRestrictionUpdateReferrerParams,
   PlaybackRestrictionsBasePage,
+  PlaybackRestrictions,
 } from './playback-restrictions';
 export {
   TranscriptionVocabulary,
@@ -58,5 +67,14 @@ export {
   TranscriptionVocabularyUpdateParams,
   TranscriptionVocabularyListParams,
   TranscriptionVocabulariesBasePage,
+  TranscriptionVocabularies,
 } from './transcription-vocabularies';
-export { Upload, UploadResponse, UploadCreateParams, UploadListParams, UploadsBasePage } from './uploads';
+export {
+  Upload,
+  UploadResponse,
+  UploadCreateParams,
+  UploadListParams,
+  UploadsBasePage,
+  Uploads,
+} from './uploads';
+export { Video } from './video';

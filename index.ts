@@ -121,6 +121,12 @@ export namespace Mux {
   export import BasePageParams = Pagination.BasePageParams;
   export import BasePageResponse = Pagination.BasePageResponse;
 
+  export import Video = API.Video;
+
+  export import Data = API.Data;
+
+  export import System = API.System;
+
   export import PlaybackID = API.PlaybackID;
   export import PlaybackPolicy = API.PlaybackPolicy;
 }

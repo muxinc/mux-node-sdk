@@ -2,6 +2,7 @@
 
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
+import * as API from './';
 
 export class Exports extends APIResource {
   /**
@@ -44,4 +45,9 @@ export namespace VideoViewExportsResponse {
       version?: number;
     }
   }
+}
+
+export namespace Exports {
+  export import ExportsResponse = API.ExportsResponse;
+  export import VideoViewExportsResponse = API.VideoViewExportsResponse;
 }

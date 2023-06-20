@@ -5,6 +5,7 @@ import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as Assets from '~/resources/video/assets';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { BasePage, BasePageParams } from '~/pagination';
 
 export class Uploads extends APIResource {
@@ -357,3 +358,11 @@ export namespace UploadCreateParams {
 }
 
 export interface UploadListParams extends BasePageParams {}
+
+export namespace Uploads {
+  export import Upload = API.Upload;
+  export import UploadResponse = API.UploadResponse;
+  export import UploadsBasePage = API.UploadsBasePage;
+  export import UploadCreateParams = API.UploadCreateParams;
+  export import UploadListParams = API.UploadListParams;
+}

@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { BasePage, BasePageParams } from '~/pagination';
 
 export class Spaces extends APIResource {
@@ -376,4 +377,20 @@ export interface SpaceCreateBroadcastParams {
    * `1920x1080` if not set.
    */
   resolution?: BroadcastResolution;
+}
+
+export namespace Spaces {
+  export import Broadcast = API.Broadcast;
+  export import BroadcastLayout = API.BroadcastLayout;
+  export import BroadcastResolution = API.BroadcastResolution;
+  export import BroadcastResponse = API.BroadcastResponse;
+  export import BroadcastStatus = API.BroadcastStatus;
+  export import Space = API.Space;
+  export import SpaceResponse = API.SpaceResponse;
+  export import SpaceStatus = API.SpaceStatus;
+  export import SpaceType = API.SpaceType;
+  export import SpacesBasePage = API.SpacesBasePage;
+  export import SpaceCreateParams = API.SpaceCreateParams;
+  export import SpaceListParams = API.SpaceListParams;
+  export import SpaceCreateBroadcastParams = API.SpaceCreateBroadcastParams;
 }

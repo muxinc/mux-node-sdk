@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 
 export class RealTime extends APIResource {
   /**
@@ -335,4 +336,15 @@ export interface RealTimeRetrieveTimeseriesParams {
    * provided as a unix timestamp. Defaults to 30 minutes ago.
    */
   timestamp?: number;
+}
+
+export namespace RealTime {
+  export import RealTimeBreakdownResponse = API.RealTimeBreakdownResponse;
+  export import RealTimeDimensionsResponse = API.RealTimeDimensionsResponse;
+  export import RealTimeHistogramTimeseriesResponse = API.RealTimeHistogramTimeseriesResponse;
+  export import RealTimeMetricsResponse = API.RealTimeMetricsResponse;
+  export import RealTimeTimeseriesResponse = API.RealTimeTimeseriesResponse;
+  export import RealTimeRetrieveBreakdownParams = API.RealTimeRetrieveBreakdownParams;
+  export import RealTimeRetrieveHistogramTimeseriesParams = API.RealTimeRetrieveHistogramTimeseriesParams;
+  export import RealTimeRetrieveTimeseriesParams = API.RealTimeRetrieveTimeseriesParams;
 }

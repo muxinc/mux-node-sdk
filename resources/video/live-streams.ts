@@ -4,6 +4,7 @@ import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
 import * as Shared from '~/resources/shared';
+import * as API from './';
 import { BasePage, BasePageParams } from '~/pagination';
 
 export class LiveStreams extends APIResource {
@@ -1302,4 +1303,17 @@ export namespace LiveStreamUpdateGeneratedSubtitlesParams {
      */
     transcription_vocabulary_ids?: Array<string>;
   }
+}
+
+export namespace LiveStreams {
+  export import LiveStream = API.LiveStream;
+  export import LiveStreamCreateSimulcastTargetResponse = API.LiveStreamCreateSimulcastTargetResponse;
+  export import LiveStreamsBasePage = API.LiveStreamsBasePage;
+  export import LiveStreamCreateParams = API.LiveStreamCreateParams;
+  export import LiveStreamUpdateParams = API.LiveStreamUpdateParams;
+  export import LiveStreamListParams = API.LiveStreamListParams;
+  export import LiveStreamCreatePlaybackIDParams = API.LiveStreamCreatePlaybackIDParams;
+  export import LiveStreamCreateSimulcastTargetParams = API.LiveStreamCreateSimulcastTargetParams;
+  export import LiveStreamUpdateEmbeddedSubtitlesParams = API.LiveStreamUpdateEmbeddedSubtitlesParams;
+  export import LiveStreamUpdateGeneratedSubtitlesParams = API.LiveStreamUpdateGeneratedSubtitlesParams;
 }

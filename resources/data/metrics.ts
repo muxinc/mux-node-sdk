@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { BasePage, BasePageParams } from '~/pagination';
 
 export class Metrics extends APIResource {
@@ -875,4 +876,18 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
    * - duration string e.g. `timeframe[]=24:hours or timeframe[]=7:days`
    */
   'timeframe[]'?: Array<string>;
+}
+
+export namespace Metrics {
+  export import AllMetricValuesResponse = API.AllMetricValuesResponse;
+  export import BreakdownValue = API.BreakdownValue;
+  export import InsightsResponse = API.InsightsResponse;
+  export import MetricTimeseriesDataResponse = API.MetricTimeseriesDataResponse;
+  export import OverallValuesResponse = API.OverallValuesResponse;
+  export import BreakdownValuesBasePage = API.BreakdownValuesBasePage;
+  export import MetricListParams = API.MetricListParams;
+  export import MetricGetInsightsParams = API.MetricGetInsightsParams;
+  export import MetricGetOverallValuesParams = API.MetricGetOverallValuesParams;
+  export import MetricGetTimeseriesParams = API.MetricGetTimeseriesParams;
+  export import MetricListBreakdownValuesParams = API.MetricListBreakdownValuesParams;
 }

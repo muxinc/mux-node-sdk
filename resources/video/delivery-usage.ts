@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { PageWithTotal, PageWithTotalParams } from '~/pagination';
 
 export class DeliveryUsage extends APIResource {
@@ -137,4 +138,10 @@ export interface DeliveryUsageListParams extends PageWithTotalParams {
    * when the request is made.
    */
   'timeframe[]'?: Array<string>;
+}
+
+export namespace DeliveryUsage {
+  export import DeliveryReport = API.DeliveryReport;
+  export import DeliveryReportsPageWithTotal = API.DeliveryReportsPageWithTotal;
+  export import DeliveryUsageListParams = API.DeliveryUsageListParams;
 }

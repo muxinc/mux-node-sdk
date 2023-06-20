@@ -10,5 +10,6 @@ export {
   MetricGetBreakdownTimeseriesParams,
   MetricGetHistogramTimeseriesParams,
   MetricGetTimeseriesParams,
+  Metrics,
 } from './metrics';
-export { MonitoringListDimensionsResponse } from './monitoring';
+export { MonitoringListDimensionsResponse, Monitoring } from './monitoring';

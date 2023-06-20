@@ -3,6 +3,7 @@
 import * as Core from '~/core';
 import { APIResource } from '~/resource';
 import { isRequestOptions } from '~/core';
+import * as API from './';
 import { BasePage, BasePageParams } from '~/pagination';
 
 export class PlaybackRestrictions extends APIResource {
@@ -193,4 +194,13 @@ export interface PlaybackRestrictionUpdateReferrerParams {
    *   wildcards
    */
   allowed_domains?: Array<string>;
+}
+
+export namespace PlaybackRestrictions {
+  export import PlaybackRestriction = API.PlaybackRestriction;
+  export import PlaybackRestrictionResponse = API.PlaybackRestrictionResponse;
+  export import PlaybackRestrictionsBasePage = API.PlaybackRestrictionsBasePage;
+  export import PlaybackRestrictionCreateParams = API.PlaybackRestrictionCreateParams;
+  export import PlaybackRestrictionListParams = API.PlaybackRestrictionListParams;
+  export import PlaybackRestrictionUpdateReferrerParams = API.PlaybackRestrictionUpdateReferrerParams;
 }
