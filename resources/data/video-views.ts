@@ -114,7 +114,7 @@ export namespace VideoViewResponse {
 
     error_type_id?: number | null;
 
-    events?: Array<Data.Events>;
+    events?: Array<Data.Event>;
 
     exit_before_video_start?: boolean;
 
@@ -352,7 +352,7 @@ export namespace VideoViewResponse {
   }
 
   export namespace Data {
-    export interface Events {
+    export interface Event {
       event_time?: number;
 
       name?: string;

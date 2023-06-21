@@ -297,7 +297,7 @@ export interface LiveStream {
   /**
    * Describes the embedded closed caption configuration of the incoming live stream.
    */
-  embedded_subtitles?: Array<LiveStream.EmbeddedSubtitles>;
+  embedded_subtitles?: Array<LiveStream.EmbeddedSubtitle>;
 
   /**
    * Configure the incoming live stream to include subtitles created with automatic
@@ -312,7 +312,7 @@ export interface LiveStream {
    * `generated_live_final` tracks that are `ready`, then only the
    * `generated_live_final` track will be included during playback.
    */
-  generated_subtitles?: Array<LiveStream.GeneratedSubtitles>;
+  generated_subtitles?: Array<LiveStream.GeneratedSubtitle>;
 
   /**
    * Unique identifier for the Live Stream. Max 255 characters.
@@ -650,7 +650,7 @@ export namespace LiveStream {
     }
   }
 
-  export interface EmbeddedSubtitles {
+  export interface EmbeddedSubtitle {
     /**
      * CEA-608 caption channel to read data from.
      */
@@ -673,7 +673,7 @@ export namespace LiveStream {
     passthrough?: string;
   }
 
-  export interface GeneratedSubtitles {
+  export interface GeneratedSubtitle {
     /**
      * The language to generate subtitles in.
      */
@@ -751,7 +751,7 @@ export interface LiveStreamCreateParams {
   /**
    * Describe the embedded closed caption contents of the incoming live stream.
    */
-  embedded_subtitles?: Array<LiveStreamCreateParams.EmbeddedSubtitles>;
+  embedded_subtitles?: Array<LiveStreamCreateParams.EmbeddedSubtitle>;
 
   /**
    * Configure the incoming live stream to include subtitles created with automatic
@@ -766,7 +766,7 @@ export interface LiveStreamCreateParams {
    * `generated_live_final` tracks that are `ready`, then only the
    * `generated_live_final` track will be included during playback.
    */
-  generated_subtitles?: Array<LiveStreamCreateParams.GeneratedSubtitles>;
+  generated_subtitles?: Array<LiveStreamCreateParams.GeneratedSubtitle>;
 
   /**
    * Latency is the time from when the streamer transmits a frame of video to when
@@ -834,7 +834,7 @@ export interface LiveStreamCreateParams {
    */
   reduced_latency?: boolean;
 
-  simulcast_targets?: Array<LiveStreamCreateParams.SimulcastTargets>;
+  simulcast_targets?: Array<LiveStreamCreateParams.SimulcastTarget>;
 
   /**
    * Marks the live stream as a test live stream when the value is set to true. A
@@ -855,7 +855,7 @@ export interface LiveStreamCreateParams {
 }
 
 export namespace LiveStreamCreateParams {
-  export interface EmbeddedSubtitles {
+  export interface EmbeddedSubtitle {
     /**
      * CEA-608 caption channel to read data from.
      */
@@ -878,7 +878,7 @@ export namespace LiveStreamCreateParams {
     passthrough?: string;
   }
 
-  export interface GeneratedSubtitles {
+  export interface GeneratedSubtitle {
     /**
      * The language to generate subtitles in.
      */
@@ -1116,7 +1116,7 @@ export namespace LiveStreamCreateParams {
     }
   }
 
-  export interface SimulcastTargets {
+  export interface SimulcastTarget {
     /**
      * RTMP hostname including application name for the third party live streaming
      * service. Example: `rtmp://live.example.com/app`.
@@ -1242,11 +1242,11 @@ export interface LiveStreamUpdateEmbeddedSubtitlesParams {
   /**
    * Describe the embedded closed caption contents of the incoming live stream.
    */
-  embedded_subtitles?: Array<LiveStreamUpdateEmbeddedSubtitlesParams.EmbeddedSubtitles>;
+  embedded_subtitles?: Array<LiveStreamUpdateEmbeddedSubtitlesParams.EmbeddedSubtitle>;
 }
 
 export namespace LiveStreamUpdateEmbeddedSubtitlesParams {
-  export interface EmbeddedSubtitles {
+  export interface EmbeddedSubtitle {
     /**
      * CEA-608 caption channel to read data from.
      */
@@ -1275,11 +1275,11 @@ export interface LiveStreamUpdateGeneratedSubtitlesParams {
    * Update automated speech recognition subtitle configuration for a live stream. At
    * most one subtitle track is allowed.
    */
-  generated_subtitles?: Array<LiveStreamUpdateGeneratedSubtitlesParams.GeneratedSubtitles>;
+  generated_subtitles?: Array<LiveStreamUpdateGeneratedSubtitlesParams.GeneratedSubtitle>;
 }
 
 export namespace LiveStreamUpdateGeneratedSubtitlesParams {
-  export interface GeneratedSubtitles {
+  export interface GeneratedSubtitle {
     /**
      * The language to generate subtitles in.
      */

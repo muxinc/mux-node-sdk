@@ -62,7 +62,7 @@ export interface Incident {
 
   affected_views_per_hour_on_open?: number;
 
-  breakdowns?: Array<Incident.Breakdowns>;
+  breakdowns?: Array<Incident.Breakdown>;
 
   description?: string;
 
@@ -80,9 +80,9 @@ export interface Incident {
 
   measurement?: string;
 
-  notification_rules?: Array<Incident.NotificationRules>;
+  notification_rules?: Array<Incident.NotificationRule>;
 
-  notifications?: Array<Incident.Notifications>;
+  notifications?: Array<Incident.Notification>;
 
   resolved_at?: string;
 
@@ -100,7 +100,7 @@ export interface Incident {
 }
 
 export namespace Incident {
-  export interface Notifications {
+  export interface Notification {
     attempted_at?: string;
 
     id?: number;
@@ -108,20 +108,20 @@ export namespace Incident {
     queued_at?: string;
   }
 
-  export interface NotificationRules {
+  export interface NotificationRule {
     action?: string;
 
     id?: string;
 
     property_id?: string;
 
-    rules?: Array<NotificationRules.Rules>;
+    rules?: Array<NotificationRule.Rule>;
 
     status?: string;
   }
 
-  export namespace NotificationRules {
-    export interface Rules {
+  export namespace NotificationRule {
+    export interface Rule {
       id?: string;
 
       name?: string;
@@ -130,7 +130,7 @@ export namespace Incident {
     }
   }
 
-  export interface Breakdowns {
+  export interface Breakdown {
     id?: string;
 
     name?: string;

@@ -33,11 +33,11 @@ export namespace VideoViewExportsResponse {
   export interface Data {
     export_date?: string;
 
-    files?: Array<Data.Files>;
+    files?: Array<Data.File>;
   }
 
   export namespace Data {
-    export interface Files {
+    export interface File {
       path?: string;
 
       type?: string;

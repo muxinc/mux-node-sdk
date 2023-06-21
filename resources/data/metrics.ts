@@ -492,7 +492,7 @@ export interface AllMetricValuesResponse {
 
 export namespace AllMetricValuesResponse {
   export interface Data {
-    items?: Array<Data.Items>;
+    items?: Array<Data.Item>;
 
     metric?: string;
 
@@ -506,7 +506,7 @@ export namespace AllMetricValuesResponse {
   }
 
   export namespace Data {
-    export interface Items {
+    export interface Item {
       measurement?: string;
 
       metric?: string;

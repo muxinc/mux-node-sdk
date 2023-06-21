@@ -283,7 +283,7 @@ export interface Asset {
    * times when the live streaming software disconnects, a recording session
    * representing the slate media will be added with a "slate" type.
    */
-  recording_times?: Array<Asset.RecordingTimes>;
+  recording_times?: Array<Asset.RecordingTime>;
 
   /**
    * Asset Identifier of the video used as the source for creating the clip.
@@ -364,7 +364,7 @@ export namespace Asset {
     /**
      * Array of file objects.
      */
-    files?: Array<StaticRenditions.Files>;
+    files?: Array<StaticRenditions.File>;
 
     /**
      * Indicates the status of downloadable MP4 versions of this asset.
@@ -373,7 +373,7 @@ export namespace Asset {
   }
 
   export namespace StaticRenditions {
-    export interface Files {
+    export interface File {
       /**
        * The bitrate in bits per second
        */
@@ -403,7 +403,7 @@ export namespace Asset {
     }
   }
 
-  export interface RecordingTimes {
+  export interface RecordingTime {
     /**
      * The duration of the live stream recorded. The time value is in seconds.
      */

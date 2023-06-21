@@ -33,7 +33,10 @@ export class PageWithTotal<Item> extends AbstractPage<Item> implements PageWithT
   total_row_count: number;
 
   timeframe: Array<number>;
-  /** Number of assets returned in this response. Default value is 100. */
+
+  /**
+   * Number of assets returned in this response. Default value is 100.
+   */
   limit: number;
 
   constructor(

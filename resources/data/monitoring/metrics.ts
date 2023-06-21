@@ -237,11 +237,11 @@ export namespace MetricGetBreakdownTimeseriesResponse {
   export interface Data {
     date?: string;
 
-    values?: Array<Data.Values>;
+    values?: Array<Data.Value>;
   }
 
   export namespace Data {
-    export interface Values {
+    export interface Value {
       concurrent_viewers?: number;
 
       metric_value?: number;
@@ -263,11 +263,11 @@ export interface MetricGetHistogramTimeseriesResponse {
 
 export namespace MetricGetHistogramTimeseriesResponse {
   export interface Meta {
-    buckets?: Array<Meta.Buckets>;
+    buckets?: Array<Meta.Bucket>;
   }
 
   export namespace Meta {
-    export interface Buckets {
+    export interface Bucket {
       end?: number;
 
       start?: number;
@@ -277,7 +277,7 @@ export namespace MetricGetHistogramTimeseriesResponse {
   export interface Data {
     average?: number;
 
-    bucket_values?: Array<Data.BucketValues>;
+    bucket_values?: Array<Data.BucketValue>;
 
     max_percentage?: number;
 
@@ -291,7 +291,7 @@ export namespace MetricGetHistogramTimeseriesResponse {
   }
 
   export namespace Data {
-    export interface BucketValues {
+    export interface BucketValue {
       count?: number;
 
       percentage?: number;

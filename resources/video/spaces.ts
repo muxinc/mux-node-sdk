@@ -284,7 +284,7 @@ export interface SpaceCreateParams {
    * default only a single broadcast destination can be specified. Contact Mux
    * support if you need more.
    */
-  broadcasts?: Array<SpaceCreateParams.Broadcasts>;
+  broadcasts?: Array<SpaceCreateParams.Broadcast>;
 
   /**
    * Arbitrary user-supplied metadata that will be included in the space details and
@@ -300,7 +300,7 @@ export interface SpaceCreateParams {
 }
 
 export namespace SpaceCreateParams {
-  export interface Broadcasts {
+  export interface Broadcast {
     /**
      * The ID of the live stream that you want to broadcast to.
      */
