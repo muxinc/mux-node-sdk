@@ -59,7 +59,8 @@ export class Metrics extends APIResource {
       | 'video_startup_time'
       | 'viewer_experience_score'
       | 'views'
-      | 'weighted_average_bitrate',
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage',
     query?: MetricGetInsightsParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<InsightsResponse>>;
@@ -92,7 +93,8 @@ export class Metrics extends APIResource {
       | 'video_startup_time'
       | 'viewer_experience_score'
       | 'views'
-      | 'weighted_average_bitrate',
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage',
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<InsightsResponse>>;
   getInsights(
@@ -124,7 +126,8 @@ export class Metrics extends APIResource {
       | 'video_startup_time'
       | 'viewer_experience_score'
       | 'views'
-      | 'weighted_average_bitrate',
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage',
     query: MetricGetInsightsParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<InsightsResponse>> {
@@ -167,7 +170,8 @@ export class Metrics extends APIResource {
       | 'video_startup_time'
       | 'viewer_experience_score'
       | 'views'
-      | 'weighted_average_bitrate',
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage',
     query?: MetricGetOverallValuesParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<OverallValuesResponse>>;
@@ -200,7 +204,8 @@ export class Metrics extends APIResource {
       | 'video_startup_time'
       | 'viewer_experience_score'
       | 'views'
-      | 'weighted_average_bitrate',
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage',
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<OverallValuesResponse>>;
   getOverallValues(
@@ -232,7 +237,8 @@ export class Metrics extends APIResource {
       | 'video_startup_time'
       | 'viewer_experience_score'
       | 'views'
-      | 'weighted_average_bitrate',
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage',
     query: MetricGetOverallValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<OverallValuesResponse>> {
@@ -282,7 +288,8 @@ export class Metrics extends APIResource {
       | 'video_startup_time'
       | 'viewer_experience_score'
       | 'views'
-      | 'weighted_average_bitrate',
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage',
     query?: MetricGetTimeseriesParams,
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<MetricTimeseriesDataResponse>>;
@@ -315,7 +322,8 @@ export class Metrics extends APIResource {
       | 'video_startup_time'
       | 'viewer_experience_score'
       | 'views'
-      | 'weighted_average_bitrate',
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage',
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<MetricTimeseriesDataResponse>>;
   getTimeseries(
@@ -347,7 +355,8 @@ export class Metrics extends APIResource {
       | 'video_startup_time'
       | 'viewer_experience_score'
       | 'views'
-      | 'weighted_average_bitrate',
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage',
     query: MetricGetTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Promise<Core.APIResponse<MetricTimeseriesDataResponse>> {
@@ -389,7 +398,8 @@ export class Metrics extends APIResource {
       | 'video_startup_time'
       | 'viewer_experience_score'
       | 'views'
-      | 'weighted_average_bitrate',
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage',
     query?: MetricListBreakdownValuesParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage>;
@@ -422,7 +432,8 @@ export class Metrics extends APIResource {
       | 'video_startup_time'
       | 'viewer_experience_score'
       | 'views'
-      | 'weighted_average_bitrate',
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage',
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage>;
   listBreakdownValues(
@@ -454,7 +465,8 @@ export class Metrics extends APIResource {
       | 'video_startup_time'
       | 'viewer_experience_score'
       | 'views'
-      | 'weighted_average_bitrate',
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage',
     query: MetricListBreakdownValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage> {
@@ -622,6 +634,7 @@ export interface MetricListParams {
     | 'video_encoding_variant'
     | 'video_id'
     | 'video_series'
+    | 'video_startup_failure'
     | 'video_title'
     | 'view_drm_type'
     | 'view_has_ad'
@@ -839,6 +852,7 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
     | 'video_encoding_variant'
     | 'video_id'
     | 'video_series'
+    | 'video_startup_failure'
     | 'video_title'
     | 'view_drm_type'
     | 'view_has_ad'

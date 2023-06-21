@@ -262,6 +262,8 @@ export namespace VideoViewResponse {
 
     video_series?: string | null;
 
+    video_startup_failure?: boolean;
+
     video_startup_preroll_load_time?: number | null;
 
     video_startup_preroll_request_time?: number | null;
