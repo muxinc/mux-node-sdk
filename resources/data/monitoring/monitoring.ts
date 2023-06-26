@@ -38,9 +38,9 @@ export namespace Monitoring {
   export import Metrics = API.Metrics;
   export import MetricListResponse = API.MetricListResponse;
   export import MetricGetBreakdownResponse = API.MetricGetBreakdownResponse;
-  export import MetricGetTimeseriesResponse = API.MetricGetTimeseriesResponse;
   export import MetricGetBreakdownTimeseriesResponse = API.MetricGetBreakdownTimeseriesResponse;
   export import MetricGetHistogramTimeseriesResponse = API.MetricGetHistogramTimeseriesResponse;
+  export import MetricGetTimeseriesResponse = API.MetricGetTimeseriesResponse;
   export import MetricGetBreakdownParams = API.MetricGetBreakdownParams;
   export import MetricGetBreakdownTimeseriesParams = API.MetricGetBreakdownTimeseriesParams;
   export import MetricGetHistogramTimeseriesParams = API.MetricGetHistogramTimeseriesParams;

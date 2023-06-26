@@ -3,9 +3,9 @@
 export {
   MetricListResponse,
   MetricGetBreakdownResponse,
-  MetricGetTimeseriesResponse,
   MetricGetBreakdownTimeseriesResponse,
   MetricGetHistogramTimeseriesResponse,
+  MetricGetTimeseriesResponse,
   MetricGetBreakdownParams,
   MetricGetBreakdownTimeseriesParams,
   MetricGetHistogramTimeseriesParams,

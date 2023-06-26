@@ -121,7 +121,7 @@ export class LiveStreams extends APIResource {
     liveStreamId: string,
     body: LiveStreamCreateSimulcastTargetParams,
     options?: Core.RequestOptions,
-  ): Promise<LiveStreamCreateSimulcastTargetResponse> {
+  ): Promise<SimulcastTarget> {
     // Note that this method does not support accessing responseHeaders
     const response = (await this.post(`/video/v1/live-streams/${liveStreamId}/simulcast-targets`, {
       body,
@@ -229,7 +229,7 @@ export class LiveStreams extends APIResource {
     liveStreamId: string,
     simulcastTargetId: string,
     options?: Core.RequestOptions,
-  ): Promise<LiveStreamCreateSimulcastTargetResponse> {
+  ): Promise<SimulcastTarget> {
     // Note that this method does not support accessing responseHeaders
     const response = (await this.get(
       `/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`,
@@ -404,7 +404,7 @@ export interface LiveStream {
    * "restream") a live stream to a third-party streaming service.
    * [See the Stream live to 3rd party platforms guide](https://docs.mux.com/guides/video/stream-live-to-3rd-party-platforms).
    */
-  simulcast_targets?: Array<LiveStreamCreateSimulcastTargetResponse>;
+  simulcast_targets?: Array<SimulcastTarget>;
 
   /**
    * `idle` indicates that there is no active broadcast. `active` indicates that
@@ -699,7 +699,7 @@ export namespace LiveStream {
   }
 }
 
-export interface LiveStreamCreateSimulcastTargetResponse {
+export interface SimulcastTarget {
   /**
    * ID of the Simulcast Target
    */
@@ -1307,7 +1307,7 @@ export namespace LiveStreamUpdateGeneratedSubtitlesParams {
 
 export namespace LiveStreams {
   export import LiveStream = API.LiveStream;
-  export import LiveStreamCreateSimulcastTargetResponse = API.LiveStreamCreateSimulcastTargetResponse;
+  export import SimulcastTarget = API.SimulcastTarget;
   export import LiveStreamsBasePage = API.LiveStreamsBasePage;
   export import LiveStreamCreateParams = API.LiveStreamCreateParams;
   export import LiveStreamUpdateParams = API.LiveStreamUpdateParams;

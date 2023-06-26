@@ -43,7 +43,7 @@ export namespace Video {
 
   export import LiveStreams = API.LiveStreams;
   export import LiveStream = API.LiveStream;
-  export import LiveStreamCreateSimulcastTargetResponse = API.LiveStreamCreateSimulcastTargetResponse;
+  export import SimulcastTarget = API.SimulcastTarget;
   export import LiveStreamsBasePage = API.LiveStreamsBasePage;
   export import LiveStreamCreateParams = API.LiveStreamCreateParams;
   export import LiveStreamUpdateParams = API.LiveStreamUpdateParams;

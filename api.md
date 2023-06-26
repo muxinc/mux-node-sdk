@@ -38,7 +38,7 @@ Methods:
 Models:
 
 - <code><a href="./resources/video/live-streams.ts">LiveStream</a></code>
-- <code><a href="./resources/video/live-streams.ts">LiveStreamCreateSimulcastTargetResponse</a></code>
+- <code><a href="./resources/video/live-streams.ts">SimulcastTarget</a></code>
 
 Methods:
 
@@ -49,14 +49,14 @@ Methods:
 - <code title="delete /video/v1/live-streams/{LIVE_STREAM_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">del</a>(liveStreamId) -> Promise<void></code>
 - <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/complete">client.video.liveStreams.<a href="./resources/video/live-streams.ts">complete</a>(liveStreamId) -> Promise<void></code>
 - <code title="post /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids">client.video.liveStreams.<a href="./resources/video/live-streams.ts">createPlaybackId</a>(liveStreamId, { ...params }) -> PlaybackID</code>
-- <code title="post /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets">client.video.liveStreams.<a href="./resources/video/live-streams.ts">createSimulcastTarget</a>(liveStreamId, { ...params }) -> LiveStreamCreateSimulcastTargetResponse</code>
+- <code title="post /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets">client.video.liveStreams.<a href="./resources/video/live-streams.ts">createSimulcastTarget</a>(liveStreamId, { ...params }) -> SimulcastTarget</code>
 - <code title="delete /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">deletePlaybackId</a>(liveStreamId, playbackId) -> Promise<void></code>
 - <code title="delete /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">deleteSimulcastTarget</a>(liveStreamId, simulcastTargetId) -> Promise<void></code>
 - <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/disable">client.video.liveStreams.<a href="./resources/video/live-streams.ts">disable</a>(liveStreamId) -> Promise<void></code>
 - <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/enable">client.video.liveStreams.<a href="./resources/video/live-streams.ts">enable</a>(liveStreamId) -> Promise<void></code>
 - <code title="post /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key">client.video.liveStreams.<a href="./resources/video/live-streams.ts">resetStreamKey</a>(liveStreamId) -> LiveStream</code>
 - <code title="get /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">retrievePlaybackId</a>(liveStreamId, playbackId) -> PlaybackID</code>
-- <code title="get /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">retrieveSimulcastTarget</a>(liveStreamId, simulcastTargetId) -> LiveStreamCreateSimulcastTargetResponse</code>
+- <code title="get /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}">client.video.liveStreams.<a href="./resources/video/live-streams.ts">retrieveSimulcastTarget</a>(liveStreamId, simulcastTargetId) -> SimulcastTarget</code>
 - <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles">client.video.liveStreams.<a href="./resources/video/live-streams.ts">updateEmbeddedSubtitles</a>(liveStreamId, { ...params }) -> LiveStream</code>
 - <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/generated-subtitles">client.video.liveStreams.<a href="./resources/video/live-streams.ts">updateGeneratedSubtitles</a>(liveStreamId, { ...params }) -> LiveStream</code>
 
@@ -171,9 +171,9 @@ Models:
 
 - <code><a href="./resources/data/monitoring/metrics.ts">MetricListResponse</a></code>
 - <code><a href="./resources/data/monitoring/metrics.ts">MetricGetBreakdownResponse</a></code>
-- <code><a href="./resources/data/monitoring/metrics.ts">MetricGetTimeseriesResponse</a></code>
 - <code><a href="./resources/data/monitoring/metrics.ts">MetricGetBreakdownTimeseriesResponse</a></code>
 - <code><a href="./resources/data/monitoring/metrics.ts">MetricGetHistogramTimeseriesResponse</a></code>
+- <code><a href="./resources/data/monitoring/metrics.ts">MetricGetTimeseriesResponse</a></code>
 
 Methods:
 

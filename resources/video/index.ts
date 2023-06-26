@@ -38,7 +38,7 @@ export {
 } from './delivery-usage';
 export {
   LiveStream,
-  LiveStreamCreateSimulcastTargetResponse,
+  SimulcastTarget,
   LiveStreamCreateParams,
   LiveStreamUpdateParams,
   LiveStreamListParams,
