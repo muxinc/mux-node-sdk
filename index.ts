@@ -4,9 +4,9 @@ import qs from 'qs';
 import * as Core from './core';
 import * as Pagination from './pagination';
 import * as API from './resources';
-import * as Errors from '~/error';
+import * as Errors from './error';
 import type { Agent } from 'http';
-import * as FileFromPath from 'formdata-node/file-from-path';
+import * as Uploads from './uploads';
 
 type Config = {
   /**
@@ -30,7 +30,7 @@ export class Mux extends Core.APIClient {
 
   constructor(config: Config) {
     const options: Config = {
-      tokenId: process.env['MUX_TOKEN_ID'] || '',
+      tokenId: typeof process === 'undefined' ? '' : process.env['MUX_TOKEN_ID'] || '',
       baseURL: 'https://api.mux.com',
       ...config,
     };
@@ -107,11 +107,13 @@ export const {
   UnprocessableEntityError,
 } = Errors;
 
-export import fileFromPath = FileFromPath.fileFromPath;
+export import toFile = Uploads.toFile;
+export import fileFromPath = Uploads.fileFromPath;
 
 export namespace Mux {
   // Helper functions
-  export import fileFromPath = FileFromPath.fileFromPath;
+  export import toFile = Uploads.toFile;
+  export import fileFromPath = Uploads.fileFromPath;
 
   export import PageWithTotal = Pagination.PageWithTotal;
   export import PageWithTotalParams = Pagination.PageWithTotalParams;
@@ -130,6 +132,4 @@ export namespace Mux {
   export import PlaybackID = API.PlaybackID;
   export import PlaybackPolicy = API.PlaybackPolicy;
 }
-
-exports = module.exports = Mux;
 export default Mux;
