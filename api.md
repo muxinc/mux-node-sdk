@@ -2,7 +2,7 @@
 
 ## Assets
 
-Models:
+Types:
 
 - <code><a href="./resources/video/assets.ts">Asset</a></code>
 - <code><a href="./resources/video/assets.ts">AssetResponse</a></code>
@@ -25,7 +25,7 @@ Methods:
 
 ## DeliveryUsage
 
-Models:
+Types:
 
 - <code><a href="./resources/video/delivery-usage.ts">DeliveryReport</a></code>
 
@@ -35,7 +35,7 @@ Methods:
 
 ## LiveStreams
 
-Models:
+Types:
 
 - <code><a href="./resources/video/live-streams.ts">LiveStream</a></code>
 - <code><a href="./resources/video/live-streams.ts">SimulcastTarget</a></code>
@@ -62,7 +62,7 @@ Methods:
 
 ## PlaybackIDs
 
-Models:
+Types:
 
 - <code><a href="./resources/video/playback-ids.ts">PlaybackIDRetrieveResponse</a></code>
 
@@ -72,7 +72,7 @@ Methods:
 
 ## PlaybackRestrictions
 
-Models:
+Types:
 
 - <code><a href="./resources/video/playback-restrictions.ts">PlaybackRestriction</a></code>
 - <code><a href="./resources/video/playback-restrictions.ts">PlaybackRestrictionResponse</a></code>
@@ -87,7 +87,7 @@ Methods:
 
 ## Spaces
 
-Models:
+Types:
 
 - <code><a href="./resources/video/spaces.ts">Broadcast</a></code>
 - <code><a href="./resources/video/spaces.ts">BroadcastLayout</a></code>
@@ -113,7 +113,7 @@ Methods:
 
 ## TranscriptionVocabularies
 
-Models:
+Types:
 
 - <code><a href="./resources/video/transcription-vocabularies.ts">TranscriptionVocabulary</a></code>
 - <code><a href="./resources/video/transcription-vocabularies.ts">TranscriptionVocabularyPhrase</a></code>
@@ -129,7 +129,7 @@ Methods:
 
 ## Uploads
 
-Models:
+Types:
 
 - <code><a href="./resources/video/uploads.ts">Upload</a></code>
 - <code><a href="./resources/video/uploads.ts">UploadResponse</a></code>
@@ -145,7 +145,7 @@ Methods:
 
 ## Dimensions
 
-Models:
+Types:
 
 - <code><a href="./resources/data/dimensions.ts">DimensionValue</a></code>
 - <code><a href="./resources/data/dimensions.ts">DimensionsResponse</a></code>
@@ -157,7 +157,7 @@ Methods:
 
 ## Monitoring
 
-Models:
+Types:
 
 - <code><a href="./resources/data/monitoring/monitoring.ts">MonitoringListDimensionsResponse</a></code>
 
@@ -167,7 +167,7 @@ Methods:
 
 ### Metrics
 
-Models:
+Types:
 
 - <code><a href="./resources/data/monitoring/metrics.ts">MetricListResponse</a></code>
 - <code><a href="./resources/data/monitoring/metrics.ts">MetricGetBreakdownResponse</a></code>
@@ -185,7 +185,7 @@ Methods:
 
 ## Errors
 
-Models:
+Types:
 
 - <code><a href="./resources/data/errors.ts">ErrorsResponse</a></code>
 
@@ -195,7 +195,7 @@ Methods:
 
 ## Exports
 
-Models:
+Types:
 
 - <code><a href="./resources/data/exports.ts">ExportsResponse</a></code>
 - <code><a href="./resources/data/exports.ts">VideoViewExportsResponse</a></code>
@@ -206,7 +206,7 @@ Methods:
 
 ## Filters
 
-Models:
+Types:
 
 - <code><a href="./resources/data/filters.ts">FilterValue</a></code>
 - <code><a href="./resources/data/filters.ts">FiltersResponse</a></code>
@@ -217,7 +217,7 @@ Methods:
 
 ## Incidents
 
-Models:
+Types:
 
 - <code><a href="./resources/data/incidents.ts">Incident</a></code>
 - <code><a href="./resources/data/incidents.ts">IncidentResponse</a></code>
@@ -230,7 +230,7 @@ Methods:
 
 ## Metrics
 
-Models:
+Types:
 
 - <code><a href="./resources/data/metrics.ts">AllMetricValuesResponse</a></code>
 - <code><a href="./resources/data/metrics.ts">BreakdownValue</a></code>
@@ -248,7 +248,7 @@ Methods:
 
 ## RealTime
 
-Models:
+Types:
 
 - <code><a href="./resources/data/real-time.ts">RealTimeBreakdownResponse</a></code>
 - <code><a href="./resources/data/real-time.ts">RealTimeDimensionsResponse</a></code>
@@ -266,7 +266,7 @@ Methods:
 
 ## VideoViews
 
-Models:
+Types:
 
 - <code><a href="./resources/data/video-views.ts">AbridgedVideoView</a></code>
 - <code><a href="./resources/data/video-views.ts">VideoViewResponse</a></code>
@@ -280,7 +280,7 @@ Methods:
 
 ## SigningKeys
 
-Models:
+Types:
 
 - <code><a href="./resources/system/signing-keys.ts">SigningKey</a></code>
 - <code><a href="./resources/system/signing-keys.ts">SigningKeyResponse</a></code>
