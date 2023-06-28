@@ -56,6 +56,8 @@ export class Incidents extends APIResource {
 export class IncidentsBasePage extends BasePage<Incident> {}
 
 export interface Incident {
+  id?: string;
+
   affected_views?: number;
 
   affected_views_per_hour?: number;
@@ -67,8 +69,6 @@ export interface Incident {
   description?: string;
 
   error_description?: string;
-
-  id?: string;
 
   impact?: string;
 
@@ -100,18 +100,18 @@ export interface Incident {
 }
 
 export namespace Incident {
-  export interface Notification {
-    attempted_at?: string;
+  export interface Breakdown {
+    id?: string;
 
-    id?: number;
+    name?: string;
 
-    queued_at?: string;
+    value?: string;
   }
 
   export interface NotificationRule {
-    action?: string;
-
     id?: string;
+
+    action?: string;
 
     property_id?: string;
 
@@ -130,12 +130,12 @@ export namespace Incident {
     }
   }
 
-  export interface Breakdown {
-    id?: string;
+  export interface Notification {
+    id?: number;
 
-    name?: string;
+    attempted_at?: string;
 
-    value?: string;
+    queued_at?: string;
   }
 }
 

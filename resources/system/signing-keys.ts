@@ -61,14 +61,14 @@ export class SigningKeysBasePage extends BasePage<SigningKey> {}
 
 export interface SigningKey {
   /**
-   * Time at which the object was created. Measured in seconds since the Unix epoch.
-   */
-  created_at?: string;
-
-  /**
    * Unique identifier for the Signing Key.
    */
   id?: string;
+
+  /**
+   * Time at which the object was created. Measured in seconds since the Unix epoch.
+   */
+  created_at?: string;
 
   /**
    * A Base64 encoded private key that can be used with the RS256 algorithm when

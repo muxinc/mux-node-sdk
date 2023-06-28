@@ -88,15 +88,15 @@ export class PlaybackRestrictionsBasePage extends BasePage<PlaybackRestriction> 
 
 export interface PlaybackRestriction {
   /**
+   * Unique identifier for the Playback Restriction. Max 255 characters.
+   */
+  id?: string;
+
+  /**
    * Time the Playback Restriction was created, defined as a Unix timestamp (seconds
    * since epoch).
    */
   created_at?: string;
-
-  /**
-   * Unique identifier for the Playback Restriction. Max 255 characters.
-   */
-  id?: string;
 
   /**
    * A list of domains allowed to play your videos.

@@ -37,11 +37,11 @@ export class VideoViews extends APIResource {
 export class AbridgedVideoViewsBasePage extends BasePage<AbridgedVideoView> {}
 
 export interface AbridgedVideoView {
+  id?: string;
+
   country_code?: string | null;
 
   error_type_id?: number | null;
-
-  id?: string;
 
   player_error_code?: string | null;
 
@@ -68,6 +68,8 @@ export interface VideoViewResponse {
 
 export namespace VideoViewResponse {
   export interface Data {
+    id?: string;
+
     asn?: number | null;
 
     asn_name?: string | null;
@@ -119,8 +121,6 @@ export namespace VideoViewResponse {
     exit_before_video_start?: boolean;
 
     experiment_name?: string | null;
-
-    id?: string;
 
     inserted_at?: string;
 

@@ -33,6 +33,11 @@ export interface ErrorsResponse {
 export namespace ErrorsResponse {
   export interface Data {
     /**
+     * A unique identifier for this error.
+     */
+    id?: number;
+
+    /**
      * The error code
      */
     code?: number;
@@ -46,11 +51,6 @@ export namespace ErrorsResponse {
      * Description of the error.
      */
     description?: string;
-
-    /**
-     * A unique identifier for this error.
-     */
-    id?: number;
 
     /**
      * The last time this error was seen (ISO 8601 timestamp).

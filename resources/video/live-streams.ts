@@ -278,6 +278,11 @@ export class LiveStreamsBasePage extends BasePage<LiveStream> {}
 
 export interface LiveStream {
   /**
+   * Unique identifier for the Live Stream. Max 255 characters.
+   */
+  id?: string;
+
+  /**
    * The Asset that is currently being created if there is an active broadcast.
    */
   active_asset_id?: string;
@@ -313,11 +318,6 @@ export interface LiveStream {
    * `generated_live_final` track will be included during playback.
    */
   generated_subtitles?: Array<LiveStream.GeneratedSubtitle>;
-
-  /**
-   * Unique identifier for the Live Stream. Max 255 characters.
-   */
-  id?: string;
 
   /**
    * Latency is the time from when the streamer transmits a frame of video to when
@@ -437,6 +437,54 @@ export interface LiveStream {
 }
 
 export namespace LiveStream {
+  export interface EmbeddedSubtitle {
+    /**
+     * CEA-608 caption channel to read data from.
+     */
+    language_channel?: 'cc1' | 'cc2' | 'cc3' | 'cc4';
+
+    /**
+     * The language of the closed caption stream. Value must be BCP 47 compliant.
+     */
+    language_code?: string;
+
+    /**
+     * A name for this live stream closed caption track.
+     */
+    name?: string;
+
+    /**
+     * Arbitrary user-supplied metadata set for the live stream closed caption track.
+     * Max 255 characters.
+     */
+    passthrough?: string;
+  }
+
+  export interface GeneratedSubtitle {
+    /**
+     * The language to generate subtitles in.
+     */
+    language_code?: 'en' | 'en-US';
+
+    /**
+     * A name for this live stream subtitle track.
+     */
+    name?: string;
+
+    /**
+     * Arbitrary metadata set for the live stream subtitle track. Max 255 characters.
+     */
+    passthrough?: string;
+
+    /**
+     * Unique identifiers for existing Transcription Vocabularies to use while
+     * generating subtitles for the live stream. If the Transcription Vocabularies
+     * provided collectively have more than 1000 phrases, only the first 1000 phrases
+     * will be included.
+     */
+    transcription_vocabulary_ids?: Array<string>;
+  }
+
   export interface NewAssetSettings {
     /**
      * An array of objects that each describe an input file to be used to create the
@@ -648,54 +696,6 @@ export namespace LiveStream {
         width?: string;
       }
     }
-  }
-
-  export interface EmbeddedSubtitle {
-    /**
-     * CEA-608 caption channel to read data from.
-     */
-    language_channel?: 'cc1' | 'cc2' | 'cc3' | 'cc4';
-
-    /**
-     * The language of the closed caption stream. Value must be BCP 47 compliant.
-     */
-    language_code?: string;
-
-    /**
-     * A name for this live stream closed caption track.
-     */
-    name?: string;
-
-    /**
-     * Arbitrary user-supplied metadata set for the live stream closed caption track.
-     * Max 255 characters.
-     */
-    passthrough?: string;
-  }
-
-  export interface GeneratedSubtitle {
-    /**
-     * The language to generate subtitles in.
-     */
-    language_code?: 'en' | 'en-US';
-
-    /**
-     * A name for this live stream subtitle track.
-     */
-    name?: string;
-
-    /**
-     * Arbitrary metadata set for the live stream subtitle track. Max 255 characters.
-     */
-    passthrough?: string;
-
-    /**
-     * Unique identifiers for existing Transcription Vocabularies to use while
-     * generating subtitles for the live stream. If the Transcription Vocabularies
-     * provided collectively have more than 1000 phrases, only the first 1000 phrases
-     * will be included.
-     */
-    transcription_vocabulary_ids?: Array<string>;
   }
 }
 

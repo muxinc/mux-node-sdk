@@ -59,6 +59,11 @@ export class UploadsBasePage extends BasePage<Upload> {}
 
 export interface Upload {
   /**
+   * Unique identifier for the Direct Upload.
+   */
+  id?: string;
+
+  /**
    * Only set once the upload is in the `asset_created` state.
    */
   asset_id?: string;
@@ -73,11 +78,6 @@ export interface Upload {
    * Only set if an error occurred during asset creation.
    */
   error?: Upload.Error;
-
-  /**
-   * Unique identifier for the Direct Upload.
-   */
-  id?: string;
 
   new_asset_settings?: Assets.Asset;
 

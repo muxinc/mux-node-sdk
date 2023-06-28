@@ -179,18 +179,6 @@ export interface RealTimeHistogramTimeseriesResponse {
 }
 
 export namespace RealTimeHistogramTimeseriesResponse {
-  export interface Meta {
-    buckets?: Array<Meta.Bucket>;
-  }
-
-  export namespace Meta {
-    export interface Bucket {
-      end?: number;
-
-      start?: number;
-    }
-  }
-
   export interface Data {
     average?: number;
 
@@ -212,6 +200,18 @@ export namespace RealTimeHistogramTimeseriesResponse {
       count?: number;
 
       percentage?: number;
+    }
+  }
+
+  export interface Meta {
+    buckets?: Array<Meta.Bucket>;
+  }
+
+  export namespace Meta {
+    export interface Bucket {
+      end?: number;
+
+      start?: number;
     }
   }
 }

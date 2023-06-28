@@ -98,15 +98,15 @@ export class TranscriptionVocabulariesBasePage extends BasePage<TranscriptionVoc
 
 export interface TranscriptionVocabulary {
   /**
+   * Unique identifier for the Transcription Vocabulary
+   */
+  id?: string;
+
+  /**
    * Time the Transcription Vocabulary was created, defined as a Unix timestamp
    * (seconds since epoch).
    */
   created_at?: string;
-
-  /**
-   * Unique identifier for the Transcription Vocabulary
-   */
-  id?: string;
 
   /**
    * The user-supplied name of the Transcription Vocabulary.

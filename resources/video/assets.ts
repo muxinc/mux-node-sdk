@@ -183,6 +183,11 @@ export class AssetsBasePage extends BasePage<Asset> {}
 
 export interface Asset {
   /**
+   * Unique identifier for the Asset. Max 255 characters.
+   */
+  id?: string;
+
+  /**
    * The aspect ratio of the asset in the form of `width:height`, for example `16:9`.
    */
   aspect_ratio?: string;
@@ -202,11 +207,6 @@ export interface Asset {
    * Object that describes any errors that happened when processing this asset.
    */
   errors?: Asset.Errors;
-
-  /**
-   * Unique identifier for the Asset. Max 255 characters.
-   */
-  id?: string;
 
   /**
    * Indicates whether the live stream that created this asset is currently `active`
@@ -355,75 +355,6 @@ export namespace Asset {
   }
 
   /**
-   * An object containing the current status of any static renditions (mp4s). The
-   * object does not exist if no static renditions have been requested. See
-   * [Download your videos](https://docs.mux.com/guides/video/download-your-videos)
-   * for more information.
-   */
-  export interface StaticRenditions {
-    /**
-     * Array of file objects.
-     */
-    files?: Array<StaticRenditions.File>;
-
-    /**
-     * Indicates the status of downloadable MP4 versions of this asset.
-     */
-    status?: 'ready' | 'preparing' | 'disabled' | 'errored';
-  }
-
-  export namespace StaticRenditions {
-    export interface File {
-      /**
-       * The bitrate in bits per second
-       */
-      bitrate?: number;
-
-      /**
-       * Extension of the static rendition file
-       */
-      ext?: 'mp4' | 'm4a';
-
-      /**
-       * The file size in bytes
-       */
-      filesize?: string;
-
-      /**
-       * The height of the static rendition's file in pixels
-       */
-      height?: number;
-
-      name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'audio.m4a';
-
-      /**
-       * The width of the static rendition's file in pixels
-       */
-      width?: number;
-    }
-  }
-
-  export interface RecordingTime {
-    /**
-     * The duration of the live stream recorded. The time value is in seconds.
-     */
-    duration?: number;
-
-    /**
-     * The time at which the recording for the live stream started. The time value is
-     * Unix epoch time represented in ISO 8601 format.
-     */
-    started_at?: string;
-
-    /**
-     * The type of media represented by the recording session, either `content` for
-     * normal stream content or `slate` for slate media inserted during stream
-     * interruptions.
-     */
-    type?: 'content' | 'slate';
-  }
-
-  /**
    * An object containing one or more reasons the input file is non-standard. See
    * [the guide on minimizing processing time](https://docs.mux.com/guides/video/minimize-processing-time)
    * for more information on what a standard input is defined as. This object only
@@ -499,6 +430,75 @@ export namespace Asset {
      */
     video_resolution?: string;
   }
+
+  export interface RecordingTime {
+    /**
+     * The duration of the live stream recorded. The time value is in seconds.
+     */
+    duration?: number;
+
+    /**
+     * The time at which the recording for the live stream started. The time value is
+     * Unix epoch time represented in ISO 8601 format.
+     */
+    started_at?: string;
+
+    /**
+     * The type of media represented by the recording session, either `content` for
+     * normal stream content or `slate` for slate media inserted during stream
+     * interruptions.
+     */
+    type?: 'content' | 'slate';
+  }
+
+  /**
+   * An object containing the current status of any static renditions (mp4s). The
+   * object does not exist if no static renditions have been requested. See
+   * [Download your videos](https://docs.mux.com/guides/video/download-your-videos)
+   * for more information.
+   */
+  export interface StaticRenditions {
+    /**
+     * Array of file objects.
+     */
+    files?: Array<StaticRenditions.File>;
+
+    /**
+     * Indicates the status of downloadable MP4 versions of this asset.
+     */
+    status?: 'ready' | 'preparing' | 'disabled' | 'errored';
+  }
+
+  export namespace StaticRenditions {
+    export interface File {
+      /**
+       * The bitrate in bits per second
+       */
+      bitrate?: number;
+
+      /**
+       * Extension of the static rendition file
+       */
+      ext?: 'mp4' | 'm4a';
+
+      /**
+       * The file size in bytes
+       */
+      filesize?: string;
+
+      /**
+       * The height of the static rendition's file in pixels
+       */
+      height?: number;
+
+      name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'audio.m4a';
+
+      /**
+       * The width of the static rendition's file in pixels
+       */
+      width?: number;
+    }
+  }
 }
 
 export interface AssetResponse {
@@ -506,6 +506,11 @@ export interface AssetResponse {
 }
 
 export interface Track {
+  /**
+   * Unique identifier for the Track
+   */
+  id?: string;
+
   /**
    * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
    * This parameter is only set for `text` type and `subtitles` text type tracks.
@@ -518,11 +523,6 @@ export interface Track {
    * field of an asset will always be set.
    */
   duration?: number;
-
-  /**
-   * Unique identifier for the Track
-   */
-  id?: string;
 
   /**
    * The language code value represents [BCP 47](https://tools.ietf.org/html/bcp47)

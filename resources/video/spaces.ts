@@ -221,14 +221,14 @@ export type BroadcastStatus = 'idle' | 'active';
 
 export interface Space {
   /**
-   * Time the space was created, defined as a Unix timestamp (seconds since epoch).
-   */
-  created_at: string;
-
-  /**
    * Unique identifier for the space. Max 255 characters.
    */
   id: string;
+
+  /**
+   * Time the space was created, defined as a Unix timestamp (seconds since epoch).
+   */
+  created_at: string;
 
   /**
    * The status of the space. Spaces are `idle` when there are no participants
