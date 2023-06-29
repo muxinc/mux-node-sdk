@@ -49,7 +49,7 @@ export class SigningKeys extends APIResource {
    * Deletes an existing signing key. Use with caution, as this will invalidate any
    * existing signatures and no JWTs can be signed using the key again.
    */
-  del(signingKeyId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
+  del(signingKeyId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
     return this.delete(`/system/v1/signing-keys/${signingKeyId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

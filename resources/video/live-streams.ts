@@ -70,7 +70,7 @@ export class LiveStreams extends APIResource {
    * currently active and being streamed to, ingest will be terminated and the
    * encoder will be disconnected.
    */
-  del(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
+  del(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
     return this.delete(`/video/v1/live-streams/${liveStreamId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -88,7 +88,7 @@ export class LiveStreams extends APIResource {
    * with the encoder. This 60s timeframe is meant to give encoder operators a chance
    * to disconnect from their end.
    */
-  complete(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
+  complete(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
     return this.put(`/video/v1/live-streams/${liveStreamId}/complete`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -140,7 +140,7 @@ export class LiveStreams extends APIResource {
     liveStreamId: string,
     playbackId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Promise<void>>> {
+  ): Promise<Core.APIResponse<void>> {
     return this.delete(`/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -156,7 +156,7 @@ export class LiveStreams extends APIResource {
     liveStreamId: string,
     simulcastTargetId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Promise<void>>> {
+  ): Promise<Core.APIResponse<void>> {
     return this.delete(`/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -172,7 +172,7 @@ export class LiveStreams extends APIResource {
    * Mux also closes the encoder connection immediately. Any attempt from the encoder
    * to re-establish connection will fail till the live stream is re-enabled.
    */
-  disable(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
+  disable(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
     return this.put(`/video/v1/live-streams/${liveStreamId}/disable`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -182,7 +182,7 @@ export class LiveStreams extends APIResource {
   /**
    * Enables a live stream, allowing it to accept an incoming RTMP stream.
    */
-  enable(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
+  enable(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
     return this.put(`/video/v1/live-streams/${liveStreamId}/enable`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

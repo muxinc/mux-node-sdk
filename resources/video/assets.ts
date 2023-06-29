@@ -57,7 +57,7 @@ export class Assets extends APIResource {
   /**
    * Deletes a video asset and all its data.
    */
-  del(assetId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
+  del(assetId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
     return this.delete(`/video/v1/assets/${assetId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -103,7 +103,7 @@ export class Assets extends APIResource {
     assetId: string,
     playbackId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Promise<void>>> {
+  ): Promise<Core.APIResponse<void>> {
     return this.delete(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -118,7 +118,7 @@ export class Assets extends APIResource {
     assetId: string,
     trackId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Promise<void>>> {
+  ): Promise<Core.APIResponse<void>> {
     return this.delete(`/video/v1/assets/${assetId}/tracks/${trackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

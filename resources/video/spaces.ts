@@ -47,7 +47,7 @@ export class Spaces extends APIResource {
   /**
    * Deletes a space. Spaces can only be deleted when `idle`.
    */
-  del(spaceId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<Promise<void>>> {
+  del(spaceId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
     return this.delete(`/video/v1/spaces/${spaceId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -78,7 +78,7 @@ export class Spaces extends APIResource {
     spaceId: string,
     broadcastId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Promise<void>>> {
+  ): Promise<Core.APIResponse<void>> {
     return this.delete(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -109,7 +109,7 @@ export class Spaces extends APIResource {
     spaceId: string,
     broadcastId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Promise<void>>> {
+  ): Promise<Core.APIResponse<void>> {
     return this.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/start`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -125,7 +125,7 @@ export class Spaces extends APIResource {
     spaceId: string,
     broadcastId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<Promise<void>>> {
+  ): Promise<Core.APIResponse<void>> {
     return this.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/stop`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
