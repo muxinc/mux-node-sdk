@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import { Headers } from '~/core';
-import Mux from '../index';
+import { Headers } from 'mux/core';
+import Mux from 'mux';
 
 describe('instantiate client', () => {
   const env = process.env;

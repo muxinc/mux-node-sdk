@@ -1,4 +1,4 @@
-import { createResponseHeaders } from '../core';
+import { createResponseHeaders } from 'mux/core';
 import { Headers } from 'mux/_shims/fetch';
 
 describe('response parsing', () => {

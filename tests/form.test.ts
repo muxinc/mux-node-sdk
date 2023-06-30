@@ -1,4 +1,4 @@
-import { multipartFormRequestOptions, createForm } from '../core';
+import { multipartFormRequestOptions, createForm } from 'mux/core';
 import { Blob } from 'mux/_shims/formdata';
 import { toFile } from 'mux';
 

@@ -1,16 +1,17 @@
 {
-  "exclude": ["dist", "ecosystem-tests"],
+  "include": ["src", "tests", "examples"],
   "compilerOptions": {
     "target": "es2019",
     "lib": ["es2020"],
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "rootDir": "./",
+    "rootDir": "./src",
     "baseUrl": "./",
     "paths": {
-      "~/*": ["*"],
-      "mux/_shims/*": ["_shims/*.node"],
+      "mux/_shims/*": ["src/_shims/*.node"],
+      "mux": ["src/index.ts"],
+      "mux/*": ["src/*"],
       "digest-fetch": ["./typings/digest-fetch"]
     },
 
