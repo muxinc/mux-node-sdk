@@ -18,6 +18,7 @@ type Config = {
   httpAgent?: Agent;
   maxRetries?: number;
   defaultHeaders?: Core.Headers;
+  defaultQuery?: Core.DefaultQuery;
   tokenSecret?: string | null;
 };
 
@@ -62,6 +63,10 @@ export class Mux extends Core.APIClient {
   video: API.Video = new API.Video(this);
   data: API.Data = new API.Data(this);
   system: API.System = new API.System(this);
+
+  protected override defaultQuery(): Core.DefaultQuery | undefined {
+    return this._options.defaultQuery;
+  }
 
   protected override defaultHeaders(): Core.Headers {
     return {

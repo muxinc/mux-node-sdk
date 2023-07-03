@@ -28,6 +28,38 @@ describe('instantiate client', () => {
     expect((req.headers as Headers)['X-My-Default-Header']).toEqual('2');
   });
 
+  describe('defaultQuery', () => {
+    test('with null query params given', () => {
+      const client = new Mux({
+        baseURL: 'http://localhost:5000/',
+        defaultQuery: { apiVersion: 'foo' },
+        tokenSecret: 'my secret',
+        tokenId: 'my token id',
+      });
+      expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo');
+    });
+
+    test('multiple default query params', () => {
+      const client = new Mux({
+        baseURL: 'http://localhost:5000/',
+        defaultQuery: { apiVersion: 'foo', hello: 'world' },
+        tokenSecret: 'my secret',
+        tokenId: 'my token id',
+      });
+      expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo&hello=world');
+    });
+
+    test('overriding with `undefined`', () => {
+      const client = new Mux({
+        baseURL: 'http://localhost:5000/',
+        defaultQuery: { hello: 'world' },
+        tokenSecret: 'my secret',
+        tokenId: 'my token id',
+      });
+      expect(client.buildURL('/foo', { hello: undefined })).toEqual('http://localhost:5000/foo');
+    });
+  });
+
   describe('baseUrl', () => {
     test('trailing slash', () => {
       const client = new Mux({
