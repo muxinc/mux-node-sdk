@@ -35,6 +35,8 @@ export class VideoViews extends APIResource {
 }
 
 export class AbridgedVideoViewsBasePage extends BasePage<AbridgedVideoView> {}
+// alias so we can export it in the namespace
+type _AbridgedVideoViewsBasePage = AbridgedVideoViewsBasePage;
 
 export interface AbridgedVideoView {
   id?: string;
@@ -413,6 +415,6 @@ export interface VideoViewListParams extends BasePageParams {
 export namespace VideoViews {
   export import AbridgedVideoView = API.AbridgedVideoView;
   export import VideoViewResponse = API.VideoViewResponse;
-  export import AbridgedVideoViewsBasePage = API.AbridgedVideoViewsBasePage;
+  export type AbridgedVideoViewsBasePage = _AbridgedVideoViewsBasePage;
   export import VideoViewListParams = API.VideoViewListParams;
 }

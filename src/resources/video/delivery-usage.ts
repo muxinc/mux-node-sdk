@@ -28,6 +28,8 @@ export class DeliveryUsage extends APIResource {
 }
 
 export class DeliveryReportsPageWithTotal extends PageWithTotal<DeliveryReport> {}
+// alias so we can export it in the namespace
+type _DeliveryReportsPageWithTotal = DeliveryReportsPageWithTotal;
 
 export interface DeliveryReport {
   /**
@@ -142,6 +144,6 @@ export interface DeliveryUsageListParams extends PageWithTotalParams {
 
 export namespace DeliveryUsage {
   export import DeliveryReport = API.DeliveryReport;
-  export import DeliveryReportsPageWithTotal = API.DeliveryReportsPageWithTotal;
+  export type DeliveryReportsPageWithTotal = _DeliveryReportsPageWithTotal;
   export import DeliveryUsageListParams = API.DeliveryUsageListParams;
 }

@@ -481,6 +481,8 @@ export class Metrics extends APIResource {
 }
 
 export class BreakdownValuesBasePage extends BasePage<BreakdownValue> {}
+// alias so we can export it in the namespace
+type _BreakdownValuesBasePage = BreakdownValuesBasePage;
 
 export interface AllMetricValuesResponse {
   data: Array<AllMetricValuesResponse.Data>;
@@ -898,7 +900,7 @@ export namespace Metrics {
   export import InsightsResponse = API.InsightsResponse;
   export import MetricTimeseriesDataResponse = API.MetricTimeseriesDataResponse;
   export import OverallValuesResponse = API.OverallValuesResponse;
-  export import BreakdownValuesBasePage = API.BreakdownValuesBasePage;
+  export type BreakdownValuesBasePage = _BreakdownValuesBasePage;
   export import MetricListParams = API.MetricListParams;
   export import MetricGetInsightsParams = API.MetricGetInsightsParams;
   export import MetricGetOverallValuesParams = API.MetricGetOverallValuesParams;

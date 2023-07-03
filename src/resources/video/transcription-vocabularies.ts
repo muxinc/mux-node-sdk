@@ -92,6 +92,8 @@ export class TranscriptionVocabularies extends APIResource {
 }
 
 export class TranscriptionVocabulariesBasePage extends BasePage<TranscriptionVocabulary> {}
+// alias so we can export it in the namespace
+type _TranscriptionVocabulariesBasePage = TranscriptionVocabulariesBasePage;
 
 export interface TranscriptionVocabulary {
   /**
@@ -188,7 +190,7 @@ export namespace TranscriptionVocabularies {
   export import TranscriptionVocabulary = API.TranscriptionVocabulary;
   export import TranscriptionVocabularyPhrase = API.TranscriptionVocabularyPhrase;
   export import TranscriptionVocabularyResponse = API.TranscriptionVocabularyResponse;
-  export import TranscriptionVocabulariesBasePage = API.TranscriptionVocabulariesBasePage;
+  export type TranscriptionVocabulariesBasePage = _TranscriptionVocabulariesBasePage;
   export import TranscriptionVocabularyCreateParams = API.TranscriptionVocabularyCreateParams;
   export import TranscriptionVocabularyUpdateParams = API.TranscriptionVocabularyUpdateParams;
   export import TranscriptionVocabularyListParams = API.TranscriptionVocabularyListParams;

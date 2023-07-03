@@ -82,6 +82,8 @@ export class PlaybackRestrictions extends APIResource {
 }
 
 export class PlaybackRestrictionsBasePage extends BasePage<PlaybackRestriction> {}
+// alias so we can export it in the namespace
+type _PlaybackRestrictionsBasePage = PlaybackRestrictionsBasePage;
 
 export interface PlaybackRestriction {
   /**
@@ -196,7 +198,7 @@ export interface PlaybackRestrictionUpdateReferrerParams {
 export namespace PlaybackRestrictions {
   export import PlaybackRestriction = API.PlaybackRestriction;
   export import PlaybackRestrictionResponse = API.PlaybackRestrictionResponse;
-  export import PlaybackRestrictionsBasePage = API.PlaybackRestrictionsBasePage;
+  export type PlaybackRestrictionsBasePage = _PlaybackRestrictionsBasePage;
   export import PlaybackRestrictionCreateParams = API.PlaybackRestrictionCreateParams;
   export import PlaybackRestrictionListParams = API.PlaybackRestrictionListParams;
   export import PlaybackRestrictionUpdateReferrerParams = API.PlaybackRestrictionUpdateReferrerParams;

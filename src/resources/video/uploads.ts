@@ -56,6 +56,8 @@ export class Uploads extends APIResource {
 }
 
 export class UploadsBasePage extends BasePage<Upload> {}
+// alias so we can export it in the namespace
+type _UploadsBasePage = UploadsBasePage;
 
 export interface Upload {
   /**
@@ -362,7 +364,7 @@ export interface UploadListParams extends BasePageParams {}
 export namespace Uploads {
   export import Upload = API.Upload;
   export import UploadResponse = API.UploadResponse;
-  export import UploadsBasePage = API.UploadsBasePage;
+  export type UploadsBasePage = _UploadsBasePage;
   export import UploadCreateParams = API.UploadCreateParams;
   export import UploadListParams = API.UploadListParams;
 }

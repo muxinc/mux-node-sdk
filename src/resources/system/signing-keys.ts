@@ -58,6 +58,8 @@ export class SigningKeys extends APIResource {
 }
 
 export class SigningKeysBasePage extends BasePage<SigningKey> {}
+// alias so we can export it in the namespace
+type _SigningKeysBasePage = SigningKeysBasePage;
 
 export interface SigningKey {
   /**
@@ -87,6 +89,6 @@ export interface SigningKeyListParams extends BasePageParams {}
 export namespace SigningKeys {
   export import SigningKey = API.SigningKey;
   export import SigningKeyResponse = API.SigningKeyResponse;
-  export import SigningKeysBasePage = API.SigningKeysBasePage;
+  export type SigningKeysBasePage = _SigningKeysBasePage;
   export import SigningKeyListParams = API.SigningKeyListParams;
 }

@@ -275,6 +275,8 @@ export class LiveStreams extends APIResource {
 }
 
 export class LiveStreamsBasePage extends BasePage<LiveStream> {}
+// alias so we can export it in the namespace
+type _LiveStreamsBasePage = LiveStreamsBasePage;
 
 export interface LiveStream {
   /**
@@ -1308,7 +1310,7 @@ export namespace LiveStreamUpdateGeneratedSubtitlesParams {
 export namespace LiveStreams {
   export import LiveStream = API.LiveStream;
   export import SimulcastTarget = API.SimulcastTarget;
-  export import LiveStreamsBasePage = API.LiveStreamsBasePage;
+  export type LiveStreamsBasePage = _LiveStreamsBasePage;
   export import LiveStreamCreateParams = API.LiveStreamCreateParams;
   export import LiveStreamUpdateParams = API.LiveStreamUpdateParams;
   export import LiveStreamListParams = API.LiveStreamListParams;

@@ -31,6 +31,8 @@ export class Filters extends APIResource {
 }
 
 export class FilterValuesBasePage extends BasePage<FilterValue> {}
+// alias so we can export it in the namespace
+type _FilterValuesBasePage = FilterValuesBasePage;
 
 export interface FilterValue {
   total_count?: number;
@@ -85,6 +87,6 @@ export interface FilterListValuesParams extends BasePageParams {
 export namespace Filters {
   export import FilterValue = API.FilterValue;
   export import FiltersResponse = API.FiltersResponse;
-  export import FilterValuesBasePage = API.FilterValuesBasePage;
+  export type FilterValuesBasePage = _FilterValuesBasePage;
   export import FilterListValuesParams = API.FilterListValuesParams;
 }

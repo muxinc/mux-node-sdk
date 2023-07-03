@@ -54,6 +54,8 @@ export class Incidents extends APIResource {
 }
 
 export class IncidentsBasePage extends BasePage<Incident> {}
+// alias so we can export it in the namespace
+type _IncidentsBasePage = IncidentsBasePage;
 
 export interface Incident {
   id?: string;
@@ -182,7 +184,7 @@ export interface IncidentListRelatedParams extends BasePageParams {
 export namespace Incidents {
   export import Incident = API.Incident;
   export import IncidentResponse = API.IncidentResponse;
-  export import IncidentsBasePage = API.IncidentsBasePage;
+  export type IncidentsBasePage = _IncidentsBasePage;
   export import IncidentListParams = API.IncidentListParams;
   export import IncidentListRelatedParams = API.IncidentListRelatedParams;
 }

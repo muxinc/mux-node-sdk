@@ -43,6 +43,8 @@ export class Dimensions extends APIResource {
 }
 
 export class DimensionValuesBasePage extends BasePage<DimensionValue> {}
+// alias so we can export it in the namespace
+type _DimensionValuesBasePage = DimensionValuesBasePage;
 
 export interface DimensionValue {
   total_count?: number;
@@ -97,6 +99,6 @@ export interface DimensionListValuesParams extends BasePageParams {
 export namespace Dimensions {
   export import DimensionValue = API.DimensionValue;
   export import DimensionsResponse = API.DimensionsResponse;
-  export import DimensionValuesBasePage = API.DimensionValuesBasePage;
+  export type DimensionValuesBasePage = _DimensionValuesBasePage;
   export import DimensionListValuesParams = API.DimensionListValuesParams;
 }

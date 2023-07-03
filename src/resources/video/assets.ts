@@ -180,6 +180,8 @@ export class Assets extends APIResource {
 }
 
 export class AssetsBasePage extends BasePage<Asset> {}
+// alias so we can export it in the namespace
+type _AssetsBasePage = AssetsBasePage;
 
 export interface Asset {
   /**
@@ -914,7 +916,7 @@ export namespace Assets {
   export import Asset = API.Asset;
   export import AssetResponse = API.AssetResponse;
   export import Track = API.Track;
-  export import AssetsBasePage = API.AssetsBasePage;
+  export type AssetsBasePage = _AssetsBasePage;
   export import AssetCreateParams = API.AssetCreateParams;
   export import AssetUpdateParams = API.AssetUpdateParams;
   export import AssetListParams = API.AssetListParams;

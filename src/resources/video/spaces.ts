@@ -134,6 +134,8 @@ export class Spaces extends APIResource {
 }
 
 export class SpacesBasePage extends BasePage<Space> {}
+// alias so we can export it in the namespace
+type _SpacesBasePage = SpacesBasePage;
 
 export interface Broadcast {
   /**
@@ -389,7 +391,7 @@ export namespace Spaces {
   export import SpaceResponse = API.SpaceResponse;
   export import SpaceStatus = API.SpaceStatus;
   export import SpaceType = API.SpaceType;
-  export import SpacesBasePage = API.SpacesBasePage;
+  export type SpacesBasePage = _SpacesBasePage;
   export import SpaceCreateParams = API.SpaceCreateParams;
   export import SpaceListParams = API.SpaceListParams;
   export import SpaceCreateBroadcastParams = API.SpaceCreateBroadcastParams;
