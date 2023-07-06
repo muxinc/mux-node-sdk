@@ -49,7 +49,7 @@ const mux = new Mux({
 });
 
 async function main() {
-  const asset: Mux.AssetResponse = await mux.video.assets.create();
+  const asset: Mux.Video.Asset = await mux.video.assets.create();
 }
 main().catch(console.error);
 ```
