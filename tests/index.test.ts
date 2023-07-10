@@ -159,3 +159,19 @@ describe('instantiate client', () => {
     }).toThrow();
   });
 });
+
+describe('request building', () => {
+  const client = new Mux({ tokenSecret: 'my secret', tokenId: 'my token id' });
+
+  describe('Content-Length', () => {
+    test('handles multi-byte characters', () => {
+      const { req } = client.buildRequest({ path: '/foo', method: 'post', body: { value: '—' } });
+      expect((req.headers as Record<string, string>)['Content-Length']).toEqual('20');
+    });
+
+    test('handles standard characters', () => {
+      const { req } = client.buildRequest({ path: '/foo', method: 'post', body: { value: 'hello' } });
+      expect((req.headers as Record<string, string>)['Content-Length']).toEqual('22');
+    });
+  });
+});
