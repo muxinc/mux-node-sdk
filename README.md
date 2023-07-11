@@ -32,7 +32,8 @@ async function main() {
 
   console.log(asset.aspect_ratio);
 }
-main().catch(console.error);
+
+main();
 ```
 
 ### Usage with TypeScript
@@ -51,7 +52,8 @@ const mux = new Mux({
 async function main() {
   const asset: Mux.Video.Asset = await mux.video.assets.create();
 }
-main().catch(console.error);
+
+main();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -70,10 +72,13 @@ async function main() {
       console.log(err.name); // BadRequestError
 
       console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
     }
   });
 }
-main().catch(console.error);
+
+main();
 ```
 
 Error codes are as followed:
@@ -106,7 +111,7 @@ const mux = new Mux({
 });
 
 // Or, configure per-request:
-mux.video.assets.retrieve('t02rm...', {
+await mux.video.assets.retrieve('t02rm...', {
   maxRetries: 5,
 });
 ```
@@ -124,7 +129,7 @@ const mux = new Mux({
 });
 
 // Override per-request:
-mux.video.assets.retrieve('t02rm...', {
+await mux.video.assets.retrieve('t02rm...', {
   timeout: 5 * 1000,
 });
 ```
@@ -182,7 +187,7 @@ const mux = new Mux({
 });
 
 // Override per-request:
-mux.video.assets.retrieve('t02rm...', {
+await mux.video.assets.retrieve('t02rm...', {
   baseURL: 'http://localhost:8080/test-api',
   httpAgent: new http.Agent({ keepAlive: false }),
 })
