@@ -5,9 +5,9 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "mux/_shims/*": ["dist/src/_shims/*.node"],
-      "mux": ["dist/src/index.ts"],
-      "mux/*": ["dist/src/*"],
+      "@mux/mux-node/_shims/*": ["dist/src/_shims/*.node"],
+      "@mux/mux-node": ["dist/src/index.ts"],
+      "@mux/mux-node/*": ["dist/src/*"],
       "digest-fetch": ["./typings/digest-fetch"]
     },
     "noEmit": false,

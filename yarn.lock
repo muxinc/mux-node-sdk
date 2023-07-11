@@ -978,7 +978,7 @@
     "@typescript-eslint/types" "5.45.0"
     eslint-visitor-keys "^3.3.0"
 
-"mux@link:.":
+"@mux/mux-node@link:.":
   version "0.0.0"
   uid ""
 

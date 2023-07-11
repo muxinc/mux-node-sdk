@@ -1,12 +1,12 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import * as Core from 'mux/core';
-import { APIResource } from 'mux/resource';
-import { isRequestOptions } from 'mux/core';
-import * as Assets from 'mux/resources/video/assets';
-import * as Shared from 'mux/resources/shared';
+import * as Core from '@mux/mux-node/core';
+import { APIResource } from '@mux/mux-node/resource';
+import { isRequestOptions } from '@mux/mux-node/core';
+import * as Assets from '@mux/mux-node/resources/video/assets';
+import * as Shared from '@mux/mux-node/resources/shared';
 import * as API from './';
-import { BasePage, BasePageParams } from 'mux/pagination';
+import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
 
 export class Uploads extends APIResource {
   /**

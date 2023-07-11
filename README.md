@@ -1,6 +1,6 @@
 # Mux Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/mux.svg)](https://npmjs.org/package/mux)
+[![NPM version](https://img.shields.io/npm/v/@mux/mux-node.svg)](https://npmjs.org/package/@mux/mux-node)
 
 The Mux Node library provides convenient access to the Mux REST API from applications written in server-side JavaScript.
 It includes TypeScript definitions for all request params and response fields.
@@ -12,15 +12,15 @@ The API documentation can be found [here](https://docs.mux.com).
 ## Installation
 
 ```sh
-npm install --save mux
+npm install --save @mux/mux-node
 # or
-yarn add mux
+yarn add @mux/mux-node
 ```
 
 ## Usage
 
 ```js
-import Mux from 'mux';
+import Mux from '@mux/mux-node';
 
 const mux = new Mux({
   tokenId: 'my token id', // defaults to process.env["MUX_TOKEN_ID"]
@@ -42,7 +42,7 @@ Importing, instantiating, and interacting with the library are the same as above
 If you like, you may reference our types directly:
 
 ```ts
-import Mux from 'mux';
+import Mux from '@mux/mux-node';
 
 const mux = new Mux({
   tokenId: 'my token id', // defaults to process.env["MUX_TOKEN_ID"]
@@ -199,7 +199,7 @@ This package is in beta. Its internals and interfaces are not stable
 and subject to change without a major semver bump;
 please reach out if you rely on any undocumented behavior.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/muxinc/mux-node/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/muxinc/mux-node-sdk/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 
@@ -207,6 +207,6 @@ The following runtimes are supported:
 
 - Node.js 16 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
 - Deno v1.28.0 or higher (experimental).
-  Use `import Mux from "npm:mux"`.
+  Use `import Mux from "npm:@mux/mux-node"`.
 
 If you are interested in other runtime environments, please open or upvote an issue on GitHub.

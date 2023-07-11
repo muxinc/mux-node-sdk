@@ -1,6 +1,6 @@
-import { multipartFormRequestOptions, createForm } from 'mux/core';
-import { Blob } from 'mux/_shims/formdata';
-import { toFile } from 'mux';
+import { multipartFormRequestOptions, createForm } from '@mux/mux-node/core';
+import { Blob } from '@mux/mux-node/_shims/formdata';
+import { toFile } from '@mux/mux-node';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

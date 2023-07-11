@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import * as Core from 'mux/core';
-import { APIResource } from 'mux/resource';
-import { isRequestOptions } from 'mux/core';
+import * as Core from '@mux/mux-node/core';
+import { APIResource } from '@mux/mux-node/resource';
+import { isRequestOptions } from '@mux/mux-node/core';
 import * as API from './';
-import { BasePage, BasePageParams } from 'mux/pagination';
+import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
 
 export class PlaybackRestrictions extends APIResource {
   /**

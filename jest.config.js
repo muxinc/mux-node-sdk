@@ -3,9 +3,9 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   moduleNameMapper: {
-    '^mux$': '<rootDir>/src/index.ts',
-    '^mux/_shims/(.*)$': '<rootDir>/src/_shims/$1.node',
-    '^mux/(.*)$': '<rootDir>/src/$1',
+    '^@mux/mux-node$': '<rootDir>/src/index.ts',
+    '^@mux/mux-node/_shims/(.*)$': '<rootDir>/src/_shims/$1.node',
+    '^@mux/mux-node/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: ['<rootDir>/ecosystem-tests/', '<rootDir>/dist/'],
 };

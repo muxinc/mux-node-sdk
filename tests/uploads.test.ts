@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { toFile, type ResponseLike } from 'mux/uploads';
-import { File } from 'mux/_shims/formdata';
+import { toFile, type ResponseLike } from '@mux/mux-node/uploads';
+import { File } from '@mux/mux-node/_shims/formdata';
 
 class MyClass {
   name: string = 'foo';

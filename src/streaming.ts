@@ -1,4 +1,4 @@
-import type { Response } from 'mux/_shims/fetch';
+import type { Response } from '@mux/mux-node/_shims/fetch';
 
 import { APIResponse, Headers, createResponseHeaders } from './core';
 

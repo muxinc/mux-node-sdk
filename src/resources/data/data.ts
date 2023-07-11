@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import { APIResource } from 'mux/resource';
+import { APIResource } from '@mux/mux-node/resource';
 import { Dimensions } from './dimensions';
 import { Monitoring } from './monitoring/monitoring';
 import { Errors } from './errors';

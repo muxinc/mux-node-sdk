@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import * as Core from 'mux/core';
-import { APIResource } from 'mux/resource';
+import * as Core from '@mux/mux-node/core';
+import { APIResource } from '@mux/mux-node/resource';
 import * as API from './';
 
 export class Exports extends APIResource {

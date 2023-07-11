@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import { APIResource } from 'mux/resource';
+import { APIResource } from '@mux/mux-node/resource';
 import { SigningKeys } from './signing-keys';
 import * as API from './';
 

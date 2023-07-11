@@ -5,7 +5,7 @@ import * as Core from './core';
 import * as Pagination from './pagination';
 import * as API from './resources/index';
 import * as Errors from './error';
-import type { Agent } from 'mux/_shims/agent';
+import type { Agent } from '@mux/mux-node/_shims/agent';
 import * as Uploads from './uploads';
 
 type Config = {

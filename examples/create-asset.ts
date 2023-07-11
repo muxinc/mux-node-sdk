@@ -1,5 +1,5 @@
 #!/usr/bin/env yarn tsn -T
-import Mux from 'mux';
+import Mux from '@mux/mux-node';
 
 const mux = new Mux({
   // These are dev env values
@@ -22,4 +22,7 @@ async function main() {
   console.log(assets.length);
 }
 
-main().catch(console.error);
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

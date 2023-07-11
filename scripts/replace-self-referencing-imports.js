@@ -9,10 +9,10 @@ function replaceSelfReferencingImports({ orig, file, config }) {
   // see if they go to definition
   if (!file.startsWith(distSrcDir)) return orig;
   return orig.replace(/['"]([^"'\r\n]+)['"]/, (match, importPath) => {
-    if (!importPath.startsWith('mux/')) return match;
+    if (!importPath.startsWith('@mux/mux-node/')) return match;
     let relativePath = path.relative(
       path.dirname(file),
-      path.join(distSrcDir, importPath.substring('mux/'.length)),
+      path.join(distSrcDir, importPath.substring('@mux/mux-node/'.length)),
     );
     if (!relativePath.startsWith('.')) relativePath = `./${relativePath}`;
     return JSON.stringify(relativePath);

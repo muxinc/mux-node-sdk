@@ -2,15 +2,15 @@ import * as qs from 'qs';
 import { VERSION } from './version';
 import { Stream } from './streaming';
 import { APIError, APIConnectionError, APIConnectionTimeoutError } from './error';
-import type { Readable } from 'mux/_shims/node-readable';
-import { getDefaultAgent, type Agent } from 'mux/_shims/agent';
+import type { Readable } from '@mux/mux-node/_shims/node-readable';
+import { getDefaultAgent, type Agent } from '@mux/mux-node/_shims/agent';
 import {
   fetch,
   isPolyfilled as fetchIsPolyfilled,
   type RequestInfo,
   type RequestInit,
   type Response,
-} from 'mux/_shims/fetch';
+} from '@mux/mux-node/_shims/fetch';
 import { isMultipartBody } from './uploads';
 export {
   maybeMultipartFormRequestOptions,

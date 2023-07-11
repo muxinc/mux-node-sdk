@@ -7,7 +7,7 @@ yarn tsc
 
 # Build into dist and will publish the package from there,
 # so that src/resources/foo.ts becomes <package root>/resources/foo.js
-# This way importing from `"mux/resources/foo"` works
+# This way importing from `"@mux/mux-node/resources/foo"` works
 # even with `"moduleResolution": "node"`
 
 rm -rf dist
@@ -51,5 +51,5 @@ yarn prettier --loglevel=warn --write .
 # make sure that nothing crashes when we require the output CJS or
 # import the output ESM
 cd dist
-node -e 'require("mux")'
-node -e 'import("mux")' --input-type=module
+node -e 'require("@mux/mux-node")'
+node -e 'import("@mux/mux-node")' --input-type=module

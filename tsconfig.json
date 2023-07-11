@@ -8,9 +8,9 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "mux/_shims/*": ["src/_shims/*.node"],
-      "mux": ["src/index.ts"],
-      "mux/*": ["src/*"],
+      "@mux/mux-node/_shims/*": ["src/_shims/*.node"],
+      "@mux/mux-node": ["src/index.ts"],
+      "@mux/mux-node/*": ["src/*"],
       "digest-fetch": ["./typings/digest-fetch"]
     },
     "noEmit": true,
