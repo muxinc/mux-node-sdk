@@ -288,6 +288,12 @@ export interface Asset {
   recording_times?: Array<Asset.RecordingTime>;
 
   /**
+   * The resolution tier that the asset was ingested at, affecting billing for ingest
+   * & storage
+   */
+  resolution_tier?: 'audio-only' | '720p' | '1080p' | '1440p' | '2160p';
+
+  /**
    * Asset Identifier of the video used as the source for creating the clip.
    */
   source_asset_id?: string;
