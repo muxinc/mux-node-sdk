@@ -1,6 +1,5 @@
 import * as qs from 'qs';
 import { VERSION } from './version';
-import { Stream } from './streaming';
 import { APIError, APIConnectionError, APIConnectionTimeoutError, APIUserAbortError } from './error';
 import type { Readable } from '@mux/mux-node/_shims/node-readable';
 import { getDefaultAgent, type Agent } from '@mux/mux-node/_shims/agent';
@@ -250,12 +249,6 @@ export abstract class APIClient {
 
       const err = this.makeStatusError(response.status, errJSON, errMessage, responseHeaders);
       throw err;
-    }
-
-    if (options.stream) {
-      // Note: there is an invariant here that isn't represented in the type system
-      // that if you set `stream: true` the response type must also be `Stream<T>`
-      return new Stream<Rsp>(response, controller) as any;
     }
 
     const contentType = response.headers.get('content-type');
