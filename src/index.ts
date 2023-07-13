@@ -127,7 +127,7 @@ export class Mux extends Core.APIClient {
 
   protected override authHeaders(): Core.Headers {
     const credentials = `${this.tokenId}:${this.tokenSecret}`;
-    const Authorization = `Basic ${Buffer.from(credentials).toString('base64')}`;
+    const Authorization = `Basic ${Core.toBase64(credentials)}`;
     return { Authorization };
   }
 
