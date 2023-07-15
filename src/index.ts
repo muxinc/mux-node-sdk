@@ -135,6 +135,8 @@ export class Mux extends Core.APIClient {
     return { arrayFormat: 'comma' };
   }
 
+  static Mux = this;
+
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
