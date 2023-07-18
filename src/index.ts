@@ -8,7 +8,7 @@ import type { Agent } from '@mux/mux-node/_shims/agent';
 import * as Uploads from './uploads';
 import * as qs from 'qs';
 
-type Config = {
+export interface ClientOptions {
   /**
    * Defaults to process.env["MUX_TOKEN_ID"].
    */
@@ -69,20 +69,20 @@ type Config = {
   defaultQuery?: Core.DefaultQuery;
 
   tokenSecret?: string | null;
-};
+}
 
 /** Instantiate the API Client. */
 export class Mux extends Core.APIClient {
   tokenId: string;
   tokenSecret: string;
 
-  private _options: Config;
+  private _options: ClientOptions;
 
-  constructor(config: Config) {
-    const options: Config = {
+  constructor(opts: ClientOptions) {
+    const options: ClientOptions = {
       tokenId: typeof process === 'undefined' ? '' : process.env['MUX_TOKEN_ID'] || '',
       baseURL: 'https://api.mux.com',
-      ...config,
+      ...opts,
     };
 
     if (!options.tokenId && options.tokenId !== null) {
@@ -101,7 +101,7 @@ export class Mux extends Core.APIClient {
     this.tokenId = options.tokenId;
     this._options = options;
 
-    const tokenSecret = config.tokenSecret || process.env['MUX_TOKEN_SECRET'];
+    const tokenSecret = opts.tokenSecret || process.env['MUX_TOKEN_SECRET'];
     if (!tokenSecret) {
       throw new Error(
         "The MUX_TOKEN_SECRET environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenSecret option, like new Mux({ tokenSecret: 'my secret' }).",
