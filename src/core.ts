@@ -127,9 +127,11 @@ export abstract class APIClient {
         return Buffer.byteLength(body, 'utf8').toString();
       }
 
-      const encoder = new TextEncoder();
-      const encoded = encoder.encode(body);
-      return encoded.length.toString();
+      if (typeof TextEncoder !== 'undefined') {
+        const encoder = new TextEncoder();
+        const encoded = encoder.encode(body);
+        return encoded.length.toString();
+      }
     }
 
     return null;
