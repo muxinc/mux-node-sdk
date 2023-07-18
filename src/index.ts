@@ -1,12 +1,12 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import * as qs from 'qs';
 import * as Core from './core';
 import * as Pagination from './pagination';
 import * as API from './resources/index';
 import * as Errors from './error';
 import type { Agent } from '@mux/mux-node/_shims/agent';
 import * as Uploads from './uploads';
+import * as qs from 'qs';
 
 type Config = {
   /**
@@ -131,8 +131,8 @@ export class Mux extends Core.APIClient {
     return { Authorization };
   }
 
-  protected override qsOptions(): qs.IStringifyOptions {
-    return { arrayFormat: 'comma' };
+  protected override stringifyQuery(query: Record<string, unknown>): string {
+    return qs.stringify(query, { arrayFormat: 'comma' });
   }
 
   static Mux = this;
