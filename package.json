@@ -13,6 +13,7 @@
   ],
   "author": "Mux <help@mux.com> (https://mux.com/)",
   "main": "./dist/mux.js",
+  "types": "./dist/mux.d.ts",
   "exports": {
     "import": "./dist/mux.mjs",
     "require": "./dist/mux.js",
