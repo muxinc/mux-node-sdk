@@ -4,3 +4,4 @@ export * from './shared';
 export { Data } from './data/data';
 export { System } from './system/system';
 export { Video } from './video/video';
+export { Webhooks } from './webhooks';

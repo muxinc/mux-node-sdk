@@ -69,12 +69,15 @@ export interface ClientOptions {
   defaultQuery?: Core.DefaultQuery;
 
   tokenSecret?: string | null;
+
+  webhookSecret?: string | null;
 }
 
 /** Instantiate the API Client. */
 export class Mux extends Core.APIClient {
   tokenId: string;
   tokenSecret: string;
+  webhookSecret?: string | null;
 
   private _options: ClientOptions;
 
@@ -108,11 +111,13 @@ export class Mux extends Core.APIClient {
       );
     }
     this.tokenSecret = tokenSecret;
+    this.webhookSecret = opts.webhookSecret || process.env['MUX_WEBHOOK_SECRET'] || null;
   }
 
   video: API.Video = new API.Video(this);
   data: API.Data = new API.Data(this);
   system: API.System = new API.System(this);
+  webhooks: API.Webhooks = new API.Webhooks(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -187,6 +192,8 @@ export namespace Mux {
   export import Data = API.Data;
 
   export import System = API.System;
+
+  export import Webhooks = API.Webhooks;
 
   export import PlaybackID = API.PlaybackID;
   export import PlaybackPolicy = API.PlaybackPolicy;
