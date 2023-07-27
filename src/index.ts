@@ -68,7 +68,7 @@ export interface ClientOptions {
    */
   defaultQuery?: Core.DefaultQuery;
 
-  tokenSecret?: string | null;
+  tokenSecret?: string;
 
   webhookSecret?: string | null;
 }
@@ -81,11 +81,21 @@ export class Mux extends Core.APIClient {
 
   private _options: ClientOptions;
 
-  constructor(opts?: ClientOptions) {
+  constructor(opts: ClientOptions = {}) {
+    const tokenSecret = opts.tokenSecret || Core.readEnv('MUX_TOKEN_SECRET');
+    if (tokenSecret === undefined) {
+      throw new Error(
+        "The MUX_TOKEN_SECRET environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenSecret option, like new Mux({ tokenSecret: 'my secret' }).",
+      );
+    }
+    const webhookSecret = opts.webhookSecret || Core.readEnv('MUX_WEBHOOK_SECRET') || null;
+
     const options: ClientOptions = {
       tokenId: typeof process === 'undefined' ? '' : process.env['MUX_TOKEN_ID'] || '',
-      baseURL: 'https://api.mux.com',
+      baseURL: `https://api.mux.com`,
       ...opts,
+      tokenSecret,
+      webhookSecret,
     };
 
     if (!options.tokenId && options.tokenId !== null) {
@@ -104,14 +114,8 @@ export class Mux extends Core.APIClient {
     this.tokenId = options.tokenId;
     this._options = options;
 
-    const tokenSecret = opts?.tokenSecret || process.env['MUX_TOKEN_SECRET'];
-    if (!tokenSecret) {
-      throw new Error(
-        "The MUX_TOKEN_SECRET environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenSecret option, like new Mux({ tokenSecret: 'my secret' }).",
-      );
-    }
     this.tokenSecret = tokenSecret;
-    this.webhookSecret = opts?.webhookSecret || process.env['MUX_WEBHOOK_SECRET'] || null;
+    this.webhookSecret = webhookSecret;
   }
 
   video: API.Video = new API.Video(this);
