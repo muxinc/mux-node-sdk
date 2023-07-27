@@ -104,14 +104,14 @@ export class Mux extends Core.APIClient {
     this.tokenId = options.tokenId;
     this._options = options;
 
-    const tokenSecret = opts?.tokenSecret || process.env['MUX_TOKEN_SECRET'];
+    const tokenSecret = options.tokenSecret || Core.readEnv('MUX_TOKEN_SECRET');
     if (!tokenSecret) {
       throw new Error(
         "The MUX_TOKEN_SECRET environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenSecret option, like new Mux({ tokenSecret: 'my secret' }).",
       );
     }
     this.tokenSecret = tokenSecret;
-    this.webhookSecret = opts?.webhookSecret || process.env['MUX_WEBHOOK_SECRET'] || null;
+    this.webhookSecret = options.webhookSecret || Core.readEnv('MUX_WEBHOOK_SECRET') || null;
   }
 
   video: API.Video = new API.Video(this);
