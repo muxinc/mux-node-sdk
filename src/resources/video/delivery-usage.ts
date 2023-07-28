@@ -43,6 +43,12 @@ export interface DeliveryReport {
   asset_id?: string;
 
   /**
+   * The resolution tier that the asset was ingested at, affecting billing for ingest
+   * & storage
+   */
+  asset_resolution_tier?: 'audio-only' | '720p' | '1080p' | '1440p' | '2160p';
+
+  /**
    * The state of the asset.
    */
   asset_state?: 'ready' | 'errored' | 'deleted';
