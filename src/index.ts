@@ -81,28 +81,30 @@ export class Mux extends Core.APIClient {
 
   private _options: ClientOptions;
 
-  constructor(opts: ClientOptions = {}) {
-    const tokenSecret = opts.tokenSecret || Core.readEnv('MUX_TOKEN_SECRET');
+  constructor({
+    tokenId = Core.readEnv('MUX_TOKEN_ID'),
+    tokenSecret = Core.readEnv('MUX_TOKEN_SECRET'),
+    webhookSecret = Core.readEnv('MUX_WEBHOOK_SECRET') ?? null,
+    ...opts
+  }: ClientOptions = {}) {
+    if (tokenId === undefined) {
+      throw new Error(
+        'The MUX_TOKEN_ID environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenId option, like new Mux({ tokenId: undefined }).',
+      );
+    }
     if (tokenSecret === undefined) {
       throw new Error(
         "The MUX_TOKEN_SECRET environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenSecret option, like new Mux({ tokenSecret: 'my secret' }).",
       );
     }
-    const webhookSecret = opts.webhookSecret || Core.readEnv('MUX_WEBHOOK_SECRET') || null;
 
     const options: ClientOptions = {
-      tokenId: typeof process === 'undefined' ? '' : process.env['MUX_TOKEN_ID'] || '',
-      baseURL: `https://api.mux.com`,
-      ...opts,
+      tokenId,
       tokenSecret,
       webhookSecret,
+      baseURL: `https://api.mux.com`,
+      ...opts,
     };
-
-    if (!options.tokenId && options.tokenId !== null) {
-      throw new Error(
-        "The MUX_TOKEN_ID environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenId option, like new Mux({ tokenId: 'my token id' }).",
-      );
-    }
 
     super({
       baseURL: options.baseURL!,
@@ -111,9 +113,9 @@ export class Mux extends Core.APIClient {
       maxRetries: options.maxRetries,
       fetch: options.fetch,
     });
-    this.tokenId = options.tokenId;
     this._options = options;
 
+    this.tokenId = tokenId;
     this.tokenSecret = tokenSecret;
     this.webhookSecret = webhookSecret;
   }
