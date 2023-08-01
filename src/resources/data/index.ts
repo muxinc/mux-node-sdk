@@ -46,7 +46,7 @@ export {
   IncidentsBasePage,
   Incidents,
 } from './incidents';
-export { MonitoringListDimensionsResponse, Monitoring } from './monitoring';
+export { MonitoringListDimensionsResponse, Monitoring } from './monitoring/index';
 export {
   RealTimeBreakdownResponse,
   RealTimeDimensionsResponse,

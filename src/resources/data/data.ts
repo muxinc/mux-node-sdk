@@ -10,7 +10,7 @@ import { Incidents } from './incidents';
 import { Metrics } from './metrics';
 import { RealTime } from './real-time';
 import { VideoViews } from './video-views';
-import * as API from './';
+import * as API from './index';
 
 export class Data extends APIResource {
   dimensions: Dimensions = new Dimensions(this.client);

@@ -3,7 +3,7 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as API from './';
+import * as API from './index';
 import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
 
 export class Incidents extends APIResource {

@@ -5,7 +5,7 @@ import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
 import * as Assets from '@mux/mux-node/resources/video/assets';
 import * as Shared from '@mux/mux-node/resources/shared';
-import * as API from './';
+import * as API from './index';
 import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
 
 export class Uploads extends APIResource {

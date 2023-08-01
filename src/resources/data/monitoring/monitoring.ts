@@ -3,7 +3,7 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { Metrics } from './metrics';
-import * as API from './';
+import * as API from './index';
 
 export class Monitoring extends APIResource {
   metrics: Metrics = new Metrics(this.client);

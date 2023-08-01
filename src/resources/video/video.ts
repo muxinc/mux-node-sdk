@@ -9,7 +9,7 @@ import { PlaybackRestrictions } from './playback-restrictions';
 import { Spaces } from './spaces';
 import { TranscriptionVocabularies } from './transcription-vocabularies';
 import { Uploads } from './uploads';
-import * as API from './';
+import * as API from './index';
 
 export class Video extends APIResource {
   assets: Assets = new Assets(this.client);

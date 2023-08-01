@@ -2,7 +2,7 @@
 
 import { APIResource } from '@mux/mux-node/resource';
 import { SigningKeys } from './signing-keys';
-import * as API from './';
+import * as API from './index';
 
 export class System extends APIResource {
   signingKeys: SigningKeys = new SigningKeys(this.client);

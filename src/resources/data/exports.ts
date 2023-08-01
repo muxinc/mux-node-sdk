@@ -2,7 +2,7 @@
 
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
-import * as API from './';
+import * as API from './index';
 
 export class Exports extends APIResource {
   /**
