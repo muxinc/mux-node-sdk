@@ -273,7 +273,8 @@ export interface RealTimeRetrieveBreakdownParams {
    * To exclude rows that match a certain condition, prepend a `!` character to the
    * dimension.
    *
-   * Possible filter names are the same as returned by the List Filters endpoint.
+   * Possible filter names are the same as returned by the List Monitoring Dimensions
+   * endpoint.
    *
    * Example:
    *
@@ -306,7 +307,8 @@ export interface RealTimeRetrieveHistogramTimeseriesParams {
    * To exclude rows that match a certain condition, prepend a `!` character to the
    * dimension.
    *
-   * Possible filter names are the same as returned by the List Filters endpoint.
+   * Possible filter names are the same as returned by the List Monitoring Dimensions
+   * endpoint.
    *
    * Example:
    *
@@ -323,7 +325,8 @@ export interface RealTimeRetrieveTimeseriesParams {
    * To exclude rows that match a certain condition, prepend a `!` character to the
    * dimension.
    *
-   * Possible filter names are the same as returned by the List Filters endpoint.
+   * Possible filter names are the same as returned by the List Monitoring Dimensions
+   * endpoint.
    *
    * Example:
    *
