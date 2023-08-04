@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -exuo pipefail
+
+rm -rf deno; mkdir deno
+cp -rp src/* README.md deno
+rm deno/_shims/*.{d.ts,js,mjs,node.ts}
+for file in deno/_shims/*.deno.ts; do
+  mv -- "$file" "${file%.deno.ts}.ts"
+done
+for file in LICENSE CHANGELOG.md; do
+  if [ -e "${file}" ]; then cp "${file}" deno; fi
+done
+npm exec ts-node -- scripts/denoify.ts
+deno fmt deno
+deno check deno/mod.ts
+
+# make sure that nothing crashes when we load the Deno module
+(cd deno && deno run mod.ts)

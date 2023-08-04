@@ -1,12 +1,13 @@
 import path from 'path';
 import * as tm from 'ts-morph';
 import { name as pkgName } from '../package.json';
+import fs from 'fs';
 
 const rootDir = path.resolve(__dirname, '..');
 const denoDir = path.join(rootDir, 'deno');
 const tsConfigFilePath = path.join(rootDir, 'tsconfig.deno.json');
 
-function denoify() {
+async function denoify() {
   const project = new tm.Project({ tsConfigFilePath });
 
   for (const file of project.getSourceFiles()) {
@@ -34,12 +35,14 @@ function denoify() {
         // there may be CJS directory module specifiers that implicitly resolve
         // to /index.ts.  Add an explicit /index.ts to the end
         const sourceFile = decl.getModuleSpecifierSourceFile();
-        if (
-          sourceFile &&
-          /index\.[cm]?[jt]sx?$/.test(sourceFile.getFilePath()) &&
-          !/index(\.[cm]?[jt]sx?)?$/.test(specifier)
-        ) {
-          specifier += '/' + path.basename(sourceFile.getFilePath());
+        if (sourceFile && /\/index\.ts$/.test(sourceFile.getFilePath()) && !/\/mod\.ts$/.test(specifier)) {
+          const before = specifier;
+          if (/\/index(\.ts)?$/.test(specifier)) {
+            specifier = specifier.replace(/\/index(\.ts)?$/, '/mod.ts');
+          } else {
+            specifier += '/mod.ts';
+          }
+          console.error(`changing import: ${before} -> ${specifier}`);
         }
         // add explicit .ts file extensions to relative module specifiers
         specifier = specifier.replace(/(\.[^./]*)?$/, '.ts');
@@ -123,7 +126,18 @@ function denoify() {
     });
   }
 
-  project.save();
+  await project.save();
+
+  await Promise.all(
+    project.getSourceFiles().map(async (f) => {
+      const filePath = f.getFilePath();
+      if (filePath.endsWith('index.ts')) {
+        const newPath = filePath.replace(/index\.ts$/, 'mod.ts');
+        console.error(`moving ${filePath} -> ${newPath}`);
+        await fs.promises.rename(filePath, newPath);
+      }
+    }),
+  );
 }
 
 const nodeStdModules = new Set([
