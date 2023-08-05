@@ -71,6 +71,10 @@ export interface ClientOptions {
   tokenSecret?: string;
 
   webhookSecret?: string | null;
+
+  jwtSigningKey?: string | null;
+
+  jwtPrivateKey?: string | null;
 }
 
 /** Instantiate the API Client. */
@@ -78,6 +82,8 @@ export class Mux extends Core.APIClient {
   tokenId: string;
   tokenSecret: string;
   webhookSecret?: string | null;
+  jwtSigningKey?: string | null;
+  jwtPrivateKey?: string | null;
 
   private _options: ClientOptions;
 
@@ -85,6 +91,8 @@ export class Mux extends Core.APIClient {
     tokenId = Core.readEnv('MUX_TOKEN_ID'),
     tokenSecret = Core.readEnv('MUX_TOKEN_SECRET'),
     webhookSecret = Core.readEnv('MUX_WEBHOOK_SECRET') ?? null,
+    jwtSigningKey = Core.readEnv('MUX_SIGNING_KEY') ?? null,
+    jwtPrivateKey = Core.readEnv('MUX_PRIVATE_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
     if (tokenId === undefined) {
@@ -102,6 +110,8 @@ export class Mux extends Core.APIClient {
       tokenId,
       tokenSecret,
       webhookSecret,
+      jwtSigningKey,
+      jwtPrivateKey,
       baseURL: `https://api.mux.com`,
       ...opts,
     };
@@ -118,12 +128,15 @@ export class Mux extends Core.APIClient {
     this.tokenId = tokenId;
     this.tokenSecret = tokenSecret;
     this.webhookSecret = webhookSecret;
+    this.jwtSigningKey = jwtSigningKey;
+    this.jwtPrivateKey = jwtPrivateKey;
   }
 
   video: API.Video = new API.Video(this);
   data: API.Data = new API.Data(this);
   system: API.System = new API.System(this);
   webhooks: API.Webhooks = new API.Webhooks(this);
+  jwt: API.Jwt = new API.Jwt(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -200,6 +213,8 @@ export namespace Mux {
   export import System = API.System;
 
   export import Webhooks = API.Webhooks;
+
+  export import Jwt = API.Jwt;
 
   export import PlaybackID = API.PlaybackID;
   export import PlaybackPolicy = API.PlaybackPolicy;

@@ -296,5 +296,13 @@ Methods:
 
 Methods:
 
-- <code>client.webhooks.<a href="./src/resources/webhooks.ts">unwrap</a>(...args) -> Object</code>
-- <code>client.webhooks.<a href="./src/resources/webhooks.ts">verifySignature</a>(...args) -> void</code>
+- <code>client.webhooks.<a href="./src/resources/webhooks.ts">unwrap</a>(payload, headers, secret) -> Object</code>
+- <code>client.webhooks.<a href="./src/resources/webhooks.ts">verifySignature</a>(body, headers, secret) -> void</code>
+
+# Jwt
+
+Methods:
+
+- <code>client.jwt.<a href="./src/resources/jwt.ts">signPlaybackId</a>(playbackId, config) -> Promise&lt;string&gt;</code>
+- <code>client.jwt.<a href="./src/resources/jwt.ts">signSpaceId</a>(spaceId, config) -> Promise&lt;string&gt;</code>
+- <code>client.jwt.<a href="./src/resources/jwt.ts">signViewerCounts</a>(id, config) -> Promise&lt;string&gt;</code>
