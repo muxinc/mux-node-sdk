@@ -1,3 +1,5 @@
+import { type PrivateKey } from '@mux/mux-node/_shims/jwt';
+
 export interface SignOptions {
   /**
    * Signature algorithm. Could be one of these values :
@@ -34,7 +36,7 @@ export interface JwtHeader {
 
 export interface MuxJWTSignOptions<Type extends string = string> {
   keyId?: string;
-  keySecret?: string;
+  keySecret?: string | PrivateKey;
   keyFilePath?: string;
   type?: Type;
   expiration?: string;

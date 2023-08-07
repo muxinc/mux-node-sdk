@@ -16,7 +16,7 @@ async function denoify() {
       const moduleSpecifier = decl.getModuleSpecifier();
       if (!moduleSpecifier) continue;
       let specifier = moduleSpecifier.getLiteralValue().replace(/^node:/, '');
-      if (!specifier) continue;
+      if (!specifier || specifier.startsWith('http')) continue;
 
       if (nodeStdModules.has(specifier)) {
         // convert node builtins to deno.land/std
@@ -42,7 +42,6 @@ async function denoify() {
           } else {
             specifier += '/mod.ts';
           }
-          console.error(`changing import: ${before} -> ${specifier}`);
         }
         // add explicit .ts file extensions to relative module specifiers
         specifier = specifier.replace(/(\.[^./]*)?$/, '.ts');
@@ -133,7 +132,6 @@ async function denoify() {
       const filePath = f.getFilePath();
       if (filePath.endsWith('index.ts')) {
         const newPath = filePath.replace(/index\.ts$/, 'mod.ts');
-        console.error(`moving ${filePath} -> ${newPath}`);
         await fs.promises.rename(filePath, newPath);
       }
     }),

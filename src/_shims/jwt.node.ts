@@ -1,19 +1,27 @@
 import { Mux } from '../index';
-import jwt from 'jsonwebtoken';
+import { KeyLike, SignJWT } from 'jose';
 import fs from 'fs';
-import { SignOptions, MuxJWTSignOptions } from '../jwt-types';
+import { SignOptions, MuxJWTSignOptions } from '../util/jwt-types';
+import { isKeyLike, keyFormatErrorMessage } from '../util/jwt-util';
+import { createPrivateKey } from 'crypto';
+
+export type PrivateKey = Buffer | KeyLike;
 
 export function sign(
   payload: object,
-  secretOrPrivateKey: string | Buffer,
+  secretOrPrivateKey: KeyLike | Uint8Array,
   options: SignOptions,
 ): Promise<string> {
-  return new Promise((resolve, reject) =>
-    jwt.sign(payload, secretOrPrivateKey, options, (error: Error | null, encoded: string | undefined) => {
-      if (error || !encoded) reject(error);
-      else resolve(encoded);
-    }),
-  );
+  const sign = new SignJWT({
+    ...(payload as any),
+    ...(options.keyid ? { kid: options.keyid } : null),
+  }).setProtectedHeader({ alg: options.algorithm || 'RS256' });
+  if (options.issuer) sign.setIssuer(options.issuer);
+  if (options.subject) sign.setSubject(options.subject);
+  if (options.audience) sign.setAudience(options.audience);
+  if (options.notBefore) sign.setNotBefore(options.notBefore);
+  if (options.expiresIn) sign.setExpirationTime(options.expiresIn);
+  return sign.sign(secretOrPrivateKey);
 }
 
 export function getSigningKey(mux: Mux, opts: MuxJWTSignOptions): string {
@@ -27,7 +35,12 @@ export function getSigningKey(mux: Mux, opts: MuxJWTSignOptions): string {
   return keyId;
 }
 
-export async function getPrivateKey(mux: Mux, opts: MuxJWTSignOptions): Promise<string | Buffer> {
+export async function getPrivateKey(mux: Mux, opts: MuxJWTSignOptions): Promise<KeyLike | Uint8Array> {
+  const key = await getPrivateKeyHelper(mux, opts);
+  if (isKeyLike(key)) return key;
+  return createPrivateKey(key as any);
+}
+async function getPrivateKeyHelper(mux: Mux, opts: MuxJWTSignOptions): Promise<string | KeyLike | Buffer> {
   let key;
   if (opts.keySecret) {
     key = opts.keySecret;
@@ -37,26 +50,24 @@ export async function getPrivateKey(mux: Mux, opts: MuxJWTSignOptions): Promise<
     key = mux.jwtPrivateKey;
   }
 
-  if (key && typeof key !== 'string') {
-    return key;
-  }
+  if (Buffer.isBuffer(key) || isKeyLike(key)) return key;
 
-  if (key) {
+  if (typeof key === 'string') {
     key = key.trim();
-    if (key.startsWith('-----BEGIN RSA PRIVATE KEY-----')) {
+    if (key.startsWith('-----BEGIN')) {
       return key;
     }
 
     try {
       key = Buffer.from(key, 'base64').toString();
-      if (key.startsWith('-----BEGIN RSA PRIVATE KEY-----')) {
+      if (key.startsWith('-----BEGIN')) {
         return key;
       }
     } catch (err) {
       // fallthrough
     }
 
-    throw new TypeError('Specified signing key must be either a valid PEM string or a base64 encoded PEM.');
+    throw new TypeError(keyFormatErrorMessage);
   }
 
   throw new TypeError(

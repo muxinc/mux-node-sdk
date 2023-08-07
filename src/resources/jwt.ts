@@ -2,7 +2,12 @@
 
 import { APIResource } from '@mux/mux-node/resource';
 import * as jwt from '@mux/mux-node/_shims/jwt';
-import { type SignOptions, type MuxJWTSignOptions, TypeClaim, DataTypeClaim } from '@mux/mux-node/jwt-types';
+import {
+  type SignOptions,
+  type MuxJWTSignOptions,
+  TypeClaim,
+  DataTypeClaim,
+} from '@mux/mux-node/util/jwt-types';
 
 export class Jwt extends APIResource {
   /**
