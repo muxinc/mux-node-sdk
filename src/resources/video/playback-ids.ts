@@ -10,10 +10,12 @@ export class PlaybackIDs extends APIResource {
    * Retrieves the Identifier of the Asset or Live Stream associated with the
    * Playback ID.
    */
-  async retrieve(playbackId: string, options?: Core.RequestOptions): Promise<PlaybackIDRetrieveResponse> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.get(`/video/v1/playback-ids/${playbackId}`, options)) as any;
-    return response.data;
+  retrieve(playbackId: string, options?: Core.RequestOptions): Core.APIPromise<PlaybackIDRetrieveResponse> {
+    return (
+      this.get(`/video/v1/playback-ids/${playbackId}`, options) as Core.APIPromise<{
+        data: PlaybackIDRetrieveResponse;
+      }>
+    )._thenUnwrap((obj) => obj.data);
   }
 }
 

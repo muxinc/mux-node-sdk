@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless.
 
-import { AbstractPage, APIResponse, APIClient, FinalRequestOptions, PageInfo } from './core';
+import { AbstractPage, Response, APIClient, FinalRequestOptions, PageInfo } from './core';
 
 export interface PageWithTotalResponse<Item> {
   data: Array<Item>;
@@ -41,15 +41,16 @@ export class PageWithTotal<Item> extends AbstractPage<Item> implements PageWithT
 
   constructor(
     client: APIClient,
-    response: APIResponse<PageWithTotalResponse<Item>>,
+    response: Response,
+    body: PageWithTotalResponse<Item>,
     options: FinalRequestOptions,
   ) {
-    super(client, response, options);
+    super(client, response, body, options);
 
-    this.data = response.data;
-    this.total_row_count = response.total_row_count;
-    this.timeframe = response.timeframe;
-    this.limit = response.limit;
+    this.data = body.data;
+    this.total_row_count = body.total_row_count;
+    this.timeframe = body.timeframe;
+    this.limit = body.limit;
   }
 
   getPaginatedItems(): Item[] {
@@ -94,12 +95,13 @@ export class BasePage<Item> extends AbstractPage<Item> implements BasePageRespon
 
   constructor(
     client: APIClient,
-    response: APIResponse<BasePageResponse<Item>>,
+    response: Response,
+    body: BasePageResponse<Item>,
     options: FinalRequestOptions,
   ) {
-    super(client, response, options);
+    super(client, response, body, options);
 
-    this.data = response.data;
+    this.data = body.data;
   }
 
   getPaginatedItems(): Item[] {

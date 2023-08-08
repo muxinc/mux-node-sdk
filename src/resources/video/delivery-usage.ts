@@ -14,12 +14,12 @@ export class DeliveryUsage extends APIResource {
   list(
     query?: DeliveryUsageListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DeliveryReportsPageWithTotal>;
-  list(options?: Core.RequestOptions): Core.PagePromise<DeliveryReportsPageWithTotal>;
+  ): Core.PagePromise<DeliveryReportsPageWithTotal, DeliveryReport>;
+  list(options?: Core.RequestOptions): Core.PagePromise<DeliveryReportsPageWithTotal, DeliveryReport>;
   list(
     query: DeliveryUsageListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DeliveryReportsPageWithTotal> {
+  ): Core.PagePromise<DeliveryReportsPageWithTotal, DeliveryReport> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }

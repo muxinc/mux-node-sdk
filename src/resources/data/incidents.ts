@@ -10,19 +10,22 @@ export class Incidents extends APIResource {
   /**
    * Returns the details of an incident.
    */
-  retrieve(incidentId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<IncidentResponse>> {
+  retrieve(incidentId: string, options?: Core.RequestOptions): Core.APIPromise<IncidentResponse> {
     return this.get(`/data/v1/incidents/${incidentId}`, options);
   }
 
   /**
    * Returns a list of incidents.
    */
-  list(query?: IncidentListParams, options?: Core.RequestOptions): Core.PagePromise<IncidentsBasePage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<IncidentsBasePage>;
+  list(
+    query?: IncidentListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<IncidentsBasePage, Incident>;
+  list(options?: Core.RequestOptions): Core.PagePromise<IncidentsBasePage, Incident>;
   list(
     query: IncidentListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<IncidentsBasePage> {
+  ): Core.PagePromise<IncidentsBasePage, Incident> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -36,13 +39,16 @@ export class Incidents extends APIResource {
     incidentId: string,
     query?: IncidentListRelatedParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<IncidentsBasePage>;
-  listRelated(incidentId: string, options?: Core.RequestOptions): Core.PagePromise<IncidentsBasePage>;
+  ): Core.PagePromise<IncidentsBasePage, Incident>;
+  listRelated(
+    incidentId: string,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<IncidentsBasePage, Incident>;
   listRelated(
     incidentId: string,
     query: IncidentListRelatedParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<IncidentsBasePage> {
+  ): Core.PagePromise<IncidentsBasePage, Incident> {
     if (isRequestOptions(query)) {
       return this.listRelated(incidentId, {}, query);
     }

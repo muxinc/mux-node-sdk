@@ -13,30 +13,30 @@ export class Uploads extends APIResource {
    * Creates a new direct upload, through which video content can be uploaded for
    * ingest to Mux.
    */
-  async create(body: UploadCreateParams, options?: Core.RequestOptions): Promise<Upload> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post('/video/v1/uploads', { body, ...options })) as any;
-    return response.data;
+  create(body: UploadCreateParams, options?: Core.RequestOptions): Core.APIPromise<Upload> {
+    return (
+      this.post('/video/v1/uploads', { body, ...options }) as Core.APIPromise<{ data: Upload }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
    * Fetches information about a single direct upload in the current environment.
    */
-  async retrieve(uploadId: string, options?: Core.RequestOptions): Promise<Upload> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.get(`/video/v1/uploads/${uploadId}`, options)) as any;
-    return response.data;
+  retrieve(uploadId: string, options?: Core.RequestOptions): Core.APIPromise<Upload> {
+    return (
+      this.get(`/video/v1/uploads/${uploadId}`, options) as Core.APIPromise<{ data: Upload }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
    * Lists direct uploads in the current environment.
    */
-  list(query?: UploadListParams, options?: Core.RequestOptions): Core.PagePromise<UploadsBasePage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<UploadsBasePage>;
+  list(query?: UploadListParams, options?: Core.RequestOptions): Core.PagePromise<UploadsBasePage, Upload>;
+  list(options?: Core.RequestOptions): Core.PagePromise<UploadsBasePage, Upload>;
   list(
     query: UploadListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<UploadsBasePage> {
+  ): Core.PagePromise<UploadsBasePage, Upload> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -48,10 +48,10 @@ export class Uploads extends APIResource {
    * after this request, no asset will be created. This request will only succeed if
    * the upload is still in the `waiting` state.
    */
-  async cancel(uploadId: string, options?: Core.RequestOptions): Promise<Upload> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.put(`/video/v1/uploads/${uploadId}/cancel`, options)) as any;
-    return response.data;
+  cancel(uploadId: string, options?: Core.RequestOptions): Core.APIPromise<Upload> {
+    return (
+      this.put(`/video/v1/uploads/${uploadId}/cancel`, options) as Core.APIPromise<{ data: Upload }>
+    )._thenUnwrap((obj) => obj.data);
   }
 }
 

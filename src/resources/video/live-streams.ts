@@ -12,10 +12,10 @@ export class LiveStreams extends APIResource {
    * Creates a new live stream. Once created, an encoder can connect to Mux via the
    * specified stream key and begin streaming to an audience.
    */
-  async create(body: LiveStreamCreateParams, options?: Core.RequestOptions): Promise<LiveStream> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post('/video/v1/live-streams', { body, ...options })) as any;
-    return response.data;
+  create(body: LiveStreamCreateParams, options?: Core.RequestOptions): Core.APIPromise<LiveStream> {
+    return (
+      this.post('/video/v1/live-streams', { body, ...options }) as Core.APIPromise<{ data: LiveStream }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -24,10 +24,10 @@ export class LiveStreams extends APIResource {
    * will return the corresponding live stream information. The same information is
    * returned when creating a live stream.
    */
-  async retrieve(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStream> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.get(`/video/v1/live-streams/${liveStreamId}`, options)) as any;
-    return response.data;
+  retrieve(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<LiveStream> {
+    return (
+      this.get(`/video/v1/live-streams/${liveStreamId}`, options) as Core.APIPromise<{ data: LiveStream }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -37,28 +37,30 @@ export class LiveStreams extends APIResource {
    * information returned will be the same after update as for subsequent get live
    * stream requests.
    */
-  async update(
+  update(
     liveStreamId: string,
     body: LiveStreamUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<LiveStream> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.patch(`/video/v1/live-streams/${liveStreamId}`, {
-      body,
-      ...options,
-    })) as any;
-    return response.data;
+  ): Core.APIPromise<LiveStream> {
+    return (
+      this.patch(`/video/v1/live-streams/${liveStreamId}`, { body, ...options }) as Core.APIPromise<{
+        data: LiveStream;
+      }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
    * Lists the live streams that currently exist in the current environment.
    */
-  list(query?: LiveStreamListParams, options?: Core.RequestOptions): Core.PagePromise<LiveStreamsBasePage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<LiveStreamsBasePage>;
+  list(
+    query?: LiveStreamListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<LiveStreamsBasePage, LiveStream>;
+  list(options?: Core.RequestOptions): Core.PagePromise<LiveStreamsBasePage, LiveStream>;
   list(
     query: LiveStreamListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<LiveStreamsBasePage> {
+  ): Core.PagePromise<LiveStreamsBasePage, LiveStream> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -70,7 +72,7 @@ export class LiveStreams extends APIResource {
    * currently active and being streamed to, ingest will be terminated and the
    * encoder will be disconnected.
    */
-  del(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
+  del(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.delete(`/video/v1/live-streams/${liveStreamId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -88,7 +90,7 @@ export class LiveStreams extends APIResource {
    * with the encoder. This 60s timeframe is meant to give encoder operators a chance
    * to disconnect from their end.
    */
-  complete(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
+  complete(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.put(`/video/v1/live-streams/${liveStreamId}/complete`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -99,17 +101,17 @@ export class LiveStreams extends APIResource {
    * Create a new playback ID for this live stream, through which a viewer can watch
    * the streamed content of the live stream.
    */
-  async createPlaybackId(
+  createPlaybackId(
     liveStreamId: string,
     body: LiveStreamCreatePlaybackIDParams,
     options?: Core.RequestOptions,
-  ): Promise<Shared.PlaybackID> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post(`/video/v1/live-streams/${liveStreamId}/playback-ids`, {
-      body,
-      ...options,
-    })) as any;
-    return response.data;
+  ): Core.APIPromise<Shared.PlaybackID> {
+    return (
+      this.post(`/video/v1/live-streams/${liveStreamId}/playback-ids`, {
+        body,
+        ...options,
+      }) as Core.APIPromise<{ data: Shared.PlaybackID }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -117,17 +119,17 @@ export class LiveStreams extends APIResource {
    * be created when the parent live stream is in idle state. Only one simulcast
    * target can be created at a time with this API.
    */
-  async createSimulcastTarget(
+  createSimulcastTarget(
     liveStreamId: string,
     body: LiveStreamCreateSimulcastTargetParams,
     options?: Core.RequestOptions,
-  ): Promise<SimulcastTarget> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post(`/video/v1/live-streams/${liveStreamId}/simulcast-targets`, {
-      body,
-      ...options,
-    })) as any;
-    return response.data;
+  ): Core.APIPromise<SimulcastTarget> {
+    return (
+      this.post(`/video/v1/live-streams/${liveStreamId}/simulcast-targets`, {
+        body,
+        ...options,
+      }) as Core.APIPromise<{ data: SimulcastTarget }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -140,7 +142,7 @@ export class LiveStreams extends APIResource {
     liveStreamId: string,
     playbackId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<void>> {
+  ): Core.APIPromise<void> {
     return this.delete(`/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -156,7 +158,7 @@ export class LiveStreams extends APIResource {
     liveStreamId: string,
     simulcastTargetId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<void>> {
+  ): Core.APIPromise<void> {
     return this.delete(`/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -172,7 +174,7 @@ export class LiveStreams extends APIResource {
    * Mux also closes the encoder connection immediately. Any attempt from the encoder
    * to re-establish connection will fail till the live stream is re-enabled.
    */
-  disable(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
+  disable(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.put(`/video/v1/live-streams/${liveStreamId}/disable`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -182,7 +184,7 @@ export class LiveStreams extends APIResource {
   /**
    * Enables a live stream, allowing it to accept an incoming RTMP stream.
    */
-  enable(liveStreamId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
+  enable(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.put(`/video/v1/live-streams/${liveStreamId}/enable`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -193,30 +195,29 @@ export class LiveStreams extends APIResource {
    * Reset a live stream key if you want to immediately stop the current stream key
    * from working and create a new stream key that can be used for future broadcasts.
    */
-  async resetStreamKey(liveStreamId: string, options?: Core.RequestOptions): Promise<LiveStream> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post(
-      `/video/v1/live-streams/${liveStreamId}/reset-stream-key`,
-      options,
-    )) as any;
-    return response.data;
+  resetStreamKey(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<LiveStream> {
+    return (
+      this.post(`/video/v1/live-streams/${liveStreamId}/reset-stream-key`, options) as Core.APIPromise<{
+        data: LiveStream;
+      }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
    * Fetches information about a live stream's playback ID, through which a viewer
    * can watch the streamed content from this live stream.
    */
-  async retrievePlaybackId(
+  retrievePlaybackId(
     liveStreamId: string,
     playbackId: string,
     options?: Core.RequestOptions,
-  ): Promise<Shared.PlaybackID> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.get(
-      `/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`,
-      options,
-    )) as any;
-    return response.data;
+  ): Core.APIPromise<Shared.PlaybackID> {
+    return (
+      this.get(
+        `/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`,
+        options,
+      ) as Core.APIPromise<{ data: Shared.PlaybackID }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -225,34 +226,34 @@ export class LiveStreams extends APIResource {
    * returned in the response of create simulcast target request, and Mux will return
    * the corresponding information.
    */
-  async retrieveSimulcastTarget(
+  retrieveSimulcastTarget(
     liveStreamId: string,
     simulcastTargetId: string,
     options?: Core.RequestOptions,
-  ): Promise<SimulcastTarget> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.get(
-      `/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`,
-      options,
-    )) as any;
-    return response.data;
+  ): Core.APIPromise<SimulcastTarget> {
+    return (
+      this.get(
+        `/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`,
+        options,
+      ) as Core.APIPromise<{ data: SimulcastTarget }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
    * Configures a live stream to receive embedded closed captions. The resulting
    * Asset's subtitle text track will have `closed_captions: true` set.
    */
-  async updateEmbeddedSubtitles(
+  updateEmbeddedSubtitles(
     liveStreamId: string,
     body: LiveStreamUpdateEmbeddedSubtitlesParams,
     options?: Core.RequestOptions,
-  ): Promise<LiveStream> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/embedded-subtitles`, {
-      body,
-      ...options,
-    })) as any;
-    return response.data;
+  ): Core.APIPromise<LiveStream> {
+    return (
+      this.put(`/video/v1/live-streams/${liveStreamId}/embedded-subtitles`, {
+        body,
+        ...options,
+      }) as Core.APIPromise<{ data: LiveStream }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -260,17 +261,17 @@ export class LiveStreams extends APIResource {
    * configuration. Automatic speech recognition subtitles can be removed by sending
    * an empty array in the request payload.
    */
-  async updateGeneratedSubtitles(
+  updateGeneratedSubtitles(
     liveStreamId: string,
     body: LiveStreamUpdateGeneratedSubtitlesParams,
     options?: Core.RequestOptions,
-  ): Promise<LiveStream> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.put(`/video/v1/live-streams/${liveStreamId}/generated-subtitles`, {
-      body,
-      ...options,
-    })) as any;
-    return response.data;
+  ): Core.APIPromise<LiveStream> {
+    return (
+      this.put(`/video/v1/live-streams/${liveStreamId}/generated-subtitles`, {
+        body,
+        ...options,
+      }) as Core.APIPromise<{ data: LiveStream }>
+    )._thenUnwrap((obj) => obj.data);
   }
 }
 

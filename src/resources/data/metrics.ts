@@ -10,15 +10,12 @@ export class Metrics extends APIResource {
   /**
    * List all of the values across every breakdown for a specific metric.
    */
-  list(
-    query?: MetricListParams,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<AllMetricValuesResponse>>;
-  list(options?: Core.RequestOptions): Promise<Core.APIResponse<AllMetricValuesResponse>>;
+  list(query?: MetricListParams, options?: Core.RequestOptions): Core.APIPromise<AllMetricValuesResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<AllMetricValuesResponse>;
   list(
     query: MetricListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<AllMetricValuesResponse>> {
+  ): Core.APIPromise<AllMetricValuesResponse> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -63,7 +60,7 @@ export class Metrics extends APIResource {
       | 'video_startup_failure_percentage',
     query?: MetricGetInsightsParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<InsightsResponse>>;
+  ): Core.APIPromise<InsightsResponse>;
   getInsights(
     metricId:
       | 'aggregate_startup_time'
@@ -96,7 +93,7 @@ export class Metrics extends APIResource {
       | 'weighted_average_bitrate'
       | 'video_startup_failure_percentage',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<InsightsResponse>>;
+  ): Core.APIPromise<InsightsResponse>;
   getInsights(
     metricId:
       | 'aggregate_startup_time'
@@ -130,7 +127,7 @@ export class Metrics extends APIResource {
       | 'video_startup_failure_percentage',
     query: MetricGetInsightsParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<InsightsResponse>> {
+  ): Core.APIPromise<InsightsResponse> {
     if (isRequestOptions(query)) {
       return this.getInsights(metricId, {}, query);
     }
@@ -174,7 +171,7 @@ export class Metrics extends APIResource {
       | 'video_startup_failure_percentage',
     query?: MetricGetOverallValuesParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<OverallValuesResponse>>;
+  ): Core.APIPromise<OverallValuesResponse>;
   getOverallValues(
     metricId:
       | 'aggregate_startup_time'
@@ -207,7 +204,7 @@ export class Metrics extends APIResource {
       | 'weighted_average_bitrate'
       | 'video_startup_failure_percentage',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<OverallValuesResponse>>;
+  ): Core.APIPromise<OverallValuesResponse>;
   getOverallValues(
     metricId:
       | 'aggregate_startup_time'
@@ -241,7 +238,7 @@ export class Metrics extends APIResource {
       | 'video_startup_failure_percentage',
     query: MetricGetOverallValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<OverallValuesResponse>> {
+  ): Core.APIPromise<OverallValuesResponse> {
     if (isRequestOptions(query)) {
       return this.getOverallValues(metricId, {}, query);
     }
@@ -292,7 +289,7 @@ export class Metrics extends APIResource {
       | 'video_startup_failure_percentage',
     query?: MetricGetTimeseriesParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricTimeseriesDataResponse>>;
+  ): Core.APIPromise<MetricTimeseriesDataResponse>;
   getTimeseries(
     metricId:
       | 'aggregate_startup_time'
@@ -325,7 +322,7 @@ export class Metrics extends APIResource {
       | 'weighted_average_bitrate'
       | 'video_startup_failure_percentage',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricTimeseriesDataResponse>>;
+  ): Core.APIPromise<MetricTimeseriesDataResponse>;
   getTimeseries(
     metricId:
       | 'aggregate_startup_time'
@@ -359,7 +356,7 @@ export class Metrics extends APIResource {
       | 'video_startup_failure_percentage',
     query: MetricGetTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricTimeseriesDataResponse>> {
+  ): Core.APIPromise<MetricTimeseriesDataResponse> {
     if (isRequestOptions(query)) {
       return this.getTimeseries(metricId, {}, query);
     }
@@ -402,7 +399,7 @@ export class Metrics extends APIResource {
       | 'video_startup_failure_percentage',
     query?: MetricListBreakdownValuesParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<BreakdownValuesBasePage>;
+  ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue>;
   listBreakdownValues(
     metricId:
       | 'aggregate_startup_time'
@@ -435,7 +432,7 @@ export class Metrics extends APIResource {
       | 'weighted_average_bitrate'
       | 'video_startup_failure_percentage',
     options?: Core.RequestOptions,
-  ): Core.PagePromise<BreakdownValuesBasePage>;
+  ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue>;
   listBreakdownValues(
     metricId:
       | 'aggregate_startup_time'
@@ -469,7 +466,7 @@ export class Metrics extends APIResource {
       | 'video_startup_failure_percentage',
     query: MetricListBreakdownValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<BreakdownValuesBasePage> {
+  ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue> {
     if (isRequestOptions(query)) {
       return this.listBreakdownValues(metricId, {}, query);
     }

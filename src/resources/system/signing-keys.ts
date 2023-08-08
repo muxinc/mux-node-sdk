@@ -12,10 +12,10 @@ export class SigningKeys extends APIResource {
    * generate a 2048-bit RSA key-pair and return the private key and a generated
    * key-id; the public key will be stored at Mux to validate signed tokens.
    */
-  async create(options?: Core.RequestOptions): Promise<SigningKey> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post('/system/v1/signing-keys', options)) as any;
-    return response.data;
+  create(options?: Core.RequestOptions): Core.APIPromise<SigningKey> {
+    return (
+      this.post('/system/v1/signing-keys', options) as Core.APIPromise<{ data: SigningKey }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -24,21 +24,24 @@ export class SigningKeys extends APIResource {
    * will return the corresponding signing key information. **The private key is not
    * returned in this response.**
    */
-  async retrieve(signingKeyId: string, options?: Core.RequestOptions): Promise<SigningKey> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.get(`/system/v1/signing-keys/${signingKeyId}`, options)) as any;
-    return response.data;
+  retrieve(signingKeyId: string, options?: Core.RequestOptions): Core.APIPromise<SigningKey> {
+    return (
+      this.get(`/system/v1/signing-keys/${signingKeyId}`, options) as Core.APIPromise<{ data: SigningKey }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
    * Returns a list of signing keys.
    */
-  list(query?: SigningKeyListParams, options?: Core.RequestOptions): Core.PagePromise<SigningKeysBasePage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<SigningKeysBasePage>;
+  list(
+    query?: SigningKeyListParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<SigningKeysBasePage, SigningKey>;
+  list(options?: Core.RequestOptions): Core.PagePromise<SigningKeysBasePage, SigningKey>;
   list(
     query: SigningKeyListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<SigningKeysBasePage> {
+  ): Core.PagePromise<SigningKeysBasePage, SigningKey> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -49,7 +52,7 @@ export class SigningKeys extends APIResource {
    * Deletes an existing signing key. Use with caution, as this will invalidate any
    * existing signatures and no JWTs can be signed using the key again.
    */
-  del(signingKeyId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
+  del(signingKeyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.delete(`/system/v1/signing-keys/${signingKeyId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

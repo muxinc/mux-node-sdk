@@ -1,12 +1,20 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Mux from '@mux/mux-node';
+import { Response } from 'node-fetch';
 
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
 describe('resource realTime', () => {
   test('listDimensions', async () => {
-    const response = await mux.data.realTime.listDimensions();
+    const responsePromise = mux.data.realTime.listDimensions();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('listDimensions: request options instead of params are passed correctly', async () => {
@@ -17,7 +25,14 @@ describe('resource realTime', () => {
   });
 
   test('listMetrics', async () => {
-    const response = await mux.data.realTime.listMetrics();
+    const responsePromise = mux.data.realTime.listMetrics();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('listMetrics: request options instead of params are passed correctly', async () => {
@@ -28,7 +43,14 @@ describe('resource realTime', () => {
   });
 
   test('retrieveBreakdown', async () => {
-    const response = await mux.data.realTime.retrieveBreakdown('current-concurrent-viewers');
+    const responsePromise = mux.data.realTime.retrieveBreakdown('current-concurrent-viewers');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieveBreakdown: request options instead of params are passed correctly', async () => {
@@ -56,7 +78,14 @@ describe('resource realTime', () => {
   });
 
   test('retrieveHistogramTimeseries', async () => {
-    const response = await mux.data.realTime.retrieveHistogramTimeseries('video-startup-time');
+    const responsePromise = mux.data.realTime.retrieveHistogramTimeseries('video-startup-time');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieveHistogramTimeseries: request options instead of params are passed correctly', async () => {
@@ -80,7 +109,14 @@ describe('resource realTime', () => {
   });
 
   test('retrieveTimeseries', async () => {
-    const response = await mux.data.realTime.retrieveTimeseries('current-concurrent-viewers');
+    const responsePromise = mux.data.realTime.retrieveTimeseries('current-concurrent-viewers');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieveTimeseries: request options instead of params are passed correctly', async () => {

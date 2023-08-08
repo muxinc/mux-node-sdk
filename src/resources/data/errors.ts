@@ -9,12 +9,12 @@ export class Errors extends APIResource {
   /**
    * Returns a list of errors.
    */
-  list(query?: ErrorListParams, options?: Core.RequestOptions): Promise<Core.APIResponse<ErrorsResponse>>;
-  list(options?: Core.RequestOptions): Promise<Core.APIResponse<ErrorsResponse>>;
+  list(query?: ErrorListParams, options?: Core.RequestOptions): Core.APIPromise<ErrorsResponse>;
+  list(options?: Core.RequestOptions): Core.APIPromise<ErrorsResponse>;
   list(
     query: ErrorListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<ErrorsResponse>> {
+  ): Core.APIPromise<ErrorsResponse> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }

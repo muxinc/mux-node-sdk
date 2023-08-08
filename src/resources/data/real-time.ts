@@ -10,7 +10,7 @@ export class RealTime extends APIResource {
    * Lists available real-time dimensions. This API is now deprecated, please use the
    * `List Monitoring Dimensions` API.
    */
-  listDimensions(options?: Core.RequestOptions): Promise<Core.APIResponse<RealTimeDimensionsResponse>> {
+  listDimensions(options?: Core.RequestOptions): Core.APIPromise<RealTimeDimensionsResponse> {
     return this.get('/data/v1/realtime/dimensions', options);
   }
 
@@ -18,7 +18,7 @@ export class RealTime extends APIResource {
    * Lists available real-time metrics. This API is now deprecated, please use the
    * `List Monitoring Metrics` API.
    */
-  listMetrics(options?: Core.RequestOptions): Promise<Core.APIResponse<RealTimeMetricsResponse>> {
+  listMetrics(options?: Core.RequestOptions): Core.APIPromise<RealTimeMetricsResponse> {
     return this.get('/data/v1/realtime/metrics', options);
   }
 
@@ -36,7 +36,7 @@ export class RealTime extends APIResource {
       | 'current-average-bitrate',
     query?: RealTimeRetrieveBreakdownParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<RealTimeBreakdownResponse>>;
+  ): Core.APIPromise<RealTimeBreakdownResponse>;
   retrieveBreakdown(
     realtimeMetricId:
       | 'current-concurrent-viewers'
@@ -45,7 +45,7 @@ export class RealTime extends APIResource {
       | 'playback-failure-percentage'
       | 'current-average-bitrate',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<RealTimeBreakdownResponse>>;
+  ): Core.APIPromise<RealTimeBreakdownResponse>;
   retrieveBreakdown(
     realtimeMetricId:
       | 'current-concurrent-viewers'
@@ -55,7 +55,7 @@ export class RealTime extends APIResource {
       | 'current-average-bitrate',
     query: RealTimeRetrieveBreakdownParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<RealTimeBreakdownResponse>> {
+  ): Core.APIPromise<RealTimeBreakdownResponse> {
     if (isRequestOptions(query)) {
       return this.retrieveBreakdown(realtimeMetricId, {}, query);
     }
@@ -70,16 +70,16 @@ export class RealTime extends APIResource {
     realtimeHistogramMetricId: 'video-startup-time',
     query?: RealTimeRetrieveHistogramTimeseriesParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<RealTimeHistogramTimeseriesResponse>>;
+  ): Core.APIPromise<RealTimeHistogramTimeseriesResponse>;
   retrieveHistogramTimeseries(
     realtimeHistogramMetricId: 'video-startup-time',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<RealTimeHistogramTimeseriesResponse>>;
+  ): Core.APIPromise<RealTimeHistogramTimeseriesResponse>;
   retrieveHistogramTimeseries(
     realtimeHistogramMetricId: 'video-startup-time',
     query: RealTimeRetrieveHistogramTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<RealTimeHistogramTimeseriesResponse>> {
+  ): Core.APIPromise<RealTimeHistogramTimeseriesResponse> {
     if (isRequestOptions(query)) {
       return this.retrieveHistogramTimeseries(realtimeHistogramMetricId, {}, query);
     }
@@ -103,7 +103,7 @@ export class RealTime extends APIResource {
       | 'current-average-bitrate',
     query?: RealTimeRetrieveTimeseriesParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<RealTimeTimeseriesResponse>>;
+  ): Core.APIPromise<RealTimeTimeseriesResponse>;
   retrieveTimeseries(
     realtimeMetricId:
       | 'current-concurrent-viewers'
@@ -112,7 +112,7 @@ export class RealTime extends APIResource {
       | 'playback-failure-percentage'
       | 'current-average-bitrate',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<RealTimeTimeseriesResponse>>;
+  ): Core.APIPromise<RealTimeTimeseriesResponse>;
   retrieveTimeseries(
     realtimeMetricId:
       | 'current-concurrent-viewers'
@@ -122,7 +122,7 @@ export class RealTime extends APIResource {
       | 'current-average-bitrate',
     query: RealTimeRetrieveTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<RealTimeTimeseriesResponse>> {
+  ): Core.APIPromise<RealTimeTimeseriesResponse> {
     if (isRequestOptions(query)) {
       return this.retrieveTimeseries(realtimeMetricId, {}, query);
     }

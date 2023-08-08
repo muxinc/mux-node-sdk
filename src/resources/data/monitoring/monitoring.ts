@@ -11,7 +11,7 @@ export class Monitoring extends APIResource {
   /**
    * Lists available monitoring dimensions.
    */
-  listDimensions(options?: Core.RequestOptions): Promise<Core.APIResponse<MonitoringListDimensionsResponse>> {
+  listDimensions(options?: Core.RequestOptions): Core.APIPromise<MonitoringListDimensionsResponse> {
     return this.get('/data/v1/monitoring/dimensions', options);
   }
 }

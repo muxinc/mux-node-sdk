@@ -10,7 +10,7 @@ export class VideoViews extends APIResource {
   /**
    * Returns the details of a video view.
    */
-  retrieve(videoViewId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<VideoViewResponse>> {
+  retrieve(videoViewId: string, options?: Core.RequestOptions): Core.APIPromise<VideoViewResponse> {
     return this.get(`/data/v1/video-views/${videoViewId}`, options);
   }
 
@@ -21,12 +21,12 @@ export class VideoViews extends APIResource {
   list(
     query?: VideoViewListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AbridgedVideoViewsBasePage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<AbridgedVideoViewsBasePage>;
+  ): Core.PagePromise<AbridgedVideoViewsBasePage, AbridgedVideoView>;
+  list(options?: Core.RequestOptions): Core.PagePromise<AbridgedVideoViewsBasePage, AbridgedVideoView>;
   list(
     query: VideoViewListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AbridgedVideoViewsBasePage> {
+  ): Core.PagePromise<AbridgedVideoViewsBasePage, AbridgedVideoView> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }

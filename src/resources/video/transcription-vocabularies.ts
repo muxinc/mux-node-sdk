@@ -10,13 +10,15 @@ export class TranscriptionVocabularies extends APIResource {
   /**
    * Create a new Transcription Vocabulary.
    */
-  async create(
+  create(
     body: TranscriptionVocabularyCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<TranscriptionVocabulary> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post('/video/v1/transcription-vocabularies', { body, ...options })) as any;
-    return response.data;
+  ): Core.APIPromise<TranscriptionVocabulary> {
+    return (
+      this.post('/video/v1/transcription-vocabularies', { body, ...options }) as Core.APIPromise<{
+        data: TranscriptionVocabulary;
+      }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -25,16 +27,16 @@ export class TranscriptionVocabularies extends APIResource {
    * corresponding Transcription Vocabulary information. The same information is
    * returned when creating a Transcription Vocabulary.
    */
-  async retrieve(
+  retrieve(
     transcriptionVocabularyId: string,
     options?: Core.RequestOptions,
-  ): Promise<TranscriptionVocabulary> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.get(
-      `/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`,
-      options,
-    )) as any;
-    return response.data;
+  ): Core.APIPromise<TranscriptionVocabulary> {
+    return (
+      this.get(
+        `/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`,
+        options,
+      ) as Core.APIPromise<{ data: TranscriptionVocabulary }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -42,17 +44,17 @@ export class TranscriptionVocabularies extends APIResource {
    * Transcription Vocabularies are allowed while associated live streams are active.
    * However, updates will not be applied to those streams while they are active.
    */
-  async update(
+  update(
     transcriptionVocabularyId: string,
     body: TranscriptionVocabularyUpdateParams,
     options?: Core.RequestOptions,
-  ): Promise<TranscriptionVocabulary> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.put(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
-      body,
-      ...options,
-    })) as any;
-    return response.data;
+  ): Core.APIPromise<TranscriptionVocabulary> {
+    return (
+      this.put(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
+        body,
+        ...options,
+      }) as Core.APIPromise<{ data: TranscriptionVocabulary }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -61,12 +63,14 @@ export class TranscriptionVocabularies extends APIResource {
   list(
     query?: TranscriptionVocabularyListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<TranscriptionVocabulariesBasePage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<TranscriptionVocabulariesBasePage>;
+  ): Core.PagePromise<TranscriptionVocabulariesBasePage, TranscriptionVocabulary>;
+  list(
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<TranscriptionVocabulariesBasePage, TranscriptionVocabulary>;
   list(
     query: TranscriptionVocabularyListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<TranscriptionVocabulariesBasePage> {
+  ): Core.PagePromise<TranscriptionVocabulariesBasePage, TranscriptionVocabulary> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -83,7 +87,7 @@ export class TranscriptionVocabularies extends APIResource {
    * in the deleted Transcription Vocabulary will remain attached to those streams
    * while they are active.
    */
-  del(transcriptionVocabularyId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
+  del(transcriptionVocabularyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.delete(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

@@ -8,7 +8,7 @@ export class Exports extends APIResource {
   /**
    * Lists the available video view exports along with URLs to retrieve them.
    */
-  listVideoViews(options?: Core.RequestOptions): Promise<Core.APIResponse<VideoViewExportsResponse>> {
+  listVideoViews(options?: Core.RequestOptions): Core.APIPromise<VideoViewExportsResponse> {
     return this.get('/data/v1/exports/views', options);
   }
 }

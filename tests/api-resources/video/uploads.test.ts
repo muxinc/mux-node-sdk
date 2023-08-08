@@ -1,12 +1,20 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Mux from '@mux/mux-node';
+import { Response } from 'node-fetch';
 
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
 describe('resource uploads', () => {
   test('create: only required params', async () => {
-    const response = await mux.video.uploads.create({ new_asset_settings: {} });
+    const responsePromise = mux.video.uploads.create({ new_asset_settings: {} });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('create: required and optional params', async () => {
@@ -89,7 +97,14 @@ describe('resource uploads', () => {
   });
 
   test('retrieve', async () => {
-    const response = await mux.video.uploads.retrieve('abcd1234');
+    const responsePromise = mux.video.uploads.retrieve('abcd1234');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
@@ -100,7 +115,14 @@ describe('resource uploads', () => {
   });
 
   test('list', async () => {
-    const response = await mux.video.uploads.list();
+    const responsePromise = mux.video.uploads.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -118,7 +140,14 @@ describe('resource uploads', () => {
   });
 
   test('cancel', async () => {
-    const response = await mux.video.uploads.cancel('abcd1234');
+    const responsePromise = mux.video.uploads.cancel('abcd1234');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('cancel: request options instead of params are passed correctly', async () => {

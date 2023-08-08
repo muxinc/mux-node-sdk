@@ -1,16 +1,31 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Mux from '@mux/mux-node';
+import { Response } from 'node-fetch';
 
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
 describe('resource assets', () => {
   test('create', async () => {
-    const response = await mux.video.assets.create({});
+    const responsePromise = mux.video.assets.create({});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve', async () => {
-    const response = await mux.video.assets.retrieve('string');
+    const responsePromise = mux.video.assets.retrieve('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
@@ -21,11 +36,25 @@ describe('resource assets', () => {
   });
 
   test('update', async () => {
-    const response = await mux.video.assets.update('string', {});
+    const responsePromise = mux.video.assets.update('string', {});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list', async () => {
-    const response = await mux.video.assets.list();
+    const responsePromise = mux.video.assets.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -46,7 +75,14 @@ describe('resource assets', () => {
   });
 
   test('del', async () => {
-    const response = await mux.video.assets.del('string');
+    const responsePromise = mux.video.assets.del('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('del: request options instead of params are passed correctly', async () => {
@@ -57,16 +93,30 @@ describe('resource assets', () => {
   });
 
   test('createPlaybackId', async () => {
-    const response = await mux.video.assets.createPlaybackId('string', {});
+    const responsePromise = mux.video.assets.createPlaybackId('string', {});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('createTrack: only required params', async () => {
-    const response = await mux.video.assets.createTrack('string', {
+    const responsePromise = mux.video.assets.createTrack('string', {
       language_code: 'string',
       text_type: 'subtitles',
       type: 'text',
       url: 'string',
     });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('createTrack: required and optional params', async () => {
@@ -82,7 +132,14 @@ describe('resource assets', () => {
   });
 
   test('deletePlaybackId', async () => {
-    const response = await mux.video.assets.deletePlaybackId('string', 'string');
+    const responsePromise = mux.video.assets.deletePlaybackId('string', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('deletePlaybackId: request options instead of params are passed correctly', async () => {
@@ -93,7 +150,14 @@ describe('resource assets', () => {
   });
 
   test('deleteTrack', async () => {
-    const response = await mux.video.assets.deleteTrack('string', 'string');
+    const responsePromise = mux.video.assets.deleteTrack('string', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('deleteTrack: request options instead of params are passed correctly', async () => {
@@ -104,7 +168,14 @@ describe('resource assets', () => {
   });
 
   test('retrievePlaybackId', async () => {
-    const response = await mux.video.assets.retrievePlaybackId('string', 'string');
+    const responsePromise = mux.video.assets.retrievePlaybackId('string', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrievePlaybackId: request options instead of params are passed correctly', async () => {
@@ -115,10 +186,24 @@ describe('resource assets', () => {
   });
 
   test('updateMasterAccess', async () => {
-    const response = await mux.video.assets.updateMasterAccess('string', {});
+    const responsePromise = mux.video.assets.updateMasterAccess('string', {});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('updateMP4Support', async () => {
-    const response = await mux.video.assets.updateMP4Support('string', {});
+    const responsePromise = mux.video.assets.updateMP4Support('string', {});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 });

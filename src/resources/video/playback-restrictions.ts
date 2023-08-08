@@ -10,25 +10,29 @@ export class PlaybackRestrictions extends APIResource {
   /**
    * Create a new Playback Restriction.
    */
-  async create(
+  create(
     body: PlaybackRestrictionCreateParams,
     options?: Core.RequestOptions,
-  ): Promise<PlaybackRestriction> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post('/video/v1/playback-restrictions', { body, ...options })) as any;
-    return response.data;
+  ): Core.APIPromise<PlaybackRestriction> {
+    return (
+      this.post('/video/v1/playback-restrictions', { body, ...options }) as Core.APIPromise<{
+        data: PlaybackRestriction;
+      }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
    * Retrieves a Playback Restriction associated with the unique identifier.
    */
-  async retrieve(playbackRestrictionId: string, options?: Core.RequestOptions): Promise<PlaybackRestriction> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.get(
-      `/video/v1/playback-restrictions/${playbackRestrictionId}`,
-      options,
-    )) as any;
-    return response.data;
+  retrieve(
+    playbackRestrictionId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<PlaybackRestriction> {
+    return (
+      this.get(`/video/v1/playback-restrictions/${playbackRestrictionId}`, options) as Core.APIPromise<{
+        data: PlaybackRestriction;
+      }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -37,12 +41,12 @@ export class PlaybackRestrictions extends APIResource {
   list(
     query?: PlaybackRestrictionListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<PlaybackRestrictionsBasePage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<PlaybackRestrictionsBasePage>;
+  ): Core.PagePromise<PlaybackRestrictionsBasePage, PlaybackRestriction>;
+  list(options?: Core.RequestOptions): Core.PagePromise<PlaybackRestrictionsBasePage, PlaybackRestriction>;
   list(
     query: PlaybackRestrictionListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<PlaybackRestrictionsBasePage> {
+  ): Core.PagePromise<PlaybackRestrictionsBasePage, PlaybackRestriction> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -55,7 +59,7 @@ export class PlaybackRestrictions extends APIResource {
   /**
    * Deletes a single Playback Restriction.
    */
-  del(playbackRestrictionId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
+  del(playbackRestrictionId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.delete(`/video/v1/playback-restrictions/${playbackRestrictionId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -67,17 +71,17 @@ export class PlaybackRestrictions extends APIResource {
    * requests without the `Referer` HTTP header. The Referrer restriction fully
    * replaces the old list with this new list of domains.
    */
-  async updateReferrer(
+  updateReferrer(
     playbackRestrictionId: string,
     body: PlaybackRestrictionUpdateReferrerParams,
     options?: Core.RequestOptions,
-  ): Promise<PlaybackRestriction> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.put(`/video/v1/playback-restrictions/${playbackRestrictionId}/referrer`, {
-      body,
-      ...options,
-    })) as any;
-    return response.data;
+  ): Core.APIPromise<PlaybackRestriction> {
+    return (
+      this.put(`/video/v1/playback-restrictions/${playbackRestrictionId}/referrer`, {
+        body,
+        ...options,
+      }) as Core.APIPromise<{ data: PlaybackRestriction }>
+    )._thenUnwrap((obj) => obj.data);
   }
 }
 

@@ -15,10 +15,10 @@ export class Spaces extends APIResource {
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
-  async create(body: SpaceCreateParams, options?: Core.RequestOptions): Promise<Space> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post('/video/v1/spaces', { body, ...options })) as any;
-    return response.data;
+  create(body: SpaceCreateParams, options?: Core.RequestOptions): Core.APIPromise<Space> {
+    return (
+      this.post('/video/v1/spaces', { body, ...options }) as Core.APIPromise<{ data: Space }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -31,10 +31,10 @@ export class Spaces extends APIResource {
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
-  async retrieve(spaceId: string, options?: Core.RequestOptions): Promise<Space> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.get(`/video/v1/spaces/${spaceId}`, options)) as any;
-    return response.data;
+  retrieve(spaceId: string, options?: Core.RequestOptions): Core.APIPromise<Space> {
+    return (this.get(`/video/v1/spaces/${spaceId}`, options) as Core.APIPromise<{ data: Space }>)._thenUnwrap(
+      (obj) => obj.data,
+    );
   }
 
   /**
@@ -44,12 +44,12 @@ export class Spaces extends APIResource {
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
-  list(query?: SpaceListParams, options?: Core.RequestOptions): Core.PagePromise<SpacesBasePage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<SpacesBasePage>;
+  list(query?: SpaceListParams, options?: Core.RequestOptions): Core.PagePromise<SpacesBasePage, Space>;
+  list(options?: Core.RequestOptions): Core.PagePromise<SpacesBasePage, Space>;
   list(
     query: SpaceListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<SpacesBasePage> {
+  ): Core.PagePromise<SpacesBasePage, Space> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -63,7 +63,7 @@ export class Spaces extends APIResource {
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
-  del(spaceId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
+  del(spaceId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.delete(`/video/v1/spaces/${spaceId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -80,14 +80,16 @@ export class Spaces extends APIResource {
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
-  async createBroadcast(
+  createBroadcast(
     spaceId: string,
     body: SpaceCreateBroadcastParams,
     options?: Core.RequestOptions,
-  ): Promise<Broadcast> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post(`/video/v1/spaces/${spaceId}/broadcasts`, { body, ...options })) as any;
-    return response.data;
+  ): Core.APIPromise<Broadcast> {
+    return (
+      this.post(`/video/v1/spaces/${spaceId}/broadcasts`, { body, ...options }) as Core.APIPromise<{
+        data: Broadcast;
+      }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -102,7 +104,7 @@ export class Spaces extends APIResource {
     spaceId: string,
     broadcastId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<void>> {
+  ): Core.APIPromise<void> {
     return this.delete(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -116,17 +118,16 @@ export class Spaces extends APIResource {
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
-  async retrieveBroadcast(
+  retrieveBroadcast(
     spaceId: string,
     broadcastId: string,
     options?: Core.RequestOptions,
-  ): Promise<Broadcast> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.get(
-      `/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`,
-      options,
-    )) as any;
-    return response.data;
+  ): Core.APIPromise<Broadcast> {
+    return (
+      this.get(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`, options) as Core.APIPromise<{
+        data: Broadcast;
+      }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -137,11 +138,7 @@ export class Spaces extends APIResource {
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
-  startBroadcast(
-    spaceId: string,
-    broadcastId: string,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<void>> {
+  startBroadcast(spaceId: string, broadcastId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/start`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -157,11 +154,7 @@ export class Spaces extends APIResource {
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
-  stopBroadcast(
-    spaceId: string,
-    broadcastId: string,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<void>> {
+  stopBroadcast(spaceId: string, broadcastId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/stop`, {
       ...options,
       headers: { Accept: '', ...options?.headers },

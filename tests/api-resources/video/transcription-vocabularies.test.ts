@@ -1,12 +1,13 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Mux from '@mux/mux-node';
+import { Response } from 'node-fetch';
 
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
 describe('resource transcriptionVocabularies', () => {
   test('create: only required params', async () => {
-    const response = await mux.video.transcriptionVocabularies.create({
+    const responsePromise = mux.video.transcriptionVocabularies.create({
       phrases: [
         'x',
         'x',
@@ -1010,6 +1011,13 @@ describe('resource transcriptionVocabularies', () => {
         'x',
       ],
     });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('create: required and optional params', async () => {
@@ -2022,7 +2030,14 @@ describe('resource transcriptionVocabularies', () => {
   });
 
   test('retrieve', async () => {
-    const response = await mux.video.transcriptionVocabularies.retrieve('string');
+    const responsePromise = mux.video.transcriptionVocabularies.retrieve('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
@@ -2033,7 +2048,7 @@ describe('resource transcriptionVocabularies', () => {
   });
 
   test('update: only required params', async () => {
-    const response = await mux.video.transcriptionVocabularies.update('string', {
+    const responsePromise = mux.video.transcriptionVocabularies.update('string', {
       phrases: [
         'x',
         'x',
@@ -3037,6 +3052,13 @@ describe('resource transcriptionVocabularies', () => {
         'x',
       ],
     });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('update: required and optional params', async () => {
@@ -4049,7 +4071,14 @@ describe('resource transcriptionVocabularies', () => {
   });
 
   test('list', async () => {
-    const response = await mux.video.transcriptionVocabularies.list();
+    const responsePromise = mux.video.transcriptionVocabularies.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -4067,7 +4096,14 @@ describe('resource transcriptionVocabularies', () => {
   });
 
   test('del', async () => {
-    const response = await mux.video.transcriptionVocabularies.del('string');
+    const responsePromise = mux.video.transcriptionVocabularies.del('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('del: request options instead of params are passed correctly', async () => {

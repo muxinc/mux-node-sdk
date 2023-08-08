@@ -16,13 +16,16 @@ export class Filters extends APIResource {
     filterId: string,
     query?: FilterListValuesParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<FilterValuesBasePage>;
-  listValues(filterId: string, options?: Core.RequestOptions): Core.PagePromise<FilterValuesBasePage>;
+  ): Core.PagePromise<FilterValuesBasePage, FilterValue>;
+  listValues(
+    filterId: string,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<FilterValuesBasePage, FilterValue>;
   listValues(
     filterId: string,
     query: FilterListValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<FilterValuesBasePage> {
+  ): Core.PagePromise<FilterValuesBasePage, FilterValue> {
     if (isRequestOptions(query)) {
       return this.listValues(filterId, {}, query);
     }

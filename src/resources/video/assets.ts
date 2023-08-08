@@ -11,10 +11,10 @@ export class Assets extends APIResource {
   /**
    * Create a new Mux Video asset.
    */
-  async create(body: AssetCreateParams, options?: Core.RequestOptions): Promise<Asset> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post('/video/v1/assets', { body, ...options })) as any;
-    return response.data;
+  create(body: AssetCreateParams, options?: Core.RequestOptions): Core.APIPromise<Asset> {
+    return (
+      this.post('/video/v1/assets', { body, ...options }) as Core.APIPromise<{ data: Asset }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -23,31 +23,31 @@ export class Assets extends APIResource {
    * return the corresponding asset information. The same information is returned
    * when creating an asset.
    */
-  async retrieve(assetId: string, options?: Core.RequestOptions): Promise<Asset> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.get(`/video/v1/assets/${assetId}`, options)) as any;
-    return response.data;
+  retrieve(assetId: string, options?: Core.RequestOptions): Core.APIPromise<Asset> {
+    return (this.get(`/video/v1/assets/${assetId}`, options) as Core.APIPromise<{ data: Asset }>)._thenUnwrap(
+      (obj) => obj.data,
+    );
   }
 
   /**
    * Updates the details of an already-created Asset with the provided Asset ID. This
    * currently supports only the `passthrough` field.
    */
-  async update(assetId: string, body: AssetUpdateParams, options?: Core.RequestOptions): Promise<Asset> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.patch(`/video/v1/assets/${assetId}`, { body, ...options })) as any;
-    return response.data;
+  update(assetId: string, body: AssetUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Asset> {
+    return (
+      this.patch(`/video/v1/assets/${assetId}`, { body, ...options }) as Core.APIPromise<{ data: Asset }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
    * List all Mux assets.
    */
-  list(query?: AssetListParams, options?: Core.RequestOptions): Core.PagePromise<AssetsBasePage>;
-  list(options?: Core.RequestOptions): Core.PagePromise<AssetsBasePage>;
+  list(query?: AssetListParams, options?: Core.RequestOptions): Core.PagePromise<AssetsBasePage, Asset>;
+  list(options?: Core.RequestOptions): Core.PagePromise<AssetsBasePage, Asset>;
   list(
     query: AssetListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AssetsBasePage> {
+  ): Core.PagePromise<AssetsBasePage, Asset> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
@@ -57,7 +57,7 @@ export class Assets extends APIResource {
   /**
    * Deletes a video asset and all its data.
    */
-  del(assetId: string, options?: Core.RequestOptions): Promise<Core.APIResponse<void>> {
+  del(assetId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.delete(`/video/v1/assets/${assetId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -67,30 +67,31 @@ export class Assets extends APIResource {
   /**
    * Creates a playback ID that can be used to stream the asset to a viewer.
    */
-  async createPlaybackId(
+  createPlaybackId(
     assetId: string,
     body: AssetCreatePlaybackIDParams,
     options?: Core.RequestOptions,
-  ): Promise<Shared.PlaybackID> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post(`/video/v1/assets/${assetId}/playback-ids`, {
-      body,
-      ...options,
-    })) as any;
-    return response.data;
+  ): Core.APIPromise<Shared.PlaybackID> {
+    return (
+      this.post(`/video/v1/assets/${assetId}/playback-ids`, { body, ...options }) as Core.APIPromise<{
+        data: Shared.PlaybackID;
+      }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
    * Adds an asset track (for example, subtitles) to an asset.
    */
-  async createTrack(
+  createTrack(
     assetId: string,
     body: AssetCreateTrackParams,
     options?: Core.RequestOptions,
-  ): Promise<Track> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.post(`/video/v1/assets/${assetId}/tracks`, { body, ...options })) as any;
-    return response.data;
+  ): Core.APIPromise<Track> {
+    return (
+      this.post(`/video/v1/assets/${assetId}/tracks`, { body, ...options }) as Core.APIPromise<{
+        data: Track;
+      }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -103,7 +104,7 @@ export class Assets extends APIResource {
     assetId: string,
     playbackId: string,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<void>> {
+  ): Core.APIPromise<void> {
     return this.delete(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -114,11 +115,7 @@ export class Assets extends APIResource {
    * Removes a text track from an asset. Audio and video tracks on assets cannot be
    * removed.
    */
-  deleteTrack(
-    assetId: string,
-    trackId: string,
-    options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<void>> {
+  deleteTrack(assetId: string, trackId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this.delete(`/video/v1/assets/${assetId}/tracks/${trackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
@@ -128,17 +125,16 @@ export class Assets extends APIResource {
   /**
    * Retrieves information about the specified playback ID.
    */
-  async retrievePlaybackId(
+  retrievePlaybackId(
     assetId: string,
     playbackId: string,
     options?: Core.RequestOptions,
-  ): Promise<Shared.PlaybackID> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.get(
-      `/video/v1/assets/${assetId}/playback-ids/${playbackId}`,
-      options,
-    )) as any;
-    return response.data;
+  ): Core.APIPromise<Shared.PlaybackID> {
+    return (
+      this.get(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, options) as Core.APIPromise<{
+        data: Shared.PlaybackID;
+      }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -148,17 +144,16 @@ export class Assets extends APIResource {
    * This master version is not optimized for web and not meant to be streamed, only
    * downloaded for purposes like archiving or editing the video offline.
    */
-  async updateMasterAccess(
+  updateMasterAccess(
     assetId: string,
     body: AssetUpdateMasterAccessParams,
     options?: Core.RequestOptions,
-  ): Promise<Asset> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.put(`/video/v1/assets/${assetId}/master-access`, {
-      body,
-      ...options,
-    })) as any;
-    return response.data;
+  ): Core.APIPromise<Asset> {
+    return (
+      this.put(`/video/v1/assets/${assetId}/master-access`, { body, ...options }) as Core.APIPromise<{
+        data: Asset;
+      }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -168,14 +163,16 @@ export class Assets extends APIResource {
    * with `mp4_support` set to `none` will delete the mp4 assets from the asset in
    * question.
    */
-  async updateMP4Support(
+  updateMP4Support(
     assetId: string,
     body: AssetUpdateMP4SupportParams,
     options?: Core.RequestOptions,
-  ): Promise<Asset> {
-    // Note that this method does not support accessing responseHeaders
-    const response = (await this.put(`/video/v1/assets/${assetId}/mp4-support`, { body, ...options })) as any;
-    return response.data;
+  ): Core.APIPromise<Asset> {
+    return (
+      this.put(`/video/v1/assets/${assetId}/mp4-support`, { body, ...options }) as Core.APIPromise<{
+        data: Asset;
+      }>
+    )._thenUnwrap((obj) => obj.data);
   }
 }
 

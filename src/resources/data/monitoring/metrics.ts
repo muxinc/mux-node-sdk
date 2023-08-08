@@ -9,7 +9,7 @@ export class Metrics extends APIResource {
   /**
    * Lists available monitoring metrics.
    */
-  list(options?: Core.RequestOptions): Promise<Core.APIResponse<MetricListResponse>> {
+  list(options?: Core.RequestOptions): Core.APIPromise<MetricListResponse> {
     return this.get('/data/v1/monitoring/metrics', options);
   }
 
@@ -27,7 +27,7 @@ export class Metrics extends APIResource {
       | 'video-startup-failure-percentage',
     query?: MetricGetBreakdownParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricGetBreakdownResponse>>;
+  ): Core.APIPromise<MetricGetBreakdownResponse>;
   getBreakdown(
     monitoringMetricId:
       | 'current-concurrent-viewers'
@@ -37,7 +37,7 @@ export class Metrics extends APIResource {
       | 'current-average-bitrate'
       | 'video-startup-failure-percentage',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricGetBreakdownResponse>>;
+  ): Core.APIPromise<MetricGetBreakdownResponse>;
   getBreakdown(
     monitoringMetricId:
       | 'current-concurrent-viewers'
@@ -48,7 +48,7 @@ export class Metrics extends APIResource {
       | 'video-startup-failure-percentage',
     query: MetricGetBreakdownParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricGetBreakdownResponse>> {
+  ): Core.APIPromise<MetricGetBreakdownResponse> {
     if (isRequestOptions(query)) {
       return this.getBreakdown(monitoringMetricId, {}, query);
     }
@@ -69,7 +69,7 @@ export class Metrics extends APIResource {
       | 'video-startup-failure-percentage',
     query?: MetricGetBreakdownTimeseriesParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricGetBreakdownTimeseriesResponse>>;
+  ): Core.APIPromise<MetricGetBreakdownTimeseriesResponse>;
   getBreakdownTimeseries(
     monitoringMetricId:
       | 'current-concurrent-viewers'
@@ -79,7 +79,7 @@ export class Metrics extends APIResource {
       | 'current-average-bitrate'
       | 'video-startup-failure-percentage',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricGetBreakdownTimeseriesResponse>>;
+  ): Core.APIPromise<MetricGetBreakdownTimeseriesResponse>;
   getBreakdownTimeseries(
     monitoringMetricId:
       | 'current-concurrent-viewers'
@@ -90,7 +90,7 @@ export class Metrics extends APIResource {
       | 'video-startup-failure-percentage',
     query: MetricGetBreakdownTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricGetBreakdownTimeseriesResponse>> {
+  ): Core.APIPromise<MetricGetBreakdownTimeseriesResponse> {
     if (isRequestOptions(query)) {
       return this.getBreakdownTimeseries(monitoringMetricId, {}, query);
     }
@@ -107,16 +107,16 @@ export class Metrics extends APIResource {
     monitoringHistogramMetricId: 'video-startup-time',
     query?: MetricGetHistogramTimeseriesParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricGetHistogramTimeseriesResponse>>;
+  ): Core.APIPromise<MetricGetHistogramTimeseriesResponse>;
   getHistogramTimeseries(
     monitoringHistogramMetricId: 'video-startup-time',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricGetHistogramTimeseriesResponse>>;
+  ): Core.APIPromise<MetricGetHistogramTimeseriesResponse>;
   getHistogramTimeseries(
     monitoringHistogramMetricId: 'video-startup-time',
     query: MetricGetHistogramTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricGetHistogramTimeseriesResponse>> {
+  ): Core.APIPromise<MetricGetHistogramTimeseriesResponse> {
     if (isRequestOptions(query)) {
       return this.getHistogramTimeseries(monitoringHistogramMetricId, {}, query);
     }
@@ -140,7 +140,7 @@ export class Metrics extends APIResource {
       | 'video-startup-failure-percentage',
     query?: MetricGetTimeseriesParams,
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricGetTimeseriesResponse>>;
+  ): Core.APIPromise<MetricGetTimeseriesResponse>;
   getTimeseries(
     monitoringMetricId:
       | 'current-concurrent-viewers'
@@ -150,7 +150,7 @@ export class Metrics extends APIResource {
       | 'current-average-bitrate'
       | 'video-startup-failure-percentage',
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricGetTimeseriesResponse>>;
+  ): Core.APIPromise<MetricGetTimeseriesResponse>;
   getTimeseries(
     monitoringMetricId:
       | 'current-concurrent-viewers'
@@ -161,7 +161,7 @@ export class Metrics extends APIResource {
       | 'video-startup-failure-percentage',
     query: MetricGetTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Promise<Core.APIResponse<MetricGetTimeseriesResponse>> {
+  ): Core.APIPromise<MetricGetTimeseriesResponse> {
     if (isRequestOptions(query)) {
       return this.getTimeseries(monitoringMetricId, {}, query);
     }

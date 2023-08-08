@@ -12,7 +12,7 @@ export class Dimensions extends APIResource {
    *
    * Note: This API replaces the list-filters API call.
    */
-  list(options?: Core.RequestOptions): Promise<Core.APIResponse<DimensionsResponse>> {
+  list(options?: Core.RequestOptions): Core.APIPromise<DimensionsResponse> {
     return this.get('/data/v1/dimensions', options);
   }
 
@@ -25,13 +25,16 @@ export class Dimensions extends APIResource {
     dimensionId: string,
     query?: DimensionListValuesParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DimensionValuesBasePage>;
-  listValues(dimensionId: string, options?: Core.RequestOptions): Core.PagePromise<DimensionValuesBasePage>;
+  ): Core.PagePromise<DimensionValuesBasePage, DimensionValue>;
+  listValues(
+    dimensionId: string,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<DimensionValuesBasePage, DimensionValue>;
   listValues(
     dimensionId: string,
     query: DimensionListValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DimensionValuesBasePage> {
+  ): Core.PagePromise<DimensionValuesBasePage, DimensionValue> {
     if (isRequestOptions(query)) {
       return this.listValues(dimensionId, {}, query);
     }

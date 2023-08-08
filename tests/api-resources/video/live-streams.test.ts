@@ -1,16 +1,31 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Mux from '@mux/mux-node';
+import { Response } from 'node-fetch';
 
 const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
 
 describe('resource liveStreams', () => {
   test('create', async () => {
-    const response = await mux.video.liveStreams.create({});
+    const responsePromise = mux.video.liveStreams.create({});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve', async () => {
-    const response = await mux.video.liveStreams.retrieve('string');
+    const responsePromise = mux.video.liveStreams.retrieve('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieve: request options instead of params are passed correctly', async () => {
@@ -21,11 +36,25 @@ describe('resource liveStreams', () => {
   });
 
   test('update', async () => {
-    const response = await mux.video.liveStreams.update('string', {});
+    const responsePromise = mux.video.liveStreams.update('string', {});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list', async () => {
-    const response = await mux.video.liveStreams.list();
+    const responsePromise = mux.video.liveStreams.list();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('list: request options instead of params are passed correctly', async () => {
@@ -46,7 +75,14 @@ describe('resource liveStreams', () => {
   });
 
   test('del', async () => {
-    const response = await mux.video.liveStreams.del('string');
+    const responsePromise = mux.video.liveStreams.del('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('del: request options instead of params are passed correctly', async () => {
@@ -57,7 +93,14 @@ describe('resource liveStreams', () => {
   });
 
   test('complete', async () => {
-    const response = await mux.video.liveStreams.complete('string');
+    const responsePromise = mux.video.liveStreams.complete('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('complete: request options instead of params are passed correctly', async () => {
@@ -68,11 +111,25 @@ describe('resource liveStreams', () => {
   });
 
   test('createPlaybackId', async () => {
-    const response = await mux.video.liveStreams.createPlaybackId('string', {});
+    const responsePromise = mux.video.liveStreams.createPlaybackId('string', {});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('createSimulcastTarget: only required params', async () => {
-    const response = await mux.video.liveStreams.createSimulcastTarget('string', { url: 'string' });
+    const responsePromise = mux.video.liveStreams.createSimulcastTarget('string', { url: 'string' });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('createSimulcastTarget: required and optional params', async () => {
@@ -84,7 +141,14 @@ describe('resource liveStreams', () => {
   });
 
   test('deletePlaybackId', async () => {
-    const response = await mux.video.liveStreams.deletePlaybackId('string', 'string');
+    const responsePromise = mux.video.liveStreams.deletePlaybackId('string', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('deletePlaybackId: request options instead of params are passed correctly', async () => {
@@ -95,7 +159,14 @@ describe('resource liveStreams', () => {
   });
 
   test('deleteSimulcastTarget', async () => {
-    const response = await mux.video.liveStreams.deleteSimulcastTarget('string', 'string');
+    const responsePromise = mux.video.liveStreams.deleteSimulcastTarget('string', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('deleteSimulcastTarget: request options instead of params are passed correctly', async () => {
@@ -106,7 +177,14 @@ describe('resource liveStreams', () => {
   });
 
   test('disable', async () => {
-    const response = await mux.video.liveStreams.disable('string');
+    const responsePromise = mux.video.liveStreams.disable('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('disable: request options instead of params are passed correctly', async () => {
@@ -117,7 +195,14 @@ describe('resource liveStreams', () => {
   });
 
   test('enable', async () => {
-    const response = await mux.video.liveStreams.enable('string');
+    const responsePromise = mux.video.liveStreams.enable('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('enable: request options instead of params are passed correctly', async () => {
@@ -128,7 +213,14 @@ describe('resource liveStreams', () => {
   });
 
   test('resetStreamKey', async () => {
-    const response = await mux.video.liveStreams.resetStreamKey('string');
+    const responsePromise = mux.video.liveStreams.resetStreamKey('string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('resetStreamKey: request options instead of params are passed correctly', async () => {
@@ -139,7 +231,14 @@ describe('resource liveStreams', () => {
   });
 
   test('retrievePlaybackId', async () => {
-    const response = await mux.video.liveStreams.retrievePlaybackId('string', 'string');
+    const responsePromise = mux.video.liveStreams.retrievePlaybackId('string', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrievePlaybackId: request options instead of params are passed correctly', async () => {
@@ -150,7 +249,14 @@ describe('resource liveStreams', () => {
   });
 
   test('retrieveSimulcastTarget', async () => {
-    const response = await mux.video.liveStreams.retrieveSimulcastTarget('string', 'string');
+    const responsePromise = mux.video.liveStreams.retrieveSimulcastTarget('string', 'string');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('retrieveSimulcastTarget: request options instead of params are passed correctly', async () => {
@@ -161,10 +267,24 @@ describe('resource liveStreams', () => {
   });
 
   test('updateEmbeddedSubtitles', async () => {
-    const response = await mux.video.liveStreams.updateEmbeddedSubtitles('string', {});
+    const responsePromise = mux.video.liveStreams.updateEmbeddedSubtitles('string', {});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 
   test('updateGeneratedSubtitles', async () => {
-    const response = await mux.video.liveStreams.updateGeneratedSubtitles('string', {});
+    const responsePromise = mux.video.liveStreams.updateGeneratedSubtitles('string', {});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 });
