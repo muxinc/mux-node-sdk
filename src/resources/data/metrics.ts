@@ -758,13 +758,14 @@ export interface MetricGetTimeseriesParams {
    * Time granularity to group results by. If this value is omitted, a default
    * granularity is chosen based on the timeframe.
    *
-   * For timeframes of 6 hours or less, the default granularity is `ten_minutes`.
+   * For timeframes of less than 90 minutes, the default granularity is `minute`.
+   * Between 90 minutes and 6 hours, the default granularity is `ten_minutes`.
    * Between 6 hours and 15 days inclusive, the default granularity is `hour`. The
    * granularity of timeframes that exceed 15 days is `day`. This default behavior is
    * subject to change; it is strongly suggested that you explicitly specify the
    * granularity.
    */
-  group_by?: 'ten_minutes' | 'hour' | 'day';
+  group_by?: 'minute' | 'ten_minutes' | 'hour' | 'day';
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
