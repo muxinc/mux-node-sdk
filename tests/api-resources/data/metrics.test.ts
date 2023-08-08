@@ -97,7 +97,7 @@ describe('resource metrics', () => {
         'video_startup_time',
         {
           'filters[]': ['string', 'string', 'string'],
-          group_by: 'ten_minutes',
+          group_by: 'minute',
           measurement: '95th',
           order_direction: 'asc',
           'timeframe[]': ['string', 'string', 'string'],
