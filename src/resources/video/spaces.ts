@@ -11,7 +11,7 @@ export class Spaces extends APIResource {
    * Create a new space. Spaces are used to build
    * [real-time video applications.](https://mux.com/real-time-video)
    *
-   * @deprecated Mux Real-Time Video has been sunset and is unavailiable for new usage.
+   * @deprecated Mux Real-Time Video has been sunset and is unavailable for new usage.
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
@@ -27,7 +27,7 @@ export class Spaces extends APIResource {
    * return the information about the corresponding space. The same information is
    * returned when creating a space.
    *
-   * @deprecated Mux Real-Time Video has been sunset and is unavailiable for new usage.
+   * @deprecated Mux Real-Time Video has been sunset and is unavailable for new usage.
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
@@ -40,7 +40,7 @@ export class Spaces extends APIResource {
   /**
    * List all spaces in the current enviroment.
    *
-   * @deprecated Mux Real-Time Video has been sunset and is unavailiable for new usage.
+   * @deprecated Mux Real-Time Video has been sunset and is unavailable for new usage.
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
@@ -59,7 +59,7 @@ export class Spaces extends APIResource {
   /**
    * Deletes a space. Spaces can only be deleted when `idle`.
    *
-   * @deprecated Mux Real-Time Video has been sunset and is unavailiable for new usage.
+   * @deprecated Mux Real-Time Video has been sunset and is unavailable for new usage.
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
@@ -76,7 +76,7 @@ export class Spaces extends APIResource {
    * single broadcast destination can be specified. Contact Mux support if you need
    * more.
    *
-   * @deprecated Mux Real-Time Video has been sunset and is unavailiable for new usage.
+   * @deprecated Mux Real-Time Video has been sunset and is unavailable for new usage.
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
@@ -96,7 +96,7 @@ export class Spaces extends APIResource {
    * Deletes a single broadcast of a specific space. Broadcasts can only be deleted
    * when `idle`.
    *
-   * @deprecated Mux Real-Time Video has been sunset and is unavailiable for new usage.
+   * @deprecated Mux Real-Time Video has been sunset and is unavailable for new usage.
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
@@ -114,7 +114,7 @@ export class Spaces extends APIResource {
   /**
    * Retrieves the details of a broadcast of a specific space.
    *
-   * @deprecated Mux Real-Time Video has been sunset and is unavailiable for new usage.
+   * @deprecated Mux Real-Time Video has been sunset and is unavailable for new usage.
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
@@ -134,7 +134,7 @@ export class Spaces extends APIResource {
    * Starts broadcasting a space to the associated destination. Broadcasts can only
    * be started when the space is `active` (when there are participants connected).
    *
-   * @deprecated Mux Real-Time Video has been sunset and is unavailiable for new usage.
+   * @deprecated Mux Real-Time Video has been sunset and is unavailable for new usage.
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
@@ -150,7 +150,7 @@ export class Spaces extends APIResource {
    * This API also automatically calls `complete` on the destination live stream.
    * Broadcasts are also automatically stopped when a space becomes idle.
    *
-   * @deprecated Mux Real-Time Video has been sunset and is unavailiable for new usage.
+   * @deprecated Mux Real-Time Video has been sunset and is unavailable for new usage.
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
