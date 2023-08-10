@@ -2,8 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/@mux/mux-node.svg)](https://npmjs.org/package/@mux/mux-node)
 
-The Mux Node library provides convenient access to the Mux REST API from applications written in server-side JavaScript.
-It includes TypeScript definitions for all request params and response fields.
+This library provides convenient access to the Mux Node REST API from server-side TypeScript or JavaScript.
 
 ## Documentation
 
@@ -36,10 +35,9 @@ async function main() {
 main();
 ```
 
-### Usage with TypeScript
+### Request & Response types
 
-Importing, instantiating, and interacting with the library are the same as above.
-If you like, you may reference our types directly:
+This library includes TypeScript definitions for all request params and response fields. You may import and use them like so:
 
 ```ts
 import Mux from '@mux/mux-node';
@@ -230,7 +228,9 @@ We are keen for your feedback; please open an [issue](https://www.github.com/mux
 The following runtimes are supported:
 
 - Node.js 16 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
-- Deno v1.28.0 or higher (experimental).
-  Use `import Mux from "npm:@mux/mux-node"`.
+- Deno v1.28.0 or higher, using `import Mux from "npm:@mux/mux-node"`.
+  Deno Deploy is not yet supported.
+- Cloudflare Workers.
+- Vercel Edge Runtime.
 
 If you are interested in other runtime environments, please open or upvote an issue on GitHub.
