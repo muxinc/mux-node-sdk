@@ -658,7 +658,7 @@ export interface MetricListParams {
    *
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
-  'filters[]'?: Array<string>;
+  filters?: Array<string>;
 
   /**
    * Timeframe window to limit results by. Must be provided as an array query string
@@ -669,7 +669,7 @@ export interface MetricListParams {
    * - array of epoch timestamps e.g. `timeframe[]=1498867200&timeframe[]=1498953600`
    * - duration string e.g. `timeframe[]=24:hours or timeframe[]=7:days`
    */
-  'timeframe[]'?: Array<string>;
+  timeframe?: Array<string>;
 
   /**
    * Value to show all available metrics for
@@ -698,7 +698,7 @@ export interface MetricGetInsightsParams {
    * - array of epoch timestamps e.g. `timeframe[]=1498867200&timeframe[]=1498953600`
    * - duration string e.g. `timeframe[]=24:hours or timeframe[]=7:days`
    */
-  'timeframe[]'?: Array<string>;
+  timeframe?: Array<string>;
 }
 
 export interface MetricGetOverallValuesParams {
@@ -715,7 +715,7 @@ export interface MetricGetOverallValuesParams {
    *
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
-  'filters[]'?: Array<string>;
+  filters?: Array<string>;
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
@@ -732,7 +732,7 @@ export interface MetricGetOverallValuesParams {
    * - array of epoch timestamps e.g. `timeframe[]=1498867200&timeframe[]=1498953600`
    * - duration string e.g. `timeframe[]=24:hours or timeframe[]=7:days`
    */
-  'timeframe[]'?: Array<string>;
+  timeframe?: Array<string>;
 }
 
 export interface MetricGetTimeseriesParams {
@@ -749,7 +749,7 @@ export interface MetricGetTimeseriesParams {
    *
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
-  'filters[]'?: Array<string>;
+  filters?: Array<string>;
 
   /**
    * Time granularity to group results by. If this value is omitted, a default
@@ -784,7 +784,7 @@ export interface MetricGetTimeseriesParams {
    * - array of epoch timestamps e.g. `timeframe[]=1498867200&timeframe[]=1498953600`
    * - duration string e.g. `timeframe[]=24:hours or timeframe[]=7:days`
    */
-  'timeframe[]'?: Array<string>;
+  timeframe?: Array<string>;
 }
 
 export interface MetricListBreakdownValuesParams extends BasePageParams {
@@ -801,7 +801,7 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
    *
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
-  'filters[]'?: Array<string>;
+  filters?: Array<string>;
 
   /**
    * Breakdown value to group the results by
@@ -889,7 +889,7 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
    * - array of epoch timestamps e.g. `timeframe[]=1498867200&timeframe[]=1498953600`
    * - duration string e.g. `timeframe[]=24:hours or timeframe[]=7:days`
    */
-  'timeframe[]'?: Array<string>;
+  timeframe?: Array<string>;
 }
 
 export namespace Metrics {

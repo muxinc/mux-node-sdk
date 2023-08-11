@@ -48,10 +48,10 @@ describe('resource dimensions', () => {
       mux.data.dimensions.listValues(
         'abcd1234',
         {
-          'filters[]': ['string', 'string', 'string'],
+          filters: ['string', 'string', 'string'],
           limit: 0,
           page: 0,
-          'timeframe[]': ['string', 'string', 'string'],
+          timeframe: ['string', 'string', 'string'],
         },
         { path: '/_stainless_unknown_path' },
       ),

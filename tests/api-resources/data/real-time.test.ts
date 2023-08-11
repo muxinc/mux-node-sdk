@@ -67,7 +67,7 @@ describe('resource realTime', () => {
         'current-concurrent-viewers',
         {
           dimension: 'asn',
-          'filters[]': ['string', 'string', 'string'],
+          filters: ['string', 'string', 'string'],
           order_by: 'negative_impact',
           order_direction: 'asc',
           timestamp: 0,
@@ -102,7 +102,7 @@ describe('resource realTime', () => {
     await expect(
       mux.data.realTime.retrieveHistogramTimeseries(
         'video-startup-time',
-        { 'filters[]': ['string', 'string', 'string'] },
+        { filters: ['string', 'string', 'string'] },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
@@ -133,7 +133,7 @@ describe('resource realTime', () => {
     await expect(
       mux.data.realTime.retrieveTimeseries(
         'current-concurrent-viewers',
-        { 'filters[]': ['string', 'string', 'string'], timestamp: 0 },
+        { filters: ['string', 'string', 'string'], timestamp: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);

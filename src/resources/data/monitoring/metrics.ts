@@ -330,7 +330,7 @@ export interface MetricGetBreakdownParams {
    *
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
-  'filters[]'?: Array<string>;
+  filters?: Array<string>;
 
   /**
    * Value to order the results by
@@ -380,7 +380,7 @@ export interface MetricGetBreakdownTimeseriesParams {
    *
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
-  'filters[]'?: Array<string>;
+  filters?: Array<string>;
 
   /**
    * Number of items to include in each timestamp's `value` list.
@@ -406,7 +406,7 @@ export interface MetricGetBreakdownTimeseriesParams {
    * The default for this is the last 60 seconds of available data. Timeframes larger
    * than 10 minutes are not allowed, and must be within the last 24 hours.
    */
-  'timeframe[]'?: Array<string>;
+  timeframe?: Array<string>;
 }
 
 export interface MetricGetHistogramTimeseriesParams {
@@ -424,7 +424,7 @@ export interface MetricGetHistogramTimeseriesParams {
    *
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
-  'filters[]'?: Array<string>;
+  filters?: Array<string>;
 }
 
 export interface MetricGetTimeseriesParams {
@@ -442,7 +442,7 @@ export interface MetricGetTimeseriesParams {
    *
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
-  'filters[]'?: Array<string>;
+  filters?: Array<string>;
 
   /**
    * Timestamp to use as the start of the timeseries data. This value must be

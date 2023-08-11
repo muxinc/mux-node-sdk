@@ -145,7 +145,7 @@ export interface DeliveryUsageListParams extends PageWithTotalParams {
    * Default time window is 1 hour representing usage from 13th to 12th hour from
    * when the request is made.
    */
-  'timeframe[]'?: Array<string>;
+  timeframe?: Array<string>;
 }
 
 export namespace DeliveryUsage {

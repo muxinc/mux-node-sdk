@@ -85,7 +85,7 @@ export interface DimensionListValuesParams extends BasePageParams {
    *
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
-  'filters[]'?: Array<string>;
+  filters?: Array<string>;
 
   /**
    * Timeframe window to limit results by. Must be provided as an array query string
@@ -96,7 +96,7 @@ export interface DimensionListValuesParams extends BasePageParams {
    * - array of epoch timestamps e.g. `timeframe[]=1498867200&timeframe[]=1498953600`
    * - duration string e.g. `timeframe[]=24:hours or timeframe[]=7:days`
    */
-  'timeframe[]'?: Array<string>;
+  timeframe?: Array<string>;
 }
 
 export namespace Dimensions {

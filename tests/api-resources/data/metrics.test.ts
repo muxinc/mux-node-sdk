@@ -30,8 +30,8 @@ describe('resource metrics', () => {
       mux.data.metrics.list(
         {
           dimension: 'asn',
-          'filters[]': ['string', 'string', 'string'],
-          'timeframe[]': ['string', 'string', 'string'],
+          filters: ['string', 'string', 'string'],
+          timeframe: ['string', 'string', 'string'],
           value: 'string',
         },
         { path: '/_stainless_unknown_path' },
@@ -62,7 +62,7 @@ describe('resource metrics', () => {
     await expect(
       mux.data.metrics.getInsights(
         'video_startup_time',
-        { measurement: '95th', order_direction: 'asc', 'timeframe[]': ['string', 'string', 'string'] },
+        { measurement: '95th', order_direction: 'asc', timeframe: ['string', 'string', 'string'] },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
@@ -92,9 +92,9 @@ describe('resource metrics', () => {
       mux.data.metrics.getOverallValues(
         'video_startup_time',
         {
-          'filters[]': ['string', 'string', 'string'],
+          filters: ['string', 'string', 'string'],
           measurement: '95th',
-          'timeframe[]': ['string', 'string', 'string'],
+          timeframe: ['string', 'string', 'string'],
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -125,11 +125,11 @@ describe('resource metrics', () => {
       mux.data.metrics.getTimeseries(
         'video_startup_time',
         {
-          'filters[]': ['string', 'string', 'string'],
+          filters: ['string', 'string', 'string'],
           group_by: 'minute',
           measurement: '95th',
           order_direction: 'asc',
-          'timeframe[]': ['string', 'string', 'string'],
+          timeframe: ['string', 'string', 'string'],
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -160,14 +160,14 @@ describe('resource metrics', () => {
       mux.data.metrics.listBreakdownValues(
         'video_startup_time',
         {
-          'filters[]': ['string', 'string', 'string'],
+          filters: ['string', 'string', 'string'],
           group_by: 'asn',
           limit: 0,
           measurement: '95th',
           order_by: 'negative_impact',
           order_direction: 'asc',
           page: 0,
-          'timeframe[]': ['string', 'string', 'string'],
+          timeframe: ['string', 'string', 'string'],
         },
         { path: '/_stainless_unknown_path' },
       ),

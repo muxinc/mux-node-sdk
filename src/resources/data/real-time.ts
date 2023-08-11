@@ -280,7 +280,7 @@ export interface RealTimeRetrieveBreakdownParams {
    *
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
-  'filters[]'?: Array<string>;
+  filters?: Array<string>;
 
   /**
    * Value to order the results by
@@ -314,7 +314,7 @@ export interface RealTimeRetrieveHistogramTimeseriesParams {
    *
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
-  'filters[]'?: Array<string>;
+  filters?: Array<string>;
 }
 
 export interface RealTimeRetrieveTimeseriesParams {
@@ -332,7 +332,7 @@ export interface RealTimeRetrieveTimeseriesParams {
    *
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
-  'filters[]'?: Array<string>;
+  filters?: Array<string>;
 
   /**
    * Timestamp to use as the start of the timeseries data. This value must be

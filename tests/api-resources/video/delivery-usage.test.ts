@@ -33,7 +33,7 @@ describe('resource deliveryUsage', () => {
           limit: 0,
           live_stream_id: 'string',
           page: 0,
-          'timeframe[]': ['string', 'string', 'string'],
+          timeframe: ['string', 'string', 'string'],
         },
         { path: '/_stainless_unknown_path' },
       ),

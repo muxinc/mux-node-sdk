@@ -48,11 +48,11 @@ describe('resource videoViews', () => {
       mux.data.videoViews.list(
         {
           error_id: 0,
-          'filters[]': ['string', 'string', 'string'],
+          filters: ['string', 'string', 'string'],
           limit: 0,
           order_direction: 'asc',
           page: 0,
-          'timeframe[]': ['string', 'string', 'string'],
+          timeframe: ['string', 'string', 'string'],
           viewer_id: 'string',
         },
         { path: '/_stainless_unknown_path' },
