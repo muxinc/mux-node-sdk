@@ -114,13 +114,13 @@ await mux.video.assets.retrieve('t02rm...', {
 
 ### Timeouts
 
-Requests time out after 60 seconds by default. You can configure this with a `timeout` option:
+Requests time out after 1 minute by default. You can configure this with a `timeout` option:
 
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
 const mux = new Mux({
-  timeout: 20 * 1000, // 20 seconds (default is 60s)
+  timeout: 20 * 1000, // 20 seconds (default is 1 minute)
   tokenSecret: 'my secret',
 });
 
