@@ -97,7 +97,7 @@ export class Mux extends Core.APIClient {
   }: ClientOptions = {}) {
     if (tokenId === undefined) {
       throw new Error(
-        "The MUX_TOKEN_ID environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenId option, like new Mux({ tokenId: 'my tokenId' }).",
+        'The MUX_TOKEN_ID environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenId option, like new Mux({ tokenId: undefined }).',
       );
     }
     if (tokenSecret === undefined) {
