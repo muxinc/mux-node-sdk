@@ -77,7 +77,7 @@ export interface ClientOptions {
   jwtPrivateKey?: string | null;
 }
 
-/** Instantiate the API Client. */
+/** API Client for interfacing with the Mux API. */
 export class Mux extends Core.APIClient {
   tokenId: string;
   tokenSecret: string;
@@ -87,6 +87,22 @@ export class Mux extends Core.APIClient {
 
   private _options: ClientOptions;
 
+  /**
+   * API Client for interfacing with the Mux API.
+   *
+   * @param {string} [opts.tokenId=process.env['MUX_TOKEN_ID']] - The access token to send to the API.
+   * @param {string} [opts.baseURL] - Override the default base URL for the API.
+   * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
+   * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
+   * @param {Core.Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
+   * @param {number} [opts.maxRetries=2] - The maximum number of times the client will retry a request.
+   * @param {Core.Headers} opts.defaultHeaders - Default headers to include with every request to the API.
+   * @param {Core.DefaultQuery} opts.defaultQuery - Default query parameters to include with every request to the API.
+   * @param {string} [opts.tokenSecret]
+   * @param {string | null} [opts.webhookSecret]
+   * @param {string | null} [opts.jwtSigningKey]
+   * @param {string | null} [opts.jwtPrivateKey]
+   */
   constructor({
     tokenId = Core.readEnv('MUX_TOKEN_ID'),
     tokenSecret = Core.readEnv('MUX_TOKEN_SECRET'),
