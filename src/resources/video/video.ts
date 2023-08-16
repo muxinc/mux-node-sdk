@@ -26,7 +26,9 @@ export namespace Video {
   export import Assets = API.Assets;
   export import Asset = API.Asset;
   export import AssetResponse = API.AssetResponse;
+  export import InputInfo = API.InputInfo;
   export import Track = API.Track;
+  export import AssetRetrieveInputInfoResponse = API.AssetRetrieveInputInfoResponse;
   export import AssetsBasePage = API.AssetsBasePage;
   export import AssetCreateParams = API.AssetCreateParams;
   export import AssetUpdateParams = API.AssetUpdateParams;

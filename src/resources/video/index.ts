@@ -3,7 +3,9 @@
 export {
   Asset,
   AssetResponse,
+  InputInfo,
   Track,
+  AssetRetrieveInputInfoResponse,
   AssetCreateParams,
   AssetUpdateParams,
   AssetListParams,
