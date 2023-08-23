@@ -214,6 +214,8 @@ export namespace Mux {
   export import toFile = Uploads.toFile;
   export import fileFromPath = Uploads.fileFromPath;
 
+  export import RequestOptions = Core.RequestOptions;
+
   export import PageWithTotal = Pagination.PageWithTotal;
   export import PageWithTotalParams = Pagination.PageWithTotalParams;
   export import PageWithTotalResponse = Pagination.PageWithTotalResponse;

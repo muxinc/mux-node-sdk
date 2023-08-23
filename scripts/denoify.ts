@@ -71,9 +71,6 @@ async function denoify() {
           if (decl.isTypeOnly()) return;
 
           const ref = decl.getModuleReference();
-          if (ref.getText().includes('SinglePageResponse')) {
-            debugger;
-          }
           if (!hasValueDeclarations(ref)) {
             const params = ref.getType().getTypeArguments();
             if (params.length) {
@@ -199,7 +196,16 @@ function hasValueDeclarations(nodes?: tm.Node | tm.Node[]): boolean {
   if (nodes && !Array.isArray(nodes)) {
     return hasValueDeclarations(nodes.getType().getSymbol()?.getDeclarations());
   }
-  return nodes ? nodes.some((n) => !typeDeclarationKinds.has(n.getKind())) : false;
+  return nodes ?
+      nodes.some((n) => {
+        const parent = n.getParent();
+        return (
+          !typeDeclarationKinds.has(n.getKind()) &&
+          // sometimes the node will be the right hand side of a type alias
+          (!parent || !typeDeclarationKinds.has(parent.getKind()))
+        );
+      })
+    : false;
 }
 
 denoify();
