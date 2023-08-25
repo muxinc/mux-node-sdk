@@ -158,14 +158,14 @@ export class Mux extends Core.APIClient {
     return this._options.defaultQuery;
   }
 
-  protected override defaultHeaders(): Core.Headers {
+  protected override defaultHeaders(opts: Core.FinalRequestOptions): Core.Headers {
     return {
-      ...super.defaultHeaders(),
+      ...super.defaultHeaders(opts),
       ...this._options.defaultHeaders,
     };
   }
 
-  protected override authHeaders(): Core.Headers {
+  protected override authHeaders(opts: Core.FinalRequestOptions): Core.Headers {
     const credentials = `${this.tokenId}:${this.tokenSecret}`;
     const Authorization = `Basic ${Core.toBase64(credentials)}`;
     return { Authorization };
