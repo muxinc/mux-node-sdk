@@ -4,9 +4,9 @@ set -exuo pipefail
 
 rm -rf deno; mkdir deno
 cp -rp src/* README.md deno
-rm deno/_shims/*.{d.ts,js,mjs,node.ts}
-for file in deno/_shims/*.deno.ts; do
-  mv -- "$file" "${file%.deno.ts}.ts"
+rm deno/_shims/*.{d.ts,js,mjs} deno/_shims/*-node.ts
+for file in deno/_shims/*-deno.ts; do
+  mv -- "$file" "${file%-deno.ts}.ts"
 done
 for file in LICENSE CHANGELOG.md; do
   if [ -e "${file}" ]; then cp "${file}" deno; fi

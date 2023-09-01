@@ -1,7 +1,7 @@
 import { type RequestOptions } from './core';
 import { type Readable } from '@mux/mux-node/_shims/node-readable';
 import { type BodyInit } from '@mux/mux-node/_shims/fetch';
-import { FormData, File, type Blob, type FilePropertyBag } from '@mux/mux-node/_shims/formdata';
+import { FormData, File, type Blob, type FilePropertyBag } from '@mux/mux-node/_shims/form-data';
 import { getMultipartRequestOptions } from '@mux/mux-node/_shims/getMultipartRequestOptions';
 import { fileFromPath } from '@mux/mux-node/_shims/fileFromPath';
 import { type FsReadStream, isFsReadStream } from '@mux/mux-node/_shims/node-readable';

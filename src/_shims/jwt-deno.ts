@@ -1,7 +1,7 @@
 import { Mux } from '../index.ts';
 import { KeyLike, SignJWT, importPKCS8 } from 'https://deno.land/x/jose@v4.14.4/index.ts';
-import { SignOptions, MuxJWTSignOptions } from '../util/jwt-types.ts';
-import { unwrapPem, pkcs1to8, toPkcs8Pem, isKeyLike, keyFormatErrorMessage } from '../util/jwt-util.ts';
+import { SignOptions, MuxJWTSignOptions } from '../util/jwt-types.js';
+import { unwrapPem, pkcs1to8, toPkcs8Pem, isKeyLike, keyFormatErrorMessage } from '../util/jwt-util.js';
 
 export type PrivateKey = KeyLike;
 
