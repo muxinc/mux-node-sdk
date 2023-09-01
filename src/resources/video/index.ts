@@ -63,7 +63,6 @@ export {
 } from './playback-restrictions';
 export {
   TranscriptionVocabulary,
-  TranscriptionVocabularyPhrase,
   TranscriptionVocabularyResponse,
   TranscriptionVocabularyCreateParams,
   TranscriptionVocabularyUpdateParams,

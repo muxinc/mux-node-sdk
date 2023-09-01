@@ -128,7 +128,7 @@ export interface TranscriptionVocabulary {
    * `generated_subtitles` configuration, the probability of successful speech
    * recognition for these words or phrases is boosted.
    */
-  phrases?: Array<TranscriptionVocabularyPhrase>;
+  phrases?: Array<string>;
 
   /**
    * Time the Transcription Vocabulary was updated, defined as a Unix timestamp
@@ -136,11 +136,6 @@ export interface TranscriptionVocabulary {
    */
   updated_at?: string;
 }
-
-/**
- * A phrase or word belonging to a Transcription Vocabulary.
- */
-export type TranscriptionVocabularyPhrase = string;
 
 export interface TranscriptionVocabularyResponse {
   data: TranscriptionVocabulary;
@@ -153,7 +148,7 @@ export interface TranscriptionVocabularyCreateParams {
    * `generated_subtitles`, the probability of successful speech recognition for
    * these words or phrases is boosted.
    */
-  phrases: Array<TranscriptionVocabularyPhrase>;
+  phrases: Array<string>;
 
   /**
    * The user-supplied name of the Transcription Vocabulary.
@@ -174,7 +169,7 @@ export interface TranscriptionVocabularyUpdateParams {
    * `generated_subtitles`, the probability of successful speech recognition for
    * these words or phrases is boosted.
    */
-  phrases: Array<TranscriptionVocabularyPhrase>;
+  phrases: Array<string>;
 
   /**
    * The user-supplied name of the Transcription Vocabulary.
@@ -192,7 +187,6 @@ export interface TranscriptionVocabularyListParams extends BasePageParams {}
 
 export namespace TranscriptionVocabularies {
   export import TranscriptionVocabulary = API.TranscriptionVocabulary;
-  export import TranscriptionVocabularyPhrase = API.TranscriptionVocabularyPhrase;
   export import TranscriptionVocabularyResponse = API.TranscriptionVocabularyResponse;
   export type TranscriptionVocabulariesBasePage = _TranscriptionVocabulariesBasePage;
   export import TranscriptionVocabularyCreateParams = API.TranscriptionVocabularyCreateParams;

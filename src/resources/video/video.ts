@@ -83,7 +83,6 @@ export namespace Video {
 
   export import TranscriptionVocabularies = API.TranscriptionVocabularies;
   export import TranscriptionVocabulary = API.TranscriptionVocabulary;
-  export import TranscriptionVocabularyPhrase = API.TranscriptionVocabularyPhrase;
   export import TranscriptionVocabularyResponse = API.TranscriptionVocabularyResponse;
   export import TranscriptionVocabulariesBasePage = API.TranscriptionVocabulariesBasePage;
   export import TranscriptionVocabularyCreateParams = API.TranscriptionVocabularyCreateParams;

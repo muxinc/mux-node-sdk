@@ -119,7 +119,6 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/video/transcription-vocabularies.ts">TranscriptionVocabulary</a></code>
-- <code><a href="./src/resources/video/transcription-vocabularies.ts">TranscriptionVocabularyPhrase</a></code>
 - <code><a href="./src/resources/video/transcription-vocabularies.ts">TranscriptionVocabularyResponse</a></code>
 
 Methods:
