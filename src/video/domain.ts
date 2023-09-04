@@ -411,6 +411,7 @@ export interface CreateBroadcastRequest {
   passthrough?: string;
   layout?: BroadcastLayout;
   resolution?: BroadcastResolution;
+  background?: string;
 }
 
 export interface CreateSpaceRequest {
