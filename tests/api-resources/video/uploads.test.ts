@@ -82,7 +82,7 @@ describe('resource uploads', () => {
             passthrough: 'string',
           },
         ],
-        playback_policy: ['public', 'public', 'public'],
+        playback_policy: ['public', 'signed'],
         per_title_encode: true,
         passthrough: 'string',
         mp4_support: 'none',
