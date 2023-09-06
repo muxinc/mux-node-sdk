@@ -16,7 +16,7 @@ yarn add @mux/mux-node
 
 ## Usage
 
-The full API of this library can be found in [api.md](https://www.github.com/muxinc/mux-node-sdk/blob/master/api.md).
+The full API of this library can be found in [api.md](https://www.github.com/muxinc/mux-node-sdk/blob/main/api.md).
 
 ```js
 import Mux from '@mux/mux-node';
