@@ -1,15 +1,17 @@
 # 👋 Wondering what everything in here does?
 
 `@mux/mux-node` supports a wide variety of runtime environments like Node.js, Deno, Bun, browsers, and various
-edge runtimes.
+edge runtimes, as well as both CommonJS (CJS) and EcmaScript Modules (ESM).
 
-To do this, `@mux/mux-node` provides shims for either using `node-fetch` or
-the global `fetch` API built into the environment. It uses
-[conditional exports](https://nodejs.org/api/packages.html#conditional-exports) to
+To do this, `@mux/mux-node` provides shims for either using `node-fetch` when in Node (because `fetch` is still experimental there) or the global `fetch` API built into the environment when not in Node.
+
+It uses [conditional exports](https://nodejs.org/api/packages.html#conditional-exports) to
 automatically select the correct shims for each environment. However, conditional exports are a fairly new
 feature and not supported everywhere. For instance, the TypeScript `"moduleResolution": "node"`
-setting doesn't consult the `exports` map, compared to `"moduleResolution": "nodeNext"`which does. Unfortunately that's still the default setting, and it can result
-in getting the wrong raw `Response` type.
+
+setting doesn't consult the `exports` map, compared to `"moduleResolution": "nodeNext"`, which does.
+Unfortunately that's still the default setting, and it can result in errors like
+getting the wrong raw `Response` type from `.asResponse()`, for example.
 
 The user can work around these issues by manually importing one of:
 
