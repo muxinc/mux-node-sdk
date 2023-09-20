@@ -1,5 +1,5 @@
 import { createResponseHeaders } from '@mux/mux-node/core';
-import { Headers } from '@mux/mux-node/_shims/fetch';
+import { Headers } from '@mux/mux-node/_shims/index';
 
 describe('response parsing', () => {
   // TODO: test unicode characters

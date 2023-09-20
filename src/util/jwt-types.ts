@@ -1,4 +1,4 @@
-import { type PrivateKey } from '@mux/mux-node/_shims/jwt';
+import { type PrivateKey } from '@mux/mux-node/_shims/auto/jwt';
 
 export interface SignOptions {
   /**

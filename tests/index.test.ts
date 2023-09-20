@@ -3,12 +3,7 @@
 import Mux from '@mux/mux-node';
 import { APIUserAbortError } from '@mux/mux-node';
 import { Headers } from '@mux/mux-node/core';
-import {
-  Response,
-  fetch as defaultFetch,
-  type RequestInit,
-  type RequestInfo,
-} from '@mux/mux-node/_shims/fetch';
+import defaultFetch, { Response, type RequestInit, type RequestInfo } from 'node-fetch';
 
 describe('instantiate client', () => {
   const env = process.env;

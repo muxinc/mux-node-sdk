@@ -1,6 +1,6 @@
 {
   "include": ["src", "tests", "examples"],
-  "exclude": ["src/_shims/*.deno.ts"],
+  "exclude": ["src/_shims/**/*-deno.ts"],
   "compilerOptions": {
     "target": "es2019",
     "lib": ["es2020"],
@@ -9,9 +9,9 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "@mux/mux-node/_shims/*": ["src/_shims/*-node"],
-      "@mux/mux-node": ["src/index.ts"],
+      "@mux/mux-node/_shims/auto/*": ["src/_shims/auto/*-node"],
       "@mux/mux-node/*": ["src/*"],
+      "@mux/mux-node": ["src/index.ts"],
       "digest-fetch": ["./typings/digest-fetch"]
     },
     "noEmit": true,

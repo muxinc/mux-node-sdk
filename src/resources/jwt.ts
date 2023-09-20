@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import { APIResource } from '@mux/mux-node/resource';
-import * as jwt from '@mux/mux-node/_shims/jwt';
+import * as jwt from '@mux/mux-node/_shims/auto/jwt';
 import {
   type SignOptions,
   type MuxJWTSignOptions,

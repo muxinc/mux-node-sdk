@@ -1,5 +1,5 @@
 import { multipartFormRequestOptions, createForm } from '@mux/mux-node/core';
-import { Blob } from '@mux/mux-node/_shims/form-data';
+import { Blob } from '@mux/mux-node/_shims/index';
 import { toFile } from '@mux/mux-node';
 
 describe('form data validation', () => {
