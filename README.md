@@ -145,8 +145,8 @@ You can use `for await … of` syntax to iterate through items across all pages:
 async function fetchAllVideoDeliveryUsages(params) {
   const allVideoDeliveryUsages = [];
   // Automatically fetches more pages as needed.
-  for await (const deliveryUsage of mux.video.deliveryUsage.list()) {
-    allVideoDeliveryUsages.push(deliveryUsage);
+  for await (const deliveryReport of mux.video.deliveryUsage.list()) {
+    allVideoDeliveryUsages.push(deliveryReport);
   }
   return allVideoDeliveryUsages;
 }
@@ -156,8 +156,8 @@ Alternatively, you can make request a single page at a time:
 
 ```ts
 let page = await mux.video.deliveryUsage.list();
-for (const deliveryUsage of page.data) {
-  console.log(deliveryUsage);
+for (const deliveryReport of page.data) {
+  console.log(deliveryReport);
 }
 
 // Convenience methods are provided for manually paginating:
@@ -182,9 +182,9 @@ const response = await mux.video.assets.create().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: assets, response: raw } = await mux.video.assets.create().withResponse();
+const { data: asset, response: raw } = await mux.video.assets.create().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(assets.aspect_ratio);
+console.log(asset.aspect_ratio);
 ```
 
 ## Configuring an HTTP(S) Agent (e.g., for proxies)
