@@ -14,6 +14,12 @@ npm install --save @mux/mux-node
 yarn add @mux/mux-node
 ```
 
+You can import in Deno via:
+
+```ts
+import Mux from 'https://raw.githubusercontent.com/muxinc/mux-node-sdk/v0.0.1-deno/mod.ts';
+```
+
 ## Usage
 
 The full API of this library can be found in [api.md](https://www.github.com/muxinc/mux-node-sdk/blob/main/api.md).

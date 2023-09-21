@@ -82,7 +82,8 @@
     "prepublishOnly": "echo 'to publish, run yarn build && (cd dist; yarn publish)' && exit 1",
     "format": "prettier --write --cache  --cache-strategy metadata . !dist",
     "tsn": "ts-node -r tsconfig-paths/register",
-    "fix": "eslint --fix --ext ts,js ."
+    "fix": "eslint --fix --ext ts,js .",
+    "postpublish": "bash scripts/git-publish-deno.sh"
   },
   "dependencies": {
     "@types/node": "^18.11.18",
