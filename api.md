@@ -1,3 +1,10 @@
+# Shared
+
+Types:
+
+- <code><a href="./src/resources/shared.ts">PlaybackID</a></code>
+- <code><a href="./src/resources/shared.ts">PlaybackPolicy</a></code>
+
 # Video
 
 ## Assets
