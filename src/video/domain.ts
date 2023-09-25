@@ -101,6 +101,7 @@ export interface CreateAssetParams {
   test?: boolean;
   master_access?: AssetMasterAccess;
   per_title_encode?: boolean;
+  max_resolution_tier?: '1080p' | '1440p' | '2160p';
 }
 
 export interface UpdateAssetParams {
@@ -149,6 +150,8 @@ export interface Asset {
   created_at: string;
   status: 'preparing' | 'ready' | 'errored';
   duration?: number;
+  resolution_tier: 'audio-only' | '720p' | '1080p' | '1440p' | '2160p';
+  /** @deprecated Please use `resolution_tier` instead */
   max_stored_resolution?: 'Audio only' | 'SD' | 'HD' | 'FHD' | 'UHD';
   max_stored_frame_rate?: number;
   aspect_ratio?: string;
@@ -237,6 +240,7 @@ export interface DeliveryReport {
   asset_state: string;
   asset_duration: number;
   delivered_seconds: number;
+  asset_resolution_tier: 'audio-only' | '720p' | '1080p' | '1440p' | '2160p';
 }
 
 export interface SimulcastTargetParams {
