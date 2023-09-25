@@ -112,12 +112,12 @@ export class Mux extends Core.APIClient {
     ...opts
   }: ClientOptions = {}) {
     if (tokenId === undefined) {
-      throw new Error(
+      throw new Errors.MuxError(
         "The MUX_TOKEN_ID environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenId option, like new Mux({ tokenId: 'my tokenId' }).",
       );
     }
     if (tokenSecret === undefined) {
-      throw new Error(
+      throw new Errors.MuxError(
         "The MUX_TOKEN_SECRET environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenSecret option, like new Mux({ tokenSecret: 'my secret' }).",
       );
     }
@@ -177,6 +177,7 @@ export class Mux extends Core.APIClient {
 
   static Mux = this;
 
+  static MuxError = Errors.MuxError;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -192,6 +193,7 @@ export class Mux extends Core.APIClient {
 }
 
 export const {
+  MuxError,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,
