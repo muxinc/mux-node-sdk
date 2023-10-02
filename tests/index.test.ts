@@ -103,7 +103,7 @@ describe('instantiate client', () => {
 
   test('custom signal', async () => {
     const client = new Mux({
-      baseURL: 'http://127.0.0.1:4010',
+      baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
       tokenSecret: 'my secret',
       tokenId: 'my token id',
       fetch: (...args) => {

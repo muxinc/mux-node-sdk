@@ -2,7 +2,11 @@
 
 import Mux from '@mux/mux-node';
 
-const mux = new Mux({ tokenId: 'something1234', baseURL: 'http://127.0.0.1:4010', tokenSecret: 'my secret' });
+const mux = new Mux({
+  tokenId: 'something1234',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  tokenSecret: 'my secret',
+});
 
 describe('resource webhooks', () => {
   const payload = '{"test":"body"}';
