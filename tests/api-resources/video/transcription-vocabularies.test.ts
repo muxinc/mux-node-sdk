@@ -11,7 +11,9 @@ const mux = new Mux({
 
 describe('resource transcriptionVocabularies', () => {
   test('create: only required params', async () => {
-    const responsePromise = mux.video.transcriptionVocabularies.create({ phrases: ['x', 'x', 'x'] });
+    const responsePromise = mux.video.transcriptionVocabularies.create({
+      phrases: ['Mux', 'Live Stream', 'Playback ID', 'video encoding'],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,8 +25,8 @@ describe('resource transcriptionVocabularies', () => {
 
   test('create: required and optional params', async () => {
     const response = await mux.video.transcriptionVocabularies.create({
-      phrases: ['x', 'x', 'x'],
-      name: 'string',
+      phrases: ['Mux', 'Live Stream', 'Playback ID', 'video encoding'],
+      name: 'Mux API Vocabulary',
       passthrough: 'string',
     });
   });
@@ -49,7 +51,7 @@ describe('resource transcriptionVocabularies', () => {
 
   test('update: only required params', async () => {
     const responsePromise = mux.video.transcriptionVocabularies.update('string', {
-      phrases: ['x', 'x', 'x'],
+      phrases: ['Mux', 'Live Stream', 'RTMP', 'Stream Key'],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -62,8 +64,8 @@ describe('resource transcriptionVocabularies', () => {
 
   test('update: required and optional params', async () => {
     const response = await mux.video.transcriptionVocabularies.update('string', {
-      phrases: ['x', 'x', 'x'],
-      name: 'string',
+      phrases: ['Mux', 'Live Stream', 'RTMP', 'Stream Key'],
+      name: 'Mux API Vocabulary - Updated',
       passthrough: 'string',
     });
   });

@@ -83,7 +83,9 @@ describe('resource spaces', () => {
   });
 
   test('createBroadcast: only required params', async () => {
-    const responsePromise = mux.video.spaces.createBroadcast('string', { live_stream_id: 'string' });
+    const responsePromise = mux.video.spaces.createBroadcast('string', {
+      live_stream_id: 'GQ9025mPqzyjOy3kKQW006qKTqmULW9vFO',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -95,7 +97,7 @@ describe('resource spaces', () => {
 
   test('createBroadcast: required and optional params', async () => {
     const response = await mux.video.spaces.createBroadcast('string', {
-      live_stream_id: 'string',
+      live_stream_id: 'GQ9025mPqzyjOy3kKQW006qKTqmULW9vFO',
       background: 'string',
       layout: 'gallery',
       passthrough: 'string',

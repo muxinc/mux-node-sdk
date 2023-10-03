@@ -109,10 +109,10 @@ describe('resource assets', () => {
 
   test('createTrack: only required params', async () => {
     const responsePromise = mux.video.assets.createTrack('string', {
-      language_code: 'string',
+      language_code: 'en-US',
       text_type: 'subtitles',
       type: 'text',
-      url: 'string',
+      url: 'https://example.com/myVideo_en.srt',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -125,13 +125,13 @@ describe('resource assets', () => {
 
   test('createTrack: required and optional params', async () => {
     const response = await mux.video.assets.createTrack('string', {
-      language_code: 'string',
+      language_code: 'en-US',
       text_type: 'subtitles',
       type: 'text',
-      url: 'string',
+      url: 'https://example.com/myVideo_en.srt',
       closed_captions: true,
-      name: 'string',
-      passthrough: 'string',
+      name: 'English',
+      passthrough: 'English',
     });
   });
 

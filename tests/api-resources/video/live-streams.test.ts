@@ -126,7 +126,9 @@ describe('resource liveStreams', () => {
   });
 
   test('createSimulcastTarget: only required params', async () => {
-    const responsePromise = mux.video.liveStreams.createSimulcastTarget('string', { url: 'string' });
+    const responsePromise = mux.video.liveStreams.createSimulcastTarget('string', {
+      url: 'rtmp://live.example.com/app',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -138,9 +140,9 @@ describe('resource liveStreams', () => {
 
   test('createSimulcastTarget: required and optional params', async () => {
     const response = await mux.video.liveStreams.createSimulcastTarget('string', {
-      url: 'string',
-      passthrough: 'string',
-      stream_key: 'string',
+      url: 'rtmp://live.example.com/app',
+      passthrough: 'Example',
+      stream_key: 'abcdefgh',
     });
   });
 
