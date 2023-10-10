@@ -1,98 +1,98 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import { APIResource } from '@mux/mux-node/resource';
-import { Assets } from './assets';
-import { DeliveryUsage } from './delivery-usage';
-import { LiveStreams } from './live-streams';
-import { PlaybackIDs } from './playback-ids';
-import { PlaybackRestrictions } from './playback-restrictions';
-import { Spaces } from './spaces';
-import { TranscriptionVocabularies } from './transcription-vocabularies';
-import { Uploads } from './uploads';
-import * as API from './index';
+import * as AssetsAPI from '@mux/mux-node/resources/video/assets';
+import * as DeliveryUsageAPI from '@mux/mux-node/resources/video/delivery-usage';
+import * as LiveStreamsAPI from '@mux/mux-node/resources/video/live-streams';
+import * as PlaybackIDsAPI from '@mux/mux-node/resources/video/playback-ids';
+import * as PlaybackRestrictionsAPI from '@mux/mux-node/resources/video/playback-restrictions';
+import * as SpacesAPI from '@mux/mux-node/resources/video/spaces';
+import * as TranscriptionVocabulariesAPI from '@mux/mux-node/resources/video/transcription-vocabularies';
+import * as UploadsAPI from '@mux/mux-node/resources/video/uploads';
 
 export class Video extends APIResource {
-  assets: Assets = new Assets(this.client);
-  deliveryUsage: DeliveryUsage = new DeliveryUsage(this.client);
-  liveStreams: LiveStreams = new LiveStreams(this.client);
-  playbackIds: PlaybackIDs = new PlaybackIDs(this.client);
-  playbackRestrictions: PlaybackRestrictions = new PlaybackRestrictions(this.client);
-  spaces: Spaces = new Spaces(this.client);
-  transcriptionVocabularies: TranscriptionVocabularies = new TranscriptionVocabularies(this.client);
-  uploads: Uploads = new Uploads(this.client);
+  assets: AssetsAPI.Assets = new AssetsAPI.Assets(this.client);
+  deliveryUsage: DeliveryUsageAPI.DeliveryUsage = new DeliveryUsageAPI.DeliveryUsage(this.client);
+  liveStreams: LiveStreamsAPI.LiveStreams = new LiveStreamsAPI.LiveStreams(this.client);
+  playbackIds: PlaybackIDsAPI.PlaybackIDs = new PlaybackIDsAPI.PlaybackIDs(this.client);
+  playbackRestrictions: PlaybackRestrictionsAPI.PlaybackRestrictions =
+    new PlaybackRestrictionsAPI.PlaybackRestrictions(this.client);
+  spaces: SpacesAPI.Spaces = new SpacesAPI.Spaces(this.client);
+  transcriptionVocabularies: TranscriptionVocabulariesAPI.TranscriptionVocabularies =
+    new TranscriptionVocabulariesAPI.TranscriptionVocabularies(this.client);
+  uploads: UploadsAPI.Uploads = new UploadsAPI.Uploads(this.client);
 }
 
 export namespace Video {
-  export import Assets = API.Assets;
-  export import Asset = API.Asset;
-  export import AssetResponse = API.AssetResponse;
-  export import InputInfo = API.InputInfo;
-  export import Track = API.Track;
-  export import AssetRetrieveInputInfoResponse = API.AssetRetrieveInputInfoResponse;
-  export import AssetsBasePage = API.AssetsBasePage;
-  export import AssetCreateParams = API.AssetCreateParams;
-  export import AssetUpdateParams = API.AssetUpdateParams;
-  export import AssetListParams = API.AssetListParams;
-  export import AssetCreatePlaybackIDParams = API.AssetCreatePlaybackIDParams;
-  export import AssetCreateTrackParams = API.AssetCreateTrackParams;
-  export import AssetUpdateMasterAccessParams = API.AssetUpdateMasterAccessParams;
-  export import AssetUpdateMP4SupportParams = API.AssetUpdateMP4SupportParams;
-
-  export import DeliveryUsage = API.DeliveryUsage;
-  export import DeliveryReport = API.DeliveryReport;
-  export import DeliveryReportsPageWithTotal = API.DeliveryReportsPageWithTotal;
-  export import DeliveryUsageListParams = API.DeliveryUsageListParams;
-
-  export import LiveStreams = API.LiveStreams;
-  export import LiveStream = API.LiveStream;
-  export import SimulcastTarget = API.SimulcastTarget;
-  export import LiveStreamsBasePage = API.LiveStreamsBasePage;
-  export import LiveStreamCreateParams = API.LiveStreamCreateParams;
-  export import LiveStreamUpdateParams = API.LiveStreamUpdateParams;
-  export import LiveStreamListParams = API.LiveStreamListParams;
-  export import LiveStreamCreatePlaybackIDParams = API.LiveStreamCreatePlaybackIDParams;
-  export import LiveStreamCreateSimulcastTargetParams = API.LiveStreamCreateSimulcastTargetParams;
-  export import LiveStreamUpdateEmbeddedSubtitlesParams = API.LiveStreamUpdateEmbeddedSubtitlesParams;
-  export import LiveStreamUpdateGeneratedSubtitlesParams = API.LiveStreamUpdateGeneratedSubtitlesParams;
-
-  export import PlaybackIDs = API.PlaybackIDs;
-  export import PlaybackIDRetrieveResponse = API.PlaybackIDRetrieveResponse;
-
-  export import PlaybackRestrictions = API.PlaybackRestrictions;
-  export import PlaybackRestriction = API.PlaybackRestriction;
-  export import PlaybackRestrictionResponse = API.PlaybackRestrictionResponse;
-  export import PlaybackRestrictionsBasePage = API.PlaybackRestrictionsBasePage;
-  export import PlaybackRestrictionCreateParams = API.PlaybackRestrictionCreateParams;
-  export import PlaybackRestrictionListParams = API.PlaybackRestrictionListParams;
-  export import PlaybackRestrictionUpdateReferrerParams = API.PlaybackRestrictionUpdateReferrerParams;
-
-  export import Spaces = API.Spaces;
-  export import Broadcast = API.Broadcast;
-  export import BroadcastLayout = API.BroadcastLayout;
-  export import BroadcastResolution = API.BroadcastResolution;
-  export import BroadcastResponse = API.BroadcastResponse;
-  export import BroadcastStatus = API.BroadcastStatus;
-  export import Space = API.Space;
-  export import SpaceResponse = API.SpaceResponse;
-  export import SpaceStatus = API.SpaceStatus;
-  export import SpaceType = API.SpaceType;
-  export import SpacesBasePage = API.SpacesBasePage;
-  export import SpaceCreateParams = API.SpaceCreateParams;
-  export import SpaceListParams = API.SpaceListParams;
-  export import SpaceCreateBroadcastParams = API.SpaceCreateBroadcastParams;
-
-  export import TranscriptionVocabularies = API.TranscriptionVocabularies;
-  export import TranscriptionVocabulary = API.TranscriptionVocabulary;
-  export import TranscriptionVocabularyResponse = API.TranscriptionVocabularyResponse;
-  export import TranscriptionVocabulariesBasePage = API.TranscriptionVocabulariesBasePage;
-  export import TranscriptionVocabularyCreateParams = API.TranscriptionVocabularyCreateParams;
-  export import TranscriptionVocabularyUpdateParams = API.TranscriptionVocabularyUpdateParams;
-  export import TranscriptionVocabularyListParams = API.TranscriptionVocabularyListParams;
-
-  export import Uploads = API.Uploads;
-  export import Upload = API.Upload;
-  export import UploadResponse = API.UploadResponse;
-  export import UploadsBasePage = API.UploadsBasePage;
-  export import UploadCreateParams = API.UploadCreateParams;
-  export import UploadListParams = API.UploadListParams;
+  export import Assets = AssetsAPI.Assets;
+  export type Asset = AssetsAPI.Asset;
+  export type AssetResponse = AssetsAPI.AssetResponse;
+  export type InputInfo = AssetsAPI.InputInfo;
+  export type Track = AssetsAPI.Track;
+  export type AssetRetrieveInputInfoResponse = AssetsAPI.AssetRetrieveInputInfoResponse;
+  export import AssetsBasePage = AssetsAPI.AssetsBasePage;
+  export type AssetCreateParams = AssetsAPI.AssetCreateParams;
+  export type AssetUpdateParams = AssetsAPI.AssetUpdateParams;
+  export type AssetListParams = AssetsAPI.AssetListParams;
+  export type AssetCreatePlaybackIDParams = AssetsAPI.AssetCreatePlaybackIDParams;
+  export type AssetCreateTrackParams = AssetsAPI.AssetCreateTrackParams;
+  export type AssetUpdateMasterAccessParams = AssetsAPI.AssetUpdateMasterAccessParams;
+  export type AssetUpdateMP4SupportParams = AssetsAPI.AssetUpdateMP4SupportParams;
+  export import DeliveryUsage = DeliveryUsageAPI.DeliveryUsage;
+  export type DeliveryReport = DeliveryUsageAPI.DeliveryReport;
+  export import DeliveryReportsPageWithTotal = DeliveryUsageAPI.DeliveryReportsPageWithTotal;
+  export type DeliveryUsageListParams = DeliveryUsageAPI.DeliveryUsageListParams;
+  export import LiveStreams = LiveStreamsAPI.LiveStreams;
+  export type LiveStream = LiveStreamsAPI.LiveStream;
+  export type SimulcastTarget = LiveStreamsAPI.SimulcastTarget;
+  export import LiveStreamsBasePage = LiveStreamsAPI.LiveStreamsBasePage;
+  export type LiveStreamCreateParams = LiveStreamsAPI.LiveStreamCreateParams;
+  export type LiveStreamUpdateParams = LiveStreamsAPI.LiveStreamUpdateParams;
+  export type LiveStreamListParams = LiveStreamsAPI.LiveStreamListParams;
+  export type LiveStreamCreatePlaybackIDParams = LiveStreamsAPI.LiveStreamCreatePlaybackIDParams;
+  export type LiveStreamCreateSimulcastTargetParams = LiveStreamsAPI.LiveStreamCreateSimulcastTargetParams;
+  export type LiveStreamUpdateEmbeddedSubtitlesParams =
+    LiveStreamsAPI.LiveStreamUpdateEmbeddedSubtitlesParams;
+  export type LiveStreamUpdateGeneratedSubtitlesParams =
+    LiveStreamsAPI.LiveStreamUpdateGeneratedSubtitlesParams;
+  export import PlaybackIDs = PlaybackIDsAPI.PlaybackIDs;
+  export type PlaybackIDRetrieveResponse = PlaybackIDsAPI.PlaybackIDRetrieveResponse;
+  export import PlaybackRestrictions = PlaybackRestrictionsAPI.PlaybackRestrictions;
+  export type PlaybackRestriction = PlaybackRestrictionsAPI.PlaybackRestriction;
+  export type PlaybackRestrictionResponse = PlaybackRestrictionsAPI.PlaybackRestrictionResponse;
+  export import PlaybackRestrictionsBasePage = PlaybackRestrictionsAPI.PlaybackRestrictionsBasePage;
+  export type PlaybackRestrictionCreateParams = PlaybackRestrictionsAPI.PlaybackRestrictionCreateParams;
+  export type PlaybackRestrictionListParams = PlaybackRestrictionsAPI.PlaybackRestrictionListParams;
+  export type PlaybackRestrictionUpdateReferrerParams =
+    PlaybackRestrictionsAPI.PlaybackRestrictionUpdateReferrerParams;
+  export import Spaces = SpacesAPI.Spaces;
+  export type Broadcast = SpacesAPI.Broadcast;
+  export type BroadcastLayout = SpacesAPI.BroadcastLayout;
+  export type BroadcastResolution = SpacesAPI.BroadcastResolution;
+  export type BroadcastResponse = SpacesAPI.BroadcastResponse;
+  export type BroadcastStatus = SpacesAPI.BroadcastStatus;
+  export type Space = SpacesAPI.Space;
+  export type SpaceResponse = SpacesAPI.SpaceResponse;
+  export type SpaceStatus = SpacesAPI.SpaceStatus;
+  export type SpaceType = SpacesAPI.SpaceType;
+  export import SpacesBasePage = SpacesAPI.SpacesBasePage;
+  export type SpaceCreateParams = SpacesAPI.SpaceCreateParams;
+  export type SpaceListParams = SpacesAPI.SpaceListParams;
+  export type SpaceCreateBroadcastParams = SpacesAPI.SpaceCreateBroadcastParams;
+  export import TranscriptionVocabularies = TranscriptionVocabulariesAPI.TranscriptionVocabularies;
+  export type TranscriptionVocabulary = TranscriptionVocabulariesAPI.TranscriptionVocabulary;
+  export type TranscriptionVocabularyResponse = TranscriptionVocabulariesAPI.TranscriptionVocabularyResponse;
+  export import TranscriptionVocabulariesBasePage = TranscriptionVocabulariesAPI.TranscriptionVocabulariesBasePage;
+  export type TranscriptionVocabularyCreateParams =
+    TranscriptionVocabulariesAPI.TranscriptionVocabularyCreateParams;
+  export type TranscriptionVocabularyUpdateParams =
+    TranscriptionVocabulariesAPI.TranscriptionVocabularyUpdateParams;
+  export type TranscriptionVocabularyListParams =
+    TranscriptionVocabulariesAPI.TranscriptionVocabularyListParams;
+  export import Uploads = UploadsAPI.Uploads;
+  export type Upload = UploadsAPI.Upload;
+  export type UploadResponse = UploadsAPI.UploadResponse;
+  export import UploadsBasePage = UploadsAPI.UploadsBasePage;
+  export type UploadCreateParams = UploadsAPI.UploadCreateParams;
+  export type UploadListParams = UploadsAPI.UploadListParams;
 }

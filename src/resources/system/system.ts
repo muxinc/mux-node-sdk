@@ -1,17 +1,16 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import { APIResource } from '@mux/mux-node/resource';
-import { SigningKeys } from './signing-keys';
-import * as API from './index';
+import * as SigningKeysAPI from '@mux/mux-node/resources/system/signing-keys';
 
 export class System extends APIResource {
-  signingKeys: SigningKeys = new SigningKeys(this.client);
+  signingKeys: SigningKeysAPI.SigningKeys = new SigningKeysAPI.SigningKeys(this.client);
 }
 
 export namespace System {
-  export import SigningKeys = API.SigningKeys;
-  export import SigningKey = API.SigningKey;
-  export import SigningKeyResponse = API.SigningKeyResponse;
-  export import SigningKeysBasePage = API.SigningKeysBasePage;
-  export import SigningKeyListParams = API.SigningKeyListParams;
+  export import SigningKeys = SigningKeysAPI.SigningKeys;
+  export type SigningKey = SigningKeysAPI.SigningKey;
+  export type SigningKeyResponse = SigningKeysAPI.SigningKeyResponse;
+  export import SigningKeysBasePage = SigningKeysAPI.SigningKeysBasePage;
+  export type SigningKeyListParams = SigningKeysAPI.SigningKeyListParams;
 }

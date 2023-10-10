@@ -3,8 +3,8 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as API from './index';
-import { PageWithTotal, PageWithTotalParams } from '@mux/mux-node/pagination';
+import * as DeliveryUsageAPI from '@mux/mux-node/resources/video/delivery-usage';
+import { PageWithTotal, type PageWithTotalParams } from '@mux/mux-node/pagination';
 
 export class DeliveryUsage extends APIResource {
   /**
@@ -28,8 +28,6 @@ export class DeliveryUsage extends APIResource {
 }
 
 export class DeliveryReportsPageWithTotal extends PageWithTotal<DeliveryReport> {}
-// alias so we can export it in the namespace
-type _DeliveryReportsPageWithTotal = DeliveryReportsPageWithTotal;
 
 export interface DeliveryReport {
   /**
@@ -149,7 +147,7 @@ export interface DeliveryUsageListParams extends PageWithTotalParams {
 }
 
 export namespace DeliveryUsage {
-  export import DeliveryReport = API.DeliveryReport;
-  export type DeliveryReportsPageWithTotal = _DeliveryReportsPageWithTotal;
-  export import DeliveryUsageListParams = API.DeliveryUsageListParams;
+  export type DeliveryReport = DeliveryUsageAPI.DeliveryReport;
+  export import DeliveryReportsPageWithTotal = DeliveryUsageAPI.DeliveryReportsPageWithTotal;
+  export type DeliveryUsageListParams = DeliveryUsageAPI.DeliveryUsageListParams;
 }

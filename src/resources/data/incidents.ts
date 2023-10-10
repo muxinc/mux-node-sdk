@@ -3,8 +3,8 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as API from './index';
-import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
+import * as IncidentsAPI from '@mux/mux-node/resources/data/incidents';
+import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
 
 export class Incidents extends APIResource {
   /**
@@ -60,8 +60,6 @@ export class Incidents extends APIResource {
 }
 
 export class IncidentsBasePage extends BasePage<Incident> {}
-// alias so we can export it in the namespace
-type _IncidentsBasePage = IncidentsBasePage;
 
 export interface Incident {
   id?: string;
@@ -188,9 +186,9 @@ export interface IncidentListRelatedParams extends BasePageParams {
 }
 
 export namespace Incidents {
-  export import Incident = API.Incident;
-  export import IncidentResponse = API.IncidentResponse;
-  export type IncidentsBasePage = _IncidentsBasePage;
-  export import IncidentListParams = API.IncidentListParams;
-  export import IncidentListRelatedParams = API.IncidentListRelatedParams;
+  export type Incident = IncidentsAPI.Incident;
+  export type IncidentResponse = IncidentsAPI.IncidentResponse;
+  export import IncidentsBasePage = IncidentsAPI.IncidentsBasePage;
+  export type IncidentListParams = IncidentsAPI.IncidentListParams;
+  export type IncidentListRelatedParams = IncidentsAPI.IncidentListRelatedParams;
 }

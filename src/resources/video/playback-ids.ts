@@ -2,8 +2,8 @@
 
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
+import * as PlaybackIDsAPI from '@mux/mux-node/resources/video/playback-ids';
 import * as Shared from '@mux/mux-node/resources/shared';
-import * as API from './index';
 
 export class PlaybackIDs extends APIResource {
   /**
@@ -60,5 +60,5 @@ export namespace PlaybackIDRetrieveResponse {
 }
 
 export namespace PlaybackIDs {
-  export import PlaybackIDRetrieveResponse = API.PlaybackIDRetrieveResponse;
+  export type PlaybackIDRetrieveResponse = PlaybackIDsAPI.PlaybackIDRetrieveResponse;
 }

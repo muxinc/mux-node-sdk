@@ -3,7 +3,7 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as API from './index';
+import * as ErrorsAPI from '@mux/mux-node/resources/data/errors';
 
 export class Errors extends APIResource {
   /**
@@ -103,6 +103,6 @@ export interface ErrorListParams {
 }
 
 export namespace Errors {
-  export import ErrorsResponse = API.ErrorsResponse;
-  export import ErrorListParams = API.ErrorListParams;
+  export type ErrorsResponse = ErrorsAPI.ErrorsResponse;
+  export type ErrorListParams = ErrorsAPI.ErrorListParams;
 }

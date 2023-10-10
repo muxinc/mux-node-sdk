@@ -3,8 +3,8 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as API from './index';
-import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
+import * as VideoViewsAPI from '@mux/mux-node/resources/data/video-views';
+import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
 
 export class VideoViews extends APIResource {
   /**
@@ -35,8 +35,6 @@ export class VideoViews extends APIResource {
 }
 
 export class AbridgedVideoViewsBasePage extends BasePage<AbridgedVideoView> {}
-// alias so we can export it in the namespace
-type _AbridgedVideoViewsBasePage = AbridgedVideoViewsBasePage;
 
 export interface AbridgedVideoView {
   id?: string;
@@ -413,8 +411,8 @@ export interface VideoViewListParams extends BasePageParams {
 }
 
 export namespace VideoViews {
-  export import AbridgedVideoView = API.AbridgedVideoView;
-  export import VideoViewResponse = API.VideoViewResponse;
-  export type AbridgedVideoViewsBasePage = _AbridgedVideoViewsBasePage;
-  export import VideoViewListParams = API.VideoViewListParams;
+  export type AbridgedVideoView = VideoViewsAPI.AbridgedVideoView;
+  export type VideoViewResponse = VideoViewsAPI.VideoViewResponse;
+  export import AbridgedVideoViewsBasePage = VideoViewsAPI.AbridgedVideoViewsBasePage;
+  export type VideoViewListParams = VideoViewsAPI.VideoViewListParams;
 }

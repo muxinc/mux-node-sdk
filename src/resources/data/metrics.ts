@@ -3,8 +3,8 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as API from './index';
-import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
+import * as MetricsAPI from '@mux/mux-node/resources/data/metrics';
+import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
 
 export class Metrics extends APIResource {
   /**
@@ -478,8 +478,6 @@ export class Metrics extends APIResource {
 }
 
 export class BreakdownValuesBasePage extends BasePage<BreakdownValue> {}
-// alias so we can export it in the namespace
-type _BreakdownValuesBasePage = BreakdownValuesBasePage;
 
 export interface AllMetricValuesResponse {
   data: Array<AllMetricValuesResponse.Data>;
@@ -893,15 +891,15 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
 }
 
 export namespace Metrics {
-  export import AllMetricValuesResponse = API.AllMetricValuesResponse;
-  export import BreakdownValue = API.BreakdownValue;
-  export import InsightsResponse = API.InsightsResponse;
-  export import MetricTimeseriesDataResponse = API.MetricTimeseriesDataResponse;
-  export import OverallValuesResponse = API.OverallValuesResponse;
-  export type BreakdownValuesBasePage = _BreakdownValuesBasePage;
-  export import MetricListParams = API.MetricListParams;
-  export import MetricGetInsightsParams = API.MetricGetInsightsParams;
-  export import MetricGetOverallValuesParams = API.MetricGetOverallValuesParams;
-  export import MetricGetTimeseriesParams = API.MetricGetTimeseriesParams;
-  export import MetricListBreakdownValuesParams = API.MetricListBreakdownValuesParams;
+  export type AllMetricValuesResponse = MetricsAPI.AllMetricValuesResponse;
+  export type BreakdownValue = MetricsAPI.BreakdownValue;
+  export type InsightsResponse = MetricsAPI.InsightsResponse;
+  export type MetricTimeseriesDataResponse = MetricsAPI.MetricTimeseriesDataResponse;
+  export type OverallValuesResponse = MetricsAPI.OverallValuesResponse;
+  export import BreakdownValuesBasePage = MetricsAPI.BreakdownValuesBasePage;
+  export type MetricListParams = MetricsAPI.MetricListParams;
+  export type MetricGetInsightsParams = MetricsAPI.MetricGetInsightsParams;
+  export type MetricGetOverallValuesParams = MetricsAPI.MetricGetOverallValuesParams;
+  export type MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
+  export type MetricListBreakdownValuesParams = MetricsAPI.MetricListBreakdownValuesParams;
 }

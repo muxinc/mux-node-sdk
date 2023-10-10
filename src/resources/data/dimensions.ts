@@ -3,8 +3,8 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as API from './index';
-import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
+import * as DimensionsAPI from '@mux/mux-node/resources/data/dimensions';
+import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
 
 export class Dimensions extends APIResource {
   /**
@@ -46,8 +46,6 @@ export class Dimensions extends APIResource {
 }
 
 export class DimensionValuesBasePage extends BasePage<DimensionValue> {}
-// alias so we can export it in the namespace
-type _DimensionValuesBasePage = DimensionValuesBasePage;
 
 export interface DimensionValue {
   total_count?: number;
@@ -100,8 +98,8 @@ export interface DimensionListValuesParams extends BasePageParams {
 }
 
 export namespace Dimensions {
-  export import DimensionValue = API.DimensionValue;
-  export import DimensionsResponse = API.DimensionsResponse;
-  export type DimensionValuesBasePage = _DimensionValuesBasePage;
-  export import DimensionListValuesParams = API.DimensionListValuesParams;
+  export type DimensionValue = DimensionsAPI.DimensionValue;
+  export type DimensionsResponse = DimensionsAPI.DimensionsResponse;
+  export import DimensionValuesBasePage = DimensionsAPI.DimensionValuesBasePage;
+  export type DimensionListValuesParams = DimensionsAPI.DimensionListValuesParams;
 }

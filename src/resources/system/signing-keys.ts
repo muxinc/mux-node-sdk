@@ -3,8 +3,8 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as API from './index';
-import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
+import * as SigningKeysAPI from '@mux/mux-node/resources/system/signing-keys';
+import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
 
 export class SigningKeys extends APIResource {
   /**
@@ -61,8 +61,6 @@ export class SigningKeys extends APIResource {
 }
 
 export class SigningKeysBasePage extends BasePage<SigningKey> {}
-// alias so we can export it in the namespace
-type _SigningKeysBasePage = SigningKeysBasePage;
 
 export interface SigningKey {
   /**
@@ -90,8 +88,8 @@ export interface SigningKeyResponse {
 export interface SigningKeyListParams extends BasePageParams {}
 
 export namespace SigningKeys {
-  export import SigningKey = API.SigningKey;
-  export import SigningKeyResponse = API.SigningKeyResponse;
-  export type SigningKeysBasePage = _SigningKeysBasePage;
-  export import SigningKeyListParams = API.SigningKeyListParams;
+  export type SigningKey = SigningKeysAPI.SigningKey;
+  export type SigningKeyResponse = SigningKeysAPI.SigningKeyResponse;
+  export import SigningKeysBasePage = SigningKeysAPI.SigningKeysBasePage;
+  export type SigningKeyListParams = SigningKeysAPI.SigningKeyListParams;
 }

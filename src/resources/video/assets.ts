@@ -3,9 +3,9 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
+import * as AssetsAPI from '@mux/mux-node/resources/video/assets';
 import * as Shared from '@mux/mux-node/resources/shared';
-import * as API from './index';
-import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
+import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
 
 export class Assets extends APIResource {
   /**
@@ -192,8 +192,6 @@ export class Assets extends APIResource {
 }
 
 export class AssetsBasePage extends BasePage<Asset> {}
-// alias so we can export it in the namespace
-type _AssetsBasePage = AssetsBasePage;
 
 export interface Asset {
   /**
@@ -1124,17 +1122,17 @@ export interface AssetUpdateMP4SupportParams {
 }
 
 export namespace Assets {
-  export import Asset = API.Asset;
-  export import AssetResponse = API.AssetResponse;
-  export import InputInfo = API.InputInfo;
-  export import Track = API.Track;
-  export import AssetRetrieveInputInfoResponse = API.AssetRetrieveInputInfoResponse;
-  export type AssetsBasePage = _AssetsBasePage;
-  export import AssetCreateParams = API.AssetCreateParams;
-  export import AssetUpdateParams = API.AssetUpdateParams;
-  export import AssetListParams = API.AssetListParams;
-  export import AssetCreatePlaybackIDParams = API.AssetCreatePlaybackIDParams;
-  export import AssetCreateTrackParams = API.AssetCreateTrackParams;
-  export import AssetUpdateMasterAccessParams = API.AssetUpdateMasterAccessParams;
-  export import AssetUpdateMP4SupportParams = API.AssetUpdateMP4SupportParams;
+  export type Asset = AssetsAPI.Asset;
+  export type AssetResponse = AssetsAPI.AssetResponse;
+  export type InputInfo = AssetsAPI.InputInfo;
+  export type Track = AssetsAPI.Track;
+  export type AssetRetrieveInputInfoResponse = AssetsAPI.AssetRetrieveInputInfoResponse;
+  export import AssetsBasePage = AssetsAPI.AssetsBasePage;
+  export type AssetCreateParams = AssetsAPI.AssetCreateParams;
+  export type AssetUpdateParams = AssetsAPI.AssetUpdateParams;
+  export type AssetListParams = AssetsAPI.AssetListParams;
+  export type AssetCreatePlaybackIDParams = AssetsAPI.AssetCreatePlaybackIDParams;
+  export type AssetCreateTrackParams = AssetsAPI.AssetCreateTrackParams;
+  export type AssetUpdateMasterAccessParams = AssetsAPI.AssetUpdateMasterAccessParams;
+  export type AssetUpdateMP4SupportParams = AssetsAPI.AssetUpdateMP4SupportParams;
 }

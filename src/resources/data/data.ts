@@ -1,86 +1,78 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import { APIResource } from '@mux/mux-node/resource';
-import { Dimensions } from './dimensions';
-import { Monitoring } from './monitoring/monitoring';
-import { Errors } from './errors';
-import { Exports } from './exports';
-import { Filters } from './filters';
-import { Incidents } from './incidents';
-import { Metrics } from './metrics';
-import { RealTime } from './real-time';
-import { VideoViews } from './video-views';
-import * as API from './index';
+import * as DimensionsAPI from '@mux/mux-node/resources/data/dimensions';
+import * as ErrorsAPI from '@mux/mux-node/resources/data/errors';
+import * as ExportsAPI from '@mux/mux-node/resources/data/exports';
+import * as FiltersAPI from '@mux/mux-node/resources/data/filters';
+import * as IncidentsAPI from '@mux/mux-node/resources/data/incidents';
+import * as MetricsAPI from '@mux/mux-node/resources/data/metrics';
+import * as RealTimeAPI from '@mux/mux-node/resources/data/real-time';
+import * as VideoViewsAPI from '@mux/mux-node/resources/data/video-views';
+import * as MonitoringAPI from '@mux/mux-node/resources/data/monitoring/monitoring';
 
 export class Data extends APIResource {
-  dimensions: Dimensions = new Dimensions(this.client);
-  monitoring: Monitoring = new Monitoring(this.client);
-  errors: Errors = new Errors(this.client);
-  exports: Exports = new Exports(this.client);
-  filters: Filters = new Filters(this.client);
-  incidents: Incidents = new Incidents(this.client);
-  metrics: Metrics = new Metrics(this.client);
-  realTime: RealTime = new RealTime(this.client);
-  videoViews: VideoViews = new VideoViews(this.client);
+  dimensions: DimensionsAPI.Dimensions = new DimensionsAPI.Dimensions(this.client);
+  monitoring: MonitoringAPI.Monitoring = new MonitoringAPI.Monitoring(this.client);
+  errors: ErrorsAPI.Errors = new ErrorsAPI.Errors(this.client);
+  exports: ExportsAPI.Exports = new ExportsAPI.Exports(this.client);
+  filters: FiltersAPI.Filters = new FiltersAPI.Filters(this.client);
+  incidents: IncidentsAPI.Incidents = new IncidentsAPI.Incidents(this.client);
+  metrics: MetricsAPI.Metrics = new MetricsAPI.Metrics(this.client);
+  realTime: RealTimeAPI.RealTime = new RealTimeAPI.RealTime(this.client);
+  videoViews: VideoViewsAPI.VideoViews = new VideoViewsAPI.VideoViews(this.client);
 }
 
 export namespace Data {
-  export import Dimensions = API.Dimensions;
-  export import DimensionValue = API.DimensionValue;
-  export import DimensionsResponse = API.DimensionsResponse;
-  export import DimensionValuesBasePage = API.DimensionValuesBasePage;
-  export import DimensionListValuesParams = API.DimensionListValuesParams;
-
-  export import Monitoring = API.Monitoring;
-  export import MonitoringListDimensionsResponse = API.MonitoringListDimensionsResponse;
-
-  export import Errors = API.Errors;
-  export import ErrorsResponse = API.ErrorsResponse;
-  export import ErrorListParams = API.ErrorListParams;
-
-  export import Exports = API.Exports;
-  export import ExportsResponse = API.ExportsResponse;
-  export import VideoViewExportsResponse = API.VideoViewExportsResponse;
-
-  export import Filters = API.Filters;
-  export import FilterValue = API.FilterValue;
-  export import FiltersResponse = API.FiltersResponse;
-  export import FilterValuesBasePage = API.FilterValuesBasePage;
-  export import FilterListValuesParams = API.FilterListValuesParams;
-
-  export import Incidents = API.Incidents;
-  export import Incident = API.Incident;
-  export import IncidentResponse = API.IncidentResponse;
-  export import IncidentsBasePage = API.IncidentsBasePage;
-  export import IncidentListParams = API.IncidentListParams;
-  export import IncidentListRelatedParams = API.IncidentListRelatedParams;
-
-  export import Metrics = API.Metrics;
-  export import AllMetricValuesResponse = API.AllMetricValuesResponse;
-  export import BreakdownValue = API.BreakdownValue;
-  export import InsightsResponse = API.InsightsResponse;
-  export import MetricTimeseriesDataResponse = API.MetricTimeseriesDataResponse;
-  export import OverallValuesResponse = API.OverallValuesResponse;
-  export import BreakdownValuesBasePage = API.BreakdownValuesBasePage;
-  export import MetricListParams = API.MetricListParams;
-  export import MetricGetInsightsParams = API.MetricGetInsightsParams;
-  export import MetricGetOverallValuesParams = API.MetricGetOverallValuesParams;
-  export import MetricGetTimeseriesParams = API.MetricGetTimeseriesParams;
-  export import MetricListBreakdownValuesParams = API.MetricListBreakdownValuesParams;
-
-  export import RealTime = API.RealTime;
-  export import RealTimeBreakdownResponse = API.RealTimeBreakdownResponse;
-  export import RealTimeDimensionsResponse = API.RealTimeDimensionsResponse;
-  export import RealTimeHistogramTimeseriesResponse = API.RealTimeHistogramTimeseriesResponse;
-  export import RealTimeMetricsResponse = API.RealTimeMetricsResponse;
-  export import RealTimeTimeseriesResponse = API.RealTimeTimeseriesResponse;
-  export import RealTimeRetrieveBreakdownParams = API.RealTimeRetrieveBreakdownParams;
-  export import RealTimeRetrieveHistogramTimeseriesParams = API.RealTimeRetrieveHistogramTimeseriesParams;
-  export import RealTimeRetrieveTimeseriesParams = API.RealTimeRetrieveTimeseriesParams;
-
-  export import VideoViews = API.VideoViews;
-  export import AbridgedVideoView = API.AbridgedVideoView;
-  export import VideoViewResponse = API.VideoViewResponse;
-  export import AbridgedVideoViewsBasePage = API.AbridgedVideoViewsBasePage;
-  export import VideoViewListParams = API.VideoViewListParams;
+  export import Dimensions = DimensionsAPI.Dimensions;
+  export type DimensionValue = DimensionsAPI.DimensionValue;
+  export type DimensionsResponse = DimensionsAPI.DimensionsResponse;
+  export import DimensionValuesBasePage = DimensionsAPI.DimensionValuesBasePage;
+  export type DimensionListValuesParams = DimensionsAPI.DimensionListValuesParams;
+  export import Monitoring = MonitoringAPI.Monitoring;
+  export type MonitoringListDimensionsResponse = MonitoringAPI.MonitoringListDimensionsResponse;
+  export import Errors = ErrorsAPI.Errors;
+  export type ErrorsResponse = ErrorsAPI.ErrorsResponse;
+  export type ErrorListParams = ErrorsAPI.ErrorListParams;
+  export import Exports = ExportsAPI.Exports;
+  export type ExportsResponse = ExportsAPI.ExportsResponse;
+  export type VideoViewExportsResponse = ExportsAPI.VideoViewExportsResponse;
+  export import Filters = FiltersAPI.Filters;
+  export type FilterValue = FiltersAPI.FilterValue;
+  export type FiltersResponse = FiltersAPI.FiltersResponse;
+  export import FilterValuesBasePage = FiltersAPI.FilterValuesBasePage;
+  export type FilterListValuesParams = FiltersAPI.FilterListValuesParams;
+  export import Incidents = IncidentsAPI.Incidents;
+  export type Incident = IncidentsAPI.Incident;
+  export type IncidentResponse = IncidentsAPI.IncidentResponse;
+  export import IncidentsBasePage = IncidentsAPI.IncidentsBasePage;
+  export type IncidentListParams = IncidentsAPI.IncidentListParams;
+  export type IncidentListRelatedParams = IncidentsAPI.IncidentListRelatedParams;
+  export import Metrics = MetricsAPI.Metrics;
+  export type AllMetricValuesResponse = MetricsAPI.AllMetricValuesResponse;
+  export type BreakdownValue = MetricsAPI.BreakdownValue;
+  export type InsightsResponse = MetricsAPI.InsightsResponse;
+  export type MetricTimeseriesDataResponse = MetricsAPI.MetricTimeseriesDataResponse;
+  export type OverallValuesResponse = MetricsAPI.OverallValuesResponse;
+  export import BreakdownValuesBasePage = MetricsAPI.BreakdownValuesBasePage;
+  export type MetricListParams = MetricsAPI.MetricListParams;
+  export type MetricGetInsightsParams = MetricsAPI.MetricGetInsightsParams;
+  export type MetricGetOverallValuesParams = MetricsAPI.MetricGetOverallValuesParams;
+  export type MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
+  export type MetricListBreakdownValuesParams = MetricsAPI.MetricListBreakdownValuesParams;
+  export import RealTime = RealTimeAPI.RealTime;
+  export type RealTimeBreakdownResponse = RealTimeAPI.RealTimeBreakdownResponse;
+  export type RealTimeDimensionsResponse = RealTimeAPI.RealTimeDimensionsResponse;
+  export type RealTimeHistogramTimeseriesResponse = RealTimeAPI.RealTimeHistogramTimeseriesResponse;
+  export type RealTimeMetricsResponse = RealTimeAPI.RealTimeMetricsResponse;
+  export type RealTimeTimeseriesResponse = RealTimeAPI.RealTimeTimeseriesResponse;
+  export type RealTimeRetrieveBreakdownParams = RealTimeAPI.RealTimeRetrieveBreakdownParams;
+  export type RealTimeRetrieveHistogramTimeseriesParams =
+    RealTimeAPI.RealTimeRetrieveHistogramTimeseriesParams;
+  export type RealTimeRetrieveTimeseriesParams = RealTimeAPI.RealTimeRetrieveTimeseriesParams;
+  export import VideoViews = VideoViewsAPI.VideoViews;
+  export type AbridgedVideoView = VideoViewsAPI.AbridgedVideoView;
+  export type VideoViewResponse = VideoViewsAPI.VideoViewResponse;
+  export import AbridgedVideoViewsBasePage = VideoViewsAPI.AbridgedVideoViewsBasePage;
+  export type VideoViewListParams = VideoViewsAPI.VideoViewListParams;
 }

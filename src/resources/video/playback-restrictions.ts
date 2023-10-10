@@ -3,8 +3,8 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as API from './index';
-import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
+import * as PlaybackRestrictionsAPI from '@mux/mux-node/resources/video/playback-restrictions';
+import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
 
 export class PlaybackRestrictions extends APIResource {
   /**
@@ -86,8 +86,6 @@ export class PlaybackRestrictions extends APIResource {
 }
 
 export class PlaybackRestrictionsBasePage extends BasePage<PlaybackRestriction> {}
-// alias so we can export it in the namespace
-type _PlaybackRestrictionsBasePage = PlaybackRestrictionsBasePage;
 
 export interface PlaybackRestriction {
   /**
@@ -200,10 +198,11 @@ export interface PlaybackRestrictionUpdateReferrerParams {
 }
 
 export namespace PlaybackRestrictions {
-  export import PlaybackRestriction = API.PlaybackRestriction;
-  export import PlaybackRestrictionResponse = API.PlaybackRestrictionResponse;
-  export type PlaybackRestrictionsBasePage = _PlaybackRestrictionsBasePage;
-  export import PlaybackRestrictionCreateParams = API.PlaybackRestrictionCreateParams;
-  export import PlaybackRestrictionListParams = API.PlaybackRestrictionListParams;
-  export import PlaybackRestrictionUpdateReferrerParams = API.PlaybackRestrictionUpdateReferrerParams;
+  export type PlaybackRestriction = PlaybackRestrictionsAPI.PlaybackRestriction;
+  export type PlaybackRestrictionResponse = PlaybackRestrictionsAPI.PlaybackRestrictionResponse;
+  export import PlaybackRestrictionsBasePage = PlaybackRestrictionsAPI.PlaybackRestrictionsBasePage;
+  export type PlaybackRestrictionCreateParams = PlaybackRestrictionsAPI.PlaybackRestrictionCreateParams;
+  export type PlaybackRestrictionListParams = PlaybackRestrictionsAPI.PlaybackRestrictionListParams;
+  export type PlaybackRestrictionUpdateReferrerParams =
+    PlaybackRestrictionsAPI.PlaybackRestrictionUpdateReferrerParams;
 }

@@ -3,7 +3,7 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as API from './index';
+import * as MetricsAPI from '@mux/mux-node/resources/data/monitoring/metrics';
 
 export class Metrics extends APIResource {
   /**
@@ -452,13 +452,13 @@ export interface MetricGetTimeseriesParams {
 }
 
 export namespace Metrics {
-  export import MetricListResponse = API.MetricListResponse;
-  export import MetricGetBreakdownResponse = API.MetricGetBreakdownResponse;
-  export import MetricGetBreakdownTimeseriesResponse = API.MetricGetBreakdownTimeseriesResponse;
-  export import MetricGetHistogramTimeseriesResponse = API.MetricGetHistogramTimeseriesResponse;
-  export import MetricGetTimeseriesResponse = API.MetricGetTimeseriesResponse;
-  export import MetricGetBreakdownParams = API.MetricGetBreakdownParams;
-  export import MetricGetBreakdownTimeseriesParams = API.MetricGetBreakdownTimeseriesParams;
-  export import MetricGetHistogramTimeseriesParams = API.MetricGetHistogramTimeseriesParams;
-  export import MetricGetTimeseriesParams = API.MetricGetTimeseriesParams;
+  export type MetricListResponse = MetricsAPI.MetricListResponse;
+  export type MetricGetBreakdownResponse = MetricsAPI.MetricGetBreakdownResponse;
+  export type MetricGetBreakdownTimeseriesResponse = MetricsAPI.MetricGetBreakdownTimeseriesResponse;
+  export type MetricGetHistogramTimeseriesResponse = MetricsAPI.MetricGetHistogramTimeseriesResponse;
+  export type MetricGetTimeseriesResponse = MetricsAPI.MetricGetTimeseriesResponse;
+  export type MetricGetBreakdownParams = MetricsAPI.MetricGetBreakdownParams;
+  export type MetricGetBreakdownTimeseriesParams = MetricsAPI.MetricGetBreakdownTimeseriesParams;
+  export type MetricGetHistogramTimeseriesParams = MetricsAPI.MetricGetHistogramTimeseriesParams;
+  export type MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
 }

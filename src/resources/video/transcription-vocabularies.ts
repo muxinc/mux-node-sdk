@@ -3,8 +3,8 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as API from './index';
-import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
+import * as TranscriptionVocabulariesAPI from '@mux/mux-node/resources/video/transcription-vocabularies';
+import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
 
 export class TranscriptionVocabularies extends APIResource {
   /**
@@ -96,8 +96,6 @@ export class TranscriptionVocabularies extends APIResource {
 }
 
 export class TranscriptionVocabulariesBasePage extends BasePage<TranscriptionVocabulary> {}
-// alias so we can export it in the namespace
-type _TranscriptionVocabulariesBasePage = TranscriptionVocabulariesBasePage;
 
 export interface TranscriptionVocabulary {
   /**
@@ -186,10 +184,13 @@ export interface TranscriptionVocabularyUpdateParams {
 export interface TranscriptionVocabularyListParams extends BasePageParams {}
 
 export namespace TranscriptionVocabularies {
-  export import TranscriptionVocabulary = API.TranscriptionVocabulary;
-  export import TranscriptionVocabularyResponse = API.TranscriptionVocabularyResponse;
-  export type TranscriptionVocabulariesBasePage = _TranscriptionVocabulariesBasePage;
-  export import TranscriptionVocabularyCreateParams = API.TranscriptionVocabularyCreateParams;
-  export import TranscriptionVocabularyUpdateParams = API.TranscriptionVocabularyUpdateParams;
-  export import TranscriptionVocabularyListParams = API.TranscriptionVocabularyListParams;
+  export type TranscriptionVocabulary = TranscriptionVocabulariesAPI.TranscriptionVocabulary;
+  export type TranscriptionVocabularyResponse = TranscriptionVocabulariesAPI.TranscriptionVocabularyResponse;
+  export import TranscriptionVocabulariesBasePage = TranscriptionVocabulariesAPI.TranscriptionVocabulariesBasePage;
+  export type TranscriptionVocabularyCreateParams =
+    TranscriptionVocabulariesAPI.TranscriptionVocabularyCreateParams;
+  export type TranscriptionVocabularyUpdateParams =
+    TranscriptionVocabulariesAPI.TranscriptionVocabularyUpdateParams;
+  export type TranscriptionVocabularyListParams =
+    TranscriptionVocabulariesAPI.TranscriptionVocabularyListParams;
 }

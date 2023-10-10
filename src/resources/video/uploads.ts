@@ -3,10 +3,10 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as Assets from '@mux/mux-node/resources/video/assets';
+import * as UploadsAPI from '@mux/mux-node/resources/video/uploads';
 import * as Shared from '@mux/mux-node/resources/shared';
-import * as API from './index';
-import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
+import * as AssetsAPI from '@mux/mux-node/resources/video/assets';
+import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
 
 export class Uploads extends APIResource {
   /**
@@ -56,8 +56,6 @@ export class Uploads extends APIResource {
 }
 
 export class UploadsBasePage extends BasePage<Upload> {}
-// alias so we can export it in the namespace
-type _UploadsBasePage = UploadsBasePage;
 
 export interface Upload {
   /**
@@ -81,7 +79,7 @@ export interface Upload {
    */
   error?: Upload.Error;
 
-  new_asset_settings?: Assets.Asset;
+  new_asset_settings?: AssetsAPI.Asset;
 
   status?: 'waiting' | 'asset_created' | 'errored' | 'cancelled' | 'timed_out';
 
@@ -362,9 +360,9 @@ export namespace UploadCreateParams {
 export interface UploadListParams extends BasePageParams {}
 
 export namespace Uploads {
-  export import Upload = API.Upload;
-  export import UploadResponse = API.UploadResponse;
-  export type UploadsBasePage = _UploadsBasePage;
-  export import UploadCreateParams = API.UploadCreateParams;
-  export import UploadListParams = API.UploadListParams;
+  export type Upload = UploadsAPI.Upload;
+  export type UploadResponse = UploadsAPI.UploadResponse;
+  export import UploadsBasePage = UploadsAPI.UploadsBasePage;
+  export type UploadCreateParams = UploadsAPI.UploadCreateParams;
+  export type UploadListParams = UploadsAPI.UploadListParams;
 }

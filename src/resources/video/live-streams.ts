@@ -3,9 +3,9 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
+import * as LiveStreamsAPI from '@mux/mux-node/resources/video/live-streams';
 import * as Shared from '@mux/mux-node/resources/shared';
-import * as API from './index';
-import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
+import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
 
 export class LiveStreams extends APIResource {
   /**
@@ -276,8 +276,6 @@ export class LiveStreams extends APIResource {
 }
 
 export class LiveStreamsBasePage extends BasePage<LiveStream> {}
-// alias so we can export it in the namespace
-type _LiveStreamsBasePage = LiveStreamsBasePage;
 
 export interface LiveStream {
   /**
@@ -1309,14 +1307,16 @@ export namespace LiveStreamUpdateGeneratedSubtitlesParams {
 }
 
 export namespace LiveStreams {
-  export import LiveStream = API.LiveStream;
-  export import SimulcastTarget = API.SimulcastTarget;
-  export type LiveStreamsBasePage = _LiveStreamsBasePage;
-  export import LiveStreamCreateParams = API.LiveStreamCreateParams;
-  export import LiveStreamUpdateParams = API.LiveStreamUpdateParams;
-  export import LiveStreamListParams = API.LiveStreamListParams;
-  export import LiveStreamCreatePlaybackIDParams = API.LiveStreamCreatePlaybackIDParams;
-  export import LiveStreamCreateSimulcastTargetParams = API.LiveStreamCreateSimulcastTargetParams;
-  export import LiveStreamUpdateEmbeddedSubtitlesParams = API.LiveStreamUpdateEmbeddedSubtitlesParams;
-  export import LiveStreamUpdateGeneratedSubtitlesParams = API.LiveStreamUpdateGeneratedSubtitlesParams;
+  export type LiveStream = LiveStreamsAPI.LiveStream;
+  export type SimulcastTarget = LiveStreamsAPI.SimulcastTarget;
+  export import LiveStreamsBasePage = LiveStreamsAPI.LiveStreamsBasePage;
+  export type LiveStreamCreateParams = LiveStreamsAPI.LiveStreamCreateParams;
+  export type LiveStreamUpdateParams = LiveStreamsAPI.LiveStreamUpdateParams;
+  export type LiveStreamListParams = LiveStreamsAPI.LiveStreamListParams;
+  export type LiveStreamCreatePlaybackIDParams = LiveStreamsAPI.LiveStreamCreatePlaybackIDParams;
+  export type LiveStreamCreateSimulcastTargetParams = LiveStreamsAPI.LiveStreamCreateSimulcastTargetParams;
+  export type LiveStreamUpdateEmbeddedSubtitlesParams =
+    LiveStreamsAPI.LiveStreamUpdateEmbeddedSubtitlesParams;
+  export type LiveStreamUpdateGeneratedSubtitlesParams =
+    LiveStreamsAPI.LiveStreamUpdateGeneratedSubtitlesParams;
 }

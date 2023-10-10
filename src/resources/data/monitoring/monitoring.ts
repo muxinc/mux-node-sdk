@@ -2,11 +2,11 @@
 
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
-import { Metrics } from './metrics';
-import * as API from './index';
+import * as MonitoringAPI from '@mux/mux-node/resources/data/monitoring/monitoring';
+import * as MetricsAPI from '@mux/mux-node/resources/data/monitoring/metrics';
 
 export class Monitoring extends APIResource {
-  metrics: Metrics = new Metrics(this.client);
+  metrics: MetricsAPI.Metrics = new MetricsAPI.Metrics(this.client);
 
   /**
    * Lists available monitoring dimensions.
@@ -33,16 +33,15 @@ export namespace MonitoringListDimensionsResponse {
 }
 
 export namespace Monitoring {
-  export import MonitoringListDimensionsResponse = API.MonitoringListDimensionsResponse;
-
-  export import Metrics = API.Metrics;
-  export import MetricListResponse = API.MetricListResponse;
-  export import MetricGetBreakdownResponse = API.MetricGetBreakdownResponse;
-  export import MetricGetBreakdownTimeseriesResponse = API.MetricGetBreakdownTimeseriesResponse;
-  export import MetricGetHistogramTimeseriesResponse = API.MetricGetHistogramTimeseriesResponse;
-  export import MetricGetTimeseriesResponse = API.MetricGetTimeseriesResponse;
-  export import MetricGetBreakdownParams = API.MetricGetBreakdownParams;
-  export import MetricGetBreakdownTimeseriesParams = API.MetricGetBreakdownTimeseriesParams;
-  export import MetricGetHistogramTimeseriesParams = API.MetricGetHistogramTimeseriesParams;
-  export import MetricGetTimeseriesParams = API.MetricGetTimeseriesParams;
+  export type MonitoringListDimensionsResponse = MonitoringAPI.MonitoringListDimensionsResponse;
+  export import Metrics = MetricsAPI.Metrics;
+  export type MetricListResponse = MetricsAPI.MetricListResponse;
+  export type MetricGetBreakdownResponse = MetricsAPI.MetricGetBreakdownResponse;
+  export type MetricGetBreakdownTimeseriesResponse = MetricsAPI.MetricGetBreakdownTimeseriesResponse;
+  export type MetricGetHistogramTimeseriesResponse = MetricsAPI.MetricGetHistogramTimeseriesResponse;
+  export type MetricGetTimeseriesResponse = MetricsAPI.MetricGetTimeseriesResponse;
+  export type MetricGetBreakdownParams = MetricsAPI.MetricGetBreakdownParams;
+  export type MetricGetBreakdownTimeseriesParams = MetricsAPI.MetricGetBreakdownTimeseriesParams;
+  export type MetricGetHistogramTimeseriesParams = MetricsAPI.MetricGetHistogramTimeseriesParams;
+  export type MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
 }

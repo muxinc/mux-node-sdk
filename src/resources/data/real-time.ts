@@ -3,7 +3,7 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as API from './index';
+import * as RealTimeAPI from '@mux/mux-node/resources/data/real-time';
 
 export class RealTime extends APIResource {
   /**
@@ -342,12 +342,13 @@ export interface RealTimeRetrieveTimeseriesParams {
 }
 
 export namespace RealTime {
-  export import RealTimeBreakdownResponse = API.RealTimeBreakdownResponse;
-  export import RealTimeDimensionsResponse = API.RealTimeDimensionsResponse;
-  export import RealTimeHistogramTimeseriesResponse = API.RealTimeHistogramTimeseriesResponse;
-  export import RealTimeMetricsResponse = API.RealTimeMetricsResponse;
-  export import RealTimeTimeseriesResponse = API.RealTimeTimeseriesResponse;
-  export import RealTimeRetrieveBreakdownParams = API.RealTimeRetrieveBreakdownParams;
-  export import RealTimeRetrieveHistogramTimeseriesParams = API.RealTimeRetrieveHistogramTimeseriesParams;
-  export import RealTimeRetrieveTimeseriesParams = API.RealTimeRetrieveTimeseriesParams;
+  export type RealTimeBreakdownResponse = RealTimeAPI.RealTimeBreakdownResponse;
+  export type RealTimeDimensionsResponse = RealTimeAPI.RealTimeDimensionsResponse;
+  export type RealTimeHistogramTimeseriesResponse = RealTimeAPI.RealTimeHistogramTimeseriesResponse;
+  export type RealTimeMetricsResponse = RealTimeAPI.RealTimeMetricsResponse;
+  export type RealTimeTimeseriesResponse = RealTimeAPI.RealTimeTimeseriesResponse;
+  export type RealTimeRetrieveBreakdownParams = RealTimeAPI.RealTimeRetrieveBreakdownParams;
+  export type RealTimeRetrieveHistogramTimeseriesParams =
+    RealTimeAPI.RealTimeRetrieveHistogramTimeseriesParams;
+  export type RealTimeRetrieveTimeseriesParams = RealTimeAPI.RealTimeRetrieveTimeseriesParams;
 }

@@ -2,7 +2,7 @@
 
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
-import * as API from './index';
+import * as ExportsAPI from '@mux/mux-node/resources/data/exports';
 
 export class Exports extends APIResource {
   /**
@@ -48,6 +48,6 @@ export namespace VideoViewExportsResponse {
 }
 
 export namespace Exports {
-  export import ExportsResponse = API.ExportsResponse;
-  export import VideoViewExportsResponse = API.VideoViewExportsResponse;
+  export type ExportsResponse = ExportsAPI.ExportsResponse;
+  export type VideoViewExportsResponse = ExportsAPI.VideoViewExportsResponse;
 }

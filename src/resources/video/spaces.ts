@@ -3,8 +3,8 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as API from './index';
-import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
+import * as SpacesAPI from '@mux/mux-node/resources/video/spaces';
+import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
 
 export class Spaces extends APIResource {
   /**
@@ -163,8 +163,6 @@ export class Spaces extends APIResource {
 }
 
 export class SpacesBasePage extends BasePage<Space> {}
-// alias so we can export it in the namespace
-type _SpacesBasePage = SpacesBasePage;
 
 export interface Broadcast {
   /**
@@ -354,7 +352,7 @@ export namespace SpaceCreateParams {
      *
      * Defaults to `gallery` if not set.
      */
-    layout?: BroadcastLayout;
+    layout?: SpacesAPI.BroadcastLayout;
 
     /**
      * Arbitrary user-supplied metadata that will be included in the broadcast details
@@ -366,7 +364,7 @@ export namespace SpaceCreateParams {
      * The resolution of the composited video sent to the live stream. Defaults to
      * `1920x1080` if not set.
      */
-    resolution?: BroadcastResolution;
+    resolution?: SpacesAPI.BroadcastResolution;
   }
 }
 
@@ -411,17 +409,17 @@ export interface SpaceCreateBroadcastParams {
 }
 
 export namespace Spaces {
-  export import Broadcast = API.Broadcast;
-  export import BroadcastLayout = API.BroadcastLayout;
-  export import BroadcastResolution = API.BroadcastResolution;
-  export import BroadcastResponse = API.BroadcastResponse;
-  export import BroadcastStatus = API.BroadcastStatus;
-  export import Space = API.Space;
-  export import SpaceResponse = API.SpaceResponse;
-  export import SpaceStatus = API.SpaceStatus;
-  export import SpaceType = API.SpaceType;
-  export type SpacesBasePage = _SpacesBasePage;
-  export import SpaceCreateParams = API.SpaceCreateParams;
-  export import SpaceListParams = API.SpaceListParams;
-  export import SpaceCreateBroadcastParams = API.SpaceCreateBroadcastParams;
+  export type Broadcast = SpacesAPI.Broadcast;
+  export type BroadcastLayout = SpacesAPI.BroadcastLayout;
+  export type BroadcastResolution = SpacesAPI.BroadcastResolution;
+  export type BroadcastResponse = SpacesAPI.BroadcastResponse;
+  export type BroadcastStatus = SpacesAPI.BroadcastStatus;
+  export type Space = SpacesAPI.Space;
+  export type SpaceResponse = SpacesAPI.SpaceResponse;
+  export type SpaceStatus = SpacesAPI.SpaceStatus;
+  export type SpaceType = SpacesAPI.SpaceType;
+  export import SpacesBasePage = SpacesAPI.SpacesBasePage;
+  export type SpaceCreateParams = SpacesAPI.SpaceCreateParams;
+  export type SpaceListParams = SpacesAPI.SpaceListParams;
+  export type SpaceCreateBroadcastParams = SpacesAPI.SpaceCreateBroadcastParams;
 }

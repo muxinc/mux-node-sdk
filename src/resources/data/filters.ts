@@ -3,8 +3,8 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as API from './index';
-import { BasePage, BasePageParams } from '@mux/mux-node/pagination';
+import * as FiltersAPI from '@mux/mux-node/resources/data/filters';
+import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
 
 export class Filters extends APIResource {
   /**
@@ -34,8 +34,6 @@ export class Filters extends APIResource {
 }
 
 export class FilterValuesBasePage extends BasePage<FilterValue> {}
-// alias so we can export it in the namespace
-type _FilterValuesBasePage = FilterValuesBasePage;
 
 export interface FilterValue {
   total_count?: number;
@@ -88,8 +86,8 @@ export interface FilterListValuesParams extends BasePageParams {
 }
 
 export namespace Filters {
-  export import FilterValue = API.FilterValue;
-  export import FiltersResponse = API.FiltersResponse;
-  export type FilterValuesBasePage = _FilterValuesBasePage;
-  export import FilterListValuesParams = API.FilterListValuesParams;
+  export type FilterValue = FiltersAPI.FilterValue;
+  export type FiltersResponse = FiltersAPI.FiltersResponse;
+  export import FilterValuesBasePage = FiltersAPI.FilterValuesBasePage;
+  export type FilterListValuesParams = FiltersAPI.FilterListValuesParams;
 }
