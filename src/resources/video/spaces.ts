@@ -409,17 +409,17 @@ export interface SpaceCreateBroadcastParams {
 }
 
 export namespace Spaces {
-  export type Broadcast = SpacesAPI.Broadcast;
-  export type BroadcastLayout = SpacesAPI.BroadcastLayout;
-  export type BroadcastResolution = SpacesAPI.BroadcastResolution;
-  export type BroadcastResponse = SpacesAPI.BroadcastResponse;
-  export type BroadcastStatus = SpacesAPI.BroadcastStatus;
-  export type Space = SpacesAPI.Space;
-  export type SpaceResponse = SpacesAPI.SpaceResponse;
-  export type SpaceStatus = SpacesAPI.SpaceStatus;
-  export type SpaceType = SpacesAPI.SpaceType;
+  export import Broadcast = SpacesAPI.Broadcast;
+  export import BroadcastLayout = SpacesAPI.BroadcastLayout;
+  export import BroadcastResolution = SpacesAPI.BroadcastResolution;
+  export import BroadcastResponse = SpacesAPI.BroadcastResponse;
+  export import BroadcastStatus = SpacesAPI.BroadcastStatus;
+  export import Space = SpacesAPI.Space;
+  export import SpaceResponse = SpacesAPI.SpaceResponse;
+  export import SpaceStatus = SpacesAPI.SpaceStatus;
+  export import SpaceType = SpacesAPI.SpaceType;
   export import SpacesBasePage = SpacesAPI.SpacesBasePage;
-  export type SpaceCreateParams = SpacesAPI.SpaceCreateParams;
-  export type SpaceListParams = SpacesAPI.SpaceListParams;
-  export type SpaceCreateBroadcastParams = SpacesAPI.SpaceCreateBroadcastParams;
+  export import SpaceCreateParams = SpacesAPI.SpaceCreateParams;
+  export import SpaceListParams = SpacesAPI.SpaceListParams;
+  export import SpaceCreateBroadcastParams = SpacesAPI.SpaceCreateBroadcastParams;
 }

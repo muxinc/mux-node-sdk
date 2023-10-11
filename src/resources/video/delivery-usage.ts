@@ -147,7 +147,7 @@ export interface DeliveryUsageListParams extends PageWithTotalParams {
 }
 
 export namespace DeliveryUsage {
-  export type DeliveryReport = DeliveryUsageAPI.DeliveryReport;
+  export import DeliveryReport = DeliveryUsageAPI.DeliveryReport;
   export import DeliveryReportsPageWithTotal = DeliveryUsageAPI.DeliveryReportsPageWithTotal;
-  export type DeliveryUsageListParams = DeliveryUsageAPI.DeliveryUsageListParams;
+  export import DeliveryUsageListParams = DeliveryUsageAPI.DeliveryUsageListParams;
 }

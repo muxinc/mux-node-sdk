@@ -198,11 +198,10 @@ export interface PlaybackRestrictionUpdateReferrerParams {
 }
 
 export namespace PlaybackRestrictions {
-  export type PlaybackRestriction = PlaybackRestrictionsAPI.PlaybackRestriction;
-  export type PlaybackRestrictionResponse = PlaybackRestrictionsAPI.PlaybackRestrictionResponse;
+  export import PlaybackRestriction = PlaybackRestrictionsAPI.PlaybackRestriction;
+  export import PlaybackRestrictionResponse = PlaybackRestrictionsAPI.PlaybackRestrictionResponse;
   export import PlaybackRestrictionsBasePage = PlaybackRestrictionsAPI.PlaybackRestrictionsBasePage;
-  export type PlaybackRestrictionCreateParams = PlaybackRestrictionsAPI.PlaybackRestrictionCreateParams;
-  export type PlaybackRestrictionListParams = PlaybackRestrictionsAPI.PlaybackRestrictionListParams;
-  export type PlaybackRestrictionUpdateReferrerParams =
-    PlaybackRestrictionsAPI.PlaybackRestrictionUpdateReferrerParams;
+  export import PlaybackRestrictionCreateParams = PlaybackRestrictionsAPI.PlaybackRestrictionCreateParams;
+  export import PlaybackRestrictionListParams = PlaybackRestrictionsAPI.PlaybackRestrictionListParams;
+  export import PlaybackRestrictionUpdateReferrerParams = PlaybackRestrictionsAPI.PlaybackRestrictionUpdateReferrerParams;
 }

@@ -88,8 +88,8 @@ export interface SigningKeyResponse {
 export interface SigningKeyListParams extends BasePageParams {}
 
 export namespace SigningKeys {
-  export type SigningKey = SigningKeysAPI.SigningKey;
-  export type SigningKeyResponse = SigningKeysAPI.SigningKeyResponse;
+  export import SigningKey = SigningKeysAPI.SigningKey;
+  export import SigningKeyResponse = SigningKeysAPI.SigningKeyResponse;
   export import SigningKeysBasePage = SigningKeysAPI.SigningKeysBasePage;
-  export type SigningKeyListParams = SigningKeysAPI.SigningKeyListParams;
+  export import SigningKeyListParams = SigningKeysAPI.SigningKeyListParams;
 }

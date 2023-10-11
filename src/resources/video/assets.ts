@@ -1122,17 +1122,17 @@ export interface AssetUpdateMP4SupportParams {
 }
 
 export namespace Assets {
-  export type Asset = AssetsAPI.Asset;
-  export type AssetResponse = AssetsAPI.AssetResponse;
-  export type InputInfo = AssetsAPI.InputInfo;
-  export type Track = AssetsAPI.Track;
-  export type AssetRetrieveInputInfoResponse = AssetsAPI.AssetRetrieveInputInfoResponse;
+  export import Asset = AssetsAPI.Asset;
+  export import AssetResponse = AssetsAPI.AssetResponse;
+  export import InputInfo = AssetsAPI.InputInfo;
+  export import Track = AssetsAPI.Track;
+  export import AssetRetrieveInputInfoResponse = AssetsAPI.AssetRetrieveInputInfoResponse;
   export import AssetsBasePage = AssetsAPI.AssetsBasePage;
-  export type AssetCreateParams = AssetsAPI.AssetCreateParams;
-  export type AssetUpdateParams = AssetsAPI.AssetUpdateParams;
-  export type AssetListParams = AssetsAPI.AssetListParams;
-  export type AssetCreatePlaybackIDParams = AssetsAPI.AssetCreatePlaybackIDParams;
-  export type AssetCreateTrackParams = AssetsAPI.AssetCreateTrackParams;
-  export type AssetUpdateMasterAccessParams = AssetsAPI.AssetUpdateMasterAccessParams;
-  export type AssetUpdateMP4SupportParams = AssetsAPI.AssetUpdateMP4SupportParams;
+  export import AssetCreateParams = AssetsAPI.AssetCreateParams;
+  export import AssetUpdateParams = AssetsAPI.AssetUpdateParams;
+  export import AssetListParams = AssetsAPI.AssetListParams;
+  export import AssetCreatePlaybackIDParams = AssetsAPI.AssetCreatePlaybackIDParams;
+  export import AssetCreateTrackParams = AssetsAPI.AssetCreateTrackParams;
+  export import AssetUpdateMasterAccessParams = AssetsAPI.AssetUpdateMasterAccessParams;
+  export import AssetUpdateMP4SupportParams = AssetsAPI.AssetUpdateMP4SupportParams;
 }

@@ -103,6 +103,6 @@ export interface ErrorListParams {
 }
 
 export namespace Errors {
-  export type ErrorsResponse = ErrorsAPI.ErrorsResponse;
-  export type ErrorListParams = ErrorsAPI.ErrorListParams;
+  export import ErrorsResponse = ErrorsAPI.ErrorsResponse;
+  export import ErrorListParams = ErrorsAPI.ErrorListParams;
 }

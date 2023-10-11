@@ -452,13 +452,13 @@ export interface MetricGetTimeseriesParams {
 }
 
 export namespace Metrics {
-  export type MetricListResponse = MetricsAPI.MetricListResponse;
-  export type MetricGetBreakdownResponse = MetricsAPI.MetricGetBreakdownResponse;
-  export type MetricGetBreakdownTimeseriesResponse = MetricsAPI.MetricGetBreakdownTimeseriesResponse;
-  export type MetricGetHistogramTimeseriesResponse = MetricsAPI.MetricGetHistogramTimeseriesResponse;
-  export type MetricGetTimeseriesResponse = MetricsAPI.MetricGetTimeseriesResponse;
-  export type MetricGetBreakdownParams = MetricsAPI.MetricGetBreakdownParams;
-  export type MetricGetBreakdownTimeseriesParams = MetricsAPI.MetricGetBreakdownTimeseriesParams;
-  export type MetricGetHistogramTimeseriesParams = MetricsAPI.MetricGetHistogramTimeseriesParams;
-  export type MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
+  export import MetricListResponse = MetricsAPI.MetricListResponse;
+  export import MetricGetBreakdownResponse = MetricsAPI.MetricGetBreakdownResponse;
+  export import MetricGetBreakdownTimeseriesResponse = MetricsAPI.MetricGetBreakdownTimeseriesResponse;
+  export import MetricGetHistogramTimeseriesResponse = MetricsAPI.MetricGetHistogramTimeseriesResponse;
+  export import MetricGetTimeseriesResponse = MetricsAPI.MetricGetTimeseriesResponse;
+  export import MetricGetBreakdownParams = MetricsAPI.MetricGetBreakdownParams;
+  export import MetricGetBreakdownTimeseriesParams = MetricsAPI.MetricGetBreakdownTimeseriesParams;
+  export import MetricGetHistogramTimeseriesParams = MetricsAPI.MetricGetHistogramTimeseriesParams;
+  export import MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
 }
