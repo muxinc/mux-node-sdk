@@ -2,7 +2,7 @@
 
 import { APIResource } from '@mux/mux-node/resource';
 import crypto from 'crypto';
-import { getHeader, HeadersLike } from '@mux/mux-node/core';
+import { getRequiredHeader, HeadersLike } from '@mux/mux-node/core';
 import * as WebhooksAPI from '@mux/mux-node/resources/webhooks';
 import * as AssetsAPI from '@mux/mux-node/resources/video/assets';
 import * as LiveStreamsAPI from '@mux/mux-node/resources/video/live-streams';
@@ -123,7 +123,7 @@ export class Webhooks extends APIResource {
       );
     }
 
-    const header = getHeader(headers, 'mux-signature');
+    const header = getRequiredHeader(headers, 'mux-signature');
     if (!header) {
       throw new Error('Could not find a mux-signature header');
     }
