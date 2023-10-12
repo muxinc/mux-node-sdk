@@ -10,9 +10,29 @@ import * as API from '@mux/mux-node/resources/index';
 
 export interface ClientOptions {
   /**
-   * Defaults to process.env["MUX_TOKEN_ID"].
+   * Defaults to process.env['MUX_TOKEN_ID'].
    */
   tokenId?: string;
+
+  /**
+   * Defaults to process.env['MUX_TOKEN_SECRET'].
+   */
+  tokenSecret?: string;
+
+  /**
+   * Defaults to process.env['MUX_WEBHOOK_SECRET'].
+   */
+  webhookSecret?: string | null;
+
+  /**
+   * Defaults to process.env['MUX_SIGNING_KEY'].
+   */
+  jwtSigningKey?: string | null;
+
+  /**
+   * Defaults to process.env['MUX_PRIVATE_KEY'].
+   */
+  jwtPrivateKey?: string | null;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -67,30 +87,26 @@ export interface ClientOptions {
    * param to `undefined` in request options.
    */
   defaultQuery?: Core.DefaultQuery;
-
-  tokenSecret?: string;
-
-  webhookSecret?: string | null;
-
-  jwtSigningKey?: string | null;
-
-  jwtPrivateKey?: string | null;
 }
 
 /** API Client for interfacing with the Mux API. */
 export class Mux extends Core.APIClient {
   tokenId: string;
   tokenSecret: string;
-  webhookSecret?: string | null;
-  jwtSigningKey?: string | null;
-  jwtPrivateKey?: string | null;
+  webhookSecret: string | null;
+  jwtSigningKey: string | null;
+  jwtPrivateKey: string | null;
 
   private _options: ClientOptions;
 
   /**
    * API Client for interfacing with the Mux API.
    *
-   * @param {string} [opts.tokenId=process.env['MUX_TOKEN_ID']] - The access token to send to the API.
+   * @param {string} [opts.tokenId==process.env['MUX_TOKEN_ID'] ?? undefined]
+   * @param {string} [opts.tokenSecret==process.env['MUX_TOKEN_SECRET'] ?? undefined]
+   * @param {string | null} [opts.webhookSecret==process.env['MUX_WEBHOOK_SECRET'] ?? null]
+   * @param {string | null} [opts.jwtSigningKey==process.env['MUX_SIGNING_KEY'] ?? null]
+   * @param {string | null} [opts.jwtPrivateKey==process.env['MUX_PRIVATE_KEY'] ?? null]
    * @param {string} [opts.baseURL] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
@@ -98,10 +114,6 @@ export class Mux extends Core.APIClient {
    * @param {number} [opts.maxRetries=2] - The maximum number of times the client will retry a request.
    * @param {Core.Headers} opts.defaultHeaders - Default headers to include with every request to the API.
    * @param {Core.DefaultQuery} opts.defaultQuery - Default query parameters to include with every request to the API.
-   * @param {string} [opts.tokenSecret]
-   * @param {string | null} [opts.webhookSecret]
-   * @param {string | null} [opts.jwtSigningKey]
-   * @param {string | null} [opts.jwtPrivateKey]
    */
   constructor({
     tokenId = Core.readEnv('MUX_TOKEN_ID'),
@@ -113,7 +125,7 @@ export class Mux extends Core.APIClient {
   }: ClientOptions = {}) {
     if (tokenId === undefined) {
       throw new Errors.MuxError(
-        "The MUX_TOKEN_ID environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenId option, like new Mux({ tokenId: 'my tokenId' }).",
+        "The MUX_TOKEN_ID environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenId option, like new Mux({ tokenId: 'my token id' }).",
       );
     }
     if (tokenSecret === undefined) {

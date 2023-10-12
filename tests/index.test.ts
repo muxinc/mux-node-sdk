@@ -23,8 +23,8 @@ describe('instantiate client', () => {
     const client = new Mux({
       baseURL: 'http://localhost:5000/',
       defaultHeaders: { 'X-My-Default-Header': '2' },
-      tokenSecret: 'my secret',
       tokenId: 'my token id',
+      tokenSecret: 'my secret',
     });
 
     test('they are used in the request', () => {
@@ -56,8 +56,8 @@ describe('instantiate client', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo' },
-        tokenSecret: 'my secret',
         tokenId: 'my token id',
+        tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo');
     });
@@ -66,8 +66,8 @@ describe('instantiate client', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo', hello: 'world' },
-        tokenSecret: 'my secret',
         tokenId: 'my token id',
+        tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo&hello=world');
     });
@@ -76,8 +76,8 @@ describe('instantiate client', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { hello: 'world' },
-        tokenSecret: 'my secret',
         tokenId: 'my token id',
+        tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', { hello: undefined })).toEqual('http://localhost:5000/foo');
     });
@@ -86,8 +86,8 @@ describe('instantiate client', () => {
   test('custom fetch', async () => {
     const client = new Mux({
       baseURL: 'http://localhost:5000/',
-      tokenSecret: 'my secret',
       tokenId: 'my token id',
+      tokenSecret: 'my secret',
       fetch: (url) => {
         return Promise.resolve(
           new Response(JSON.stringify({ url, custom: true }), {
@@ -104,8 +104,8 @@ describe('instantiate client', () => {
   test('custom signal', async () => {
     const client = new Mux({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-      tokenSecret: 'my secret',
       tokenId: 'my token id',
+      tokenSecret: 'my secret',
       fetch: (...args) => {
         return new Promise((resolve, reject) =>
           setTimeout(
@@ -132,8 +132,8 @@ describe('instantiate client', () => {
     test('trailing slash', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/custom/path/',
-        tokenSecret: 'my secret',
         tokenId: 'my token id',
+        tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
@@ -141,55 +141,43 @@ describe('instantiate client', () => {
     test('no trailing slash', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/custom/path',
-        tokenSecret: 'my secret',
         tokenId: 'my token id',
+        tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
   });
 
   test('maxRetries option is correctly set', () => {
-    const client = new Mux({ maxRetries: 1, tokenSecret: 'my secret', tokenId: 'my token id' });
+    const client = new Mux({ maxRetries: 1, tokenId: 'my token id', tokenSecret: 'my secret' });
     expect(client.maxRetries).toEqual(1);
 
     // default
-    const client2 = new Mux({ tokenSecret: 'my secret', tokenId: 'my token id' });
+    const client2 = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
     expect(client2.maxRetries).toEqual(2);
   });
 
-  test('with minimal arguments', () => {
-    // set access token via env var
-    process.env['MUX_TOKEN_ID'] = 'env var token id';
-    const client = new Mux({ tokenSecret: 'my secret' });
-    expect(client.tokenId).toBe('env var token id');
+  test('with environment variable arguments', () => {
+    // set options via env var
+    process.env['MUX_TOKEN_ID'] = 'my token id';
+    process.env['MUX_TOKEN_SECRET'] = 'my secret';
+    const client = new Mux();
+    expect(client.tokenId).toBe('my token id');
     expect(client.tokenSecret).toBe('my secret');
   });
 
-  test('with tokenId argument', () => {
-    process.env['MUX_TOKEN_ID'] = 'env var token id';
-
-    const client = new Mux({ tokenId: 'another token id', tokenSecret: 'my secret' });
-    expect(client.tokenId).toBe('another token id');
-  });
-
-  test('with options argument', () => {
-    process.env['MUX_TOKEN_ID'] = 'env var token id';
-
-    // tokenId and custom options
+  test('with overriden environment variable arguments', () => {
+    // set options via env var
+    process.env['MUX_TOKEN_ID'] = 'another my token id';
+    process.env['MUX_TOKEN_SECRET'] = 'another my secret';
     const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
     expect(client.tokenId).toBe('my token id');
-  });
-
-  test('with disabled authentication', () => {
-    // fails if no access token provided
-    expect(() => {
-      new Mux({ tokenSecret: 'my secret' });
-    }).toThrow();
+    expect(client.tokenSecret).toBe('my secret');
   });
 });
 
 describe('request building', () => {
-  const client = new Mux({ tokenSecret: 'my secret', tokenId: 'my token id' });
+  const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
 
   describe('Content-Length', () => {
     test('handles multi-byte characters', () => {
@@ -216,8 +204,8 @@ describe('retries', () => {
     };
 
     const client = new Mux({
-      tokenSecret: 'my secret',
       tokenId: 'my token id',
+      tokenSecret: 'my secret',
       timeout: 2000,
       fetch: testFetch,
     });
