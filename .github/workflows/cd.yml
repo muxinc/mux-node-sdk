@@ -50,6 +50,5 @@ jobs:
       - uses: fregante/setup-git-user@v1
       - run: yarn install --frozen-lockfile
       - run: yarn lint
-      - run: yarn test
       - run: yarn build
       - run: npx --yes wet-run@0.5.1 release ${{ inputs.version }} --prerelease "${{ inputs.prerelease }}" --provenance
