@@ -1,25 +1,38 @@
 {
+  "include": ["src", "tests", "examples"],
+  "exclude": ["src/_shims/**/*-deno.ts"],
   "compilerOptions": {
-    /* Basic Options */
-    "incremental": true,
-    "target": "es2015",
-    "module": "esnext",
-    "lib": ["es2015"],
-    "allowJs": true,
-    "checkJs": true,
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "rootDir": "src",
-    "outDir": "dist",
-    "strict": true,
+    "target": "es2020",
+    "lib": ["es2020"],
+    "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "paths": {
+      "@mux/mux-node/_shims/auto/*": ["src/_shims/auto/*-node"],
+      "@mux/mux-node/*": ["src/*"],
+      "@mux/mux-node": ["src/index.ts"],
+      "digest-fetch": ["./typings/digest-fetch"]
+    },
+    "noEmit": true,
+
     "resolveJsonModule": true,
-    "composite": true
-  },
-  "include": ["src/**/*.js", "src/**/*.ts"]
+
+    "forceConsistentCasingInFileNames": true,
+
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "exactOptionalPropertyTypes": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+
+    "skipLibCheck": true
+  }
 }
