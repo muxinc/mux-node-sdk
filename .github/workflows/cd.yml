@@ -1,1 +1,18 @@
+name: CD
 
+concurrency: production
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      version:
+        type: choice
+        required: true
+        description: Version
+        options:
+        - conventional
+        - patch
+        - minor
+        - major
+        - prerelease
