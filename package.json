@@ -1,6 +1,6 @@
 {
   "name": "@mux/mux-node",
-  "version": "0.0.1",
+  "version": "7.3.2",
   "description": "Client library for the Mux API",
   "author": "Mux <devex@mux.com>",
   "types": "dist/index.d.ts",
