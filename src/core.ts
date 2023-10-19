@@ -40,6 +40,11 @@ type APIResponseProps = {
 
 async function defaultParseResponse<T>(props: APIResponseProps): Promise<T> {
   const { response } = props;
+  // fetch refuses to read the body when the status code is 204.
+  if (response.status === 204) {
+    return null as T;
+  }
+
   const contentType = response.headers.get('content-type');
   if (contentType?.includes('application/json')) {
     const json = await response.json();
