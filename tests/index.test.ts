@@ -149,8 +149,8 @@ describe('instantiate client', () => {
   });
 
   test('maxRetries option is correctly set', () => {
-    const client = new Mux({ maxRetries: 1, tokenId: 'my token id', tokenSecret: 'my secret' });
-    expect(client.maxRetries).toEqual(1);
+    const client = new Mux({ maxRetries: 4, tokenId: 'my token id', tokenSecret: 'my secret' });
+    expect(client.maxRetries).toEqual(4);
 
     // default
     const client2 = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
