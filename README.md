@@ -35,7 +35,7 @@ const mux = new Mux({
 async function main() {
   const asset = await mux.video.assets.create();
 
-  console.log(asset.aspect_ratio);
+  console.log(asset.id);
 }
 
 main();
@@ -74,7 +74,6 @@ async function main() {
     if (err instanceof Mux.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
-
       console.log(err.headers); // {server: 'nginx', ...}
     } else {
       throw err;
@@ -188,7 +187,7 @@ console.log(response.statusText); // access the underlying Response object
 
 const { data: asset, response: raw } = await mux.video.assets.create().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(asset.aspect_ratio);
+console.log(asset.id);
 ```
 
 ## Customizing the fetch client
