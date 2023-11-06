@@ -5,17 +5,16 @@ set -exuo pipefail
 rm -rf deno; mkdir deno
 cp -rp src/* deno
 
-PACKAGE_VERSION=$(node -p 'require("./package.json").version')
-
+# x-release-please-start-version
 cat << EOF > deno/README.md
 # Mux Node API Library - Deno build
 
-This is a build produced from https://github.com/muxinc/mux-node-sdk - please go there to read the source and docs, file issues, etc.
+This is a build produced from https://github.com/muxinc/mux-node-sdk – please go there to read the source and docs, file issues, etc.
 
 Usage:
 
 \`\`\`ts
-import Mux from "https://raw.githubusercontent.com/muxinc/mux-node-sdk/v0.0.1-deno/mod.ts@$PACKAGE_VERSION/mod.ts";
+import Mux from "https://raw.githubusercontent.com/muxinc/mux-node-sdk/v0.0.1-deno/mod.ts";
 
 const client = new Mux();
 \`\`\`
@@ -26,6 +25,7 @@ Note that in many Deno environments, you can also do this:
 import Mux from "npm:@mux/mux-node";
 \`\`\`
 EOF
+# x-release-please-end
 
 rm deno/_shims/auto/*-node.ts
 for dir in deno/_shims deno/_shims/auto; do
