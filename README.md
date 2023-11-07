@@ -207,7 +207,7 @@ import Mux from "@mux/mux-node";
 ```
 
 To do the inverse, add `import "@mux/mux-node/shims/node"` (which does import polyfills).
-This can also be useful if you are getting the wrong TypeScript types for `Response` - more details [here](https://github.com/muxinc/mux-node-sdk/src/_shims#readme).
+This can also be useful if you are getting the wrong TypeScript types for `Response` - more details [here](https://github.com/muxinc/mux-node-sdk/tree/main/src/_shims#readme).
 
 You may also provide a custom `fetch` function when instantiating the client,
 which can be used to inspect or alter the `Request` or `Response` before/after each request:
