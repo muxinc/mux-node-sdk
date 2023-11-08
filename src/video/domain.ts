@@ -217,8 +217,8 @@ export interface CreatePlaybackIdParams {
 
 export interface CreateTrackParams {
   url: string;
-  type: 'text';
-  text_type: 'subtitles';
+  type: 'text' | 'audio';
+  text_type?: 'subtitles';
   language_code: string;
   name?: string;
   closed_captions?: boolean;
