@@ -79,6 +79,12 @@ export interface InputOverlaySettings {
   opacity?: string;
 }
 
+export interface GeneratedSubtitlesSettings {
+  name?: string;
+  passthrough?: string;
+  language_code?: string;
+}
+
 export interface InputSettings {
   url: string;
   start_time?: number;
@@ -90,6 +96,7 @@ export interface InputSettings {
   name?: string;
   closed_captions?: boolean;
   passthrough?: string;
+  generated_subtitles?: Array<GeneratedSubtitlesSettings>;
 }
 
 export interface CreateAssetParams {
@@ -102,6 +109,7 @@ export interface CreateAssetParams {
   master_access?: AssetMasterAccess;
   per_title_encode?: boolean;
   max_resolution_tier?: '1080p' | '1440p' | '2160p';
+  encoding_tier?: 'baseline' | 'smart';
 }
 
 export interface UpdateAssetParams {
@@ -209,8 +217,8 @@ export interface CreatePlaybackIdParams {
 
 export interface CreateTrackParams {
   url: string;
-  type: 'text';
-  text_type: 'subtitles';
+  type: 'text' | 'audio';
+  text_type?: 'subtitles';
   language_code: string;
   name?: string;
   closed_captions?: boolean;

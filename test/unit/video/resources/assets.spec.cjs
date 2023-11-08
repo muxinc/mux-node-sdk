@@ -235,7 +235,7 @@ describe('Unit::Assets', () => {
         })
         .catch((err) => {
           expect(err).to.exist;
-          expect(err.message).to.equal('Text track params are required');
+          expect(err.message).to.equal('Track params are required');
         }));
   });
 

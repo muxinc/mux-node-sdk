@@ -265,7 +265,7 @@ export class Assets extends Base {
     }
 
     if (!params) {
-      return Promise.reject(new Error('Text track params are required'));
+      return Promise.reject(new Error('Track params are required'));
     }
     return this.http.post(`${buildBasePath(assetId)}/tracks`, params);
   }
