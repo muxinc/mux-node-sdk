@@ -15,7 +15,7 @@ export class Uploads extends APIResource {
    */
   create(body: UploadCreateParams, options?: Core.RequestOptions): Core.APIPromise<Upload> {
     return (
-      this.post('/video/v1/uploads', { body, ...options }) as Core.APIPromise<{ data: Upload }>
+      this._client.post('/video/v1/uploads', { body, ...options }) as Core.APIPromise<{ data: Upload }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -24,7 +24,7 @@ export class Uploads extends APIResource {
    */
   retrieve(uploadId: string, options?: Core.RequestOptions): Core.APIPromise<Upload> {
     return (
-      this.get(`/video/v1/uploads/${uploadId}`, options) as Core.APIPromise<{ data: Upload }>
+      this._client.get(`/video/v1/uploads/${uploadId}`, options) as Core.APIPromise<{ data: Upload }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -40,7 +40,7 @@ export class Uploads extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/video/v1/uploads', UploadsBasePage, { query, ...options });
+    return this._client.getAPIList('/video/v1/uploads', UploadsBasePage, { query, ...options });
   }
 
   /**
@@ -50,7 +50,7 @@ export class Uploads extends APIResource {
    */
   cancel(uploadId: string, options?: Core.RequestOptions): Core.APIPromise<Upload> {
     return (
-      this.put(`/video/v1/uploads/${uploadId}/cancel`, options) as Core.APIPromise<{ data: Upload }>
+      this._client.put(`/video/v1/uploads/${uploadId}/cancel`, options) as Core.APIPromise<{ data: Upload }>
     )._thenUnwrap((obj) => obj.data);
   }
 }

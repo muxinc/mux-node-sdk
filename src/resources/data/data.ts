@@ -12,15 +12,15 @@ import * as VideoViewsAPI from '@mux/mux-node/resources/data/video-views';
 import * as MonitoringAPI from '@mux/mux-node/resources/data/monitoring/monitoring';
 
 export class Data extends APIResource {
-  dimensions: DimensionsAPI.Dimensions = new DimensionsAPI.Dimensions(this.client);
-  monitoring: MonitoringAPI.Monitoring = new MonitoringAPI.Monitoring(this.client);
-  errors: ErrorsAPI.Errors = new ErrorsAPI.Errors(this.client);
-  exports: ExportsAPI.Exports = new ExportsAPI.Exports(this.client);
-  filters: FiltersAPI.Filters = new FiltersAPI.Filters(this.client);
-  incidents: IncidentsAPI.Incidents = new IncidentsAPI.Incidents(this.client);
-  metrics: MetricsAPI.Metrics = new MetricsAPI.Metrics(this.client);
-  realTime: RealTimeAPI.RealTime = new RealTimeAPI.RealTime(this.client);
-  videoViews: VideoViewsAPI.VideoViews = new VideoViewsAPI.VideoViews(this.client);
+  dimensions: DimensionsAPI.Dimensions = new DimensionsAPI.Dimensions(this._client);
+  monitoring: MonitoringAPI.Monitoring = new MonitoringAPI.Monitoring(this._client);
+  errors: ErrorsAPI.Errors = new ErrorsAPI.Errors(this._client);
+  exports: ExportsAPI.Exports = new ExportsAPI.Exports(this._client);
+  filters: FiltersAPI.Filters = new FiltersAPI.Filters(this._client);
+  incidents: IncidentsAPI.Incidents = new IncidentsAPI.Incidents(this._client);
+  metrics: MetricsAPI.Metrics = new MetricsAPI.Metrics(this._client);
+  realTime: RealTimeAPI.RealTime = new RealTimeAPI.RealTime(this._client);
+  videoViews: VideoViewsAPI.VideoViews = new VideoViewsAPI.VideoViews(this._client);
 }
 
 export namespace Data {

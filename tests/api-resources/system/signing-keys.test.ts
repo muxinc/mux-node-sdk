@@ -71,8 +71,8 @@ describe('resource signingKeys', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('del', async () => {
-    const responsePromise = mux.system.signingKeys.del('string');
+  test('delete', async () => {
+    const responsePromise = mux.system.signingKeys.delete('string');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -82,10 +82,10 @@ describe('resource signingKeys', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('del: request options instead of params are passed correctly', async () => {
+  test('delete: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(mux.system.signingKeys.del('string', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Mux.NotFoundError,
-    );
+    await expect(
+      mux.system.signingKeys.delete('string', { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Mux.NotFoundError);
   });
 });

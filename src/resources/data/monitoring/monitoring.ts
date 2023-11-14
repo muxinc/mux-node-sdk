@@ -6,13 +6,13 @@ import * as MonitoringAPI from '@mux/mux-node/resources/data/monitoring/monitori
 import * as MetricsAPI from '@mux/mux-node/resources/data/monitoring/metrics';
 
 export class Monitoring extends APIResource {
-  metrics: MetricsAPI.Metrics = new MetricsAPI.Metrics(this.client);
+  metrics: MetricsAPI.Metrics = new MetricsAPI.Metrics(this._client);
 
   /**
    * Lists available monitoring dimensions.
    */
   listDimensions(options?: Core.RequestOptions): Core.APIPromise<MonitoringListDimensionsResponse> {
-    return this.get('/data/v1/monitoring/dimensions', options);
+    return this._client.get('/data/v1/monitoring/dimensions', options);
   }
 }
 

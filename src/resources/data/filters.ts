@@ -29,7 +29,10 @@ export class Filters extends APIResource {
     if (isRequestOptions(query)) {
       return this.listValues(filterId, {}, query);
     }
-    return this.getAPIList(`/data/v1/filters/${filterId}`, FilterValuesBasePage, { query, ...options });
+    return this._client.getAPIList(`/data/v1/filters/${filterId}`, FilterValuesBasePage, {
+      query,
+      ...options,
+    });
   }
 }
 

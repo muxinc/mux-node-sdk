@@ -14,7 +14,9 @@ export class LiveStreams extends APIResource {
    */
   create(body: LiveStreamCreateParams, options?: Core.RequestOptions): Core.APIPromise<LiveStream> {
     return (
-      this.post('/video/v1/live-streams', { body, ...options }) as Core.APIPromise<{ data: LiveStream }>
+      this._client.post('/video/v1/live-streams', { body, ...options }) as Core.APIPromise<{
+        data: LiveStream;
+      }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -26,7 +28,9 @@ export class LiveStreams extends APIResource {
    */
   retrieve(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<LiveStream> {
     return (
-      this.get(`/video/v1/live-streams/${liveStreamId}`, options) as Core.APIPromise<{ data: LiveStream }>
+      this._client.get(`/video/v1/live-streams/${liveStreamId}`, options) as Core.APIPromise<{
+        data: LiveStream;
+      }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -43,7 +47,7 @@ export class LiveStreams extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<LiveStream> {
     return (
-      this.patch(`/video/v1/live-streams/${liveStreamId}`, { body, ...options }) as Core.APIPromise<{
+      this._client.patch(`/video/v1/live-streams/${liveStreamId}`, { body, ...options }) as Core.APIPromise<{
         data: LiveStream;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -64,7 +68,7 @@ export class LiveStreams extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/video/v1/live-streams', LiveStreamsBasePage, { query, ...options });
+    return this._client.getAPIList('/video/v1/live-streams', LiveStreamsBasePage, { query, ...options });
   }
 
   /**
@@ -72,8 +76,8 @@ export class LiveStreams extends APIResource {
    * currently active and being streamed to, ingest will be terminated and the
    * encoder will be disconnected.
    */
-  del(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.delete(`/video/v1/live-streams/${liveStreamId}`, {
+  delete(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/video/v1/live-streams/${liveStreamId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -91,7 +95,7 @@ export class LiveStreams extends APIResource {
    * to disconnect from their end.
    */
   complete(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.put(`/video/v1/live-streams/${liveStreamId}/complete`, {
+    return this._client.put(`/video/v1/live-streams/${liveStreamId}/complete`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -107,7 +111,7 @@ export class LiveStreams extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.PlaybackID> {
     return (
-      this.post(`/video/v1/live-streams/${liveStreamId}/playback-ids`, {
+      this._client.post(`/video/v1/live-streams/${liveStreamId}/playback-ids`, {
         body,
         ...options,
       }) as Core.APIPromise<{ data: Shared.PlaybackID }>
@@ -125,7 +129,7 @@ export class LiveStreams extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<SimulcastTarget> {
     return (
-      this.post(`/video/v1/live-streams/${liveStreamId}/simulcast-targets`, {
+      this._client.post(`/video/v1/live-streams/${liveStreamId}/simulcast-targets`, {
         body,
         ...options,
       }) as Core.APIPromise<{ data: SimulcastTarget }>
@@ -143,7 +147,7 @@ export class LiveStreams extends APIResource {
     playbackId: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    return this.delete(`/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`, {
+    return this._client.delete(`/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -159,10 +163,10 @@ export class LiveStreams extends APIResource {
     simulcastTargetId: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    return this.delete(`/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`, {
-      ...options,
-      headers: { Accept: '', ...options?.headers },
-    });
+    return this._client.delete(
+      `/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`,
+      { ...options, headers: { Accept: '', ...options?.headers } },
+    );
   }
 
   /**
@@ -175,7 +179,7 @@ export class LiveStreams extends APIResource {
    * to re-establish connection will fail till the live stream is re-enabled.
    */
   disable(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.put(`/video/v1/live-streams/${liveStreamId}/disable`, {
+    return this._client.put(`/video/v1/live-streams/${liveStreamId}/disable`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -185,7 +189,7 @@ export class LiveStreams extends APIResource {
    * Enables a live stream, allowing it to accept an incoming RTMP stream.
    */
   enable(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.put(`/video/v1/live-streams/${liveStreamId}/enable`, {
+    return this._client.put(`/video/v1/live-streams/${liveStreamId}/enable`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -197,9 +201,10 @@ export class LiveStreams extends APIResource {
    */
   resetStreamKey(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<LiveStream> {
     return (
-      this.post(`/video/v1/live-streams/${liveStreamId}/reset-stream-key`, options) as Core.APIPromise<{
-        data: LiveStream;
-      }>
+      this._client.post(
+        `/video/v1/live-streams/${liveStreamId}/reset-stream-key`,
+        options,
+      ) as Core.APIPromise<{ data: LiveStream }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -213,7 +218,7 @@ export class LiveStreams extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.PlaybackID> {
     return (
-      this.get(
+      this._client.get(
         `/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`,
         options,
       ) as Core.APIPromise<{ data: Shared.PlaybackID }>
@@ -232,7 +237,7 @@ export class LiveStreams extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<SimulcastTarget> {
     return (
-      this.get(
+      this._client.get(
         `/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`,
         options,
       ) as Core.APIPromise<{ data: SimulcastTarget }>
@@ -249,7 +254,7 @@ export class LiveStreams extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<LiveStream> {
     return (
-      this.put(`/video/v1/live-streams/${liveStreamId}/embedded-subtitles`, {
+      this._client.put(`/video/v1/live-streams/${liveStreamId}/embedded-subtitles`, {
         body,
         ...options,
       }) as Core.APIPromise<{ data: LiveStream }>
@@ -267,7 +272,7 @@ export class LiveStreams extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<LiveStream> {
     return (
-      this.put(`/video/v1/live-streams/${liveStreamId}/generated-subtitles`, {
+      this._client.put(`/video/v1/live-streams/${liveStreamId}/generated-subtitles`, {
         body,
         ...options,
       }) as Core.APIPromise<{ data: LiveStream }>

@@ -19,7 +19,7 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.get('/data/v1/metrics/comparison', { query, ...options });
+    return this._client.get('/data/v1/metrics/comparison', { query, ...options });
   }
 
   /**
@@ -131,7 +131,7 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getInsights(metricId, {}, query);
     }
-    return this.get(`/data/v1/metrics/${metricId}/insights`, { query, ...options });
+    return this._client.get(`/data/v1/metrics/${metricId}/insights`, { query, ...options });
   }
 
   /**
@@ -242,7 +242,7 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getOverallValues(metricId, {}, query);
     }
-    return this.get(`/data/v1/metrics/${metricId}/overall`, { query, ...options });
+    return this._client.get(`/data/v1/metrics/${metricId}/overall`, { query, ...options });
   }
 
   /**
@@ -360,7 +360,7 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getTimeseries(metricId, {}, query);
     }
-    return this.get(`/data/v1/metrics/${metricId}/timeseries`, { query, ...options });
+    return this._client.get(`/data/v1/metrics/${metricId}/timeseries`, { query, ...options });
   }
 
   /**
@@ -470,7 +470,7 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.listBreakdownValues(metricId, {}, query);
     }
-    return this.getAPIList(`/data/v1/metrics/${metricId}/breakdown`, BreakdownValuesBasePage, {
+    return this._client.getAPIList(`/data/v1/metrics/${metricId}/breakdown`, BreakdownValuesBasePage, {
       query,
       ...options,
     });

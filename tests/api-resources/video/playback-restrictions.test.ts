@@ -64,8 +64,8 @@ describe('resource playbackRestrictions', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('del', async () => {
-    const responsePromise = mux.video.playbackRestrictions.del('string');
+  test('delete', async () => {
+    const responsePromise = mux.video.playbackRestrictions.delete('string');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -75,10 +75,10 @@ describe('resource playbackRestrictions', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('del: request options instead of params are passed correctly', async () => {
+  test('delete: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.video.playbackRestrictions.del('string', { path: '/_stainless_unknown_path' }),
+      mux.video.playbackRestrictions.delete('string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 

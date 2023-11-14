@@ -16,7 +16,7 @@ export class Webhooks extends APIResource {
   unwrap(
     body: string,
     headers: HeadersLike,
-    secret: string | undefined | null = this.client.webhookSecret,
+    secret: string | undefined | null = this._client.webhookSecret,
   ): UnwrapWebhookEvent {
     this.verifySignature(body, headers, secret);
     const traverse = (value: unknown): unknown => {
@@ -115,7 +115,7 @@ export class Webhooks extends APIResource {
   verifySignature(
     body: string,
     headers: HeadersLike,
-    secret: string | undefined | null = this.client.webhookSecret,
+    secret: string | undefined | null = this._client.webhookSecret,
   ): void {
     if (!secret) {
       throw new Error(

@@ -23,7 +23,7 @@ export class Jwt extends APIResource {
     }
 
     const tokenOptions: SignOptions = {
-      keyid: jwt.getSigningKey(this.client, config),
+      keyid: jwt.getSigningKey(this._client, config),
       subject: playbackId,
       audience: claim,
       expiresIn: config.expiration ?? '7d',
@@ -31,7 +31,7 @@ export class Jwt extends APIResource {
       algorithm: 'RS256',
     };
 
-    return jwt.sign(config.params ?? {}, await jwt.getPrivateKey(this.client, config), tokenOptions);
+    return jwt.sign(config.params ?? {}, await jwt.getPrivateKey(this._client, config), tokenOptions);
   }
 
   /**
@@ -39,7 +39,7 @@ export class Jwt extends APIResource {
    */
   async signSpaceId(spaceId: string, config: MuxJWTSignOptions<never> = {}): Promise<string> {
     const tokenOptions: SignOptions = {
-      keyid: jwt.getSigningKey(this.client, config),
+      keyid: jwt.getSigningKey(this._client, config),
       subject: spaceId,
       audience: 'rt',
       expiresIn: config.expiration ?? '7d',
@@ -47,7 +47,7 @@ export class Jwt extends APIResource {
       algorithm: 'RS256',
     };
 
-    return jwt.sign(config.params ?? {}, await jwt.getPrivateKey(this.client, config), tokenOptions);
+    return jwt.sign(config.params ?? {}, await jwt.getPrivateKey(this._client, config), tokenOptions);
   }
 
   /**
@@ -65,7 +65,7 @@ export class Jwt extends APIResource {
     }
 
     const tokenOptions: SignOptions = {
-      keyid: jwt.getSigningKey(this.client, config),
+      keyid: jwt.getSigningKey(this._client, config),
       subject: id,
       audience: claim,
       expiresIn: config.expiration ?? '7d',
@@ -73,6 +73,6 @@ export class Jwt extends APIResource {
       algorithm: 'RS256',
     };
 
-    return jwt.sign(config.params ?? {}, await jwt.getPrivateKey(this.client, config), tokenOptions);
+    return jwt.sign(config.params ?? {}, await jwt.getPrivateKey(this._client, config), tokenOptions);
   }
 }

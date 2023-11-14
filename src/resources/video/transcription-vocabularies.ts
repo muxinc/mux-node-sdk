@@ -15,7 +15,7 @@ export class TranscriptionVocabularies extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<TranscriptionVocabulary> {
     return (
-      this.post('/video/v1/transcription-vocabularies', { body, ...options }) as Core.APIPromise<{
+      this._client.post('/video/v1/transcription-vocabularies', { body, ...options }) as Core.APIPromise<{
         data: TranscriptionVocabulary;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -32,7 +32,7 @@ export class TranscriptionVocabularies extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<TranscriptionVocabulary> {
     return (
-      this.get(
+      this._client.get(
         `/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`,
         options,
       ) as Core.APIPromise<{ data: TranscriptionVocabulary }>
@@ -50,7 +50,7 @@ export class TranscriptionVocabularies extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<TranscriptionVocabulary> {
     return (
-      this.put(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
+      this._client.put(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
         body,
         ...options,
       }) as Core.APIPromise<{ data: TranscriptionVocabulary }>
@@ -74,10 +74,11 @@ export class TranscriptionVocabularies extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/video/v1/transcription-vocabularies', TranscriptionVocabulariesBasePage, {
-      query,
-      ...options,
-    });
+    return this._client.getAPIList(
+      '/video/v1/transcription-vocabularies',
+      TranscriptionVocabulariesBasePage,
+      { query, ...options },
+    );
   }
 
   /**
@@ -87,8 +88,8 @@ export class TranscriptionVocabularies extends APIResource {
    * in the deleted Transcription Vocabulary will remain attached to those streams
    * while they are active.
    */
-  del(transcriptionVocabularyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.delete(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
+  delete(transcriptionVocabularyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });

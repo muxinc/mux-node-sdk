@@ -10,7 +10,7 @@ export class Metrics extends APIResource {
    * Lists available monitoring metrics.
    */
   list(options?: Core.RequestOptions): Core.APIPromise<MetricListResponse> {
-    return this.get('/data/v1/monitoring/metrics', options);
+    return this._client.get('/data/v1/monitoring/metrics', options);
   }
 
   /**
@@ -52,7 +52,10 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getBreakdown(monitoringMetricId, {}, query);
     }
-    return this.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/breakdown`, { query, ...options });
+    return this._client.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/breakdown`, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -94,7 +97,7 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getBreakdownTimeseries(monitoringMetricId, {}, query);
     }
-    return this.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/breakdown-timeseries`, {
+    return this._client.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/breakdown-timeseries`, {
       query,
       ...options,
     });
@@ -120,10 +123,10 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getHistogramTimeseries(monitoringHistogramMetricId, {}, query);
     }
-    return this.get(`/data/v1/monitoring/metrics/${monitoringHistogramMetricId}/histogram-timeseries`, {
-      query,
-      ...options,
-    });
+    return this._client.get(
+      `/data/v1/monitoring/metrics/${monitoringHistogramMetricId}/histogram-timeseries`,
+      { query, ...options },
+    );
   }
 
   /**
@@ -165,7 +168,10 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getTimeseries(monitoringMetricId, {}, query);
     }
-    return this.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/timeseries`, { query, ...options });
+    return this._client.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/timeseries`, {
+      query,
+      ...options,
+    });
   }
 }
 

@@ -15,7 +15,7 @@ export class PlaybackRestrictions extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<PlaybackRestriction> {
     return (
-      this.post('/video/v1/playback-restrictions', { body, ...options }) as Core.APIPromise<{
+      this._client.post('/video/v1/playback-restrictions', { body, ...options }) as Core.APIPromise<{
         data: PlaybackRestriction;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -29,9 +29,10 @@ export class PlaybackRestrictions extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<PlaybackRestriction> {
     return (
-      this.get(`/video/v1/playback-restrictions/${playbackRestrictionId}`, options) as Core.APIPromise<{
-        data: PlaybackRestriction;
-      }>
+      this._client.get(
+        `/video/v1/playback-restrictions/${playbackRestrictionId}`,
+        options,
+      ) as Core.APIPromise<{ data: PlaybackRestriction }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -50,7 +51,7 @@ export class PlaybackRestrictions extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/video/v1/playback-restrictions', PlaybackRestrictionsBasePage, {
+    return this._client.getAPIList('/video/v1/playback-restrictions', PlaybackRestrictionsBasePage, {
       query,
       ...options,
     });
@@ -59,8 +60,8 @@ export class PlaybackRestrictions extends APIResource {
   /**
    * Deletes a single Playback Restriction.
    */
-  del(playbackRestrictionId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.delete(`/video/v1/playback-restrictions/${playbackRestrictionId}`, {
+  delete(playbackRestrictionId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/video/v1/playback-restrictions/${playbackRestrictionId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -77,7 +78,7 @@ export class PlaybackRestrictions extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<PlaybackRestriction> {
     return (
-      this.put(`/video/v1/playback-restrictions/${playbackRestrictionId}/referrer`, {
+      this._client.put(`/video/v1/playback-restrictions/${playbackRestrictionId}/referrer`, {
         body,
         ...options,
       }) as Core.APIPromise<{ data: PlaybackRestriction }>

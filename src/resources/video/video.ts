@@ -11,16 +11,16 @@ import * as TranscriptionVocabulariesAPI from '@mux/mux-node/resources/video/tra
 import * as UploadsAPI from '@mux/mux-node/resources/video/uploads';
 
 export class Video extends APIResource {
-  assets: AssetsAPI.Assets = new AssetsAPI.Assets(this.client);
-  deliveryUsage: DeliveryUsageAPI.DeliveryUsage = new DeliveryUsageAPI.DeliveryUsage(this.client);
-  liveStreams: LiveStreamsAPI.LiveStreams = new LiveStreamsAPI.LiveStreams(this.client);
-  playbackIds: PlaybackIDsAPI.PlaybackIDs = new PlaybackIDsAPI.PlaybackIDs(this.client);
+  assets: AssetsAPI.Assets = new AssetsAPI.Assets(this._client);
+  deliveryUsage: DeliveryUsageAPI.DeliveryUsage = new DeliveryUsageAPI.DeliveryUsage(this._client);
+  liveStreams: LiveStreamsAPI.LiveStreams = new LiveStreamsAPI.LiveStreams(this._client);
+  playbackIds: PlaybackIDsAPI.PlaybackIDs = new PlaybackIDsAPI.PlaybackIDs(this._client);
   playbackRestrictions: PlaybackRestrictionsAPI.PlaybackRestrictions =
-    new PlaybackRestrictionsAPI.PlaybackRestrictions(this.client);
-  spaces: SpacesAPI.Spaces = new SpacesAPI.Spaces(this.client);
+    new PlaybackRestrictionsAPI.PlaybackRestrictions(this._client);
+  spaces: SpacesAPI.Spaces = new SpacesAPI.Spaces(this._client);
   transcriptionVocabularies: TranscriptionVocabulariesAPI.TranscriptionVocabularies =
-    new TranscriptionVocabulariesAPI.TranscriptionVocabularies(this.client);
-  uploads: UploadsAPI.Uploads = new UploadsAPI.Uploads(this.client);
+    new TranscriptionVocabulariesAPI.TranscriptionVocabularies(this._client);
+  uploads: UploadsAPI.Uploads = new UploadsAPI.Uploads(this._client);
 }
 
 export namespace Video {

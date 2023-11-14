@@ -13,7 +13,7 @@ export class Dimensions extends APIResource {
    * Note: This API replaces the list-filters API call.
    */
   list(options?: Core.RequestOptions): Core.APIPromise<DimensionsResponse> {
-    return this.get('/data/v1/dimensions', options);
+    return this._client.get('/data/v1/dimensions', options);
   }
 
   /**
@@ -38,7 +38,7 @@ export class Dimensions extends APIResource {
     if (isRequestOptions(query)) {
       return this.listValues(dimensionId, {}, query);
     }
-    return this.getAPIList(`/data/v1/dimensions/${dimensionId}`, DimensionValuesBasePage, {
+    return this._client.getAPIList(`/data/v1/dimensions/${dimensionId}`, DimensionValuesBasePage, {
       query,
       ...options,
     });

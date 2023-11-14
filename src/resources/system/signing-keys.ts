@@ -14,7 +14,7 @@ export class SigningKeys extends APIResource {
    */
   create(options?: Core.RequestOptions): Core.APIPromise<SigningKey> {
     return (
-      this.post('/system/v1/signing-keys', options) as Core.APIPromise<{ data: SigningKey }>
+      this._client.post('/system/v1/signing-keys', options) as Core.APIPromise<{ data: SigningKey }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -26,7 +26,9 @@ export class SigningKeys extends APIResource {
    */
   retrieve(signingKeyId: string, options?: Core.RequestOptions): Core.APIPromise<SigningKey> {
     return (
-      this.get(`/system/v1/signing-keys/${signingKeyId}`, options) as Core.APIPromise<{ data: SigningKey }>
+      this._client.get(`/system/v1/signing-keys/${signingKeyId}`, options) as Core.APIPromise<{
+        data: SigningKey;
+      }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -45,15 +47,15 @@ export class SigningKeys extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/system/v1/signing-keys', SigningKeysBasePage, { query, ...options });
+    return this._client.getAPIList('/system/v1/signing-keys', SigningKeysBasePage, { query, ...options });
   }
 
   /**
    * Deletes an existing signing key. Use with caution, as this will invalidate any
    * existing signatures and no JWTs can be signed using the key again.
    */
-  del(signingKeyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.delete(`/system/v1/signing-keys/${signingKeyId}`, {
+  delete(signingKeyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/system/v1/signing-keys/${signingKeyId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });

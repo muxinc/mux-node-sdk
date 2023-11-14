@@ -17,7 +17,7 @@ export class Spaces extends APIResource {
    */
   create(body: SpaceCreateParams, options?: Core.RequestOptions): Core.APIPromise<Space> {
     return (
-      this.post('/video/v1/spaces', { body, ...options }) as Core.APIPromise<{ data: Space }>
+      this._client.post('/video/v1/spaces', { body, ...options }) as Core.APIPromise<{ data: Space }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -32,9 +32,9 @@ export class Spaces extends APIResource {
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
   retrieve(spaceId: string, options?: Core.RequestOptions): Core.APIPromise<Space> {
-    return (this.get(`/video/v1/spaces/${spaceId}`, options) as Core.APIPromise<{ data: Space }>)._thenUnwrap(
-      (obj) => obj.data,
-    );
+    return (
+      this._client.get(`/video/v1/spaces/${spaceId}`, options) as Core.APIPromise<{ data: Space }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -53,7 +53,7 @@ export class Spaces extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/video/v1/spaces', SpacesBasePage, { query, ...options });
+    return this._client.getAPIList('/video/v1/spaces', SpacesBasePage, { query, ...options });
   }
 
   /**
@@ -63,8 +63,8 @@ export class Spaces extends APIResource {
    * Existing access will end on December 31, 2023.
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
-  del(spaceId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.delete(`/video/v1/spaces/${spaceId}`, {
+  delete(spaceId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/video/v1/spaces/${spaceId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -86,7 +86,7 @@ export class Spaces extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Broadcast> {
     return (
-      this.post(`/video/v1/spaces/${spaceId}/broadcasts`, { body, ...options }) as Core.APIPromise<{
+      this._client.post(`/video/v1/spaces/${spaceId}/broadcasts`, { body, ...options }) as Core.APIPromise<{
         data: Broadcast;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -105,7 +105,7 @@ export class Spaces extends APIResource {
     broadcastId: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    return this.delete(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`, {
+    return this._client.delete(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -124,7 +124,7 @@ export class Spaces extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Broadcast> {
     return (
-      this.get(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`, options) as Core.APIPromise<{
+      this._client.get(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`, options) as Core.APIPromise<{
         data: Broadcast;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -139,7 +139,7 @@ export class Spaces extends APIResource {
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
   startBroadcast(spaceId: string, broadcastId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/start`, {
+    return this._client.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/start`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -155,7 +155,7 @@ export class Spaces extends APIResource {
    * We [recommend migrating your application to our partner, LiveKit](https://livekit.io/mux-livekit).
    */
   stopBroadcast(spaceId: string, broadcastId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/stop`, {
+    return this._client.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/stop`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });

@@ -11,7 +11,7 @@ export class VideoViews extends APIResource {
    * Returns the details of a video view.
    */
   retrieve(videoViewId: string, options?: Core.RequestOptions): Core.APIPromise<VideoViewResponse> {
-    return this.get(`/data/v1/video-views/${videoViewId}`, options);
+    return this._client.get(`/data/v1/video-views/${videoViewId}`, options);
   }
 
   /**
@@ -30,7 +30,7 @@ export class VideoViews extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/data/v1/video-views', AbridgedVideoViewsBasePage, { query, ...options });
+    return this._client.getAPIList('/data/v1/video-views', AbridgedVideoViewsBasePage, { query, ...options });
   }
 }
 

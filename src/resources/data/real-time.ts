@@ -11,7 +11,7 @@ export class RealTime extends APIResource {
    * `List Monitoring Dimensions` API.
    */
   listDimensions(options?: Core.RequestOptions): Core.APIPromise<RealTimeDimensionsResponse> {
-    return this.get('/data/v1/realtime/dimensions', options);
+    return this._client.get('/data/v1/realtime/dimensions', options);
   }
 
   /**
@@ -19,7 +19,7 @@ export class RealTime extends APIResource {
    * `List Monitoring Metrics` API.
    */
   listMetrics(options?: Core.RequestOptions): Core.APIPromise<RealTimeMetricsResponse> {
-    return this.get('/data/v1/realtime/metrics', options);
+    return this._client.get('/data/v1/realtime/metrics', options);
   }
 
   /**
@@ -59,7 +59,7 @@ export class RealTime extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieveBreakdown(realtimeMetricId, {}, query);
     }
-    return this.get(`/data/v1/realtime/metrics/${realtimeMetricId}/breakdown`, { query, ...options });
+    return this._client.get(`/data/v1/realtime/metrics/${realtimeMetricId}/breakdown`, { query, ...options });
   }
 
   /**
@@ -83,7 +83,7 @@ export class RealTime extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieveHistogramTimeseries(realtimeHistogramMetricId, {}, query);
     }
-    return this.get(`/data/v1/realtime/metrics/${realtimeHistogramMetricId}/histogram-timeseries`, {
+    return this._client.get(`/data/v1/realtime/metrics/${realtimeHistogramMetricId}/histogram-timeseries`, {
       query,
       ...options,
     });
@@ -126,7 +126,10 @@ export class RealTime extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieveTimeseries(realtimeMetricId, {}, query);
     }
-    return this.get(`/data/v1/realtime/metrics/${realtimeMetricId}/timeseries`, { query, ...options });
+    return this._client.get(`/data/v1/realtime/metrics/${realtimeMetricId}/timeseries`, {
+      query,
+      ...options,
+    });
   }
 }
 

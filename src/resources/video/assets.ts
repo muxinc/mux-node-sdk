@@ -13,7 +13,7 @@ export class Assets extends APIResource {
    */
   create(body: AssetCreateParams, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
-      this.post('/video/v1/assets', { body, ...options }) as Core.APIPromise<{ data: Asset }>
+      this._client.post('/video/v1/assets', { body, ...options }) as Core.APIPromise<{ data: Asset }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -24,9 +24,9 @@ export class Assets extends APIResource {
    * when creating an asset.
    */
   retrieve(assetId: string, options?: Core.RequestOptions): Core.APIPromise<Asset> {
-    return (this.get(`/video/v1/assets/${assetId}`, options) as Core.APIPromise<{ data: Asset }>)._thenUnwrap(
-      (obj) => obj.data,
-    );
+    return (
+      this._client.get(`/video/v1/assets/${assetId}`, options) as Core.APIPromise<{ data: Asset }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -35,7 +35,9 @@ export class Assets extends APIResource {
    */
   update(assetId: string, body: AssetUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
-      this.patch(`/video/v1/assets/${assetId}`, { body, ...options }) as Core.APIPromise<{ data: Asset }>
+      this._client.patch(`/video/v1/assets/${assetId}`, { body, ...options }) as Core.APIPromise<{
+        data: Asset;
+      }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -51,14 +53,14 @@ export class Assets extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/video/v1/assets', AssetsBasePage, { query, ...options });
+    return this._client.getAPIList('/video/v1/assets', AssetsBasePage, { query, ...options });
   }
 
   /**
    * Deletes a video asset and all its data.
    */
-  del(assetId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.delete(`/video/v1/assets/${assetId}`, {
+  delete(assetId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/video/v1/assets/${assetId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -73,7 +75,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.PlaybackID> {
     return (
-      this.post(`/video/v1/assets/${assetId}/playback-ids`, { body, ...options }) as Core.APIPromise<{
+      this._client.post(`/video/v1/assets/${assetId}/playback-ids`, { body, ...options }) as Core.APIPromise<{
         data: Shared.PlaybackID;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -88,7 +90,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Track> {
     return (
-      this.post(`/video/v1/assets/${assetId}/tracks`, { body, ...options }) as Core.APIPromise<{
+      this._client.post(`/video/v1/assets/${assetId}/tracks`, { body, ...options }) as Core.APIPromise<{
         data: Track;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -105,7 +107,7 @@ export class Assets extends APIResource {
     playbackId: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    return this.delete(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
+    return this._client.delete(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -116,7 +118,7 @@ export class Assets extends APIResource {
    * removed.
    */
   deleteTrack(assetId: string, trackId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.delete(`/video/v1/assets/${assetId}/tracks/${trackId}`, {
+    return this._client.delete(`/video/v1/assets/${assetId}/tracks/${trackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -131,7 +133,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<AssetRetrieveInputInfoResponse> {
     return (
-      this.get(`/video/v1/assets/${assetId}/input-info`, options) as Core.APIPromise<{
+      this._client.get(`/video/v1/assets/${assetId}/input-info`, options) as Core.APIPromise<{
         data: AssetRetrieveInputInfoResponse;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -146,7 +148,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.PlaybackID> {
     return (
-      this.get(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, options) as Core.APIPromise<{
+      this._client.get(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, options) as Core.APIPromise<{
         data: Shared.PlaybackID;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -165,7 +167,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Asset> {
     return (
-      this.put(`/video/v1/assets/${assetId}/master-access`, { body, ...options }) as Core.APIPromise<{
+      this._client.put(`/video/v1/assets/${assetId}/master-access`, { body, ...options }) as Core.APIPromise<{
         data: Asset;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -184,7 +186,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Asset> {
     return (
-      this.put(`/video/v1/assets/${assetId}/mp4-support`, { body, ...options }) as Core.APIPromise<{
+      this._client.put(`/video/v1/assets/${assetId}/mp4-support`, { body, ...options }) as Core.APIPromise<{
         data: Asset;
       }>
     )._thenUnwrap((obj) => obj.data);
