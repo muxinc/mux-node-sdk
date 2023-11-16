@@ -10,8 +10,8 @@ const mux = new Mux({
 });
 
 describe('resource assets', () => {
-  test('create', async () => {
-    const responsePromise = mux.video.assets.create({});
+  test('create: only required params', async () => {
+    const responsePromise = mux.video.assets.create({ input: [{}] });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -19,6 +19,47 @@ describe('resource assets', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('create: required and optional params', async () => {
+    const response = await mux.video.assets.create({
+      input: [
+        {
+          url: 'https://muxed.s3.amazonaws.com/leds.mp4',
+          overlay_settings: {
+            vertical_align: 'top',
+            vertical_margin: 'string',
+            horizontal_align: 'left',
+            horizontal_margin: 'string',
+            width: 'string',
+            height: 'string',
+            opacity: 'string',
+          },
+          generated_subtitles: [
+            { name: 'string', passthrough: 'string', language_code: 'en' },
+            { name: 'string', passthrough: 'string', language_code: 'en' },
+            { name: 'string', passthrough: 'string', language_code: 'en' },
+          ],
+          start_time: 0,
+          end_time: 0,
+          type: 'video',
+          text_type: 'subtitles',
+          language_code: 'string',
+          name: 'string',
+          closed_captions: true,
+          passthrough: 'string',
+        },
+      ],
+      encoding_tier: 'smart',
+      master_access: 'none',
+      max_resolution_tier: '1080p',
+      mp4_support: 'none',
+      normalize_audio: true,
+      passthrough: 'string',
+      per_title_encode: true,
+      playback_policy: ['public'],
+      test: true,
+    });
   });
 
   test('retrieve', async () => {

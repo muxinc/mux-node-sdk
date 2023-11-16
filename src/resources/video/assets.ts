@@ -1156,18 +1156,18 @@ export type AssetRetrieveInputInfoResponse = Array<InputInfo>;
 
 export interface AssetCreateParams {
   /**
+   * An array of objects that each describe an input file to be used to create the
+   * asset. As a shortcut, input can also be a string URL for a file when only one
+   * input file is used. See `input[].url` for requirements.
+   */
+  input: Array<AssetCreateParams.Input>;
+
+  /**
    * The encoding tier informs the cost, quality, and available platform features for
    * the asset. By default the `smart` encoding tier is used.
    * [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
    */
   encoding_tier?: 'smart' | 'baseline';
-
-  /**
-   * An array of objects that each describe an input file to be used to create the
-   * asset. As a shortcut, input can also be a string URL for a file when only one
-   * input file is used. See `input[].url` for requirements.
-   */
-  input?: Array<AssetCreateParams.Input>;
 
   /**
    * Specify what level (if any) of support for master access. Master access can be
