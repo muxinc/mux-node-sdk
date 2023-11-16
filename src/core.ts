@@ -26,8 +26,6 @@ export {
   type Uploadable,
 } from './uploads';
 
-const MAX_RETRIES = 2;
-
 export type Fetch = (url: RequestInfo, init?: RequestInit) => Promise<Response>;
 
 type PromiseOrValue<T> = T | Promise<T>;
@@ -40,6 +38,15 @@ type APIResponseProps = {
 
 async function defaultParseResponse<T>(props: APIResponseProps): Promise<T> {
   const { response } = props;
+  // fetch refuses to read the body when the status code is 204.
+  if (response.status === 204) {
+    return null as T;
+  }
+
+  if (props.options.__binaryResponse) {
+    return response as unknown as T;
+  }
+
   const contentType = response.headers.get('content-type');
   if (contentType?.includes('application/json')) {
     const json = await response.json();
@@ -49,10 +56,11 @@ async function defaultParseResponse<T>(props: APIResponseProps): Promise<T> {
     return json as T;
   }
 
-  // TODO handle blob, arraybuffer, other content types, etc.
   const text = await response.text();
   debug('response', response.status, response.url, response.headers, text);
-  return text as any as T;
+
+  // TODO handle blob, arraybuffer, other content types, etc.
+  return text as unknown as T;
 }
 
 /**
@@ -148,7 +156,7 @@ export abstract class APIClient {
 
   constructor({
     baseURL,
-    maxRetries,
+    maxRetries = 2,
     timeout = 60000, // 1 minute
     httpAgent,
     fetch: overridenFetch,
@@ -160,7 +168,7 @@ export abstract class APIClient {
     fetch: Fetch | undefined;
   }) {
     this.baseURL = baseURL;
-    this.maxRetries = validatePositiveInteger('maxRetries', maxRetries ?? MAX_RETRIES);
+    this.maxRetries = validatePositiveInteger('maxRetries', maxRetries);
     this.timeout = validatePositiveInteger('timeout', timeout);
     this.httpAgent = httpAgent;
 
@@ -499,8 +507,6 @@ export abstract class APIClient {
     retriesRemaining: number,
     responseHeaders?: Headers | undefined,
   ): Promise<APIResponseProps> {
-    retriesRemaining -= 1;
-
     // About the Retry-After header: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Retry-After
     let timeoutMillis: number | undefined;
     const retryAfterHeader = responseHeaders?.['retry-after'];
@@ -526,48 +532,27 @@ export abstract class APIClient {
     }
     await sleep(timeoutMillis);
 
-    return this.makeRequest(options, retriesRemaining);
+    return this.makeRequest(options, retriesRemaining - 1);
   }
 
   private calculateDefaultRetryTimeoutMillis(retriesRemaining: number, maxRetries: number): number {
     const initialRetryDelay = 0.5;
-    const maxRetryDelay = 2;
+    const maxRetryDelay = 8.0;
 
     const numRetries = maxRetries - retriesRemaining;
 
     // Apply exponential backoff, but not more than the max.
-    const sleepSeconds = Math.min(initialRetryDelay * Math.pow(numRetries - 1, 2), maxRetryDelay);
+    const sleepSeconds = Math.min(initialRetryDelay * Math.pow(2, numRetries), maxRetryDelay);
 
-    // Apply some jitter, plus-or-minus half a second.
-    const jitter = Math.random() - 0.5;
+    // Apply some jitter, take up to at most 25 percent of the retry time.
+    const jitter = 1 - Math.random() * 0.25;
 
-    return (sleepSeconds + jitter) * 1000;
+    return sleepSeconds * jitter * 1000;
   }
 
   private getUserAgent(): string {
     return `${this.constructor.name}/JS ${VERSION}`;
   }
-}
-
-export class APIResource {
-  protected client: APIClient;
-  constructor(client: APIClient) {
-    this.client = client;
-
-    this.get = client.get.bind(client);
-    this.post = client.post.bind(client);
-    this.patch = client.patch.bind(client);
-    this.put = client.put.bind(client);
-    this.delete = client.delete.bind(client);
-    this.getAPIList = client.getAPIList.bind(client);
-  }
-
-  protected get: APIClient['get'];
-  protected post: APIClient['post'];
-  protected patch: APIClient['patch'];
-  protected put: APIClient['put'];
-  protected delete: APIClient['delete'];
-  protected getAPIList: APIClient['getAPIList'];
 }
 
 export type PageInfo = { url: URL } | { params: Record<string, unknown> | null };
@@ -719,6 +704,8 @@ export type RequestOptions<Req extends {} = Record<string, unknown> | Readable> 
   httpAgent?: Agent;
   signal?: AbortSignal | undefined | null;
   idempotencyKey?: string;
+
+  __binaryResponse?: boolean | undefined;
 };
 
 // This is required so that we can determine if a given object matches the RequestOptions
@@ -737,6 +724,8 @@ const requestOptionsKeys: KeysEnum<RequestOptions> = {
   httpAgent: true,
   signal: true,
   idempotencyKey: true,
+
+  __binaryResponse: true,
 };
 
 export const isRequestOptions = (obj: unknown): obj is RequestOptions<Record<string, unknown> | Readable> => {
@@ -1052,16 +1041,33 @@ export const isHeadersProtocol = (headers: any): headers is HeadersProtocol => {
   return typeof headers?.get === 'function';
 };
 
-export const getHeader = (headers: HeadersLike, key: string): string | null | undefined => {
-  const lowerKey = key.toLowerCase();
-  if (isHeadersProtocol(headers)) return headers.get(key) || headers.get(lowerKey);
-  const value = headers[key] || headers[lowerKey];
-  if (Array.isArray(value)) {
-    if (value.length <= 1) return value[0];
-    console.warn(`Received ${value.length} entries for the ${key} header, using the first entry.`);
-    return value[0];
+export const getRequiredHeader = (headers: HeadersLike, header: string): string => {
+  const lowerCasedHeader = header.toLowerCase();
+  if (isHeadersProtocol(headers)) {
+    // to deal with the case where the header looks like Stainless-Event-Id
+    const intercapsHeader =
+      header[0]?.toUpperCase() +
+      header.substring(1).replace(/([^\w])(\w)/g, (_m, g1, g2) => g1 + g2.toUpperCase());
+    for (const key of [header, lowerCasedHeader, header.toUpperCase(), intercapsHeader]) {
+      const value = headers.get(key);
+      if (value) {
+        return value;
+      }
+    }
   }
-  return value;
+
+  for (const [key, value] of Object.entries(headers)) {
+    if (key.toLowerCase() === lowerCasedHeader) {
+      if (Array.isArray(value)) {
+        if (value.length <= 1) return value[0];
+        console.warn(`Received ${value.length} entries for the ${header} header, using the first entry.`);
+        return value[0];
+      }
+      return value;
+    }
+  }
+
+  throw new Error(`Could not find ${header} header`);
 };
 
 /**

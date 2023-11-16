@@ -9,7 +9,7 @@ export class Exports extends APIResource {
    * Lists the available video view exports along with URLs to retrieve them.
    */
   listVideoViews(options?: Core.RequestOptions): Core.APIPromise<VideoViewExportsResponse> {
-    return this.get('/data/v1/exports/views', options);
+    return this._client.get('/data/v1/exports/views', options);
   }
 }
 
@@ -18,7 +18,7 @@ export interface ExportsResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export interface VideoViewExportsResponse {
@@ -26,28 +26,28 @@ export interface VideoViewExportsResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace VideoViewExportsResponse {
   export interface Data {
-    export_date?: string;
+    export_date: string;
 
-    files?: Array<Data.File>;
+    files: Array<Data.File>;
   }
 
   export namespace Data {
     export interface File {
-      path?: string;
+      path: string;
 
-      type?: string;
+      type: string;
 
-      version?: number;
+      version: number;
     }
   }
 }
 
 export namespace Exports {
-  export type ExportsResponse = ExportsAPI.ExportsResponse;
-  export type VideoViewExportsResponse = ExportsAPI.VideoViewExportsResponse;
+  export import ExportsResponse = ExportsAPI.ExportsResponse;
+  export import VideoViewExportsResponse = ExportsAPI.VideoViewExportsResponse;
 }

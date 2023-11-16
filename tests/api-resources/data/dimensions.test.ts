@@ -4,9 +4,9 @@ import Mux from '@mux/mux-node';
 import { Response } from 'node-fetch';
 
 const mux = new Mux({
-  tokenId: 'something1234',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  tokenId: 'my token id',
   tokenSecret: 'my secret',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource dimensions', () => {

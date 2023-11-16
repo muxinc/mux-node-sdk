@@ -1,6 +1,6 @@
 {
   "name": "@mux/mux-node",
-  "version": "7.3.2",
+  "version": "8.0.0-canary.1",
   "description": "Client library for the Mux API",
   "author": "Mux <devex@mux.com>",
   "types": "dist/index.d.ts",
@@ -83,8 +83,7 @@
     "format": "prettier --write --cache  --cache-strategy metadata . !dist",
     "tsn": "ts-node -r tsconfig-paths/register",
     "lint": "eslint --ext ts,js .",
-    "fix": "eslint --fix --ext ts,js .",
-    "postpublish": "bash scripts/git-publish-deno.sh"
+    "fix": "eslint --fix --ext ts,js ."
   },
   "dependencies": {
     "@types/node": "^18.11.18",
@@ -97,7 +96,8 @@
     "formdata-node": "^4.3.2",
     "jose": "^4.14.4",
     "node-fetch": "^2.6.7",
-    "qs": "^6.10.3"
+    "qs": "^6.10.3",
+    "web-streams-polyfill": "^3.2.1"
   },
   "devDependencies": {
     "@mux/mux-node": "link:.",

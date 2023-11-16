@@ -14,6 +14,9 @@ import { type RequestOptions } from '../core';
 import { MultipartBody } from './MultipartBody';
 import { type Shims } from './registry';
 
+// @ts-ignore (this package does not have proper export maps for this export)
+import { ReadableStream } from 'web-streams-polyfill/dist/ponyfill.es2018.js';
+
 type FileFromPathOptions = Omit<FilePropertyBag, 'lastModified'>;
 
 let fileFromPathWarned = false;
@@ -71,6 +74,7 @@ export function getRuntime(): Shims {
     FormData: fd.FormData,
     Blob: fd.Blob,
     File: fd.File,
+    ReadableStream,
     getMultipartRequestOptions,
     getDefaultAgent: (url: string): Agent => (url.startsWith('https') ? defaultHttpsAgent : defaultHttpAgent),
     fileFromPath,

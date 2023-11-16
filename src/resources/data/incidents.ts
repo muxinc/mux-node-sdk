@@ -11,7 +11,7 @@ export class Incidents extends APIResource {
    * Returns the details of an incident.
    */
   retrieve(incidentId: string, options?: Core.RequestOptions): Core.APIPromise<IncidentResponse> {
-    return this.get(`/data/v1/incidents/${incidentId}`, options);
+    return this._client.get(`/data/v1/incidents/${incidentId}`, options);
   }
 
   /**
@@ -29,7 +29,7 @@ export class Incidents extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/data/v1/incidents', IncidentsBasePage, { query, ...options });
+    return this._client.getAPIList('/data/v1/incidents', IncidentsBasePage, { query, ...options });
   }
 
   /**
@@ -52,7 +52,7 @@ export class Incidents extends APIResource {
     if (isRequestOptions(query)) {
       return this.listRelated(incidentId, {}, query);
     }
-    return this.getAPIList(`/data/v1/incidents/${incidentId}/related`, IncidentsBasePage, {
+    return this._client.getAPIList(`/data/v1/incidents/${incidentId}/related`, IncidentsBasePage, {
       query,
       ...options,
     });
@@ -62,86 +62,86 @@ export class Incidents extends APIResource {
 export class IncidentsBasePage extends BasePage<Incident> {}
 
 export interface Incident {
-  id?: string;
+  id: string;
 
-  affected_views?: number;
+  affected_views: number;
 
-  affected_views_per_hour?: number;
+  affected_views_per_hour: number;
 
-  affected_views_per_hour_on_open?: number;
+  affected_views_per_hour_on_open: number;
 
-  breakdowns?: Array<Incident.Breakdown>;
+  breakdowns: Array<Incident.Breakdown>;
 
-  description?: string;
+  description: string;
 
-  error_description?: string;
+  error_description: string;
 
-  impact?: string;
+  impact: string;
 
-  incident_key?: string;
+  incident_key: string;
 
-  measured_value?: number;
+  measured_value: number | null;
 
-  measured_value_on_close?: number;
+  measured_value_on_close: number | null;
 
-  measurement?: string;
+  measurement: string;
 
-  notification_rules?: Array<Incident.NotificationRule>;
+  notification_rules: Array<Incident.NotificationRule>;
 
-  notifications?: Array<Incident.Notification>;
+  notifications: Array<Incident.Notification>;
 
-  resolved_at?: string;
+  resolved_at: string | null;
 
-  sample_size?: number;
+  sample_size: number;
 
-  sample_size_unit?: string;
+  sample_size_unit: string;
 
-  severity?: string;
+  severity: string;
 
-  started_at?: string;
+  started_at: string;
 
-  status?: string;
+  status: string;
 
-  threshold?: number;
+  threshold: number;
 }
 
 export namespace Incident {
   export interface Breakdown {
-    id?: string;
+    id: string;
 
-    name?: string;
+    name: string;
 
-    value?: string;
+    value: string;
   }
 
   export interface NotificationRule {
-    id?: string;
+    id: string;
 
-    action?: string;
+    action: string;
 
-    property_id?: string;
+    property_id: string;
 
-    rules?: Array<NotificationRule.Rule>;
+    rules: Array<NotificationRule.Rule>;
 
-    status?: string;
+    status: string;
   }
 
   export namespace NotificationRule {
     export interface Rule {
-      id?: string;
+      id: string;
 
-      name?: string;
+      name: string;
 
-      value?: string;
+      value: string;
     }
   }
 
   export interface Notification {
-    id?: number;
+    id: number;
 
-    attempted_at?: string;
+    attempted_at: string;
 
-    queued_at?: string;
+    queued_at: string;
   }
 }
 
@@ -149,6 +149,8 @@ export interface IncidentResponse {
   data: Incident;
 
   timeframe: Array<number>;
+
+  total_row_count: number | null;
 }
 
 export interface IncidentListParams extends BasePageParams {
@@ -186,9 +188,9 @@ export interface IncidentListRelatedParams extends BasePageParams {
 }
 
 export namespace Incidents {
-  export type Incident = IncidentsAPI.Incident;
-  export type IncidentResponse = IncidentsAPI.IncidentResponse;
+  export import Incident = IncidentsAPI.Incident;
+  export import IncidentResponse = IncidentsAPI.IncidentResponse;
   export import IncidentsBasePage = IncidentsAPI.IncidentsBasePage;
-  export type IncidentListParams = IncidentsAPI.IncidentListParams;
-  export type IncidentListRelatedParams = IncidentsAPI.IncidentListRelatedParams;
+  export import IncidentListParams = IncidentsAPI.IncidentListParams;
+  export import IncidentListRelatedParams = IncidentsAPI.IncidentListRelatedParams;
 }

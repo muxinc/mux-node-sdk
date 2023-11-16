@@ -13,7 +13,7 @@ export class Assets extends APIResource {
    */
   create(body: AssetCreateParams, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
-      this.post('/video/v1/assets', { body, ...options }) as Core.APIPromise<{ data: Asset }>
+      this._client.post('/video/v1/assets', { body, ...options }) as Core.APIPromise<{ data: Asset }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -24,9 +24,9 @@ export class Assets extends APIResource {
    * when creating an asset.
    */
   retrieve(assetId: string, options?: Core.RequestOptions): Core.APIPromise<Asset> {
-    return (this.get(`/video/v1/assets/${assetId}`, options) as Core.APIPromise<{ data: Asset }>)._thenUnwrap(
-      (obj) => obj.data,
-    );
+    return (
+      this._client.get(`/video/v1/assets/${assetId}`, options) as Core.APIPromise<{ data: Asset }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -35,7 +35,9 @@ export class Assets extends APIResource {
    */
   update(assetId: string, body: AssetUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
-      this.patch(`/video/v1/assets/${assetId}`, { body, ...options }) as Core.APIPromise<{ data: Asset }>
+      this._client.patch(`/video/v1/assets/${assetId}`, { body, ...options }) as Core.APIPromise<{
+        data: Asset;
+      }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -51,14 +53,14 @@ export class Assets extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/video/v1/assets', AssetsBasePage, { query, ...options });
+    return this._client.getAPIList('/video/v1/assets', AssetsBasePage, { query, ...options });
   }
 
   /**
    * Deletes a video asset and all its data.
    */
-  del(assetId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.delete(`/video/v1/assets/${assetId}`, {
+  delete(assetId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/video/v1/assets/${assetId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -73,14 +75,15 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.PlaybackID> {
     return (
-      this.post(`/video/v1/assets/${assetId}/playback-ids`, { body, ...options }) as Core.APIPromise<{
+      this._client.post(`/video/v1/assets/${assetId}/playback-ids`, { body, ...options }) as Core.APIPromise<{
         data: Shared.PlaybackID;
       }>
     )._thenUnwrap((obj) => obj.data);
   }
 
   /**
-   * Adds an asset track (for example, subtitles) to an asset.
+   * Adds an asset track (for example, subtitles, or an alternate audio track) to an
+   * asset.
    */
   createTrack(
     assetId: string,
@@ -88,7 +91,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Track> {
     return (
-      this.post(`/video/v1/assets/${assetId}/tracks`, { body, ...options }) as Core.APIPromise<{
+      this._client.post(`/video/v1/assets/${assetId}/tracks`, { body, ...options }) as Core.APIPromise<{
         data: Track;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -105,7 +108,7 @@ export class Assets extends APIResource {
     playbackId: string,
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
-    return this.delete(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
+    return this._client.delete(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -116,7 +119,7 @@ export class Assets extends APIResource {
    * removed.
    */
   deleteTrack(assetId: string, trackId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.delete(`/video/v1/assets/${assetId}/tracks/${trackId}`, {
+    return this._client.delete(`/video/v1/assets/${assetId}/tracks/${trackId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -131,7 +134,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<AssetRetrieveInputInfoResponse> {
     return (
-      this.get(`/video/v1/assets/${assetId}/input-info`, options) as Core.APIPromise<{
+      this._client.get(`/video/v1/assets/${assetId}/input-info`, options) as Core.APIPromise<{
         data: AssetRetrieveInputInfoResponse;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -146,7 +149,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.PlaybackID> {
     return (
-      this.get(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, options) as Core.APIPromise<{
+      this._client.get(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, options) as Core.APIPromise<{
         data: Shared.PlaybackID;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -165,7 +168,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Asset> {
     return (
-      this.put(`/video/v1/assets/${assetId}/master-access`, { body, ...options }) as Core.APIPromise<{
+      this._client.put(`/video/v1/assets/${assetId}/master-access`, { body, ...options }) as Core.APIPromise<{
         data: Asset;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -184,7 +187,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Asset> {
     return (
-      this.put(`/video/v1/assets/${assetId}/mp4-support`, { body, ...options }) as Core.APIPromise<{
+      this._client.put(`/video/v1/assets/${assetId}/mp4-support`, { body, ...options }) as Core.APIPromise<{
         data: Asset;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -197,17 +200,39 @@ export interface Asset {
   /**
    * Unique identifier for the Asset. Max 255 characters.
    */
-  id?: string;
+  id: string;
+
+  /**
+   * Time the Asset was created, defined as a Unix timestamp (seconds since epoch).
+   */
+  created_at: string;
+
+  /**
+   * The encoding tier informs the cost, quality, and available platform features for
+   * the asset. By default the `smart` encoding tier is used.
+   * [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   */
+  encoding_tier: 'smart' | 'baseline';
+
+  master_access: 'temporary' | 'none';
+
+  /**
+   * Max resolution tier can be used to control the maximum `resolution_tier` your
+   * asset is encoded, stored, and streamed at. If not set, this defaults to `1080p`.
+   */
+  max_resolution_tier: '1080p' | '1440p' | '2160p';
+
+  mp4_support: 'standard' | 'none';
+
+  /**
+   * The status of the asset.
+   */
+  status: 'preparing' | 'ready' | 'errored';
 
   /**
    * The aspect ratio of the asset in the form of `width:height`, for example `16:9`.
    */
   aspect_ratio?: string;
-
-  /**
-   * Time the Asset was created, defined as a Unix timestamp (seconds since epoch).
-   */
-  created_at?: string;
 
   /**
    * The duration of the asset in seconds (max duration for a single asset is 12
@@ -235,12 +260,10 @@ export interface Asset {
 
   /**
    * An object containing the current status of Master Access and the link to the
-   * Master MP4 file when ready. This object does not exist if `master_acess` is set
+   * Master MP4 file when ready. This object does not exist if `master_access` is set
    * to `none` and when the temporary URL expires.
    */
   master?: Asset.Master;
-
-  master_access?: 'temporary' | 'none';
 
   /**
    * The maximum frame rate that has been stored for the asset. The asset may be
@@ -251,17 +274,16 @@ export interface Asset {
   max_stored_frame_rate?: number;
 
   /**
-   * The maximum resolution that has been stored for the asset. The asset may be
-   * delivered at lower resolutions depending on the device and bandwidth, however it
-   * cannot be delivered at a higher value than is stored.
+   * This field is deprecated. Please use `resolution_tier` instead. The maximum
+   * resolution that has been stored for the asset. The asset may be delivered at
+   * lower resolutions depending on the device and bandwidth, however it cannot be
+   * delivered at a higher value than is stored.
    */
   max_stored_resolution?: 'Audio only' | 'SD' | 'HD' | 'FHD' | 'UHD';
 
-  mp4_support?: 'standard' | 'none';
-
   /**
    * An object containing one or more reasons the input file is non-standard. See
-   * [the guide on minimizing processing time](https://docs.mux.com/guides/video/minimize-processing-time)
+   * [the guide on minimizing processing time](https://docs.mux.com/guides/minimize-processing-time)
    * for more information on what a standard input is defined as. This object only
    * exists on on-demand assets that have non-standard inputs, so if missing you can
    * assume the input qualifies as standard.
@@ -283,7 +305,7 @@ export interface Asset {
 
   /**
    * An array of Playback ID objects. Use these to create HLS playback URLs. See
-   * [Play your videos](https://docs.mux.com/guides/video/play-your-videos) for more
+   * [Play your videos](https://docs.mux.com/guides/play-your-videos) for more
    * details.
    */
   playback_ids?: Array<Shared.PlaybackID>;
@@ -299,7 +321,9 @@ export interface Asset {
 
   /**
    * The resolution tier that the asset was ingested at, affecting billing for ingest
-   * & storage
+   * & storage. This field also represents the highest resolution tier that the
+   * content can be delivered at, however the actual resolution may be lower
+   * depending on the device, bandwidth, and exact resolution of the uploaded asset.
    */
   resolution_tier?: 'audio-only' | '720p' | '1080p' | '1440p' | '2160p';
 
@@ -311,15 +335,10 @@ export interface Asset {
   /**
    * An object containing the current status of any static renditions (mp4s). The
    * object does not exist if no static renditions have been requested. See
-   * [Download your videos](https://docs.mux.com/guides/video/download-your-videos)
+   * [Download your videos](https://docs.mux.com/guides/enable-static-mp4-renditions)
    * for more information.
    */
   static_renditions?: Asset.StaticRenditions;
-
-  /**
-   * The status of the asset.
-   */
-  status?: 'preparing' | 'ready' | 'errored';
 
   /**
    * True means this live stream is a test asset. A test asset can help evaluate the
@@ -359,7 +378,7 @@ export namespace Asset {
 
   /**
    * An object containing the current status of Master Access and the link to the
-   * Master MP4 file when ready. This object does not exist if `master_acess` is set
+   * Master MP4 file when ready. This object does not exist if `master_access` is set
    * to `none` and when the temporary URL expires.
    */
   export interface Master {
@@ -374,7 +393,7 @@ export namespace Asset {
 
   /**
    * An object containing one or more reasons the input file is non-standard. See
-   * [the guide on minimizing processing time](https://docs.mux.com/guides/video/minimize-processing-time)
+   * [the guide on minimizing processing time](https://docs.mux.com/guides/minimize-processing-time)
    * for more information on what a standard input is defined as. This object only
    * exists on on-demand assets that have non-standard inputs, so if missing you can
    * assume the input qualifies as standard.
@@ -472,7 +491,7 @@ export namespace Asset {
   /**
    * An object containing the current status of any static renditions (mp4s). The
    * object does not exist if no static renditions have been requested. See
-   * [Download your videos](https://docs.mux.com/guides/video/download-your-videos)
+   * [Download your videos](https://docs.mux.com/guides/enable-static-mp4-renditions)
    * for more information.
    */
   export interface StaticRenditions {
@@ -519,60 +538,91 @@ export namespace Asset {
   }
 }
 
-export interface AssetResponse {
-  data: Asset;
+export interface AssetOptions {
+  /**
+   * The encoding tier informs the cost, quality, and available platform features for
+   * the asset. By default the `smart` encoding tier is used.
+   * [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   */
+  encoding_tier?: 'smart' | 'baseline';
+
+  /**
+   * An array of objects that each describe an input file to be used to create the
+   * asset. As a shortcut, input can also be a string URL for a file when only one
+   * input file is used. See `input[].url` for requirements.
+   */
+  input?: Array<AssetOptions.Input>;
+
+  /**
+   * Specify what level (if any) of support for master access. Master access can be
+   * enabled temporarily for your asset to be downloaded. See the
+   * [Download your videos guide](https://docs.mux.com/guides/enable-static-mp4-renditions)
+   * for more information.
+   */
+  master_access?: 'none' | 'temporary';
+
+  /**
+   * Max resolution tier can be used to control the maximum `resolution_tier` your
+   * asset is encoded, stored, and streamed at. If not set, this defaults to `1080p`.
+   */
+  max_resolution_tier?: '1080p' | '1440p' | '2160p';
+
+  /**
+   * Specify what level (if any) of support for mp4 playback. In most cases you
+   * should use our default HLS-based streaming playback ({playback_id}.m3u8) which
+   * can automatically adjust to viewers' connection speeds, but an mp4 can be useful
+   * for some legacy devices or downloading for offline playback. See the
+   * [Download your videos guide](https://docs.mux.com/guides/enable-static-mp4-renditions)
+   * for more information.
+   */
+  mp4_support?: 'none' | 'standard';
+
+  /**
+   * Normalize the audio track loudness level. This parameter is only applicable to
+   * on-demand (not live) assets.
+   */
+  normalize_audio?: boolean;
+
+  /**
+   * Arbitrary user-supplied metadata that will be included in the asset details and
+   * related webhooks. Can be used to store your own ID for a video along with the
+   * asset. **Max: 255 characters**.
+   */
+  passthrough?: string;
+
+  per_title_encode?: boolean;
+
+  /**
+   * An array of playback policy names that you want applied to this asset and
+   * available through `playback_ids`. Options include: `"public"` (anyone with the
+   * playback URL can stream the asset). And `"signed"` (an additional access token
+   * is required to play the asset). If no playback_policy is set, the asset will
+   * have no playback IDs and will therefore not be playable. For simplicity, a
+   * single string name can be used in place of the array in the case of only one
+   * playback policy.
+   */
+  playback_policy?: Array<Shared.PlaybackPolicy>;
+
+  /**
+   * Marks the asset as a test asset when the value is set to true. A Test asset can
+   * help evaluate the Mux Video APIs without incurring any cost. There is no limit
+   * on number of test assets created. Test asset are watermarked with the Mux logo,
+   * limited to 10 seconds, deleted after 24 hrs.
+   */
+  test?: boolean;
 }
 
-export interface InputInfo {
-  file?: InputInfo.File;
-
+export namespace AssetOptions {
   /**
    * An array of objects that each describe an input file to be used to create the
    * asset. As a shortcut, `input` can also be a string URL for a file when only one
    * input file is used. See `input[].url` for requirements.
    */
-  settings?: InputInfo.Settings;
-}
-
-export namespace InputInfo {
-  export interface File {
-    container_format?: string;
-
-    tracks?: Array<File.Track>;
-  }
-
-  export namespace File {
-    export interface Track {
-      channels?: number;
-
-      duration?: number;
-
-      encoding?: string;
-
-      frame_rate?: number;
-
-      height?: number;
-
-      sample_rate?: number;
-
-      sample_size?: number;
-
-      type?: string;
-
-      width?: number;
-    }
-  }
-
-  /**
-   * An array of objects that each describe an input file to be used to create the
-   * asset. As a shortcut, `input` can also be a string URL for a file when only one
-   * input file is used. See `input[].url` for requirements.
-   */
-  export interface Settings {
+  export interface Input {
     /**
      * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
-     * This optional parameter should be used for `text` type and subtitles `text` type
-     * tracks.
+     * This optional parameter should be used for tracks with `type` of `text` and
+     * `text_type` set to `subtitles`.
      */
     closed_captions?: boolean;
 
@@ -585,21 +635,33 @@ export namespace InputInfo {
     end_time?: number;
 
     /**
+     * Generate subtitle tracks using automatic speech recognition using this
+     * configuration. This may only be provided for the first input object (the main
+     * input file). For direct uploads, this first input should omit the url parameter,
+     * as the main input file is provided via the direct upload. This will create
+     * subtitles based on the audio track ingested from that main input file. Note that
+     * subtitle generation happens after initial ingest, so the generated tracks will
+     * be in the `preparing` state when the asset transitions to `ready`.
+     */
+    generated_subtitles?: Array<Input.GeneratedSubtitle>;
+
+    /**
      * The language code value must be a valid
      * [BCP 47](https://tools.ietf.org/html/bcp47) specification compliant value. For
-     * example, en for English or en-US for the US version of English. This parameter
-     * is required for text type and subtitles text type track.
+     * example, `en` for English or `en-US` for the US version of English. This
+     * parameter is required for `text` and `audio` track types.
      */
     language_code?: string;
 
     /**
      * The name of the track containing a human-readable description. This value must
-     * be unique across all text type and subtitles `text` type tracks. The hls
-     * manifest will associate a subtitle text track with this value. For example, the
-     * value should be "English" for subtitles text track with language_code as en.
-     * This optional parameter should be used only for `text` type and subtitles `text`
-     * type tracks. If this parameter is not included, Mux will auto-populate based on
-     * the `input[].language_code` value.
+     * be unique within each group of `text` or `audio` track types. The HLS manifest
+     * will associate a subtitle text track with this value. For example, the value
+     * should be "English" for a subtitle text track with `language_code` set to `en`.
+     * This optional parameter should be used only for `text` and `audio` type tracks.
+     * This parameter can be optionally provided for the first video input to denote
+     * the name of the muxed audio track if present. If this parameter is not included,
+     * Mux will auto-populate based on the `input[].language_code` value.
      */
     name?: string;
 
@@ -608,11 +670,11 @@ export namespace InputInfo {
      * over the video (i.e. watermarking). Ensure that the URL is active and persists
      * the entire lifespan of the video object.
      */
-    overlay_settings?: Settings.OverlaySettings;
+    overlay_settings?: Input.OverlaySettings;
 
     /**
-     * This optional parameter should be used for `text` type and subtitles `text` type
-     * tracks.
+     * This optional parameter should be used tracks with `type` of `text` and
+     * `text_type` set to `subtitles`.
      */
     passthrough?: string;
 
@@ -640,19 +702,282 @@ export namespace InputInfo {
     /**
      * The URL of the file that Mux should download and use.
      *
-     * - For subtitles text tracks, the URL is the location of subtitle/captions file.
-     *   Mux supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and
-     *   [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) format for ingesting
+     * - For the main input file, this should be the URL to the muxed file for Mux to
+     *   download, for example an MP4, MOV, MKV, or TS file. Mux supports most
+     *   audio/video file formats and codecs, but for fastest processing, you should
+     *   [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).
+     * - For `audio` tracks, the URL is the location of the audio file for Mux to
+     *   download, for example an M4A, WAV, or MP3 file. Mux supports most audio file
+     *   formats and codecs, but for fastest processing, you should
+     *   [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).
+     * - For `text` tracks, the URL is the location of subtitle/captions file. Mux
+     *   supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and
+     *   [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) formats for ingesting
      *   Subtitles and Closed Captions.
      * - For Watermarking or Overlay, the URL is the location of the watermark image.
      * - When creating clips from existing Mux assets, the URL is defined with
      *   `mux://assets/{asset_id}` template where `asset_id` is the Asset Identifier
-     *   for creating the clip from.
+     *   for creating the clip from. The url property may be omitted on the first input
+     *   object when providing asset settings for LiveStream and Upload objects, in
+     *   order to configure settings related to the primary (live stream or direct
+     *   upload) input.
+     */
+    url?: string;
+  }
+
+  export namespace Input {
+    export interface GeneratedSubtitle {
+      /**
+       * The language to generate subtitles in.
+       */
+      language_code?: 'en' | 'en-US';
+
+      /**
+       * A name for this subtitle track.
+       */
+      name?: string;
+
+      /**
+       * Arbitrary metadata set for the subtitle track. Max 255 characters.
+       */
+      passthrough?: string;
+    }
+
+    /**
+     * An object that describes how the image file referenced in URL should be placed
+     * over the video (i.e. watermarking). Ensure that the URL is active and persists
+     * the entire lifespan of the video object.
+     */
+    export interface OverlaySettings {
+      /**
+       * How tall the overlay should appear. Can be expressed as a percent ("10%") or as
+       * a pixel value ("100px"). If both width and height are left blank the height will
+       * be the true pixels of the image, applied as if the video has been scaled to fit
+       * a 1920x1080 frame. If width is supplied with no height, the height will scale
+       * proportionally to the width.
+       */
+      height?: string;
+
+      /**
+       * Where the horizontal positioning of the overlay/watermark should begin from.
+       */
+      horizontal_align?: 'left' | 'center' | 'right';
+
+      /**
+       * The distance from the horizontal_align starting point and the image's closest
+       * edge. Can be expressed as a percent ("10%") or as a pixel value ("100px").
+       * Negative values will move the overlay offscreen. In the case of 'center', a
+       * positive value will shift the image towards the right and and a negative value
+       * will shift it towards the left.
+       */
+      horizontal_margin?: string;
+
+      /**
+       * How opaque the overlay should appear, expressed as a percent. (Default 100%)
+       */
+      opacity?: string;
+
+      /**
+       * Where the vertical positioning of the overlay/watermark should begin from.
+       * Defaults to `"top"`
+       */
+      vertical_align?: 'top' | 'middle' | 'bottom';
+
+      /**
+       * The distance from the vertical_align starting point and the image's closest
+       * edge. Can be expressed as a percent ("10%") or as a pixel value ("100px").
+       * Negative values will move the overlay offscreen. In the case of 'middle', a
+       * positive value will shift the overlay towards the bottom and and a negative
+       * value will shift it towards the top.
+       */
+      vertical_margin?: string;
+
+      /**
+       * How wide the overlay should appear. Can be expressed as a percent ("10%") or as
+       * a pixel value ("100px"). If both width and height are left blank the width will
+       * be the true pixels of the image, applied as if the video has been scaled to fit
+       * a 1920x1080 frame. If height is supplied with no width, the width will scale
+       * proportionally to the height.
+       */
+      width?: string;
+    }
+  }
+}
+
+export interface AssetResponse {
+  data: Asset;
+}
+
+export interface InputInfo {
+  file?: InputInfo.File;
+
+  /**
+   * An array of objects that each describe an input file to be used to create the
+   * asset. As a shortcut, `input` can also be a string URL for a file when only one
+   * input file is used. See `input[].url` for requirements.
+   */
+  settings?: InputInfo.Settings;
+}
+
+export namespace InputInfo {
+  export interface File {
+    container_format?: string;
+
+    tracks?: Array<File.Track>;
+  }
+
+  export namespace File {
+    export interface Track {
+      type: string;
+
+      channels?: number;
+
+      duration?: number;
+
+      encoding?: string;
+
+      frame_rate?: number;
+
+      height?: number;
+
+      sample_rate?: number;
+
+      sample_size?: number;
+
+      width?: number;
+    }
+  }
+
+  /**
+   * An array of objects that each describe an input file to be used to create the
+   * asset. As a shortcut, `input` can also be a string URL for a file when only one
+   * input file is used. See `input[].url` for requirements.
+   */
+  export interface Settings {
+    /**
+     * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
+     * This optional parameter should be used for tracks with `type` of `text` and
+     * `text_type` set to `subtitles`.
+     */
+    closed_captions?: boolean;
+
+    /**
+     * The time offset in seconds from the beginning of the video, indicating the
+     * clip's ending marker. The default value is the duration of the video when not
+     * included. This parameter is only applicable for creating clips when `input.url`
+     * has `mux://assets/{asset_id}` format.
+     */
+    end_time?: number;
+
+    /**
+     * Generate subtitle tracks using automatic speech recognition using this
+     * configuration. This may only be provided for the first input object (the main
+     * input file). For direct uploads, this first input should omit the url parameter,
+     * as the main input file is provided via the direct upload. This will create
+     * subtitles based on the audio track ingested from that main input file. Note that
+     * subtitle generation happens after initial ingest, so the generated tracks will
+     * be in the `preparing` state when the asset transitions to `ready`.
+     */
+    generated_subtitles?: Array<Settings.GeneratedSubtitle>;
+
+    /**
+     * The language code value must be a valid
+     * [BCP 47](https://tools.ietf.org/html/bcp47) specification compliant value. For
+     * example, `en` for English or `en-US` for the US version of English. This
+     * parameter is required for `text` and `audio` track types.
+     */
+    language_code?: string;
+
+    /**
+     * The name of the track containing a human-readable description. This value must
+     * be unique within each group of `text` or `audio` track types. The HLS manifest
+     * will associate a subtitle text track with this value. For example, the value
+     * should be "English" for a subtitle text track with `language_code` set to `en`.
+     * This optional parameter should be used only for `text` and `audio` type tracks.
+     * This parameter can be optionally provided for the first video input to denote
+     * the name of the muxed audio track if present. If this parameter is not included,
+     * Mux will auto-populate based on the `input[].language_code` value.
+     */
+    name?: string;
+
+    /**
+     * An object that describes how the image file referenced in URL should be placed
+     * over the video (i.e. watermarking). Ensure that the URL is active and persists
+     * the entire lifespan of the video object.
+     */
+    overlay_settings?: Settings.OverlaySettings;
+
+    /**
+     * This optional parameter should be used tracks with `type` of `text` and
+     * `text_type` set to `subtitles`.
+     */
+    passthrough?: string;
+
+    /**
+     * The time offset in seconds from the beginning of the video indicating the clip's
+     * starting marker. The default value is 0 when not included. This parameter is
+     * only applicable for creating clips when `input.url` has
+     * `mux://assets/{asset_id}` format.
+     */
+    start_time?: number;
+
+    /**
+     * Type of text track. This parameter only supports subtitles value. For more
+     * information on Subtitles / Closed Captions,
+     * [see this blog post](https://mux.com/blog/subtitles-captions-webvtt-hls-and-those-magic-flags/).
+     * This parameter is required for `text` type tracks.
+     */
+    text_type?: 'subtitles';
+
+    /**
+     * This parameter is required for `text` type tracks.
+     */
+    type?: 'video' | 'audio' | 'text';
+
+    /**
+     * The URL of the file that Mux should download and use.
+     *
+     * - For the main input file, this should be the URL to the muxed file for Mux to
+     *   download, for example an MP4, MOV, MKV, or TS file. Mux supports most
+     *   audio/video file formats and codecs, but for fastest processing, you should
+     *   [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).
+     * - For `audio` tracks, the URL is the location of the audio file for Mux to
+     *   download, for example an M4A, WAV, or MP3 file. Mux supports most audio file
+     *   formats and codecs, but for fastest processing, you should
+     *   [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).
+     * - For `text` tracks, the URL is the location of subtitle/captions file. Mux
+     *   supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and
+     *   [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) formats for ingesting
+     *   Subtitles and Closed Captions.
+     * - For Watermarking or Overlay, the URL is the location of the watermark image.
+     * - When creating clips from existing Mux assets, the URL is defined with
+     *   `mux://assets/{asset_id}` template where `asset_id` is the Asset Identifier
+     *   for creating the clip from. The url property may be omitted on the first input
+     *   object when providing asset settings for LiveStream and Upload objects, in
+     *   order to configure settings related to the primary (live stream or direct
+     *   upload) input.
      */
     url?: string;
   }
 
   export namespace Settings {
+    export interface GeneratedSubtitle {
+      /**
+       * The language to generate subtitles in.
+       */
+      language_code?: 'en' | 'en-US';
+
+      /**
+       * A name for this subtitle track.
+       */
+      name?: string;
+
+      /**
+       * Arbitrary metadata set for the subtitle track. Max 255 characters.
+       */
+      passthrough?: string;
+    }
+
     /**
      * An object that describes how the image file referenced in URL should be placed
      * over the video (i.e. watermarking). Ensure that the URL is active and persists
@@ -722,7 +1047,8 @@ export interface Track {
 
   /**
    * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
-   * This parameter is only set for `text` type and `subtitles` text type tracks.
+   * This parameter is only set tracks where `type` is `text` and `text_type` is
+   * `subtitles`.
    */
   closed_captions?: boolean;
 
@@ -736,8 +1062,8 @@ export interface Track {
   /**
    * The language code value represents [BCP 47](https://tools.ietf.org/html/bcp47)
    * specification compliant value. For example, `en` for English or `en-US` for the
-   * US version of English. This parameter is only set for `text` type and
-   * `subtitles` text type tracks.
+   * US version of English. This parameter is only set for `text` and `audio` track
+   * types.
    */
   language_code?: string;
 
@@ -772,10 +1098,10 @@ export interface Track {
   max_width?: number;
 
   /**
-   * The name of the track containing a human-readable description. The hls manifest
-   * will associate a subtitle text track with this value. For example, the value is
-   * "English" for subtitles text track for the `language_code` value of `en-US`.
-   * This parameter is only set for `text` type and `subtitles` text type tracks.
+   * The name of the track containing a human-readable description. The HLS manifest
+   * will associate a subtitle `text` or `audio` track with this value. For example,
+   * the value should be "English" for a subtitle text track for the `language_code`
+   * value of `en-US`. This parameter is only set for `text` and `audio` track types.
    */
   name?: string;
 
@@ -799,6 +1125,8 @@ export interface Track {
    *   Create Asset Track API.
    * - `embedded`: Tracks extracted from an embedded stream of CEA-608 closed
    *   captions.
+   * - `generated_vod`: Tracks generated by automatic speech recognition on an
+   *   on-demand asset.
    * - `generated_live`: Tracks generated by automatic speech recognition on a live
    *   stream configured with `generated_subtitles`. If an Asset has both
    *   `generated_live` and `generated_live_final` tracks that are `ready`, then only
@@ -811,7 +1139,7 @@ export interface Track {
    *   `generated_live` and `generated_live_final` tracks that are `ready`, then only
    *   the `generated_live_final` track will be included during playback.
    */
-  text_source?: 'uploaded' | 'embedded' | 'generated_live' | 'generated_live_final';
+  text_source?: 'uploaded' | 'embedded' | 'generated_live' | 'generated_live_final' | 'generated_vod';
 
   /**
    * This parameter is only set for `text` type tracks.
@@ -828,6 +1156,13 @@ export type AssetRetrieveInputInfoResponse = Array<InputInfo>;
 
 export interface AssetCreateParams {
   /**
+   * The encoding tier informs the cost, quality, and available platform features for
+   * the asset. By default the `smart` encoding tier is used.
+   * [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   */
+  encoding_tier?: 'smart' | 'baseline';
+
+  /**
    * An array of objects that each describe an input file to be used to create the
    * asset. As a shortcut, input can also be a string URL for a file when only one
    * input file is used. See `input[].url` for requirements.
@@ -837,18 +1172,24 @@ export interface AssetCreateParams {
   /**
    * Specify what level (if any) of support for master access. Master access can be
    * enabled temporarily for your asset to be downloaded. See the
-   * [Download your videos guide](/guides/video/download-your-videos) for more
-   * information.
+   * [Download your videos guide](https://docs.mux.com/guides/enable-static-mp4-renditions)
+   * for more information.
    */
   master_access?: 'none' | 'temporary';
+
+  /**
+   * Max resolution tier can be used to control the maximum `resolution_tier` your
+   * asset is encoded, stored, and streamed at. If not set, this defaults to `1080p`.
+   */
+  max_resolution_tier?: '1080p' | '1440p' | '2160p';
 
   /**
    * Specify what level (if any) of support for mp4 playback. In most cases you
    * should use our default HLS-based streaming playback ({playback_id}.m3u8) which
    * can automatically adjust to viewers' connection speeds, but an mp4 can be useful
    * for some legacy devices or downloading for offline playback. See the
-   * [Download your videos guide](/guides/video/download-your-videos) for more
-   * information.
+   * [Download your videos guide](https://docs.mux.com/guides/enable-static-mp4-renditions)
+   * for more information.
    */
   mp4_support?: 'none' | 'standard';
 
@@ -896,8 +1237,8 @@ export namespace AssetCreateParams {
   export interface Input {
     /**
      * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
-     * This optional parameter should be used for `text` type and subtitles `text` type
-     * tracks.
+     * This optional parameter should be used for tracks with `type` of `text` and
+     * `text_type` set to `subtitles`.
      */
     closed_captions?: boolean;
 
@@ -910,21 +1251,33 @@ export namespace AssetCreateParams {
     end_time?: number;
 
     /**
+     * Generate subtitle tracks using automatic speech recognition using this
+     * configuration. This may only be provided for the first input object (the main
+     * input file). For direct uploads, this first input should omit the url parameter,
+     * as the main input file is provided via the direct upload. This will create
+     * subtitles based on the audio track ingested from that main input file. Note that
+     * subtitle generation happens after initial ingest, so the generated tracks will
+     * be in the `preparing` state when the asset transitions to `ready`.
+     */
+    generated_subtitles?: Array<Input.GeneratedSubtitle>;
+
+    /**
      * The language code value must be a valid
      * [BCP 47](https://tools.ietf.org/html/bcp47) specification compliant value. For
-     * example, en for English or en-US for the US version of English. This parameter
-     * is required for text type and subtitles text type track.
+     * example, `en` for English or `en-US` for the US version of English. This
+     * parameter is required for `text` and `audio` track types.
      */
     language_code?: string;
 
     /**
      * The name of the track containing a human-readable description. This value must
-     * be unique across all text type and subtitles `text` type tracks. The hls
-     * manifest will associate a subtitle text track with this value. For example, the
-     * value should be "English" for subtitles text track with language_code as en.
-     * This optional parameter should be used only for `text` type and subtitles `text`
-     * type tracks. If this parameter is not included, Mux will auto-populate based on
-     * the `input[].language_code` value.
+     * be unique within each group of `text` or `audio` track types. The HLS manifest
+     * will associate a subtitle text track with this value. For example, the value
+     * should be "English" for a subtitle text track with `language_code` set to `en`.
+     * This optional parameter should be used only for `text` and `audio` type tracks.
+     * This parameter can be optionally provided for the first video input to denote
+     * the name of the muxed audio track if present. If this parameter is not included,
+     * Mux will auto-populate based on the `input[].language_code` value.
      */
     name?: string;
 
@@ -936,8 +1289,8 @@ export namespace AssetCreateParams {
     overlay_settings?: Input.OverlaySettings;
 
     /**
-     * This optional parameter should be used for `text` type and subtitles `text` type
-     * tracks.
+     * This optional parameter should be used tracks with `type` of `text` and
+     * `text_type` set to `subtitles`.
      */
     passthrough?: string;
 
@@ -965,19 +1318,47 @@ export namespace AssetCreateParams {
     /**
      * The URL of the file that Mux should download and use.
      *
-     * - For subtitles text tracks, the URL is the location of subtitle/captions file.
-     *   Mux supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and
-     *   [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) format for ingesting
+     * - For the main input file, this should be the URL to the muxed file for Mux to
+     *   download, for example an MP4, MOV, MKV, or TS file. Mux supports most
+     *   audio/video file formats and codecs, but for fastest processing, you should
+     *   [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).
+     * - For `audio` tracks, the URL is the location of the audio file for Mux to
+     *   download, for example an M4A, WAV, or MP3 file. Mux supports most audio file
+     *   formats and codecs, but for fastest processing, you should
+     *   [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).
+     * - For `text` tracks, the URL is the location of subtitle/captions file. Mux
+     *   supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and
+     *   [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) formats for ingesting
      *   Subtitles and Closed Captions.
      * - For Watermarking or Overlay, the URL is the location of the watermark image.
      * - When creating clips from existing Mux assets, the URL is defined with
      *   `mux://assets/{asset_id}` template where `asset_id` is the Asset Identifier
-     *   for creating the clip from.
+     *   for creating the clip from. The url property may be omitted on the first input
+     *   object when providing asset settings for LiveStream and Upload objects, in
+     *   order to configure settings related to the primary (live stream or direct
+     *   upload) input.
      */
     url?: string;
   }
 
   export namespace Input {
+    export interface GeneratedSubtitle {
+      /**
+       * The language to generate subtitles in.
+       */
+      language_code?: 'en' | 'en-US';
+
+      /**
+       * A name for this subtitle track.
+       */
+      name?: string;
+
+      /**
+       * Arbitrary metadata set for the subtitle track. Max 255 characters.
+       */
+      passthrough?: string;
+    }
+
     /**
      * An object that describes how the image file referenced in URL should be placed
      * over the video (i.e. watermarking). Ensure that the URL is active and persists
@@ -1066,8 +1447,8 @@ export interface AssetCreatePlaybackIDParams {
    *
    * - `signed` playback IDs should be used with tokens
    *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
-   *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
-   *   for details about creating tokens.
+   *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
+   *   details about creating tokens.
    */
   policy?: Shared.PlaybackPolicy;
 }
@@ -1079,10 +1460,20 @@ export interface AssetCreateTrackParams {
    */
   language_code: string;
 
-  text_type: 'subtitles';
+  type: 'text' | 'audio';
 
-  type: 'text';
-
+  /**
+   * The URL of the file that Mux should download and use.
+   *
+   * - For `audio` tracks, the URL is the location of the audio file for Mux to
+   *   download, for example an M4A, WAV, or MP3 file. Mux supports most audio file
+   *   formats and codecs, but for fastest processing, you should
+   *   [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).
+   * - For `text` tracks, the URL is the location of subtitle/captions file. Mux
+   *   supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and
+   *   [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) formats for ingesting
+   *   Subtitles and Closed Captions.
+   */
   url: string;
 
   /**
@@ -1092,11 +1483,11 @@ export interface AssetCreateTrackParams {
 
   /**
    * The name of the track containing a human-readable description. This value must
-   * be unique across all the text type and subtitles text type tracks. HLS manifest
-   * will associate subtitle text track with this value. For example, set the value
-   * to "English" for subtitles text track with language_code as en-US. If this
-   * parameter is not included, Mux will auto-populate based on the language_code
-   * value.
+   * be unique within each group of `text` or `audio` track types. The HLS manifest
+   * will associate the `text` or `audio` track with this value. For example, set the
+   * value to "English" for subtitles text track with `language_code` as en-US. If
+   * this parameter is not included, Mux will auto-populate a value based on the
+   * `language_code` value.
    */
   name?: string;
 
@@ -1105,34 +1496,37 @@ export interface AssetCreateTrackParams {
    * asset or track.
    */
   passthrough?: string;
+
+  text_type?: 'subtitles';
 }
 
 export interface AssetUpdateMasterAccessParams {
   /**
    * Add or remove access to the master version of the video.
    */
-  master_access?: 'temporary' | 'none';
+  master_access: 'temporary' | 'none';
 }
 
 export interface AssetUpdateMP4SupportParams {
   /**
    * String value for the level of mp4 support
    */
-  mp4_support?: 'standard' | 'none';
+  mp4_support: 'standard' | 'none';
 }
 
 export namespace Assets {
-  export type Asset = AssetsAPI.Asset;
-  export type AssetResponse = AssetsAPI.AssetResponse;
-  export type InputInfo = AssetsAPI.InputInfo;
-  export type Track = AssetsAPI.Track;
-  export type AssetRetrieveInputInfoResponse = AssetsAPI.AssetRetrieveInputInfoResponse;
+  export import Asset = AssetsAPI.Asset;
+  export import AssetOptions = AssetsAPI.AssetOptions;
+  export import AssetResponse = AssetsAPI.AssetResponse;
+  export import InputInfo = AssetsAPI.InputInfo;
+  export import Track = AssetsAPI.Track;
+  export import AssetRetrieveInputInfoResponse = AssetsAPI.AssetRetrieveInputInfoResponse;
   export import AssetsBasePage = AssetsAPI.AssetsBasePage;
-  export type AssetCreateParams = AssetsAPI.AssetCreateParams;
-  export type AssetUpdateParams = AssetsAPI.AssetUpdateParams;
-  export type AssetListParams = AssetsAPI.AssetListParams;
-  export type AssetCreatePlaybackIDParams = AssetsAPI.AssetCreatePlaybackIDParams;
-  export type AssetCreateTrackParams = AssetsAPI.AssetCreateTrackParams;
-  export type AssetUpdateMasterAccessParams = AssetsAPI.AssetUpdateMasterAccessParams;
-  export type AssetUpdateMP4SupportParams = AssetsAPI.AssetUpdateMP4SupportParams;
+  export import AssetCreateParams = AssetsAPI.AssetCreateParams;
+  export import AssetUpdateParams = AssetsAPI.AssetUpdateParams;
+  export import AssetListParams = AssetsAPI.AssetListParams;
+  export import AssetCreatePlaybackIDParams = AssetsAPI.AssetCreatePlaybackIDParams;
+  export import AssetCreateTrackParams = AssetsAPI.AssetCreateTrackParams;
+  export import AssetUpdateMasterAccessParams = AssetsAPI.AssetUpdateMasterAccessParams;
+  export import AssetUpdateMP4SupportParams = AssetsAPI.AssetUpdateMP4SupportParams;
 }

@@ -29,16 +29,19 @@ export class Filters extends APIResource {
     if (isRequestOptions(query)) {
       return this.listValues(filterId, {}, query);
     }
-    return this.getAPIList(`/data/v1/filters/${filterId}`, FilterValuesBasePage, { query, ...options });
+    return this._client.getAPIList(`/data/v1/filters/${filterId}`, FilterValuesBasePage, {
+      query,
+      ...options,
+    });
   }
 }
 
 export class FilterValuesBasePage extends BasePage<FilterValue> {}
 
 export interface FilterValue {
-  total_count?: number;
+  total_count: number;
 
-  value?: string;
+  value: string | null;
 }
 
 export interface FiltersResponse {
@@ -46,14 +49,14 @@ export interface FiltersResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace FiltersResponse {
   export interface Data {
-    advanced?: Array<string>;
+    advanced: Array<string>;
 
-    basic?: Array<string>;
+    basic: Array<string>;
   }
 }
 
@@ -86,8 +89,8 @@ export interface FilterListValuesParams extends BasePageParams {
 }
 
 export namespace Filters {
-  export type FilterValue = FiltersAPI.FilterValue;
-  export type FiltersResponse = FiltersAPI.FiltersResponse;
+  export import FilterValue = FiltersAPI.FilterValue;
+  export import FiltersResponse = FiltersAPI.FiltersResponse;
   export import FilterValuesBasePage = FiltersAPI.FilterValuesBasePage;
-  export type FilterListValuesParams = FiltersAPI.FilterListValuesParams;
+  export import FilterListValuesParams = FiltersAPI.FilterListValuesParams;
 }

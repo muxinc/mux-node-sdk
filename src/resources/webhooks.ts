@@ -2,7 +2,7 @@
 
 import { APIResource } from '@mux/mux-node/resource';
 import crypto from 'crypto';
-import { getHeader, HeadersLike } from '@mux/mux-node/core';
+import { getRequiredHeader, HeadersLike } from '@mux/mux-node/core';
 import * as WebhooksAPI from '@mux/mux-node/resources/webhooks';
 import * as AssetsAPI from '@mux/mux-node/resources/video/assets';
 import * as LiveStreamsAPI from '@mux/mux-node/resources/video/live-streams';
@@ -16,7 +16,7 @@ export class Webhooks extends APIResource {
   unwrap(
     body: string,
     headers: HeadersLike,
-    secret: string | undefined | null = this.client.webhookSecret,
+    secret: string | undefined | null = this._client.webhookSecret,
   ): UnwrapWebhookEvent {
     this.verifySignature(body, headers, secret);
     const traverse = (value: unknown): unknown => {
@@ -115,7 +115,7 @@ export class Webhooks extends APIResource {
   verifySignature(
     body: string,
     headers: HeadersLike,
-    secret: string | undefined | null = this.client.webhookSecret,
+    secret: string | undefined | null = this._client.webhookSecret,
   ): void {
     if (!secret) {
       throw new Error(
@@ -123,7 +123,7 @@ export class Webhooks extends APIResource {
       );
     }
 
-    const header = getHeader(headers, 'mux-signature');
+    const header = getRequiredHeader(headers, 'mux-signature');
     if (!header) {
       throw new Error('Could not find a mux-signature header');
     }
@@ -728,69 +728,57 @@ export type UnwrapWebhookEvent =
   | VideoDeliveryHighTrafficWebhookEvent;
 
 export namespace Webhooks {
-  export type BaseWebhookEvent = WebhooksAPI.BaseWebhookEvent;
-  export type VideoAssetCreatedWebhookEvent = WebhooksAPI.VideoAssetCreatedWebhookEvent;
-  export type VideoAssetReadyWebhookEvent = WebhooksAPI.VideoAssetReadyWebhookEvent;
-  export type VideoAssetErroredWebhookEvent = WebhooksAPI.VideoAssetErroredWebhookEvent;
-  export type VideoAssetUpdatedWebhookEvent = WebhooksAPI.VideoAssetUpdatedWebhookEvent;
-  export type VideoAssetDeletedWebhookEvent = WebhooksAPI.VideoAssetDeletedWebhookEvent;
-  export type VideoAssetLiveStreamCompletedWebhookEvent =
-    WebhooksAPI.VideoAssetLiveStreamCompletedWebhookEvent;
-  export type VideoAssetStaticRenditionsReadyWebhookEvent =
-    WebhooksAPI.VideoAssetStaticRenditionsReadyWebhookEvent;
-  export type VideoAssetStaticRenditionsPreparingWebhookEvent =
-    WebhooksAPI.VideoAssetStaticRenditionsPreparingWebhookEvent;
-  export type VideoAssetStaticRenditionsDeletedWebhookEvent =
-    WebhooksAPI.VideoAssetStaticRenditionsDeletedWebhookEvent;
-  export type VideoAssetStaticRenditionsErroredWebhookEvent =
-    WebhooksAPI.VideoAssetStaticRenditionsErroredWebhookEvent;
-  export type VideoAssetMasterReadyWebhookEvent = WebhooksAPI.VideoAssetMasterReadyWebhookEvent;
-  export type VideoAssetMasterPreparingWebhookEvent = WebhooksAPI.VideoAssetMasterPreparingWebhookEvent;
-  export type VideoAssetMasterDeletedWebhookEvent = WebhooksAPI.VideoAssetMasterDeletedWebhookEvent;
-  export type VideoAssetMasterErroredWebhookEvent = WebhooksAPI.VideoAssetMasterErroredWebhookEvent;
-  export type VideoAssetTrackCreatedWebhookEvent = WebhooksAPI.VideoAssetTrackCreatedWebhookEvent;
-  export type VideoAssetTrackReadyWebhookEvent = WebhooksAPI.VideoAssetTrackReadyWebhookEvent;
-  export type VideoAssetTrackErroredWebhookEvent = WebhooksAPI.VideoAssetTrackErroredWebhookEvent;
-  export type VideoAssetTrackDeletedWebhookEvent = WebhooksAPI.VideoAssetTrackDeletedWebhookEvent;
-  export type VideoAssetWarningWebhookEvent = WebhooksAPI.VideoAssetWarningWebhookEvent;
-  export type VideoUploadAssetCreatedWebhookEvent = WebhooksAPI.VideoUploadAssetCreatedWebhookEvent;
-  export type VideoUploadCancelledWebhookEvent = WebhooksAPI.VideoUploadCancelledWebhookEvent;
-  export type VideoUploadCreatedWebhookEvent = WebhooksAPI.VideoUploadCreatedWebhookEvent;
-  export type VideoUploadErroredWebhookEvent = WebhooksAPI.VideoUploadErroredWebhookEvent;
-  export type VideoLiveStreamCreatedWebhookEvent = WebhooksAPI.VideoLiveStreamCreatedWebhookEvent;
-  export type VideoLiveStreamConnectedWebhookEvent = WebhooksAPI.VideoLiveStreamConnectedWebhookEvent;
-  export type VideoLiveStreamRecordingWebhookEvent = WebhooksAPI.VideoLiveStreamRecordingWebhookEvent;
-  export type VideoLiveStreamActiveWebhookEvent = WebhooksAPI.VideoLiveStreamActiveWebhookEvent;
-  export type VideoLiveStreamDisconnectedWebhookEvent = WebhooksAPI.VideoLiveStreamDisconnectedWebhookEvent;
-  export type VideoLiveStreamIdleWebhookEvent = WebhooksAPI.VideoLiveStreamIdleWebhookEvent;
-  export type VideoLiveStreamUpdatedWebhookEvent = WebhooksAPI.VideoLiveStreamUpdatedWebhookEvent;
-  export type VideoLiveStreamEnabledWebhookEvent = WebhooksAPI.VideoLiveStreamEnabledWebhookEvent;
-  export type VideoLiveStreamDisabledWebhookEvent = WebhooksAPI.VideoLiveStreamDisabledWebhookEvent;
-  export type VideoLiveStreamDeletedWebhookEvent = WebhooksAPI.VideoLiveStreamDeletedWebhookEvent;
-  export type VideoLiveStreamWarningWebhookEvent = WebhooksAPI.VideoLiveStreamWarningWebhookEvent;
-  export type VideoLiveStreamSimulcastTargetCreatedWebhookEvent =
-    WebhooksAPI.VideoLiveStreamSimulcastTargetCreatedWebhookEvent;
-  export type VideoLiveStreamSimulcastTargetIdleWebhookEvent =
-    WebhooksAPI.VideoLiveStreamSimulcastTargetIdleWebhookEvent;
-  export type VideoLiveStreamSimulcastTargetStartingWebhookEvent =
-    WebhooksAPI.VideoLiveStreamSimulcastTargetStartingWebhookEvent;
-  export type VideoLiveStreamSimulcastTargetBroadcastingWebhookEvent =
-    WebhooksAPI.VideoLiveStreamSimulcastTargetBroadcastingWebhookEvent;
-  export type VideoLiveStreamSimulcastTargetErroredWebhookEvent =
-    WebhooksAPI.VideoLiveStreamSimulcastTargetErroredWebhookEvent;
-  export type VideoLiveStreamSimulcastTargetDeletedWebhookEvent =
-    WebhooksAPI.VideoLiveStreamSimulcastTargetDeletedWebhookEvent;
-  export type VideoLiveStreamSimulcastTargetUpdatedWebhookEvent =
-    WebhooksAPI.VideoLiveStreamSimulcastTargetUpdatedWebhookEvent;
-  export type VideoSpaceCreatedWebhookEvent = WebhooksAPI.VideoSpaceCreatedWebhookEvent;
-  export type VideoSpaceDeletedWebhookEvent = WebhooksAPI.VideoSpaceDeletedWebhookEvent;
-  export type VideoSpaceActiveWebhookEvent = WebhooksAPI.VideoSpaceActiveWebhookEvent;
-  export type VideoSpaceIdleWebhookEvent = WebhooksAPI.VideoSpaceIdleWebhookEvent;
-  export type VideoSpaceUpdatedWebhookEvent = WebhooksAPI.VideoSpaceUpdatedWebhookEvent;
-  export type VideoSpaceBroadcastCreatedWebhookEvent = WebhooksAPI.VideoSpaceBroadcastCreatedWebhookEvent;
-  export type VideoSpaceBroadcastIdleWebhookEvent = WebhooksAPI.VideoSpaceBroadcastIdleWebhookEvent;
-  export type VideoSpaceBroadcastActiveWebhookEvent = WebhooksAPI.VideoSpaceBroadcastActiveWebhookEvent;
-  export type VideoSpaceBroadcastDeletedWebhookEvent = WebhooksAPI.VideoSpaceBroadcastDeletedWebhookEvent;
-  export type VideoDeliveryHighTrafficWebhookEvent = WebhooksAPI.VideoDeliveryHighTrafficWebhookEvent;
-  export type UnwrapWebhookEvent = WebhooksAPI.UnwrapWebhookEvent;
+  export import BaseWebhookEvent = WebhooksAPI.BaseWebhookEvent;
+  export import VideoAssetCreatedWebhookEvent = WebhooksAPI.VideoAssetCreatedWebhookEvent;
+  export import VideoAssetReadyWebhookEvent = WebhooksAPI.VideoAssetReadyWebhookEvent;
+  export import VideoAssetErroredWebhookEvent = WebhooksAPI.VideoAssetErroredWebhookEvent;
+  export import VideoAssetUpdatedWebhookEvent = WebhooksAPI.VideoAssetUpdatedWebhookEvent;
+  export import VideoAssetDeletedWebhookEvent = WebhooksAPI.VideoAssetDeletedWebhookEvent;
+  export import VideoAssetLiveStreamCompletedWebhookEvent = WebhooksAPI.VideoAssetLiveStreamCompletedWebhookEvent;
+  export import VideoAssetStaticRenditionsReadyWebhookEvent = WebhooksAPI.VideoAssetStaticRenditionsReadyWebhookEvent;
+  export import VideoAssetStaticRenditionsPreparingWebhookEvent = WebhooksAPI.VideoAssetStaticRenditionsPreparingWebhookEvent;
+  export import VideoAssetStaticRenditionsDeletedWebhookEvent = WebhooksAPI.VideoAssetStaticRenditionsDeletedWebhookEvent;
+  export import VideoAssetStaticRenditionsErroredWebhookEvent = WebhooksAPI.VideoAssetStaticRenditionsErroredWebhookEvent;
+  export import VideoAssetMasterReadyWebhookEvent = WebhooksAPI.VideoAssetMasterReadyWebhookEvent;
+  export import VideoAssetMasterPreparingWebhookEvent = WebhooksAPI.VideoAssetMasterPreparingWebhookEvent;
+  export import VideoAssetMasterDeletedWebhookEvent = WebhooksAPI.VideoAssetMasterDeletedWebhookEvent;
+  export import VideoAssetMasterErroredWebhookEvent = WebhooksAPI.VideoAssetMasterErroredWebhookEvent;
+  export import VideoAssetTrackCreatedWebhookEvent = WebhooksAPI.VideoAssetTrackCreatedWebhookEvent;
+  export import VideoAssetTrackReadyWebhookEvent = WebhooksAPI.VideoAssetTrackReadyWebhookEvent;
+  export import VideoAssetTrackErroredWebhookEvent = WebhooksAPI.VideoAssetTrackErroredWebhookEvent;
+  export import VideoAssetTrackDeletedWebhookEvent = WebhooksAPI.VideoAssetTrackDeletedWebhookEvent;
+  export import VideoAssetWarningWebhookEvent = WebhooksAPI.VideoAssetWarningWebhookEvent;
+  export import VideoUploadAssetCreatedWebhookEvent = WebhooksAPI.VideoUploadAssetCreatedWebhookEvent;
+  export import VideoUploadCancelledWebhookEvent = WebhooksAPI.VideoUploadCancelledWebhookEvent;
+  export import VideoUploadCreatedWebhookEvent = WebhooksAPI.VideoUploadCreatedWebhookEvent;
+  export import VideoUploadErroredWebhookEvent = WebhooksAPI.VideoUploadErroredWebhookEvent;
+  export import VideoLiveStreamCreatedWebhookEvent = WebhooksAPI.VideoLiveStreamCreatedWebhookEvent;
+  export import VideoLiveStreamConnectedWebhookEvent = WebhooksAPI.VideoLiveStreamConnectedWebhookEvent;
+  export import VideoLiveStreamRecordingWebhookEvent = WebhooksAPI.VideoLiveStreamRecordingWebhookEvent;
+  export import VideoLiveStreamActiveWebhookEvent = WebhooksAPI.VideoLiveStreamActiveWebhookEvent;
+  export import VideoLiveStreamDisconnectedWebhookEvent = WebhooksAPI.VideoLiveStreamDisconnectedWebhookEvent;
+  export import VideoLiveStreamIdleWebhookEvent = WebhooksAPI.VideoLiveStreamIdleWebhookEvent;
+  export import VideoLiveStreamUpdatedWebhookEvent = WebhooksAPI.VideoLiveStreamUpdatedWebhookEvent;
+  export import VideoLiveStreamEnabledWebhookEvent = WebhooksAPI.VideoLiveStreamEnabledWebhookEvent;
+  export import VideoLiveStreamDisabledWebhookEvent = WebhooksAPI.VideoLiveStreamDisabledWebhookEvent;
+  export import VideoLiveStreamDeletedWebhookEvent = WebhooksAPI.VideoLiveStreamDeletedWebhookEvent;
+  export import VideoLiveStreamWarningWebhookEvent = WebhooksAPI.VideoLiveStreamWarningWebhookEvent;
+  export import VideoLiveStreamSimulcastTargetCreatedWebhookEvent = WebhooksAPI.VideoLiveStreamSimulcastTargetCreatedWebhookEvent;
+  export import VideoLiveStreamSimulcastTargetIdleWebhookEvent = WebhooksAPI.VideoLiveStreamSimulcastTargetIdleWebhookEvent;
+  export import VideoLiveStreamSimulcastTargetStartingWebhookEvent = WebhooksAPI.VideoLiveStreamSimulcastTargetStartingWebhookEvent;
+  export import VideoLiveStreamSimulcastTargetBroadcastingWebhookEvent = WebhooksAPI.VideoLiveStreamSimulcastTargetBroadcastingWebhookEvent;
+  export import VideoLiveStreamSimulcastTargetErroredWebhookEvent = WebhooksAPI.VideoLiveStreamSimulcastTargetErroredWebhookEvent;
+  export import VideoLiveStreamSimulcastTargetDeletedWebhookEvent = WebhooksAPI.VideoLiveStreamSimulcastTargetDeletedWebhookEvent;
+  export import VideoLiveStreamSimulcastTargetUpdatedWebhookEvent = WebhooksAPI.VideoLiveStreamSimulcastTargetUpdatedWebhookEvent;
+  export import VideoSpaceCreatedWebhookEvent = WebhooksAPI.VideoSpaceCreatedWebhookEvent;
+  export import VideoSpaceDeletedWebhookEvent = WebhooksAPI.VideoSpaceDeletedWebhookEvent;
+  export import VideoSpaceActiveWebhookEvent = WebhooksAPI.VideoSpaceActiveWebhookEvent;
+  export import VideoSpaceIdleWebhookEvent = WebhooksAPI.VideoSpaceIdleWebhookEvent;
+  export import VideoSpaceUpdatedWebhookEvent = WebhooksAPI.VideoSpaceUpdatedWebhookEvent;
+  export import VideoSpaceBroadcastCreatedWebhookEvent = WebhooksAPI.VideoSpaceBroadcastCreatedWebhookEvent;
+  export import VideoSpaceBroadcastIdleWebhookEvent = WebhooksAPI.VideoSpaceBroadcastIdleWebhookEvent;
+  export import VideoSpaceBroadcastActiveWebhookEvent = WebhooksAPI.VideoSpaceBroadcastActiveWebhookEvent;
+  export import VideoSpaceBroadcastDeletedWebhookEvent = WebhooksAPI.VideoSpaceBroadcastDeletedWebhookEvent;
+  export import VideoDeliveryHighTrafficWebhookEvent = WebhooksAPI.VideoDeliveryHighTrafficWebhookEvent;
+  export import UnwrapWebhookEvent = WebhooksAPI.UnwrapWebhookEvent;
 }

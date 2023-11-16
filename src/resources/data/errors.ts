@@ -18,7 +18,7 @@ export class Errors extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.get('/data/v1/errors', { query, ...options });
+    return this._client.get('/data/v1/errors', { query, ...options });
   }
 }
 
@@ -27,7 +27,7 @@ export interface ErrorsResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace ErrorsResponse {
@@ -35,42 +35,42 @@ export namespace ErrorsResponse {
     /**
      * A unique identifier for this error.
      */
-    id?: number;
+    id: number;
 
     /**
      * The error code
      */
-    code?: number;
+    code: number | null;
 
     /**
-     * The total number of views that experiend this error.
+     * The total number of views that experienced this error.
      */
-    count?: number;
+    count: number;
 
     /**
      * Description of the error.
      */
-    description?: string;
+    description: string | null;
 
     /**
      * The last time this error was seen (ISO 8601 timestamp).
      */
-    last_seen?: string;
+    last_seen: string;
 
     /**
      * The error message.
      */
-    message?: string;
+    message: string | null;
 
     /**
      * Notes that are attached to this error.
      */
-    notes?: string;
+    notes: string | null;
 
     /**
      * The percentage of views that experienced this error.
      */
-    percentage?: number;
+    percentage: number;
   }
 }
 
@@ -103,6 +103,6 @@ export interface ErrorListParams {
 }
 
 export namespace Errors {
-  export type ErrorsResponse = ErrorsAPI.ErrorsResponse;
-  export type ErrorListParams = ErrorsAPI.ErrorListParams;
+  export import ErrorsResponse = ErrorsAPI.ErrorsResponse;
+  export import ErrorListParams = ErrorsAPI.ErrorListParams;
 }

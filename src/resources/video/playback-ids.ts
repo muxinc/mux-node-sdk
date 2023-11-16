@@ -12,7 +12,7 @@ export class PlaybackIDs extends APIResource {
    */
   retrieve(playbackId: string, options?: Core.RequestOptions): Core.APIPromise<PlaybackIDRetrieveResponse> {
     return (
-      this.get(`/video/v1/playback-ids/${playbackId}`, options) as Core.APIPromise<{
+      this._client.get(`/video/v1/playback-ids/${playbackId}`, options) as Core.APIPromise<{
         data: PlaybackIDRetrieveResponse;
       }>
     )._thenUnwrap((obj) => obj.data);
@@ -23,12 +23,12 @@ export interface PlaybackIDRetrieveResponse {
   /**
    * The Playback ID used to retrieve the corresponding asset or the live stream ID
    */
-  id?: string;
+  id: string;
 
   /**
    * Describes the Asset or LiveStream object associated with the playback ID.
    */
-  object?: PlaybackIDRetrieveResponse.Object;
+  object: PlaybackIDRetrieveResponse.Object;
 
   /**
    * - `public` playback IDs are accessible by constructing an HLS URL like
@@ -36,10 +36,10 @@ export interface PlaybackIDRetrieveResponse {
    *
    * - `signed` playback IDs should be used with tokens
    *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
-   *   [Secure video playback](https://docs.mux.com/guides/video/secure-video-playback)
-   *   for details about creating tokens.
+   *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
+   *   details about creating tokens.
    */
-  policy?: Shared.PlaybackPolicy;
+  policy: Shared.PlaybackPolicy;
 }
 
 export namespace PlaybackIDRetrieveResponse {
@@ -50,15 +50,15 @@ export namespace PlaybackIDRetrieveResponse {
     /**
      * The identifier of the object.
      */
-    id?: string;
+    id: string;
 
     /**
      * Identifies the object type associated with the playback ID.
      */
-    type?: 'asset' | 'live_stream';
+    type: 'asset' | 'live_stream';
   }
 }
 
 export namespace PlaybackIDs {
-  export type PlaybackIDRetrieveResponse = PlaybackIDsAPI.PlaybackIDRetrieveResponse;
+  export import PlaybackIDRetrieveResponse = PlaybackIDsAPI.PlaybackIDRetrieveResponse;
 }

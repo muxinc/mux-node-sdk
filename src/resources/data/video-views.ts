@@ -11,7 +11,7 @@ export class VideoViews extends APIResource {
    * Returns the details of a video view.
    */
   retrieve(videoViewId: string, options?: Core.RequestOptions): Core.APIPromise<VideoViewResponse> {
-    return this.get(`/data/v1/video-views/${videoViewId}`, options);
+    return this._client.get(`/data/v1/video-views/${videoViewId}`, options);
   }
 
   /**
@@ -30,336 +30,344 @@ export class VideoViews extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/data/v1/video-views', AbridgedVideoViewsBasePage, { query, ...options });
+    return this._client.getAPIList('/data/v1/video-views', AbridgedVideoViewsBasePage, { query, ...options });
   }
 }
 
 export class AbridgedVideoViewsBasePage extends BasePage<AbridgedVideoView> {}
 
 export interface AbridgedVideoView {
-  id?: string;
+  id: string;
 
-  country_code?: string | null;
+  country_code: string | null;
 
-  error_type_id?: number | null;
+  error_type_id: number | null;
 
-  player_error_code?: string | null;
+  player_error_code: string | null;
 
-  player_error_message?: string | null;
+  player_error_message: string | null;
 
-  total_row_count?: number;
+  total_row_count: number;
 
-  video_title?: string | null;
+  video_title: string | null;
 
-  view_end?: string;
+  view_end: string;
 
-  view_start?: string;
+  view_start: string;
 
-  viewer_application_name?: string | null;
+  viewer_application_name: string | null;
 
-  viewer_os_family?: string | null;
+  viewer_os_family: string | null;
 }
 
 export interface VideoViewResponse {
   data: VideoViewResponse.Data;
 
   timeframe: Array<number>;
+
+  total_row_count: number | null;
 }
 
 export namespace VideoViewResponse {
   export interface Data {
-    id?: string;
+    id: string;
 
-    asn?: number | null;
+    asn: number | null;
 
-    asn_name?: string | null;
+    asn_name: string | null;
 
-    asset_id?: string | null;
+    asset_id: string | null;
 
-    buffering_count?: number | null;
+    buffering_count: number | null;
 
-    buffering_duration?: number | null;
+    buffering_duration: number | null;
 
-    buffering_rate?: string | null;
+    buffering_rate: string | null;
 
-    cdn?: string | null;
+    cdn: string | null;
 
-    city?: string | null;
+    city: string | null;
 
-    continent_code?: string | null;
+    continent_code: string | null;
 
-    country_code?: string | null;
+    country_code: string | null;
 
-    country_name?: string | null;
+    country_name: string | null;
 
-    custom_1?: string | null;
+    custom_1: string | null;
 
-    custom_10?: string | null;
+    custom_10: string | null;
 
-    custom_2?: string | null;
+    custom_2: string | null;
 
-    custom_3?: string | null;
+    custom_3: string | null;
 
-    custom_4?: string | null;
+    custom_4: string | null;
 
-    custom_5?: string | null;
+    custom_5: string | null;
 
-    custom_6?: string | null;
+    custom_6: string | null;
 
-    custom_7?: string | null;
+    custom_7: string | null;
 
-    custom_8?: string | null;
+    custom_8: string | null;
 
-    custom_9?: string | null;
+    custom_9: string | null;
 
-    environment_id?: string;
+    environment_id: string;
 
-    error_type_id?: number | null;
+    error_type_id: number | null;
 
-    events?: Array<Data.Event>;
+    events: Array<Data.Event>;
 
-    exit_before_video_start?: boolean;
+    exit_before_video_start: boolean;
 
-    experiment_name?: string | null;
+    experiment_name: string | null;
 
-    inserted_at?: string;
+    inserted_at: string;
 
-    isp?: string | null;
+    isp: string | null;
 
-    latitude?: string | null;
+    latitude: string | null;
 
-    live_stream_id?: string | null;
+    live_stream_id: string | null;
 
-    live_stream_latency?: number | null;
+    live_stream_latency: number | null;
 
-    longitude?: string | null;
+    long_rebuffering: boolean;
 
-    metro?: string | null;
+    long_resume: boolean;
 
-    mux_api_version?: string;
+    longitude: string | null;
 
-    mux_embed?: string | null;
+    metro: string | null;
 
-    mux_embed_version?: string | null;
+    mux_api_version: string;
 
-    mux_viewer_id?: string;
+    mux_embed: string | null;
 
-    page_load_time?: number | null;
+    mux_embed_version: string | null;
 
-    page_type?: string | null;
+    mux_viewer_id: string;
 
-    page_url?: string | null;
+    page_load_time: number | null;
 
-    platform_description?: string | null;
+    page_type: string | null;
 
-    platform_summary?: string | null;
+    page_url: string | null;
 
-    playback_id?: string | null;
+    platform_description: string | null;
 
-    playback_score?: string | null;
+    platform_summary: string | null;
 
-    player_autoplay?: boolean;
+    playback_id: string | null;
 
-    player_error_code?: string | null;
+    playback_score: string | null;
+
+    player_autoplay: boolean;
+
+    player_error_code: string | null;
+
+    player_error_message: string | null;
+
+    player_height: number | null;
+
+    player_instance_id: string | null;
+
+    player_language: string | null;
+
+    player_load_time: number | null;
+
+    player_mux_plugin_name: string | null;
+
+    player_mux_plugin_version: string | null;
+
+    player_name: string | null;
+
+    player_poster: string | null;
+
+    player_preload: boolean;
+
+    player_remote_played: boolean | null;
+
+    player_software: string | null;
+
+    player_software_version: string | null;
+
+    player_source_domain: string | null;
+
+    player_source_duration: number | null;
+
+    player_source_height: number | null;
+
+    player_source_host_name: string | null;
+
+    player_source_stream_type: string | null;
+
+    player_source_type: string | null;
+
+    player_source_url: string | null;
+
+    player_source_width: number | null;
+
+    player_startup_time: number | null;
+
+    player_version: string | null;
+
+    player_view_count: number | null;
+
+    player_width: number | null;
+
+    preroll_ad_asset_hostname: string | null;
+
+    preroll_ad_tag_hostname: string | null;
+
+    preroll_played: boolean | null;
+
+    preroll_requested: boolean | null;
+
+    property_id: number;
+
+    quality_score: string | null;
+
+    rebuffer_percentage: string | null;
+
+    rebuffering_score: string | null;
+
+    region: string | null;
+
+    requests_for_first_preroll: number | null;
+
+    session_id: string;
+
+    short_time: string;
+
+    startup_score: string | null;
+
+    sub_property_id: string | null;
+
+    time_to_first_frame: number | null;
+
+    updated_at: string;
+
+    used_fullscreen: boolean;
+
+    video_content_type: string | null;
+
+    video_duration: number | null;
+
+    video_encoding_variant: string | null;
+
+    video_id: string | null;
+
+    video_language: string | null;
+
+    video_producer: string | null;
+
+    video_series: string | null;
+
+    video_startup_failure: boolean;
+
+    video_startup_preroll_load_time: number | null;
+
+    video_startup_preroll_request_time: number | null;
+
+    video_stream_type: string | null;
+
+    video_title: string | null;
+
+    video_variant_id: string | null;
+
+    video_variant_name: string | null;
+
+    view_average_request_latency: number | null;
+
+    view_average_request_throughput: number | null;
+
+    view_drm_type: string | null;
+
+    view_dropped_frame_count: number | null;
+
+    view_end: string;
+
+    view_error_id: number | null;
+
+    view_has_ad: boolean;
+
+    view_id: string;
+
+    view_max_downscale_percentage: string | null;
+
+    view_max_playhead_position: string | null;
+
+    view_max_request_latency: number | null;
+
+    view_max_upscale_percentage: string | null;
+
+    view_playing_time: string | null;
+
+    view_seek_count: number | null;
+
+    view_seek_duration: number | null;
+
+    view_session_id: string | null;
+
+    view_start: string;
+
+    view_total_content_playback_time: number | null;
+
+    view_total_downscaling: string | null;
+
+    view_total_upscaling: string | null;
+
+    viewer_application_engine: string | null;
+
+    viewer_application_name: string | null;
+
+    viewer_application_version: string | null;
+
+    viewer_connection_type: string | null;
+
+    viewer_device_category: string | null;
+
+    viewer_device_manufacturer: string | null;
+
+    viewer_device_model: string | null;
+
+    viewer_device_name: string | null;
+
+    viewer_experience_score: string | null;
+
+    viewer_os_architecture: string | null;
+
+    viewer_os_family: string | null;
+
+    viewer_os_version: string | null;
+
+    viewer_user_agent: string | null;
+
+    viewer_user_id: string | null;
+
+    watch_time: number | null;
+
+    watched: boolean;
+
+    weighted_average_bitrate: number | null;
 
     player_error_context?: string | null;
-
-    player_error_message?: string | null;
-
-    player_height?: number | null;
-
-    player_instance_id?: string | null;
-
-    player_language?: string | null;
-
-    player_load_time?: number | null;
-
-    player_mux_plugin_name?: string | null;
-
-    player_mux_plugin_version?: string | null;
-
-    player_name?: string | null;
-
-    player_poster?: string | null;
-
-    player_preload?: boolean;
-
-    player_remote_played?: boolean | null;
-
-    player_software?: string | null;
-
-    player_software_version?: string | null;
-
-    player_source_domain?: string | null;
-
-    player_source_duration?: number | null;
-
-    player_source_height?: number | null;
-
-    player_source_host_name?: string | null;
-
-    player_source_stream_type?: string | null;
-
-    player_source_type?: string | null;
-
-    player_source_url?: string | null;
-
-    player_source_width?: number | null;
-
-    player_startup_time?: number | null;
-
-    player_version?: string | null;
-
-    player_view_count?: number | null;
-
-    player_width?: number | null;
-
-    preroll_ad_asset_hostname?: string | null;
-
-    preroll_ad_tag_hostname?: string | null;
-
-    preroll_played?: boolean | null;
-
-    preroll_requested?: boolean | null;
-
-    property_id?: number;
-
-    quality_score?: string | null;
-
-    rebuffer_percentage?: string | null;
-
-    rebuffering_score?: string | null;
-
-    region?: string | null;
-
-    requests_for_first_preroll?: number | null;
-
-    session_id?: string;
-
-    short_time?: string;
-
-    startup_score?: string | null;
-
-    sub_property_id?: string | null;
-
-    time_to_first_frame?: number | null;
-
-    updated_at?: string;
-
-    used_fullscreen?: boolean;
-
-    video_content_type?: string | null;
-
-    video_duration?: number | null;
-
-    video_encoding_variant?: string | null;
-
-    video_id?: string | null;
-
-    video_language?: string | null;
-
-    video_producer?: string | null;
-
-    video_series?: string | null;
-
-    video_startup_failure?: boolean;
-
-    video_startup_preroll_load_time?: number | null;
-
-    video_startup_preroll_request_time?: number | null;
-
-    video_stream_type?: string | null;
-
-    video_title?: string | null;
-
-    video_variant_id?: string | null;
-
-    video_variant_name?: string | null;
-
-    view_average_request_latency?: number | null;
-
-    view_average_request_throughput?: number | null;
-
-    view_drm_type?: string | null;
-
-    view_dropped_frame_count?: number | null;
-
-    view_end?: string;
-
-    view_error_id?: number | null;
-
-    view_has_ad?: boolean;
-
-    view_id?: string;
-
-    view_max_downscale_percentage?: string | null;
-
-    view_max_playhead_position?: string | null;
-
-    view_max_request_latency?: number | null;
-
-    view_max_upscale_percentage?: string | null;
-
-    view_playing_time?: string | null;
-
-    view_seek_count?: number | null;
-
-    view_seek_duration?: number | null;
-
-    view_session_id?: string | null;
-
-    view_start?: string;
-
-    view_total_content_playback_time?: number | null;
-
-    view_total_downscaling?: string | null;
-
-    view_total_upscaling?: string | null;
-
-    viewer_application_engine?: string | null;
-
-    viewer_application_name?: string | null;
-
-    viewer_application_version?: string | null;
-
-    viewer_connection_type?: string | null;
-
-    viewer_device_category?: string | null;
-
-    viewer_device_manufacturer?: string | null;
-
-    viewer_device_model?: string | null;
-
-    viewer_device_name?: string | null;
-
-    viewer_experience_score?: string | null;
-
-    viewer_os_architecture?: string | null;
-
-    viewer_os_family?: string | null;
-
-    viewer_os_version?: string | null;
-
-    viewer_user_agent?: string | null;
-
-    viewer_user_id?: string | null;
-
-    watch_time?: number | null;
-
-    watched?: boolean;
-
-    weighted_average_bitrate?: number | null;
   }
 
   export namespace Data {
     export interface Event {
-      event_time?: number;
+      details: Record<string, unknown>;
 
-      name?: string;
+      event_time: number;
 
-      playback_time?: number;
+      name: string;
 
-      viewer_time?: number;
+      playback_time: number;
+
+      viewer_time: number;
     }
   }
 }
@@ -411,8 +419,8 @@ export interface VideoViewListParams extends BasePageParams {
 }
 
 export namespace VideoViews {
-  export type AbridgedVideoView = VideoViewsAPI.AbridgedVideoView;
-  export type VideoViewResponse = VideoViewsAPI.VideoViewResponse;
+  export import AbridgedVideoView = VideoViewsAPI.AbridgedVideoView;
+  export import VideoViewResponse = VideoViewsAPI.VideoViewResponse;
   export import AbridgedVideoViewsBasePage = VideoViewsAPI.AbridgedVideoViewsBasePage;
-  export type VideoViewListParams = VideoViewsAPI.VideoViewListParams;
+  export import VideoViewListParams = VideoViewsAPI.VideoViewListParams;
 }

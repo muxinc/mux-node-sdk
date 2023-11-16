@@ -19,7 +19,7 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.get('/data/v1/metrics/comparison', { query, ...options });
+    return this._client.get('/data/v1/metrics/comparison', { query, ...options });
   }
 
   /**
@@ -131,7 +131,7 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getInsights(metricId, {}, query);
     }
-    return this.get(`/data/v1/metrics/${metricId}/insights`, { query, ...options });
+    return this._client.get(`/data/v1/metrics/${metricId}/insights`, { query, ...options });
   }
 
   /**
@@ -242,7 +242,7 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getOverallValues(metricId, {}, query);
     }
-    return this.get(`/data/v1/metrics/${metricId}/overall`, { query, ...options });
+    return this._client.get(`/data/v1/metrics/${metricId}/overall`, { query, ...options });
   }
 
   /**
@@ -360,7 +360,7 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getTimeseries(metricId, {}, query);
     }
-    return this.get(`/data/v1/metrics/${metricId}/timeseries`, { query, ...options });
+    return this._client.get(`/data/v1/metrics/${metricId}/timeseries`, { query, ...options });
   }
 
   /**
@@ -470,7 +470,7 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.listBreakdownValues(metricId, {}, query);
     }
-    return this.getAPIList(`/data/v1/metrics/${metricId}/breakdown`, BreakdownValuesBasePage, {
+    return this._client.getAPIList(`/data/v1/metrics/${metricId}/breakdown`, BreakdownValuesBasePage, {
       query,
       ...options,
     });
@@ -484,53 +484,67 @@ export interface AllMetricValuesResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace AllMetricValuesResponse {
   export interface Data {
+    name: string;
+
+    ended_views?: number;
+
     items?: Array<Data.Item>;
 
     metric?: string;
 
-    name?: string;
+    started_views?: number;
+
+    total_playing_time?: number | null;
+
+    type?: string;
+
+    unique_viewers?: number;
 
     value?: number;
 
     view_count?: number;
 
-    watch_time?: number;
+    watch_time?: number | null;
   }
 
   export namespace Data {
     export interface Item {
+      metric: string;
+
+      name: string;
+
+      type: string;
+
+      value: number | null;
+
       measurement?: string;
-
-      metric?: string;
-
-      name?: string;
-
-      type?: string;
-
-      value?: number;
     }
   }
 }
 
 export interface BreakdownValue {
-  field?: string;
+  field: string | null;
 
-  negative_impact?: number;
+  negative_impact: number;
 
-  total_watch_time?: number;
+  total_playing_time: number | null;
 
-  value?: number;
+  total_watch_time: number | null;
 
-  views?: number;
+  value: number;
+
+  views: number;
 }
 
 export interface InsightsResponse {
   data: Array<InsightsResponse.Data>;
+
+  meta: InsightsResponse.Meta;
 
   timeframe: Array<number>;
 
@@ -539,45 +553,73 @@ export interface InsightsResponse {
 
 export namespace InsightsResponse {
   export interface Data {
-    filter_column?: string;
+    filter_column: string;
 
-    filter_value?: string;
+    filter_value: string | null;
 
-    metric?: number;
+    metric: number;
 
-    negative_impact_score?: number;
+    negative_impact_score: number;
 
-    total_views?: number;
+    total_playing_time: number | null;
 
-    total_watch_time?: number;
+    total_views: number;
+
+    total_watch_time: number | null;
+  }
+
+  export interface Meta {
+    aggregation?: string;
+
+    granularity?: string;
   }
 }
 
 export interface MetricTimeseriesDataResponse {
-  data: Array<Array<string>>;
+  data: Array<Array<string | number | null | number | null>>;
+
+  meta: MetricTimeseriesDataResponse.Meta;
 
   timeframe: Array<number>;
 
   total_row_count: number;
+}
+
+export namespace MetricTimeseriesDataResponse {
+  export interface Meta {
+    aggregation?: string;
+
+    granularity?: string;
+  }
 }
 
 export interface OverallValuesResponse {
   data: OverallValuesResponse.Data;
 
+  meta: OverallValuesResponse.Meta;
+
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace OverallValuesResponse {
   export interface Data {
-    global_value?: number;
+    global_value: number | null;
 
-    total_views?: number;
+    total_playing_time: number | null;
 
-    total_watch_time?: number;
+    total_views: number;
 
-    value?: number;
+    total_watch_time: number | null;
+
+    value: number;
+  }
+
+  export interface Meta {
+    aggregation?: string;
+
+    granularity?: string;
   }
 }
 
@@ -891,15 +933,15 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
 }
 
 export namespace Metrics {
-  export type AllMetricValuesResponse = MetricsAPI.AllMetricValuesResponse;
-  export type BreakdownValue = MetricsAPI.BreakdownValue;
-  export type InsightsResponse = MetricsAPI.InsightsResponse;
-  export type MetricTimeseriesDataResponse = MetricsAPI.MetricTimeseriesDataResponse;
-  export type OverallValuesResponse = MetricsAPI.OverallValuesResponse;
+  export import AllMetricValuesResponse = MetricsAPI.AllMetricValuesResponse;
+  export import BreakdownValue = MetricsAPI.BreakdownValue;
+  export import InsightsResponse = MetricsAPI.InsightsResponse;
+  export import MetricTimeseriesDataResponse = MetricsAPI.MetricTimeseriesDataResponse;
+  export import OverallValuesResponse = MetricsAPI.OverallValuesResponse;
   export import BreakdownValuesBasePage = MetricsAPI.BreakdownValuesBasePage;
-  export type MetricListParams = MetricsAPI.MetricListParams;
-  export type MetricGetInsightsParams = MetricsAPI.MetricGetInsightsParams;
-  export type MetricGetOverallValuesParams = MetricsAPI.MetricGetOverallValuesParams;
-  export type MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
-  export type MetricListBreakdownValuesParams = MetricsAPI.MetricListBreakdownValuesParams;
+  export import MetricListParams = MetricsAPI.MetricListParams;
+  export import MetricGetInsightsParams = MetricsAPI.MetricGetInsightsParams;
+  export import MetricGetOverallValuesParams = MetricsAPI.MetricGetOverallValuesParams;
+  export import MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
+  export import MetricListBreakdownValuesParams = MetricsAPI.MetricListBreakdownValuesParams;
 }

@@ -29,13 +29,16 @@ import Mux from '@mux/mux-node';
 
 const mux = new Mux({
   tokenId: 'my token id', // defaults to process.env["MUX_TOKEN_ID"]
-  tokenSecret: 'my secret',
+  tokenSecret: 'my secret', // defaults to process.env["MUX_TOKEN_SECRET"]
 });
 
 async function main() {
-  const asset = await mux.video.assets.create();
+  const asset = await mux.video.assets.create({
+    input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    playback_policy: ['public'],
+  });
 
-  console.log(asset.aspect_ratio);
+  console.log(asset.id);
 }
 
 main();
@@ -50,11 +53,15 @@ import Mux from '@mux/mux-node';
 
 const mux = new Mux({
   tokenId: 'my token id', // defaults to process.env["MUX_TOKEN_ID"]
-  tokenSecret: 'my secret',
+  tokenSecret: 'my secret', // defaults to process.env["MUX_TOKEN_SECRET"]
 });
 
 async function main() {
-  const asset: Mux.Video.Asset = await mux.video.assets.create();
+  const params: Mux.Video.AssetCreateParams = {
+    input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    playback_policy: ['public'],
+  };
+  const asset: Mux.Video.Asset = await mux.video.assets.create(params);
 }
 
 main();
@@ -74,7 +81,6 @@ async function main() {
     if (err instanceof Mux.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
-
       console.log(err.headers); // {server: 'nginx', ...}
     } else {
       throw err;
@@ -111,7 +117,6 @@ You can use the `maxRetries` option to configure or disable this:
 // Configure the default for all requests:
 const mux = new Mux({
   maxRetries: 0, // default is 2
-  tokenSecret: 'my secret',
 });
 
 // Or, configure per-request:
@@ -129,7 +134,6 @@ Requests time out after 1 minute by default. You can configure this with a `time
 // Configure the default for all requests:
 const mux = new Mux({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
-  tokenSecret: 'my secret',
 });
 
 // Override per-request:
@@ -184,14 +188,63 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const mux = new Mux();
 
-const response = await mux.video.assets.create().asResponse();
+const response = await mux.video.assets
+  .create({
+    input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    playback_policy: ['public'],
+  })
+  .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: asset, response: raw } = await mux.video.assets.create().withResponse();
+const { data: asset, response: raw } = await mux.video.assets
+  .create({
+    input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    playback_policy: ['public'],
+  })
+  .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(asset.aspect_ratio);
+console.log(asset.id);
 ```
+
+## Customizing the fetch client
+
+By default, this library uses `node-fetch` in Node, and expects a global `fetch` function in other environments.
+
+If you would prefer to use a global, web-standards-compliant `fetch` function even in a Node environment,
+(for example, if you are running Node with `--experimental-fetch` or using NextJS which polyfills with `undici`),
+add the following import before your first import `from "Mux"`:
+
+<!-- prettier-ignore -->
+```ts
+// Tell TypeScript and the package to use the global web fetch instead of node-fetch.
+// Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
+import "@mux/mux-node/shims/web";
+import Mux from "@mux/mux-node";
+```
+
+To do the inverse, add `import "@mux/mux-node/shims/node"` (which does import polyfills).
+This can also be useful if you are getting the wrong TypeScript types for `Response` - more details [here](https://github.com/muxinc/mux-node-sdk/tree/main/src/_shims#readme).
+
+You may also provide a custom `fetch` function when instantiating the client,
+which can be used to inspect or alter the `Request` or `Response` before/after each request:
+
+```ts
+import { fetch } from 'undici'; // as one example
+import Mux from '@mux/mux-node';
+
+const client = new Mux({
+  fetch: (url: RequestInfo, init?: RequestInfo): Response => {
+    console.log('About to make request', url, init);
+    const response = await fetch(url, init);
+    console.log('Got response', response);
+    return response;
+  },
+});
+```
+
+Note that if given a `DEBUG=true` environment variable, this library will log all requests and responses automatically.
+This is intended for debugging purposes only and may change in the future without notice.
 
 ## Configuring an HTTP(S) Agent (e.g., for proxies)
 
@@ -207,7 +260,6 @@ import HttpsProxyAgent from 'https-proxy-agent';
 // Configure the default for all requests:
 const mux = new Mux({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
-  tokenSecret: 'my secret',
 });
 
 // Override per-request:
@@ -219,7 +271,7 @@ await mux.video.assets.retrieve('t02rm...', {
 
 ## Semantic Versioning
 
-This package generally attempts to follow [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
+This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
 
 1. Changes that only affect static types, without breaking runtime behavior.
 2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals)_.

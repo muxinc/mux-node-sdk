@@ -14,7 +14,7 @@ export class SigningKeys extends APIResource {
    */
   create(options?: Core.RequestOptions): Core.APIPromise<SigningKey> {
     return (
-      this.post('/system/v1/signing-keys', options) as Core.APIPromise<{ data: SigningKey }>
+      this._client.post('/system/v1/signing-keys', options) as Core.APIPromise<{ data: SigningKey }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -26,7 +26,9 @@ export class SigningKeys extends APIResource {
    */
   retrieve(signingKeyId: string, options?: Core.RequestOptions): Core.APIPromise<SigningKey> {
     return (
-      this.get(`/system/v1/signing-keys/${signingKeyId}`, options) as Core.APIPromise<{ data: SigningKey }>
+      this._client.get(`/system/v1/signing-keys/${signingKeyId}`, options) as Core.APIPromise<{
+        data: SigningKey;
+      }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -45,15 +47,15 @@ export class SigningKeys extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this.getAPIList('/system/v1/signing-keys', SigningKeysBasePage, { query, ...options });
+    return this._client.getAPIList('/system/v1/signing-keys', SigningKeysBasePage, { query, ...options });
   }
 
   /**
    * Deletes an existing signing key. Use with caution, as this will invalidate any
    * existing signatures and no JWTs can be signed using the key again.
    */
-  del(signingKeyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this.delete(`/system/v1/signing-keys/${signingKeyId}`, {
+  delete(signingKeyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/system/v1/signing-keys/${signingKeyId}`, {
       ...options,
       headers: { Accept: '', ...options?.headers },
     });
@@ -66,12 +68,12 @@ export interface SigningKey {
   /**
    * Unique identifier for the Signing Key.
    */
-  id?: string;
+  id: string;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
    */
-  created_at?: string;
+  created_at: string;
 
   /**
    * A Base64 encoded private key that can be used with the RS256 algorithm when
@@ -88,8 +90,8 @@ export interface SigningKeyResponse {
 export interface SigningKeyListParams extends BasePageParams {}
 
 export namespace SigningKeys {
-  export type SigningKey = SigningKeysAPI.SigningKey;
-  export type SigningKeyResponse = SigningKeysAPI.SigningKeyResponse;
+  export import SigningKey = SigningKeysAPI.SigningKey;
+  export import SigningKeyResponse = SigningKeysAPI.SigningKeyResponse;
   export import SigningKeysBasePage = SigningKeysAPI.SigningKeysBasePage;
-  export type SigningKeyListParams = SigningKeysAPI.SigningKeyListParams;
+  export import SigningKeyListParams = SigningKeysAPI.SigningKeyListParams;
 }

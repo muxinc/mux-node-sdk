@@ -2,6 +2,7 @@
 
 export {
   Asset,
+  AssetOptions,
   AssetResponse,
   InputInfo,
   Track,

@@ -10,7 +10,7 @@ export class Metrics extends APIResource {
    * Lists available monitoring metrics.
    */
   list(options?: Core.RequestOptions): Core.APIPromise<MetricListResponse> {
-    return this.get('/data/v1/monitoring/metrics', options);
+    return this._client.get('/data/v1/monitoring/metrics', options);
   }
 
   /**
@@ -52,7 +52,10 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getBreakdown(monitoringMetricId, {}, query);
     }
-    return this.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/breakdown`, { query, ...options });
+    return this._client.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/breakdown`, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -94,7 +97,7 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getBreakdownTimeseries(monitoringMetricId, {}, query);
     }
-    return this.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/breakdown-timeseries`, {
+    return this._client.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/breakdown-timeseries`, {
       query,
       ...options,
     });
@@ -120,10 +123,10 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getHistogramTimeseries(monitoringHistogramMetricId, {}, query);
     }
-    return this.get(`/data/v1/monitoring/metrics/${monitoringHistogramMetricId}/histogram-timeseries`, {
-      query,
-      ...options,
-    });
+    return this._client.get(
+      `/data/v1/monitoring/metrics/${monitoringHistogramMetricId}/histogram-timeseries`,
+      { query, ...options },
+    );
   }
 
   /**
@@ -165,7 +168,10 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getTimeseries(monitoringMetricId, {}, query);
     }
-    return this.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/timeseries`, { query, ...options });
+    return this._client.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/timeseries`, {
+      query,
+      ...options,
+    });
   }
 }
 
@@ -174,14 +180,14 @@ export interface MetricListResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace MetricListResponse {
   export interface Data {
-    display_name?: string;
+    display_name: string;
 
-    name?: string;
+    name: string;
   }
 }
 
@@ -190,20 +196,22 @@ export interface MetricGetBreakdownResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace MetricGetBreakdownResponse {
   export interface Data {
-    concurrent_viewers?: number;
+    concurrent_viewers: number;
+
+    metric_value: number | null;
+
+    negative_impact: number;
+
+    starting_up_viewers: number;
+
+    value: string | null;
 
     display_value?: string;
-
-    metric_value?: number;
-
-    negative_impact?: number;
-
-    value?: string;
   }
 }
 
@@ -212,23 +220,23 @@ export interface MetricGetBreakdownTimeseriesResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace MetricGetBreakdownTimeseriesResponse {
   export interface Data {
-    date?: string;
+    date: string;
 
-    values?: Array<Data.Value>;
+    values: Array<Data.Value>;
   }
 
   export namespace Data {
     export interface Value {
-      concurrent_viewers?: number;
+      concurrent_viewers: number;
 
-      metric_value?: number;
+      metric_value: number | null;
 
-      value?: string;
+      value: string | null;
     }
   }
 }
@@ -240,43 +248,45 @@ export interface MetricGetHistogramTimeseriesResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace MetricGetHistogramTimeseriesResponse {
   export interface Data {
-    average?: number;
+    average: number | null;
 
-    bucket_values?: Array<Data.BucketValue>;
+    bucket_values: Array<Data.BucketValue>;
 
-    max_percentage?: number;
+    max_percentage: number;
 
-    median?: number;
+    median: number | null;
 
-    p95?: number;
+    p95: number | null;
 
-    sum?: number;
+    sum: number;
 
-    timestamp?: string;
+    timestamp: string;
   }
 
   export namespace Data {
     export interface BucketValue {
-      count?: number;
+      count: number;
 
-      percentage?: number;
+      percentage: number;
     }
   }
 
   export interface Meta {
-    buckets?: Array<Meta.Bucket>;
+    bucket_unit: string;
+
+    buckets: Array<Meta.Bucket>;
   }
 
   export namespace Meta {
     export interface Bucket {
-      end?: number;
+      end: number | null;
 
-      start?: number;
+      start: number;
     }
   }
 }
@@ -286,16 +296,16 @@ export interface MetricGetTimeseriesResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace MetricGetTimeseriesResponse {
   export interface Data {
-    concurrent_viewers?: number;
+    concurrent_viewers: number;
 
-    date?: string;
+    date: string;
 
-    value?: number;
+    value: number | null;
   }
 }
 
@@ -452,13 +462,13 @@ export interface MetricGetTimeseriesParams {
 }
 
 export namespace Metrics {
-  export type MetricListResponse = MetricsAPI.MetricListResponse;
-  export type MetricGetBreakdownResponse = MetricsAPI.MetricGetBreakdownResponse;
-  export type MetricGetBreakdownTimeseriesResponse = MetricsAPI.MetricGetBreakdownTimeseriesResponse;
-  export type MetricGetHistogramTimeseriesResponse = MetricsAPI.MetricGetHistogramTimeseriesResponse;
-  export type MetricGetTimeseriesResponse = MetricsAPI.MetricGetTimeseriesResponse;
-  export type MetricGetBreakdownParams = MetricsAPI.MetricGetBreakdownParams;
-  export type MetricGetBreakdownTimeseriesParams = MetricsAPI.MetricGetBreakdownTimeseriesParams;
-  export type MetricGetHistogramTimeseriesParams = MetricsAPI.MetricGetHistogramTimeseriesParams;
-  export type MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
+  export import MetricListResponse = MetricsAPI.MetricListResponse;
+  export import MetricGetBreakdownResponse = MetricsAPI.MetricGetBreakdownResponse;
+  export import MetricGetBreakdownTimeseriesResponse = MetricsAPI.MetricGetBreakdownTimeseriesResponse;
+  export import MetricGetHistogramTimeseriesResponse = MetricsAPI.MetricGetHistogramTimeseriesResponse;
+  export import MetricGetTimeseriesResponse = MetricsAPI.MetricGetTimeseriesResponse;
+  export import MetricGetBreakdownParams = MetricsAPI.MetricGetBreakdownParams;
+  export import MetricGetBreakdownTimeseriesParams = MetricsAPI.MetricGetBreakdownTimeseriesParams;
+  export import MetricGetHistogramTimeseriesParams = MetricsAPI.MetricGetHistogramTimeseriesParams;
+  export import MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
 }

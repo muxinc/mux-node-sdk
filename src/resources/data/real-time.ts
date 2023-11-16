@@ -11,7 +11,7 @@ export class RealTime extends APIResource {
    * `List Monitoring Dimensions` API.
    */
   listDimensions(options?: Core.RequestOptions): Core.APIPromise<RealTimeDimensionsResponse> {
-    return this.get('/data/v1/realtime/dimensions', options);
+    return this._client.get('/data/v1/realtime/dimensions', options);
   }
 
   /**
@@ -19,7 +19,7 @@ export class RealTime extends APIResource {
    * `List Monitoring Metrics` API.
    */
   listMetrics(options?: Core.RequestOptions): Core.APIPromise<RealTimeMetricsResponse> {
-    return this.get('/data/v1/realtime/metrics', options);
+    return this._client.get('/data/v1/realtime/metrics', options);
   }
 
   /**
@@ -59,7 +59,7 @@ export class RealTime extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieveBreakdown(realtimeMetricId, {}, query);
     }
-    return this.get(`/data/v1/realtime/metrics/${realtimeMetricId}/breakdown`, { query, ...options });
+    return this._client.get(`/data/v1/realtime/metrics/${realtimeMetricId}/breakdown`, { query, ...options });
   }
 
   /**
@@ -83,7 +83,7 @@ export class RealTime extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieveHistogramTimeseries(realtimeHistogramMetricId, {}, query);
     }
-    return this.get(`/data/v1/realtime/metrics/${realtimeHistogramMetricId}/histogram-timeseries`, {
+    return this._client.get(`/data/v1/realtime/metrics/${realtimeHistogramMetricId}/histogram-timeseries`, {
       query,
       ...options,
     });
@@ -126,7 +126,10 @@ export class RealTime extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieveTimeseries(realtimeMetricId, {}, query);
     }
-    return this.get(`/data/v1/realtime/metrics/${realtimeMetricId}/timeseries`, { query, ...options });
+    return this._client.get(`/data/v1/realtime/metrics/${realtimeMetricId}/timeseries`, {
+      query,
+      ...options,
+    });
   }
 }
 
@@ -135,20 +138,22 @@ export interface RealTimeBreakdownResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace RealTimeBreakdownResponse {
   export interface Data {
-    concurrent_viewers?: number;
+    concurrent_viewers: number;
+
+    metric_value: number | null;
+
+    negative_impact: number;
+
+    starting_up_viewers: number;
+
+    value: string | null;
 
     display_value?: string;
-
-    metric_value?: number;
-
-    negative_impact?: number;
-
-    value?: string;
   }
 }
 
@@ -157,14 +162,14 @@ export interface RealTimeDimensionsResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace RealTimeDimensionsResponse {
   export interface Data {
-    display_name?: string;
+    display_name: string;
 
-    name?: string;
+    name: string;
   }
 }
 
@@ -175,43 +180,45 @@ export interface RealTimeHistogramTimeseriesResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace RealTimeHistogramTimeseriesResponse {
   export interface Data {
-    average?: number;
+    average: number | null;
 
-    bucket_values?: Array<Data.BucketValue>;
+    bucket_values: Array<Data.BucketValue>;
 
-    max_percentage?: number;
+    max_percentage: number;
 
-    median?: number;
+    median: number | null;
 
-    p95?: number;
+    p95: number | null;
 
-    sum?: number;
+    sum: number;
 
-    timestamp?: string;
+    timestamp: string;
   }
 
   export namespace Data {
     export interface BucketValue {
-      count?: number;
+      count: number;
 
-      percentage?: number;
+      percentage: number;
     }
   }
 
   export interface Meta {
-    buckets?: Array<Meta.Bucket>;
+    bucket_unit: string;
+
+    buckets: Array<Meta.Bucket>;
   }
 
   export namespace Meta {
     export interface Bucket {
-      end?: number;
+      end: number | null;
 
-      start?: number;
+      start: number;
     }
   }
 }
@@ -221,14 +228,14 @@ export interface RealTimeMetricsResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace RealTimeMetricsResponse {
   export interface Data {
-    display_name?: string;
+    display_name: string;
 
-    name?: string;
+    name: string;
   }
 }
 
@@ -237,16 +244,16 @@ export interface RealTimeTimeseriesResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace RealTimeTimeseriesResponse {
   export interface Data {
-    concurrent_viewers?: number;
+    concurrent_viewers: number;
 
-    date?: string;
+    date: string;
 
-    value?: number;
+    value: number | null;
   }
 }
 
@@ -342,13 +349,12 @@ export interface RealTimeRetrieveTimeseriesParams {
 }
 
 export namespace RealTime {
-  export type RealTimeBreakdownResponse = RealTimeAPI.RealTimeBreakdownResponse;
-  export type RealTimeDimensionsResponse = RealTimeAPI.RealTimeDimensionsResponse;
-  export type RealTimeHistogramTimeseriesResponse = RealTimeAPI.RealTimeHistogramTimeseriesResponse;
-  export type RealTimeMetricsResponse = RealTimeAPI.RealTimeMetricsResponse;
-  export type RealTimeTimeseriesResponse = RealTimeAPI.RealTimeTimeseriesResponse;
-  export type RealTimeRetrieveBreakdownParams = RealTimeAPI.RealTimeRetrieveBreakdownParams;
-  export type RealTimeRetrieveHistogramTimeseriesParams =
-    RealTimeAPI.RealTimeRetrieveHistogramTimeseriesParams;
-  export type RealTimeRetrieveTimeseriesParams = RealTimeAPI.RealTimeRetrieveTimeseriesParams;
+  export import RealTimeBreakdownResponse = RealTimeAPI.RealTimeBreakdownResponse;
+  export import RealTimeDimensionsResponse = RealTimeAPI.RealTimeDimensionsResponse;
+  export import RealTimeHistogramTimeseriesResponse = RealTimeAPI.RealTimeHistogramTimeseriesResponse;
+  export import RealTimeMetricsResponse = RealTimeAPI.RealTimeMetricsResponse;
+  export import RealTimeTimeseriesResponse = RealTimeAPI.RealTimeTimeseriesResponse;
+  export import RealTimeRetrieveBreakdownParams = RealTimeAPI.RealTimeRetrieveBreakdownParams;
+  export import RealTimeRetrieveHistogramTimeseriesParams = RealTimeAPI.RealTimeRetrieveHistogramTimeseriesParams;
+  export import RealTimeRetrieveTimeseriesParams = RealTimeAPI.RealTimeRetrieveTimeseriesParams;
 }

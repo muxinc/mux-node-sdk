@@ -13,7 +13,7 @@ export class Dimensions extends APIResource {
    * Note: This API replaces the list-filters API call.
    */
   list(options?: Core.RequestOptions): Core.APIPromise<DimensionsResponse> {
-    return this.get('/data/v1/dimensions', options);
+    return this._client.get('/data/v1/dimensions', options);
   }
 
   /**
@@ -38,7 +38,7 @@ export class Dimensions extends APIResource {
     if (isRequestOptions(query)) {
       return this.listValues(dimensionId, {}, query);
     }
-    return this.getAPIList(`/data/v1/dimensions/${dimensionId}`, DimensionValuesBasePage, {
+    return this._client.getAPIList(`/data/v1/dimensions/${dimensionId}`, DimensionValuesBasePage, {
       query,
       ...options,
     });
@@ -48,9 +48,9 @@ export class Dimensions extends APIResource {
 export class DimensionValuesBasePage extends BasePage<DimensionValue> {}
 
 export interface DimensionValue {
-  total_count?: number;
+  total_count: number;
 
-  value?: string;
+  value: string | null;
 }
 
 export interface DimensionsResponse {
@@ -58,14 +58,14 @@ export interface DimensionsResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace DimensionsResponse {
   export interface Data {
-    advanced?: Array<string>;
+    advanced: Array<string>;
 
-    basic?: Array<string>;
+    basic: Array<string>;
   }
 }
 
@@ -98,8 +98,8 @@ export interface DimensionListValuesParams extends BasePageParams {
 }
 
 export namespace Dimensions {
-  export type DimensionValue = DimensionsAPI.DimensionValue;
-  export type DimensionsResponse = DimensionsAPI.DimensionsResponse;
+  export import DimensionValue = DimensionsAPI.DimensionValue;
+  export import DimensionsResponse = DimensionsAPI.DimensionsResponse;
   export import DimensionValuesBasePage = DimensionsAPI.DimensionValuesBasePage;
-  export type DimensionListValuesParams = DimensionsAPI.DimensionListValuesParams;
+  export import DimensionListValuesParams = DimensionsAPI.DimensionListValuesParams;
 }
