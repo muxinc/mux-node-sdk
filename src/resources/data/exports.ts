@@ -18,7 +18,7 @@ export interface ExportsResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export interface VideoViewExportsResponse {
@@ -26,23 +26,23 @@ export interface VideoViewExportsResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace VideoViewExportsResponse {
   export interface Data {
-    export_date?: string;
+    export_date: string;
 
-    files?: Array<Data.File>;
+    files: Array<Data.File>;
   }
 
   export namespace Data {
     export interface File {
-      path?: string;
+      path: string;
 
-      type?: string;
+      type: string;
 
-      version?: number;
+      version: number;
     }
   }
 }

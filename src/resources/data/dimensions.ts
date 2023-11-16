@@ -48,9 +48,9 @@ export class Dimensions extends APIResource {
 export class DimensionValuesBasePage extends BasePage<DimensionValue> {}
 
 export interface DimensionValue {
-  total_count?: number;
+  total_count: number;
 
-  value?: string;
+  value: string | null;
 }
 
 export interface DimensionsResponse {
@@ -58,14 +58,14 @@ export interface DimensionsResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace DimensionsResponse {
   export interface Data {
-    advanced?: Array<string>;
+    advanced: Array<string>;
 
-    basic?: Array<string>;
+    basic: Array<string>;
   }
 }
 

@@ -11,7 +11,7 @@ const mux = new Mux({
 
 describe('resource uploads', () => {
   test('create: only required params', async () => {
-    const responsePromise = mux.video.uploads.create({ new_asset_settings: {} });
+    const responsePromise = mux.video.uploads.create({ cors_origin: 'https://example.com/' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,6 +23,7 @@ describe('resource uploads', () => {
 
   test('create: required and optional params', async () => {
     const response = await mux.video.uploads.create({
+      cors_origin: 'https://example.com/',
       new_asset_settings: {
         input: [
           {
@@ -36,6 +37,11 @@ describe('resource uploads', () => {
               height: 'string',
               opacity: 'string',
             },
+            generated_subtitles: [
+              { name: 'string', passthrough: 'string', language_code: 'en' },
+              { name: 'string', passthrough: 'string', language_code: 'en' },
+              { name: 'string', passthrough: 'string', language_code: 'en' },
+            ],
             start_time: 0,
             end_time: 0,
             type: 'video',
@@ -56,6 +62,11 @@ describe('resource uploads', () => {
               height: 'string',
               opacity: 'string',
             },
+            generated_subtitles: [
+              { name: 'string', passthrough: 'string', language_code: 'en' },
+              { name: 'string', passthrough: 'string', language_code: 'en' },
+              { name: 'string', passthrough: 'string', language_code: 'en' },
+            ],
             start_time: 0,
             end_time: 0,
             type: 'video',
@@ -76,6 +87,11 @@ describe('resource uploads', () => {
               height: 'string',
               opacity: 'string',
             },
+            generated_subtitles: [
+              { name: 'string', passthrough: 'string', language_code: 'en' },
+              { name: 'string', passthrough: 'string', language_code: 'en' },
+              { name: 'string', passthrough: 'string', language_code: 'en' },
+            ],
             start_time: 0,
             end_time: 0,
             type: 'video',
@@ -93,8 +109,9 @@ describe('resource uploads', () => {
         normalize_audio: true,
         master_access: 'none',
         test: true,
+        max_resolution_tier: '1080p',
+        encoding_tier: 'smart',
       },
-      cors_origin: 'https://example.com/',
       test: true,
       timeout: 60,
     });

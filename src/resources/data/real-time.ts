@@ -138,20 +138,22 @@ export interface RealTimeBreakdownResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace RealTimeBreakdownResponse {
   export interface Data {
-    concurrent_viewers?: number;
+    concurrent_viewers: number;
+
+    metric_value: number | null;
+
+    negative_impact: number;
+
+    starting_up_viewers: number;
+
+    value: string | null;
 
     display_value?: string;
-
-    metric_value?: number;
-
-    negative_impact?: number;
-
-    value?: string;
   }
 }
 
@@ -160,14 +162,14 @@ export interface RealTimeDimensionsResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace RealTimeDimensionsResponse {
   export interface Data {
-    display_name?: string;
+    display_name: string;
 
-    name?: string;
+    name: string;
   }
 }
 
@@ -178,43 +180,45 @@ export interface RealTimeHistogramTimeseriesResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace RealTimeHistogramTimeseriesResponse {
   export interface Data {
-    average?: number;
+    average: number | null;
 
-    bucket_values?: Array<Data.BucketValue>;
+    bucket_values: Array<Data.BucketValue>;
 
-    max_percentage?: number;
+    max_percentage: number;
 
-    median?: number;
+    median: number | null;
 
-    p95?: number;
+    p95: number | null;
 
-    sum?: number;
+    sum: number;
 
-    timestamp?: string;
+    timestamp: string;
   }
 
   export namespace Data {
     export interface BucketValue {
-      count?: number;
+      count: number;
 
-      percentage?: number;
+      percentage: number;
     }
   }
 
   export interface Meta {
-    buckets?: Array<Meta.Bucket>;
+    bucket_unit: string;
+
+    buckets: Array<Meta.Bucket>;
   }
 
   export namespace Meta {
     export interface Bucket {
-      end?: number;
+      end: number | null;
 
-      start?: number;
+      start: number;
     }
   }
 }
@@ -224,14 +228,14 @@ export interface RealTimeMetricsResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace RealTimeMetricsResponse {
   export interface Data {
-    display_name?: string;
+    display_name: string;
 
-    name?: string;
+    name: string;
   }
 }
 
@@ -240,16 +244,16 @@ export interface RealTimeTimeseriesResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace RealTimeTimeseriesResponse {
   export interface Data {
-    concurrent_viewers?: number;
+    concurrent_viewers: number;
 
-    date?: string;
+    date: string;
 
-    value?: number;
+    value: number | null;
   }
 }
 

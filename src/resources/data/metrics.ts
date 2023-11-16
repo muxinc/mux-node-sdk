@@ -484,53 +484,67 @@ export interface AllMetricValuesResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace AllMetricValuesResponse {
   export interface Data {
+    name: string;
+
+    ended_views?: number;
+
     items?: Array<Data.Item>;
 
     metric?: string;
 
-    name?: string;
+    started_views?: number;
+
+    total_playing_time?: number | null;
+
+    type?: string;
+
+    unique_viewers?: number;
 
     value?: number;
 
     view_count?: number;
 
-    watch_time?: number;
+    watch_time?: number | null;
   }
 
   export namespace Data {
     export interface Item {
+      metric: string;
+
+      name: string;
+
+      type: string;
+
+      value: number | null;
+
       measurement?: string;
-
-      metric?: string;
-
-      name?: string;
-
-      type?: string;
-
-      value?: number;
     }
   }
 }
 
 export interface BreakdownValue {
-  field?: string;
+  field: string | null;
 
-  negative_impact?: number;
+  negative_impact: number;
 
-  total_watch_time?: number;
+  total_playing_time: number | null;
 
-  value?: number;
+  total_watch_time: number | null;
 
-  views?: number;
+  value: number;
+
+  views: number;
 }
 
 export interface InsightsResponse {
   data: Array<InsightsResponse.Data>;
+
+  meta: InsightsResponse.Meta;
 
   timeframe: Array<number>;
 
@@ -539,45 +553,73 @@ export interface InsightsResponse {
 
 export namespace InsightsResponse {
   export interface Data {
-    filter_column?: string;
+    filter_column: string;
 
-    filter_value?: string;
+    filter_value: string | null;
 
-    metric?: number;
+    metric: number;
 
-    negative_impact_score?: number;
+    negative_impact_score: number;
 
-    total_views?: number;
+    total_playing_time: number | null;
 
-    total_watch_time?: number;
+    total_views: number;
+
+    total_watch_time: number | null;
+  }
+
+  export interface Meta {
+    aggregation?: string;
+
+    granularity?: string;
   }
 }
 
 export interface MetricTimeseriesDataResponse {
-  data: Array<Array<string>>;
+  data: Array<Array<string | number | null | number | null>>;
+
+  meta: MetricTimeseriesDataResponse.Meta;
 
   timeframe: Array<number>;
 
   total_row_count: number;
+}
+
+export namespace MetricTimeseriesDataResponse {
+  export interface Meta {
+    aggregation?: string;
+
+    granularity?: string;
+  }
 }
 
 export interface OverallValuesResponse {
   data: OverallValuesResponse.Data;
 
+  meta: OverallValuesResponse.Meta;
+
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace OverallValuesResponse {
   export interface Data {
-    global_value?: number;
+    global_value: number | null;
 
-    total_views?: number;
+    total_playing_time: number | null;
 
-    total_watch_time?: number;
+    total_views: number;
 
-    value?: number;
+    total_watch_time: number | null;
+
+    value: number;
+  }
+
+  export interface Meta {
+    aggregation?: string;
+
+    granularity?: string;
   }
 }
 

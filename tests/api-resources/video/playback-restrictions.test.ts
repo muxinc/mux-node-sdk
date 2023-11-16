@@ -82,8 +82,10 @@ describe('resource playbackRestrictions', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('updateReferrer', async () => {
-    const responsePromise = mux.video.playbackRestrictions.updateReferrer('string', {});
+  test('updateReferrer: only required params', async () => {
+    const responsePromise = mux.video.playbackRestrictions.updateReferrer('string', {
+      allowed_domains: ['string', 'string', 'string'],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -91,5 +93,12 @@ describe('resource playbackRestrictions', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('updateReferrer: required and optional params', async () => {
+    const response = await mux.video.playbackRestrictions.updateReferrer('string', {
+      allowed_domains: ['string', 'string', 'string'],
+      allow_no_referrer: true,
+    });
   });
 });

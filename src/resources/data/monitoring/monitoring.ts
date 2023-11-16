@@ -21,14 +21,14 @@ export interface MonitoringListDimensionsResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace MonitoringListDimensionsResponse {
   export interface Data {
-    display_name?: string;
+    display_name: string;
 
-    name?: string;
+    name: string;
   }
 }
 

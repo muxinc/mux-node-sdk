@@ -12,6 +12,7 @@ Types:
 Types:
 
 - <code><a href="./src/resources/video/assets.ts">Asset</a></code>
+- <code><a href="./src/resources/video/assets.ts">AssetOptions</a></code>
 - <code><a href="./src/resources/video/assets.ts">AssetResponse</a></code>
 - <code><a href="./src/resources/video/assets.ts">InputInfo</a></code>
 - <code><a href="./src/resources/video/assets.ts">Track</a></code>

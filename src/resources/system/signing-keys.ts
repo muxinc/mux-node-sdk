@@ -68,12 +68,12 @@ export interface SigningKey {
   /**
    * Unique identifier for the Signing Key.
    */
-  id?: string;
+  id: string;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
    */
-  created_at?: string;
+  created_at: string;
 
   /**
    * A Base64 encoded private key that can be used with the RS256 algorithm when

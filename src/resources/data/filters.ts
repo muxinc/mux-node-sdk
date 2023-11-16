@@ -39,9 +39,9 @@ export class Filters extends APIResource {
 export class FilterValuesBasePage extends BasePage<FilterValue> {}
 
 export interface FilterValue {
-  total_count?: number;
+  total_count: number;
 
-  value?: string;
+  value: string | null;
 }
 
 export interface FiltersResponse {
@@ -49,14 +49,14 @@ export interface FiltersResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace FiltersResponse {
   export interface Data {
-    advanced?: Array<string>;
+    advanced: Array<string>;
 
-    basic?: Array<string>;
+    basic: Array<string>;
   }
 }
 

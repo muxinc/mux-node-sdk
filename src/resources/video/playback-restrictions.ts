@@ -92,24 +92,24 @@ export interface PlaybackRestriction {
   /**
    * Unique identifier for the Playback Restriction. Max 255 characters.
    */
-  id?: string;
+  id: string;
 
   /**
    * Time the Playback Restriction was created, defined as a Unix timestamp (seconds
    * since epoch).
    */
-  created_at?: string;
+  created_at: string;
 
   /**
    * A list of domains allowed to play your videos.
    */
-  referrer?: PlaybackRestriction.Referrer;
+  referrer: PlaybackRestriction.Referrer;
 
   /**
    * Time the Playback Restriction was last updated, defined as a Unix timestamp
    * (seconds since epoch).
    */
-  updated_at?: string;
+  updated_at: string;
 }
 
 export namespace PlaybackRestriction {
@@ -155,14 +155,6 @@ export namespace PlaybackRestrictionCreateParams {
    */
   export interface Referrer {
     /**
-     * A boolean to determine whether to allow or deny HTTP requests without `Referer`
-     * HTTP request header. Playback requests coming from non-web/native applications
-     * like iOS, Android or smart TVs will not have a `Referer` HTTP header. Set this
-     * value to `true` to allow these playback requests.
-     */
-    allow_no_referrer?: boolean;
-
-    /**
      * List of domains allowed to play videos. Possible values are
      *
      * - `[]` Empty Array indicates deny video playback requests for all domains
@@ -171,21 +163,21 @@ export namespace PlaybackRestrictionCreateParams {
      * - `["*.example.com", "foo.com"]` A list of up to 10 domains or valid dns-style
      *   wildcards
      */
-    allowed_domains?: Array<string>;
+    allowed_domains: Array<string>;
+
+    /**
+     * A boolean to determine whether to allow or deny HTTP requests without `Referer`
+     * HTTP request header. Playback requests coming from non-web/native applications
+     * like iOS, Android or smart TVs will not have a `Referer` HTTP header. Set this
+     * value to `true` to allow these playback requests.
+     */
+    allow_no_referrer?: boolean;
   }
 }
 
 export interface PlaybackRestrictionListParams extends BasePageParams {}
 
 export interface PlaybackRestrictionUpdateReferrerParams {
-  /**
-   * A boolean to determine whether to allow or deny HTTP requests without `Referer`
-   * HTTP request header. Playback requests coming from non-web/native applications
-   * like iOS, Android or smart TVs will not have a `Referer` HTTP header. Set this
-   * value to `true` to allow these playback requests.
-   */
-  allow_no_referrer?: boolean;
-
   /**
    * List of domains allowed to play videos. Possible values are
    *
@@ -195,7 +187,15 @@ export interface PlaybackRestrictionUpdateReferrerParams {
    * - `["*.example.com", "foo.com"]` A list of up to 10 domains or valid dns-style
    *   wildcards
    */
-  allowed_domains?: Array<string>;
+  allowed_domains: Array<string>;
+
+  /**
+   * A boolean to determine whether to allow or deny HTTP requests without `Referer`
+   * HTTP request header. Playback requests coming from non-web/native applications
+   * like iOS, Android or smart TVs will not have a `Referer` HTTP header. Set this
+   * value to `true` to allow these playback requests.
+   */
+  allow_no_referrer?: boolean;
 }
 
 export namespace PlaybackRestrictions {

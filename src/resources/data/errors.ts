@@ -27,7 +27,7 @@ export interface ErrorsResponse {
 
   timeframe: Array<number>;
 
-  total_row_count: number;
+  total_row_count: number | null;
 }
 
 export namespace ErrorsResponse {
@@ -35,42 +35,42 @@ export namespace ErrorsResponse {
     /**
      * A unique identifier for this error.
      */
-    id?: number;
+    id: number;
 
     /**
      * The error code
      */
-    code?: number;
+    code: number | null;
 
     /**
-     * The total number of views that experiend this error.
+     * The total number of views that experienced this error.
      */
-    count?: number;
+    count: number;
 
     /**
      * Description of the error.
      */
-    description?: string;
+    description: string | null;
 
     /**
      * The last time this error was seen (ISO 8601 timestamp).
      */
-    last_seen?: string;
+    last_seen: string;
 
     /**
      * The error message.
      */
-    message?: string;
+    message: string | null;
 
     /**
      * Notes that are attached to this error.
      */
-    notes?: string;
+    notes: string | null;
 
     /**
      * The percentage of views that experienced this error.
      */
-    percentage?: number;
+    percentage: number;
   }
 }
 

@@ -102,13 +102,19 @@ export interface TranscriptionVocabulary {
   /**
    * Unique identifier for the Transcription Vocabulary
    */
-  id?: string;
+  id: string;
 
   /**
    * Time the Transcription Vocabulary was created, defined as a Unix timestamp
    * (seconds since epoch).
    */
-  created_at?: string;
+  created_at: string;
+
+  /**
+   * Time the Transcription Vocabulary was updated, defined as a Unix timestamp
+   * (seconds since epoch).
+   */
+  updated_at: string;
 
   /**
    * The user-supplied name of the Transcription Vocabulary.
@@ -128,12 +134,6 @@ export interface TranscriptionVocabulary {
    * recognition for these words or phrases is boosted.
    */
   phrases?: Array<string>;
-
-  /**
-   * Time the Transcription Vocabulary was updated, defined as a Unix timestamp
-   * (seconds since epoch).
-   */
-  updated_at?: string;
 }
 
 export interface TranscriptionVocabularyResponse {

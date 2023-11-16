@@ -26,6 +26,7 @@ export class Video extends APIResource {
 export namespace Video {
   export import Assets = AssetsAPI.Assets;
   export import Asset = AssetsAPI.Asset;
+  export import AssetOptions = AssetsAPI.AssetOptions;
   export import AssetResponse = AssetsAPI.AssetResponse;
   export import InputInfo = AssetsAPI.InputInfo;
   export import Track = AssetsAPI.Track;
