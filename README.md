@@ -17,7 +17,7 @@ yarn add @mux/mux-node
 You can import in Deno via:
 
 ```ts
-import Mux from 'https://raw.githubusercontent.com/muxinc/mux-node-sdk/v0.0.1-deno/mod.ts';
+import Mux from 'https://raw.githubusercontent.com/muxinc/mux-node-sdk/v8.0.0-canary.1-deno/mod.ts';
 ```
 
 ## Usage
