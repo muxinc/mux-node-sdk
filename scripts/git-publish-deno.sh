@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -exuo pipefail
 
-# This script pushes the contents of the `deno`` directory to the `deno` branch,
+# This script pushes the contents of the `deno` directory to the `deno` branch,
 # and creates a `vx.x.x-deno` tag, so that Deno users can
 # import Mux from "https://raw.githubusercontent.com/muxinc/mux-node-sdk/vx.x.x-deno/mod.ts"
 
