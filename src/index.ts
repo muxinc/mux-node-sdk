@@ -36,8 +36,10 @@ export interface ClientOptions {
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
+   *
+   * Defaults to process.env['MUX_BASE_URL'].
    */
-  baseURL?: string;
+  baseURL?: string | null | undefined;
 
   /**
    * The maximum amount of time (in milliseconds) that the client should wait for a response
@@ -102,12 +104,12 @@ export class Mux extends Core.APIClient {
   /**
    * API Client for interfacing with the Mux API.
    *
-   * @param {string} [opts.tokenId==process.env['MUX_TOKEN_ID'] ?? undefined]
-   * @param {string} [opts.tokenSecret==process.env['MUX_TOKEN_SECRET'] ?? undefined]
-   * @param {string | null} [opts.webhookSecret==process.env['MUX_WEBHOOK_SECRET'] ?? null]
-   * @param {string | null} [opts.jwtSigningKey==process.env['MUX_SIGNING_KEY'] ?? null]
-   * @param {string | null} [opts.jwtPrivateKey==process.env['MUX_PRIVATE_KEY'] ?? null]
-   * @param {string} [opts.baseURL] - Override the default base URL for the API.
+   * @param {string} [opts.tokenId=process.env['MUX_TOKEN_ID'] ?? undefined]
+   * @param {string} [opts.tokenSecret=process.env['MUX_TOKEN_SECRET'] ?? undefined]
+   * @param {string | null} [opts.webhookSecret=process.env['MUX_WEBHOOK_SECRET'] ?? null]
+   * @param {string | null} [opts.jwtSigningKey=process.env['MUX_SIGNING_KEY'] ?? null]
+   * @param {string | null} [opts.jwtPrivateKey=process.env['MUX_PRIVATE_KEY'] ?? null]
+   * @param {string} [opts.baseURL=process.env['MUX_BASE_URL'] ?? https://api.mux.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
    * @param {Core.Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -116,6 +118,7 @@ export class Mux extends Core.APIClient {
    * @param {Core.DefaultQuery} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
+    baseURL = Core.readEnv('MUX_BASE_URL'),
     tokenId = Core.readEnv('MUX_TOKEN_ID'),
     tokenSecret = Core.readEnv('MUX_TOKEN_SECRET'),
     webhookSecret = Core.readEnv('MUX_WEBHOOK_SECRET') ?? null,
@@ -141,7 +144,7 @@ export class Mux extends Core.APIClient {
       jwtSigningKey,
       jwtPrivateKey,
       ...opts,
-      baseURL: opts.baseURL ?? `https://api.mux.com`,
+      baseURL: baseURL ?? `https://api.mux.com`,
     };
 
     super({
