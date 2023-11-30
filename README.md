@@ -28,8 +28,8 @@ The full API of this library can be found in [api.md](https://www.github.com/mux
 import Mux from '@mux/mux-node';
 
 const mux = new Mux({
-  tokenId: 'my token id', // defaults to process.env["MUX_TOKEN_ID"]
-  tokenSecret: 'my secret', // defaults to process.env["MUX_TOKEN_SECRET"]
+  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted
+  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted
 });
 
 async function main() {
@@ -52,8 +52,8 @@ This library includes TypeScript definitions for all request params and response
 import Mux from '@mux/mux-node';
 
 const mux = new Mux({
-  tokenId: 'my token id', // defaults to process.env["MUX_TOKEN_ID"]
-  tokenSecret: 'my secret', // defaults to process.env["MUX_TOKEN_SECRET"]
+  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted
+  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted
 });
 
 async function main() {
