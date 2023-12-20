@@ -5,26 +5,20 @@ import { AbstractPage, Response, APIClient, FinalRequestOptions, PageInfo } from
 export interface PageWithTotalResponse<Item> {
   data: Array<Item>;
 
+  total_row_count: number;
+
+  timeframe: Array<number>;
+
   /**
    * Number of assets returned in this response. Default value is 100.
    */
   limit: number;
-
-  timeframe: Array<number>;
-
-  total_row_count: number;
 }
 
 export interface PageWithTotalParams {
-  /**
-   * Number of items to include in the response
-   */
-  limit?: number;
-
-  /**
-   * Offset by this many pages, of the size of `limit`
-   */
   page?: number;
+
+  limit?: number;
 }
 
 export class PageWithTotal<Item> extends AbstractPage<Item> implements PageWithTotalResponse<Item> {
@@ -47,14 +41,14 @@ export class PageWithTotal<Item> extends AbstractPage<Item> implements PageWithT
   ) {
     super(client, response, body, options);
 
-    this.data = body.data;
-    this.total_row_count = body.total_row_count;
-    this.timeframe = body.timeframe;
-    this.limit = body.limit;
+    this.data = body.data || [];
+    this.total_row_count = body.total_row_count || 0;
+    this.timeframe = body.timeframe || [];
+    this.limit = body.limit || 0;
   }
 
   getPaginatedItems(): Item[] {
-    return this.data;
+    return this.data ?? [];
   }
 
   // @deprecated Please use `nextPageInfo()` instead
@@ -70,6 +64,7 @@ export class PageWithTotal<Item> extends AbstractPage<Item> implements PageWithT
   nextPageInfo(): PageInfo | null {
     const query = this.options.query as PageWithTotalParams;
     const currentPage = query?.page ?? 1;
+
     return { params: { page: currentPage + 1 } };
   }
 }
@@ -79,15 +74,9 @@ export interface BasePageResponse<Item> {
 }
 
 export interface BasePageParams {
-  /**
-   * Number of items to include in the response
-   */
-  limit?: number;
-
-  /**
-   * Offset by this many pages, of the size of `limit`
-   */
   page?: number;
+
+  limit?: number;
 }
 
 export class BasePage<Item> extends AbstractPage<Item> implements BasePageResponse<Item> {
@@ -101,11 +90,11 @@ export class BasePage<Item> extends AbstractPage<Item> implements BasePageRespon
   ) {
     super(client, response, body, options);
 
-    this.data = body.data;
+    this.data = body.data || [];
   }
 
   getPaginatedItems(): Item[] {
-    return this.data;
+    return this.data ?? [];
   }
 
   // @deprecated Please use `nextPageInfo()` instead
@@ -121,6 +110,7 @@ export class BasePage<Item> extends AbstractPage<Item> implements BasePageRespon
   nextPageInfo(): PageInfo | null {
     const query = this.options.query as BasePageParams;
     const currentPage = query?.page ?? 1;
+
     return { params: { page: currentPage + 1 } };
   }
 }
