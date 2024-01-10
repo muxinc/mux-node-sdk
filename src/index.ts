@@ -144,7 +144,7 @@ export class Mux extends Core.APIClient {
       jwtSigningKey,
       jwtPrivateKey,
       ...opts,
-      baseURL: baseURL ?? `https://api.mux.com`,
+      baseURL: baseURL || `https://api.mux.com`,
     };
 
     super({
