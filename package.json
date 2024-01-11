@@ -1,6 +1,6 @@
 {
   "name": "@mux/mux-node",
-  "version": "7.3.4",
+  "version": "7.3.5",
   "description": "Mux SDK for NodeJS",
   "keywords": [
     "mux",
