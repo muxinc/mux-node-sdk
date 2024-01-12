@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Mux REST API from server-side TypeScript or JavaScript.
 
-The API documentation can be found [here](https://docs.mux.com).
+The REST API documentation can be found [on docs.mux.com](https://docs.mux.com). The full API of this library can be found in [api.md](https://www.github.com/muxinc/mux-node-sdk/blob/main/api.md).
 
 ## Installation
 
