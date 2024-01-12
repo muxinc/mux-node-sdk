@@ -1,17 +1,19 @@
 # Mux Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/@mux/mux-node.svg)](https://npmjs.org/package/@mux/mux-node)
+<!-- [![NPM version](https://img.shields.io/npm/v/@mux/mux-node.svg)](https://npmjs.org/package/@mux/mux-node) -->
 
 This library provides convenient access to the Mux REST API from server-side TypeScript or JavaScript.
 
 The REST API documentation can be found [on docs.mux.com](https://docs.mux.com). The full API of this library can be found in [api.md](https://www.github.com/muxinc/mux-node-sdk/blob/main/api.md).
 
+This branch is tracking the beta release channel for the library. See [this announcement](https://github.com/muxinc/mux-node-sdk/issues/327) for details.
+
 ## Installation
 
 ```sh
-npm install --save @mux/mux-node
+npm install --save @mux/mux-node@beta
 # or
-yarn add @mux/mux-node
+yarn add @mux/mux-node@beta
 ```
 
 You can import in Deno via:
