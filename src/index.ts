@@ -12,27 +12,27 @@ export interface ClientOptions {
   /**
    * Defaults to process.env['MUX_TOKEN_ID'].
    */
-  tokenId?: string;
+  tokenId?: string | undefined;
 
   /**
    * Defaults to process.env['MUX_TOKEN_SECRET'].
    */
-  tokenSecret?: string;
+  tokenSecret?: string | undefined;
 
   /**
    * Defaults to process.env['MUX_WEBHOOK_SECRET'].
    */
-  webhookSecret?: string | null;
+  webhookSecret?: string | null | undefined;
 
   /**
    * Defaults to process.env['MUX_SIGNING_KEY'].
    */
-  jwtSigningKey?: string | null;
+  jwtSigningKey?: string | null | undefined;
 
   /**
    * Defaults to process.env['MUX_PRIVATE_KEY'].
    */
-  jwtPrivateKey?: string | null;
+  jwtPrivateKey?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -104,11 +104,11 @@ export class Mux extends Core.APIClient {
   /**
    * API Client for interfacing with the Mux API.
    *
-   * @param {string} [opts.tokenId=process.env['MUX_TOKEN_ID'] ?? undefined]
-   * @param {string} [opts.tokenSecret=process.env['MUX_TOKEN_SECRET'] ?? undefined]
-   * @param {string | null} [opts.webhookSecret=process.env['MUX_WEBHOOK_SECRET'] ?? null]
-   * @param {string | null} [opts.jwtSigningKey=process.env['MUX_SIGNING_KEY'] ?? null]
-   * @param {string | null} [opts.jwtPrivateKey=process.env['MUX_PRIVATE_KEY'] ?? null]
+   * @param {string | undefined} [opts.tokenId=process.env['MUX_TOKEN_ID'] ?? undefined]
+   * @param {string | undefined} [opts.tokenSecret=process.env['MUX_TOKEN_SECRET'] ?? undefined]
+   * @param {string | null | undefined} [opts.webhookSecret=process.env['MUX_WEBHOOK_SECRET'] ?? null]
+   * @param {string | null | undefined} [opts.jwtSigningKey=process.env['MUX_SIGNING_KEY'] ?? null]
+   * @param {string | null | undefined} [opts.jwtPrivateKey=process.env['MUX_PRIVATE_KEY'] ?? null]
    * @param {string} [opts.baseURL=process.env['MUX_BASE_URL'] ?? https://api.mux.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
