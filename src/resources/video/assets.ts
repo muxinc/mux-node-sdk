@@ -62,7 +62,7 @@ export class Assets extends APIResource {
   delete(assetId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -110,7 +110,7 @@ export class Assets extends APIResource {
   ): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -121,7 +121,7 @@ export class Assets extends APIResource {
   deleteTrack(assetId: string, trackId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}/tracks/${trackId}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 

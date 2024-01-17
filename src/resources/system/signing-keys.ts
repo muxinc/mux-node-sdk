@@ -57,7 +57,7 @@ export class SigningKeys extends APIResource {
   delete(signingKeyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/system/v1/signing-keys/${signingKeyId}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 }

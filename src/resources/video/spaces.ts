@@ -66,7 +66,7 @@ export class Spaces extends APIResource {
   delete(spaceId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/spaces/${spaceId}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -107,7 +107,7 @@ export class Spaces extends APIResource {
   ): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -141,7 +141,7 @@ export class Spaces extends APIResource {
   startBroadcast(spaceId: string, broadcastId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/start`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -157,7 +157,7 @@ export class Spaces extends APIResource {
   stopBroadcast(spaceId: string, broadcastId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.post(`/video/v1/spaces/${spaceId}/broadcasts/${broadcastId}/stop`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 }

@@ -91,7 +91,7 @@ export class TranscriptionVocabularies extends APIResource {
   delete(transcriptionVocabularyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 }

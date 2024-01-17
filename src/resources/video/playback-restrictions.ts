@@ -63,7 +63,7 @@ export class PlaybackRestrictions extends APIResource {
   delete(playbackRestrictionId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/playback-restrictions/${playbackRestrictionId}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 

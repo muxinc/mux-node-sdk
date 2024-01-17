@@ -80,7 +80,7 @@ export class LiveStreams extends APIResource {
   delete(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/live-streams/${liveStreamId}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -98,7 +98,7 @@ export class LiveStreams extends APIResource {
   complete(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.put(`/video/v1/live-streams/${liveStreamId}/complete`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -150,7 +150,7 @@ export class LiveStreams extends APIResource {
   ): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -166,7 +166,7 @@ export class LiveStreams extends APIResource {
   ): Core.APIPromise<void> {
     return this._client.delete(
       `/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`,
-      { ...options, headers: { Accept: '', ...options?.headers } },
+      { ...options, headers: { Accept: '*/*', ...options?.headers } },
     );
   }
 
@@ -182,7 +182,7 @@ export class LiveStreams extends APIResource {
   disable(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.put(`/video/v1/live-streams/${liveStreamId}/disable`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
@@ -192,7 +192,7 @@ export class LiveStreams extends APIResource {
   enable(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.put(`/video/v1/live-streams/${liveStreamId}/enable`, {
       ...options,
-      headers: { Accept: '', ...options?.headers },
+      headers: { Accept: '*/*', ...options?.headers },
     });
   }
 
