@@ -1,6 +1,6 @@
 {
   "name": "@mux/mux-node",
-  "version": "8.0.0-canary.4",
+  "version": "8.0.0-canary.5",
   "description": "The official TypeScript library for the Mux API",
   "author": "Mux <devex@mux.com>",
   "types": "dist/index.d.ts",
