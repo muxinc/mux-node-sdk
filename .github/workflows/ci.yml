@@ -1,22 +1,30 @@
 name: CI
-
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  lint:
+    name: lint
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
+    if: github.repository == 'muxinc/mux-node-sdk'
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: yarn install --frozen-lockfile
-      - run: yarn build
-      - run: yarn format
-      - run: NOCK_BACK_MODE=lockdown yarn test
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          yarn install
+
+      - name: Check types
+        run: |
+          yarn build

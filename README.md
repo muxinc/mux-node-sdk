@@ -1,270 +1,301 @@
-![Mux Node Banner](github-nodejs-sdk.png)
+# Mux Node API Library
 
-<h1 align="center"><pre>@mux/mux-node</pre></h1>
+[![NPM version](https://img.shields.io/npm/v/@mux/mux-node.svg)](https://npmjs.org/package/@mux/mux-node)
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/@mux/mux-node"><img src="https://img.shields.io/npm/v/@mux/mux-node" title="NPM" /></a>
-  <a href="https://github.com/muxinc/mux-node-sdk/actions/workflows/ci.yml"><img src="https://github.com/muxinc/mux-node-sdk/actions/workflows/ci.yml/badge.svg" title="CI" /></a>
-</p>
-<p align="center">
-  <a href="https://www.npmjs.com/package/@mux/mux-node">NPM</a> |
-  <a href="https://muxinc.github.io/mux-node-sdk">Package Docs</a> |
-  <a href="https://docs.mux.com">Mux Docs</a> |
-  <a href="https://docs.mux.com/api-reference">Mux API Reference </a>
-</p>
+This library provides convenient access to the Mux REST API from server-side TypeScript or JavaScript.
 
-Official Mux API wrapper for Node projects, supporting both Mux Data and Mux Video.
+The REST API documentation can be found [on docs.mux.com](https://docs.mux.com). The full API of this library can be found in [api.md](https://github.com/muxinc/mux-node-sdk/blob/master/api.md).
 
-[Mux Video](https://mux.com/video) is an API-first platform, powered by data and designed by video experts to make beautiful video possible for every development team.
+## Upgrading from pre-8.x
 
-[Mux Data](https://mux.com/data) is a platform for monitoring your video streaming performance with just a few lines of code. Get in-depth quality of service analytics on web, mobile, and OTT devices.
-
-This library is intended to provide Mux API convenience methods for applications written in server-side Javascript. **Please note** that this package uses Mux access tokens and secret keys and is intended to be used in server-side code only.
-
-Not familiar with Mux? Check out https://mux.com/ for more information.
-
-## Documentation
-
-See the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk)
+In February 2024 this SDK was updated to Version 8.0. For upgrading to 8.x see [UPGRADE_8.x.md](https://github.com/muxinc/mux-node-sdk/blob/master/UPGRADE_8.x.md)
 
 ## Installation
 
-```
-npm install @mux/mux-node --save
-```
-
-or
-
-```
-yarn add @mux/mux-node
+```sh
+npm install --save @mux/mux-node@beta
+# or
+yarn add @mux/mux-node@beta
 ```
 
 ## Usage
 
-**Please note:** The instructions below are for _CommonJS_ modules and the use thereof (`require` in vanilla NodeJS). This library also exports an _experimental_ ESModule and all you should need to do is `import Mux from '@mux/mux-node'` in place of `require('@mux/mux-node')` below. If you run into any problems, please file an issue!
+The full API of this library can be found in [api.md](https://github.com/muxinc/mux-node-sdk/blob/master/api.md).
 
-To start, you will need a Mux access token and secret for your Mux environment. For more information on where to get
-an access token, visit the Mux Getting Started guide https://docs.mux.com/docs
+<!-- prettier-ignore -->
+```js
+import Mux from '@mux/mux-node';
 
-Require the `@mux/mux-node` npm module and create a Mux instance. Your Mux instance will have `Data` and `Video` properties
-that will allow you to access the Mux Data and Video APIs.
-
-```javascript
-const Mux = require('@mux/mux-node');
-
-// make it possible to read credentials from .env files
-const dotenv = require('dotenv');
-dotenv.config();
-
-const { Video, Data } = new Mux(accessToken, secret);
-```
-
-If a token ID and secret aren't included as parameters, the SDK will attempt to use the `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` environment variables.
-
-```javascript
-// assume process.env.MUX_TOKEN_ID and process.env.MUX_TOKEN_SECRET contain your credentials
-const muxClient = new Mux(); // Success!
-```
-
-As an example, you can create a Mux asset and playback ID by using the below functions on your Video instance.
-
-```javascript
-// Create an asset
-const asset = await Video.Assets.create({
-  input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4',
-  "playback_policy": [
-    "public" // makes playback ID available on the asset
-  ],
-});
-```
-
-Or, if you don't have the files online already, you can ingest one via the direct uploads API.
-
-```javascript
-const fs = require('fs')
-const fetch = require('node-fetch');
-let upload = await Video.Uploads.create({
-  new_asset_settings: { playback_policy: 'public' },
+const mux = new Mux({
+  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted
+  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted
 });
 
-// The URL you get back from the upload API is resumable, and the file can be uploaded using a `PUT` request (or a series of them).
-const readStream = await fs.createReadStream('/path/to/your/file');
-await fetch(upload.url, { method: 'PUT', body: readStream });
+async function main() {
+  const asset = await mux.video.assets.create({
+    input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    playback_policy: ['public'],
+  });
 
-// The upload may not be updated immediately, but shortly after the upload is finished you'll get a `video.asset.created` event and the upload will now have a status of `asset_created` and a new `asset_id` key.
-let updatedUpload = await Video.Uploads.get(upload.id);
+  console.log(asset.id);
+}
 
-// Or you could decide to go get additional information about that new asset you created.
-let asset = await Video.Assets.get(updatedUpload['asset_id']);
+main();
 ```
 
-You can access the Mux Data API in the same way by using your Data instance. For example, you can list all of the
-values across every breakdown for the `aggregate_startup_time` metric by using the below function.
+### Request & Response types
 
-```javascript
-const breakdown = await Data.Metrics.breakdown('aggregate_startup_time', {
-  group_by: 'browser',
+This library includes TypeScript definitions for all request params and response fields. You may import and use them like so:
+
+<!-- prettier-ignore -->
+```ts
+import Mux from '@mux/mux-node';
+
+const mux = new Mux({
+  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted
+  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted
 });
+
+async function main() {
+  const params: Mux.Video.AssetCreateParams = {
+    input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    playback_policy: ['public'],
+  };
+  const asset: Mux.Video.Asset = await mux.video.assets.create(params);
+}
+
+main();
 ```
 
-## Usage Details
+Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
 
-Every function will return a chainable [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+## Handling errors
 
-```javascript
-Video.Assets.create({
-  input: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4',
-}).then((asset) => {
-  /* Do things with the asset */
-});
-```
+When the library is unable to connect to the API,
+or if the API returns a non-success status code (i.e., 4xx or 5xx response),
+a subclass of `APIError` will be thrown:
 
-## Verifying Webhook Signatures
-
-Verifying Webhook Signatures is _optional_. Learn more in our [Webhook Security Guide](https://docs.mux.com/docs/webhook-security)
-
-```javascript
-/*
-  If the header is valid, this will return `true`
-  If invalid, this will throw one of the following errors:
-    * new Error('Unable to extract timestamp and signatures from header')
-    * new Error('No signatures found with expected scheme');
-    * new Error('No signatures found matching the expected signature for payload.')
-    * new Error('Timestamp outside the tolerance zone')
-*/
-
-/*
-  `rawBody` is the raw request body. It should be a string representation of a JSON object.
-  `header` is the value in request.headers['mux-signature']
-  `secret` is the signing secret for this configured webhook. You can find that in your webhooks dashboard
-           (note that this secret is different than your API Secret Key)
-*/
-
-Mux.Webhooks.verifyHeader(rawBody, header, secret);
-```
-
-Note that when passing in the payload (`rawBody`) you want to pass in the raw un-parsed request body, not the parsed JSON.
-Here's an example if you are using express.
-
-```javascript
-const Mux = require('@mux/mux-node');
-const { Webhooks } = Mux;
-const express = require('express');
-const bodyParser = require('body-parser');
-
-/**
- * You'll need to make sure this is externally accessible.  ngrok (https://ngrok.com/)
- * makes this really easy.
- */
-
-const webhookSecret = process.env.WEBHOOK_SECRET;
-const app = express();
-
-app.post(
-  '/webhooks',
-  bodyParser.raw({ type: 'application/json' }),
-  async (req, res) => {
-    try {
-      const sig = req.headers['mux-signature'];
-      // will raise an exception if the signature is invalid
-      const isValidSignature = Webhooks.verifyHeader(
-        req.body,
-        sig,
-        webhookSecret
-      );
-      console.log('Success:', isValidSignature);
-      // convert the raw req.body to JSON, which is originally Buffer (raw)
-      const jsonFormattedBody = JSON.parse(req.body);
-      // await doSomething();
-      res.json({ received: true });
-    } catch (err) {
-      // On error, return the error message
-      return res.status(400).send(`Webhook Error: ${err.message}`);
+<!-- prettier-ignore -->
+```ts
+async function main() {
+  const liveStream = await mux.video.liveStreams.create().catch((err) => {
+    if (err instanceof Mux.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
     }
+  });
+}
+
+main();
+```
+
+Error codes are as followed:
+
+| Status Code | Error Type                 |
+| ----------- | -------------------------- |
+| 400         | `BadRequestError`          |
+| 401         | `AuthenticationError`      |
+| 403         | `PermissionDeniedError`    |
+| 404         | `NotFoundError`            |
+| 422         | `UnprocessableEntityError` |
+| 429         | `RateLimitError`           |
+| >=500       | `InternalServerError`      |
+| N/A         | `APIConnectionError`       |
+
+### Retries
+
+Certain errors will be automatically retried 2 times by default, with a short exponential backoff.
+Connection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,
+429 Rate Limit, and >=500 Internal errors will all be retried by default.
+
+You can use the `maxRetries` option to configure or disable this:
+
+<!-- prettier-ignore -->
+```js
+// Configure the default for all requests:
+const mux = new Mux({
+  maxRetries: 0, // default is 2
+});
+
+// Or, configure per-request:
+await mux.video.assets.retrieve('t02rm...', {
+  maxRetries: 5,
+});
+```
+
+### Timeouts
+
+Requests time out after 1 minute by default. You can configure this with a `timeout` option:
+
+<!-- prettier-ignore -->
+```ts
+// Configure the default for all requests:
+const mux = new Mux({
+  timeout: 20 * 1000, // 20 seconds (default is 1 minute)
+});
+
+// Override per-request:
+await mux.video.assets.retrieve('t02rm...', {
+  timeout: 5 * 1000,
+});
+```
+
+On timeout, an `APIConnectionTimeoutError` is thrown.
+
+Note that requests which time out will be [retried twice by default](#retries).
+
+## Auto-pagination
+
+List methods in the Mux API are paginated.
+You can use `for await … of` syntax to iterate through items across all pages:
+
+```ts
+async function fetchAllVideoDeliveryUsages(params) {
+  const allVideoDeliveryUsages = [];
+  // Automatically fetches more pages as needed.
+  for await (const deliveryReport of mux.video.deliveryUsage.list()) {
+    allVideoDeliveryUsages.push(deliveryReport);
   }
-);
+  return allVideoDeliveryUsages;
+}
+```
 
-app.listen(3000, () => {
-  console.log('Example app listening on port 3000!');
+Alternatively, you can make request a single page at a time:
+
+```ts
+let page = await mux.video.deliveryUsage.list();
+for (const deliveryReport of page.data) {
+  console.log(deliveryReport);
+}
+
+// Convenience methods are provided for manually paginating:
+while (page.hasNextPage()) {
+  page = page.getNextPage();
+  // ...
+}
+```
+
+## Advanced Usage
+
+### Accessing raw Response data (e.g., headers)
+
+The "raw" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.
+
+You can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.
+
+<!-- prettier-ignore -->
+```ts
+const mux = new Mux();
+
+const response = await mux.video.assets
+  .create({
+    input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    playback_policy: ['public'],
+  })
+  .asResponse();
+console.log(response.headers.get('X-My-Header'));
+console.log(response.statusText); // access the underlying Response object
+
+const { data: asset, response: raw } = await mux.video.assets
+  .create({
+    input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    playback_policy: ['public'],
+  })
+  .withResponse();
+console.log(raw.headers.get('X-My-Header'));
+console.log(asset.id);
+```
+
+## Customizing the fetch client
+
+By default, this library uses `node-fetch` in Node, and expects a global `fetch` function in other environments.
+
+If you would prefer to use a global, web-standards-compliant `fetch` function even in a Node environment,
+(for example, if you are running Node with `--experimental-fetch` or using NextJS which polyfills with `undici`),
+add the following import before your first import `from "Mux"`:
+
+```ts
+// Tell TypeScript and the package to use the global web fetch instead of node-fetch.
+// Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
+import '@mux/mux-node/shims/web';
+import Mux from '@mux/mux-node';
+```
+
+To do the inverse, add `import "@mux/mux-node/shims/node"` (which does import polyfills).
+This can also be useful if you are getting the wrong TypeScript types for `Response` - more details [here](https://github.com/muxinc/mux-node-sdk/tree/main/src/_shims#readme).
+
+You may also provide a custom `fetch` function when instantiating the client,
+which can be used to inspect or alter the `Request` or `Response` before/after each request:
+
+```ts
+import { fetch } from 'undici'; // as one example
+import Mux from '@mux/mux-node';
+
+const client = new Mux({
+  fetch: async (url: RequestInfo, init?: RequestInfo): Promise<Response> => {
+    console.log('About to make a request', url, init);
+    const response = await fetch(url, init);
+    console.log('Got response', response);
+    return response;
+  },
 });
 ```
 
-## JWT Helpers <small>([API Reference](https://muxinc.github.io/mux-node-sdk/class/src/utils/jwt.js~JWT.html))</small>
+Note that if given a `DEBUG=true` environment variable, this library will log all requests and responses automatically.
+This is intended for debugging purposes only and may change in the future without notice.
 
-You can use any JWT-compatible library, but we've included some light helpers in the SDK to make it easier to get up and running.
+## Configuring an HTTP(S) Agent (e.g., for proxies)
 
-```javascript
-// Assuming you have your signing key specified in your environment variables:
-// Signing token ID: process.env.MUX_SIGNING_KEY
-// Signing token secret: process.env.MUX_PRIVATE_KEY
+By default, this library uses a stable agent for all http/https requests to reuse TCP connections, eliminating many TCP & TLS handshakes and shaving around 100ms off most requests.
 
-// Most simple request, defaults to type video and is valid for 7 days.
-const token = Mux.JWT.signPlaybackId('some-playback-id');
-// https://stream.mux.com/some-playback-id.m3u8?token=${token}
+If you would like to disable or customize this behavior, for example to use the API behind a proxy, you can pass an `httpAgent` which is used for all requests (be they http or https), for example:
 
-// If you wanted to sign a thumbnail
-const thumbParams = { time: 14, width: 100 };
-const thumbToken = Mux.JWT.signPlaybackId('some-playback-id', {
-  type: 'thumbnail',
-  params: thumbParams,
-});
-// https://image.mux.com/some-playback-id/thumbnail.jpg?token=${token}
+<!-- prettier-ignore -->
+```ts
+import http from 'http';
+import HttpsProxyAgent from 'https-proxy-agent';
 
-// If you wanted to sign a gif
-const gifToken = Mux.JWT.signPlaybackId('some-playback-id', { type: 'gif' });
-// https://image.mux.com/some-playback-id/animated.gif?token=${token}
-
-// And, an example for a storyboard
-const storyboardToken = Mux.JWT.signPlaybackId('some-playback-id', {
-  type: 'storyboard',
-});
-// https://image.mux.com/some-playback-id/storyboard.jpg?token=${token}
-
-// Also, let's sign a Real-Time Space ID
-const spaceToken = Mux.JWT.signSpaceId('some-space-id')
-```
-
-## `request` and `response` events
-
-The SDK returns the `data` key for every object, because in the Mux API that's always the thing you actually want to see. Sometimes, however, it's useful to see more details about the request being made or the full response object. You can listen for `request` and `response` events to get these raw objects.
-
-```javascript
-muxClient.on('request', (req) => {
-  // Request will contain everything being sent such as `headers, method, base url, etc
+// Configure the default for all requests:
+const mux = new Mux({
+  httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
 });
 
-muxClient.on('response', (res) => {
-  // Response will include everything returned from the API, such as status codes/text, headers, etc
-});
+// Override per-request:
+await mux.video.assets.retrieve('t02rm...', {
+  baseURL: 'http://localhost:8080/test-api',
+  httpAgent: new http.Agent({ keepAlive: false }),
+})
 ```
 
-See the [Mux-Node docs](https://muxinc.github.io/mux-node-sdk/identifiers.html) for a list of all available functions.
+## Semantic Versioning
 
-## Development
+This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
 
-Run unit tests: `yarn test` or `yarn test:unit`
+1. Changes that only affect static types, without breaking runtime behavior.
+2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals)_.
+3. Changes that we do not expect to impact the vast majority of users in practice.
 
-Run integration tests: `yarn test:int` - this will run integration tests with `nock` and `NOCK_BACK_MODE` set to `record`. This means that previously recorded API requests will be stubbed and any missing ones will be recorded.
+We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-You can also run integration tests with real requests by running `yarn test:int:wild`. Make sure you have `MUX_TOKEN_ID` and `MUX_TOKEN_SECRET` set as environment variables so your requests are authenticated. This is useful to run locally to verify that actual API requests work as expected. When running the whole suite locally you might run into Mux API rate limits so keep that in mind.
+We are keen for your feedback; please open an [issue](https://www.github.com/muxinc/mux-node-sdk/issues) with questions, bugs, or suggestions.
 
-**Pro Tip** Use mocha `-g` option to run only a specific test or group of tests. For example: `yarn test -g 'creates a new Assets'`.
+## Requirements
 
-To generate the ESDocs, run:
+TypeScript >= 4.5 is supported.
 
-```
-yarn esdoc
-open ./docs/index.html
-```
+The following runtimes are supported:
 
-## Contributing
+- Node.js 18 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
+- Deno v1.28.0 or higher, using `import Mux from "npm:@mux/mux-node"`.
+- Bun 1.0 or later.
+- Cloudflare Workers.
+- Vercel Edge Runtime.
+- Jest 28 or greater with the `"node"` environment (`"jsdom"` is not supported at this time).
+- Nitro v2.6 or greater.
 
-Find a bug or want to add a useful feature? That'd be amazing! If you'd like to submit a [pull request](https://help.github.com/articles/about-pull-requests/) to the project with changes, please do something along these lines:
+Note that React Native is not supported at this time.
 
-1. Fork the project wherever you'd like
-2. Create a meaningful branch name that relates to your contribution. Consider including an issue number if available. `git co -b add-node-lts-support`
-3. Make any changes you'd like in your forked branch.
-4. Add any relevant tests for your changes
-5. Open the pull request! :tada:
-
-Running integration tests will require a Mux account with valid seed data for `/video` and `/data` endpoints. If you are contributing and you don't have this, please add unit test coverage and someone from the Mux will help get integration tests added if necessary.
+If you are interested in other runtime environments, please open or upvote an issue on GitHub.
