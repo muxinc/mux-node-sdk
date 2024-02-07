@@ -1,12 +1,14 @@
 # Mux Node API Library
 
-<!-- [![NPM version](https://img.shields.io/npm/v/@mux/mux-node.svg)](https://npmjs.org/package/@mux/mux-node) -->
+[![NPM version](https://img.shields.io/npm/v/@mux/mux-node.svg)](https://npmjs.org/package/@mux/mux-node)
 
 This library provides convenient access to the Mux REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found [on docs.mux.com](https://docs.mux.com). The full API of this library can be found in [api.md](https://github.com/muxinc/mux-node-sdk/blob/beta-8/api.md).
+The REST API documentation can be found [on docs.mux.com](https://docs.mux.com). The full API of this library can be found in [api.md](https://github.com/muxinc/mux-node-sdk/blob/master/api.md).
 
-This branch is tracking the beta release channel for the library. See [this announcement](https://github.com/muxinc/mux-node-sdk/issues/327) for details.
+## Upgrading from pre-8.x
+
+In February 2024 this SDK was updated to Version 8.0. For upgrading to 8.x see [UPGRADE_8.x.md](https://github.com/muxinc/mux-node-sdk/blob/master/UPGRADE_8.x.md)
 
 ## Installation
 
@@ -16,15 +18,9 @@ npm install --save @mux/mux-node@beta
 yarn add @mux/mux-node@beta
 ```
 
-You can import in Deno via:
-
-```ts
-import Mux from 'https://raw.githubusercontent.com/muxinc/mux-node-sdk/v8.0.0-canary.1-deno/mod.ts';
-```
-
 ## Usage
 
-The full API of this library can be found in [api.md](https://github.com/muxinc/mux-node-sdk/blob/beta-8/api.md).
+The full API of this library can be found in [api.md](https://github.com/muxinc/mux-node-sdk/blob/master/api.md).
 
 <!-- prettier-ignore -->
 ```js
