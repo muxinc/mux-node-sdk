@@ -99,7 +99,22 @@ the changes aren't made through the automated pipeline, you may want to make rel
 
 ### Publish with a GitHub workflow
 
-You can release to package managers by using [the `Publish NPM` GitHub action](https://www.github.com/muxinc/mux-node-sdk/actions/workflows/publish-npm.yml). This will require a setup organization or repository secret to be set up.
+You can release to package managers by using the
+[`CD` (continuous deployment) GitHub action](./actions/workflows/cd.yml). 
+This will require a setup organization or repository secret to be set up.
+
+1. Click the "Run workflow" dropdown and select the branch to release from (`master` in most cases).
+1. Choose a version to release (`conventional`, `major`, `minor`, `patch`, `prerelease`, `from-package` or `from-git`)
+1. Optionally check the "Dry run" checkbox to test the release without publishing.
+1. Click the "Run workflow" button to start the release process.
+1. Confirm successful releases at [GitHub](./releases) and [NPM](https://www.npmjs.com/package/@mux/mux-node)
+
+> [!TIP]
+> Use the `from-package` option to release a version that matches the version in `package.json` 
+(useful for first-time releases or when the package version has been updated manually).
+
+> [!TIP]
+> Use the `from-git` option to release a version that matches the latest pushed git tag.
 
 ### Publish manually
 
