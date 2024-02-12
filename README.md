@@ -178,6 +178,47 @@ while (page.hasNextPage()) {
 }
 ```
 
+## JWT Helpers ([API Reference](https://github.com/muxinc/mux-node-sdk/blob/master/api.md#jwt))
+You can use any JWT-compatible library, but we've included some light helpers in the SDK to make it easier to get up and running.
+
+```js
+// Assuming you have your signing key specified in your environment variables:
+// Signing token ID: process.env.MUX_SIGNING_KEY
+// Signing token secret: process.env.MUX_PRIVATE_KEY
+
+// Most simple request, defaults to type video and is valid for 7 days.
+const token = mux.jwt.signPlaybackId('some-playback-id');
+// https://stream.mux.com/some-playback-id.m3u8?token=${token}
+
+// If you wanted to sign a thumbnail
+const thumbParams = { time: 14, width: 100 };
+const thumbToken = mux.jwt.signPlaybackId('some-playback-id', {
+  type: 'thumbnail',
+  params: thumbParams,
+});
+// https://image.mux.com/some-playback-id/thumbnail.jpg?token=${token}
+
+// If you wanted to sign a gif
+const gifToken = mux.jwt.signPlaybackId('some-playback-id', { type: 'gif' });
+// https://image.mux.com/some-playback-id/animated.gif?token=${token}
+
+// Here's an example for a storyboard
+const storyboardToken = mux.jwt.signPlaybackId('some-playback-id', {
+  type: 'storyboard',
+});
+
+// https://image.mux.com/some-playback-id/storyboard.jpg?token=${token}
+
+// You can also use `signViewerCounts` to get a token 
+// used for requests to the Mux Engagement Counts API
+// https://docs.mux.com/guides/see-how-many-people-are-watching
+const statsToken = mux.jwt.signViewerCounts('some-live-stream-id', {
+  type: 'live_stream'
+});
+
+// https://stats.mux.com/counts?token={statsToken}
+```
+
 ## Advanced Usage
 
 ### Accessing raw Response data (e.g., headers)
