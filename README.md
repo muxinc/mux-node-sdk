@@ -219,6 +219,131 @@ const statsToken = mux.jwt.signViewerCounts('some-live-stream-id', {
 // https://stats.mux.com/counts?token={statsToken}
 ```
 
+## Parsing Webhook payloads
+
+To validate that the given payload was sent by Mux and parse the webhook payload for use in your application,
+you can use the `mux.webhooks.unwrap` utility method.
+
+This method accepts a raw `body` string and a list of headers. As long as you have set your `webhookSecret` in the
+appropriate configuration property when instantiating the library, all webhooks will be verified for authenticity automatically.
+
+The following example shows how you can handle a webhook using a Next.js app directory API route:
+
+```js
+// app/api/mux/webhooks/route.ts
+import { revalidatePath } from 'next/cache';
+import { headers } from 'next/headers';
+
+import Mux from '@mux/mux-node';
+
+const mux = new Mux({
+  webhookSecret: process.env.MUX_WEBHOOK_SECRET,
+});
+
+export async function POST(request: Request) {
+  const headersList = headers();
+  const body = await request.text();
+  const event = mux.webhooks.unwrap(body, headersList);
+
+  switch (event.type) {
+    case 'video.live_stream.active':
+    case 'video.live_stream.idle':
+    case 'video.live_stream.disabled':
+
+      /**
+       * `event` is now understood to be one of the following types:
+       * 
+       *   | Mux.Webhooks.VideoLiveStreamActiveWebhookEvent
+       *   | Mux.Webhooks.VideoLiveStreamIdleWebhookEvent 
+       *   | Mux.Webhooks.VideoLiveStreamDisabledWebhookEvent
+       */
+      if (event.data.id === "MySpecialTVLiveStreamID") {
+        revalidatePath('/tv');
+      }
+      break;
+    default:
+      break;
+  }
+
+  return Response.json({ message: 'ok' });
+}
+```
+
+## Verifying Webhook Signatures
+Verifying Webhook Signatures is _optional but encouraged_. Learn more in our [Webhook Security Guide](https://docs.mux.com/docs/webhook-security)
+
+```js
+/*
+  If the header is valid, this function will not throw an error and will not return a value.
+  If the header is invalid, this function will throw one of the following errors:
+
+    - new Error(
+      "The webhook secret must either be set using the env var, MUX_WEBHOOK_SECRET, on the client class, Mux({ webhookSecret: '123' }), or passed to this function",
+    );
+    - new Error('Could not find a mux-signature header');
+    - new Error(
+      'Webhook body must be passed as the raw JSON string sent from the server (do not parse it first).',
+    );
+    - new Error('Unable to extract timestamp and signatures from header')
+    - new Error('No v1 signatures found');
+    - new Error('No signatures found matching the expected signature for payload.')
+    - new Error('Webhook timestamp is too old')
+*/
+
+/*
+  `body` is the raw request body. It should be a string representation of a JSON object.
+  `headers` is the value in request.headers
+  `secret` is the signing secret for this configured webhook. You can find that in your webhooks dashboard
+           (note that this secret is different than your API Secret Key)
+*/
+
+mux.webhooks.verifySignature(body, headers, secret);
+```
+
+Note that when passing in the payload (body) you want to pass in the raw un-parsed request body, not the parsed JSON. Here's an example if you are using express.
+
+```js
+const Mux = require('@mux/mux-node');
+const mux = new Mux();
+const express = require('express');
+const bodyParser = require('body-parser');
+
+/**
+ * You'll need to make sure this is externally accessible.  ngrok (https://ngrok.com/)
+ * makes this really easy.
+ */
+
+const webhookSecret = process.env.WEBHOOK_SECRET;
+const app = express();
+
+app.post(
+  '/webhooks',
+  bodyParser.raw({ type: 'application/json' }),
+  async (req, res) => {
+    try {
+      // will raise an exception if the signature is invalid
+      const isValidSignature = mux.webhooks.verifySignature(
+        req.body,
+        req.headers,
+        webhookSecret
+      );
+      console.log('Success:', isValidSignature);
+      // convert the raw req.body to JSON, which is originally Buffer (raw)
+      const jsonFormattedBody = JSON.parse(req.body);
+      // await doSomething();
+      res.json({ received: true });
+    } catch (err) {
+      // On error, return the error message
+      return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+  }
+);
+
+app.listen(3000, () => {
+  console.log('Example app listening on port 3000!');
+});
+```
+
 ## Advanced Usage
 
 ### Accessing raw Response data (e.g., headers)
