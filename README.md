@@ -219,6 +219,56 @@ const statsToken = mux.jwt.signViewerCounts('some-live-stream-id', {
 // https://stats.mux.com/counts?token={statsToken}
 ```
 
+## Parsing Webhook payloads
+
+To validate that the given payload was sent by Mux and parse the webhook payload for use in your application,
+you can use the `mux.webhooks.unwrap` utility method.
+
+This method accepts a raw `body` string and a list of headers. As long as you have set your `webhookSecret` in the
+appropriate configuration property when instantiating the library, all webhooks will be verified for authenticity automatically.
+
+The following example shows how you can handle a webhook using a Next.js app directory API route:
+
+```js
+// app/api/mux/webhooks/route.ts
+import { revalidatePath } from 'next/cache';
+import { headers } from 'next/headers';
+
+import Mux from '@mux/mux-node';
+
+const mux = new Mux({
+  webhookSecret: process.env.MUX_WEBHOOK_SECRET,
+});
+
+export async function POST(request: Request) {
+  const headersList = headers();
+  const body = await request.text();
+  const event = mux.webhooks.unwrap(body, headersList);
+
+  switch (event.type) {
+    case 'video.live_stream.active':
+    case 'video.live_stream.idle':
+    case 'video.live_stream.disabled':
+
+      /**
+       * `event` is now understood to be one of the following types:
+       * 
+       *   | Mux.Webhooks.VideoLiveStreamActiveWebhookEvent
+       *   | Mux.Webhooks.VideoLiveStreamIdleWebhookEvent 
+       *   | Mux.Webhooks.VideoLiveStreamDisabledWebhookEvent
+       */
+      if (event.data.id === "MySpecialTVLiveStreamID") {
+        revalidatePath('/tv');
+      }
+      break;
+    default:
+      break;
+  }
+
+  return Response.json({ message: 'ok' });
+}
+```
+
 ## Verifying Webhook Signatures
 Verifying Webhook Signatures is _optional but encouraged_. Learn more in our [Webhook Security Guide](https://docs.mux.com/docs/webhook-security)
 
@@ -293,7 +343,6 @@ app.listen(3000, () => {
   console.log('Example app listening on port 3000!');
 });
 ```
-
 
 ## Advanced Usage
 
