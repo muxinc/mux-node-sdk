@@ -13,9 +13,9 @@ In February 2024 this SDK was updated to Version 8.0. For upgrading to 8.x see [
 ## Installation
 
 ```sh
-npm install --save @mux/mux-node@beta
+npm install --save @mux/mux-node
 # or
-yarn add @mux/mux-node@beta
+yarn add @mux/mux-node
 ```
 
 ## Usage
