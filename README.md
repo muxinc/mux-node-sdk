@@ -84,7 +84,7 @@ async function main() {
       console.log(err.name); // BadRequestError
       console.log(err.headers); // {server: 'nginx', ...}
     } else {
-      throw err;
+      return Promise.reject(err);
     }
   });
 }
