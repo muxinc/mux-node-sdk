@@ -78,15 +78,17 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const liveStream = await mux.video.liveStreams.create().catch((err) => {
+  try {
+    const liveStream = await mux.video.liveStreams.create();
+  } catch (err) {
     if (err instanceof Mux.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
       console.log(err.headers); // {server: 'nginx', ...}
     } else {
-      return Promise.reject(err);
+      throw err;
     }
-  });
+  }
 }
 
 main();
