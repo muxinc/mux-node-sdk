@@ -38,7 +38,7 @@ export class Spaces extends APIResource {
   }
 
   /**
-   * List all spaces in the current enviroment.
+   * List all spaces in the current environment.
    *
    * @deprecated Mux Real-Time Video has been sunset and is unavailable for new usage.
    * Existing access will end on December 31, 2023.

@@ -34,16 +34,19 @@ export class Metrics extends APIResource {
       | 'exits_before_video_start'
       | 'live_stream_latency'
       | 'max_downscale_percentage'
+      | 'max_request_latency'
       | 'max_upscale_percentage'
       | 'page_load_time'
       | 'playback_failure_percentage'
-      | 'playback_failure_score'
+      | 'playback_success_score'
       | 'player_startup_time'
       | 'playing_time'
       | 'rebuffer_count'
       | 'rebuffer_duration'
       | 'rebuffer_frequency'
       | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
       | 'rebuffer_score'
       | 'requests_for_first_preroll'
       | 'seek_latency'
@@ -57,7 +60,20 @@ export class Metrics extends APIResource {
       | 'viewer_experience_score'
       | 'views'
       | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage',
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage',
     query?: MetricGetInsightsParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<InsightsResponse>;
@@ -68,16 +84,19 @@ export class Metrics extends APIResource {
       | 'exits_before_video_start'
       | 'live_stream_latency'
       | 'max_downscale_percentage'
+      | 'max_request_latency'
       | 'max_upscale_percentage'
       | 'page_load_time'
       | 'playback_failure_percentage'
-      | 'playback_failure_score'
+      | 'playback_success_score'
       | 'player_startup_time'
       | 'playing_time'
       | 'rebuffer_count'
       | 'rebuffer_duration'
       | 'rebuffer_frequency'
       | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
       | 'rebuffer_score'
       | 'requests_for_first_preroll'
       | 'seek_latency'
@@ -91,7 +110,20 @@ export class Metrics extends APIResource {
       | 'viewer_experience_score'
       | 'views'
       | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage',
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage',
     options?: Core.RequestOptions,
   ): Core.APIPromise<InsightsResponse>;
   getInsights(
@@ -101,16 +133,19 @@ export class Metrics extends APIResource {
       | 'exits_before_video_start'
       | 'live_stream_latency'
       | 'max_downscale_percentage'
+      | 'max_request_latency'
       | 'max_upscale_percentage'
       | 'page_load_time'
       | 'playback_failure_percentage'
-      | 'playback_failure_score'
+      | 'playback_success_score'
       | 'player_startup_time'
       | 'playing_time'
       | 'rebuffer_count'
       | 'rebuffer_duration'
       | 'rebuffer_frequency'
       | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
       | 'rebuffer_score'
       | 'requests_for_first_preroll'
       | 'seek_latency'
@@ -124,7 +159,20 @@ export class Metrics extends APIResource {
       | 'viewer_experience_score'
       | 'views'
       | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage',
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage',
     query: MetricGetInsightsParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<InsightsResponse> {
@@ -145,16 +193,19 @@ export class Metrics extends APIResource {
       | 'exits_before_video_start'
       | 'live_stream_latency'
       | 'max_downscale_percentage'
+      | 'max_request_latency'
       | 'max_upscale_percentage'
       | 'page_load_time'
       | 'playback_failure_percentage'
-      | 'playback_failure_score'
+      | 'playback_success_score'
       | 'player_startup_time'
       | 'playing_time'
       | 'rebuffer_count'
       | 'rebuffer_duration'
       | 'rebuffer_frequency'
       | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
       | 'rebuffer_score'
       | 'requests_for_first_preroll'
       | 'seek_latency'
@@ -168,7 +219,20 @@ export class Metrics extends APIResource {
       | 'viewer_experience_score'
       | 'views'
       | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage',
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage',
     query?: MetricGetOverallValuesParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<OverallValuesResponse>;
@@ -179,16 +243,19 @@ export class Metrics extends APIResource {
       | 'exits_before_video_start'
       | 'live_stream_latency'
       | 'max_downscale_percentage'
+      | 'max_request_latency'
       | 'max_upscale_percentage'
       | 'page_load_time'
       | 'playback_failure_percentage'
-      | 'playback_failure_score'
+      | 'playback_success_score'
       | 'player_startup_time'
       | 'playing_time'
       | 'rebuffer_count'
       | 'rebuffer_duration'
       | 'rebuffer_frequency'
       | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
       | 'rebuffer_score'
       | 'requests_for_first_preroll'
       | 'seek_latency'
@@ -202,7 +269,20 @@ export class Metrics extends APIResource {
       | 'viewer_experience_score'
       | 'views'
       | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage',
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage',
     options?: Core.RequestOptions,
   ): Core.APIPromise<OverallValuesResponse>;
   getOverallValues(
@@ -212,16 +292,19 @@ export class Metrics extends APIResource {
       | 'exits_before_video_start'
       | 'live_stream_latency'
       | 'max_downscale_percentage'
+      | 'max_request_latency'
       | 'max_upscale_percentage'
       | 'page_load_time'
       | 'playback_failure_percentage'
-      | 'playback_failure_score'
+      | 'playback_success_score'
       | 'player_startup_time'
       | 'playing_time'
       | 'rebuffer_count'
       | 'rebuffer_duration'
       | 'rebuffer_frequency'
       | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
       | 'rebuffer_score'
       | 'requests_for_first_preroll'
       | 'seek_latency'
@@ -235,7 +318,20 @@ export class Metrics extends APIResource {
       | 'viewer_experience_score'
       | 'views'
       | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage',
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage',
     query: MetricGetOverallValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<OverallValuesResponse> {
@@ -263,16 +359,19 @@ export class Metrics extends APIResource {
       | 'exits_before_video_start'
       | 'live_stream_latency'
       | 'max_downscale_percentage'
+      | 'max_request_latency'
       | 'max_upscale_percentage'
       | 'page_load_time'
       | 'playback_failure_percentage'
-      | 'playback_failure_score'
+      | 'playback_success_score'
       | 'player_startup_time'
       | 'playing_time'
       | 'rebuffer_count'
       | 'rebuffer_duration'
       | 'rebuffer_frequency'
       | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
       | 'rebuffer_score'
       | 'requests_for_first_preroll'
       | 'seek_latency'
@@ -286,7 +385,20 @@ export class Metrics extends APIResource {
       | 'viewer_experience_score'
       | 'views'
       | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage',
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage',
     query?: MetricGetTimeseriesParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<MetricTimeseriesDataResponse>;
@@ -297,16 +409,19 @@ export class Metrics extends APIResource {
       | 'exits_before_video_start'
       | 'live_stream_latency'
       | 'max_downscale_percentage'
+      | 'max_request_latency'
       | 'max_upscale_percentage'
       | 'page_load_time'
       | 'playback_failure_percentage'
-      | 'playback_failure_score'
+      | 'playback_success_score'
       | 'player_startup_time'
       | 'playing_time'
       | 'rebuffer_count'
       | 'rebuffer_duration'
       | 'rebuffer_frequency'
       | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
       | 'rebuffer_score'
       | 'requests_for_first_preroll'
       | 'seek_latency'
@@ -320,7 +435,20 @@ export class Metrics extends APIResource {
       | 'viewer_experience_score'
       | 'views'
       | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage',
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage',
     options?: Core.RequestOptions,
   ): Core.APIPromise<MetricTimeseriesDataResponse>;
   getTimeseries(
@@ -330,16 +458,19 @@ export class Metrics extends APIResource {
       | 'exits_before_video_start'
       | 'live_stream_latency'
       | 'max_downscale_percentage'
+      | 'max_request_latency'
       | 'max_upscale_percentage'
       | 'page_load_time'
       | 'playback_failure_percentage'
-      | 'playback_failure_score'
+      | 'playback_success_score'
       | 'player_startup_time'
       | 'playing_time'
       | 'rebuffer_count'
       | 'rebuffer_duration'
       | 'rebuffer_frequency'
       | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
       | 'rebuffer_score'
       | 'requests_for_first_preroll'
       | 'seek_latency'
@@ -353,7 +484,20 @@ export class Metrics extends APIResource {
       | 'viewer_experience_score'
       | 'views'
       | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage',
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage',
     query: MetricGetTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<MetricTimeseriesDataResponse> {
@@ -373,16 +517,19 @@ export class Metrics extends APIResource {
       | 'exits_before_video_start'
       | 'live_stream_latency'
       | 'max_downscale_percentage'
+      | 'max_request_latency'
       | 'max_upscale_percentage'
       | 'page_load_time'
       | 'playback_failure_percentage'
-      | 'playback_failure_score'
+      | 'playback_success_score'
       | 'player_startup_time'
       | 'playing_time'
       | 'rebuffer_count'
       | 'rebuffer_duration'
       | 'rebuffer_frequency'
       | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
       | 'rebuffer_score'
       | 'requests_for_first_preroll'
       | 'seek_latency'
@@ -396,7 +543,20 @@ export class Metrics extends APIResource {
       | 'viewer_experience_score'
       | 'views'
       | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage',
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage',
     query?: MetricListBreakdownValuesParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue>;
@@ -407,16 +567,19 @@ export class Metrics extends APIResource {
       | 'exits_before_video_start'
       | 'live_stream_latency'
       | 'max_downscale_percentage'
+      | 'max_request_latency'
       | 'max_upscale_percentage'
       | 'page_load_time'
       | 'playback_failure_percentage'
-      | 'playback_failure_score'
+      | 'playback_success_score'
       | 'player_startup_time'
       | 'playing_time'
       | 'rebuffer_count'
       | 'rebuffer_duration'
       | 'rebuffer_frequency'
       | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
       | 'rebuffer_score'
       | 'requests_for_first_preroll'
       | 'seek_latency'
@@ -430,7 +593,20 @@ export class Metrics extends APIResource {
       | 'viewer_experience_score'
       | 'views'
       | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage',
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage',
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue>;
   listBreakdownValues(
@@ -440,16 +616,19 @@ export class Metrics extends APIResource {
       | 'exits_before_video_start'
       | 'live_stream_latency'
       | 'max_downscale_percentage'
+      | 'max_request_latency'
       | 'max_upscale_percentage'
       | 'page_load_time'
       | 'playback_failure_percentage'
-      | 'playback_failure_score'
+      | 'playback_success_score'
       | 'player_startup_time'
       | 'playing_time'
       | 'rebuffer_count'
       | 'rebuffer_duration'
       | 'rebuffer_frequency'
       | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
       | 'rebuffer_score'
       | 'requests_for_first_preroll'
       | 'seek_latency'
@@ -463,7 +642,20 @@ export class Metrics extends APIResource {
       | 'viewer_experience_score'
       | 'views'
       | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage',
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage',
     query: MetricListBreakdownValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue> {
@@ -576,7 +768,7 @@ export namespace InsightsResponse {
 }
 
 export interface MetricTimeseriesDataResponse {
-  data: Array<Array<string | number | null | number | null>>;
+  data: Array<Array<string | number | null>>;
 
   meta: MetricTimeseriesDataResponse.Meta;
 
@@ -650,6 +842,9 @@ export interface MetricListParams {
     | 'live_stream_id'
     | 'operating_system'
     | 'operating_system_version'
+    | 'page_type'
+    | 'playback_failure'
+    | 'playback_business_exception'
     | 'playback_id'
     | 'player_autoplay'
     | 'player_error_code'
@@ -670,10 +865,12 @@ export interface MetricListParams {
     | 'source_type'
     | 'stream_type'
     | 'sub_property_id'
+    | 'video_content_type'
     | 'video_encoding_variant'
     | 'video_id'
     | 'video_series'
     | 'video_startup_failure'
+    | 'video_startup_business_exception'
     | 'video_title'
     | 'view_drm_type'
     | 'view_has_ad'
@@ -701,6 +898,20 @@ export interface MetricListParams {
   filters?: Array<string>;
 
   /**
+   * Limit the results to rows that match inequality conditions from provided metric
+   * comparison clauses. Must be provided as an array query string parameter.
+   *
+   * Possible filterable metrics are the same as the set of metric ids, with the
+   * exceptions of `exits_before_video_start`, `unique_viewers`,
+   * `video_startup_failure_percentage`, and `views`.
+   *
+   * Example:
+   *
+   * - `metric_filters[]=aggregate_startup_time>=1000`
+   */
+  metric_filters?: Array<string>;
+
+  /**
    * Timeframe window to limit results by. Must be provided as an array query string
    * parameter (e.g. timeframe[]=).
    *
@@ -719,10 +930,39 @@ export interface MetricListParams {
 
 export interface MetricGetInsightsParams {
   /**
+   * Limit the results to rows that match conditions from provided key:value pairs.
+   * Must be provided as an array query string parameter.
+   *
+   * To exclude rows that match a certain condition, prepend a `!` character to the
+   * dimension.
+   *
+   * Possible filter names are the same as returned by the List Filters endpoint.
+   *
+   * Example:
+   *
+   * - `filters[]=operating_system:windows&filters[]=!country:US`
+   */
+  filters?: Array<string>;
+
+  /**
    * Measurement for the provided metric. If omitted, the default for the metric will
    * be used.
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
+
+  /**
+   * Limit the results to rows that match inequality conditions from provided metric
+   * comparison clauses. Must be provided as an array query string parameter.
+   *
+   * Possible filterable metrics are the same as the set of metric ids, with the
+   * exceptions of `exits_before_video_start`, `unique_viewers`,
+   * `video_startup_failure_percentage`, and `views`.
+   *
+   * Example:
+   *
+   * - `metric_filters[]=aggregate_startup_time>=1000`
+   */
+  metric_filters?: Array<string>;
 
   /**
    * Sort order.
@@ -762,6 +1002,20 @@ export interface MetricGetOverallValuesParams {
    * be used.
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
+
+  /**
+   * Limit the results to rows that match inequality conditions from provided metric
+   * comparison clauses. Must be provided as an array query string parameter.
+   *
+   * Possible filterable metrics are the same as the set of metric ids, with the
+   * exceptions of `exits_before_video_start`, `unique_viewers`,
+   * `video_startup_failure_percentage`, and `views`.
+   *
+   * Example:
+   *
+   * - `metric_filters[]=aggregate_startup_time>=1000`
+   */
+  metric_filters?: Array<string>;
 
   /**
    * Timeframe window to limit results by. Must be provided as an array query string
@@ -809,6 +1063,20 @@ export interface MetricGetTimeseriesParams {
    * be used.
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
+
+  /**
+   * Limit the results to rows that match inequality conditions from provided metric
+   * comparison clauses. Must be provided as an array query string parameter.
+   *
+   * Possible filterable metrics are the same as the set of metric ids, with the
+   * exceptions of `exits_before_video_start`, `unique_viewers`,
+   * `video_startup_failure_percentage`, and `views`.
+   *
+   * Example:
+   *
+   * - `metric_filters[]=aggregate_startup_time>=1000`
+   */
+  metric_filters?: Array<string>;
 
   /**
    * Sort order.
@@ -869,6 +1137,9 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
     | 'live_stream_id'
     | 'operating_system'
     | 'operating_system_version'
+    | 'page_type'
+    | 'playback_failure'
+    | 'playback_business_exception'
     | 'playback_id'
     | 'player_autoplay'
     | 'player_error_code'
@@ -889,9 +1160,11 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
     | 'source_type'
     | 'stream_type'
     | 'sub_property_id'
+    | 'video_content_type'
     | 'video_encoding_variant'
     | 'video_id'
     | 'video_series'
+    | 'video_startup_business_exception'
     | 'video_startup_failure'
     | 'video_title'
     | 'view_drm_type'
@@ -909,6 +1182,20 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
    * be used.
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
+
+  /**
+   * Limit the results to rows that match inequality conditions from provided metric
+   * comparison clauses. Must be provided as an array query string parameter.
+   *
+   * Possible filterable metrics are the same as the set of metric ids, with the
+   * exceptions of `exits_before_video_start`, `unique_viewers`,
+   * `video_startup_failure_percentage`, and `views`.
+   *
+   * Example:
+   *
+   * - `metric_filters[]=aggregate_startup_time>=1000`
+   */
+  metric_filters?: Array<string>;
 
   /**
    * Value to order the results by

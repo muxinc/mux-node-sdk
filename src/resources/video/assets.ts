@@ -126,6 +126,24 @@ export class Assets extends APIResource {
   }
 
   /**
+   * Generates subtitles (captions) for a given audio track. This API can be used for
+   * up to 7 days after an asset is created.
+   */
+  generateSubtitles(
+    assetId: string,
+    trackId: string,
+    body: AssetGenerateSubtitlesParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<Track> {
+    return (
+      this._client.post(`/video/v1/assets/${assetId}/tracks/${trackId}/generate-subtitles`, {
+        body,
+        ...options,
+      }) as Core.APIPromise<{ data: Track }>
+    )._thenUnwrap((obj) => obj.data);
+  }
+
+  /**
    * Returns a list of the input objects that were used to create the asset along
    * with any settings that were applied to each input.
    */
@@ -246,6 +264,11 @@ export interface Asset {
   errors?: Asset.Errors;
 
   /**
+   * The type of ingest used to create the asset.
+   */
+  ingest_type?: 'on_demand_url' | 'on_demand_direct_upload' | 'on_demand_clip' | 'live_rtmp' | 'live_srt';
+
+  /**
    * Indicates whether the live stream that created this asset is currently `active`
    * and not in `idle` state. This is an optional parameter added when the asset is
    * created from a live stream.
@@ -274,10 +297,10 @@ export interface Asset {
   max_stored_frame_rate?: number;
 
   /**
-   * This field is deprecated. Please use `resolution_tier` instead. The maximum
-   * resolution that has been stored for the asset. The asset may be delivered at
-   * lower resolutions depending on the device and bandwidth, however it cannot be
-   * delivered at a higher value than is stored.
+   * @deprecated: This field is deprecated. Please use `resolution_tier` instead. The
+   * maximum resolution that has been stored for the asset. The asset may be
+   * delivered at lower resolutions depending on the device and bandwidth, however it
+   * cannot be delivered at a higher value than is stored.
    */
   max_stored_resolution?: 'Audio only' | 'SD' | 'HD' | 'FHD' | 'UHD';
 
@@ -301,6 +324,9 @@ export interface Asset {
    */
   passthrough?: string;
 
+  /**
+   * @deprecated
+   */
   per_title_encode?: boolean;
 
   /**
@@ -590,6 +616,9 @@ export interface AssetOptions {
    */
   passthrough?: string;
 
+  /**
+   * @deprecated
+   */
   per_title_encode?: boolean;
 
   /**
@@ -635,7 +664,7 @@ export namespace AssetOptions {
     end_time?: number;
 
     /**
-     * Generate subtitle tracks using automatic speech recognition using this
+     * Generate subtitle tracks using automatic speech recognition with this
      * configuration. This may only be provided for the first input object (the main
      * input file). For direct uploads, this first input should omit the url parameter,
      * as the main input file is provided via the direct upload. This will create
@@ -715,6 +744,7 @@ export namespace AssetOptions {
      *   [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) formats for ingesting
      *   Subtitles and Closed Captions.
      * - For Watermarking or Overlay, the URL is the location of the watermark image.
+     *   The maximum size is 4096x4096.
      * - When creating clips from existing Mux assets, the URL is defined with
      *   `mux://assets/{asset_id}` template where `asset_id` is the Asset Identifier
      *   for creating the clip from. The url property may be omitted on the first input
@@ -730,7 +760,29 @@ export namespace AssetOptions {
       /**
        * The language to generate subtitles in.
        */
-      language_code?: 'en' | 'en-US';
+      language_code?:
+        | 'en'
+        | 'es'
+        | 'it'
+        | 'pt'
+        | 'de'
+        | 'fr'
+        | 'pl'
+        | 'ru'
+        | 'nl'
+        | 'ca'
+        | 'tr'
+        | 'sv'
+        | 'uk'
+        | 'no'
+        | 'fi'
+        | 'sk'
+        | 'el'
+        | 'cs'
+        | 'hr'
+        | 'da'
+        | 'ro'
+        | 'bg';
 
       /**
        * A name for this subtitle track.
@@ -870,7 +922,7 @@ export namespace InputInfo {
     end_time?: number;
 
     /**
-     * Generate subtitle tracks using automatic speech recognition using this
+     * Generate subtitle tracks using automatic speech recognition with this
      * configuration. This may only be provided for the first input object (the main
      * input file). For direct uploads, this first input should omit the url parameter,
      * as the main input file is provided via the direct upload. This will create
@@ -950,6 +1002,7 @@ export namespace InputInfo {
      *   [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) formats for ingesting
      *   Subtitles and Closed Captions.
      * - For Watermarking or Overlay, the URL is the location of the watermark image.
+     *   The maximum size is 4096x4096.
      * - When creating clips from existing Mux assets, the URL is defined with
      *   `mux://assets/{asset_id}` template where `asset_id` is the Asset Identifier
      *   for creating the clip from. The url property may be omitted on the first input
@@ -965,7 +1018,29 @@ export namespace InputInfo {
       /**
        * The language to generate subtitles in.
        */
-      language_code?: 'en' | 'en-US';
+      language_code?:
+        | 'en'
+        | 'es'
+        | 'it'
+        | 'pt'
+        | 'de'
+        | 'fr'
+        | 'pl'
+        | 'ru'
+        | 'nl'
+        | 'ca'
+        | 'tr'
+        | 'sv'
+        | 'uk'
+        | 'no'
+        | 'fi'
+        | 'sk'
+        | 'el'
+        | 'cs'
+        | 'hr'
+        | 'da'
+        | 'ro'
+        | 'bg';
 
       /**
        * A name for this subtitle track.
@@ -1068,7 +1143,7 @@ export interface Track {
   language_code?: string;
 
   /**
-   * Only set for the `audio` type track.
+   * @deprecated: Only set for the `audio` type track.
    */
   max_channel_layout?: string;
 
@@ -1111,6 +1186,12 @@ export interface Track {
    * characters.
    */
   passthrough?: string;
+
+  /**
+   * For an audio track, indicates that this is the primary audio track, ingested
+   * from the main input for this asset. The primary audio track cannot be deleted.
+   */
+  primary?: boolean;
 
   /**
    * The status of the track. This parameter is only set for `text` type tracks.
@@ -1251,7 +1332,7 @@ export namespace AssetCreateParams {
     end_time?: number;
 
     /**
-     * Generate subtitle tracks using automatic speech recognition using this
+     * Generate subtitle tracks using automatic speech recognition with this
      * configuration. This may only be provided for the first input object (the main
      * input file). For direct uploads, this first input should omit the url parameter,
      * as the main input file is provided via the direct upload. This will create
@@ -1331,6 +1412,7 @@ export namespace AssetCreateParams {
      *   [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) formats for ingesting
      *   Subtitles and Closed Captions.
      * - For Watermarking or Overlay, the URL is the location of the watermark image.
+     *   The maximum size is 4096x4096.
      * - When creating clips from existing Mux assets, the URL is defined with
      *   `mux://assets/{asset_id}` template where `asset_id` is the Asset Identifier
      *   for creating the clip from. The url property may be omitted on the first input
@@ -1346,7 +1428,29 @@ export namespace AssetCreateParams {
       /**
        * The language to generate subtitles in.
        */
-      language_code?: 'en' | 'en-US';
+      language_code?:
+        | 'en'
+        | 'es'
+        | 'it'
+        | 'pt'
+        | 'de'
+        | 'fr'
+        | 'pl'
+        | 'ru'
+        | 'nl'
+        | 'ca'
+        | 'tr'
+        | 'sv'
+        | 'uk'
+        | 'no'
+        | 'fi'
+        | 'sk'
+        | 'el'
+        | 'cs'
+        | 'hr'
+        | 'da'
+        | 'ro'
+        | 'bg';
 
       /**
        * A name for this subtitle track.
@@ -1500,6 +1604,55 @@ export interface AssetCreateTrackParams {
   text_type?: 'subtitles';
 }
 
+export interface AssetGenerateSubtitlesParams {
+  /**
+   * Generate subtitle tracks using automatic speech recognition with this
+   * configuration.
+   */
+  generated_subtitles: Array<AssetGenerateSubtitlesParams.GeneratedSubtitle>;
+}
+
+export namespace AssetGenerateSubtitlesParams {
+  export interface GeneratedSubtitle {
+    /**
+     * The language to generate subtitles in.
+     */
+    language_code?:
+      | 'en'
+      | 'es'
+      | 'it'
+      | 'pt'
+      | 'de'
+      | 'fr'
+      | 'pl'
+      | 'ru'
+      | 'nl'
+      | 'ca'
+      | 'tr'
+      | 'sv'
+      | 'uk'
+      | 'no'
+      | 'fi'
+      | 'sk'
+      | 'el'
+      | 'cs'
+      | 'hr'
+      | 'da'
+      | 'ro'
+      | 'bg';
+
+    /**
+     * A name for this subtitle track.
+     */
+    name?: string;
+
+    /**
+     * Arbitrary metadata set for the subtitle track. Max 255 characters.
+     */
+    passthrough?: string;
+  }
+}
+
 export interface AssetUpdateMasterAccessParams {
   /**
    * Add or remove access to the master version of the video.
@@ -1527,6 +1680,7 @@ export namespace Assets {
   export import AssetListParams = AssetsAPI.AssetListParams;
   export import AssetCreatePlaybackIDParams = AssetsAPI.AssetCreatePlaybackIDParams;
   export import AssetCreateTrackParams = AssetsAPI.AssetCreateTrackParams;
+  export import AssetGenerateSubtitlesParams = AssetsAPI.AssetGenerateSubtitlesParams;
   export import AssetUpdateMasterAccessParams = AssetsAPI.AssetUpdateMasterAccessParams;
   export import AssetUpdateMP4SupportParams = AssetsAPI.AssetUpdateMP4SupportParams;
 }

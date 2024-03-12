@@ -12,6 +12,7 @@ export {
   AssetListParams,
   AssetCreatePlaybackIDParams,
   AssetCreateTrackParams,
+  AssetGenerateSubtitlesParams,
   AssetUpdateMasterAccessParams,
   AssetUpdateMP4SupportParams,
   AssetsBasePage,

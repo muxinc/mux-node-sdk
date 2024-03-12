@@ -29,6 +29,7 @@ Methods:
 - <code title="post /video/v1/assets/{ASSET_ID}/tracks">client.video.assets.<a href="./src/resources/video/assets.ts">createTrack</a>(assetId, { ...params }) -> Track</code>
 - <code title="delete /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}">client.video.assets.<a href="./src/resources/video/assets.ts">deletePlaybackId</a>(assetId, playbackId) -> void</code>
 - <code title="delete /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}">client.video.assets.<a href="./src/resources/video/assets.ts">deleteTrack</a>(assetId, trackId) -> void</code>
+- <code title="post /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}/generate-subtitles">client.video.assets.<a href="./src/resources/video/assets.ts">generateSubtitles</a>(assetId, trackId, { ...params }) -> Track</code>
 - <code title="get /video/v1/assets/{ASSET_ID}/input-info">client.video.assets.<a href="./src/resources/video/assets.ts">retrieveInputInfo</a>(assetId) -> AssetRetrieveInputInfoResponse</code>
 - <code title="get /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}">client.video.assets.<a href="./src/resources/video/assets.ts">retrievePlaybackId</a>(assetId, playbackId) -> PlaybackID</code>
 - <code title="put /video/v1/assets/{ASSET_ID}/master-access">client.video.assets.<a href="./src/resources/video/assets.ts">updateMasterAccess</a>(assetId, { ...params }) -> Asset</code>
@@ -150,6 +151,31 @@ Methods:
 - <code title="get /video/v1/uploads/{UPLOAD_ID}">client.video.uploads.<a href="./src/resources/video/uploads.ts">retrieve</a>(uploadId) -> Upload</code>
 - <code title="get /video/v1/uploads">client.video.uploads.<a href="./src/resources/video/uploads.ts">list</a>({ ...params }) -> UploadsBasePage</code>
 - <code title="put /video/v1/uploads/{UPLOAD_ID}/cancel">client.video.uploads.<a href="./src/resources/video/uploads.ts">cancel</a>(uploadId) -> Upload</code>
+
+# WebInputs
+
+## Assets
+
+Types:
+
+- <code><a href="./src/resources/web-inputs/assets.ts">AssetCreateResponse</a></code>
+- <code><a href="./src/resources/web-inputs/assets.ts">AssetRetrieveResponse</a></code>
+- <code><a href="./src/resources/web-inputs/assets.ts">AssetListResponse</a></code>
+- <code><a href="./src/resources/web-inputs/assets.ts">AssetLaunchResponse</a></code>
+- <code><a href="./src/resources/web-inputs/assets.ts">AssetReloadResponse</a></code>
+- <code><a href="./src/resources/web-inputs/assets.ts">AssetShutdownResponse</a></code>
+- <code><a href="./src/resources/web-inputs/assets.ts">AssetUpdateURLResponse</a></code>
+
+Methods:
+
+- <code title="post /video/v1/web-inputs">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">create</a>({ ...params }) -> AssetCreateResponse</code>
+- <code title="get /video/v1/web-inputs/{WEB_INPUT_ID}">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">retrieve</a>(webInputId) -> AssetRetrieveResponse</code>
+- <code title="get /video/v1/web-inputs">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">list</a>({ ...params }) -> AssetListResponsesBasePage</code>
+- <code title="delete /video/v1/web-inputs/{WEB_INPUT_ID}">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">delete</a>(webInputId) -> void</code>
+- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/launch">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">launch</a>(webInputId) -> AssetLaunchResponse</code>
+- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/reload">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">reload</a>(webInputId) -> AssetReloadResponse</code>
+- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/shutdown">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">shutdown</a>(webInputId) -> AssetShutdownResponse</code>
+- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/url">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">updateURL</a>(webInputId, { ...params }) -> AssetUpdateURLResponse</code>
 
 # Data
 

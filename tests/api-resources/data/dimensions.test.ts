@@ -54,6 +54,7 @@ describe('resource dimensions', () => {
         {
           filters: ['string', 'string', 'string'],
           limit: 0,
+          metric_filters: ['string', 'string', 'string'],
           page: 0,
           timeframe: ['string', 'string', 'string'],
         },

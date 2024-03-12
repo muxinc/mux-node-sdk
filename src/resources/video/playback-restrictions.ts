@@ -146,7 +146,7 @@ export interface PlaybackRestrictionCreateParams {
   /**
    * A list of domains allowed to play your videos.
    */
-  referrer?: PlaybackRestrictionCreateParams.Referrer;
+  referrer: PlaybackRestrictionCreateParams.Referrer;
 }
 
 export namespace PlaybackRestrictionCreateParams {

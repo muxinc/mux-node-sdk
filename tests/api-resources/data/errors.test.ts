@@ -32,7 +32,11 @@ describe('resource errors', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.data.errors.list(
-        { filters: ['string', 'string', 'string'], timeframe: ['string', 'string', 'string'] },
+        {
+          filters: ['string', 'string', 'string'],
+          metric_filters: ['string', 'string', 'string'],
+          timeframe: ['string', 'string', 'string'],
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);

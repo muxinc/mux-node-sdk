@@ -236,6 +236,8 @@ export namespace MetricGetBreakdownTimeseriesResponse {
 
       metric_value: number | null;
 
+      starting_up_viewers: number;
+
       value: string | null;
     }
   }
