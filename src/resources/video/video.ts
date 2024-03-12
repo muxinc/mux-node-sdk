@@ -37,6 +37,7 @@ export namespace Video {
   export import AssetListParams = AssetsAPI.AssetListParams;
   export import AssetCreatePlaybackIDParams = AssetsAPI.AssetCreatePlaybackIDParams;
   export import AssetCreateTrackParams = AssetsAPI.AssetCreateTrackParams;
+  export import AssetGenerateSubtitlesParams = AssetsAPI.AssetGenerateSubtitlesParams;
   export import AssetUpdateMasterAccessParams = AssetsAPI.AssetUpdateMasterAccessParams;
   export import AssetUpdateMP4SupportParams = AssetsAPI.AssetUpdateMP4SupportParams;
   export import DeliveryUsage = DeliveryUsageAPI.DeliveryUsage;

@@ -50,7 +50,7 @@ describe('resource assets', () => {
           passthrough: 'string',
         },
       ],
-      encoding_tier: 'smart',
+      encoding_tier: 'baseline',
       master_access: 'none',
       max_resolution_tier: '1080p',
       mp4_support: 'none',
@@ -209,6 +209,27 @@ describe('resource assets', () => {
     await expect(
       mux.video.assets.deleteTrack('string', 'string', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
+  });
+
+  test('generateSubtitles: only required params', async () => {
+    const responsePromise = mux.video.assets.generateSubtitles('string', 'string', {
+      generated_subtitles: [{}],
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('generateSubtitles: required and optional params', async () => {
+    const response = await mux.video.assets.generateSubtitles('string', 'string', {
+      generated_subtitles: [
+        { name: 'English (generated)', passthrough: 'English (generated)', language_code: 'en' },
+      ],
+    });
   });
 
   test('retrieveInputInfo', async () => {

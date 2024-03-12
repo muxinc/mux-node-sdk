@@ -57,7 +57,11 @@ export interface AbridgedVideoView {
 
   viewer_application_name: string | null;
 
+  viewer_experience_score: number | null;
+
   viewer_os_family: string | null;
+
+  watch_time: number | null;
 }
 
 export interface VideoViewResponse {
@@ -71,6 +75,28 @@ export interface VideoViewResponse {
 export namespace VideoViewResponse {
   export interface Data {
     id: string;
+
+    ad_attempt_count: number | null;
+
+    ad_break_count: number | null;
+
+    ad_break_error_count: number | null;
+
+    ad_break_error_percentage: string | null;
+
+    ad_error_count: number | null;
+
+    ad_error_percentage: string | null;
+
+    ad_exit_before_start_count: number | null;
+
+    ad_exit_before_start_percentage: string | null;
+
+    ad_impression_count: number | null;
+
+    ad_startup_error_count: number | null;
+
+    ad_startup_error_percentage: string | null;
 
     asn: number | null;
 
@@ -159,6 +185,10 @@ export namespace VideoViewResponse {
     platform_description: string | null;
 
     platform_summary: string | null;
+
+    playback_business_exception_error_type_id: number;
+
+    playback_failure_error_type_id: number;
 
     playback_id: string | null;
 
@@ -265,6 +295,8 @@ export namespace VideoViewResponse {
     video_producer: string | null;
 
     video_series: string | null;
+
+    video_startup_business_exception_error_type_id: number;
 
     video_startup_failure: boolean;
 
@@ -394,6 +426,20 @@ export interface VideoViewListParams extends BasePageParams {
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
   filters?: Array<string>;
+
+  /**
+   * Limit the results to rows that match inequality conditions from provided metric
+   * comparison clauses. Must be provided as an array query string parameter.
+   *
+   * Possible filterable metrics are the same as the set of metric ids, with the
+   * exceptions of `exits_before_video_start`, `unique_viewers`,
+   * `video_startup_failure_percentage`, and `views`.
+   *
+   * Example:
+   *
+   * - `metric_filters[]=aggregate_startup_time>=1000`
+   */
+  metric_filters?: Array<string>;
 
   /**
    * Sort order.
