@@ -164,6 +164,7 @@ export class Mux extends Core.APIClient {
   }
 
   video: API.Video = new API.Video(this);
+  webInputs: API.WebInputs = new API.WebInputs(this);
   data: API.Data = new API.Data(this);
   system: API.System = new API.System(this);
   webhooks: API.Webhooks = new API.Webhooks(this);
@@ -250,6 +251,8 @@ export namespace Mux {
   export import BasePageResponse = Pagination.BasePageResponse;
 
   export import Video = API.Video;
+
+  export import WebInputs = API.WebInputs;
 
   export import Data = API.Data;
 

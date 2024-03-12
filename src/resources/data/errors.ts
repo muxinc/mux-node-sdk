@@ -71,6 +71,11 @@ export namespace ErrorsResponse {
      * The percentage of views that experienced this error.
      */
     percentage: number;
+
+    /**
+     * The string version of the error code
+     */
+    player_error_code: string | null;
   }
 }
 
@@ -89,6 +94,20 @@ export interface ErrorListParams {
    * - `filters[]=operating_system:windows&filters[]=!country:US`
    */
   filters?: Array<string>;
+
+  /**
+   * Limit the results to rows that match inequality conditions from provided metric
+   * comparison clauses. Must be provided as an array query string parameter.
+   *
+   * Possible filterable metrics are the same as the set of metric ids, with the
+   * exceptions of `exits_before_video_start`, `unique_viewers`,
+   * `video_startup_failure_percentage`, and `views`.
+   *
+   * Example:
+   *
+   * - `metric_filters[]=aggregate_startup_time>=1000`
+   */
+  metric_filters?: Array<string>;
 
   /**
    * Timeframe window to limit results by. Must be provided as an array query string

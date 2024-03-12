@@ -298,8 +298,7 @@ export interface LiveStream {
   /**
    * Latency is the time from when the streamer transmits a frame of video to when
    * you see it in the player. Set this as an alternative to setting low latency or
-   * reduced latency flags. The Low Latency value is a beta feature. Read more here:
-   * https://mux.com/blog/introducing-low-latency-live-streaming/
+   * reduced latency flags.
    */
   latency_mode: 'low' | 'reduced' | 'standard';
 
@@ -328,6 +327,12 @@ export interface LiveStream {
   active_asset_id?: string;
 
   /**
+   * The protocol used for the active ingest stream. This is only set when the live
+   * stream is active.
+   */
+  active_ingest_protocol?: 'rtmp' | 'srt';
+
+  /**
    * The live stream only processes the audio track if the value is set to true. Mux
    * drops the video track if broadcasted.
    */
@@ -354,11 +359,11 @@ export interface LiveStream {
   generated_subtitles?: Array<LiveStream.GeneratedSubtitle>;
 
   /**
-   * This field is deprecated. Please use `latency_mode` instead. Latency is the time
-   * from when the streamer transmits a frame of video to when you see it in the
-   * player. Setting this option will enable compatibility with the LL-HLS
-   * specification for low-latency streaming. This typically has lower latency than
-   * Reduced Latency streams, and cannot be combined with Reduced Latency.
+   * @deprecated: This field is deprecated. Please use `latency_mode` instead.
+   * Latency is the time from when the streamer transmits a frame of video to when
+   * you see it in the player. Setting this option will enable compatibility with the
+   * LL-HLS specification for low-latency streaming. This typically has lower latency
+   * than Reduced Latency streams, and cannot be combined with Reduced Latency.
    */
   low_latency?: boolean;
 
@@ -411,9 +416,10 @@ export interface LiveStream {
   reconnect_window?: number;
 
   /**
-   * This field is deprecated. Please use `latency_mode` instead. Latency is the time
-   * from when the streamer transmits a frame of video to when you see it in the
-   * player. Set this if you want lower latency for your live stream. See the
+   * @deprecated: This field is deprecated. Please use `latency_mode` instead.
+   * Latency is the time from when the streamer transmits a frame of video to when
+   * you see it in the player. Set this if you want lower latency for your live
+   * stream. See the
    * [Reduce live stream latency guide](https://docs.mux.com/guides/reduce-live-stream-latency)
    * to understand the tradeoffs.
    */
@@ -425,6 +431,11 @@ export interface LiveStream {
    * [See the Stream live to 3rd party platforms guide](https://docs.mux.com/guides/stream-live-to-3rd-party-platforms).
    */
   simulcast_targets?: Array<SimulcastTarget>;
+
+  /**
+   * Unique key used for encrypting a stream to a Mux SRT endpoint.
+   */
+  srt_passphrase?: string;
 
   /**
    * True means this live stream is a test live stream. Test live streams can be used
@@ -511,9 +522,8 @@ export interface SimulcastTarget {
    *   party live streaming service and is pushing video to that service.
    * - `errored`: The simulcast target encountered an error either while attempting
    *   to connect to the third party live streaming service, or mid-broadcasting.
-   *   Compared to other errored statuses in the Mux Video API, a simulcast may
-   *   transition back into the broadcasting state if a connection with the service
-   *   can be re-established.
+   *   When a simulcast target has this status it will have an `error_severity` field
+   *   with more details about the error.
    */
   status: 'idle' | 'starting' | 'broadcasting' | 'errored';
 
@@ -522,6 +532,21 @@ export interface SimulcastTarget {
    * service.
    */
   url: string;
+
+  /**
+   * The severity of the error encountered by the simulcast target. This field is
+   * only set when the simulcast target is in the `errored` status. See the values of
+   * severities below and their descriptions.
+   *
+   * - `normal`: The simulcast target encountered an error either while attempting to
+   *   connect to the third party live streaming service, or mid-broadcasting. A
+   *   simulcast may transition back into the broadcasting state if a connection with
+   *   the service can be re-established.
+   * - `fatal`: The simulcast target is incompatible with the current input to the
+   *   parent live stream. No further attempts to this simulcast target will be made
+   *   for the current live stream asset.
+   */
+  error_severity?: 'normal' | 'fatal';
 
   /**
    * Arbitrary user-supplied metadata set when creating a simulcast target.
@@ -565,8 +590,7 @@ export interface LiveStreamCreateParams {
   /**
    * Latency is the time from when the streamer transmits a frame of video to when
    * you see it in the player. Set this as an alternative to setting low latency or
-   * reduced latency flags. The Low Latency value is a beta feature. Read more here:
-   * https://mux.com/blog/introducing-low-latency-live-streaming/
+   * reduced latency flags.
    */
   latency_mode?: 'low' | 'reduced' | 'standard';
 
@@ -721,8 +745,7 @@ export interface LiveStreamUpdateParams {
   /**
    * Latency is the time from when the streamer transmits a frame of video to when
    * you see it in the player. Set this as an alternative to setting low latency or
-   * reduced latency flags. The Low Latency value is a beta feature. Read more here:
-   * https://mux.com/blog/introducing-low-latency-live-streaming/
+   * reduced latency flags.
    */
   latency_mode?: 'low' | 'reduced' | 'standard';
 

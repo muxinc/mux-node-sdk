@@ -35,6 +35,7 @@ describe('resource metrics', () => {
         {
           dimension: 'asn',
           filters: ['string', 'string', 'string'],
+          metric_filters: ['string', 'string', 'string'],
           timeframe: ['string', 'string', 'string'],
           value: 'string',
         },
@@ -66,7 +67,13 @@ describe('resource metrics', () => {
     await expect(
       mux.data.metrics.getInsights(
         'video_startup_time',
-        { measurement: '95th', order_direction: 'asc', timeframe: ['string', 'string', 'string'] },
+        {
+          filters: ['string', 'string', 'string'],
+          measurement: '95th',
+          metric_filters: ['string', 'string', 'string'],
+          order_direction: 'asc',
+          timeframe: ['string', 'string', 'string'],
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
@@ -98,6 +105,7 @@ describe('resource metrics', () => {
         {
           filters: ['string', 'string', 'string'],
           measurement: '95th',
+          metric_filters: ['string', 'string', 'string'],
           timeframe: ['string', 'string', 'string'],
         },
         { path: '/_stainless_unknown_path' },
@@ -132,6 +140,7 @@ describe('resource metrics', () => {
           filters: ['string', 'string', 'string'],
           group_by: 'minute',
           measurement: '95th',
+          metric_filters: ['string', 'string', 'string'],
           order_direction: 'asc',
           timeframe: ['string', 'string', 'string'],
         },
@@ -168,6 +177,7 @@ describe('resource metrics', () => {
           group_by: 'asn',
           limit: 0,
           measurement: '95th',
+          metric_filters: ['string', 'string', 'string'],
           order_by: 'negative_impact',
           order_direction: 'asc',
           page: 0,

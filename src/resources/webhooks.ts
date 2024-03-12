@@ -187,10 +187,19 @@ export interface BaseWebhookEvent {
 
   type: string;
 
+  /**
+   * @deprecated
+   */
   accessor?: string | null;
 
+  /**
+   * @deprecated
+   */
   accessor_source?: string | null;
 
+  /**
+   * @deprecated
+   */
   request_id?: string | null;
 }
 

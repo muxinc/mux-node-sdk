@@ -54,6 +54,7 @@ describe('resource videoViews', () => {
           error_id: 0,
           filters: ['string', 'string', 'string'],
           limit: 0,
+          metric_filters: ['string', 'string', 'string'],
           order_direction: 'asc',
           page: 0,
           timeframe: ['string', 'string', 'string'],
