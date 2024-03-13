@@ -528,8 +528,17 @@ export interface SimulcastTarget {
   status: 'idle' | 'starting' | 'broadcasting' | 'errored';
 
   /**
-   * RTMP hostname including the application name for the third party live streaming
-   * service.
+   * The RTMP(s) or SRT endpoint for a simulcast destination.
+   *
+   * - For RTMP(s) destinations, this should include the application name for the
+   *   third party live streaming service, for example:
+   *   `rtmp://live.example.com/app`.
+   * - For SRT destinations, this should be a fully formed SRT connection string, for
+   *   example:
+   *   `srt://srt-live.example.com:1234?streamid={stream_key}&passphrase={srt_passphrase}`.
+   *
+   * Note: SRT simulcast targets can only be used when an source is connected over
+   * SRT.
    */
   url: string;
 
@@ -554,8 +563,9 @@ export interface SimulcastTarget {
   passthrough?: string;
 
   /**
-   * Stream Key represents an stream identifier for the third party live streaming
-   * service to simulcast the parent live stream too.
+   * Stream Key represents a stream identifier on the third party live streaming
+   * service to send the parent live stream to. Only used for RTMP(s) simulcast
+   * destinations.
    */
   stream_key?: string;
 }
@@ -723,8 +733,17 @@ export namespace LiveStreamCreateParams {
 
   export interface SimulcastTarget {
     /**
-     * RTMP hostname including application name for the third party live streaming
-     * service. Example: `rtmp://live.example.com/app`.
+     * The RTMP(s) or SRT endpoint for a simulcast destination.
+     *
+     * - For RTMP(s) destinations, this should include the application name for the
+     *   third party live streaming service, for example:
+     *   `rtmp://live.example.com/app`.
+     * - For SRT destinations, this should be a fully formed SRT connection string, for
+     *   example:
+     *   `srt://srt-live.example.com:1234?streamid={stream_key}&passphrase={srt_passphrase}`.
+     *
+     * Note: SRT simulcast targets can only be used when an source is connected over
+     * SRT.
      */
     url: string;
 
@@ -735,7 +754,8 @@ export namespace LiveStreamCreateParams {
 
     /**
      * Stream Key represents a stream identifier on the third party live streaming
-     * service to send the parent live stream to.
+     * service to send the parent live stream to. Only used for RTMP(s) simulcast
+     * destinations.
      */
     stream_key?: string;
   }
@@ -825,8 +845,17 @@ export interface LiveStreamCreatePlaybackIDParams {
 
 export interface LiveStreamCreateSimulcastTargetParams {
   /**
-   * RTMP hostname including application name for the third party live streaming
-   * service. Example: `rtmp://live.example.com/app`.
+   * The RTMP(s) or SRT endpoint for a simulcast destination.
+   *
+   * - For RTMP(s) destinations, this should include the application name for the
+   *   third party live streaming service, for example:
+   *   `rtmp://live.example.com/app`.
+   * - For SRT destinations, this should be a fully formed SRT connection string, for
+   *   example:
+   *   `srt://srt-live.example.com:1234?streamid={stream_key}&passphrase={srt_passphrase}`.
+   *
+   * Note: SRT simulcast targets can only be used when an source is connected over
+   * SRT.
    */
   url: string;
 
@@ -837,7 +866,8 @@ export interface LiveStreamCreateSimulcastTargetParams {
 
   /**
    * Stream Key represents a stream identifier on the third party live streaming
-   * service to send the parent live stream to.
+   * service to send the parent live stream to. Only used for RTMP(s) simulcast
+   * destinations.
    */
   stream_key?: string;
 }
