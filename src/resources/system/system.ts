@@ -1,4 +1,4 @@
-// File generated from our OpenAPI spec by Stainless.
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '@mux/mux-node/resource';
 import * as SigningKeysAPI from '@mux/mux-node/resources/system/signing-keys';
