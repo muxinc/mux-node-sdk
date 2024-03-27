@@ -387,14 +387,3 @@ Types:
 - <code><a href="./src/resources/webhooks.ts">UnwrapWebhookEvent</a></code>
 
 Methods:
-
-- <code>client.webhooks.<a href="./src/resources/webhooks.ts">unwrap</a>(body, headers, secret) -> UnwrapWebhookEvent</code>
-- <code>client.webhooks.<a href="./src/resources/webhooks.ts">verifySignature</a>(body, headers, secret) -> void</code>
-
-# Jwt
-
-Methods:
-
-- <code>client.jwt.<a href="./src/resources/jwt.ts">signPlaybackId</a>(playbackId, config) -> Promise&lt;string&gt;</code>
-- <code>client.jwt.<a href="./src/resources/jwt.ts">signSpaceId</a>(spaceId, config) -> Promise&lt;string&gt;</code>
-- <code>client.jwt.<a href="./src/resources/jwt.ts">signViewerCounts</a>(id, config) -> Promise&lt;string&gt;</code>
