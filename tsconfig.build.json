@@ -7,7 +7,6 @@
     "paths": {
       "@mux/mux-node/*": ["dist/src/*"],
       "@mux/mux-node": ["dist/src/index.ts"],
-      "digest-fetch": ["./typings/digest-fetch"]
     },
     "noEmit": false,
     "declaration": true,
