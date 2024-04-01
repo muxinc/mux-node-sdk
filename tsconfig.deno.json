@@ -9,7 +9,6 @@
       "@mux/mux-node/_shims/auto/*": ["deno/_shims/auto/*-deno"],
       "@mux/mux-node/*": ["deno/*"],
       "@mux/mux-node": ["deno/index.ts"],
-      "digest-fetch": ["./typings/digest-fetch"]
     },
     "noEmit": true,
     "declaration": true,

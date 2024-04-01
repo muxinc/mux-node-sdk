@@ -12,7 +12,6 @@
       "@mux/mux-node/_shims/auto/*": ["src/_shims/auto/*-node"],
       "@mux/mux-node/*": ["src/*"],
       "@mux/mux-node": ["src/index.ts"],
-      "digest-fetch": ["./typings/digest-fetch"]
     },
     "noEmit": true,
 
