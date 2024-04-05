@@ -284,7 +284,7 @@ describe('resource assets', () => {
   });
 
   test('updateMP4Support: only required params', async () => {
-    const responsePromise = mux.video.assets.updateMP4Support('string', { mp4_support: 'standard' });
+    const responsePromise = mux.video.assets.updateMP4Support('string', { mp4_support: 'capped-1080p' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -295,6 +295,6 @@ describe('resource assets', () => {
   });
 
   test('updateMP4Support: required and optional params', async () => {
-    const response = await mux.video.assets.updateMP4Support('string', { mp4_support: 'standard' });
+    const response = await mux.video.assets.updateMP4Support('string', { mp4_support: 'capped-1080p' });
   });
 });
