@@ -194,10 +194,10 @@ export class Assets extends APIResource {
 
   /**
    * Allows you to add or remove mp4 support for assets that were created without it.
-   * Currently there are two values supported in this request, `standard` and `none`.
-   * `none` means that an asset _does not_ have mp4 support, so submitting a request
-   * with `mp4_support` set to `none` will delete the mp4 assets from the asset in
-   * question.
+   * The values supported are `capped-1080p`, `audio-only`,
+   * `audio-only,capped-1080p`, `standard`(deprecated), and `none`. `none` means that
+   * an asset _does not_ have mp4 support, so submitting a request with `mp4_support`
+   * set to `none` will delete the mp4 assets from the asset in question.
    */
   updateMP4Support(
     assetId: string,
@@ -240,7 +240,7 @@ export interface Asset {
    */
   max_resolution_tier: '1080p' | '1440p' | '2160p';
 
-  mp4_support: 'standard' | 'none';
+  mp4_support: 'standard' | 'none' | 'capped-1080p' | 'audio-only' | 'audio-only,capped-1080p';
 
   /**
    * The status of the asset.
@@ -554,7 +554,7 @@ export namespace Asset {
        */
       height?: number;
 
-      name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'audio.m4a';
+      name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'audio.m4a' | 'capped-1080p.mp4';
 
       /**
        * The width of the static rendition's file in pixels
@@ -594,14 +594,33 @@ export interface AssetOptions {
   max_resolution_tier?: '1080p' | '1440p' | '2160p';
 
   /**
-   * Specify what level (if any) of support for mp4 playback. In most cases you
-   * should use our default HLS-based streaming playback ({playback_id}.m3u8) which
-   * can automatically adjust to viewers' connection speeds, but an mp4 can be useful
-   * for some legacy devices or downloading for offline playback. See the
+   * Specify what level of support for mp4 playback.
+   *
+   * - The `capped-1080p` option produces a single MP4 file, called
+   *   `capped-1080p.mp4`, with the video resolution capped at 1080p. This option
+   *   produces an `audio.m4a` file for an audio-only asset.
+   * - The `audio-only` option produces a single M4A file, called `audio.m4a` for a
+   *   video or an audio-only asset. MP4 generation will error when this option is
+   *   specified for a video-only asset.
+   * - The `audio-only,capped-1080p` option produces both the `audio.m4a` and
+   *   `capped-1080p.mp4` files. Only the `capped-1080p.mp4` file is produced for a
+   *   video-only asset, while only the `audio.m4a` file is produced for an
+   *   audio-only asset.
+   *
+   * The `standard`(deprecated) option produces up to three MP4 files with different
+   * levels of resolution (`high.mp4`, `medium.mp4`, `low.mp4`, or `audio.m4a` for an
+   * audio-only asset).
+   *
+   * MP4 files are not produced for `none` (default).
+   *
+   * In most cases you should use our default HLS-based streaming playback
+   * (`{playback_id}.m3u8`) which can automatically adjust to viewers' connection
+   * speeds, but an mp4 can be useful for some legacy devices or downloading for
+   * offline playback. See the
    * [Download your videos guide](https://docs.mux.com/guides/enable-static-mp4-renditions)
    * for more information.
    */
-  mp4_support?: 'none' | 'standard';
+  mp4_support?: 'none' | 'standard' | 'capped-1080p' | 'audio-only' | 'audio-only,capped-1080p';
 
   /**
    * Normalize the audio track loudness level. This parameter is only applicable to
@@ -1265,14 +1284,33 @@ export interface AssetCreateParams {
   max_resolution_tier?: '1080p' | '1440p' | '2160p';
 
   /**
-   * Specify what level (if any) of support for mp4 playback. In most cases you
-   * should use our default HLS-based streaming playback ({playback_id}.m3u8) which
-   * can automatically adjust to viewers' connection speeds, but an mp4 can be useful
-   * for some legacy devices or downloading for offline playback. See the
+   * Specify what level of support for mp4 playback.
+   *
+   * - The `capped-1080p` option produces a single MP4 file, called
+   *   `capped-1080p.mp4`, with the video resolution capped at 1080p. This option
+   *   produces an `audio.m4a` file for an audio-only asset.
+   * - The `audio-only` option produces a single M4A file, called `audio.m4a` for a
+   *   video or an audio-only asset. MP4 generation will error when this option is
+   *   specified for a video-only asset.
+   * - The `audio-only,capped-1080p` option produces both the `audio.m4a` and
+   *   `capped-1080p.mp4` files. Only the `capped-1080p.mp4` file is produced for a
+   *   video-only asset, while only the `audio.m4a` file is produced for an
+   *   audio-only asset.
+   *
+   * The `standard`(deprecated) option produces up to three MP4 files with different
+   * levels of resolution (`high.mp4`, `medium.mp4`, `low.mp4`, or `audio.m4a` for an
+   * audio-only asset).
+   *
+   * MP4 files are not produced for `none` (default).
+   *
+   * In most cases you should use our default HLS-based streaming playback
+   * (`{playback_id}.m3u8`) which can automatically adjust to viewers' connection
+   * speeds, but an mp4 can be useful for some legacy devices or downloading for
+   * offline playback. See the
    * [Download your videos guide](https://docs.mux.com/guides/enable-static-mp4-renditions)
    * for more information.
    */
-  mp4_support?: 'none' | 'standard';
+  mp4_support?: 'none' | 'standard' | 'capped-1080p' | 'audio-only' | 'audio-only,capped-1080p';
 
   /**
    * Normalize the audio track loudness level. This parameter is only applicable to
@@ -1662,9 +1700,26 @@ export interface AssetUpdateMasterAccessParams {
 
 export interface AssetUpdateMP4SupportParams {
   /**
-   * String value for the level of mp4 support
+   * Specify what level of support for mp4 playback.
+   *
+   * - The `capped-1080p` option produces a single MP4 file, called
+   *   `capped-1080p.mp4`, with the video resolution capped at 1080p. This option
+   *   produces an `audio.m4a` file for an audio-only asset.
+   * - The `audio-only` option produces a single M4A file, called `audio.m4a` for a
+   *   video or an audio-only asset. MP4 generation will error when this option is
+   *   specified for a video-only asset.
+   * - The `audio-only,capped-1080p` option produces both the `audio.m4a` and
+   *   `capped-1080p.mp4` files. Only the `capped-1080p.mp4` file is produced for a
+   *   video-only asset, while only the `audio.m4a` file is produced for an
+   *   audio-only asset.
+   *
+   * The `standard`(deprecated) option produces up to three MP4 files with different
+   * levels of resolution (`high.mp4`, `medium.mp4`, `low.mp4`, or `audio.m4a` for an
+   * audio-only asset).
+   *
+   * `none` will delete the MP4s from the asset in question.
    */
-  mp4_support: 'standard' | 'none';
+  mp4_support: 'standard' | 'none' | 'capped-1080p' | 'audio-only' | 'audio-only,capped-1080p';
 }
 
 export namespace Assets {
