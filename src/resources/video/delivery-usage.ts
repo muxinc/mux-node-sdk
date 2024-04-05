@@ -39,6 +39,12 @@ export interface DeliveryReport {
   asset_duration: number;
 
   /**
+   * The encoding tier that the asset was ingested at.
+   * [See the encoding tiers guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   */
+  asset_encoding_tier: 'smart' | 'baseline';
+
+  /**
    * Unique identifier for the asset.
    */
   asset_id: string;

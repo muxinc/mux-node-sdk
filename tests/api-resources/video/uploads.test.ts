@@ -105,7 +105,7 @@ describe('resource uploads', () => {
         playback_policy: ['public'],
         per_title_encode: true,
         passthrough: 'string',
-        mp4_support: 'none',
+        mp4_support: 'capped-1080p',
         normalize_audio: true,
         master_access: 'none',
         test: true,
