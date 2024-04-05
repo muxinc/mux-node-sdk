@@ -1,5 +1,27 @@
 # Changelog
 
+## 8.3.0 (2024-04-05)
+
+Full Changelog: [v8.2.3...v8.3.0](https://github.com/muxinc/mux-node-sdk/compare/v8.2.3...v8.3.0)
+
+### Features
+
+* **api:** extend mp4 support ([#366](https://github.com/muxinc/mux-node-sdk/issues/366)) ([5483c7f](https://github.com/muxinc/mux-node-sdk/commit/5483c7fdf93e466ac40ccab3d0c5ea6663aeef89))
+
+
+### Chores
+
+* **deps:** bump yarn to v1.22.22 ([#365](https://github.com/muxinc/mux-node-sdk/issues/365)) ([8895afd](https://github.com/muxinc/mux-node-sdk/commit/8895afd2dd5f13bb77e19171c73a89bcb01b4700))
+* **deps:** remove unused dependency digest-fetch ([#364](https://github.com/muxinc/mux-node-sdk/issues/364)) ([f4a22f8](https://github.com/muxinc/mux-node-sdk/commit/f4a22f893616cc3889cd5be29183311ad31cf1e7))
+* **internal:** bump dependencies ([#362](https://github.com/muxinc/mux-node-sdk/issues/362)) ([d829885](https://github.com/muxinc/mux-node-sdk/commit/d8298859cea75b7f2f576f1460589ac5c28a5998))
+* revert temporary commit ([6f71489](https://github.com/muxinc/mux-node-sdk/commit/6f71489569f6b6ad756936d461b8c30330116ab3))
+* temporary commit ([#358](https://github.com/muxinc/mux-node-sdk/issues/358)) ([14ae9bf](https://github.com/muxinc/mux-node-sdk/commit/14ae9bfd3eb1d5753d60e227b20007310338b146))
+
+
+### Documentation
+
+* add upgrade to v8 guide back in ([5837819](https://github.com/muxinc/mux-node-sdk/commit/58378196949b91f8a966eb04c498d5dc24bc851b))
+
 ## 8.2.3 (2024-03-25)
 
 Full Changelog: [v8.2.2...v8.2.3](https://github.com/muxinc/mux-node-sdk/compare/v8.2.2...v8.2.3)
