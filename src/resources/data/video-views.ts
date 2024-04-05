@@ -43,6 +43,8 @@ export interface AbridgedVideoView {
 
   error_type_id: number | null;
 
+  playback_failure: boolean;
+
   player_error_code: string | null;
 
   player_error_message: string | null;
@@ -187,6 +189,8 @@ export namespace VideoViewResponse {
     platform_summary: string | null;
 
     playback_business_exception_error_type_id: number;
+
+    playback_failure: boolean;
 
     playback_failure_error_type_id: number;
 
