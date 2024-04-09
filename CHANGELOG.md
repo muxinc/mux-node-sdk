@@ -1,5 +1,13 @@
 # Changelog
 
+## 8.3.1 (2024-04-09)
+
+Full Changelog: [v8.3.0...v8.3.1](https://github.com/muxinc/mux-node-sdk/compare/v8.3.0...v8.3.1)
+
+### Bug Fixes
+
+* **shims:** export JWT shims for bun ([#369](https://github.com/muxinc/mux-node-sdk/issues/369)) ([56b2e80](https://github.com/muxinc/mux-node-sdk/commit/56b2e8012b5ec684a96e70d84730371b4ac209d9))
+
 ## 8.3.0 (2024-04-05)
 
 Full Changelog: [v8.2.3...v8.3.0](https://github.com/muxinc/mux-node-sdk/compare/v8.2.3...v8.3.0)
