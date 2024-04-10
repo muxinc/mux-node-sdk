@@ -776,6 +776,12 @@ export interface LiveStreamUpdateParams {
   max_continuous_duration?: number;
 
   /**
+   * Updates the new asset settings to use to generate a new asset for this live
+   * stream. Only the `mp4_support` setting may be updated.
+   */
+  new_asset_settings?: LiveStreamUpdateParams.NewAssetSettings;
+
+  /**
    * Arbitrary user-supplied metadata set for the live stream. Max 255 characters. In
    * order to clear this value, the field should be included with an empty-string
    * value.
@@ -816,6 +822,36 @@ export interface LiveStreamUpdateParams {
    * enables slate insertion on a Standard Latency stream.
    */
   use_slate_for_standard_latency?: boolean;
+}
+
+export namespace LiveStreamUpdateParams {
+  /**
+   * Updates the new asset settings to use to generate a new asset for this live
+   * stream. Only the `mp4_support` setting may be updated.
+   */
+  export interface NewAssetSettings {
+    /**
+     * Specify what level of support for mp4 playback should be added to new assets
+     * generated from this live stream.
+     *
+     * - The `none` option disables MP4 support for new assets. MP4 files will not be
+     *   produced for an asset generated from this live stream.
+     * - The `capped-1080p` option produces a single MP4 file, called
+     *   `capped-1080p.mp4`, with the video resolution capped at 1080p. This option
+     *   produces an `audio.m4a` file for an audio-only asset.
+     * - The `audio-only` option produces a single M4A file, called `audio.m4a` for a
+     *   video or an audio-only asset. MP4 generation will error when this option is
+     *   specified for a video-only asset.
+     * - The `audio-only,capped-1080p` option produces both the `audio.m4a` and
+     *   `capped-1080p.mp4` files. Only the `capped-1080p.mp4` file is produced for a
+     *   video-only asset, while only the `audio.m4a` file is produced for an
+     *   audio-only asset.
+     * - The `standard`(deprecated) option produces up to three MP4 files with
+     *   different levels of resolution (`high.mp4`, `medium.mp4`, `low.mp4`, or
+     *   `audio.m4a` for an audio-only asset).
+     */
+    mp4_support?: 'none' | 'standard' | 'capped-1080p' | 'audio-only' | 'audio-only,capped-1080p';
+  }
 }
 
 export interface LiveStreamListParams extends BasePageParams {
