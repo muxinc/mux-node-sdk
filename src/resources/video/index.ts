@@ -60,6 +60,7 @@ export {
   PlaybackRestrictionCreateParams,
   PlaybackRestrictionListParams,
   PlaybackRestrictionUpdateReferrerParams,
+  PlaybackRestrictionUpdateUserAgentParams,
   PlaybackRestrictionsBasePage,
   PlaybackRestrictions,
 } from './playback-restrictions';

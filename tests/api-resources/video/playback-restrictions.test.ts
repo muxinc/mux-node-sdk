@@ -13,6 +13,7 @@ describe('resource playbackRestrictions', () => {
   test('create: only required params', async () => {
     const responsePromise = mux.video.playbackRestrictions.create({
       referrer: { allowed_domains: ['*.example.com'] },
+      user_agent: {},
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -26,6 +27,7 @@ describe('resource playbackRestrictions', () => {
   test('create: required and optional params', async () => {
     const response = await mux.video.playbackRestrictions.create({
       referrer: { allowed_domains: ['*.example.com'], allow_no_referrer: true },
+      user_agent: { allow_no_user_agent: false, allow_high_risk_user_agent: false },
     });
   });
 
@@ -107,6 +109,27 @@ describe('resource playbackRestrictions', () => {
     const response = await mux.video.playbackRestrictions.updateReferrer('string', {
       allowed_domains: ['string', 'string', 'string'],
       allow_no_referrer: true,
+    });
+  });
+
+  test('updateUserAgent: only required params', async () => {
+    const responsePromise = mux.video.playbackRestrictions.updateUserAgent('string', {
+      allow_high_risk_user_agent: false,
+      allow_no_user_agent: false,
+    });
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('updateUserAgent: required and optional params', async () => {
+    const response = await mux.video.playbackRestrictions.updateUserAgent('string', {
+      allow_high_risk_user_agent: false,
+      allow_no_user_agent: false,
     });
   });
 });
