@@ -84,6 +84,25 @@ export class PlaybackRestrictions extends APIResource {
       }) as Core.APIPromise<{ data: PlaybackRestriction }>
     )._thenUnwrap((obj) => obj.data);
   }
+
+  /**
+   * Allows you to modify how Mux validates playback requests with different user
+   * agents. Please see
+   * [Using User-Agent HTTP header for validation](https://docs.mux.com/guides/secure-video-playback#using-user-agent-http-header-for-validation)
+   * for more details on this feature.
+   */
+  updateUserAgent(
+    playbackRestrictionId: string,
+    body: PlaybackRestrictionUpdateUserAgentParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<PlaybackRestriction> {
+    return (
+      this._client.put(`/video/v1/playback-restrictions/${playbackRestrictionId}/user_agent`, {
+        body,
+        ...options,
+      }) as Core.APIPromise<{ data: PlaybackRestriction }>
+    )._thenUnwrap((obj) => obj.data);
+  }
 }
 
 export class PlaybackRestrictionsBasePage extends BasePage<PlaybackRestriction> {}
@@ -110,6 +129,13 @@ export interface PlaybackRestriction {
    * (seconds since epoch).
    */
   updated_at: string;
+
+  /**
+   * Rules that control what user agents are allowed to play your videos. Please see
+   * [Using User-Agent HTTP header for validation](https://docs.mux.com/guides/secure-video-playback#using-user-agent-http-header-for-validation)
+   * for more details on this feature.
+   */
+  user_agent: PlaybackRestriction.UserAgent;
 }
 
 export namespace PlaybackRestriction {
@@ -136,6 +162,24 @@ export namespace PlaybackRestriction {
      */
     allowed_domains?: Array<string>;
   }
+
+  /**
+   * Rules that control what user agents are allowed to play your videos. Please see
+   * [Using User-Agent HTTP header for validation](https://docs.mux.com/guides/secure-video-playback#using-user-agent-http-header-for-validation)
+   * for more details on this feature.
+   */
+  export interface UserAgent {
+    /**
+     * Whether or not to allow high risk user agents. The high risk user agents are
+     * defined by Mux.
+     */
+    allow_high_risk_user_agent?: boolean;
+
+    /**
+     * Whether or not to allow views without a `User-Agent` HTTP request header.
+     */
+    allow_no_user_agent?: boolean;
+  }
 }
 
 export interface PlaybackRestrictionResponse {
@@ -147,6 +191,13 @@ export interface PlaybackRestrictionCreateParams {
    * A list of domains allowed to play your videos.
    */
   referrer: PlaybackRestrictionCreateParams.Referrer;
+
+  /**
+   * Rules that control what user agents are allowed to play your videos. Please see
+   * [Using User-Agent HTTP header for validation](https://docs.mux.com/guides/secure-video-playback#using-user-agent-http-header-for-validation)
+   * for more details on this feature.
+   */
+  user_agent: PlaybackRestrictionCreateParams.UserAgent;
 }
 
 export namespace PlaybackRestrictionCreateParams {
@@ -173,6 +224,24 @@ export namespace PlaybackRestrictionCreateParams {
      */
     allow_no_referrer?: boolean;
   }
+
+  /**
+   * Rules that control what user agents are allowed to play your videos. Please see
+   * [Using User-Agent HTTP header for validation](https://docs.mux.com/guides/secure-video-playback#using-user-agent-http-header-for-validation)
+   * for more details on this feature.
+   */
+  export interface UserAgent {
+    /**
+     * Whether or not to allow high risk user agents. The high risk user agents are
+     * defined by Mux.
+     */
+    allow_high_risk_user_agent?: boolean;
+
+    /**
+     * Whether or not to allow views without a `User-Agent` HTTP request header.
+     */
+    allow_no_user_agent?: boolean;
+  }
 }
 
 export interface PlaybackRestrictionListParams extends BasePageParams {}
@@ -198,6 +267,19 @@ export interface PlaybackRestrictionUpdateReferrerParams {
   allow_no_referrer?: boolean;
 }
 
+export interface PlaybackRestrictionUpdateUserAgentParams {
+  /**
+   * Whether or not to allow high risk user agents. The high risk user agents are
+   * defined by Mux.
+   */
+  allow_high_risk_user_agent: boolean;
+
+  /**
+   * Whether or not to allow views without a `User-Agent` HTTP request header.
+   */
+  allow_no_user_agent: boolean;
+}
+
 export namespace PlaybackRestrictions {
   export import PlaybackRestriction = PlaybackRestrictionsAPI.PlaybackRestriction;
   export import PlaybackRestrictionResponse = PlaybackRestrictionsAPI.PlaybackRestrictionResponse;
@@ -205,4 +287,5 @@ export namespace PlaybackRestrictions {
   export import PlaybackRestrictionCreateParams = PlaybackRestrictionsAPI.PlaybackRestrictionCreateParams;
   export import PlaybackRestrictionListParams = PlaybackRestrictionsAPI.PlaybackRestrictionListParams;
   export import PlaybackRestrictionUpdateReferrerParams = PlaybackRestrictionsAPI.PlaybackRestrictionUpdateReferrerParams;
+  export import PlaybackRestrictionUpdateUserAgentParams = PlaybackRestrictionsAPI.PlaybackRestrictionUpdateUserAgentParams;
 }
