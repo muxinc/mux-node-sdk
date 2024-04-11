@@ -1,5 +1,13 @@
 # Changelog
 
+## 8.4.1 (2024-04-11)
+
+Full Changelog: [v8.4.0...v8.4.1](https://github.com/muxinc/mux-node-sdk/compare/v8.4.0...v8.4.1)
+
+### Chores
+
+* **internal:** update gitignore ([#374](https://github.com/muxinc/mux-node-sdk/issues/374)) ([023a67a](https://github.com/muxinc/mux-node-sdk/commit/023a67a50eac382495de8258cb62914a9f675a90))
+
 ## 8.4.0 (2024-04-11)
 
 Full Changelog: [v8.3.1...v8.4.0](https://github.com/muxinc/mux-node-sdk/compare/v8.3.1...v8.4.0)
