@@ -64,6 +64,7 @@ export namespace Video {
   export import PlaybackRestrictionCreateParams = PlaybackRestrictionsAPI.PlaybackRestrictionCreateParams;
   export import PlaybackRestrictionListParams = PlaybackRestrictionsAPI.PlaybackRestrictionListParams;
   export import PlaybackRestrictionUpdateReferrerParams = PlaybackRestrictionsAPI.PlaybackRestrictionUpdateReferrerParams;
+  export import PlaybackRestrictionUpdateUserAgentParams = PlaybackRestrictionsAPI.PlaybackRestrictionUpdateUserAgentParams;
   export import Spaces = SpacesAPI.Spaces;
   export import Broadcast = SpacesAPI.Broadcast;
   export import BroadcastLayout = SpacesAPI.BroadcastLayout;
