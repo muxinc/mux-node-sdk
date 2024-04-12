@@ -73,7 +73,11 @@ export class Metrics extends APIResource {
       | 'ad_startup_error_count'
       | 'ad_startup_error_percentage'
       | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage',
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'ad_watch_time'
+      | 'view_content_watch_time',
     query?: MetricGetInsightsParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<InsightsResponse>;
@@ -123,7 +127,11 @@ export class Metrics extends APIResource {
       | 'ad_startup_error_count'
       | 'ad_startup_error_percentage'
       | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage',
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'ad_watch_time'
+      | 'view_content_watch_time',
     options?: Core.RequestOptions,
   ): Core.APIPromise<InsightsResponse>;
   getInsights(
@@ -172,7 +180,11 @@ export class Metrics extends APIResource {
       | 'ad_startup_error_count'
       | 'ad_startup_error_percentage'
       | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage',
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'ad_watch_time'
+      | 'view_content_watch_time',
     query: MetricGetInsightsParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<InsightsResponse> {
@@ -232,7 +244,11 @@ export class Metrics extends APIResource {
       | 'ad_startup_error_count'
       | 'ad_startup_error_percentage'
       | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage',
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'ad_watch_time'
+      | 'view_content_watch_time',
     query?: MetricGetOverallValuesParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<OverallValuesResponse>;
@@ -282,7 +298,11 @@ export class Metrics extends APIResource {
       | 'ad_startup_error_count'
       | 'ad_startup_error_percentage'
       | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage',
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'ad_watch_time'
+      | 'view_content_watch_time',
     options?: Core.RequestOptions,
   ): Core.APIPromise<OverallValuesResponse>;
   getOverallValues(
@@ -331,7 +351,11 @@ export class Metrics extends APIResource {
       | 'ad_startup_error_count'
       | 'ad_startup_error_percentage'
       | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage',
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'ad_watch_time'
+      | 'view_content_watch_time',
     query: MetricGetOverallValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<OverallValuesResponse> {
@@ -398,7 +422,11 @@ export class Metrics extends APIResource {
       | 'ad_startup_error_count'
       | 'ad_startup_error_percentage'
       | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage',
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'ad_watch_time'
+      | 'view_content_watch_time',
     query?: MetricGetTimeseriesParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<MetricTimeseriesDataResponse>;
@@ -448,7 +476,11 @@ export class Metrics extends APIResource {
       | 'ad_startup_error_count'
       | 'ad_startup_error_percentage'
       | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage',
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'ad_watch_time'
+      | 'view_content_watch_time',
     options?: Core.RequestOptions,
   ): Core.APIPromise<MetricTimeseriesDataResponse>;
   getTimeseries(
@@ -497,7 +529,11 @@ export class Metrics extends APIResource {
       | 'ad_startup_error_count'
       | 'ad_startup_error_percentage'
       | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage',
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'ad_watch_time'
+      | 'view_content_watch_time',
     query: MetricGetTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<MetricTimeseriesDataResponse> {
@@ -556,7 +592,11 @@ export class Metrics extends APIResource {
       | 'ad_startup_error_count'
       | 'ad_startup_error_percentage'
       | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage',
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'ad_watch_time'
+      | 'view_content_watch_time',
     query?: MetricListBreakdownValuesParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue>;
@@ -606,7 +646,11 @@ export class Metrics extends APIResource {
       | 'ad_startup_error_count'
       | 'ad_startup_error_percentage'
       | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage',
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'ad_watch_time'
+      | 'view_content_watch_time',
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue>;
   listBreakdownValues(
@@ -655,7 +699,11 @@ export class Metrics extends APIResource {
       | 'ad_startup_error_count'
       | 'ad_startup_error_percentage'
       | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage',
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'ad_watch_time'
+      | 'view_content_watch_time',
     query: MetricListBreakdownValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue> {
@@ -880,7 +928,9 @@ export interface MetricListParams {
     | 'viewer_device_manufacturer'
     | 'viewer_device_model'
     | 'viewer_device_name'
-    | 'viewer_user_id';
+    | 'viewer_user_id'
+    | 'ad_playback_failure'
+    | 'content_playback_failure';
 
   /**
    * Limit the results to rows that match conditions from provided key:value pairs.
@@ -1175,7 +1225,9 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
     | 'viewer_device_manufacturer'
     | 'viewer_device_model'
     | 'viewer_device_name'
-    | 'viewer_user_id';
+    | 'viewer_user_id'
+    | 'ad_playback_failure'
+    | 'content_playback_failure';
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
