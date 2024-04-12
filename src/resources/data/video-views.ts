@@ -96,9 +96,15 @@ export namespace VideoViewResponse {
 
     ad_impression_count: number | null;
 
+    ad_playback_failure_error_type_id: number | null;
+
+    ad_preroll_startup_time: number | null;
+
     ad_startup_error_count: number | null;
 
     ad_startup_error_percentage: string | null;
+
+    ad_watch_time: number | null;
 
     asn: number | null;
 
@@ -188,11 +194,11 @@ export namespace VideoViewResponse {
 
     platform_summary: string | null;
 
-    playback_business_exception_error_type_id: number;
+    playback_business_exception_error_type_id: number | null;
 
     playback_failure: boolean;
 
-    playback_failure_error_type_id: number;
+    playback_failure_error_type_id: number | null;
 
     playback_id: string | null;
 
@@ -300,7 +306,7 @@ export namespace VideoViewResponse {
 
     video_series: string | null;
 
-    video_startup_business_exception_error_type_id: number;
+    video_startup_business_exception_error_type_id: number | null;
 
     video_startup_failure: boolean;
 
@@ -319,6 +325,10 @@ export namespace VideoViewResponse {
     view_average_request_latency: number | null;
 
     view_average_request_throughput: number | null;
+
+    view_content_startup_time: number | null;
+
+    view_content_watch_time: number | null;
 
     view_drm_type: string | null;
 
