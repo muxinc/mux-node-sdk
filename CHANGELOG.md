@@ -1,5 +1,18 @@
 # Changelog
 
+## 8.5.0 (2024-04-12)
+
+Full Changelog: [v8.4.1...v8.5.0](https://github.com/muxinc/mux-node-sdk/compare/v8.4.1...v8.5.0)
+
+### Features
+
+* **data:** extended ad metrics ([#376](https://github.com/muxinc/mux-node-sdk/issues/376)) ([cb8adfc](https://github.com/muxinc/mux-node-sdk/commit/cb8adfc49ebea778a39e6924d57b95e44cc4dcca))
+
+
+### Chores
+
+* **internal:** formatting ([#378](https://github.com/muxinc/mux-node-sdk/issues/378)) ([7ab66fa](https://github.com/muxinc/mux-node-sdk/commit/7ab66fa4c1196500bdd231fe7fe078821c076b42))
+
 ## 8.4.1 (2024-04-11)
 
 Full Changelog: [v8.4.0...v8.4.1](https://github.com/muxinc/mux-node-sdk/compare/v8.4.0...v8.4.1)
