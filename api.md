@@ -153,30 +153,28 @@ Methods:
 - <code title="get /video/v1/uploads">client.video.uploads.<a href="./src/resources/video/uploads.ts">list</a>({ ...params }) -> UploadsBasePage</code>
 - <code title="put /video/v1/uploads/{UPLOAD_ID}/cancel">client.video.uploads.<a href="./src/resources/video/uploads.ts">cancel</a>(uploadId) -> Upload</code>
 
-# WebInputs
-
-## Assets
+## WebInputs
 
 Types:
 
-- <code><a href="./src/resources/web-inputs/assets.ts">AssetCreateResponse</a></code>
-- <code><a href="./src/resources/web-inputs/assets.ts">AssetRetrieveResponse</a></code>
-- <code><a href="./src/resources/web-inputs/assets.ts">AssetListResponse</a></code>
-- <code><a href="./src/resources/web-inputs/assets.ts">AssetLaunchResponse</a></code>
-- <code><a href="./src/resources/web-inputs/assets.ts">AssetReloadResponse</a></code>
-- <code><a href="./src/resources/web-inputs/assets.ts">AssetShutdownResponse</a></code>
-- <code><a href="./src/resources/web-inputs/assets.ts">AssetUpdateURLResponse</a></code>
+- <code><a href="./src/resources/video/web-inputs.ts">WebInputCreateResponse</a></code>
+- <code><a href="./src/resources/video/web-inputs.ts">WebInputRetrieveResponse</a></code>
+- <code><a href="./src/resources/video/web-inputs.ts">WebInputListResponse</a></code>
+- <code><a href="./src/resources/video/web-inputs.ts">WebInputLaunchResponse</a></code>
+- <code><a href="./src/resources/video/web-inputs.ts">WebInputReloadResponse</a></code>
+- <code><a href="./src/resources/video/web-inputs.ts">WebInputShutdownResponse</a></code>
+- <code><a href="./src/resources/video/web-inputs.ts">WebInputUpdateURLResponse</a></code>
 
 Methods:
 
-- <code title="post /video/v1/web-inputs">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">create</a>({ ...params }) -> AssetCreateResponse</code>
-- <code title="get /video/v1/web-inputs/{WEB_INPUT_ID}">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">retrieve</a>(webInputId) -> AssetRetrieveResponse</code>
-- <code title="get /video/v1/web-inputs">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">list</a>({ ...params }) -> AssetListResponsesBasePage</code>
-- <code title="delete /video/v1/web-inputs/{WEB_INPUT_ID}">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">delete</a>(webInputId) -> void</code>
-- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/launch">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">launch</a>(webInputId) -> AssetLaunchResponse</code>
-- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/reload">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">reload</a>(webInputId) -> AssetReloadResponse</code>
-- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/shutdown">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">shutdown</a>(webInputId) -> AssetShutdownResponse</code>
-- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/url">client.webInputs.assets.<a href="./src/resources/web-inputs/assets.ts">updateURL</a>(webInputId, { ...params }) -> AssetUpdateURLResponse</code>
+- <code title="post /video/v1/web-inputs">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">create</a>({ ...params }) -> WebInputCreateResponse</code>
+- <code title="get /video/v1/web-inputs/{WEB_INPUT_ID}">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">retrieve</a>(webInputId) -> WebInputRetrieveResponse</code>
+- <code title="get /video/v1/web-inputs">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">list</a>({ ...params }) -> WebInputListResponsesBasePage</code>
+- <code title="delete /video/v1/web-inputs/{WEB_INPUT_ID}">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">delete</a>(webInputId) -> void</code>
+- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/launch">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">launch</a>(webInputId) -> WebInputLaunchResponse</code>
+- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/reload">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">reload</a>(webInputId) -> WebInputReloadResponse</code>
+- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/shutdown">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">shutdown</a>(webInputId) -> WebInputShutdownResponse</code>
+- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/url">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">updateURL</a>(webInputId, { ...params }) -> WebInputUpdateURLResponse</code>
 
 # Data
 
