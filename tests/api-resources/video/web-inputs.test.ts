@@ -9,9 +9,9 @@ const mux = new Mux({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource assets', () => {
+describe('resource webInputs', () => {
   test('create: only required params', async () => {
-    const responsePromise = mux.webInputs.assets.create({
+    const responsePromise = mux.video.webInputs.create({
       live_stream_id: 'ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag',
       url: 'https://example.com/hello.html',
     });
@@ -25,7 +25,7 @@ describe('resource assets', () => {
   });
 
   test('create: required and optional params', async () => {
-    const response = await mux.webInputs.assets.create({
+    const response = await mux.video.webInputs.create({
       live_stream_id: 'ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag',
       url: 'https://example.com/hello.html',
       id: 'string',
@@ -39,7 +39,7 @@ describe('resource assets', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = mux.webInputs.assets.retrieve('abcd1234');
+    const responsePromise = mux.video.webInputs.retrieve('abcd1234');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -52,12 +52,12 @@ describe('resource assets', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.webInputs.assets.retrieve('abcd1234', { path: '/_stainless_unknown_path' }),
+      mux.video.webInputs.retrieve('abcd1234', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('list', async () => {
-    const responsePromise = mux.webInputs.assets.list();
+    const responsePromise = mux.video.webInputs.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -69,7 +69,7 @@ describe('resource assets', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(mux.webInputs.assets.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(mux.video.webInputs.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Mux.NotFoundError,
     );
   });
@@ -77,12 +77,12 @@ describe('resource assets', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.webInputs.assets.list({ limit: 0, page: 0 }, { path: '/_stainless_unknown_path' }),
+      mux.video.webInputs.list({ limit: 0, page: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('delete', async () => {
-    const responsePromise = mux.webInputs.assets.delete('abcd1234');
+    const responsePromise = mux.video.webInputs.delete('abcd1234');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -95,12 +95,12 @@ describe('resource assets', () => {
   test('delete: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.webInputs.assets.delete('abcd1234', { path: '/_stainless_unknown_path' }),
+      mux.video.webInputs.delete('abcd1234', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('launch', async () => {
-    const responsePromise = mux.webInputs.assets.launch('abcd1234');
+    const responsePromise = mux.video.webInputs.launch('abcd1234');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -113,12 +113,12 @@ describe('resource assets', () => {
   test('launch: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.webInputs.assets.launch('abcd1234', { path: '/_stainless_unknown_path' }),
+      mux.video.webInputs.launch('abcd1234', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('reload', async () => {
-    const responsePromise = mux.webInputs.assets.reload('abcd1234');
+    const responsePromise = mux.video.webInputs.reload('abcd1234');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -131,12 +131,12 @@ describe('resource assets', () => {
   test('reload: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.webInputs.assets.reload('abcd1234', { path: '/_stainless_unknown_path' }),
+      mux.video.webInputs.reload('abcd1234', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('shutdown', async () => {
-    const responsePromise = mux.webInputs.assets.shutdown('abcd1234');
+    const responsePromise = mux.video.webInputs.shutdown('abcd1234');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -149,12 +149,12 @@ describe('resource assets', () => {
   test('shutdown: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.webInputs.assets.shutdown('abcd1234', { path: '/_stainless_unknown_path' }),
+      mux.video.webInputs.shutdown('abcd1234', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('updateURL: only required params', async () => {
-    const responsePromise = mux.webInputs.assets.updateURL('abcd1234', {
+    const responsePromise = mux.video.webInputs.updateURL('abcd1234', {
       url: 'https://example.com/hello-there.html',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -167,7 +167,7 @@ describe('resource assets', () => {
   });
 
   test('updateURL: required and optional params', async () => {
-    const response = await mux.webInputs.assets.updateURL('abcd1234', {
+    const response = await mux.video.webInputs.updateURL('abcd1234', {
       url: 'https://example.com/hello-there.html',
     });
   });
