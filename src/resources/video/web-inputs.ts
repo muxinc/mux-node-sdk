@@ -3,17 +3,17 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as AssetsAPI from '@mux/mux-node/resources/web-inputs/assets';
+import * as WebInputsAPI from '@mux/mux-node/resources/video/web-inputs';
 import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
 
-export class Assets extends APIResource {
+export class WebInputs extends APIResource {
   /**
    * Create a new Web Input
    */
-  create(body: AssetCreateParams, options?: Core.RequestOptions): Core.APIPromise<AssetCreateResponse> {
+  create(body: WebInputCreateParams, options?: Core.RequestOptions): Core.APIPromise<WebInputCreateResponse> {
     return (
       this._client.post('/video/v1/web-inputs', { body, ...options }) as Core.APIPromise<{
-        data: AssetCreateResponse;
+        data: WebInputCreateResponse;
       }>
     )._thenUnwrap((obj) => obj.data);
   }
@@ -21,10 +21,10 @@ export class Assets extends APIResource {
   /**
    * Retrieve a single Web Input's info
    */
-  retrieve(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<AssetRetrieveResponse> {
+  retrieve(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputRetrieveResponse> {
     return (
       this._client.get(`/video/v1/web-inputs/${webInputId}`, options) as Core.APIPromise<{
-        data: AssetRetrieveResponse;
+        data: WebInputRetrieveResponse;
       }>
     )._thenUnwrap((obj) => obj.data);
   }
@@ -33,18 +33,21 @@ export class Assets extends APIResource {
    * List Web Inputs
    */
   list(
-    query?: AssetListParams,
+    query?: WebInputListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AssetListResponsesBasePage, AssetListResponse>;
-  list(options?: Core.RequestOptions): Core.PagePromise<AssetListResponsesBasePage, AssetListResponse>;
+  ): Core.PagePromise<WebInputListResponsesBasePage, WebInputListResponse>;
+  list(options?: Core.RequestOptions): Core.PagePromise<WebInputListResponsesBasePage, WebInputListResponse>;
   list(
-    query: AssetListParams | Core.RequestOptions = {},
+    query: WebInputListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AssetListResponsesBasePage, AssetListResponse> {
+  ): Core.PagePromise<WebInputListResponsesBasePage, WebInputListResponse> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/video/v1/web-inputs', AssetListResponsesBasePage, { query, ...options });
+    return this._client.getAPIList('/video/v1/web-inputs', WebInputListResponsesBasePage, {
+      query,
+      ...options,
+    });
   }
 
   /**
@@ -61,10 +64,10 @@ export class Assets extends APIResource {
    * Launches the browsers instance, loads the URL specified, and then starts
    * streaming to the specified Live Stream.
    */
-  launch(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<AssetLaunchResponse> {
+  launch(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputLaunchResponse> {
     return (
       this._client.put(`/video/v1/web-inputs/${webInputId}/launch`, options) as Core.APIPromise<{
-        data: AssetLaunchResponse;
+        data: WebInputLaunchResponse;
       }>
     )._thenUnwrap((obj) => obj.data);
   }
@@ -75,10 +78,10 @@ export class Assets extends APIResource {
    * Note: Using this when the Web Input is streaming will display the page
    * reloading.
    */
-  reload(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<AssetReloadResponse> {
+  reload(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputReloadResponse> {
     return (
       this._client.put(`/video/v1/web-inputs/${webInputId}/reload`, options) as Core.APIPromise<{
-        data: AssetReloadResponse;
+        data: WebInputReloadResponse;
       }>
     )._thenUnwrap((obj) => obj.data);
   }
@@ -87,10 +90,10 @@ export class Assets extends APIResource {
    * Ends streaming to the specified Live Stream, and then shuts down the Web Input
    * browser instance.
    */
-  shutdown(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<AssetShutdownResponse> {
+  shutdown(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputShutdownResponse> {
     return (
       this._client.put(`/video/v1/web-inputs/${webInputId}/shutdown`, options) as Core.APIPromise<{
-        data: AssetShutdownResponse;
+        data: WebInputShutdownResponse;
       }>
     )._thenUnwrap((obj) => obj.data);
   }
@@ -102,20 +105,20 @@ export class Assets extends APIResource {
    */
   updateURL(
     webInputId: string,
-    body: AssetUpdateURLParams,
+    body: WebInputUpdateURLParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<AssetUpdateURLResponse> {
+  ): Core.APIPromise<WebInputUpdateURLResponse> {
     return (
       this._client.put(`/video/v1/web-inputs/${webInputId}/url`, { body, ...options }) as Core.APIPromise<{
-        data: AssetUpdateURLResponse;
+        data: WebInputUpdateURLResponse;
       }>
     )._thenUnwrap((obj) => obj.data);
   }
 }
 
-export class AssetListResponsesBasePage extends BasePage<AssetListResponse> {}
+export class WebInputListResponsesBasePage extends BasePage<WebInputListResponse> {}
 
-export interface AssetCreateResponse {
+export interface WebInputCreateResponse {
   /**
    * Unique identifier for the Web Input.
    */
@@ -165,7 +168,7 @@ export interface AssetCreateResponse {
   timeout?: number;
 }
 
-export interface AssetRetrieveResponse {
+export interface WebInputRetrieveResponse {
   /**
    * Unique identifier for the Web Input.
    */
@@ -215,7 +218,7 @@ export interface AssetRetrieveResponse {
   timeout?: number;
 }
 
-export interface AssetListResponse {
+export interface WebInputListResponse {
   /**
    * Unique identifier for the Web Input.
    */
@@ -265,13 +268,13 @@ export interface AssetListResponse {
   timeout?: number;
 }
 
-export type AssetLaunchResponse = unknown;
+export type WebInputLaunchResponse = unknown;
 
-export type AssetReloadResponse = unknown;
+export type WebInputReloadResponse = unknown;
 
-export type AssetShutdownResponse = unknown;
+export type WebInputShutdownResponse = unknown;
 
-export interface AssetUpdateURLResponse {
+export interface WebInputUpdateURLResponse {
   /**
    * Unique identifier for the Web Input.
    */
@@ -321,7 +324,7 @@ export interface AssetUpdateURLResponse {
   timeout?: number;
 }
 
-export interface AssetCreateParams {
+export interface WebInputCreateParams {
   /**
    * The Live Stream ID to broadcast this Web Input to
    */
@@ -371,25 +374,25 @@ export interface AssetCreateParams {
   timeout?: number;
 }
 
-export interface AssetListParams extends BasePageParams {}
+export interface WebInputListParams extends BasePageParams {}
 
-export interface AssetUpdateURLParams {
+export interface WebInputUpdateURLParams {
   /**
    * The URL for the Web Input to load.
    */
   url: string;
 }
 
-export namespace Assets {
-  export import AssetCreateResponse = AssetsAPI.AssetCreateResponse;
-  export import AssetRetrieveResponse = AssetsAPI.AssetRetrieveResponse;
-  export import AssetListResponse = AssetsAPI.AssetListResponse;
-  export import AssetLaunchResponse = AssetsAPI.AssetLaunchResponse;
-  export import AssetReloadResponse = AssetsAPI.AssetReloadResponse;
-  export import AssetShutdownResponse = AssetsAPI.AssetShutdownResponse;
-  export import AssetUpdateURLResponse = AssetsAPI.AssetUpdateURLResponse;
-  export import AssetListResponsesBasePage = AssetsAPI.AssetListResponsesBasePage;
-  export import AssetCreateParams = AssetsAPI.AssetCreateParams;
-  export import AssetListParams = AssetsAPI.AssetListParams;
-  export import AssetUpdateURLParams = AssetsAPI.AssetUpdateURLParams;
+export namespace WebInputs {
+  export import WebInputCreateResponse = WebInputsAPI.WebInputCreateResponse;
+  export import WebInputRetrieveResponse = WebInputsAPI.WebInputRetrieveResponse;
+  export import WebInputListResponse = WebInputsAPI.WebInputListResponse;
+  export import WebInputLaunchResponse = WebInputsAPI.WebInputLaunchResponse;
+  export import WebInputReloadResponse = WebInputsAPI.WebInputReloadResponse;
+  export import WebInputShutdownResponse = WebInputsAPI.WebInputShutdownResponse;
+  export import WebInputUpdateURLResponse = WebInputsAPI.WebInputUpdateURLResponse;
+  export import WebInputListResponsesBasePage = WebInputsAPI.WebInputListResponsesBasePage;
+  export import WebInputCreateParams = WebInputsAPI.WebInputCreateParams;
+  export import WebInputListParams = WebInputsAPI.WebInputListParams;
+  export import WebInputUpdateURLParams = WebInputsAPI.WebInputUpdateURLParams;
 }

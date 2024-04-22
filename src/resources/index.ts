@@ -60,4 +60,3 @@ export {
 export { Data } from './data/data';
 export { System } from './system/system';
 export { Video } from './video/video';
-export { WebInputs } from './web-inputs/web-inputs';

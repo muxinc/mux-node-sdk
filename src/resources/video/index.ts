@@ -82,3 +82,17 @@ export {
   Uploads,
 } from './uploads';
 export { Video } from './video';
+export {
+  WebInputCreateResponse,
+  WebInputRetrieveResponse,
+  WebInputListResponse,
+  WebInputLaunchResponse,
+  WebInputReloadResponse,
+  WebInputShutdownResponse,
+  WebInputUpdateURLResponse,
+  WebInputCreateParams,
+  WebInputListParams,
+  WebInputUpdateURLParams,
+  WebInputListResponsesBasePage,
+  WebInputs,
+} from './web-inputs';
