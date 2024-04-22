@@ -9,6 +9,7 @@ import * as PlaybackRestrictionsAPI from '@mux/mux-node/resources/video/playback
 import * as SpacesAPI from '@mux/mux-node/resources/video/spaces';
 import * as TranscriptionVocabulariesAPI from '@mux/mux-node/resources/video/transcription-vocabularies';
 import * as UploadsAPI from '@mux/mux-node/resources/video/uploads';
+import * as WebInputsAPI from '@mux/mux-node/resources/video/web-inputs';
 
 export class Video extends APIResource {
   assets: AssetsAPI.Assets = new AssetsAPI.Assets(this._client);
@@ -21,6 +22,7 @@ export class Video extends APIResource {
   transcriptionVocabularies: TranscriptionVocabulariesAPI.TranscriptionVocabularies =
     new TranscriptionVocabulariesAPI.TranscriptionVocabularies(this._client);
   uploads: UploadsAPI.Uploads = new UploadsAPI.Uploads(this._client);
+  webInputs: WebInputsAPI.WebInputs = new WebInputsAPI.WebInputs(this._client);
 }
 
 export namespace Video {
@@ -92,4 +94,16 @@ export namespace Video {
   export import UploadsBasePage = UploadsAPI.UploadsBasePage;
   export import UploadCreateParams = UploadsAPI.UploadCreateParams;
   export import UploadListParams = UploadsAPI.UploadListParams;
+  export import WebInputs = WebInputsAPI.WebInputs;
+  export import WebInputCreateResponse = WebInputsAPI.WebInputCreateResponse;
+  export import WebInputRetrieveResponse = WebInputsAPI.WebInputRetrieveResponse;
+  export import WebInputListResponse = WebInputsAPI.WebInputListResponse;
+  export import WebInputLaunchResponse = WebInputsAPI.WebInputLaunchResponse;
+  export import WebInputReloadResponse = WebInputsAPI.WebInputReloadResponse;
+  export import WebInputShutdownResponse = WebInputsAPI.WebInputShutdownResponse;
+  export import WebInputUpdateURLResponse = WebInputsAPI.WebInputUpdateURLResponse;
+  export import WebInputListResponsesBasePage = WebInputsAPI.WebInputListResponsesBasePage;
+  export import WebInputCreateParams = WebInputsAPI.WebInputCreateParams;
+  export import WebInputListParams = WebInputsAPI.WebInputListParams;
+  export import WebInputUpdateURLParams = WebInputsAPI.WebInputUpdateURLParams;
 }
