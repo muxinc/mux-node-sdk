@@ -134,12 +134,12 @@ export class Assets extends APIResource {
     trackId: string,
     body: AssetGenerateSubtitlesParams,
     options?: Core.RequestOptions,
-  ): Core.APIPromise<Track> {
+  ): Core.APIPromise<AssetGenerateSubtitlesResponse> {
     return (
       this._client.post(`/video/v1/assets/${assetId}/tracks/${trackId}/generate-subtitles`, {
         body,
         ...options,
-      }) as Core.APIPromise<{ data: Track }>
+      }) as Core.APIPromise<{ data: AssetGenerateSubtitlesResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -1252,6 +1252,8 @@ export interface Track {
   type?: 'video' | 'audio' | 'text';
 }
 
+export type AssetGenerateSubtitlesResponse = Array<Track>;
+
 export type AssetRetrieveInputInfoResponse = Array<InputInfo>;
 
 export interface AssetCreateParams {
@@ -1728,6 +1730,7 @@ export namespace Assets {
   export import AssetResponse = AssetsAPI.AssetResponse;
   export import InputInfo = AssetsAPI.InputInfo;
   export import Track = AssetsAPI.Track;
+  export import AssetGenerateSubtitlesResponse = AssetsAPI.AssetGenerateSubtitlesResponse;
   export import AssetRetrieveInputInfoResponse = AssetsAPI.AssetRetrieveInputInfoResponse;
   export import AssetsBasePage = AssetsAPI.AssetsBasePage;
   export import AssetCreateParams = AssetsAPI.AssetCreateParams;
