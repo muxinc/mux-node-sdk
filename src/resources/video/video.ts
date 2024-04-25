@@ -32,6 +32,7 @@ export namespace Video {
   export import AssetResponse = AssetsAPI.AssetResponse;
   export import InputInfo = AssetsAPI.InputInfo;
   export import Track = AssetsAPI.Track;
+  export import AssetGenerateSubtitlesResponse = AssetsAPI.AssetGenerateSubtitlesResponse;
   export import AssetRetrieveInputInfoResponse = AssetsAPI.AssetRetrieveInputInfoResponse;
   export import AssetsBasePage = AssetsAPI.AssetsBasePage;
   export import AssetCreateParams = AssetsAPI.AssetCreateParams;
