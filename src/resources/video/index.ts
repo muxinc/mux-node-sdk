@@ -6,6 +6,7 @@ export {
   AssetResponse,
   InputInfo,
   Track,
+  AssetGenerateSubtitlesResponse,
   AssetRetrieveInputInfoResponse,
   AssetCreateParams,
   AssetUpdateParams,
