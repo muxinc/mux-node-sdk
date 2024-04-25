@@ -1,5 +1,29 @@
 # Changelog
 
+## 8.5.1 (2024-04-25)
+
+Full Changelog: [v8.5.0...v8.5.1](https://github.com/muxinc/mux-node-sdk/compare/v8.5.0...v8.5.1)
+
+### Bug Fixes
+
+* correct response type for generate subtitles ([#385](https://github.com/muxinc/mux-node-sdk/issues/385)) ([5cc8533](https://github.com/muxinc/mux-node-sdk/commit/5cc85334b44c6e521be932fd47a8a52e7601db19))
+
+
+### Chores
+
+* **internal:** use @swc/jest for running tests ([#382](https://github.com/muxinc/mux-node-sdk/issues/382)) ([340f13e](https://github.com/muxinc/mux-node-sdk/commit/340f13e8589d7fe0d08e6d507a870e9e98da7793))
+* **internal:** use actions/checkout@v4 for codeflow ([#384](https://github.com/muxinc/mux-node-sdk/issues/384)) ([f20cd83](https://github.com/muxinc/mux-node-sdk/commit/f20cd833efd3de5f21bdcb069b91ca2ebd539c9e))
+
+
+### Refactors
+
+* move web inputs under video ([#383](https://github.com/muxinc/mux-node-sdk/issues/383)) ([fbec065](https://github.com/muxinc/mux-node-sdk/commit/fbec0653b59cb6e0506df18e143f4a39ea5d196f))
+
+
+### Build System
+
+* configure UTF-8 locale in devcontainer ([#380](https://github.com/muxinc/mux-node-sdk/issues/380)) ([36f5c34](https://github.com/muxinc/mux-node-sdk/commit/36f5c34a8874611b0850a89dabb22c7bcdcccfab))
+
 ## 8.5.0 (2024-04-12)
 
 Full Changelog: [v8.4.1...v8.5.0](https://github.com/muxinc/mux-node-sdk/compare/v8.4.1...v8.5.0)
