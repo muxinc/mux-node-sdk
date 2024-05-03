@@ -25,5 +25,3 @@ export const {
   PermissionDeniedError,
   UnprocessableEntityError,
 } = Errors;
-
-export * from './client';
