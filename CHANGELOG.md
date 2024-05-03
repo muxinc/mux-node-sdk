@@ -1,5 +1,23 @@
 # Changelog
 
+## 8.5.2 (2024-05-03)
+
+Full Changelog: [v8.5.1...v8.5.2](https://github.com/muxinc/mux-node-sdk/compare/v8.5.1...v8.5.2)
+
+### Bug Fixes
+
+* **package:** revert recent client file change ([#394](https://github.com/muxinc/mux-node-sdk/issues/394)) ([8246aaa](https://github.com/muxinc/mux-node-sdk/commit/8246aaa0aa2bf486fd534dde16837fcf7b26fe00))
+
+
+### Chores
+
+* **internal:** add link to openapi spec ([#389](https://github.com/muxinc/mux-node-sdk/issues/389)) ([a2b5816](https://github.com/muxinc/mux-node-sdk/commit/a2b5816264089498856d02c319b9281189400df3))
+* **internal:** add scripts/test and scripts/mock ([#386](https://github.com/muxinc/mux-node-sdk/issues/386)) ([efdfbf0](https://github.com/muxinc/mux-node-sdk/commit/efdfbf0f9c023fd31c4a912324dfc2e23ae54a55))
+* **internal:** add scripts/test, scripts/mock and add ci job ([#390](https://github.com/muxinc/mux-node-sdk/issues/390)) ([0ca562f](https://github.com/muxinc/mux-node-sdk/commit/0ca562f4518f5970d41a4b2b86aa1ddd80ae9e95))
+* **internal:** forward arguments in scripts/test ([#391](https://github.com/muxinc/mux-node-sdk/issues/391)) ([7b31ea3](https://github.com/muxinc/mux-node-sdk/commit/7b31ea310f87fad6fb94c876e510f49659cfa9ff))
+* **internal:** move client class to separate file ([#392](https://github.com/muxinc/mux-node-sdk/issues/392)) ([db724fb](https://github.com/muxinc/mux-node-sdk/commit/db724fb32fcf66bb326bae008c6fd0acdac447d3))
+* **internal:** refactor scripts ([#388](https://github.com/muxinc/mux-node-sdk/issues/388)) ([806d195](https://github.com/muxinc/mux-node-sdk/commit/806d19531b59fb3acb37f9c35a3231b3e5e6645b))
+
 ## 8.5.1 (2024-04-25)
 
 Full Changelog: [v8.5.0...v8.5.1](https://github.com/muxinc/mux-node-sdk/compare/v8.5.0...v8.5.1)
