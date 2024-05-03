@@ -167,6 +167,7 @@ export class Mux extends Core.APIClient {
   data: API.Data = new API.Data(this);
   system: API.System = new API.System(this);
   webhooks: API.Webhooks = new API.Webhooks(this);
+  jwt: API.Jwt = new API.Jwt(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -307,6 +308,8 @@ export namespace Mux {
   export import VideoSpaceBroadcastDeletedWebhookEvent = API.VideoSpaceBroadcastDeletedWebhookEvent;
   export import VideoDeliveryHighTrafficWebhookEvent = API.VideoDeliveryHighTrafficWebhookEvent;
   export import UnwrapWebhookEvent = API.UnwrapWebhookEvent;
+
+  export import Jwt = API.Jwt;
 
   export import PlaybackID = API.PlaybackID;
   export import PlaybackPolicy = API.PlaybackPolicy;

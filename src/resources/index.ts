@@ -58,5 +58,6 @@ export {
   Webhooks,
 } from './webhooks';
 export { Data } from './data/data';
+export { Jwt } from './jwt';
 export { System } from './system/system';
 export { Video } from './video/video';
