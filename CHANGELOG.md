@@ -1,5 +1,18 @@
 # Changelog
 
+## 8.5.3 (2024-05-10)
+
+Full Changelog: [v8.5.2...v8.5.3](https://github.com/muxinc/mux-node-sdk/compare/v8.5.2...v8.5.3)
+
+### Bug Fixes
+
+* remove lingering file ([6014f6f](https://github.com/muxinc/mux-node-sdk/commit/6014f6fecf578a466913fcc1a8a74be901055f88))
+
+
+### Chores
+
+* **docs:** add SECURITY.md ([#397](https://github.com/muxinc/mux-node-sdk/issues/397)) ([665935e](https://github.com/muxinc/mux-node-sdk/commit/665935e2a670d199caac06500b46e7f5c46535fe))
+
 ## 8.5.2 (2024-05-03)
 
 Full Changelog: [v8.5.1...v8.5.2](https://github.com/muxinc/mux-node-sdk/compare/v8.5.1...v8.5.2)
