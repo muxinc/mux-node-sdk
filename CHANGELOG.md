@@ -1,5 +1,13 @@
 # Changelog
 
+## 8.5.4 (2024-05-14)
+
+Full Changelog: [v8.5.3...v8.5.4](https://github.com/muxinc/mux-node-sdk/compare/v8.5.3...v8.5.4)
+
+### Chores
+
+* rebuild project due to codegen change ([#399](https://github.com/muxinc/mux-node-sdk/issues/399)) ([2652e3b](https://github.com/muxinc/mux-node-sdk/commit/2652e3b815842e9f21b638deeb709dab5bee2dcd))
+
 ## 8.5.3 (2024-05-10)
 
 Full Changelog: [v8.5.2...v8.5.3](https://github.com/muxinc/mux-node-sdk/compare/v8.5.2...v8.5.3)
