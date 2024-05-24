@@ -131,6 +131,10 @@ export interface UploadCreateParams {
 
   new_asset_settings?: AssetsAPI.AssetOptions;
 
+  /**
+   * Indicates if this is a test Direct Upload, in which case the Asset that gets
+   * created will be a `test` Asset.
+   */
   test?: boolean;
 
   /**
