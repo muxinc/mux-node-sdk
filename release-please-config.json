@@ -59,6 +59,9 @@
       "hidden": true
     }
   ],
+  "reviewers": [
+    "@muxinc/api-sdk"
+  ],
   "release-type": "node",
   "extra-files": [
     "src/version.ts",
