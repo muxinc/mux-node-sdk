@@ -1,5 +1,13 @@
 # Changelog
 
+## 8.6.0 (2024-05-24)
+
+Full Changelog: [v8.5.4...v8.6.0](https://github.com/muxinc/mux-node-sdk/compare/v8.5.4...v8.6.0)
+
+### Features
+
+* **api:** manual updates ([#403](https://github.com/muxinc/mux-node-sdk/issues/403)) ([c8dce30](https://github.com/muxinc/mux-node-sdk/commit/c8dce30854b169947b28b63e30f722f926b45f1c))
+
 ## 8.5.4 (2024-05-14)
 
 Full Changelog: [v8.5.3...v8.5.4](https://github.com/muxinc/mux-node-sdk/compare/v8.5.3...v8.5.4)
