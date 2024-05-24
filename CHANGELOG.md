@@ -1,5 +1,13 @@
 # Changelog
 
+## 8.7.0 (2024-05-24)
+
+Full Changelog: [v8.6.0...v8.7.0](https://github.com/muxinc/mux-node-sdk/compare/v8.6.0...v8.7.0)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#406](https://github.com/muxinc/mux-node-sdk/issues/406)) ([c279cd1](https://github.com/muxinc/mux-node-sdk/commit/c279cd1c0165d97d1332d9768d3be684bc3904e0))
+
 ## 8.6.0 (2024-05-24)
 
 Full Changelog: [v8.5.4...v8.6.0](https://github.com/muxinc/mux-node-sdk/compare/v8.5.4...v8.6.0)
