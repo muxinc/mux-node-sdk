@@ -1,6 +1,6 @@
 # Mux Node API Library
 
-[![NPM version](https://img.shields.io/npm/v/@mux/mux-node.svg)](https://npmjs.org/package/@mux/mux-node)
+[![NPM version](https://img.shields.io/npm/v/@mux/mux-node.svg)](https://npmjs.org/package/@mux/mux-node) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@mux/mux-node)
 
 This library provides convenient access to the Mux REST API from server-side TypeScript or JavaScript.
 
