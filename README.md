@@ -28,7 +28,6 @@ const mux = new Mux({
 async function main() {
   const asset = await mux.video.assets.create({
     input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
-    playback_policy: ['public'],
   });
 
   console.log(asset.id);
@@ -53,7 +52,6 @@ const mux = new Mux({
 async function main() {
   const params: Mux.Video.AssetCreateParams = {
     input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
-    playback_policy: ['public'],
   };
   const asset: Mux.Video.Asset = await mux.video.assets.create(params);
 }
@@ -185,19 +183,13 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 const mux = new Mux();
 
 const response = await mux.video.assets
-  .create({
-    input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
-    playback_policy: ['public'],
-  })
+  .create({ input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }] })
   .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
 const { data: asset, response: raw } = await mux.video.assets
-  .create({
-    input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
-    playback_policy: ['public'],
-  })
+  .create({ input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }] })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(asset.id);
