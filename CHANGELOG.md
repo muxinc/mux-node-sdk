@@ -1,5 +1,23 @@
 # Changelog
 
+## 8.7.1 (2024-05-31)
+
+Full Changelog: [v8.7.0...v8.7.1](https://github.com/muxinc/mux-node-sdk/compare/v8.7.0...v8.7.1)
+
+### Bug Fixes
+
+* allow git imports for pnpm ([#412](https://github.com/muxinc/mux-node-sdk/issues/412)) ([fa4d936](https://github.com/muxinc/mux-node-sdk/commit/fa4d936f6179427980f460689441251e165771e0))
+
+
+### Chores
+
+* rebuild project due to codegen change ([#411](https://github.com/muxinc/mux-node-sdk/issues/411)) ([5cee0e9](https://github.com/muxinc/mux-node-sdk/commit/5cee0e93d70bc1ff792ccde03d9b63d3ce5b8f23))
+
+
+### Documentation
+
+* **readme:** add bundle size badge ([#409](https://github.com/muxinc/mux-node-sdk/issues/409)) ([b538159](https://github.com/muxinc/mux-node-sdk/commit/b538159f9dff76726a16b39337eed879287600f8))
+
 ## 8.7.0 (2024-05-24)
 
 Full Changelog: [v8.6.0...v8.7.0](https://github.com/muxinc/mux-node-sdk/compare/v8.6.0...v8.7.0)
