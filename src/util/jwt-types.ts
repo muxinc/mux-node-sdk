@@ -49,6 +49,7 @@ export enum TypeClaim {
   gif = 'g',
   storyboard = 's',
   stats = 'playback_id',
+  drm_license = 'l',
 }
 
 export enum DataTypeClaim {

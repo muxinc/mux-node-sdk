@@ -35,7 +35,32 @@ export class Jwt extends APIResource {
   }
 
   /**
-   * Creates a new token to be used with a signed statistics request
+   * Creates a new token for a license for playing back DRM'd video content
+   */
+    async signDrmLicense(
+      playbackId: string,
+      config: MuxJWTSignOptions<keyof typeof TypeClaim> = {},
+    ): Promise<string> {
+      const claim = TypeClaim[config.type ?? 'drm_license'];
+      if (!claim) {
+        throw new Error(`Invalid signature type: ${config.type}; Expected one of ${Object.keys(TypeClaim)}`);
+      }
+  
+      const tokenOptions: SignOptions = {
+        keyid: jwt.getSigningKey(this._client, config),
+        subject: playbackId,
+        audience: claim,
+        expiresIn: config.expiration ?? '7d',
+        noTimestamp: true,
+        algorithm: 'RS256',
+      };
+  
+      return jwt.sign(config.params ?? {}, await jwt.getPrivateKey(this._client, config), tokenOptions);
+    }
+
+  /**
+   * Creates a new token to be used with a space
+   * @deprecated Mux Real-Time Video (spaces) has been shut down. This function will be removed in the next major version.
    */
   async signSpaceId(spaceId: string, config: MuxJWTSignOptions<never> = {}): Promise<string> {
     const tokenOptions: SignOptions = {
@@ -51,7 +76,7 @@ export class Jwt extends APIResource {
   }
 
   /**
-   * Creates a new token to be used with a signed playback ID
+   * Creates a new token to be used with a signed statistics request
    */
   async signViewerCounts(
     id: string,
