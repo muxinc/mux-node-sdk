@@ -211,7 +211,7 @@ describe('resource jwt', () => {
   test('signDrmLicense', async () => {
     expect(decodeJwt(await mux.jwt.signDrmLicense('abcdefgh'))).toMatchObject({
       kid: jwtSigningKey,
-      aud: 'l',
+      aud: 'd',
       sub: 'abcdefgh',
     });
     expect(
@@ -223,7 +223,7 @@ describe('resource jwt', () => {
       ),
     ).toMatchObject({
       kid: jwtSigningKey,
-      aud: 'l',
+      aud: 'd',
       sub: 'abcdefgh',
     });
     expect(
@@ -235,7 +235,7 @@ describe('resource jwt', () => {
       ),
     ).toMatchObject({
       kid: jwtSigningKey,
-      aud: 'l',
+      aud: 'd',
       sub: 'abcdefgh',
     });
   });
