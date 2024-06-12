@@ -152,6 +152,27 @@ Deno.test(async function signSpaceId() {
   );
 });
 
+Deno.test(async function signDrmLicense() {
+  assertObjectMatch(await verify(mux.jwt.signDrmLicense('abcdefgh')), {
+    kid: jwtSigningKey,
+    aud: 'l',
+    sub: 'abcdefgh',
+  });
+  assertObjectMatch(
+    await verify(
+      muxWithoutKeys.jwt.signDrmLicense('abcdefgh', {
+        keyId: jwtSigningKey,
+        keySecret: privatePkcs1,
+      }),
+    ),
+    {
+      kid: jwtSigningKey,
+      aud: 'l',
+      sub: 'abcdefgh',
+    },
+  );
+});
+
 Deno.test(async function signViewerCounts() {
   assertObjectMatch(await verify(mux.jwt.signViewerCounts('abcdefgh')), {
     kid: jwtSigningKey,
