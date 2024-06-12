@@ -208,6 +208,38 @@ describe('resource jwt', () => {
     });
   });
 
+  test('signDrmLicense', async () => {
+    expect(decodeJwt(await mux.jwt.signDrmLicense('abcdefgh'))).toMatchObject({
+      kid: jwtSigningKey,
+      aud: 'l',
+      sub: 'abcdefgh',
+    });
+    expect(
+      decodeJwt(
+        await muxWithoutKeys.jwt.signDrmLicense('abcdefgh', {
+          keyId: jwtSigningKey,
+          keySecret: privatePkcs1,
+        }),
+      ),
+    ).toMatchObject({
+      kid: jwtSigningKey,
+      aud: 'l',
+      sub: 'abcdefgh',
+    });
+    expect(
+      decodeJwt(
+        await muxWithoutKeys.jwt.signDrmLicense('abcdefgh', {
+          keyId: jwtSigningKey,
+          keySecret: Buffer.from(privatePkcs1).toString('base64'),
+        }),
+      ),
+    ).toMatchObject({
+      kid: jwtSigningKey,
+      aud: 'l',
+      sub: 'abcdefgh',
+    });
+  });
+
   test('signViewerCounts', async () => {
     expect(decodeJwt(await mux.jwt.signViewerCounts('abcdefgh'))).toMatchObject({
       kid: jwtSigningKey,
