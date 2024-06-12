@@ -155,7 +155,7 @@ Deno.test(async function signSpaceId() {
 Deno.test(async function signDrmLicense() {
   assertObjectMatch(await verify(mux.jwt.signDrmLicense('abcdefgh')), {
     kid: jwtSigningKey,
-    aud: 'l',
+    aud: 'd',
     sub: 'abcdefgh',
   });
   assertObjectMatch(
@@ -167,7 +167,7 @@ Deno.test(async function signDrmLicense() {
     ),
     {
       kid: jwtSigningKey,
-      aud: 'l',
+      aud: 'd',
       sub: 'abcdefgh',
     },
   );
