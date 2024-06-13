@@ -177,6 +177,17 @@ Methods:
 - <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/shutdown">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">shutdown</a>(webInputId) -> WebInputShutdownResponse</code>
 - <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/url">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">updateURL</a>(webInputId, { ...params }) -> WebInputUpdateURLResponse</code>
 
+## DrmConfigurations
+
+Types:
+
+- <code><a href="./src/resources/video/drm-configurations.ts">DrmConfiguration</a></code>
+
+Methods:
+
+- <code title="get /video/v1/drm-configurations/{DRM_CONFIGURATION_ID}">client.video.drmConfigurations.<a href="./src/resources/video/drm-configurations.ts">retrieve</a>(drmConfigurationId) -> DrmConfiguration</code>
+- <code title="get /video/v1/drm-configurations">client.video.drmConfigurations.<a href="./src/resources/video/drm-configurations.ts">list</a>({ ...params }) -> DrmConfigurationsBasePage</code>
+
 # Data
 
 ## Dimensions
