@@ -566,6 +566,13 @@ export namespace Asset {
 
 export interface AssetOptions {
   /**
+   * An array of playback policy objects that you want applied to this asset and
+   * available through `playback_ids`. `advanced_playback_policy` must be used
+   * instead of `playback_policy` when creating a DRM playback ID.
+   */
+  advanced_playback_policy?: Array<AssetOptions.AdvancedPlaybackPolicy>;
+
+  /**
    * The encoding tier informs the cost, quality, and available platform features for
    * the asset. By default the `smart` encoding tier is used.
    * [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
@@ -642,12 +649,14 @@ export interface AssetOptions {
 
   /**
    * An array of playback policy names that you want applied to this asset and
-   * available through `playback_ids`. Options include: `"public"` (anyone with the
-   * playback URL can stream the asset). And `"signed"` (an additional access token
-   * is required to play the asset). If no playback_policy is set, the asset will
-   * have no playback IDs and will therefore not be playable. For simplicity, a
-   * single string name can be used in place of the array in the case of only one
-   * playback policy.
+   * available through `playback_ids`. Options include:
+   *
+   * - `"public"` (anyone with the playback URL can stream the asset).
+   * - `"signed"` (an additional access token is required to play the asset).
+   *
+   * If no `playback_policy` is set, the asset will have no playback IDs and will
+   * therefore not be playable. For simplicity, a single string name can be used in
+   * place of the array in the case of only one playback policy.
    */
   playback_policy?: Array<Shared.PlaybackPolicy>;
 
@@ -661,6 +670,25 @@ export interface AssetOptions {
 }
 
 export namespace AssetOptions {
+  export interface AdvancedPlaybackPolicy {
+    /**
+     * The DRM configuration used by this playback ID. Must only be set when `policy`
+     * is set to `drm`.
+     */
+    drm_configuration_id?: string;
+
+    /**
+     * - `public` playback IDs are accessible by constructing an HLS URL like
+     *   `https://stream.mux.com/${PLAYBACK_ID}`
+     *
+     * - `signed` playback IDs should be used with tokens
+     *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
+     *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
+     *   details about creating tokens.
+     */
+    policy?: Shared.PlaybackPolicy;
+  }
+
   /**
    * An array of objects that each describe an input file to be used to create the
    * asset. As a shortcut, `input` can also be a string URL for a file when only one
@@ -1265,6 +1293,13 @@ export interface AssetCreateParams {
   input: Array<AssetCreateParams.Input>;
 
   /**
+   * An array of playback policy objects that you want applied to this asset and
+   * available through `playback_ids`. `advanced_playback_policy` must be used
+   * instead of `playback_policy` when creating a DRM playback ID.
+   */
+  advanced_playback_policy?: Array<AssetCreateParams.AdvancedPlaybackPolicy>;
+
+  /**
    * The encoding tier informs the cost, quality, and available platform features for
    * the asset. By default the `smart` encoding tier is used.
    * [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
@@ -1331,12 +1366,14 @@ export interface AssetCreateParams {
 
   /**
    * An array of playback policy names that you want applied to this asset and
-   * available through `playback_ids`. Options include: `"public"` (anyone with the
-   * playback URL can stream the asset). And `"signed"` (an additional access token
-   * is required to play the asset). If no playback_policy is set, the asset will
-   * have no playback IDs and will therefore not be playable. For simplicity, a
-   * single string name can be used in place of the array in the case of only one
-   * playback policy.
+   * available through `playback_ids`. Options include:
+   *
+   * - `"public"` (anyone with the playback URL can stream the asset).
+   * - `"signed"` (an additional access token is required to play the asset).
+   *
+   * If no `playback_policy` is set, the asset will have no playback IDs and will
+   * therefore not be playable. For simplicity, a single string name can be used in
+   * place of the array in the case of only one playback policy.
    */
   playback_policy?: Array<Shared.PlaybackPolicy>;
 
@@ -1562,6 +1599,25 @@ export namespace AssetCreateParams {
       width?: string;
     }
   }
+
+  export interface AdvancedPlaybackPolicy {
+    /**
+     * The DRM configuration used by this playback ID. Must only be set when `policy`
+     * is set to `drm`.
+     */
+    drm_configuration_id?: string;
+
+    /**
+     * - `public` playback IDs are accessible by constructing an HLS URL like
+     *   `https://stream.mux.com/${PLAYBACK_ID}`
+     *
+     * - `signed` playback IDs should be used with tokens
+     *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
+     *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
+     *   details about creating tokens.
+     */
+    policy?: Shared.PlaybackPolicy;
+  }
 }
 
 export interface AssetUpdateParams {
@@ -1585,6 +1641,12 @@ export interface AssetListParams extends BasePageParams {
 }
 
 export interface AssetCreatePlaybackIDParams {
+  /**
+   * The DRM configuration used by this playback ID. Must only be set when `policy`
+   * is set to `drm`.
+   */
+  drm_configuration_id?: string;
+
   /**
    * - `public` playback IDs are accessible by constructing an HLS URL like
    *   `https://stream.mux.com/${PLAYBACK_ID}`
