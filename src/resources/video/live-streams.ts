@@ -572,6 +572,13 @@ export interface SimulcastTarget {
 
 export interface LiveStreamCreateParams {
   /**
+   * An array of playback policy objects that you want applied to this asset and
+   * available through `playback_ids`. `advanced_playback_policy` must be used
+   * instead of `playback_policy` when creating a DRM playback ID.
+   */
+  advanced_playback_policy?: Array<LiveStreamCreateParams.AdvancedPlaybackPolicy>;
+
+  /**
    * Force the live stream to only process the audio track when the value is set to
    * true. Mux drops the video track if broadcasted.
    */
@@ -683,6 +690,25 @@ export interface LiveStreamCreateParams {
 }
 
 export namespace LiveStreamCreateParams {
+  export interface AdvancedPlaybackPolicy {
+    /**
+     * The DRM configuration used by this playback ID. Must only be set when `policy`
+     * is set to `drm`.
+     */
+    drm_configuration_id?: string;
+
+    /**
+     * - `public` playback IDs are accessible by constructing an HLS URL like
+     *   `https://stream.mux.com/${PLAYBACK_ID}`
+     *
+     * - `signed` playback IDs should be used with tokens
+     *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
+     *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
+     *   details about creating tokens.
+     */
+    policy?: Shared.PlaybackPolicy;
+  }
+
   export interface EmbeddedSubtitle {
     /**
      * CEA-608 caption channel to read data from.
@@ -867,6 +893,12 @@ export interface LiveStreamListParams extends BasePageParams {
 }
 
 export interface LiveStreamCreatePlaybackIDParams {
+  /**
+   * The DRM configuration used by this playback ID. Must only be set when `policy`
+   * is set to `drm`.
+   */
+  drm_configuration_id?: string;
+
   /**
    * - `public` playback IDs are accessible by constructing an HLS URL like
    *   `https://stream.mux.com/${PLAYBACK_ID}`
