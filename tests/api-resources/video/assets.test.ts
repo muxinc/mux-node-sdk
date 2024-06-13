@@ -50,6 +50,11 @@ describe('resource assets', () => {
           passthrough: 'string',
         },
       ],
+      advanced_playback_policy: [
+        { policy: 'public', drm_configuration_id: 'string' },
+        { policy: 'public', drm_configuration_id: 'string' },
+        { policy: 'public', drm_configuration_id: 'string' },
+      ],
       encoding_tier: 'baseline',
       master_access: 'none',
       max_resolution_tier: '1080p',

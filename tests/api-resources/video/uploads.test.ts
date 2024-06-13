@@ -103,6 +103,11 @@ describe('resource uploads', () => {
           },
         ],
         playback_policy: ['public'],
+        advanced_playback_policy: [
+          { policy: 'public', drm_configuration_id: 'string' },
+          { policy: 'public', drm_configuration_id: 'string' },
+          { policy: 'public', drm_configuration_id: 'string' },
+        ],
         per_title_encode: true,
         passthrough: 'string',
         mp4_support: 'capped-1080p',
