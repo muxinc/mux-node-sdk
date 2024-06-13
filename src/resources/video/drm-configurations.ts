@@ -3,17 +3,17 @@
 import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
-import * as DrmConfigurationsAPI from '@mux/mux-node/resources/video/drm-configurations';
+import * as DRMConfigurationsAPI from '@mux/mux-node/resources/video/drm-configurations';
 import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
 
-export class DrmConfigurations extends APIResource {
+export class DRMConfigurations extends APIResource {
   /**
    * Retrieves a single DRM Configuration.
    */
-  retrieve(drmConfigurationId: string, options?: Core.RequestOptions): Core.APIPromise<DrmConfiguration> {
+  retrieve(drmConfigurationId: string, options?: Core.RequestOptions): Core.APIPromise<DRMConfiguration> {
     return (
       this._client.get(`/video/v1/drm-configurations/${drmConfigurationId}`, options) as Core.APIPromise<{
-        data: DrmConfiguration;
+        data: DRMConfiguration;
       }>
     )._thenUnwrap((obj) => obj.data);
   }
@@ -22,37 +22,37 @@ export class DrmConfigurations extends APIResource {
    * Returns a list of DRM Configurations
    */
   list(
-    query?: DrmConfigurationListParams,
+    query?: DRMConfigurationListParams,
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DrmConfigurationsBasePage, DrmConfiguration>;
-  list(options?: Core.RequestOptions): Core.PagePromise<DrmConfigurationsBasePage, DrmConfiguration>;
+  ): Core.PagePromise<DRMConfigurationsBasePage, DRMConfiguration>;
+  list(options?: Core.RequestOptions): Core.PagePromise<DRMConfigurationsBasePage, DRMConfiguration>;
   list(
-    query: DrmConfigurationListParams | Core.RequestOptions = {},
+    query: DRMConfigurationListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<DrmConfigurationsBasePage, DrmConfiguration> {
+  ): Core.PagePromise<DRMConfigurationsBasePage, DRMConfiguration> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/video/v1/drm-configurations', DrmConfigurationsBasePage, {
+    return this._client.getAPIList('/video/v1/drm-configurations', DRMConfigurationsBasePage, {
       query,
       ...options,
     });
   }
 }
 
-export class DrmConfigurationsBasePage extends BasePage<DrmConfiguration> {}
+export class DRMConfigurationsBasePage extends BasePage<DRMConfiguration> {}
 
-export interface DrmConfiguration {
+export interface DRMConfiguration {
   /**
    * Unique identifier for the DRM Configuration. Max 255 characters.
    */
   id: string;
 }
 
-export interface DrmConfigurationListParams extends BasePageParams {}
+export interface DRMConfigurationListParams extends BasePageParams {}
 
-export namespace DrmConfigurations {
-  export import DrmConfiguration = DrmConfigurationsAPI.DrmConfiguration;
-  export import DrmConfigurationsBasePage = DrmConfigurationsAPI.DrmConfigurationsBasePage;
-  export import DrmConfigurationListParams = DrmConfigurationsAPI.DrmConfigurationListParams;
+export namespace DRMConfigurations {
+  export import DRMConfiguration = DRMConfigurationsAPI.DRMConfiguration;
+  export import DRMConfigurationsBasePage = DRMConfigurationsAPI.DRMConfigurationsBasePage;
+  export import DRMConfigurationListParams = DRMConfigurationsAPI.DRMConfigurationListParams;
 }
