@@ -3,7 +3,7 @@
 import { APIResource } from '@mux/mux-node/resource';
 import * as AssetsAPI from '@mux/mux-node/resources/video/assets';
 import * as DeliveryUsageAPI from '@mux/mux-node/resources/video/delivery-usage';
-import * as DrmConfigurationsAPI from '@mux/mux-node/resources/video/drm-configurations';
+import * as DRMConfigurationsAPI from '@mux/mux-node/resources/video/drm-configurations';
 import * as LiveStreamsAPI from '@mux/mux-node/resources/video/live-streams';
 import * as PlaybackIDsAPI from '@mux/mux-node/resources/video/playback-ids';
 import * as PlaybackRestrictionsAPI from '@mux/mux-node/resources/video/playback-restrictions';
@@ -24,7 +24,7 @@ export class Video extends APIResource {
     new TranscriptionVocabulariesAPI.TranscriptionVocabularies(this._client);
   uploads: UploadsAPI.Uploads = new UploadsAPI.Uploads(this._client);
   webInputs: WebInputsAPI.WebInputs = new WebInputsAPI.WebInputs(this._client);
-  drmConfigurations: DrmConfigurationsAPI.DrmConfigurations = new DrmConfigurationsAPI.DrmConfigurations(
+  drmConfigurations: DRMConfigurationsAPI.DRMConfigurations = new DRMConfigurationsAPI.DRMConfigurations(
     this._client,
   );
 }
@@ -111,8 +111,8 @@ export namespace Video {
   export import WebInputCreateParams = WebInputsAPI.WebInputCreateParams;
   export import WebInputListParams = WebInputsAPI.WebInputListParams;
   export import WebInputUpdateURLParams = WebInputsAPI.WebInputUpdateURLParams;
-  export import DrmConfigurations = DrmConfigurationsAPI.DrmConfigurations;
-  export import DrmConfiguration = DrmConfigurationsAPI.DrmConfiguration;
-  export import DrmConfigurationsBasePage = DrmConfigurationsAPI.DrmConfigurationsBasePage;
-  export import DrmConfigurationListParams = DrmConfigurationsAPI.DrmConfigurationListParams;
+  export import DRMConfigurations = DRMConfigurationsAPI.DRMConfigurations;
+  export import DRMConfiguration = DRMConfigurationsAPI.DRMConfiguration;
+  export import DRMConfigurationsBasePage = DRMConfigurationsAPI.DRMConfigurationsBasePage;
+  export import DRMConfigurationListParams = DRMConfigurationsAPI.DRMConfigurationListParams;
 }

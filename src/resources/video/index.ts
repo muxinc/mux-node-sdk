@@ -36,17 +36,17 @@ export {
   Spaces,
 } from './spaces';
 export {
+  DRMConfiguration,
+  DRMConfigurationListParams,
+  DRMConfigurationsBasePage,
+  DRMConfigurations,
+} from './drm-configurations';
+export {
   DeliveryReport,
   DeliveryUsageListParams,
   DeliveryReportsPageWithTotal,
   DeliveryUsage,
 } from './delivery-usage';
-export {
-  DrmConfiguration,
-  DrmConfigurationListParams,
-  DrmConfigurationsBasePage,
-  DrmConfigurations,
-} from './drm-configurations';
 export {
   LiveStream,
   SimulcastTarget,
