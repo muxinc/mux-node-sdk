@@ -42,6 +42,12 @@ export {
   DeliveryUsage,
 } from './delivery-usage';
 export {
+  DrmConfiguration,
+  DrmConfigurationListParams,
+  DrmConfigurationsBasePage,
+  DrmConfigurations,
+} from './drm-configurations';
+export {
   LiveStream,
   SimulcastTarget,
   LiveStreamCreateParams,
