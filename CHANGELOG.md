@@ -6,15 +6,7 @@ Full Changelog: [v8.7.1...v8.8.0](https://github.com/muxinc/mux-node-sdk/compare
 
 ### Features
 
-* **api:** add drm configuration endpoints ([#424](https://github.com/muxinc/mux-node-sdk/issues/424)) ([69e3fc9](https://github.com/muxinc/mux-node-sdk/commit/69e3fc9d069b91f7d4c0f967e8f2c4d170c5a7d3))
-* **api:** OpenAPI spec update via Stainless API ([#417](https://github.com/muxinc/mux-node-sdk/issues/417)) ([5f52d1f](https://github.com/muxinc/mux-node-sdk/commit/5f52d1f4a40b0898a4e1ed45350bd7b35ac50a14))
-* **api:** OpenAPI spec update via Stainless API ([#423](https://github.com/muxinc/mux-node-sdk/issues/423)) ([370b05d](https://github.com/muxinc/mux-node-sdk/commit/370b05d00aa30ec02bc953af5b0d2f8e37b5005a))
-* **api:** OpenAPI spec update via Stainless API ([#426](https://github.com/muxinc/mux-node-sdk/issues/426)) ([83059fe](https://github.com/muxinc/mux-node-sdk/commit/83059fed1ca4fb70c9817a29fc50c8a924ac97f5))
-
-
-### Bug Fixes
-
-* update casing for "drm" ([#425](https://github.com/muxinc/mux-node-sdk/issues/425)) ([7f933df](https://github.com/muxinc/mux-node-sdk/commit/7f933df4b8ade13ea1d6ae07dac8d4a6dc0bcb61))
+* prepare for upcoming feature release
 
 ## 8.7.1 (2024-05-31)
 
