@@ -297,15 +297,6 @@ export namespace Mux {
   export import VideoLiveStreamSimulcastTargetErroredWebhookEvent = API.VideoLiveStreamSimulcastTargetErroredWebhookEvent;
   export import VideoLiveStreamSimulcastTargetDeletedWebhookEvent = API.VideoLiveStreamSimulcastTargetDeletedWebhookEvent;
   export import VideoLiveStreamSimulcastTargetUpdatedWebhookEvent = API.VideoLiveStreamSimulcastTargetUpdatedWebhookEvent;
-  export import VideoSpaceCreatedWebhookEvent = API.VideoSpaceCreatedWebhookEvent;
-  export import VideoSpaceDeletedWebhookEvent = API.VideoSpaceDeletedWebhookEvent;
-  export import VideoSpaceActiveWebhookEvent = API.VideoSpaceActiveWebhookEvent;
-  export import VideoSpaceIdleWebhookEvent = API.VideoSpaceIdleWebhookEvent;
-  export import VideoSpaceUpdatedWebhookEvent = API.VideoSpaceUpdatedWebhookEvent;
-  export import VideoSpaceBroadcastCreatedWebhookEvent = API.VideoSpaceBroadcastCreatedWebhookEvent;
-  export import VideoSpaceBroadcastIdleWebhookEvent = API.VideoSpaceBroadcastIdleWebhookEvent;
-  export import VideoSpaceBroadcastActiveWebhookEvent = API.VideoSpaceBroadcastActiveWebhookEvent;
-  export import VideoSpaceBroadcastDeletedWebhookEvent = API.VideoSpaceBroadcastDeletedWebhookEvent;
   export import VideoDeliveryHighTrafficWebhookEvent = API.VideoDeliveryHighTrafficWebhookEvent;
   export import UnwrapWebhookEvent = API.UnwrapWebhookEvent;
 

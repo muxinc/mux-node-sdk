@@ -779,15 +779,6 @@ export namespace Webhooks {
   export import VideoLiveStreamSimulcastTargetErroredWebhookEvent = WebhooksAPI.VideoLiveStreamSimulcastTargetErroredWebhookEvent;
   export import VideoLiveStreamSimulcastTargetDeletedWebhookEvent = WebhooksAPI.VideoLiveStreamSimulcastTargetDeletedWebhookEvent;
   export import VideoLiveStreamSimulcastTargetUpdatedWebhookEvent = WebhooksAPI.VideoLiveStreamSimulcastTargetUpdatedWebhookEvent;
-  export import VideoSpaceCreatedWebhookEvent = WebhooksAPI.VideoSpaceCreatedWebhookEvent;
-  export import VideoSpaceDeletedWebhookEvent = WebhooksAPI.VideoSpaceDeletedWebhookEvent;
-  export import VideoSpaceActiveWebhookEvent = WebhooksAPI.VideoSpaceActiveWebhookEvent;
-  export import VideoSpaceIdleWebhookEvent = WebhooksAPI.VideoSpaceIdleWebhookEvent;
-  export import VideoSpaceUpdatedWebhookEvent = WebhooksAPI.VideoSpaceUpdatedWebhookEvent;
-  export import VideoSpaceBroadcastCreatedWebhookEvent = WebhooksAPI.VideoSpaceBroadcastCreatedWebhookEvent;
-  export import VideoSpaceBroadcastIdleWebhookEvent = WebhooksAPI.VideoSpaceBroadcastIdleWebhookEvent;
-  export import VideoSpaceBroadcastActiveWebhookEvent = WebhooksAPI.VideoSpaceBroadcastActiveWebhookEvent;
-  export import VideoSpaceBroadcastDeletedWebhookEvent = WebhooksAPI.VideoSpaceBroadcastDeletedWebhookEvent;
   export import VideoDeliveryHighTrafficWebhookEvent = WebhooksAPI.VideoDeliveryHighTrafficWebhookEvent;
   export import UnwrapWebhookEvent = WebhooksAPI.UnwrapWebhookEvent;
 }
