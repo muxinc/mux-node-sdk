@@ -996,7 +996,28 @@ export interface MetricGetInsightsParams {
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
-   * be used.
+   * be used. The default measurement for each metric is: "sum" : `ad_attempt_count`,
+   * `ad_break_count`, `ad_break_error_count`, `ad_error_count`,
+   * `ad_impression_count`, `playing_time` "median" : `ad_preroll_startup_time`,
+   * `ad_watch_time`, `aggregate_startup_time`, `content_startup_time`,
+   * `content_watch_time`, `max_downscale_percentage`, `max_upscale_percentage`,
+   * `page_load_time`, `player_average_live_latency`, `player_startup_time`,
+   * `rebuffer_count`, `rebuffer_duration`, `requests_for_first_preroll`,
+   * `video_startup_preroll_load_time`, `video_startup_preroll_request_time`,
+   * `video_startup_time`, `view_average_request_latency`,
+   * `view_average_request_throughput`, `view_max_request_latency`,
+   * `weighted_average_bitrate` "avg" : `ad_break_error_percentage`,
+   * `ad_error_percentage`, `ad_exit_before_start_count`,
+   * `ad_exit_before_start_percentage`, `ad_playback_failure_percentage`,
+   * `ad_startup_error_count`, `ad_startup_error_percentage`,
+   * `content_playback_failure_percentage`, `downscale_percentage`,
+   * `exits_before_video_start`, `playback_business_exception_percentage`,
+   * `playback_failure_percentage`, `playback_success_score`, `rebuffer_frequency`,
+   * `rebuffer_percentage`, `seek_latency`, `smoothness_score`, `startup_time_score`,
+   * `upscale_percentage`, `video_quality_score`,
+   * `video_startup_business_exception_percentage`,
+   * `video_startup_failure_percentage`, `viewer_experience_score` "count" :
+   * `started_views`, `unique_viewers`
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
 
@@ -1049,7 +1070,28 @@ export interface MetricGetOverallValuesParams {
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
-   * be used.
+   * be used. The default measurement for each metric is: "sum" : `ad_attempt_count`,
+   * `ad_break_count`, `ad_break_error_count`, `ad_error_count`,
+   * `ad_impression_count`, `playing_time` "median" : `ad_preroll_startup_time`,
+   * `ad_watch_time`, `aggregate_startup_time`, `content_startup_time`,
+   * `content_watch_time`, `max_downscale_percentage`, `max_upscale_percentage`,
+   * `page_load_time`, `player_average_live_latency`, `player_startup_time`,
+   * `rebuffer_count`, `rebuffer_duration`, `requests_for_first_preroll`,
+   * `video_startup_preroll_load_time`, `video_startup_preroll_request_time`,
+   * `video_startup_time`, `view_average_request_latency`,
+   * `view_average_request_throughput`, `view_max_request_latency`,
+   * `weighted_average_bitrate` "avg" : `ad_break_error_percentage`,
+   * `ad_error_percentage`, `ad_exit_before_start_count`,
+   * `ad_exit_before_start_percentage`, `ad_playback_failure_percentage`,
+   * `ad_startup_error_count`, `ad_startup_error_percentage`,
+   * `content_playback_failure_percentage`, `downscale_percentage`,
+   * `exits_before_video_start`, `playback_business_exception_percentage`,
+   * `playback_failure_percentage`, `playback_success_score`, `rebuffer_frequency`,
+   * `rebuffer_percentage`, `seek_latency`, `smoothness_score`, `startup_time_score`,
+   * `upscale_percentage`, `video_quality_score`,
+   * `video_startup_business_exception_percentage`,
+   * `video_startup_failure_percentage`, `viewer_experience_score` "count" :
+   * `started_views`, `unique_viewers`
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
 
@@ -1110,7 +1152,28 @@ export interface MetricGetTimeseriesParams {
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
-   * be used.
+   * be used. The default measurement for each metric is: "sum" : `ad_attempt_count`,
+   * `ad_break_count`, `ad_break_error_count`, `ad_error_count`,
+   * `ad_impression_count`, `playing_time` "median" : `ad_preroll_startup_time`,
+   * `ad_watch_time`, `aggregate_startup_time`, `content_startup_time`,
+   * `content_watch_time`, `max_downscale_percentage`, `max_upscale_percentage`,
+   * `page_load_time`, `player_average_live_latency`, `player_startup_time`,
+   * `rebuffer_count`, `rebuffer_duration`, `requests_for_first_preroll`,
+   * `video_startup_preroll_load_time`, `video_startup_preroll_request_time`,
+   * `video_startup_time`, `view_average_request_latency`,
+   * `view_average_request_throughput`, `view_max_request_latency`,
+   * `weighted_average_bitrate` "avg" : `ad_break_error_percentage`,
+   * `ad_error_percentage`, `ad_exit_before_start_count`,
+   * `ad_exit_before_start_percentage`, `ad_playback_failure_percentage`,
+   * `ad_startup_error_count`, `ad_startup_error_percentage`,
+   * `content_playback_failure_percentage`, `downscale_percentage`,
+   * `exits_before_video_start`, `playback_business_exception_percentage`,
+   * `playback_failure_percentage`, `playback_success_score`, `rebuffer_frequency`,
+   * `rebuffer_percentage`, `seek_latency`, `smoothness_score`, `startup_time_score`,
+   * `upscale_percentage`, `video_quality_score`,
+   * `video_startup_business_exception_percentage`,
+   * `video_startup_failure_percentage`, `viewer_experience_score` "count" :
+   * `started_views`, `unique_viewers`
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
 
@@ -1231,7 +1294,28 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
-   * be used.
+   * be used. The default measurement for each metric is: "sum" : `ad_attempt_count`,
+   * `ad_break_count`, `ad_break_error_count`, `ad_error_count`,
+   * `ad_impression_count`, `playing_time` "median" : `ad_preroll_startup_time`,
+   * `ad_watch_time`, `aggregate_startup_time`, `content_startup_time`,
+   * `content_watch_time`, `max_downscale_percentage`, `max_upscale_percentage`,
+   * `page_load_time`, `player_average_live_latency`, `player_startup_time`,
+   * `rebuffer_count`, `rebuffer_duration`, `requests_for_first_preroll`,
+   * `video_startup_preroll_load_time`, `video_startup_preroll_request_time`,
+   * `video_startup_time`, `view_average_request_latency`,
+   * `view_average_request_throughput`, `view_max_request_latency`,
+   * `weighted_average_bitrate` "avg" : `ad_break_error_percentage`,
+   * `ad_error_percentage`, `ad_exit_before_start_count`,
+   * `ad_exit_before_start_percentage`, `ad_playback_failure_percentage`,
+   * `ad_startup_error_count`, `ad_startup_error_percentage`,
+   * `content_playback_failure_percentage`, `downscale_percentage`,
+   * `exits_before_video_start`, `playback_business_exception_percentage`,
+   * `playback_failure_percentage`, `playback_success_score`, `rebuffer_frequency`,
+   * `rebuffer_percentage`, `seek_latency`, `smoothness_score`, `startup_time_score`,
+   * `upscale_percentage`, `video_quality_score`,
+   * `video_startup_business_exception_percentage`,
+   * `video_startup_failure_percentage`, `viewer_experience_score` "count" :
+   * `started_views`, `unique_viewers`
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
 
