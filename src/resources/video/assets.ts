@@ -567,10 +567,10 @@ export namespace Asset {
 export interface AssetOptions {
   /**
    * An array of playback policy objects that you want applied to this asset and
-   * available through `playback_ids`. `advanced_playback_policy` must be used
+   * available through `playback_ids`. `advanced_playback_policies` must be used
    * instead of `playback_policy` when creating a DRM playback ID.
    */
-  advanced_playback_policy?: Array<AssetOptions.AdvancedPlaybackPolicy>;
+  advanced_playback_policies?: Array<AssetOptions.AdvancedPlaybackPolicy>;
 
   /**
    * The encoding tier informs the cost, quality, and available platform features for
@@ -1294,10 +1294,10 @@ export interface AssetCreateParams {
 
   /**
    * An array of playback policy objects that you want applied to this asset and
-   * available through `playback_ids`. `advanced_playback_policy` must be used
+   * available through `playback_ids`. `advanced_playback_policies` must be used
    * instead of `playback_policy` when creating a DRM playback ID.
    */
-  advanced_playback_policy?: Array<AssetCreateParams.AdvancedPlaybackPolicy>;
+  advanced_playback_policies?: Array<AssetCreateParams.AdvancedPlaybackPolicy>;
 
   /**
    * The encoding tier informs the cost, quality, and available platform features for
