@@ -1,5 +1,24 @@
 # Changelog
 
+## 8.9.0 (2024-07-01)
+
+Full Changelog: [v8.8.0...v8.9.0](https://github.com/muxinc/mux-node-sdk/compare/v8.8.0...v8.9.0)
+
+### Features
+
+* **api:** manual updates ([#436](https://github.com/muxinc/mux-node-sdk/issues/436)) ([b647830](https://github.com/muxinc/mux-node-sdk/commit/b64783074d9b05d768f7affa2be763d5e0a07c7b))
+* **api:** OpenAPI spec update via Stainless API ([#433](https://github.com/muxinc/mux-node-sdk/issues/433)) ([57614f0](https://github.com/muxinc/mux-node-sdk/commit/57614f066db415d68acec01a47c946c00563a17b))
+* **api:** OpenAPI spec update via Stainless API ([#434](https://github.com/muxinc/mux-node-sdk/issues/434)) ([6b022d0](https://github.com/muxinc/mux-node-sdk/commit/6b022d05cddb78c2aff32972ae6193a298682cc0))
+* **api:** remove sunsetted spaces webhooks ([9398d0b](https://github.com/muxinc/mux-node-sdk/commit/9398d0bc33eafe074fb5b7d07eec9827085317e2))
+
+
+### Chores
+
+* gitignore test server logs ([#437](https://github.com/muxinc/mux-node-sdk/issues/437)) ([bb32c90](https://github.com/muxinc/mux-node-sdk/commit/bb32c9082d73ec62fd4008d03f8e8489f1961d5d))
+* **internal:** minor reformatting ([#435](https://github.com/muxinc/mux-node-sdk/issues/435)) ([3eb9196](https://github.com/muxinc/mux-node-sdk/commit/3eb91960bc99ad9b244774af57c32da86b0db524))
+* rebuild project due to codegen change ([#432](https://github.com/muxinc/mux-node-sdk/issues/432)) ([94f6108](https://github.com/muxinc/mux-node-sdk/commit/94f61083b2f80aa822bf96c99290dc3316ae52b7))
+* rebuild project due to codegen change ([#439](https://github.com/muxinc/mux-node-sdk/issues/439)) ([9915dce](https://github.com/muxinc/mux-node-sdk/commit/9915dcec8792e6b3d10fd3af7d53a90c0b58f2d3))
+
 ## 8.8.0 (2024-06-14)
 
 Full Changelog: [v8.7.1...v8.8.0](https://github.com/muxinc/mux-node-sdk/compare/v8.7.1...v8.8.0)
