@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
+import * as Core from '@mux/mux-node/core';
 import * as MetricsAPI from '@mux/mux-node/resources/data/monitoring/metrics';
 
 export class Metrics extends APIResource {

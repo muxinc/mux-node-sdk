@@ -385,15 +385,6 @@ Types:
 - <code><a href="./src/resources/webhooks.ts">VideoLiveStreamSimulcastTargetErroredWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">VideoLiveStreamSimulcastTargetDeletedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">VideoLiveStreamSimulcastTargetUpdatedWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceCreatedWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceDeletedWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceActiveWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceIdleWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceUpdatedWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceBroadcastCreatedWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceBroadcastIdleWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceBroadcastActiveWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceBroadcastDeletedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">VideoDeliveryHighTrafficWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">UnwrapWebhookEvent</a></code>
 

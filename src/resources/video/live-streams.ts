@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
 import { APIResource } from '@mux/mux-node/resource';
 import { isRequestOptions } from '@mux/mux-node/core';
+import * as Core from '@mux/mux-node/core';
 import * as LiveStreamsAPI from '@mux/mux-node/resources/video/live-streams';
 import * as Shared from '@mux/mux-node/resources/shared';
 import * as AssetsAPI from '@mux/mux-node/resources/video/assets';
@@ -573,10 +573,10 @@ export interface SimulcastTarget {
 export interface LiveStreamCreateParams {
   /**
    * An array of playback policy objects that you want applied to this asset and
-   * available through `playback_ids`. `advanced_playback_policy` must be used
+   * available through `playback_ids`. `advanced_playback_policies` must be used
    * instead of `playback_policy` when creating a DRM playback ID.
    */
-  advanced_playback_policy?: Array<LiveStreamCreateParams.AdvancedPlaybackPolicy>;
+  advanced_playback_policies?: Array<LiveStreamCreateParams.AdvancedPlaybackPolicy>;
 
   /**
    * Force the live stream to only process the audio track when the value is set to

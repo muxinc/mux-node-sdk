@@ -103,7 +103,7 @@ describe('resource uploads', () => {
           },
         ],
         playback_policy: ['public'],
-        advanced_playback_policy: [
+        advanced_playback_policies: [
           { policy: 'public', drm_configuration_id: 'string' },
           { policy: 'public', drm_configuration_id: 'string' },
           { policy: 'public', drm_configuration_id: 'string' },
