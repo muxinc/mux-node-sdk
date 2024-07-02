@@ -20,22 +20,6 @@ export {
   Assets,
 } from './assets';
 export {
-  Broadcast,
-  BroadcastLayout,
-  BroadcastResolution,
-  BroadcastResponse,
-  BroadcastStatus,
-  Space,
-  SpaceResponse,
-  SpaceStatus,
-  SpaceType,
-  SpaceCreateParams,
-  SpaceListParams,
-  SpaceCreateBroadcastParams,
-  SpacesBasePage,
-  Spaces,
-} from './spaces';
-export {
   DRMConfiguration,
   DRMConfigurationListParams,
   DRMConfigurationsBasePage,

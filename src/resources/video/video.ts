@@ -7,7 +7,6 @@ import * as DRMConfigurationsAPI from '@mux/mux-node/resources/video/drm-configu
 import * as LiveStreamsAPI from '@mux/mux-node/resources/video/live-streams';
 import * as PlaybackIDsAPI from '@mux/mux-node/resources/video/playback-ids';
 import * as PlaybackRestrictionsAPI from '@mux/mux-node/resources/video/playback-restrictions';
-import * as SpacesAPI from '@mux/mux-node/resources/video/spaces';
 import * as TranscriptionVocabulariesAPI from '@mux/mux-node/resources/video/transcription-vocabularies';
 import * as UploadsAPI from '@mux/mux-node/resources/video/uploads';
 import * as WebInputsAPI from '@mux/mux-node/resources/video/web-inputs';
@@ -19,7 +18,6 @@ export class Video extends APIResource {
   playbackIds: PlaybackIDsAPI.PlaybackIDs = new PlaybackIDsAPI.PlaybackIDs(this._client);
   playbackRestrictions: PlaybackRestrictionsAPI.PlaybackRestrictions =
     new PlaybackRestrictionsAPI.PlaybackRestrictions(this._client);
-  spaces: SpacesAPI.Spaces = new SpacesAPI.Spaces(this._client);
   transcriptionVocabularies: TranscriptionVocabulariesAPI.TranscriptionVocabularies =
     new TranscriptionVocabulariesAPI.TranscriptionVocabularies(this._client);
   uploads: UploadsAPI.Uploads = new UploadsAPI.Uploads(this._client);
@@ -72,20 +70,6 @@ export namespace Video {
   export import PlaybackRestrictionListParams = PlaybackRestrictionsAPI.PlaybackRestrictionListParams;
   export import PlaybackRestrictionUpdateReferrerParams = PlaybackRestrictionsAPI.PlaybackRestrictionUpdateReferrerParams;
   export import PlaybackRestrictionUpdateUserAgentParams = PlaybackRestrictionsAPI.PlaybackRestrictionUpdateUserAgentParams;
-  export import Spaces = SpacesAPI.Spaces;
-  export import Broadcast = SpacesAPI.Broadcast;
-  export import BroadcastLayout = SpacesAPI.BroadcastLayout;
-  export import BroadcastResolution = SpacesAPI.BroadcastResolution;
-  export import BroadcastResponse = SpacesAPI.BroadcastResponse;
-  export import BroadcastStatus = SpacesAPI.BroadcastStatus;
-  export import Space = SpacesAPI.Space;
-  export import SpaceResponse = SpacesAPI.SpaceResponse;
-  export import SpaceStatus = SpacesAPI.SpaceStatus;
-  export import SpaceType = SpacesAPI.SpaceType;
-  export import SpacesBasePage = SpacesAPI.SpacesBasePage;
-  export import SpaceCreateParams = SpacesAPI.SpaceCreateParams;
-  export import SpaceListParams = SpacesAPI.SpaceListParams;
-  export import SpaceCreateBroadcastParams = SpacesAPI.SpaceCreateBroadcastParams;
   export import TranscriptionVocabularies = TranscriptionVocabulariesAPI.TranscriptionVocabularies;
   export import TranscriptionVocabulary = TranscriptionVocabulariesAPI.TranscriptionVocabulary;
   export import TranscriptionVocabularyResponse = TranscriptionVocabulariesAPI.TranscriptionVocabularyResponse;
