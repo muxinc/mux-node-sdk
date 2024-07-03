@@ -363,3 +363,5 @@ Types:
 - <code><a href="./src/resources/webhooks.ts">UnwrapWebhookEvent</a></code>
 
 Methods:
+
+- <code>client.webhooks.<a href="./src/resources/webhooks.ts">unwrap</a>(body) -> void</code>

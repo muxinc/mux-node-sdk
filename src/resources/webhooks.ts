@@ -5,7 +5,11 @@ import * as AssetsAPI from '@mux/mux-node/resources/video/assets';
 import * as LiveStreamsAPI from '@mux/mux-node/resources/video/live-streams';
 import * as UploadsAPI from '@mux/mux-node/resources/video/uploads';
 
-export class Webhooks extends APIResource {}
+export class Webhooks extends APIResource {
+  unwrap(body: string): UnwrapWebhookEvent {
+    return JSON.parse(body) as UnwrapWebhookEvent;
+  }
+}
 
 export interface BaseWebhookEvent {
   /**
