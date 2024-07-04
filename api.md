@@ -367,7 +367,7 @@ Methods:
 - <code>client.webhooks.<a href="./src/resources/webhooks.ts">unwrap</a>(body, headers, secret) -> UnwrapWebhookEvent</code>
 - <code>client.webhooks.<a href="./src/resources/webhooks.ts">verifySignature</a>(body, headers, secret) -> void</code>
 
-# Jwt
+# JWT
 
 Methods:
 
