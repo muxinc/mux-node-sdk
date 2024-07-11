@@ -38,6 +38,9 @@ export interface PlaybackIDRetrieveResponse {
    *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
    *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
    *   details about creating tokens.
+   *
+   * - `drm` playback IDs are protected with DRM technologies.
+   *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
    */
   policy: Shared.PlaybackPolicy;
 }
