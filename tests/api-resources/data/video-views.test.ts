@@ -58,7 +58,7 @@ describe('resource videoViews', () => {
           order_direction: 'asc',
           page: 0,
           timeframe: ['string', 'string', 'string'],
-          viewer_id: 'string',
+          viewer_id: 'viewer_id',
         },
         { path: '/_stainless_unknown_path' },
       ),

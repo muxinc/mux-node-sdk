@@ -27,12 +27,12 @@ describe('resource transcriptionVocabularies', () => {
     const response = await mux.video.transcriptionVocabularies.create({
       phrases: ['Mux', 'Live Stream', 'Playback ID', 'video encoding'],
       name: 'Mux API Vocabulary',
-      passthrough: 'string',
+      passthrough: 'passthrough',
     });
   });
 
   test('retrieve', async () => {
-    const responsePromise = mux.video.transcriptionVocabularies.retrieve('string');
+    const responsePromise = mux.video.transcriptionVocabularies.retrieve('TRANSCRIPTION_VOCABULARY_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -45,12 +45,14 @@ describe('resource transcriptionVocabularies', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.video.transcriptionVocabularies.retrieve('string', { path: '/_stainless_unknown_path' }),
+      mux.video.transcriptionVocabularies.retrieve('TRANSCRIPTION_VOCABULARY_ID', {
+        path: '/_stainless_unknown_path',
+      }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('update: only required params', async () => {
-    const responsePromise = mux.video.transcriptionVocabularies.update('string', {
+    const responsePromise = mux.video.transcriptionVocabularies.update('TRANSCRIPTION_VOCABULARY_ID', {
       phrases: ['Mux', 'Live Stream', 'RTMP', 'Stream Key'],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -63,10 +65,10 @@ describe('resource transcriptionVocabularies', () => {
   });
 
   test('update: required and optional params', async () => {
-    const response = await mux.video.transcriptionVocabularies.update('string', {
+    const response = await mux.video.transcriptionVocabularies.update('TRANSCRIPTION_VOCABULARY_ID', {
       phrases: ['Mux', 'Live Stream', 'RTMP', 'Stream Key'],
       name: 'Mux API Vocabulary - Updated',
-      passthrough: 'string',
+      passthrough: 'passthrough',
     });
   });
 
@@ -96,7 +98,7 @@ describe('resource transcriptionVocabularies', () => {
   });
 
   test('delete', async () => {
-    const responsePromise = mux.video.transcriptionVocabularies.delete('string');
+    const responsePromise = mux.video.transcriptionVocabularies.delete('TRANSCRIPTION_VOCABULARY_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -109,7 +111,9 @@ describe('resource transcriptionVocabularies', () => {
   test('delete: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.video.transcriptionVocabularies.delete('string', { path: '/_stainless_unknown_path' }),
+      mux.video.transcriptionVocabularies.delete('TRANSCRIPTION_VOCABULARY_ID', {
+        path: '/_stainless_unknown_path',
+      }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 });

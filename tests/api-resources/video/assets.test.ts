@@ -28,39 +28,39 @@ describe('resource assets', () => {
           url: 'https://muxed.s3.amazonaws.com/leds.mp4',
           overlay_settings: {
             vertical_align: 'top',
-            vertical_margin: 'string',
+            vertical_margin: 'vertical_margin',
             horizontal_align: 'left',
-            horizontal_margin: 'string',
-            width: 'string',
-            height: 'string',
-            opacity: 'string',
+            horizontal_margin: 'horizontal_margin',
+            width: 'width',
+            height: 'height',
+            opacity: 'opacity',
           },
           generated_subtitles: [
-            { name: 'string', passthrough: 'string', language_code: 'en' },
-            { name: 'string', passthrough: 'string', language_code: 'en' },
-            { name: 'string', passthrough: 'string', language_code: 'en' },
+            { name: 'name', passthrough: 'passthrough', language_code: 'en' },
+            { name: 'name', passthrough: 'passthrough', language_code: 'en' },
+            { name: 'name', passthrough: 'passthrough', language_code: 'en' },
           ],
           start_time: 0,
           end_time: 0,
           type: 'video',
           text_type: 'subtitles',
-          language_code: 'string',
-          name: 'string',
+          language_code: 'language_code',
+          name: 'name',
           closed_captions: true,
-          passthrough: 'string',
+          passthrough: 'passthrough',
         },
       ],
       advanced_playback_policies: [
-        { policy: 'public', drm_configuration_id: 'string' },
-        { policy: 'public', drm_configuration_id: 'string' },
-        { policy: 'public', drm_configuration_id: 'string' },
+        { policy: 'public', drm_configuration_id: 'drm_configuration_id' },
+        { policy: 'public', drm_configuration_id: 'drm_configuration_id' },
+        { policy: 'public', drm_configuration_id: 'drm_configuration_id' },
       ],
       encoding_tier: 'baseline',
       master_access: 'none',
       max_resolution_tier: '1080p',
       mp4_support: 'none',
       normalize_audio: true,
-      passthrough: 'string',
+      passthrough: 'passthrough',
       per_title_encode: true,
       playback_policy: ['public'],
       test: true,
@@ -68,7 +68,7 @@ describe('resource assets', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = mux.video.assets.retrieve('string');
+    const responsePromise = mux.video.assets.retrieve('ASSET_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -80,13 +80,13 @@ describe('resource assets', () => {
 
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(mux.video.assets.retrieve('string', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(mux.video.assets.retrieve('ASSET_ID', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Mux.NotFoundError,
     );
   });
 
   test('update', async () => {
-    const responsePromise = mux.video.assets.update('string', {});
+    const responsePromise = mux.video.assets.update('ASSET_ID', {});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -118,14 +118,14 @@ describe('resource assets', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       mux.video.assets.list(
-        { limit: 0, live_stream_id: 'string', page: 0, upload_id: 'string' },
+        { limit: 0, live_stream_id: 'live_stream_id', page: 0, upload_id: 'upload_id' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('delete', async () => {
-    const responsePromise = mux.video.assets.delete('string');
+    const responsePromise = mux.video.assets.delete('ASSET_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -137,13 +137,13 @@ describe('resource assets', () => {
 
   test('delete: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(mux.video.assets.delete('string', { path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(mux.video.assets.delete('ASSET_ID', { path: '/_stainless_unknown_path' })).rejects.toThrow(
       Mux.NotFoundError,
     );
   });
 
   test('createPlaybackId', async () => {
-    const responsePromise = mux.video.assets.createPlaybackId('string', {});
+    const responsePromise = mux.video.assets.createPlaybackId('ASSET_ID', {});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -154,7 +154,7 @@ describe('resource assets', () => {
   });
 
   test('createTrack: only required params', async () => {
-    const responsePromise = mux.video.assets.createTrack('string', {
+    const responsePromise = mux.video.assets.createTrack('ASSET_ID', {
       language_code: 'en-US',
       type: 'text',
       url: 'https://example.com/myVideo_en.srt',
@@ -169,7 +169,7 @@ describe('resource assets', () => {
   });
 
   test('createTrack: required and optional params', async () => {
-    const response = await mux.video.assets.createTrack('string', {
+    const response = await mux.video.assets.createTrack('ASSET_ID', {
       language_code: 'en-US',
       type: 'text',
       url: 'https://example.com/myVideo_en.srt',
@@ -181,7 +181,7 @@ describe('resource assets', () => {
   });
 
   test('deletePlaybackId', async () => {
-    const responsePromise = mux.video.assets.deletePlaybackId('string', 'string');
+    const responsePromise = mux.video.assets.deletePlaybackId('ASSET_ID', 'PLAYBACK_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -194,12 +194,12 @@ describe('resource assets', () => {
   test('deletePlaybackId: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.video.assets.deletePlaybackId('string', 'string', { path: '/_stainless_unknown_path' }),
+      mux.video.assets.deletePlaybackId('ASSET_ID', 'PLAYBACK_ID', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('deleteTrack', async () => {
-    const responsePromise = mux.video.assets.deleteTrack('string', 'string');
+    const responsePromise = mux.video.assets.deleteTrack('ASSET_ID', 'TRACK_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -212,12 +212,12 @@ describe('resource assets', () => {
   test('deleteTrack: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.video.assets.deleteTrack('string', 'string', { path: '/_stainless_unknown_path' }),
+      mux.video.assets.deleteTrack('ASSET_ID', 'TRACK_ID', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('generateSubtitles: only required params', async () => {
-    const responsePromise = mux.video.assets.generateSubtitles('string', 'string', {
+    const responsePromise = mux.video.assets.generateSubtitles('ASSET_ID', 'TRACK_ID', {
       generated_subtitles: [{}],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -230,7 +230,7 @@ describe('resource assets', () => {
   });
 
   test('generateSubtitles: required and optional params', async () => {
-    const response = await mux.video.assets.generateSubtitles('string', 'string', {
+    const response = await mux.video.assets.generateSubtitles('ASSET_ID', 'TRACK_ID', {
       generated_subtitles: [
         { name: 'English (generated)', passthrough: 'English (generated)', language_code: 'en' },
       ],
@@ -238,7 +238,7 @@ describe('resource assets', () => {
   });
 
   test('retrieveInputInfo', async () => {
-    const responsePromise = mux.video.assets.retrieveInputInfo('string');
+    const responsePromise = mux.video.assets.retrieveInputInfo('ASSET_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -251,12 +251,12 @@ describe('resource assets', () => {
   test('retrieveInputInfo: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.video.assets.retrieveInputInfo('string', { path: '/_stainless_unknown_path' }),
+      mux.video.assets.retrieveInputInfo('ASSET_ID', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('retrievePlaybackId', async () => {
-    const responsePromise = mux.video.assets.retrievePlaybackId('string', 'string');
+    const responsePromise = mux.video.assets.retrievePlaybackId('ASSET_ID', 'PLAYBACK_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -269,12 +269,12 @@ describe('resource assets', () => {
   test('retrievePlaybackId: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.video.assets.retrievePlaybackId('string', 'string', { path: '/_stainless_unknown_path' }),
+      mux.video.assets.retrievePlaybackId('ASSET_ID', 'PLAYBACK_ID', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('updateMasterAccess: only required params', async () => {
-    const responsePromise = mux.video.assets.updateMasterAccess('string', { master_access: 'temporary' });
+    const responsePromise = mux.video.assets.updateMasterAccess('ASSET_ID', { master_access: 'temporary' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -285,11 +285,11 @@ describe('resource assets', () => {
   });
 
   test('updateMasterAccess: required and optional params', async () => {
-    const response = await mux.video.assets.updateMasterAccess('string', { master_access: 'temporary' });
+    const response = await mux.video.assets.updateMasterAccess('ASSET_ID', { master_access: 'temporary' });
   });
 
   test('updateMP4Support: only required params', async () => {
-    const responsePromise = mux.video.assets.updateMP4Support('string', { mp4_support: 'capped-1080p' });
+    const responsePromise = mux.video.assets.updateMP4Support('ASSET_ID', { mp4_support: 'capped-1080p' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -300,6 +300,6 @@ describe('resource assets', () => {
   });
 
   test('updateMP4Support: required and optional params', async () => {
-    const response = await mux.video.assets.updateMP4Support('string', { mp4_support: 'capped-1080p' });
+    const response = await mux.video.assets.updateMP4Support('ASSET_ID', { mp4_support: 'capped-1080p' });
   });
 });
