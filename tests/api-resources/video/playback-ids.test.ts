@@ -11,7 +11,7 @@ const mux = new Mux({
 
 describe('resource playbackIds', () => {
   test('retrieve', async () => {
-    const responsePromise = mux.video.playbackIds.retrieve('string');
+    const responsePromise = mux.video.playbackIds.retrieve('PLAYBACK_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,7 +24,7 @@ describe('resource playbackIds', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.video.playbackIds.retrieve('string', { path: '/_stainless_unknown_path' }),
+      mux.video.playbackIds.retrieve('PLAYBACK_ID', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 });

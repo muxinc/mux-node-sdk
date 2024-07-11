@@ -28,10 +28,10 @@ describe('resource webInputs', () => {
     const response = await mux.video.webInputs.create({
       live_stream_id: 'ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag',
       url: 'https://example.com/hello.html',
-      id: 'string',
+      id: 'id',
       auto_launch: true,
-      created_at: 'string',
-      passthrough: 'string',
+      created_at: 'created_at',
+      passthrough: 'passthrough',
       resolution: '1920x1080',
       status: 'idle',
       timeout: 0,

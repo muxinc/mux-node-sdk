@@ -33,9 +33,9 @@ describe('resource deliveryUsage', () => {
     await expect(
       mux.video.deliveryUsage.list(
         {
-          asset_id: 'string',
+          asset_id: 'asset_id',
           limit: 0,
-          live_stream_id: 'string',
+          live_stream_id: 'live_stream_id',
           page: 0,
           timeframe: ['string', 'string', 'string'],
         },
