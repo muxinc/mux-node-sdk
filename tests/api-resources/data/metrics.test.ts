@@ -37,7 +37,7 @@ describe('resource metrics', () => {
           filters: ['string', 'string', 'string'],
           metric_filters: ['string', 'string', 'string'],
           timeframe: ['string', 'string', 'string'],
-          value: 'string',
+          value: 'value',
         },
         { path: '/_stainless_unknown_path' },
       ),

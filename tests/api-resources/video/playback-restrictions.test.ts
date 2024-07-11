@@ -32,7 +32,7 @@ describe('resource playbackRestrictions', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = mux.video.playbackRestrictions.retrieve('string');
+    const responsePromise = mux.video.playbackRestrictions.retrieve('PLAYBACK_RESTRICTION_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -45,7 +45,9 @@ describe('resource playbackRestrictions', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.video.playbackRestrictions.retrieve('string', { path: '/_stainless_unknown_path' }),
+      mux.video.playbackRestrictions.retrieve('PLAYBACK_RESTRICTION_ID', {
+        path: '/_stainless_unknown_path',
+      }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
@@ -75,7 +77,7 @@ describe('resource playbackRestrictions', () => {
   });
 
   test('delete', async () => {
-    const responsePromise = mux.video.playbackRestrictions.delete('string');
+    const responsePromise = mux.video.playbackRestrictions.delete('PLAYBACK_RESTRICTION_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -88,12 +90,12 @@ describe('resource playbackRestrictions', () => {
   test('delete: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.video.playbackRestrictions.delete('string', { path: '/_stainless_unknown_path' }),
+      mux.video.playbackRestrictions.delete('PLAYBACK_RESTRICTION_ID', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('updateReferrer: only required params', async () => {
-    const responsePromise = mux.video.playbackRestrictions.updateReferrer('string', {
+    const responsePromise = mux.video.playbackRestrictions.updateReferrer('PLAYBACK_RESTRICTION_ID', {
       allowed_domains: ['string', 'string', 'string'],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -106,14 +108,14 @@ describe('resource playbackRestrictions', () => {
   });
 
   test('updateReferrer: required and optional params', async () => {
-    const response = await mux.video.playbackRestrictions.updateReferrer('string', {
+    const response = await mux.video.playbackRestrictions.updateReferrer('PLAYBACK_RESTRICTION_ID', {
       allowed_domains: ['string', 'string', 'string'],
       allow_no_referrer: true,
     });
   });
 
   test('updateUserAgent: only required params', async () => {
-    const responsePromise = mux.video.playbackRestrictions.updateUserAgent('string', {
+    const responsePromise = mux.video.playbackRestrictions.updateUserAgent('PLAYBACK_RESTRICTION_ID', {
       allow_high_risk_user_agent: false,
       allow_no_user_agent: false,
     });
@@ -127,7 +129,7 @@ describe('resource playbackRestrictions', () => {
   });
 
   test('updateUserAgent: required and optional params', async () => {
-    const response = await mux.video.playbackRestrictions.updateUserAgent('string', {
+    const response = await mux.video.playbackRestrictions.updateUserAgent('PLAYBACK_RESTRICTION_ID', {
       allow_high_risk_user_agent: false,
       allow_no_user_agent: false,
     });
