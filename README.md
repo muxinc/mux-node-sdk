@@ -23,7 +23,7 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import Mux from '@mux/mux-node';
 
-const mux = new Mux({
+const client = new Mux({
   tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted
   tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted
 });
@@ -47,7 +47,7 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import Mux from '@mux/mux-node';
 
-const mux = new Mux({
+const client = new Mux({
   tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted
   tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted
 });
@@ -269,7 +269,7 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const mux = new Mux({
+const client = new Mux({
   maxRetries: 0, // default is 2
 });
 
@@ -286,7 +286,7 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const mux = new Mux({
+const client = new Mux({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
@@ -341,7 +341,7 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 
 <!-- prettier-ignore -->
 ```ts
-const mux = new Mux();
+const client = new Mux();
 
 const response = await mux.video.assets
   .create({ input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }] })
@@ -452,7 +452,7 @@ import http from 'http';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
-const mux = new Mux({
+const client = new Mux({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
 });
 
