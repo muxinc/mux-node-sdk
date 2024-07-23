@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as Core from '@mux/mux-node/core';
-import * as RealTimeAPI from '@mux/mux-node/resources/data/real-time';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import * as RealTimeAPI from './real-time';
 
 export class RealTime extends APIResource {
   /**
