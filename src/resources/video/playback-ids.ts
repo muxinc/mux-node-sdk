@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '@mux/mux-node/resource';
-import * as Core from '@mux/mux-node/core';
-import * as PlaybackIDsAPI from '@mux/mux-node/resources/video/playback-ids';
-import * as Shared from '@mux/mux-node/resources/shared';
+import { APIResource } from '../../resource';
+import * as Core from '../../core';
+import * as PlaybackIDsAPI from './playback-ids';
+import * as Shared from '../shared';
 
 export class PlaybackIDs extends APIResource {
   /**

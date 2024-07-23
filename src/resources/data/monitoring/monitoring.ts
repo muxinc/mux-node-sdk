@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '@mux/mux-node/resource';
-import * as Core from '@mux/mux-node/core';
-import * as MonitoringAPI from '@mux/mux-node/resources/data/monitoring/monitoring';
-import * as MetricsAPI from '@mux/mux-node/resources/data/monitoring/metrics';
+import { APIResource } from '../../../resource';
+import * as Core from '../../../core';
+import * as MonitoringAPI from './monitoring';
+import * as MetricsAPI from './metrics';
 
 export class Monitoring extends APIResource {
   metrics: MetricsAPI.Metrics = new MetricsAPI.Metrics(this._client);

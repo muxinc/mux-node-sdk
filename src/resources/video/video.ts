@@ -1,15 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '@mux/mux-node/resource';
-import * as AssetsAPI from '@mux/mux-node/resources/video/assets';
-import * as DeliveryUsageAPI from '@mux/mux-node/resources/video/delivery-usage';
-import * as DRMConfigurationsAPI from '@mux/mux-node/resources/video/drm-configurations';
-import * as LiveStreamsAPI from '@mux/mux-node/resources/video/live-streams';
-import * as PlaybackIDsAPI from '@mux/mux-node/resources/video/playback-ids';
-import * as PlaybackRestrictionsAPI from '@mux/mux-node/resources/video/playback-restrictions';
-import * as TranscriptionVocabulariesAPI from '@mux/mux-node/resources/video/transcription-vocabularies';
-import * as UploadsAPI from '@mux/mux-node/resources/video/uploads';
-import * as WebInputsAPI from '@mux/mux-node/resources/video/web-inputs';
+import { APIResource } from '../../resource';
+import * as AssetsAPI from './assets';
+import * as DeliveryUsageAPI from './delivery-usage';
+import * as DRMConfigurationsAPI from './drm-configurations';
+import * as LiveStreamsAPI from './live-streams';
+import * as PlaybackIDsAPI from './playback-ids';
+import * as PlaybackRestrictionsAPI from './playback-restrictions';
+import * as TranscriptionVocabulariesAPI from './transcription-vocabularies';
+import * as UploadsAPI from './uploads';
+import * as WebInputsAPI from './web-inputs';
 
 export class Video extends APIResource {
   assets: AssetsAPI.Assets = new AssetsAPI.Assets(this._client);
