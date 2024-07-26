@@ -29,7 +29,7 @@ const client = new Mux({
 });
 
 async function main() {
-  const asset = await mux.video.assets.create({
+  const asset = await client.video.assets.create({
     input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
   });
 
@@ -56,7 +56,7 @@ async function main() {
   const params: Mux.Video.AssetCreateParams = {
     input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
   };
-  const asset: Mux.Video.Asset = await mux.video.assets.create(params);
+  const asset: Mux.Video.Asset = await client.video.assets.create(params);
 }
 
 main();
@@ -231,7 +231,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const liveStream = await mux.video.liveStreams.create().catch(async (err) => {
+  const liveStream = await client.video.liveStreams.create().catch(async (err) => {
     if (err instanceof Mux.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -274,7 +274,7 @@ const client = new Mux({
 });
 
 // Or, configure per-request:
-await mux.video.assets.retrieve('t02rm...', {
+await client.video.assets.retrieve('t02rm...', {
   maxRetries: 5,
 });
 ```
@@ -291,7 +291,7 @@ const client = new Mux({
 });
 
 // Override per-request:
-await mux.video.assets.retrieve('t02rm...', {
+await client.video.assets.retrieve('t02rm...', {
   timeout: 5 * 1000,
 });
 ```
@@ -309,7 +309,7 @@ You can use `for await … of` syntax to iterate through items across all pages:
 async function fetchAllVideoDeliveryUsages(params) {
   const allVideoDeliveryUsages = [];
   // Automatically fetches more pages as needed.
-  for await (const deliveryReport of mux.video.deliveryUsage.list()) {
+  for await (const deliveryReport of client.video.deliveryUsage.list()) {
     allVideoDeliveryUsages.push(deliveryReport);
   }
   return allVideoDeliveryUsages;
@@ -319,7 +319,7 @@ async function fetchAllVideoDeliveryUsages(params) {
 Alternatively, you can make request a single page at a time:
 
 ```ts
-let page = await mux.video.deliveryUsage.list();
+let page = await client.video.deliveryUsage.list();
 for (const deliveryReport of page.data) {
   console.log(deliveryReport);
 }
@@ -343,13 +343,13 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 ```ts
 const client = new Mux();
 
-const response = await mux.video.assets
+const response = await client.video.assets
   .create({ input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }] })
   .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: asset, response: raw } = await mux.video.assets
+const { data: asset, response: raw } = await client.video.assets
   .create({ input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }] })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
@@ -457,7 +457,7 @@ const client = new Mux({
 });
 
 // Override per-request:
-await mux.video.assets.retrieve('t02rm...', {
+await client.video.assets.retrieve('t02rm...', {
   httpAgent: new http.Agent({ keepAlive: false }),
 });
 ```
