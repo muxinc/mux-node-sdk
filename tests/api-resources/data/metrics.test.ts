@@ -3,7 +3,7 @@
 import Mux from '@mux/mux-node';
 import { Response } from 'node-fetch';
 
-const mux = new Mux({
+const client = new Mux({
   tokenId: 'my token id',
   tokenSecret: 'my secret',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const mux = new Mux({
 
 describe('resource metrics', () => {
   test('list', async () => {
-    const responsePromise = mux.data.metrics.list();
+    const responsePromise = client.data.metrics.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,7 +23,7 @@ describe('resource metrics', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(mux.data.metrics.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.data.metrics.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Mux.NotFoundError,
     );
   });
@@ -31,7 +31,7 @@ describe('resource metrics', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.metrics.list(
+      client.data.metrics.list(
         {
           dimension: 'asn',
           filters: ['string', 'string', 'string'],
@@ -45,7 +45,7 @@ describe('resource metrics', () => {
   });
 
   test('getInsights', async () => {
-    const responsePromise = mux.data.metrics.getInsights('video_startup_time');
+    const responsePromise = client.data.metrics.getInsights('video_startup_time');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -58,14 +58,14 @@ describe('resource metrics', () => {
   test('getInsights: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.metrics.getInsights('video_startup_time', { path: '/_stainless_unknown_path' }),
+      client.data.metrics.getInsights('video_startup_time', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('getInsights: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.metrics.getInsights(
+      client.data.metrics.getInsights(
         'video_startup_time',
         {
           filters: ['string', 'string', 'string'],
@@ -80,7 +80,7 @@ describe('resource metrics', () => {
   });
 
   test('getOverallValues', async () => {
-    const responsePromise = mux.data.metrics.getOverallValues('video_startup_time');
+    const responsePromise = client.data.metrics.getOverallValues('video_startup_time');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -93,14 +93,14 @@ describe('resource metrics', () => {
   test('getOverallValues: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.metrics.getOverallValues('video_startup_time', { path: '/_stainless_unknown_path' }),
+      client.data.metrics.getOverallValues('video_startup_time', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('getOverallValues: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.metrics.getOverallValues(
+      client.data.metrics.getOverallValues(
         'video_startup_time',
         {
           filters: ['string', 'string', 'string'],
@@ -114,7 +114,7 @@ describe('resource metrics', () => {
   });
 
   test('getTimeseries', async () => {
-    const responsePromise = mux.data.metrics.getTimeseries('video_startup_time');
+    const responsePromise = client.data.metrics.getTimeseries('video_startup_time');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -127,14 +127,14 @@ describe('resource metrics', () => {
   test('getTimeseries: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.metrics.getTimeseries('video_startup_time', { path: '/_stainless_unknown_path' }),
+      client.data.metrics.getTimeseries('video_startup_time', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('getTimeseries: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.metrics.getTimeseries(
+      client.data.metrics.getTimeseries(
         'video_startup_time',
         {
           filters: ['string', 'string', 'string'],
@@ -150,7 +150,7 @@ describe('resource metrics', () => {
   });
 
   test('listBreakdownValues', async () => {
-    const responsePromise = mux.data.metrics.listBreakdownValues('video_startup_time');
+    const responsePromise = client.data.metrics.listBreakdownValues('video_startup_time');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -163,14 +163,14 @@ describe('resource metrics', () => {
   test('listBreakdownValues: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.metrics.listBreakdownValues('video_startup_time', { path: '/_stainless_unknown_path' }),
+      client.data.metrics.listBreakdownValues('video_startup_time', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('listBreakdownValues: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.metrics.listBreakdownValues(
+      client.data.metrics.listBreakdownValues(
         'video_startup_time',
         {
           filters: ['string', 'string', 'string'],

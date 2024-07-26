@@ -3,7 +3,7 @@
 import Mux from '@mux/mux-node';
 import { Response } from 'node-fetch';
 
-const mux = new Mux({
+const client = new Mux({
   tokenId: 'my token id',
   tokenSecret: 'my secret',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const mux = new Mux({
 
 describe('resource deliveryUsage', () => {
   test('list', async () => {
-    const responsePromise = mux.video.deliveryUsage.list();
+    const responsePromise = client.video.deliveryUsage.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,7 +23,7 @@ describe('resource deliveryUsage', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(mux.video.deliveryUsage.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.video.deliveryUsage.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Mux.NotFoundError,
     );
   });
@@ -31,7 +31,7 @@ describe('resource deliveryUsage', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.video.deliveryUsage.list(
+      client.video.deliveryUsage.list(
         {
           asset_id: 'asset_id',
           limit: 0,
