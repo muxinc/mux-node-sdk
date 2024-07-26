@@ -3,7 +3,7 @@
 import Mux from '@mux/mux-node';
 import { Response } from 'node-fetch';
 
-const mux = new Mux({
+const client = new Mux({
   tokenId: 'my token id',
   tokenSecret: 'my secret',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const mux = new Mux({
 
 describe('resource drmConfigurations', () => {
   test('retrieve', async () => {
-    const responsePromise = mux.video.drmConfigurations.retrieve('DRM_CONFIGURATION_ID');
+    const responsePromise = client.video.drmConfigurations.retrieve('DRM_CONFIGURATION_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,12 +24,12 @@ describe('resource drmConfigurations', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.video.drmConfigurations.retrieve('DRM_CONFIGURATION_ID', { path: '/_stainless_unknown_path' }),
+      client.video.drmConfigurations.retrieve('DRM_CONFIGURATION_ID', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('list', async () => {
-    const responsePromise = mux.video.drmConfigurations.list();
+    const responsePromise = client.video.drmConfigurations.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -41,7 +41,7 @@ describe('resource drmConfigurations', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(mux.video.drmConfigurations.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.video.drmConfigurations.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Mux.NotFoundError,
     );
   });
@@ -49,7 +49,7 @@ describe('resource drmConfigurations', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.video.drmConfigurations.list({ limit: 0, page: 0 }, { path: '/_stainless_unknown_path' }),
+      client.video.drmConfigurations.list({ limit: 0, page: 0 }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 });

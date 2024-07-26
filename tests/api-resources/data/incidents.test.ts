@@ -3,7 +3,7 @@
 import Mux from '@mux/mux-node';
 import { Response } from 'node-fetch';
 
-const mux = new Mux({
+const client = new Mux({
   tokenId: 'my token id',
   tokenSecret: 'my secret',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
@@ -11,7 +11,7 @@ const mux = new Mux({
 
 describe('resource incidents', () => {
   test('retrieve', async () => {
-    const responsePromise = mux.data.incidents.retrieve('abcd1234');
+    const responsePromise = client.data.incidents.retrieve('abcd1234');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,12 +24,12 @@ describe('resource incidents', () => {
   test('retrieve: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.incidents.retrieve('abcd1234', { path: '/_stainless_unknown_path' }),
+      client.data.incidents.retrieve('abcd1234', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('list', async () => {
-    const responsePromise = mux.data.incidents.list();
+    const responsePromise = client.data.incidents.list();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -41,7 +41,7 @@ describe('resource incidents', () => {
 
   test('list: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(mux.data.incidents.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+    await expect(client.data.incidents.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
       Mux.NotFoundError,
     );
   });
@@ -49,7 +49,7 @@ describe('resource incidents', () => {
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.incidents.list(
+      client.data.incidents.list(
         {
           limit: 0,
           order_by: 'negative_impact',
@@ -64,7 +64,7 @@ describe('resource incidents', () => {
   });
 
   test('listRelated', async () => {
-    const responsePromise = mux.data.incidents.listRelated('abcd1234');
+    const responsePromise = client.data.incidents.listRelated('abcd1234');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -77,14 +77,14 @@ describe('resource incidents', () => {
   test('listRelated: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.incidents.listRelated('abcd1234', { path: '/_stainless_unknown_path' }),
+      client.data.incidents.listRelated('abcd1234', { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('listRelated: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      mux.data.incidents.listRelated(
+      client.data.incidents.listRelated(
         'abcd1234',
         { limit: 0, order_by: 'negative_impact', order_direction: 'asc', page: 0 },
         { path: '/_stainless_unknown_path' },
