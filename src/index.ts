@@ -201,6 +201,7 @@ export class Mux extends Core.APIClient {
   }
 
   static Mux = this;
+  static DEFAULT_TIMEOUT = 60000; // 1 minute
 
   static MuxError = Errors.MuxError;
   static APIError = Errors.APIError;
