@@ -25,37 +25,37 @@ describe('resource assets', () => {
     const response = await client.video.assets.create({
       input: [
         {
-          url: 'https://muxed.s3.amazonaws.com/leds.mp4',
-          overlay_settings: {
-            vertical_align: 'top',
-            vertical_margin: 'vertical_margin',
-            horizontal_align: 'left',
-            horizontal_margin: 'horizontal_margin',
-            width: 'width',
-            height: 'height',
-            opacity: 'opacity',
-          },
-          generated_subtitles: [
-            { name: 'name', passthrough: 'passthrough', language_code: 'en' },
-            { name: 'name', passthrough: 'passthrough', language_code: 'en' },
-            { name: 'name', passthrough: 'passthrough', language_code: 'en' },
-          ],
-          start_time: 0,
+          closed_captions: true,
           end_time: 0,
-          type: 'video',
-          text_type: 'subtitles',
+          generated_subtitles: [
+            { language_code: 'en', name: 'name', passthrough: 'passthrough' },
+            { language_code: 'en', name: 'name', passthrough: 'passthrough' },
+            { language_code: 'en', name: 'name', passthrough: 'passthrough' },
+          ],
           language_code: 'language_code',
           name: 'name',
-          closed_captions: true,
+          overlay_settings: {
+            height: 'height',
+            horizontal_align: 'left',
+            horizontal_margin: 'horizontal_margin',
+            opacity: 'opacity',
+            vertical_align: 'top',
+            vertical_margin: 'vertical_margin',
+            width: 'width',
+          },
           passthrough: 'passthrough',
+          start_time: 0,
+          text_type: 'subtitles',
+          type: 'video',
+          url: 'https://muxed.s3.amazonaws.com/leds.mp4',
         },
       ],
       advanced_playback_policies: [
-        { policy: 'public', drm_configuration_id: 'drm_configuration_id' },
-        { policy: 'public', drm_configuration_id: 'drm_configuration_id' },
-        { policy: 'public', drm_configuration_id: 'drm_configuration_id' },
+        { drm_configuration_id: 'drm_configuration_id', policy: 'public' },
+        { drm_configuration_id: 'drm_configuration_id', policy: 'public' },
+        { drm_configuration_id: 'drm_configuration_id', policy: 'public' },
       ],
-      encoding_tier: 'baseline',
+      encoding_tier: 'smart',
       master_access: 'none',
       max_resolution_tier: '1080p',
       mp4_support: 'none',
@@ -232,7 +232,7 @@ describe('resource assets', () => {
   test('generateSubtitles: required and optional params', async () => {
     const response = await client.video.assets.generateSubtitles('ASSET_ID', 'TRACK_ID', {
       generated_subtitles: [
-        { name: 'English (generated)', passthrough: 'English (generated)', language_code: 'en' },
+        { language_code: 'en', name: 'English (generated)', passthrough: 'English (generated)' },
       ],
     });
   });
@@ -291,7 +291,7 @@ describe('resource assets', () => {
   });
 
   test('updateMP4Support: only required params', async () => {
-    const responsePromise = client.video.assets.updateMP4Support('ASSET_ID', { mp4_support: 'capped-1080p' });
+    const responsePromise = client.video.assets.updateMP4Support('ASSET_ID', { mp4_support: 'standard' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -302,6 +302,6 @@ describe('resource assets', () => {
   });
 
   test('updateMP4Support: required and optional params', async () => {
-    const response = await client.video.assets.updateMP4Support('ASSET_ID', { mp4_support: 'capped-1080p' });
+    const response = await client.video.assets.updateMP4Support('ASSET_ID', { mp4_support: 'standard' });
   });
 });

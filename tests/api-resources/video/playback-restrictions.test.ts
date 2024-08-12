@@ -27,7 +27,7 @@ describe('resource playbackRestrictions', () => {
   test('create: required and optional params', async () => {
     const response = await client.video.playbackRestrictions.create({
       referrer: { allowed_domains: ['*.example.com'], allow_no_referrer: true },
-      user_agent: { allow_no_user_agent: false, allow_high_risk_user_agent: false },
+      user_agent: { allow_high_risk_user_agent: false, allow_no_user_agent: false },
     });
   });
 
