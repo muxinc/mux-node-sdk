@@ -64,6 +64,7 @@ describe('resource assets', () => {
       per_title_encode: true,
       playback_policy: ['public'],
       test: true,
+      video_quality: 'basic',
     });
   });
 
