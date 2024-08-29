@@ -229,7 +229,7 @@ export interface Asset {
    * @deprecated: This field is deprecated. Please use `video_quality` instead. The
    * encoding tier informs the cost, quality, and available platform features for the
    * asset. By default the `smart` encoding tier is used.
-   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   encoding_tier: 'smart' | 'baseline';
 
@@ -390,7 +390,7 @@ export interface Asset {
    * The video quality controls the cost, quality, and available platform features
    * for the asset. By default the `plus` video quality is used. This field replaces
    * the deprecated `encoding_tier` value.
-   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   video_quality?: 'basic' | 'plus';
 }
@@ -585,7 +585,7 @@ export interface AssetOptions {
    * @deprecated: This field is deprecated. Please use `video_quality` instead. The
    * encoding tier informs the cost, quality, and available platform features for the
    * asset. By default the `smart` encoding tier is used.
-   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   encoding_tier?: 'smart' | 'baseline';
 
@@ -682,7 +682,7 @@ export interface AssetOptions {
    * The video quality controls the cost, quality, and available platform features
    * for the asset. By default the `plus` video quality is used. This field replaces
    * the deprecated `encoding_tier` value.
-   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   video_quality?: 'basic' | 'plus';
 }
@@ -1324,7 +1324,7 @@ export interface AssetCreateParams {
    * This field is deprecated. Please use `video_quality` instead. The encoding tier
    * informs the cost, quality, and available platform features for the asset. By
    * default the `smart` encoding tier is used.
-   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   encoding_tier?: 'smart' | 'baseline';
 
@@ -1411,7 +1411,7 @@ export interface AssetCreateParams {
    * The video quality controls the cost, quality, and available platform features
    * for the asset. By default the `plus` video quality is used. This field replaces
    * the deprecated `encoding_tier` value.
-   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   video_quality?: 'basic' | 'plus';
 }
