@@ -41,7 +41,7 @@ export interface DeliveryReport {
   /**
    * @deprecated: This field is deprecated. Please use `asset_video_quality` instead.
    * The encoding tier that the asset was ingested at.
-   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   asset_encoding_tier: 'smart' | 'baseline';
 
@@ -80,7 +80,7 @@ export interface DeliveryReport {
   /**
    * The video quality that the asset was ingested at. This field replaces
    * `asset_encoding_tier`.
-   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   asset_video_quality?: 'basic' | 'plus';
 
