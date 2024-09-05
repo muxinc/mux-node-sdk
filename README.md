@@ -7,7 +7,7 @@ This library provides convenient access to the Mux REST API from server-side Typ
 > [!NOTE]
 > In February 2024 this SDK was updated to Version 8.0. For upgrading to 8.x see [UPGRADE_8.x.md](https://github.com/muxinc/mux-node-sdk/blob/master/UPGRADE_8.x.md)
 
-The REST API documentation can be found [on docs.mux.com](https://docs.mux.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.mux.com](https://docs.mux.com). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
