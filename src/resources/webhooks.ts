@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '@mux/mux-node/resource';
+import { APIResource } from '../resource';
 import crypto from 'crypto';
 import { getRequiredHeader, HeadersLike } from '@mux/mux-node/core';
-import * as AssetsAPI from '@mux/mux-node/resources/video/assets';
-import * as LiveStreamsAPI from '@mux/mux-node/resources/video/live-streams';
-import * as UploadsAPI from '@mux/mux-node/resources/video/uploads';
+import * as AssetsAPI from './video/assets';
+import * as LiveStreamsAPI from './video/live-streams';
+import * as UploadsAPI from './video/uploads';
 
 export class Webhooks extends APIResource {
   /**
