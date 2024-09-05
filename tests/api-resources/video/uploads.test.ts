@@ -116,6 +116,7 @@ describe('resource uploads', () => {
         per_title_encode: true,
         playback_policy: ['public'],
         test: true,
+        video_quality: 'basic',
       },
       test: true,
       timeout: 60,

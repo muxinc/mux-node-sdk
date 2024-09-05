@@ -537,6 +537,13 @@ export namespace VideoDeliveryHighTrafficWebhookEvent {
       asset_duration?: number;
 
       /**
+       * @deprecated: This field is deprecated. Please use `asset_video_quality` instead.
+       * The encoding tier that the asset was ingested at.
+       * [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+       */
+      asset_encoding_tier?: 'smart' | 'baseline';
+
+      /**
        * Unique identifier for the asset.
        */
       asset_id?: string;
@@ -551,6 +558,13 @@ export namespace VideoDeliveryHighTrafficWebhookEvent {
        * The state of the asset.
        */
       asset_state?: 'ready' | 'errored' | 'deleted';
+
+      /**
+       * The video quality that the asset was ingested at. This field replaces
+       * `asset_encoding_tier`.
+       * [See the video quality guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+       */
+      asset_video_quality?: 'basic' | 'plus';
 
       /**
        * Time at which the asset was created. Measured in seconds since the Unix epoch.
