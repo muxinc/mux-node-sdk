@@ -806,7 +806,7 @@ export interface LiveStreamUpdateParams {
 
   /**
    * Updates the new asset settings to use to generate a new asset for this live
-   * stream. Only the `mp4_support` setting may be updated.
+   * stream. Only the `mp4_support` and `master_access` settings may be updated.
    */
   new_asset_settings?: LiveStreamUpdateParams.NewAssetSettings;
 
@@ -856,9 +856,14 @@ export interface LiveStreamUpdateParams {
 export namespace LiveStreamUpdateParams {
   /**
    * Updates the new asset settings to use to generate a new asset for this live
-   * stream. Only the `mp4_support` setting may be updated.
+   * stream. Only the `mp4_support` and `master_access` settings may be updated.
    */
   export interface NewAssetSettings {
+    /**
+     * Add or remove access to the master version of the video.
+     */
+    master_access?: 'temporary' | 'none';
+
     /**
      * Specify what level of support for mp4 playback should be added to new assets
      * generated from this live stream.
