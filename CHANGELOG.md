@@ -1,5 +1,78 @@
 # Changelog
 
+## 8.9.0 (2024-10-09)
+
+Full Changelog: [v8.8.0...v8.9.0](https://github.com/muxinc/mux-node-sdk/compare/v8.8.0...v8.9.0)
+
+### Features
+
+* **api:** api update ([#495](https://github.com/muxinc/mux-node-sdk/issues/495)) ([1fe43bb](https://github.com/muxinc/mux-node-sdk/commit/1fe43bbe97ba8712184dab0655ac74575af7486d))
+* **api:** api update ([#497](https://github.com/muxinc/mux-node-sdk/issues/497)) ([d0b2805](https://github.com/muxinc/mux-node-sdk/commit/d0b2805efc94b5d8d80052707a390517b9e5c684))
+* **api:** generate webhook types ([#441](https://github.com/muxinc/mux-node-sdk/issues/441)) ([dcb9009](https://github.com/muxinc/mux-node-sdk/commit/dcb9009810885bdfa88696588a8c589e966ee44f))
+* **api:** make webhooks a standalone api ([#442](https://github.com/muxinc/mux-node-sdk/issues/442)) ([7978973](https://github.com/muxinc/mux-node-sdk/commit/79789735e7e384b764b1b9000909bf8777ffa515))
+* **api:** manual updates ([#436](https://github.com/muxinc/mux-node-sdk/issues/436)) ([b647830](https://github.com/muxinc/mux-node-sdk/commit/b64783074d9b05d768f7affa2be763d5e0a07c7b))
+* **api:** OpenAPI spec update via Stainless API ([#433](https://github.com/muxinc/mux-node-sdk/issues/433)) ([57614f0](https://github.com/muxinc/mux-node-sdk/commit/57614f066db415d68acec01a47c946c00563a17b))
+* **api:** OpenAPI spec update via Stainless API ([#434](https://github.com/muxinc/mux-node-sdk/issues/434)) ([6b022d0](https://github.com/muxinc/mux-node-sdk/commit/6b022d05cddb78c2aff32972ae6193a298682cc0))
+* **api:** OpenAPI spec update via Stainless API ([#448](https://github.com/muxinc/mux-node-sdk/issues/448)) ([4e3f947](https://github.com/muxinc/mux-node-sdk/commit/4e3f9472020b5ed3be66abec01e3c0161b1554d9))
+* **api:** OpenAPI spec update via Stainless API ([#459](https://github.com/muxinc/mux-node-sdk/issues/459)) ([576e0aa](https://github.com/muxinc/mux-node-sdk/commit/576e0aacbf1307441757c4a81a7c163e96838b47))
+* **api:** remove sunsetted spaces webhooks ([9398d0b](https://github.com/muxinc/mux-node-sdk/commit/9398d0bc33eafe074fb5b7d07eec9827085317e2))
+* **client:** send retry count header ([#493](https://github.com/muxinc/mux-node-sdk/issues/493)) ([f202eef](https://github.com/muxinc/mux-node-sdk/commit/f202eef237847862097850bb4387452df762bce6))
+
+
+### Bug Fixes
+
+* **client:** correct File construction from node-fetch Responses ([#478](https://github.com/muxinc/mux-node-sdk/issues/478)) ([37cc57c](https://github.com/muxinc/mux-node-sdk/commit/37cc57c0c0fea5228529be15cfcbb3691f23f65f))
+* **compat:** remove ReadableStream polyfill redundant since node v16 ([#460](https://github.com/muxinc/mux-node-sdk/issues/460)) ([66b4d45](https://github.com/muxinc/mux-node-sdk/commit/66b4d45a42f4324cdfda08b9675a47cdc648ecb5))
+* **errors:** pass message through to APIConnectionError ([#486](https://github.com/muxinc/mux-node-sdk/issues/486)) ([56485cc](https://github.com/muxinc/mux-node-sdk/commit/56485ccaf60112ec0802afcea1f9700443c47da5))
+* **types:** remove leftover polyfill usage ([#492](https://github.com/muxinc/mux-node-sdk/issues/492)) ([6d7f768](https://github.com/muxinc/mux-node-sdk/commit/6d7f76858dccefc61e31096209b7979d45614406))
+* **uploads:** avoid making redundant memory copies ([#483](https://github.com/muxinc/mux-node-sdk/issues/483)) ([f24c5bd](https://github.com/muxinc/mux-node-sdk/commit/f24c5bd629c947335ca57ca7fd7b3559cd5c5d6c))
+* use relative paths ([#458](https://github.com/muxinc/mux-node-sdk/issues/458)) ([96adde9](https://github.com/muxinc/mux-node-sdk/commit/96adde9d26599001ae82349eaad43f810250bf2c))
+
+
+### Chores
+
+* **api:** remove Spaces ([#440](https://github.com/muxinc/mux-node-sdk/issues/440)) ([5c02800](https://github.com/muxinc/mux-node-sdk/commit/5c0280024b0820a72efcced7c41780656eaeb256))
+* better object fallback behaviour for casting errors ([#487](https://github.com/muxinc/mux-node-sdk/issues/487)) ([56b3412](https://github.com/muxinc/mux-node-sdk/commit/56b3412d18dbe48460322174c1bc1be61d3eb2fb))
+* **ci:** bump prism mock server version ([#468](https://github.com/muxinc/mux-node-sdk/issues/468)) ([89c0bbe](https://github.com/muxinc/mux-node-sdk/commit/89c0bbe50c047134cef370d3cc3eff6a20822542))
+* **ci:** check for build errors ([#473](https://github.com/muxinc/mux-node-sdk/issues/473)) ([74e1ebf](https://github.com/muxinc/mux-node-sdk/commit/74e1ebf5b4b3ce35378989f6128919aaf3a05dfb))
+* **ci:** correctly tag pre-release npm packages ([#464](https://github.com/muxinc/mux-node-sdk/issues/464)) ([3e7edd5](https://github.com/muxinc/mux-node-sdk/commit/3e7edd5577b44717935e4b07bd57b9c2b91ca3f3))
+* **ci:** install deps via ./script/bootstrap ([#476](https://github.com/muxinc/mux-node-sdk/issues/476)) ([4e518a3](https://github.com/muxinc/mux-node-sdk/commit/4e518a34bd9c398a05b9f0131dd012a08598062b))
+* **ci:** minor changes ([#467](https://github.com/muxinc/mux-node-sdk/issues/467)) ([f3beb3a](https://github.com/muxinc/mux-node-sdk/commit/f3beb3ace4e0cc2795b6657eb6dbfb07ac042cc5))
+* **docs:** fix incorrect client var names ([#461](https://github.com/muxinc/mux-node-sdk/issues/461)) ([4370704](https://github.com/muxinc/mux-node-sdk/commit/4370704d962b8166cbda806a780a6927578fce3d))
+* **examples:** minor formatting changes ([#469](https://github.com/muxinc/mux-node-sdk/issues/469)) ([3649319](https://github.com/muxinc/mux-node-sdk/commit/3649319e74601435190bf7087b34457d54000724))
+* force eslint to use non flat config ([#466](https://github.com/muxinc/mux-node-sdk/issues/466)) ([87858a2](https://github.com/muxinc/mux-node-sdk/commit/87858a2905acb0cab3d7d6b04d84f81b9572d86b))
+* gitignore test server logs ([#437](https://github.com/muxinc/mux-node-sdk/issues/437)) ([bb32c90](https://github.com/muxinc/mux-node-sdk/commit/bb32c9082d73ec62fd4008d03f8e8489f1961d5d))
+* **internal:** add constant for default timeout ([#463](https://github.com/muxinc/mux-node-sdk/issues/463)) ([2319c09](https://github.com/muxinc/mux-node-sdk/commit/2319c09c2f9e6a89501535b4e1e3ca869576dec7))
+* **internal:** add dev dependency ([#489](https://github.com/muxinc/mux-node-sdk/issues/489)) ([2193260](https://github.com/muxinc/mux-node-sdk/commit/21932604d07ec787dbf06f1c98e35b5ef40820b9))
+* **internal:** codegen related update ([#484](https://github.com/muxinc/mux-node-sdk/issues/484)) ([96bee84](https://github.com/muxinc/mux-node-sdk/commit/96bee847fd43ed80b62aeaf9121852aa2a4797e9))
+* **internal:** codegen related update ([#485](https://github.com/muxinc/mux-node-sdk/issues/485)) ([80a3f6c](https://github.com/muxinc/mux-node-sdk/commit/80a3f6c84cbf80ca033554dcce315fcbf8475fb1))
+* **internal:** codegen related update ([#494](https://github.com/muxinc/mux-node-sdk/issues/494)) ([802475b](https://github.com/muxinc/mux-node-sdk/commit/802475b12365f27a8fa1dbccc9ca4acfb25cac92))
+* **internal:** dependency updates ([#479](https://github.com/muxinc/mux-node-sdk/issues/479)) ([9a552f5](https://github.com/muxinc/mux-node-sdk/commit/9a552f5b59b759066529f894a32aeecbcfe24fdb))
+* **internal:** fix some types ([#491](https://github.com/muxinc/mux-node-sdk/issues/491)) ([b1a56e2](https://github.com/muxinc/mux-node-sdk/commit/b1a56e273b9bf3f9b0099dd09f34df0d888d319f))
+* **internal:** minor bump qs version ([#480](https://github.com/muxinc/mux-node-sdk/issues/480)) ([34a8d90](https://github.com/muxinc/mux-node-sdk/commit/34a8d90b8cb90403ba873cbccbfd8be933983050))
+* **internal:** minor reformatting ([#435](https://github.com/muxinc/mux-node-sdk/issues/435)) ([3eb9196](https://github.com/muxinc/mux-node-sdk/commit/3eb91960bc99ad9b244774af57c32da86b0db524))
+* rebuild project due to codegen change ([#432](https://github.com/muxinc/mux-node-sdk/issues/432)) ([94f6108](https://github.com/muxinc/mux-node-sdk/commit/94f61083b2f80aa822bf96c99290dc3316ae52b7))
+* rebuild project due to codegen change ([#439](https://github.com/muxinc/mux-node-sdk/issues/439)) ([9915dce](https://github.com/muxinc/mux-node-sdk/commit/9915dcec8792e6b3d10fd3af7d53a90c0b58f2d3))
+* rebuild project due to codegen change ([#444](https://github.com/muxinc/mux-node-sdk/issues/444)) ([06fe62a](https://github.com/muxinc/mux-node-sdk/commit/06fe62a2886671c95bf489730b7edc035e18ea55))
+* rebuild project due to codegen change ([#447](https://github.com/muxinc/mux-node-sdk/issues/447)) ([49159d3](https://github.com/muxinc/mux-node-sdk/commit/49159d3a5b0faf895eb3dd7e669b734ffd53f883))
+* rebuild project due to codegen change ([#449](https://github.com/muxinc/mux-node-sdk/issues/449)) ([d7c0cb1](https://github.com/muxinc/mux-node-sdk/commit/d7c0cb11dcc21821d2e2f967219f82b75006145c))
+* rebuild project due to codegen change ([#450](https://github.com/muxinc/mux-node-sdk/issues/450)) ([d306284](https://github.com/muxinc/mux-node-sdk/commit/d3062840edd24ec927de752b6bc4357333283d70))
+* rebuild project due to codegen change ([#452](https://github.com/muxinc/mux-node-sdk/issues/452)) ([5cf1cba](https://github.com/muxinc/mux-node-sdk/commit/5cf1cbab38ed2b1a8819a2ff209ddea95411762e))
+* rebuild project due to codegen change ([#454](https://github.com/muxinc/mux-node-sdk/issues/454)) ([e45308e](https://github.com/muxinc/mux-node-sdk/commit/e45308edf1ef612f55810f00e96cf47472bf0096))
+* rebuild project due to codegen change ([#455](https://github.com/muxinc/mux-node-sdk/issues/455)) ([d42d2e2](https://github.com/muxinc/mux-node-sdk/commit/d42d2e24a49d9b32eed75a4424cabed9e737f6ff))
+* rebuild project due to codegen change ([#456](https://github.com/muxinc/mux-node-sdk/issues/456)) ([be3320e](https://github.com/muxinc/mux-node-sdk/commit/be3320edb2311c05a5b19ff0dddca6f305450393))
+* rebuild project due to codegen change ([#465](https://github.com/muxinc/mux-node-sdk/issues/465)) ([4a8888e](https://github.com/muxinc/mux-node-sdk/commit/4a8888ed265d9715a78910a2c34ef056e9dabb1e))
+* rebuild project due to codegen change ([#470](https://github.com/muxinc/mux-node-sdk/issues/470)) ([a464948](https://github.com/muxinc/mux-node-sdk/commit/a4649481c25813727a6c46c9b201e95f7594a666))
+* replace encoding tiers with video quality levels ([#475](https://github.com/muxinc/mux-node-sdk/issues/475)) ([c20f418](https://github.com/muxinc/mux-node-sdk/commit/c20f41842e8064b00926835f1498efc13a64d787))
+* revert jose removal ([c7d79a0](https://github.com/muxinc/mux-node-sdk/commit/c7d79a093905c1ed4545687a92ef2862134484ae))
+* run tsc as part of lint script ([#474](https://github.com/muxinc/mux-node-sdk/issues/474)) ([b887d28](https://github.com/muxinc/mux-node-sdk/commit/b887d286f99fbe495ae2d04f71198b68ec4a7d40))
+* **tests:** update prism version ([#457](https://github.com/muxinc/mux-node-sdk/issues/457)) ([c1aee9d](https://github.com/muxinc/mux-node-sdk/commit/c1aee9d55211f958389af3adee542ba5f6dc93ff))
+
+
+### Documentation
+
+* update CONTRIBUTING.md ([#488](https://github.com/muxinc/mux-node-sdk/issues/488)) ([f1bc68d](https://github.com/muxinc/mux-node-sdk/commit/f1bc68d07aaaf7512ab363cc9f2c72755bc5b4c1))
+
 ## 8.8.0 (2024-06-14)
 
 Full Changelog: [v8.7.1...v8.8.0](https://github.com/muxinc/mux-node-sdk/compare/v8.7.1...v8.8.0)
