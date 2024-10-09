@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as DeliveryUsageAPI from '@mux/mux-node/resources/video/delivery-usage';
-import { PageWithTotal, type PageWithTotalParams } from '@mux/mux-node/pagination';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import * as DeliveryUsageAPI from './delivery-usage';
+import { PageWithTotal, type PageWithTotalParams } from '../../pagination';
 
 export class DeliveryUsage extends APIResource {
   /**
@@ -39,8 +39,9 @@ export interface DeliveryReport {
   asset_duration: number;
 
   /**
+   * @deprecated: This field is deprecated. Please use `asset_video_quality` instead.
    * The encoding tier that the asset was ingested at.
-   * [See the encoding tiers guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   asset_encoding_tier: 'smart' | 'baseline';
 
@@ -75,6 +76,13 @@ export interface DeliveryReport {
    * if there was content delivered in the tier.
    */
   delivered_seconds_by_resolution: DeliveryReport.DeliveredSecondsByResolution;
+
+  /**
+   * The video quality that the asset was ingested at. This field replaces
+   * `asset_encoding_tier`.
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
+   */
+  asset_video_quality?: 'basic' | 'plus';
 
   /**
    * If exists, time at which the asset was deleted. Measured in seconds since the

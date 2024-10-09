@@ -7,7 +7,7 @@ This library provides convenient access to the Mux REST API from server-side Typ
 > [!NOTE]
 > In February 2024 this SDK was updated to Version 8.0. For upgrading to 8.x see [UPGRADE_8.x.md](https://github.com/muxinc/mux-node-sdk/blob/master/UPGRADE_8.x.md)
 
-The REST API documentation can be found [on docs.mux.com](https://docs.mux.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.mux.com](https://docs.mux.com). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
@@ -23,13 +23,13 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import Mux from '@mux/mux-node';
 
-const mux = new Mux({
+const client = new Mux({
   tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted
   tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted
 });
 
 async function main() {
-  const asset = await mux.video.assets.create({
+  const asset = await client.video.assets.create({
     input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
   });
 
@@ -47,7 +47,7 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import Mux from '@mux/mux-node';
 
-const mux = new Mux({
+const client = new Mux({
   tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted
   tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted
 });
@@ -56,7 +56,7 @@ async function main() {
   const params: Mux.Video.AssetCreateParams = {
     input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
   };
-  const asset: Mux.Video.Asset = await mux.video.assets.create(params);
+  const asset: Mux.Video.Asset = await client.video.assets.create(params);
 }
 
 main();
@@ -231,7 +231,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const liveStream = await mux.video.liveStreams.create().catch(async (err) => {
+  const liveStream = await client.video.liveStreams.create().catch(async (err) => {
     if (err instanceof Mux.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -269,12 +269,12 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const mux = new Mux({
+const client = new Mux({
   maxRetries: 0, // default is 2
 });
 
 // Or, configure per-request:
-await mux.video.assets.retrieve('t02rm...', {
+await client.video.assets.retrieve('t02rm...', {
   maxRetries: 5,
 });
 ```
@@ -286,12 +286,12 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const mux = new Mux({
+const client = new Mux({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
 // Override per-request:
-await mux.video.assets.retrieve('t02rm...', {
+await client.video.assets.retrieve('t02rm...', {
   timeout: 5 * 1000,
 });
 ```
@@ -309,7 +309,7 @@ You can use `for await … of` syntax to iterate through items across all pages:
 async function fetchAllVideoDeliveryUsages(params) {
   const allVideoDeliveryUsages = [];
   // Automatically fetches more pages as needed.
-  for await (const deliveryReport of mux.video.deliveryUsage.list()) {
+  for await (const deliveryReport of client.video.deliveryUsage.list()) {
     allVideoDeliveryUsages.push(deliveryReport);
   }
   return allVideoDeliveryUsages;
@@ -319,7 +319,7 @@ async function fetchAllVideoDeliveryUsages(params) {
 Alternatively, you can make request a single page at a time:
 
 ```ts
-let page = await mux.video.deliveryUsage.list();
+let page = await client.video.deliveryUsage.list();
 for (const deliveryReport of page.data) {
   console.log(deliveryReport);
 }
@@ -341,15 +341,15 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 
 <!-- prettier-ignore -->
 ```ts
-const mux = new Mux();
+const client = new Mux();
 
-const response = await mux.video.assets
+const response = await client.video.assets
   .create({ input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }] })
   .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: asset, response: raw } = await mux.video.assets
+const { data: asset, response: raw } = await client.video.assets
   .create({ input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }] })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
@@ -452,12 +452,12 @@ import http from 'http';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
 // Configure the default for all requests:
-const mux = new Mux({
+const client = new Mux({
   httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),
 });
 
 // Override per-request:
-await mux.video.assets.retrieve('t02rm...', {
+await client.video.assets.retrieve('t02rm...', {
   httpAgent: new http.Agent({ keepAlive: false }),
 });
 ```
@@ -480,14 +480,10 @@ TypeScript >= 4.5 is supported.
 
 The following runtimes are supported:
 
-- Node.js 18 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.
-- Deno v1.28.0 or higher, using `import Mux from "npm:@mux/mux-node"`.
-- Bun 1.0 or later.
-- Cloudflare Workers.
-- Vercel Edge Runtime.
-- Jest 28 or greater with the `"node"` environment (`"jsdom"` is not supported at this time).
-- Nitro v2.6 or greater.
-
 Note that React Native is not supported at this time.
 
 If you are interested in other runtime environments, please open or upvote an issue on GitHub.
+
+## Contributing
+
+See [the contributing documentation](./CONTRIBUTING.md).
