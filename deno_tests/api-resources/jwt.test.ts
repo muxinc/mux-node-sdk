@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless.
 
 import Mux from '../../deno/mod.ts';
-import { TypeClaim, DataTypeClaim } from '../../deno/util/jwt-types.ts';
+import { TypeClaim, DataTypeClaim, TypeToken } from '../../deno/util/jwt-types.ts';
 import { jwtVerify, importJWK, importPKCS8 } from 'https://deno.land/x/jose@v4.14.4/index.ts';
 import { assertObjectMatch } from 'https://deno.land/std@0.197.0/testing/asserts.ts';
 import { publicJwk, privatePkcs1, privatePkcs8 } from '../../tests/api-resources/rsaKeys.ts';
@@ -199,3 +199,77 @@ Deno.test(async function signViewerCounts() {
     },
   );
 });
+
+Deno.test('signPlaybackId multiple types returns same tokens as multiple single calls', async () => {
+  const id = 'abcdefgh';
+  const expiration = '1d';
+
+  const playbackToken = await mux.jwt.signPlaybackId(id, {
+    expiration,
+    type: 'video',
+  });
+  const thumbnailToken = await mux.jwt.signPlaybackId(id, {
+    expiration,
+    type: 'thumbnail',
+  });
+  const storyboardToken = await mux.jwt.signPlaybackId(id, {
+    expiration,
+    type: 'storyboard',
+  });
+  const drmToken = await mux.jwt.signPlaybackId(id, {
+    expiration,
+    type: 'drm_license',
+  });
+  const gifToken = await mux.jwt.signPlaybackId(id, {
+    expiration,
+    type: 'gif',
+  });
+  const statsToken = await mux.jwt.signPlaybackId(id, {
+    expiration,
+    type: 'stats',
+  });
+
+  const tokens = await mux.jwt.signPlaybackId(id, {
+    expiration,
+    type: ['video', 'thumbnail', 'storyboard', 'drm_license', 'gif', 'stats'],
+  });
+
+  assertEquals(tokens[TypeToken.video], playbackToken);
+  assertEquals(tokens[TypeToken.thumbnail], thumbnailToken);
+  assertEquals(tokens[TypeToken.storyboard], storyboardToken);
+  assertEquals(tokens[TypeToken.drm_license], drmToken);
+  assertEquals(tokens[TypeToken.gif], gifToken);
+  assertEquals(tokens[TypeToken.stats], statsToken);
+});
+
+Deno.test(
+  'signPlaybackId multiple types with params returns same tokens as multiple single calls',
+  async () => {
+    const id = 'abcdefgh';
+    const expiration = '1d';
+
+    const playbackToken = await mux.jwt.signPlaybackId(id, {
+      expiration,
+      type: 'video',
+    });
+    const thumbnailParams = { time: '2' };
+    const thumbnailToken = await mux.jwt.signPlaybackId(id, {
+      expiration,
+      type: 'thumbnail',
+      params: thumbnailParams,
+    });
+    const storyboardToken = await mux.jwt.signPlaybackId(id, {
+      expiration,
+      type: 'storyboard',
+    });
+
+    const tokens = await mux.jwt.signPlaybackId(id, {
+      expiration,
+      type: ['video', ['thumbnail', thumbnailParams], 'storyboard'],
+    });
+
+    assertEquals(tokens[TypeToken.video], playbackToken);
+    assertEquals(tokens[TypeToken.thumbnail], thumbnailToken);
+    assertEquals(tokens[TypeToken.storyboard], storyboardToken);
+  },
+);
