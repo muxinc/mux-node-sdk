@@ -5,6 +5,7 @@ import * as jwt from '@mux/mux-node/_shims/auto/jwt';
 import {
   type SignOptions,
   TypeClaim,
+  DataTypeClaim,
   TypeToken,
   type MuxJWTSignOptions,
   type MuxJWTSignOptionsMultiple,
