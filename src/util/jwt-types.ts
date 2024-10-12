@@ -34,15 +34,6 @@ export interface JwtHeader {
   x5c?: string | string[] | undefined;
 }
 
-export interface MuxJWTSignOptions<Type extends string = string> {
-  keyId?: string;
-  keySecret?: string | PrivateKey;
-  keyFilePath?: string;
-  type?: Type;
-  expiration?: string;
-  params?: Record<string, string>;
-}
-
 export enum TypeClaim {
   video = 'v',
   thumbnail = 't',
@@ -51,6 +42,36 @@ export enum TypeClaim {
   stats = 'playback_id',
   drm_license = 'd',
 }
+export enum TypeToken {
+  video = 'playback-token',
+  thumbnail = 'thumbnail-token',
+  storyboard = 'storyboard-token',
+  drm_license = 'drm-token',
+  gif = 'gif-token', // Not supported by Mux Player
+  stats = 'stats-token', // Not supported by Mux Player
+}
+export type TypeTokenValues = (typeof TypeToken)[keyof typeof TypeToken];
+export type Tokens = Partial<Record<TypeTokenValues, string>>;
+// ['thumbnail', { time: 2 }]
+export type TypeWithParams<Type extends string = string> = [Type, MuxJWTSignOptions<Type>['params']];
+
+interface MuxJWTSignOptionsBase<Type extends string = string> {
+  keyId?: string;
+  keySecret?: string | PrivateKey;
+  keyFilePath?: string;
+  type?: Type | Array<Type | TypeWithParams<Type>>;
+  expiration?: string;
+  params?: Record<string, string>;
+}
+export interface MuxJWTSignOptions<Type extends string = string> extends MuxJWTSignOptionsBase<Type> {
+  type?: Type;
+}
+export interface MuxJWTSignOptionsMultiple<Type extends string = string> extends MuxJWTSignOptionsBase<Type> {
+  type: Array<Type | TypeWithParams<Type>>;
+}
+export const isMuxJWTSignOptionsMultiple = (
+  config: MuxJWTSignOptions | MuxJWTSignOptionsMultiple,
+): config is MuxJWTSignOptionsMultiple => Array.isArray(config.type);
 
 export enum DataTypeClaim {
   video = 'video_id',
