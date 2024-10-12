@@ -52,14 +52,14 @@ export enum TypeToken {
 }
 export type TypeTokenValues = (typeof TypeToken)[keyof typeof TypeToken];
 export type Tokens = Partial<Record<TypeTokenValues, string>>;
-// ['thumbnail', { params: { time: 2 } }]
-export type TypeWithConfig<Type extends string = string> = [Type, Omit<MuxJWTSignOptions<Type>, 'type'>];
+// ['thumbnail', { time: 2 }]
+export type TypeWithParams<Type extends string = string> = [Type, MuxJWTSignOptions<Type>['params']];
 
 interface MuxJWTSignOptionsBase<Type extends string = string> {
   keyId?: string;
   keySecret?: string | PrivateKey;
   keyFilePath?: string;
-  type?: Type | Array<Type | TypeWithConfig<Type>>;
+  type?: Type | Array<Type | TypeWithParams<Type>>;
   expiration?: string;
   params?: Record<string, string>;
 }
@@ -67,7 +67,7 @@ export interface MuxJWTSignOptions<Type extends string = string> extends MuxJWTS
   type?: Type;
 }
 export interface MuxJWTSignOptionsMultiple<Type extends string = string> extends MuxJWTSignOptionsBase<Type> {
-  type: Array<Type | TypeWithConfig<Type>>;
+  type: Array<Type | TypeWithParams<Type>>;
 }
 export const isMuxJWTSignOptionsMultiple = (
   config: MuxJWTSignOptions | MuxJWTSignOptionsMultiple,

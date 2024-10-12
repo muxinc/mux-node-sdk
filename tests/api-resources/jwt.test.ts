@@ -341,7 +341,7 @@ describe('resource jwt', () => {
 
     const tokens = await mux.jwt.signPlaybackId(id, {
       expiration,
-      type: ['video', ['thumbnail', { params: thumbnailParams }], 'storyboard'],
+      type: ['video', ['thumbnail', thumbnailParams], 'storyboard'],
     });
 
     expect(tokens[TypeToken.video]).toEqual(playbackToken);

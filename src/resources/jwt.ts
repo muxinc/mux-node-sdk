@@ -69,23 +69,21 @@ export class Jwt extends APIResource {
 
     for (const typeOption of config.type) {
       let type: keyof typeof TypeClaim;
-      let typeConfig: Omit<MuxJWTSignOptions<keyof typeof TypeClaim>, 'type'> | undefined;
+      let params: Record<string, string> | undefined;
 
       if (Array.isArray(typeOption)) {
-        [type, typeConfig] = typeOption;
+        [type, params] = typeOption;
       } else {
         type = typeOption;
-        typeConfig = undefined;
+        params = undefined;
       }
 
-      // deep-merge config and typeConfig
       const singleConfig = {
         ...config,
-        ...typeConfig,
         type,
         params: {
           ...config.params,
-          ...typeConfig?.params,
+          ...params,
         },
       };
 

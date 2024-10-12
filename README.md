@@ -149,11 +149,11 @@ const tokens = await mux.jwt.signPlaybackId(id, {
 ></mux-player>
 ```
 
-If you would like to provide params to a single token (e.g., if you would like to have a thumbnail `time`), you can provide `[type, typeConfig]` instead of `type`:
+If you would like to provide params to a single token (e.g., if you would like to have a thumbnail `time`), you can provide `[type, typeParams]` instead of `type`:
 ```tsx
 const tokens = await mux.jwt.signPlaybackId(id, {
   expiration: "1d",
-  type: ["playback", ["thumbnail", { params: { time: 2 } }], "storyboard", "drm_license"]
+  type: ["playback", ["thumbnail", { time: 2 }], "storyboard", "drm_license"]
 })
 ```
 

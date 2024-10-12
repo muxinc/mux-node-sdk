@@ -265,7 +265,7 @@ Deno.test(
 
     const tokens = await mux.jwt.signPlaybackId(id, {
       expiration,
-      type: ['video', ['thumbnail', { params: thumbnailParams }], 'storyboard'],
+      type: ['video', ['thumbnail', thumbnailParams], 'storyboard'],
     });
 
     assertEquals(tokens[TypeToken.video], playbackToken);
