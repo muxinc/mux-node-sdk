@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as AssetsAPI from '@mux/mux-node/resources/video/assets';
-import * as Shared from '@mux/mux-node/resources/shared';
-import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import * as AssetsAPI from './assets';
+import * as Shared from '../shared';
+import { BasePage, type BasePageParams } from '../../pagination';
 
 export class Assets extends APIResource {
   /**
@@ -226,9 +226,10 @@ export interface Asset {
   created_at: string;
 
   /**
-   * The encoding tier informs the cost, quality, and available platform features for
-   * the asset. By default the `smart` encoding tier is used.
-   * [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * @deprecated: This field is deprecated. Please use `video_quality` instead. The
+   * encoding tier informs the cost, quality, and available platform features for the
+   * asset. By default the `smart` encoding tier is used.
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   encoding_tier: 'smart' | 'baseline';
 
@@ -384,6 +385,14 @@ export interface Asset {
    * when the asset is created from a direct upload.
    */
   upload_id?: string;
+
+  /**
+   * The video quality controls the cost, quality, and available platform features
+   * for the asset. By default the `plus` video quality is used. This field replaces
+   * the deprecated `encoding_tier` value.
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
+   */
+  video_quality?: 'basic' | 'plus';
 }
 
 export namespace Asset {
@@ -567,15 +576,16 @@ export namespace Asset {
 export interface AssetOptions {
   /**
    * An array of playback policy objects that you want applied to this asset and
-   * available through `playback_ids`. `advanced_playback_policy` must be used
+   * available through `playback_ids`. `advanced_playback_policies` must be used
    * instead of `playback_policy` when creating a DRM playback ID.
    */
-  advanced_playback_policy?: Array<AssetOptions.AdvancedPlaybackPolicy>;
+  advanced_playback_policies?: Array<AssetOptions.AdvancedPlaybackPolicy>;
 
   /**
-   * The encoding tier informs the cost, quality, and available platform features for
-   * the asset. By default the `smart` encoding tier is used.
-   * [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * @deprecated: This field is deprecated. Please use `video_quality` instead. The
+   * encoding tier informs the cost, quality, and available platform features for the
+   * asset. By default the `smart` encoding tier is used.
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   encoding_tier?: 'smart' | 'baseline';
 
@@ -667,6 +677,14 @@ export interface AssetOptions {
    * limited to 10 seconds, deleted after 24 hrs.
    */
   test?: boolean;
+
+  /**
+   * The video quality controls the cost, quality, and available platform features
+   * for the asset. By default the `plus` video quality is used. This field replaces
+   * the deprecated `encoding_tier` value.
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
+   */
+  video_quality?: 'basic' | 'plus';
 }
 
 export namespace AssetOptions {
@@ -685,6 +703,9 @@ export namespace AssetOptions {
      *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
      *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
      *   details about creating tokens.
+     *
+     * - `drm` playback IDs are protected with DRM technologies.
+     *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
      */
     policy?: Shared.PlaybackPolicy;
   }
@@ -1294,15 +1315,16 @@ export interface AssetCreateParams {
 
   /**
    * An array of playback policy objects that you want applied to this asset and
-   * available through `playback_ids`. `advanced_playback_policy` must be used
+   * available through `playback_ids`. `advanced_playback_policies` must be used
    * instead of `playback_policy` when creating a DRM playback ID.
    */
-  advanced_playback_policy?: Array<AssetCreateParams.AdvancedPlaybackPolicy>;
+  advanced_playback_policies?: Array<AssetCreateParams.AdvancedPlaybackPolicy>;
 
   /**
-   * The encoding tier informs the cost, quality, and available platform features for
-   * the asset. By default the `smart` encoding tier is used.
-   * [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * This field is deprecated. Please use `video_quality` instead. The encoding tier
+   * informs the cost, quality, and available platform features for the asset. By
+   * default the `smart` encoding tier is used.
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   encoding_tier?: 'smart' | 'baseline';
 
@@ -1384,6 +1406,14 @@ export interface AssetCreateParams {
    * limited to 10 seconds, deleted after 24 hrs.
    */
   test?: boolean;
+
+  /**
+   * The video quality controls the cost, quality, and available platform features
+   * for the asset. By default the `plus` video quality is used. This field replaces
+   * the deprecated `encoding_tier` value.
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
+   */
+  video_quality?: 'basic' | 'plus';
 }
 
 export namespace AssetCreateParams {
@@ -1615,6 +1645,9 @@ export namespace AssetCreateParams {
      *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
      *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
      *   details about creating tokens.
+     *
+     * - `drm` playback IDs are protected with DRM technologies.
+     *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
      */
     policy?: Shared.PlaybackPolicy;
   }
@@ -1655,6 +1688,9 @@ export interface AssetCreatePlaybackIDParams {
    *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
    *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
    *   details about creating tokens.
+   *
+   * - `drm` playback IDs are protected with DRM technologies.
+   *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
    */
   policy?: Shared.PlaybackPolicy;
 }
