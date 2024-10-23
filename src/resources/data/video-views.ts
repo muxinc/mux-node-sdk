@@ -332,6 +332,8 @@ export namespace VideoViewResponse {
 
     view_drm_type: string | null;
 
+    view_dropped: boolean;
+
     view_dropped_frame_count: number | null;
 
     view_end: string;
