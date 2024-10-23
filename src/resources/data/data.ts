@@ -1,15 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '@mux/mux-node/resource';
-import * as DimensionsAPI from '@mux/mux-node/resources/data/dimensions';
-import * as ErrorsAPI from '@mux/mux-node/resources/data/errors';
-import * as ExportsAPI from '@mux/mux-node/resources/data/exports';
-import * as FiltersAPI from '@mux/mux-node/resources/data/filters';
-import * as IncidentsAPI from '@mux/mux-node/resources/data/incidents';
-import * as MetricsAPI from '@mux/mux-node/resources/data/metrics';
-import * as RealTimeAPI from '@mux/mux-node/resources/data/real-time';
-import * as VideoViewsAPI from '@mux/mux-node/resources/data/video-views';
-import * as MonitoringAPI from '@mux/mux-node/resources/data/monitoring/monitoring';
+import { APIResource } from '../../resource';
+import * as DimensionsAPI from './dimensions';
+import * as ErrorsAPI from './errors';
+import * as ExportsAPI from './exports';
+import * as FiltersAPI from './filters';
+import * as IncidentsAPI from './incidents';
+import * as MetricsAPI from './metrics';
+import * as RealTimeAPI from './real-time';
+import * as VideoViewsAPI from './video-views';
+import * as MonitoringAPI from './monitoring/monitoring';
 
 export class Data extends APIResource {
   dimensions: DimensionsAPI.Dimensions = new DimensionsAPI.Dimensions(this._client);
