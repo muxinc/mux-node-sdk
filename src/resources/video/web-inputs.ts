@@ -384,15 +384,15 @@ export interface WebInputUpdateURLParams {
 }
 
 export namespace WebInputs {
-  export type WebInputCreateResponse = WebInputsAPI.WebInputCreateResponse;
-  export type WebInputRetrieveResponse = WebInputsAPI.WebInputRetrieveResponse;
-  export type WebInputListResponse = WebInputsAPI.WebInputListResponse;
-  export type WebInputLaunchResponse = WebInputsAPI.WebInputLaunchResponse;
-  export type WebInputReloadResponse = WebInputsAPI.WebInputReloadResponse;
-  export type WebInputShutdownResponse = WebInputsAPI.WebInputShutdownResponse;
-  export type WebInputUpdateURLResponse = WebInputsAPI.WebInputUpdateURLResponse;
+  export import WebInputCreateResponse = WebInputsAPI.WebInputCreateResponse;
+  export import WebInputRetrieveResponse = WebInputsAPI.WebInputRetrieveResponse;
+  export import WebInputListResponse = WebInputsAPI.WebInputListResponse;
+  export import WebInputLaunchResponse = WebInputsAPI.WebInputLaunchResponse;
+  export import WebInputReloadResponse = WebInputsAPI.WebInputReloadResponse;
+  export import WebInputShutdownResponse = WebInputsAPI.WebInputShutdownResponse;
+  export import WebInputUpdateURLResponse = WebInputsAPI.WebInputUpdateURLResponse;
   export import WebInputListResponsesBasePage = WebInputsAPI.WebInputListResponsesBasePage;
-  export type WebInputCreateParams = WebInputsAPI.WebInputCreateParams;
-  export type WebInputListParams = WebInputsAPI.WebInputListParams;
-  export type WebInputUpdateURLParams = WebInputsAPI.WebInputUpdateURLParams;
+  export import WebInputCreateParams = WebInputsAPI.WebInputCreateParams;
+  export import WebInputListParams = WebInputsAPI.WebInputListParams;
+  export import WebInputUpdateURLParams = WebInputsAPI.WebInputUpdateURLParams;
 }

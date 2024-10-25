@@ -148,9 +148,9 @@ export interface UploadCreateParams {
 export interface UploadListParams extends BasePageParams {}
 
 export namespace Uploads {
-  export type Upload = UploadsAPI.Upload;
-  export type UploadResponse = UploadsAPI.UploadResponse;
+  export import Upload = UploadsAPI.Upload;
+  export import UploadResponse = UploadsAPI.UploadResponse;
   export import UploadsBasePage = UploadsAPI.UploadsBasePage;
-  export type UploadCreateParams = UploadsAPI.UploadCreateParams;
-  export type UploadListParams = UploadsAPI.UploadListParams;
+  export import UploadCreateParams = UploadsAPI.UploadCreateParams;
+  export import UploadListParams = UploadsAPI.UploadListParams;
 }

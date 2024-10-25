@@ -52,7 +52,7 @@ export interface DRMConfiguration {
 export interface DRMConfigurationListParams extends BasePageParams {}
 
 export namespace DRMConfigurations {
-  export type DRMConfiguration = DRMConfigurationsAPI.DRMConfiguration;
+  export import DRMConfiguration = DRMConfigurationsAPI.DRMConfiguration;
   export import DRMConfigurationsBasePage = DRMConfigurationsAPI.DRMConfigurationsBasePage;
-  export type DRMConfigurationListParams = DRMConfigurationsAPI.DRMConfigurationListParams;
+  export import DRMConfigurationListParams = DRMConfigurationsAPI.DRMConfigurationListParams;
 }
