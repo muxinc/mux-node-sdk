@@ -1019,14 +1019,16 @@ export namespace LiveStreamUpdateGeneratedSubtitlesParams {
 }
 
 export namespace LiveStreams {
-  export import LiveStream = LiveStreamsAPI.LiveStream;
-  export import SimulcastTarget = LiveStreamsAPI.SimulcastTarget;
+  export type LiveStream = LiveStreamsAPI.LiveStream;
+  export type SimulcastTarget = LiveStreamsAPI.SimulcastTarget;
   export import LiveStreamsBasePage = LiveStreamsAPI.LiveStreamsBasePage;
-  export import LiveStreamCreateParams = LiveStreamsAPI.LiveStreamCreateParams;
-  export import LiveStreamUpdateParams = LiveStreamsAPI.LiveStreamUpdateParams;
-  export import LiveStreamListParams = LiveStreamsAPI.LiveStreamListParams;
-  export import LiveStreamCreatePlaybackIDParams = LiveStreamsAPI.LiveStreamCreatePlaybackIDParams;
-  export import LiveStreamCreateSimulcastTargetParams = LiveStreamsAPI.LiveStreamCreateSimulcastTargetParams;
-  export import LiveStreamUpdateEmbeddedSubtitlesParams = LiveStreamsAPI.LiveStreamUpdateEmbeddedSubtitlesParams;
-  export import LiveStreamUpdateGeneratedSubtitlesParams = LiveStreamsAPI.LiveStreamUpdateGeneratedSubtitlesParams;
+  export type LiveStreamCreateParams = LiveStreamsAPI.LiveStreamCreateParams;
+  export type LiveStreamUpdateParams = LiveStreamsAPI.LiveStreamUpdateParams;
+  export type LiveStreamListParams = LiveStreamsAPI.LiveStreamListParams;
+  export type LiveStreamCreatePlaybackIDParams = LiveStreamsAPI.LiveStreamCreatePlaybackIDParams;
+  export type LiveStreamCreateSimulcastTargetParams = LiveStreamsAPI.LiveStreamCreateSimulcastTargetParams;
+  export type LiveStreamUpdateEmbeddedSubtitlesParams =
+    LiveStreamsAPI.LiveStreamUpdateEmbeddedSubtitlesParams;
+  export type LiveStreamUpdateGeneratedSubtitlesParams =
+    LiveStreamsAPI.LiveStreamUpdateGeneratedSubtitlesParams;
 }

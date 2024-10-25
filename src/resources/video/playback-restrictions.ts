@@ -281,11 +281,13 @@ export interface PlaybackRestrictionUpdateUserAgentParams {
 }
 
 export namespace PlaybackRestrictions {
-  export import PlaybackRestriction = PlaybackRestrictionsAPI.PlaybackRestriction;
-  export import PlaybackRestrictionResponse = PlaybackRestrictionsAPI.PlaybackRestrictionResponse;
+  export type PlaybackRestriction = PlaybackRestrictionsAPI.PlaybackRestriction;
+  export type PlaybackRestrictionResponse = PlaybackRestrictionsAPI.PlaybackRestrictionResponse;
   export import PlaybackRestrictionsBasePage = PlaybackRestrictionsAPI.PlaybackRestrictionsBasePage;
-  export import PlaybackRestrictionCreateParams = PlaybackRestrictionsAPI.PlaybackRestrictionCreateParams;
-  export import PlaybackRestrictionListParams = PlaybackRestrictionsAPI.PlaybackRestrictionListParams;
-  export import PlaybackRestrictionUpdateReferrerParams = PlaybackRestrictionsAPI.PlaybackRestrictionUpdateReferrerParams;
-  export import PlaybackRestrictionUpdateUserAgentParams = PlaybackRestrictionsAPI.PlaybackRestrictionUpdateUserAgentParams;
+  export type PlaybackRestrictionCreateParams = PlaybackRestrictionsAPI.PlaybackRestrictionCreateParams;
+  export type PlaybackRestrictionListParams = PlaybackRestrictionsAPI.PlaybackRestrictionListParams;
+  export type PlaybackRestrictionUpdateReferrerParams =
+    PlaybackRestrictionsAPI.PlaybackRestrictionUpdateReferrerParams;
+  export type PlaybackRestrictionUpdateUserAgentParams =
+    PlaybackRestrictionsAPI.PlaybackRestrictionUpdateUserAgentParams;
 }

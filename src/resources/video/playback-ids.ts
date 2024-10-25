@@ -63,5 +63,5 @@ export namespace PlaybackIDRetrieveResponse {
 }
 
 export namespace PlaybackIDs {
-  export import PlaybackIDRetrieveResponse = PlaybackIDsAPI.PlaybackIDRetrieveResponse;
+  export type PlaybackIDRetrieveResponse = PlaybackIDsAPI.PlaybackIDRetrieveResponse;
 }

@@ -89,8 +89,8 @@ export interface FilterListValuesParams extends BasePageParams {
 }
 
 export namespace Filters {
-  export import FilterValue = FiltersAPI.FilterValue;
-  export import FiltersResponse = FiltersAPI.FiltersResponse;
+  export type FilterValue = FiltersAPI.FilterValue;
+  export type FiltersResponse = FiltersAPI.FiltersResponse;
   export import FilterValuesBasePage = FiltersAPI.FilterValuesBasePage;
-  export import FilterListValuesParams = FiltersAPI.FilterListValuesParams;
+  export type FilterListValuesParams = FiltersAPI.FilterListValuesParams;
 }

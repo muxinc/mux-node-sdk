@@ -48,6 +48,6 @@ export namespace VideoViewExportsResponse {
 }
 
 export namespace Exports {
-  export import ExportsResponse = ExportsAPI.ExportsResponse;
-  export import VideoViewExportsResponse = ExportsAPI.VideoViewExportsResponse;
+  export type ExportsResponse = ExportsAPI.ExportsResponse;
+  export type VideoViewExportsResponse = ExportsAPI.VideoViewExportsResponse;
 }

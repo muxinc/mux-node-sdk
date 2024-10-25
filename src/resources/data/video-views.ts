@@ -481,8 +481,8 @@ export interface VideoViewListParams extends BasePageParams {
 }
 
 export namespace VideoViews {
-  export import AbridgedVideoView = VideoViewsAPI.AbridgedVideoView;
-  export import VideoViewResponse = VideoViewsAPI.VideoViewResponse;
+  export type AbridgedVideoView = VideoViewsAPI.AbridgedVideoView;
+  export type VideoViewResponse = VideoViewsAPI.VideoViewResponse;
   export import AbridgedVideoViewsBasePage = VideoViewsAPI.AbridgedVideoViewsBasePage;
-  export import VideoViewListParams = VideoViewsAPI.VideoViewListParams;
+  export type VideoViewListParams = VideoViewsAPI.VideoViewListParams;
 }

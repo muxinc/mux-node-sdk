@@ -241,15 +241,15 @@ export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;
 
 export namespace Mux {
-  export import RequestOptions = Core.RequestOptions;
+  export type RequestOptions = Core.RequestOptions;
 
   export import PageWithTotal = Pagination.PageWithTotal;
-  export import PageWithTotalParams = Pagination.PageWithTotalParams;
-  export import PageWithTotalResponse = Pagination.PageWithTotalResponse;
+  export type PageWithTotalParams = Pagination.PageWithTotalParams;
+  export type PageWithTotalResponse<T> = Pagination.PageWithTotalResponse<T>;
 
   export import BasePage = Pagination.BasePage;
-  export import BasePageParams = Pagination.BasePageParams;
-  export import BasePageResponse = Pagination.BasePageResponse;
+  export type BasePageParams = Pagination.BasePageParams;
+  export type BasePageResponse<T> = Pagination.BasePageResponse<T>;
 
   export import Video = API.Video;
 
@@ -259,8 +259,8 @@ export namespace Mux {
 
   export import Webhooks = API.Webhooks;
 
-  export import PlaybackID = API.PlaybackID;
-  export import PlaybackPolicy = API.PlaybackPolicy;
+  export type PlaybackID = API.PlaybackID;
+  export type PlaybackPolicy = API.PlaybackPolicy;
 }
 
 export default Mux;
