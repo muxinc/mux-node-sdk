@@ -112,8 +112,8 @@ export interface DimensionListValuesParams extends BasePageParams {
 }
 
 export namespace Dimensions {
-  export type DimensionValue = DimensionsAPI.DimensionValue;
-  export type DimensionsResponse = DimensionsAPI.DimensionsResponse;
+  export import DimensionValue = DimensionsAPI.DimensionValue;
+  export import DimensionsResponse = DimensionsAPI.DimensionsResponse;
   export import DimensionValuesBasePage = DimensionsAPI.DimensionValuesBasePage;
-  export type DimensionListValuesParams = DimensionsAPI.DimensionListValuesParams;
+  export import DimensionListValuesParams = DimensionsAPI.DimensionListValuesParams;
 }

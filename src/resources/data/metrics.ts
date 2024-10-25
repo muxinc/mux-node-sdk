@@ -1370,15 +1370,15 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
 }
 
 export namespace Metrics {
-  export type AllMetricValuesResponse = MetricsAPI.AllMetricValuesResponse;
-  export type BreakdownValue = MetricsAPI.BreakdownValue;
-  export type InsightsResponse = MetricsAPI.InsightsResponse;
-  export type MetricTimeseriesDataResponse = MetricsAPI.MetricTimeseriesDataResponse;
-  export type OverallValuesResponse = MetricsAPI.OverallValuesResponse;
+  export import AllMetricValuesResponse = MetricsAPI.AllMetricValuesResponse;
+  export import BreakdownValue = MetricsAPI.BreakdownValue;
+  export import InsightsResponse = MetricsAPI.InsightsResponse;
+  export import MetricTimeseriesDataResponse = MetricsAPI.MetricTimeseriesDataResponse;
+  export import OverallValuesResponse = MetricsAPI.OverallValuesResponse;
   export import BreakdownValuesBasePage = MetricsAPI.BreakdownValuesBasePage;
-  export type MetricListParams = MetricsAPI.MetricListParams;
-  export type MetricGetInsightsParams = MetricsAPI.MetricGetInsightsParams;
-  export type MetricGetOverallValuesParams = MetricsAPI.MetricGetOverallValuesParams;
-  export type MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
-  export type MetricListBreakdownValuesParams = MetricsAPI.MetricListBreakdownValuesParams;
+  export import MetricListParams = MetricsAPI.MetricListParams;
+  export import MetricGetInsightsParams = MetricsAPI.MetricGetInsightsParams;
+  export import MetricGetOverallValuesParams = MetricsAPI.MetricGetOverallValuesParams;
+  export import MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
+  export import MetricListBreakdownValuesParams = MetricsAPI.MetricListBreakdownValuesParams;
 }

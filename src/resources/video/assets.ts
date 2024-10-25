@@ -1823,20 +1823,20 @@ export interface AssetUpdateMP4SupportParams {
 }
 
 export namespace Assets {
-  export type Asset = AssetsAPI.Asset;
-  export type AssetOptions = AssetsAPI.AssetOptions;
-  export type AssetResponse = AssetsAPI.AssetResponse;
-  export type InputInfo = AssetsAPI.InputInfo;
-  export type Track = AssetsAPI.Track;
-  export type AssetGenerateSubtitlesResponse = AssetsAPI.AssetGenerateSubtitlesResponse;
-  export type AssetRetrieveInputInfoResponse = AssetsAPI.AssetRetrieveInputInfoResponse;
+  export import Asset = AssetsAPI.Asset;
+  export import AssetOptions = AssetsAPI.AssetOptions;
+  export import AssetResponse = AssetsAPI.AssetResponse;
+  export import InputInfo = AssetsAPI.InputInfo;
+  export import Track = AssetsAPI.Track;
+  export import AssetGenerateSubtitlesResponse = AssetsAPI.AssetGenerateSubtitlesResponse;
+  export import AssetRetrieveInputInfoResponse = AssetsAPI.AssetRetrieveInputInfoResponse;
   export import AssetsBasePage = AssetsAPI.AssetsBasePage;
-  export type AssetCreateParams = AssetsAPI.AssetCreateParams;
-  export type AssetUpdateParams = AssetsAPI.AssetUpdateParams;
-  export type AssetListParams = AssetsAPI.AssetListParams;
-  export type AssetCreatePlaybackIDParams = AssetsAPI.AssetCreatePlaybackIDParams;
-  export type AssetCreateTrackParams = AssetsAPI.AssetCreateTrackParams;
-  export type AssetGenerateSubtitlesParams = AssetsAPI.AssetGenerateSubtitlesParams;
-  export type AssetUpdateMasterAccessParams = AssetsAPI.AssetUpdateMasterAccessParams;
-  export type AssetUpdateMP4SupportParams = AssetsAPI.AssetUpdateMP4SupportParams;
+  export import AssetCreateParams = AssetsAPI.AssetCreateParams;
+  export import AssetUpdateParams = AssetsAPI.AssetUpdateParams;
+  export import AssetListParams = AssetsAPI.AssetListParams;
+  export import AssetCreatePlaybackIDParams = AssetsAPI.AssetCreatePlaybackIDParams;
+  export import AssetCreateTrackParams = AssetsAPI.AssetCreateTrackParams;
+  export import AssetGenerateSubtitlesParams = AssetsAPI.AssetGenerateSubtitlesParams;
+  export import AssetUpdateMasterAccessParams = AssetsAPI.AssetUpdateMasterAccessParams;
+  export import AssetUpdateMP4SupportParams = AssetsAPI.AssetUpdateMP4SupportParams;
 }

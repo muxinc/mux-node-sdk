@@ -349,13 +349,12 @@ export interface RealTimeRetrieveTimeseriesParams {
 }
 
 export namespace RealTime {
-  export type RealTimeBreakdownResponse = RealTimeAPI.RealTimeBreakdownResponse;
-  export type RealTimeDimensionsResponse = RealTimeAPI.RealTimeDimensionsResponse;
-  export type RealTimeHistogramTimeseriesResponse = RealTimeAPI.RealTimeHistogramTimeseriesResponse;
-  export type RealTimeMetricsResponse = RealTimeAPI.RealTimeMetricsResponse;
-  export type RealTimeTimeseriesResponse = RealTimeAPI.RealTimeTimeseriesResponse;
-  export type RealTimeRetrieveBreakdownParams = RealTimeAPI.RealTimeRetrieveBreakdownParams;
-  export type RealTimeRetrieveHistogramTimeseriesParams =
-    RealTimeAPI.RealTimeRetrieveHistogramTimeseriesParams;
-  export type RealTimeRetrieveTimeseriesParams = RealTimeAPI.RealTimeRetrieveTimeseriesParams;
+  export import RealTimeBreakdownResponse = RealTimeAPI.RealTimeBreakdownResponse;
+  export import RealTimeDimensionsResponse = RealTimeAPI.RealTimeDimensionsResponse;
+  export import RealTimeHistogramTimeseriesResponse = RealTimeAPI.RealTimeHistogramTimeseriesResponse;
+  export import RealTimeMetricsResponse = RealTimeAPI.RealTimeMetricsResponse;
+  export import RealTimeTimeseriesResponse = RealTimeAPI.RealTimeTimeseriesResponse;
+  export import RealTimeRetrieveBreakdownParams = RealTimeAPI.RealTimeRetrieveBreakdownParams;
+  export import RealTimeRetrieveHistogramTimeseriesParams = RealTimeAPI.RealTimeRetrieveHistogramTimeseriesParams;
+  export import RealTimeRetrieveTimeseriesParams = RealTimeAPI.RealTimeRetrieveTimeseriesParams;
 }
