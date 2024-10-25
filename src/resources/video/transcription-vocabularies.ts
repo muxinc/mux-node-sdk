@@ -185,10 +185,13 @@ export interface TranscriptionVocabularyUpdateParams {
 export interface TranscriptionVocabularyListParams extends BasePageParams {}
 
 export namespace TranscriptionVocabularies {
-  export import TranscriptionVocabulary = TranscriptionVocabulariesAPI.TranscriptionVocabulary;
-  export import TranscriptionVocabularyResponse = TranscriptionVocabulariesAPI.TranscriptionVocabularyResponse;
+  export type TranscriptionVocabulary = TranscriptionVocabulariesAPI.TranscriptionVocabulary;
+  export type TranscriptionVocabularyResponse = TranscriptionVocabulariesAPI.TranscriptionVocabularyResponse;
   export import TranscriptionVocabulariesBasePage = TranscriptionVocabulariesAPI.TranscriptionVocabulariesBasePage;
-  export import TranscriptionVocabularyCreateParams = TranscriptionVocabulariesAPI.TranscriptionVocabularyCreateParams;
-  export import TranscriptionVocabularyUpdateParams = TranscriptionVocabulariesAPI.TranscriptionVocabularyUpdateParams;
-  export import TranscriptionVocabularyListParams = TranscriptionVocabulariesAPI.TranscriptionVocabularyListParams;
+  export type TranscriptionVocabularyCreateParams =
+    TranscriptionVocabulariesAPI.TranscriptionVocabularyCreateParams;
+  export type TranscriptionVocabularyUpdateParams =
+    TranscriptionVocabulariesAPI.TranscriptionVocabularyUpdateParams;
+  export type TranscriptionVocabularyListParams =
+    TranscriptionVocabulariesAPI.TranscriptionVocabularyListParams;
 }

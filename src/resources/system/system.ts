@@ -9,8 +9,8 @@ export class System extends APIResource {
 
 export namespace System {
   export import SigningKeys = SigningKeysAPI.SigningKeys;
-  export import SigningKey = SigningKeysAPI.SigningKey;
-  export import SigningKeyResponse = SigningKeysAPI.SigningKeyResponse;
+  export type SigningKey = SigningKeysAPI.SigningKey;
+  export type SigningKeyResponse = SigningKeysAPI.SigningKeyResponse;
   export import SigningKeysBasePage = SigningKeysAPI.SigningKeysBasePage;
-  export import SigningKeyListParams = SigningKeysAPI.SigningKeyListParams;
+  export type SigningKeyListParams = SigningKeysAPI.SigningKeyListParams;
 }

@@ -188,9 +188,9 @@ export interface IncidentListRelatedParams extends BasePageParams {
 }
 
 export namespace Incidents {
-  export import Incident = IncidentsAPI.Incident;
-  export import IncidentResponse = IncidentsAPI.IncidentResponse;
+  export type Incident = IncidentsAPI.Incident;
+  export type IncidentResponse = IncidentsAPI.IncidentResponse;
   export import IncidentsBasePage = IncidentsAPI.IncidentsBasePage;
-  export import IncidentListParams = IncidentsAPI.IncidentListParams;
-  export import IncidentListRelatedParams = IncidentsAPI.IncidentListRelatedParams;
+  export type IncidentListParams = IncidentsAPI.IncidentListParams;
+  export type IncidentListRelatedParams = IncidentsAPI.IncidentListRelatedParams;
 }
