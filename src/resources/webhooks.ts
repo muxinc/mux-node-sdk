@@ -541,7 +541,7 @@ export namespace VideoDeliveryHighTrafficWebhookEvent {
        * The encoding tier that the asset was ingested at.
        * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
        */
-      asset_encoding_tier?: 'smart' | 'baseline';
+      asset_encoding_tier?: 'smart' | 'baseline' | 'premium';
 
       /**
        * Unique identifier for the asset.
@@ -564,7 +564,7 @@ export namespace VideoDeliveryHighTrafficWebhookEvent {
        * `asset_encoding_tier`.
        * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
        */
-      asset_video_quality?: 'basic' | 'plus';
+      asset_video_quality?: 'basic' | 'plus' | 'premium';
 
       /**
        * Time at which the asset was created. Measured in seconds since the Unix epoch.
