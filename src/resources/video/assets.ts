@@ -228,10 +228,10 @@ export interface Asset {
   /**
    * @deprecated: This field is deprecated. Please use `video_quality` instead. The
    * encoding tier informs the cost, quality, and available platform features for the
-   * asset. By default the `smart` encoding tier is used.
+   * asset. The default encoding tier for an account can be set in the Mux Dashboard.
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
-  encoding_tier: 'smart' | 'baseline';
+  encoding_tier: 'smart' | 'baseline' | 'premium';
 
   master_access: 'temporary' | 'none';
 
@@ -388,11 +388,11 @@ export interface Asset {
 
   /**
    * The video quality controls the cost, quality, and available platform features
-   * for the asset. By default the `plus` video quality is used. This field replaces
-   * the deprecated `encoding_tier` value.
+   * for the asset. The default video quality for an account can be set in the Mux
+   * Dashboard. This field replaces the deprecated `encoding_tier` value.
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
-  video_quality?: 'basic' | 'plus';
+  video_quality?: 'basic' | 'plus' | 'premium';
 }
 
 export namespace Asset {
@@ -584,10 +584,10 @@ export interface AssetOptions {
   /**
    * @deprecated: This field is deprecated. Please use `video_quality` instead. The
    * encoding tier informs the cost, quality, and available platform features for the
-   * asset. By default the `smart` encoding tier is used.
+   * asset. The default encoding tier for an account can be set in the Mux Dashboard.
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
-  encoding_tier?: 'smart' | 'baseline';
+  encoding_tier?: 'smart' | 'baseline' | 'premium';
 
   /**
    * An array of objects that each describe an input file to be used to create the
@@ -680,11 +680,11 @@ export interface AssetOptions {
 
   /**
    * The video quality controls the cost, quality, and available platform features
-   * for the asset. By default the `plus` video quality is used. This field replaces
-   * the deprecated `encoding_tier` value.
+   * for the asset. The default video quality for an account can be set in the Mux
+   * Dashboard. This field replaces the deprecated `encoding_tier` value.
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
-  video_quality?: 'basic' | 'plus';
+  video_quality?: 'basic' | 'plus' | 'premium';
 }
 
 export namespace AssetOptions {
@@ -1322,11 +1322,11 @@ export interface AssetCreateParams {
 
   /**
    * This field is deprecated. Please use `video_quality` instead. The encoding tier
-   * informs the cost, quality, and available platform features for the asset. By
-   * default the `smart` encoding tier is used.
+   * informs the cost, quality, and available platform features for the asset. The
+   * default encoding tier for an account can be set in the Mux Dashboard.
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
-  encoding_tier?: 'smart' | 'baseline';
+  encoding_tier?: 'smart' | 'baseline' | 'premium';
 
   /**
    * Specify what level (if any) of support for master access. Master access can be
@@ -1409,11 +1409,11 @@ export interface AssetCreateParams {
 
   /**
    * The video quality controls the cost, quality, and available platform features
-   * for the asset. By default the `plus` video quality is used. This field replaces
-   * the deprecated `encoding_tier` value.
+   * for the asset. The default video quality for an account can be set in the Mux
+   * Dashboard. This field replaces the deprecated `encoding_tier` value.
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
-  video_quality?: 'basic' | 'plus';
+  video_quality?: 'basic' | 'plus' | 'premium';
 }
 
 export namespace AssetCreateParams {

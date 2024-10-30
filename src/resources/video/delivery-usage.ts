@@ -43,7 +43,7 @@ export interface DeliveryReport {
    * The encoding tier that the asset was ingested at.
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
-  asset_encoding_tier: 'smart' | 'baseline';
+  asset_encoding_tier: 'smart' | 'baseline' | 'premium';
 
   /**
    * Unique identifier for the asset.
@@ -82,7 +82,7 @@ export interface DeliveryReport {
    * `asset_encoding_tier`.
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
-  asset_video_quality?: 'basic' | 'plus';
+  asset_video_quality?: 'basic' | 'plus' | 'premium';
 
   /**
    * If exists, time at which the asset was deleted. Measured in seconds since the
