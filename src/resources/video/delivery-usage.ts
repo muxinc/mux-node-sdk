@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as DeliveryUsageAPI from './delivery-usage';
 import { PageWithTotal, type PageWithTotalParams } from '../../pagination';
 
 export class DeliveryUsage extends APIResource {
@@ -163,8 +162,12 @@ export interface DeliveryUsageListParams extends PageWithTotalParams {
   timeframe?: Array<string>;
 }
 
-export namespace DeliveryUsage {
-  export import DeliveryReport = DeliveryUsageAPI.DeliveryReport;
-  export import DeliveryReportsPageWithTotal = DeliveryUsageAPI.DeliveryReportsPageWithTotal;
-  export import DeliveryUsageListParams = DeliveryUsageAPI.DeliveryUsageListParams;
+DeliveryUsage.DeliveryReportsPageWithTotal = DeliveryReportsPageWithTotal;
+
+export declare namespace DeliveryUsage {
+  export {
+    type DeliveryReport as DeliveryReport,
+    DeliveryReportsPageWithTotal as DeliveryReportsPageWithTotal,
+    type DeliveryUsageListParams as DeliveryUsageListParams,
+  };
 }

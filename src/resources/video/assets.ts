@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as AssetsAPI from './assets';
 import * as Shared from '../shared';
 import { BasePage, type BasePageParams } from '../../pagination';
 
@@ -1822,21 +1821,25 @@ export interface AssetUpdateMP4SupportParams {
   mp4_support: 'standard' | 'none' | 'capped-1080p' | 'audio-only' | 'audio-only,capped-1080p';
 }
 
-export namespace Assets {
-  export import Asset = AssetsAPI.Asset;
-  export import AssetOptions = AssetsAPI.AssetOptions;
-  export import AssetResponse = AssetsAPI.AssetResponse;
-  export import InputInfo = AssetsAPI.InputInfo;
-  export import Track = AssetsAPI.Track;
-  export import AssetGenerateSubtitlesResponse = AssetsAPI.AssetGenerateSubtitlesResponse;
-  export import AssetRetrieveInputInfoResponse = AssetsAPI.AssetRetrieveInputInfoResponse;
-  export import AssetsBasePage = AssetsAPI.AssetsBasePage;
-  export import AssetCreateParams = AssetsAPI.AssetCreateParams;
-  export import AssetUpdateParams = AssetsAPI.AssetUpdateParams;
-  export import AssetListParams = AssetsAPI.AssetListParams;
-  export import AssetCreatePlaybackIDParams = AssetsAPI.AssetCreatePlaybackIDParams;
-  export import AssetCreateTrackParams = AssetsAPI.AssetCreateTrackParams;
-  export import AssetGenerateSubtitlesParams = AssetsAPI.AssetGenerateSubtitlesParams;
-  export import AssetUpdateMasterAccessParams = AssetsAPI.AssetUpdateMasterAccessParams;
-  export import AssetUpdateMP4SupportParams = AssetsAPI.AssetUpdateMP4SupportParams;
+Assets.AssetsBasePage = AssetsBasePage;
+
+export declare namespace Assets {
+  export {
+    type Asset as Asset,
+    type AssetOptions as AssetOptions,
+    type AssetResponse as AssetResponse,
+    type InputInfo as InputInfo,
+    type Track as Track,
+    type AssetGenerateSubtitlesResponse as AssetGenerateSubtitlesResponse,
+    type AssetRetrieveInputInfoResponse as AssetRetrieveInputInfoResponse,
+    AssetsBasePage as AssetsBasePage,
+    type AssetCreateParams as AssetCreateParams,
+    type AssetUpdateParams as AssetUpdateParams,
+    type AssetListParams as AssetListParams,
+    type AssetCreatePlaybackIDParams as AssetCreatePlaybackIDParams,
+    type AssetCreateTrackParams as AssetCreateTrackParams,
+    type AssetGenerateSubtitlesParams as AssetGenerateSubtitlesParams,
+    type AssetUpdateMasterAccessParams as AssetUpdateMasterAccessParams,
+    type AssetUpdateMP4SupportParams as AssetUpdateMP4SupportParams,
+  };
 }

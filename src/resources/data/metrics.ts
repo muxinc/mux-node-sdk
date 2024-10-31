@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as MetricsAPI from './metrics';
 import { BasePage, type BasePageParams } from '../../pagination';
 
 export class Metrics extends APIResource {
@@ -1369,16 +1368,20 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
   timeframe?: Array<string>;
 }
 
-export namespace Metrics {
-  export import AllMetricValuesResponse = MetricsAPI.AllMetricValuesResponse;
-  export import BreakdownValue = MetricsAPI.BreakdownValue;
-  export import InsightsResponse = MetricsAPI.InsightsResponse;
-  export import MetricTimeseriesDataResponse = MetricsAPI.MetricTimeseriesDataResponse;
-  export import OverallValuesResponse = MetricsAPI.OverallValuesResponse;
-  export import BreakdownValuesBasePage = MetricsAPI.BreakdownValuesBasePage;
-  export import MetricListParams = MetricsAPI.MetricListParams;
-  export import MetricGetInsightsParams = MetricsAPI.MetricGetInsightsParams;
-  export import MetricGetOverallValuesParams = MetricsAPI.MetricGetOverallValuesParams;
-  export import MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
-  export import MetricListBreakdownValuesParams = MetricsAPI.MetricListBreakdownValuesParams;
+Metrics.BreakdownValuesBasePage = BreakdownValuesBasePage;
+
+export declare namespace Metrics {
+  export {
+    type AllMetricValuesResponse as AllMetricValuesResponse,
+    type BreakdownValue as BreakdownValue,
+    type InsightsResponse as InsightsResponse,
+    type MetricTimeseriesDataResponse as MetricTimeseriesDataResponse,
+    type OverallValuesResponse as OverallValuesResponse,
+    BreakdownValuesBasePage as BreakdownValuesBasePage,
+    type MetricListParams as MetricListParams,
+    type MetricGetInsightsParams as MetricGetInsightsParams,
+    type MetricGetOverallValuesParams as MetricGetOverallValuesParams,
+    type MetricGetTimeseriesParams as MetricGetTimeseriesParams,
+    type MetricListBreakdownValuesParams as MetricListBreakdownValuesParams,
+  };
 }
