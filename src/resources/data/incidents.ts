@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as IncidentsAPI from './incidents';
 import { BasePage, type BasePageParams } from '../../pagination';
 
 export class Incidents extends APIResource {
@@ -187,10 +186,14 @@ export interface IncidentListRelatedParams extends BasePageParams {
   order_direction?: 'asc' | 'desc';
 }
 
-export namespace Incidents {
-  export import Incident = IncidentsAPI.Incident;
-  export import IncidentResponse = IncidentsAPI.IncidentResponse;
-  export import IncidentsBasePage = IncidentsAPI.IncidentsBasePage;
-  export import IncidentListParams = IncidentsAPI.IncidentListParams;
-  export import IncidentListRelatedParams = IncidentsAPI.IncidentListRelatedParams;
+Incidents.IncidentsBasePage = IncidentsBasePage;
+
+export declare namespace Incidents {
+  export {
+    type Incident as Incident,
+    type IncidentResponse as IncidentResponse,
+    IncidentsBasePage as IncidentsBasePage,
+    type IncidentListParams as IncidentListParams,
+    type IncidentListRelatedParams as IncidentListRelatedParams,
+  };
 }

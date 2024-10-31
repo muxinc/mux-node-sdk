@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as FiltersAPI from './filters';
 import { BasePage, type BasePageParams } from '../../pagination';
 
 export class Filters extends APIResource {
@@ -88,9 +87,13 @@ export interface FilterListValuesParams extends BasePageParams {
   timeframe?: Array<string>;
 }
 
-export namespace Filters {
-  export import FilterValue = FiltersAPI.FilterValue;
-  export import FiltersResponse = FiltersAPI.FiltersResponse;
-  export import FilterValuesBasePage = FiltersAPI.FilterValuesBasePage;
-  export import FilterListValuesParams = FiltersAPI.FilterListValuesParams;
+Filters.FilterValuesBasePage = FilterValuesBasePage;
+
+export declare namespace Filters {
+  export {
+    type FilterValue as FilterValue,
+    type FiltersResponse as FiltersResponse,
+    FilterValuesBasePage as FilterValuesBasePage,
+    type FilterListValuesParams as FilterListValuesParams,
+  };
 }

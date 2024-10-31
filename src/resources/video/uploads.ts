@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as UploadsAPI from './uploads';
 import * as AssetsAPI from './assets';
 import { BasePage, type BasePageParams } from '../../pagination';
 
@@ -147,10 +146,14 @@ export interface UploadCreateParams {
 
 export interface UploadListParams extends BasePageParams {}
 
-export namespace Uploads {
-  export import Upload = UploadsAPI.Upload;
-  export import UploadResponse = UploadsAPI.UploadResponse;
-  export import UploadsBasePage = UploadsAPI.UploadsBasePage;
-  export import UploadCreateParams = UploadsAPI.UploadCreateParams;
-  export import UploadListParams = UploadsAPI.UploadListParams;
+Uploads.UploadsBasePage = UploadsBasePage;
+
+export declare namespace Uploads {
+  export {
+    type Upload as Upload,
+    type UploadResponse as UploadResponse,
+    UploadsBasePage as UploadsBasePage,
+    type UploadCreateParams as UploadCreateParams,
+    type UploadListParams as UploadListParams,
+  };
 }

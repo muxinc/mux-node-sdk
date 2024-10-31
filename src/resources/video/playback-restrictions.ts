@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as PlaybackRestrictionsAPI from './playback-restrictions';
 import { BasePage, type BasePageParams } from '../../pagination';
 
 export class PlaybackRestrictions extends APIResource {
@@ -280,12 +279,16 @@ export interface PlaybackRestrictionUpdateUserAgentParams {
   allow_no_user_agent: boolean;
 }
 
-export namespace PlaybackRestrictions {
-  export import PlaybackRestriction = PlaybackRestrictionsAPI.PlaybackRestriction;
-  export import PlaybackRestrictionResponse = PlaybackRestrictionsAPI.PlaybackRestrictionResponse;
-  export import PlaybackRestrictionsBasePage = PlaybackRestrictionsAPI.PlaybackRestrictionsBasePage;
-  export import PlaybackRestrictionCreateParams = PlaybackRestrictionsAPI.PlaybackRestrictionCreateParams;
-  export import PlaybackRestrictionListParams = PlaybackRestrictionsAPI.PlaybackRestrictionListParams;
-  export import PlaybackRestrictionUpdateReferrerParams = PlaybackRestrictionsAPI.PlaybackRestrictionUpdateReferrerParams;
-  export import PlaybackRestrictionUpdateUserAgentParams = PlaybackRestrictionsAPI.PlaybackRestrictionUpdateUserAgentParams;
+PlaybackRestrictions.PlaybackRestrictionsBasePage = PlaybackRestrictionsBasePage;
+
+export declare namespace PlaybackRestrictions {
+  export {
+    type PlaybackRestriction as PlaybackRestriction,
+    type PlaybackRestrictionResponse as PlaybackRestrictionResponse,
+    PlaybackRestrictionsBasePage as PlaybackRestrictionsBasePage,
+    type PlaybackRestrictionCreateParams as PlaybackRestrictionCreateParams,
+    type PlaybackRestrictionListParams as PlaybackRestrictionListParams,
+    type PlaybackRestrictionUpdateReferrerParams as PlaybackRestrictionUpdateReferrerParams,
+    type PlaybackRestrictionUpdateUserAgentParams as PlaybackRestrictionUpdateUserAgentParams,
+  };
 }

@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../resource';
 import * as Core from '../../core';
-import * as PlaybackIDsAPI from './playback-ids';
 import * as Shared from '../shared';
 
 export class PlaybackIDs extends APIResource {
@@ -62,6 +61,6 @@ export namespace PlaybackIDRetrieveResponse {
   }
 }
 
-export namespace PlaybackIDs {
-  export import PlaybackIDRetrieveResponse = PlaybackIDsAPI.PlaybackIDRetrieveResponse;
+export declare namespace PlaybackIDs {
+  export { type PlaybackIDRetrieveResponse as PlaybackIDRetrieveResponse };
 }
