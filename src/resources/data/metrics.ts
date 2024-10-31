@@ -966,7 +966,7 @@ export interface MetricListParams {
    *
    * Possible filterable metrics are the same as the set of metric ids, with the
    * exceptions of `exits_before_video_start`, `unique_viewers`,
-   * `video_startup_failure_percentage`, and `views`.
+   * `video_startup_failure_percentage`, `view_dropped_percentage`, and `views`.
    *
    * Example:
    *
@@ -1029,8 +1029,8 @@ export interface MetricGetInsightsParams {
    * `rebuffer_percentage`, `seek_latency`, `smoothness_score`, `startup_time_score`,
    * `upscale_percentage`, `video_quality_score`,
    * `video_startup_business_exception_percentage`,
-   * `video_startup_failure_percentage`, `viewer_experience_score` "count" :
-   * `started_views`, `unique_viewers`
+   * `video_startup_failure_percentage`, `view_dropped_percentage`,
+   * `viewer_experience_score` "count" : `started_views`, `unique_viewers`
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
 
@@ -1040,7 +1040,7 @@ export interface MetricGetInsightsParams {
    *
    * Possible filterable metrics are the same as the set of metric ids, with the
    * exceptions of `exits_before_video_start`, `unique_viewers`,
-   * `video_startup_failure_percentage`, and `views`.
+   * `video_startup_failure_percentage`, `view_dropped_percentage`, and `views`.
    *
    * Example:
    *
@@ -1103,8 +1103,8 @@ export interface MetricGetOverallValuesParams {
    * `rebuffer_percentage`, `seek_latency`, `smoothness_score`, `startup_time_score`,
    * `upscale_percentage`, `video_quality_score`,
    * `video_startup_business_exception_percentage`,
-   * `video_startup_failure_percentage`, `viewer_experience_score` "count" :
-   * `started_views`, `unique_viewers`
+   * `video_startup_failure_percentage`, `view_dropped_percentage`,
+   * `viewer_experience_score` "count" : `started_views`, `unique_viewers`
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
 
@@ -1114,7 +1114,7 @@ export interface MetricGetOverallValuesParams {
    *
    * Possible filterable metrics are the same as the set of metric ids, with the
    * exceptions of `exits_before_video_start`, `unique_viewers`,
-   * `video_startup_failure_percentage`, and `views`.
+   * `video_startup_failure_percentage`, `view_dropped_percentage`, and `views`.
    *
    * Example:
    *
@@ -1185,8 +1185,8 @@ export interface MetricGetTimeseriesParams {
    * `rebuffer_percentage`, `seek_latency`, `smoothness_score`, `startup_time_score`,
    * `upscale_percentage`, `video_quality_score`,
    * `video_startup_business_exception_percentage`,
-   * `video_startup_failure_percentage`, `viewer_experience_score` "count" :
-   * `started_views`, `unique_viewers`
+   * `video_startup_failure_percentage`, `view_dropped_percentage`,
+   * `viewer_experience_score` "count" : `started_views`, `unique_viewers`
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
 
@@ -1196,7 +1196,7 @@ export interface MetricGetTimeseriesParams {
    *
    * Possible filterable metrics are the same as the set of metric ids, with the
    * exceptions of `exits_before_video_start`, `unique_viewers`,
-   * `video_startup_failure_percentage`, and `views`.
+   * `video_startup_failure_percentage`, `view_dropped_percentage`, and `views`.
    *
    * Example:
    *
@@ -1328,8 +1328,8 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
    * `rebuffer_percentage`, `seek_latency`, `smoothness_score`, `startup_time_score`,
    * `upscale_percentage`, `video_quality_score`,
    * `video_startup_business_exception_percentage`,
-   * `video_startup_failure_percentage`, `viewer_experience_score` "count" :
-   * `started_views`, `unique_viewers`
+   * `video_startup_failure_percentage`, `view_dropped_percentage`,
+   * `viewer_experience_score` "count" : `started_views`, `unique_viewers`
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
 
@@ -1339,7 +1339,7 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
    *
    * Possible filterable metrics are the same as the set of metric ids, with the
    * exceptions of `exits_before_video_start`, `unique_viewers`,
-   * `video_startup_failure_percentage`, and `views`.
+   * `video_startup_failure_percentage`, `view_dropped_percentage`, and `views`.
    *
    * Example:
    *

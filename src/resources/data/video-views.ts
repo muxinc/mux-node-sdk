@@ -449,7 +449,7 @@ export interface VideoViewListParams extends BasePageParams {
    *
    * Possible filterable metrics are the same as the set of metric ids, with the
    * exceptions of `exits_before_video_start`, `unique_viewers`,
-   * `video_startup_failure_percentage`, and `views`.
+   * `video_startup_failure_percentage`, `view_dropped_percentage`, and `views`.
    *
    * Example:
    *
