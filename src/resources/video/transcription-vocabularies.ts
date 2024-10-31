@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as TranscriptionVocabulariesAPI from './transcription-vocabularies';
 import { BasePage, type BasePageParams } from '../../pagination';
 
 export class TranscriptionVocabularies extends APIResource {
@@ -184,11 +183,15 @@ export interface TranscriptionVocabularyUpdateParams {
 
 export interface TranscriptionVocabularyListParams extends BasePageParams {}
 
-export namespace TranscriptionVocabularies {
-  export import TranscriptionVocabulary = TranscriptionVocabulariesAPI.TranscriptionVocabulary;
-  export import TranscriptionVocabularyResponse = TranscriptionVocabulariesAPI.TranscriptionVocabularyResponse;
-  export import TranscriptionVocabulariesBasePage = TranscriptionVocabulariesAPI.TranscriptionVocabulariesBasePage;
-  export import TranscriptionVocabularyCreateParams = TranscriptionVocabulariesAPI.TranscriptionVocabularyCreateParams;
-  export import TranscriptionVocabularyUpdateParams = TranscriptionVocabulariesAPI.TranscriptionVocabularyUpdateParams;
-  export import TranscriptionVocabularyListParams = TranscriptionVocabulariesAPI.TranscriptionVocabularyListParams;
+TranscriptionVocabularies.TranscriptionVocabulariesBasePage = TranscriptionVocabulariesBasePage;
+
+export declare namespace TranscriptionVocabularies {
+  export {
+    type TranscriptionVocabulary as TranscriptionVocabulary,
+    type TranscriptionVocabularyResponse as TranscriptionVocabularyResponse,
+    TranscriptionVocabulariesBasePage as TranscriptionVocabulariesBasePage,
+    type TranscriptionVocabularyCreateParams as TranscriptionVocabularyCreateParams,
+    type TranscriptionVocabularyUpdateParams as TranscriptionVocabularyUpdateParams,
+    type TranscriptionVocabularyListParams as TranscriptionVocabularyListParams,
+  };
 }

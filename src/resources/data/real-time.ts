@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as RealTimeAPI from './real-time';
 
 export class RealTime extends APIResource {
   /**
@@ -348,13 +347,15 @@ export interface RealTimeRetrieveTimeseriesParams {
   timestamp?: number;
 }
 
-export namespace RealTime {
-  export import RealTimeBreakdownResponse = RealTimeAPI.RealTimeBreakdownResponse;
-  export import RealTimeDimensionsResponse = RealTimeAPI.RealTimeDimensionsResponse;
-  export import RealTimeHistogramTimeseriesResponse = RealTimeAPI.RealTimeHistogramTimeseriesResponse;
-  export import RealTimeMetricsResponse = RealTimeAPI.RealTimeMetricsResponse;
-  export import RealTimeTimeseriesResponse = RealTimeAPI.RealTimeTimeseriesResponse;
-  export import RealTimeRetrieveBreakdownParams = RealTimeAPI.RealTimeRetrieveBreakdownParams;
-  export import RealTimeRetrieveHistogramTimeseriesParams = RealTimeAPI.RealTimeRetrieveHistogramTimeseriesParams;
-  export import RealTimeRetrieveTimeseriesParams = RealTimeAPI.RealTimeRetrieveTimeseriesParams;
+export declare namespace RealTime {
+  export {
+    type RealTimeBreakdownResponse as RealTimeBreakdownResponse,
+    type RealTimeDimensionsResponse as RealTimeDimensionsResponse,
+    type RealTimeHistogramTimeseriesResponse as RealTimeHistogramTimeseriesResponse,
+    type RealTimeMetricsResponse as RealTimeMetricsResponse,
+    type RealTimeTimeseriesResponse as RealTimeTimeseriesResponse,
+    type RealTimeRetrieveBreakdownParams as RealTimeRetrieveBreakdownParams,
+    type RealTimeRetrieveHistogramTimeseriesParams as RealTimeRetrieveHistogramTimeseriesParams,
+    type RealTimeRetrieveTimeseriesParams as RealTimeRetrieveTimeseriesParams,
+  };
 }

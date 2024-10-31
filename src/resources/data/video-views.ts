@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as VideoViewsAPI from './video-views';
 import { BasePage, type BasePageParams } from '../../pagination';
 
 export class VideoViews extends APIResource {
@@ -480,9 +479,13 @@ export interface VideoViewListParams extends BasePageParams {
   viewer_id?: string;
 }
 
-export namespace VideoViews {
-  export import AbridgedVideoView = VideoViewsAPI.AbridgedVideoView;
-  export import VideoViewResponse = VideoViewsAPI.VideoViewResponse;
-  export import AbridgedVideoViewsBasePage = VideoViewsAPI.AbridgedVideoViewsBasePage;
-  export import VideoViewListParams = VideoViewsAPI.VideoViewListParams;
+VideoViews.AbridgedVideoViewsBasePage = AbridgedVideoViewsBasePage;
+
+export declare namespace VideoViews {
+  export {
+    type AbridgedVideoView as AbridgedVideoView,
+    type VideoViewResponse as VideoViewResponse,
+    AbridgedVideoViewsBasePage as AbridgedVideoViewsBasePage,
+    type VideoViewListParams as VideoViewListParams,
+  };
 }

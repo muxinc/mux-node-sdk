@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as ErrorsAPI from './errors';
 
 export class Errors extends APIResource {
   /**
@@ -121,7 +120,6 @@ export interface ErrorListParams {
   timeframe?: Array<string>;
 }
 
-export namespace Errors {
-  export import ErrorsResponse = ErrorsAPI.ErrorsResponse;
-  export import ErrorListParams = ErrorsAPI.ErrorListParams;
+export declare namespace Errors {
+  export { type ErrorsResponse as ErrorsResponse, type ErrorListParams as ErrorListParams };
 }

@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as WebInputsAPI from './web-inputs';
 import { BasePage, type BasePageParams } from '../../pagination';
 
 export class WebInputs extends APIResource {
@@ -383,16 +382,20 @@ export interface WebInputUpdateURLParams {
   url: string;
 }
 
-export namespace WebInputs {
-  export import WebInputCreateResponse = WebInputsAPI.WebInputCreateResponse;
-  export import WebInputRetrieveResponse = WebInputsAPI.WebInputRetrieveResponse;
-  export import WebInputListResponse = WebInputsAPI.WebInputListResponse;
-  export import WebInputLaunchResponse = WebInputsAPI.WebInputLaunchResponse;
-  export import WebInputReloadResponse = WebInputsAPI.WebInputReloadResponse;
-  export import WebInputShutdownResponse = WebInputsAPI.WebInputShutdownResponse;
-  export import WebInputUpdateURLResponse = WebInputsAPI.WebInputUpdateURLResponse;
-  export import WebInputListResponsesBasePage = WebInputsAPI.WebInputListResponsesBasePage;
-  export import WebInputCreateParams = WebInputsAPI.WebInputCreateParams;
-  export import WebInputListParams = WebInputsAPI.WebInputListParams;
-  export import WebInputUpdateURLParams = WebInputsAPI.WebInputUpdateURLParams;
+WebInputs.WebInputListResponsesBasePage = WebInputListResponsesBasePage;
+
+export declare namespace WebInputs {
+  export {
+    type WebInputCreateResponse as WebInputCreateResponse,
+    type WebInputRetrieveResponse as WebInputRetrieveResponse,
+    type WebInputListResponse as WebInputListResponse,
+    type WebInputLaunchResponse as WebInputLaunchResponse,
+    type WebInputReloadResponse as WebInputReloadResponse,
+    type WebInputShutdownResponse as WebInputShutdownResponse,
+    type WebInputUpdateURLResponse as WebInputUpdateURLResponse,
+    WebInputListResponsesBasePage as WebInputListResponsesBasePage,
+    type WebInputCreateParams as WebInputCreateParams,
+    type WebInputListParams as WebInputListParams,
+    type WebInputUpdateURLParams as WebInputUpdateURLParams,
+  };
 }

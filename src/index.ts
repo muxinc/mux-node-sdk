@@ -1,12 +1,22 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Errors from './error';
-import * as Uploads from './uploads';
 import { type Agent } from './_shims/index';
 import * as qs from './internal/qs';
 import * as Core from './core';
+import * as Errors from './error';
 import * as Pagination from './pagination';
+import {
+  type BasePageParams,
+  BasePageResponse,
+  type PageWithTotalParams,
+  PageWithTotalResponse,
+} from './pagination';
+import * as Uploads from './uploads';
 import * as API from './resources/index';
+import { Webhooks } from './resources/webhooks';
+import { Data } from './resources/data/data';
+import { System } from './resources/system/system';
+import { Video } from './resources/video/video';
 
 export interface ClientOptions {
   /**
@@ -221,46 +231,50 @@ export class Mux extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
-export const {
-  MuxError,
-  APIError,
-  APIConnectionError,
-  APIConnectionTimeoutError,
-  APIUserAbortError,
-  NotFoundError,
-  ConflictError,
-  RateLimitError,
-  BadRequestError,
-  AuthenticationError,
-  InternalServerError,
-  PermissionDeniedError,
-  UnprocessableEntityError,
-} = Errors;
+export const MuxError = Errors.MuxError;
+export const APIError = Errors.APIError;
+export const APIConnectionError = Errors.APIConnectionError;
+export const APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
+export const APIUserAbortError = Errors.APIUserAbortError;
+export const NotFoundError = Errors.NotFoundError;
+export const ConflictError = Errors.ConflictError;
+export const RateLimitError = Errors.RateLimitError;
+export const BadRequestError = Errors.BadRequestError;
+export const AuthenticationError = Errors.AuthenticationError;
+export const InternalServerError = Errors.InternalServerError;
+export const PermissionDeniedError = Errors.PermissionDeniedError;
+export const UnprocessableEntityError = Errors.UnprocessableEntityError;
 
 export import toFile = Uploads.toFile;
 export import fileFromPath = Uploads.fileFromPath;
 
-export namespace Mux {
-  export import RequestOptions = Core.RequestOptions;
+Mux.Video = Video;
+Mux.Data = Data;
+Mux.System = System;
+Mux.Webhooks = Webhooks;
+
+export declare namespace Mux {
+  export type RequestOptions = Core.RequestOptions;
 
   export import PageWithTotal = Pagination.PageWithTotal;
-  export import PageWithTotalParams = Pagination.PageWithTotalParams;
-  export import PageWithTotalResponse = Pagination.PageWithTotalResponse;
+  export {
+    type PageWithTotalParams as PageWithTotalParams,
+    type PageWithTotalResponse as PageWithTotalResponse,
+  };
 
   export import BasePage = Pagination.BasePage;
-  export import BasePageParams = Pagination.BasePageParams;
-  export import BasePageResponse = Pagination.BasePageResponse;
+  export { type BasePageParams as BasePageParams, type BasePageResponse as BasePageResponse };
 
-  export import Video = API.Video;
+  export { Video as Video };
 
-  export import Data = API.Data;
+  export { Data as Data };
 
-  export import System = API.System;
+  export { System as System };
 
-  export import Webhooks = API.Webhooks;
+  export { Webhooks as Webhooks };
 
-  export import PlaybackID = API.PlaybackID;
-  export import PlaybackPolicy = API.PlaybackPolicy;
+  export type PlaybackID = API.PlaybackID;
+  export type PlaybackPolicy = API.PlaybackPolicy;
 }
 
 export default Mux;

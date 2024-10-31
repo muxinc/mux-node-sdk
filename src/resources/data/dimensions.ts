@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as DimensionsAPI from './dimensions';
 import { BasePage, type BasePageParams } from '../../pagination';
 
 export class Dimensions extends APIResource {
@@ -111,9 +110,13 @@ export interface DimensionListValuesParams extends BasePageParams {
   timeframe?: Array<string>;
 }
 
-export namespace Dimensions {
-  export import DimensionValue = DimensionsAPI.DimensionValue;
-  export import DimensionsResponse = DimensionsAPI.DimensionsResponse;
-  export import DimensionValuesBasePage = DimensionsAPI.DimensionValuesBasePage;
-  export import DimensionListValuesParams = DimensionsAPI.DimensionListValuesParams;
+Dimensions.DimensionValuesBasePage = DimensionValuesBasePage;
+
+export declare namespace Dimensions {
+  export {
+    type DimensionValue as DimensionValue,
+    type DimensionsResponse as DimensionsResponse,
+    DimensionValuesBasePage as DimensionValuesBasePage,
+    type DimensionListValuesParams as DimensionListValuesParams,
+  };
 }

@@ -2,15 +2,27 @@
 
 import { APIResource } from '../../resource';
 import * as SigningKeysAPI from './signing-keys';
+import {
+  SigningKey,
+  SigningKeyListParams,
+  SigningKeyResponse,
+  SigningKeys,
+  SigningKeysBasePage,
+} from './signing-keys';
 
 export class System extends APIResource {
   signingKeys: SigningKeysAPI.SigningKeys = new SigningKeysAPI.SigningKeys(this._client);
 }
 
-export namespace System {
-  export import SigningKeys = SigningKeysAPI.SigningKeys;
-  export import SigningKey = SigningKeysAPI.SigningKey;
-  export import SigningKeyResponse = SigningKeysAPI.SigningKeyResponse;
-  export import SigningKeysBasePage = SigningKeysAPI.SigningKeysBasePage;
-  export import SigningKeyListParams = SigningKeysAPI.SigningKeyListParams;
+System.SigningKeys = SigningKeys;
+System.SigningKeysBasePage = SigningKeysBasePage;
+
+export declare namespace System {
+  export {
+    SigningKeys as SigningKeys,
+    type SigningKey as SigningKey,
+    type SigningKeyResponse as SigningKeyResponse,
+    SigningKeysBasePage as SigningKeysBasePage,
+    type SigningKeyListParams as SigningKeyListParams,
+  };
 }

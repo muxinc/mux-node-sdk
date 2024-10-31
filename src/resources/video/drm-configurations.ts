@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as DRMConfigurationsAPI from './drm-configurations';
 import { BasePage, type BasePageParams } from '../../pagination';
 
 export class DRMConfigurations extends APIResource {
@@ -51,8 +50,12 @@ export interface DRMConfiguration {
 
 export interface DRMConfigurationListParams extends BasePageParams {}
 
-export namespace DRMConfigurations {
-  export import DRMConfiguration = DRMConfigurationsAPI.DRMConfiguration;
-  export import DRMConfigurationsBasePage = DRMConfigurationsAPI.DRMConfigurationsBasePage;
-  export import DRMConfigurationListParams = DRMConfigurationsAPI.DRMConfigurationListParams;
+DRMConfigurations.DRMConfigurationsBasePage = DRMConfigurationsBasePage;
+
+export declare namespace DRMConfigurations {
+  export {
+    type DRMConfiguration as DRMConfiguration,
+    DRMConfigurationsBasePage as DRMConfigurationsBasePage,
+    type DRMConfigurationListParams as DRMConfigurationListParams,
+  };
 }

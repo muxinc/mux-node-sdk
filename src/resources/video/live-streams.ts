@@ -3,7 +3,6 @@
 import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
-import * as LiveStreamsAPI from './live-streams';
 import * as Shared from '../shared';
 import * as AssetsAPI from './assets';
 import { BasePage, type BasePageParams } from '../../pagination';
@@ -1018,15 +1017,19 @@ export namespace LiveStreamUpdateGeneratedSubtitlesParams {
   }
 }
 
-export namespace LiveStreams {
-  export import LiveStream = LiveStreamsAPI.LiveStream;
-  export import SimulcastTarget = LiveStreamsAPI.SimulcastTarget;
-  export import LiveStreamsBasePage = LiveStreamsAPI.LiveStreamsBasePage;
-  export import LiveStreamCreateParams = LiveStreamsAPI.LiveStreamCreateParams;
-  export import LiveStreamUpdateParams = LiveStreamsAPI.LiveStreamUpdateParams;
-  export import LiveStreamListParams = LiveStreamsAPI.LiveStreamListParams;
-  export import LiveStreamCreatePlaybackIDParams = LiveStreamsAPI.LiveStreamCreatePlaybackIDParams;
-  export import LiveStreamCreateSimulcastTargetParams = LiveStreamsAPI.LiveStreamCreateSimulcastTargetParams;
-  export import LiveStreamUpdateEmbeddedSubtitlesParams = LiveStreamsAPI.LiveStreamUpdateEmbeddedSubtitlesParams;
-  export import LiveStreamUpdateGeneratedSubtitlesParams = LiveStreamsAPI.LiveStreamUpdateGeneratedSubtitlesParams;
+LiveStreams.LiveStreamsBasePage = LiveStreamsBasePage;
+
+export declare namespace LiveStreams {
+  export {
+    type LiveStream as LiveStream,
+    type SimulcastTarget as SimulcastTarget,
+    LiveStreamsBasePage as LiveStreamsBasePage,
+    type LiveStreamCreateParams as LiveStreamCreateParams,
+    type LiveStreamUpdateParams as LiveStreamUpdateParams,
+    type LiveStreamListParams as LiveStreamListParams,
+    type LiveStreamCreatePlaybackIDParams as LiveStreamCreatePlaybackIDParams,
+    type LiveStreamCreateSimulcastTargetParams as LiveStreamCreateSimulcastTargetParams,
+    type LiveStreamUpdateEmbeddedSubtitlesParams as LiveStreamUpdateEmbeddedSubtitlesParams,
+    type LiveStreamUpdateGeneratedSubtitlesParams as LiveStreamUpdateGeneratedSubtitlesParams,
+  };
 }
