@@ -47,7 +47,7 @@ export class APIError extends MuxError {
     errorResponse: Object | undefined,
     message: string | undefined,
     headers: Headers | undefined,
-  ) {
+  ): APIError {
     if (!status) {
       return new APIConnectionError({ message, cause: castToError(errorResponse) });
     }
