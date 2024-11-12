@@ -231,30 +231,10 @@ export class Mux extends Core.APIClient {
   static fileFromPath = Uploads.fileFromPath;
 }
 
-export {
-  MuxError,
-  APIError,
-  APIConnectionError,
-  APIConnectionTimeoutError,
-  APIUserAbortError,
-  NotFoundError,
-  ConflictError,
-  RateLimitError,
-  BadRequestError,
-  AuthenticationError,
-  InternalServerError,
-  PermissionDeniedError,
-  UnprocessableEntityError,
-} from './error';
-
-export import toFile = Uploads.toFile;
-export import fileFromPath = Uploads.fileFromPath;
-
 Mux.Video = Video;
 Mux.Data = Data;
 Mux.System = System;
 Mux.Webhooks = Webhooks;
-
 export declare namespace Mux {
   export type RequestOptions = Core.RequestOptions;
 
@@ -278,5 +258,22 @@ export declare namespace Mux {
   export type PlaybackID = API.PlaybackID;
   export type PlaybackPolicy = API.PlaybackPolicy;
 }
+
+export { toFile, fileFromPath } from '@mux/mux-node/uploads';
+export {
+  MuxError,
+  APIError,
+  APIConnectionError,
+  APIConnectionTimeoutError,
+  APIUserAbortError,
+  NotFoundError,
+  ConflictError,
+  RateLimitError,
+  BadRequestError,
+  AuthenticationError,
+  InternalServerError,
+  PermissionDeniedError,
+  UnprocessableEntityError,
+} from '@mux/mux-node/error';
 
 export default Mux;
