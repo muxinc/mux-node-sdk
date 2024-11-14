@@ -4,18 +4,45 @@ import { APIResource } from '@mux/mux-node/resource';
 import * as jwt from '@mux/mux-node/_shims/auto/jwt';
 import {
   type SignOptions,
-  type MuxJWTSignOptions,
   TypeClaim,
   DataTypeClaim,
+  TypeToken,
+  type MuxJWTSignOptions,
+  type MuxJWTSignOptionsMultiple,
+  type Tokens,
+  isMuxJWTSignOptionsMultiple,
 } from '@mux/mux-node/util/jwt-types';
 
 export class Jwt extends APIResource {
+  async signPlaybackId(
+    playbackId: string,
+    config: MuxJWTSignOptions<keyof typeof TypeClaim>,
+  ): Promise<string>;
+
+  async signPlaybackId(
+    playbackId: string,
+    config: MuxJWTSignOptionsMultiple<keyof typeof TypeClaim>,
+  ): Promise<Tokens>;
+
   /**
-   * Creates a new token to be used with a signed Playback ID
+   * Creates a new token or tokens to be used with a signed Playback ID
    */
   async signPlaybackId(
     playbackId: string,
-    config: MuxJWTSignOptions<keyof typeof TypeClaim> = {},
+    config:
+      | MuxJWTSignOptions<keyof typeof TypeClaim>
+      | MuxJWTSignOptionsMultiple<keyof typeof TypeClaim> = {},
+  ): Promise<string | Tokens> {
+    if (isMuxJWTSignOptionsMultiple(config)) {
+      return this.signPlaybackIdMultipleTypes(playbackId, config);
+    } else {
+      return this.signPlaybackIdSingleType(playbackId, config);
+    }
+  }
+
+  private async signPlaybackIdSingleType(
+    playbackId: string,
+    config: MuxJWTSignOptions<keyof typeof TypeClaim>,
   ): Promise<string> {
     const claim = TypeClaim[config.type ?? 'video'];
     if (!claim) {
@@ -32,6 +59,43 @@ export class Jwt extends APIResource {
     };
 
     return jwt.sign(config.params ?? {}, await jwt.getPrivateKey(this._client, config), tokenOptions);
+  }
+
+  private async signPlaybackIdMultipleTypes(
+    playbackId: string,
+    config: MuxJWTSignOptionsMultiple<keyof typeof TypeClaim>,
+  ): Promise<Tokens> {
+    const tokens: Tokens = {};
+
+    for (const typeOption of config.type) {
+      let type: keyof typeof TypeClaim;
+      let params: Record<string, string> | undefined;
+
+      if (Array.isArray(typeOption)) {
+        [type, params] = typeOption;
+      } else {
+        type = typeOption;
+        params = undefined;
+      }
+
+      const singleConfig = {
+        ...config,
+        type,
+        params: {
+          ...config.params,
+          ...params,
+        },
+      };
+
+      const token = await this.signPlaybackIdSingleType(playbackId, singleConfig);
+
+      const tokenKey = TypeToken[type];
+      if (tokenKey) {
+        tokens[tokenKey] = token;
+      }
+    }
+
+    return tokens;
   }
 
   /**
