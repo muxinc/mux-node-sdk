@@ -16,12 +16,12 @@ import {
 export class Jwt extends APIResource {
   async signPlaybackId(
     playbackId: string,
-    config: MuxJWTSignOptions<keyof typeof TypeClaim>,
+    config?: MuxJWTSignOptions<keyof typeof TypeClaim>,
   ): Promise<string>;
 
   async signPlaybackId(
     playbackId: string,
-    config: MuxJWTSignOptionsMultiple<keyof typeof TypeClaim>,
+    config?: MuxJWTSignOptionsMultiple<keyof typeof TypeClaim>,
   ): Promise<Tokens>;
 
   /**
