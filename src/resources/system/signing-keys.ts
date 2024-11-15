@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as SigningKeysAPI from '@mux/mux-node/resources/system/signing-keys';
-import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import { BasePage, type BasePageParams } from '../../pagination';
 
 export class SigningKeys extends APIResource {
   /**
@@ -89,9 +88,13 @@ export interface SigningKeyResponse {
 
 export interface SigningKeyListParams extends BasePageParams {}
 
-export namespace SigningKeys {
-  export import SigningKey = SigningKeysAPI.SigningKey;
-  export import SigningKeyResponse = SigningKeysAPI.SigningKeyResponse;
-  export import SigningKeysBasePage = SigningKeysAPI.SigningKeysBasePage;
-  export import SigningKeyListParams = SigningKeysAPI.SigningKeyListParams;
+SigningKeys.SigningKeysBasePage = SigningKeysBasePage;
+
+export declare namespace SigningKeys {
+  export {
+    type SigningKey as SigningKey,
+    type SigningKeyResponse as SigningKeyResponse,
+    SigningKeysBasePage as SigningKeysBasePage,
+    type SigningKeyListParams as SigningKeyListParams,
+  };
 }

@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as FiltersAPI from '@mux/mux-node/resources/data/filters';
-import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import { BasePage, type BasePageParams } from '../../pagination';
 
 export class Filters extends APIResource {
   /**
@@ -88,9 +87,13 @@ export interface FilterListValuesParams extends BasePageParams {
   timeframe?: Array<string>;
 }
 
-export namespace Filters {
-  export import FilterValue = FiltersAPI.FilterValue;
-  export import FiltersResponse = FiltersAPI.FiltersResponse;
-  export import FilterValuesBasePage = FiltersAPI.FilterValuesBasePage;
-  export import FilterListValuesParams = FiltersAPI.FilterListValuesParams;
+Filters.FilterValuesBasePage = FilterValuesBasePage;
+
+export declare namespace Filters {
+  export {
+    type FilterValue as FilterValue,
+    type FiltersResponse as FiltersResponse,
+    FilterValuesBasePage as FilterValuesBasePage,
+    type FilterListValuesParams as FilterListValuesParams,
+  };
 }

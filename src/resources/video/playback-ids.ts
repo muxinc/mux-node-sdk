@@ -1,9 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import * as PlaybackIDsAPI from '@mux/mux-node/resources/video/playback-ids';
-import * as Shared from '@mux/mux-node/resources/shared';
+import { APIResource } from '../../resource';
+import * as Core from '../../core';
+import * as Shared from '../shared';
 
 export class PlaybackIDs extends APIResource {
   /**
@@ -38,6 +37,9 @@ export interface PlaybackIDRetrieveResponse {
    *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
    *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
    *   details about creating tokens.
+   *
+   * - `drm` playback IDs are protected with DRM technologies.
+   *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
    */
   policy: Shared.PlaybackPolicy;
 }
@@ -59,6 +61,6 @@ export namespace PlaybackIDRetrieveResponse {
   }
 }
 
-export namespace PlaybackIDs {
-  export import PlaybackIDRetrieveResponse = PlaybackIDsAPI.PlaybackIDRetrieveResponse;
+export declare namespace PlaybackIDs {
+  export { type PlaybackIDRetrieveResponse as PlaybackIDRetrieveResponse };
 }

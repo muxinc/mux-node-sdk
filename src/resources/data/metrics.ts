@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as MetricsAPI from '@mux/mux-node/resources/data/metrics';
-import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import { BasePage, type BasePageParams } from '../../pagination';
 
 export class Metrics extends APIResource {
   /**
@@ -77,7 +76,8 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'ad_watch_time'
-      | 'view_content_watch_time',
+      | 'view_content_watch_time'
+      | 'view_dropped_percentage',
     query?: MetricGetInsightsParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<InsightsResponse>;
@@ -131,7 +131,8 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'ad_watch_time'
-      | 'view_content_watch_time',
+      | 'view_content_watch_time'
+      | 'view_dropped_percentage',
     options?: Core.RequestOptions,
   ): Core.APIPromise<InsightsResponse>;
   getInsights(
@@ -184,7 +185,8 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'ad_watch_time'
-      | 'view_content_watch_time',
+      | 'view_content_watch_time'
+      | 'view_dropped_percentage',
     query: MetricGetInsightsParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<InsightsResponse> {
@@ -248,7 +250,8 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'ad_watch_time'
-      | 'view_content_watch_time',
+      | 'view_content_watch_time'
+      | 'view_dropped_percentage',
     query?: MetricGetOverallValuesParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<OverallValuesResponse>;
@@ -302,7 +305,8 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'ad_watch_time'
-      | 'view_content_watch_time',
+      | 'view_content_watch_time'
+      | 'view_dropped_percentage',
     options?: Core.RequestOptions,
   ): Core.APIPromise<OverallValuesResponse>;
   getOverallValues(
@@ -355,7 +359,8 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'ad_watch_time'
-      | 'view_content_watch_time',
+      | 'view_content_watch_time'
+      | 'view_dropped_percentage',
     query: MetricGetOverallValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<OverallValuesResponse> {
@@ -426,7 +431,8 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'ad_watch_time'
-      | 'view_content_watch_time',
+      | 'view_content_watch_time'
+      | 'view_dropped_percentage',
     query?: MetricGetTimeseriesParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<MetricTimeseriesDataResponse>;
@@ -480,7 +486,8 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'ad_watch_time'
-      | 'view_content_watch_time',
+      | 'view_content_watch_time'
+      | 'view_dropped_percentage',
     options?: Core.RequestOptions,
   ): Core.APIPromise<MetricTimeseriesDataResponse>;
   getTimeseries(
@@ -533,7 +540,8 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'ad_watch_time'
-      | 'view_content_watch_time',
+      | 'view_content_watch_time'
+      | 'view_dropped_percentage',
     query: MetricGetTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<MetricTimeseriesDataResponse> {
@@ -596,7 +604,8 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'ad_watch_time'
-      | 'view_content_watch_time',
+      | 'view_content_watch_time'
+      | 'view_dropped_percentage',
     query?: MetricListBreakdownValuesParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue>;
@@ -650,7 +659,8 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'ad_watch_time'
-      | 'view_content_watch_time',
+      | 'view_content_watch_time'
+      | 'view_dropped_percentage',
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue>;
   listBreakdownValues(
@@ -703,7 +713,8 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'ad_watch_time'
-      | 'view_content_watch_time',
+      | 'view_content_watch_time'
+      | 'view_dropped_percentage',
     query: MetricListBreakdownValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue> {
@@ -930,7 +941,8 @@ export interface MetricListParams {
     | 'viewer_device_name'
     | 'viewer_user_id'
     | 'ad_playback_failure'
-    | 'content_playback_failure';
+    | 'content_playback_failure'
+    | 'view_dropped';
 
   /**
    * Limit the results to rows that match conditions from provided key:value pairs.
@@ -953,7 +965,7 @@ export interface MetricListParams {
    *
    * Possible filterable metrics are the same as the set of metric ids, with the
    * exceptions of `exits_before_video_start`, `unique_viewers`,
-   * `video_startup_failure_percentage`, and `views`.
+   * `video_startup_failure_percentage`, `view_dropped_percentage`, and `views`.
    *
    * Example:
    *
@@ -996,7 +1008,28 @@ export interface MetricGetInsightsParams {
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
-   * be used.
+   * be used. The default measurement for each metric is: "sum" : `ad_attempt_count`,
+   * `ad_break_count`, `ad_break_error_count`, `ad_error_count`,
+   * `ad_impression_count`, `playing_time` "median" : `ad_preroll_startup_time`,
+   * `ad_watch_time`, `aggregate_startup_time`, `content_startup_time`,
+   * `content_watch_time`, `max_downscale_percentage`, `max_upscale_percentage`,
+   * `page_load_time`, `player_average_live_latency`, `player_startup_time`,
+   * `rebuffer_count`, `rebuffer_duration`, `requests_for_first_preroll`,
+   * `video_startup_preroll_load_time`, `video_startup_preroll_request_time`,
+   * `video_startup_time`, `view_average_request_latency`,
+   * `view_average_request_throughput`, `view_max_request_latency`,
+   * `weighted_average_bitrate` "avg" : `ad_break_error_percentage`,
+   * `ad_error_percentage`, `ad_exit_before_start_count`,
+   * `ad_exit_before_start_percentage`, `ad_playback_failure_percentage`,
+   * `ad_startup_error_count`, `ad_startup_error_percentage`,
+   * `content_playback_failure_percentage`, `downscale_percentage`,
+   * `exits_before_video_start`, `playback_business_exception_percentage`,
+   * `playback_failure_percentage`, `playback_success_score`, `rebuffer_frequency`,
+   * `rebuffer_percentage`, `seek_latency`, `smoothness_score`, `startup_time_score`,
+   * `upscale_percentage`, `video_quality_score`,
+   * `video_startup_business_exception_percentage`,
+   * `video_startup_failure_percentage`, `view_dropped_percentage`,
+   * `viewer_experience_score` "count" : `started_views`, `unique_viewers`
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
 
@@ -1006,7 +1039,7 @@ export interface MetricGetInsightsParams {
    *
    * Possible filterable metrics are the same as the set of metric ids, with the
    * exceptions of `exits_before_video_start`, `unique_viewers`,
-   * `video_startup_failure_percentage`, and `views`.
+   * `video_startup_failure_percentage`, `view_dropped_percentage`, and `views`.
    *
    * Example:
    *
@@ -1049,7 +1082,28 @@ export interface MetricGetOverallValuesParams {
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
-   * be used.
+   * be used. The default measurement for each metric is: "sum" : `ad_attempt_count`,
+   * `ad_break_count`, `ad_break_error_count`, `ad_error_count`,
+   * `ad_impression_count`, `playing_time` "median" : `ad_preroll_startup_time`,
+   * `ad_watch_time`, `aggregate_startup_time`, `content_startup_time`,
+   * `content_watch_time`, `max_downscale_percentage`, `max_upscale_percentage`,
+   * `page_load_time`, `player_average_live_latency`, `player_startup_time`,
+   * `rebuffer_count`, `rebuffer_duration`, `requests_for_first_preroll`,
+   * `video_startup_preroll_load_time`, `video_startup_preroll_request_time`,
+   * `video_startup_time`, `view_average_request_latency`,
+   * `view_average_request_throughput`, `view_max_request_latency`,
+   * `weighted_average_bitrate` "avg" : `ad_break_error_percentage`,
+   * `ad_error_percentage`, `ad_exit_before_start_count`,
+   * `ad_exit_before_start_percentage`, `ad_playback_failure_percentage`,
+   * `ad_startup_error_count`, `ad_startup_error_percentage`,
+   * `content_playback_failure_percentage`, `downscale_percentage`,
+   * `exits_before_video_start`, `playback_business_exception_percentage`,
+   * `playback_failure_percentage`, `playback_success_score`, `rebuffer_frequency`,
+   * `rebuffer_percentage`, `seek_latency`, `smoothness_score`, `startup_time_score`,
+   * `upscale_percentage`, `video_quality_score`,
+   * `video_startup_business_exception_percentage`,
+   * `video_startup_failure_percentage`, `view_dropped_percentage`,
+   * `viewer_experience_score` "count" : `started_views`, `unique_viewers`
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
 
@@ -1059,7 +1113,7 @@ export interface MetricGetOverallValuesParams {
    *
    * Possible filterable metrics are the same as the set of metric ids, with the
    * exceptions of `exits_before_video_start`, `unique_viewers`,
-   * `video_startup_failure_percentage`, and `views`.
+   * `video_startup_failure_percentage`, `view_dropped_percentage`, and `views`.
    *
    * Example:
    *
@@ -1110,7 +1164,28 @@ export interface MetricGetTimeseriesParams {
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
-   * be used.
+   * be used. The default measurement for each metric is: "sum" : `ad_attempt_count`,
+   * `ad_break_count`, `ad_break_error_count`, `ad_error_count`,
+   * `ad_impression_count`, `playing_time` "median" : `ad_preroll_startup_time`,
+   * `ad_watch_time`, `aggregate_startup_time`, `content_startup_time`,
+   * `content_watch_time`, `max_downscale_percentage`, `max_upscale_percentage`,
+   * `page_load_time`, `player_average_live_latency`, `player_startup_time`,
+   * `rebuffer_count`, `rebuffer_duration`, `requests_for_first_preroll`,
+   * `video_startup_preroll_load_time`, `video_startup_preroll_request_time`,
+   * `video_startup_time`, `view_average_request_latency`,
+   * `view_average_request_throughput`, `view_max_request_latency`,
+   * `weighted_average_bitrate` "avg" : `ad_break_error_percentage`,
+   * `ad_error_percentage`, `ad_exit_before_start_count`,
+   * `ad_exit_before_start_percentage`, `ad_playback_failure_percentage`,
+   * `ad_startup_error_count`, `ad_startup_error_percentage`,
+   * `content_playback_failure_percentage`, `downscale_percentage`,
+   * `exits_before_video_start`, `playback_business_exception_percentage`,
+   * `playback_failure_percentage`, `playback_success_score`, `rebuffer_frequency`,
+   * `rebuffer_percentage`, `seek_latency`, `smoothness_score`, `startup_time_score`,
+   * `upscale_percentage`, `video_quality_score`,
+   * `video_startup_business_exception_percentage`,
+   * `video_startup_failure_percentage`, `view_dropped_percentage`,
+   * `viewer_experience_score` "count" : `started_views`, `unique_viewers`
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
 
@@ -1120,7 +1195,7 @@ export interface MetricGetTimeseriesParams {
    *
    * Possible filterable metrics are the same as the set of metric ids, with the
    * exceptions of `exits_before_video_start`, `unique_viewers`,
-   * `video_startup_failure_percentage`, and `views`.
+   * `video_startup_failure_percentage`, `view_dropped_percentage`, and `views`.
    *
    * Example:
    *
@@ -1227,11 +1302,33 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
     | 'viewer_device_name'
     | 'viewer_user_id'
     | 'ad_playback_failure'
-    | 'content_playback_failure';
+    | 'content_playback_failure'
+    | 'view_dropped';
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
-   * be used.
+   * be used. The default measurement for each metric is: "sum" : `ad_attempt_count`,
+   * `ad_break_count`, `ad_break_error_count`, `ad_error_count`,
+   * `ad_impression_count`, `playing_time` "median" : `ad_preroll_startup_time`,
+   * `ad_watch_time`, `aggregate_startup_time`, `content_startup_time`,
+   * `content_watch_time`, `max_downscale_percentage`, `max_upscale_percentage`,
+   * `page_load_time`, `player_average_live_latency`, `player_startup_time`,
+   * `rebuffer_count`, `rebuffer_duration`, `requests_for_first_preroll`,
+   * `video_startup_preroll_load_time`, `video_startup_preroll_request_time`,
+   * `video_startup_time`, `view_average_request_latency`,
+   * `view_average_request_throughput`, `view_max_request_latency`,
+   * `weighted_average_bitrate` "avg" : `ad_break_error_percentage`,
+   * `ad_error_percentage`, `ad_exit_before_start_count`,
+   * `ad_exit_before_start_percentage`, `ad_playback_failure_percentage`,
+   * `ad_startup_error_count`, `ad_startup_error_percentage`,
+   * `content_playback_failure_percentage`, `downscale_percentage`,
+   * `exits_before_video_start`, `playback_business_exception_percentage`,
+   * `playback_failure_percentage`, `playback_success_score`, `rebuffer_frequency`,
+   * `rebuffer_percentage`, `seek_latency`, `smoothness_score`, `startup_time_score`,
+   * `upscale_percentage`, `video_quality_score`,
+   * `video_startup_business_exception_percentage`,
+   * `video_startup_failure_percentage`, `view_dropped_percentage`,
+   * `viewer_experience_score` "count" : `started_views`, `unique_viewers`
    */
   measurement?: '95th' | 'median' | 'avg' | 'count' | 'sum';
 
@@ -1241,7 +1338,7 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
    *
    * Possible filterable metrics are the same as the set of metric ids, with the
    * exceptions of `exits_before_video_start`, `unique_viewers`,
-   * `video_startup_failure_percentage`, and `views`.
+   * `video_startup_failure_percentage`, `view_dropped_percentage`, and `views`.
    *
    * Example:
    *
@@ -1271,16 +1368,20 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
   timeframe?: Array<string>;
 }
 
-export namespace Metrics {
-  export import AllMetricValuesResponse = MetricsAPI.AllMetricValuesResponse;
-  export import BreakdownValue = MetricsAPI.BreakdownValue;
-  export import InsightsResponse = MetricsAPI.InsightsResponse;
-  export import MetricTimeseriesDataResponse = MetricsAPI.MetricTimeseriesDataResponse;
-  export import OverallValuesResponse = MetricsAPI.OverallValuesResponse;
-  export import BreakdownValuesBasePage = MetricsAPI.BreakdownValuesBasePage;
-  export import MetricListParams = MetricsAPI.MetricListParams;
-  export import MetricGetInsightsParams = MetricsAPI.MetricGetInsightsParams;
-  export import MetricGetOverallValuesParams = MetricsAPI.MetricGetOverallValuesParams;
-  export import MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
-  export import MetricListBreakdownValuesParams = MetricsAPI.MetricListBreakdownValuesParams;
+Metrics.BreakdownValuesBasePage = BreakdownValuesBasePage;
+
+export declare namespace Metrics {
+  export {
+    type AllMetricValuesResponse as AllMetricValuesResponse,
+    type BreakdownValue as BreakdownValue,
+    type InsightsResponse as InsightsResponse,
+    type MetricTimeseriesDataResponse as MetricTimeseriesDataResponse,
+    type OverallValuesResponse as OverallValuesResponse,
+    BreakdownValuesBasePage as BreakdownValuesBasePage,
+    type MetricListParams as MetricListParams,
+    type MetricGetInsightsParams as MetricGetInsightsParams,
+    type MetricGetOverallValuesParams as MetricGetOverallValuesParams,
+    type MetricGetTimeseriesParams as MetricGetTimeseriesParams,
+    type MetricListBreakdownValuesParams as MetricListBreakdownValuesParams,
+  };
 }

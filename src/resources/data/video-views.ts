@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as VideoViewsAPI from '@mux/mux-node/resources/data/video-views';
-import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import { BasePage, type BasePageParams } from '../../pagination';
 
 export class VideoViews extends APIResource {
   /**
@@ -332,6 +331,8 @@ export namespace VideoViewResponse {
 
     view_drm_type: string | null;
 
+    view_dropped: boolean;
+
     view_dropped_frame_count: number | null;
 
     view_end: string;
@@ -447,7 +448,7 @@ export interface VideoViewListParams extends BasePageParams {
    *
    * Possible filterable metrics are the same as the set of metric ids, with the
    * exceptions of `exits_before_video_start`, `unique_viewers`,
-   * `video_startup_failure_percentage`, and `views`.
+   * `video_startup_failure_percentage`, `view_dropped_percentage`, and `views`.
    *
    * Example:
    *
@@ -478,9 +479,13 @@ export interface VideoViewListParams extends BasePageParams {
   viewer_id?: string;
 }
 
-export namespace VideoViews {
-  export import AbridgedVideoView = VideoViewsAPI.AbridgedVideoView;
-  export import VideoViewResponse = VideoViewsAPI.VideoViewResponse;
-  export import AbridgedVideoViewsBasePage = VideoViewsAPI.AbridgedVideoViewsBasePage;
-  export import VideoViewListParams = VideoViewsAPI.VideoViewListParams;
+VideoViews.AbridgedVideoViewsBasePage = AbridgedVideoViewsBasePage;
+
+export declare namespace VideoViews {
+  export {
+    type AbridgedVideoView as AbridgedVideoView,
+    type VideoViewResponse as VideoViewResponse,
+    AbridgedVideoViewsBasePage as AbridgedVideoViewsBasePage,
+    type VideoViewListParams as VideoViewListParams,
+  };
 }

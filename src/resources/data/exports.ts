@@ -1,8 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import * as ExportsAPI from '@mux/mux-node/resources/data/exports';
+import { APIResource } from '../../resource';
+import * as Core from '../../core';
 
 export class Exports extends APIResource {
   /**
@@ -47,7 +46,9 @@ export namespace VideoViewExportsResponse {
   }
 }
 
-export namespace Exports {
-  export import ExportsResponse = ExportsAPI.ExportsResponse;
-  export import VideoViewExportsResponse = ExportsAPI.VideoViewExportsResponse;
+export declare namespace Exports {
+  export {
+    type ExportsResponse as ExportsResponse,
+    type VideoViewExportsResponse as VideoViewExportsResponse,
+  };
 }

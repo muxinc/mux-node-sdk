@@ -1,9 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as ErrorsAPI from '@mux/mux-node/resources/data/errors';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
 
 export class Errors extends APIResource {
   /**
@@ -101,7 +100,7 @@ export interface ErrorListParams {
    *
    * Possible filterable metrics are the same as the set of metric ids, with the
    * exceptions of `exits_before_video_start`, `unique_viewers`,
-   * `video_startup_failure_percentage`, and `views`.
+   * `video_startup_failure_percentage`, `view_dropped_percentage`, and `views`.
    *
    * Example:
    *
@@ -121,7 +120,6 @@ export interface ErrorListParams {
   timeframe?: Array<string>;
 }
 
-export namespace Errors {
-  export import ErrorsResponse = ErrorsAPI.ErrorsResponse;
-  export import ErrorListParams = ErrorsAPI.ErrorListParams;
+export declare namespace Errors {
+  export { type ErrorsResponse as ErrorsResponse, type ErrorListParams as ErrorListParams };
 }

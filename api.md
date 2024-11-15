@@ -99,32 +99,6 @@ Methods:
 - <code title="put /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/referrer">client.video.playbackRestrictions.<a href="./src/resources/video/playback-restrictions.ts">updateReferrer</a>(playbackRestrictionId, { ...params }) -> PlaybackRestriction</code>
 - <code title="put /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/user_agent">client.video.playbackRestrictions.<a href="./src/resources/video/playback-restrictions.ts">updateUserAgent</a>(playbackRestrictionId, { ...params }) -> PlaybackRestriction</code>
 
-## Spaces
-
-Types:
-
-- <code><a href="./src/resources/video/spaces.ts">Broadcast</a></code>
-- <code><a href="./src/resources/video/spaces.ts">BroadcastLayout</a></code>
-- <code><a href="./src/resources/video/spaces.ts">BroadcastResolution</a></code>
-- <code><a href="./src/resources/video/spaces.ts">BroadcastResponse</a></code>
-- <code><a href="./src/resources/video/spaces.ts">BroadcastStatus</a></code>
-- <code><a href="./src/resources/video/spaces.ts">Space</a></code>
-- <code><a href="./src/resources/video/spaces.ts">SpaceResponse</a></code>
-- <code><a href="./src/resources/video/spaces.ts">SpaceStatus</a></code>
-- <code><a href="./src/resources/video/spaces.ts">SpaceType</a></code>
-
-Methods:
-
-- <code title="post /video/v1/spaces">client.video.spaces.<a href="./src/resources/video/spaces.ts">create</a>({ ...params }) -> Space</code>
-- <code title="get /video/v1/spaces/{SPACE_ID}">client.video.spaces.<a href="./src/resources/video/spaces.ts">retrieve</a>(spaceId) -> Space</code>
-- <code title="get /video/v1/spaces">client.video.spaces.<a href="./src/resources/video/spaces.ts">list</a>({ ...params }) -> SpacesBasePage</code>
-- <code title="delete /video/v1/spaces/{SPACE_ID}">client.video.spaces.<a href="./src/resources/video/spaces.ts">delete</a>(spaceId) -> void</code>
-- <code title="post /video/v1/spaces/{SPACE_ID}/broadcasts">client.video.spaces.<a href="./src/resources/video/spaces.ts">createBroadcast</a>(spaceId, { ...params }) -> Broadcast</code>
-- <code title="delete /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}">client.video.spaces.<a href="./src/resources/video/spaces.ts">deleteBroadcast</a>(spaceId, broadcastId) -> void</code>
-- <code title="get /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}">client.video.spaces.<a href="./src/resources/video/spaces.ts">retrieveBroadcast</a>(spaceId, broadcastId) -> Broadcast</code>
-- <code title="post /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/start">client.video.spaces.<a href="./src/resources/video/spaces.ts">startBroadcast</a>(spaceId, broadcastId) -> void</code>
-- <code title="post /video/v1/spaces/{SPACE_ID}/broadcasts/{BROADCAST_ID}/stop">client.video.spaces.<a href="./src/resources/video/spaces.ts">stopBroadcast</a>(spaceId, broadcastId) -> void</code>
-
 ## TranscriptionVocabularies
 
 Types:
@@ -385,15 +359,6 @@ Types:
 - <code><a href="./src/resources/webhooks.ts">VideoLiveStreamSimulcastTargetErroredWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">VideoLiveStreamSimulcastTargetDeletedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">VideoLiveStreamSimulcastTargetUpdatedWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceCreatedWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceDeletedWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceActiveWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceIdleWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceUpdatedWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceBroadcastCreatedWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceBroadcastIdleWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceBroadcastActiveWebhookEvent</a></code>
-- <code><a href="./src/resources/webhooks.ts">VideoSpaceBroadcastDeletedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">VideoDeliveryHighTrafficWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">UnwrapWebhookEvent</a></code>
 
@@ -402,7 +367,7 @@ Methods:
 - <code>client.webhooks.<a href="./src/resources/webhooks.ts">unwrap</a>(body, headers, secret) -> UnwrapWebhookEvent</code>
 - <code>client.webhooks.<a href="./src/resources/webhooks.ts">verifySignature</a>(body, headers, secret) -> void</code>
 
-# Jwt
+# JWT
 
 Methods:
 

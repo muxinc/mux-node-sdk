@@ -1,9 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as RealTimeAPI from '@mux/mux-node/resources/data/real-time';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
 
 export class RealTime extends APIResource {
   /**
@@ -348,13 +347,15 @@ export interface RealTimeRetrieveTimeseriesParams {
   timestamp?: number;
 }
 
-export namespace RealTime {
-  export import RealTimeBreakdownResponse = RealTimeAPI.RealTimeBreakdownResponse;
-  export import RealTimeDimensionsResponse = RealTimeAPI.RealTimeDimensionsResponse;
-  export import RealTimeHistogramTimeseriesResponse = RealTimeAPI.RealTimeHistogramTimeseriesResponse;
-  export import RealTimeMetricsResponse = RealTimeAPI.RealTimeMetricsResponse;
-  export import RealTimeTimeseriesResponse = RealTimeAPI.RealTimeTimeseriesResponse;
-  export import RealTimeRetrieveBreakdownParams = RealTimeAPI.RealTimeRetrieveBreakdownParams;
-  export import RealTimeRetrieveHistogramTimeseriesParams = RealTimeAPI.RealTimeRetrieveHistogramTimeseriesParams;
-  export import RealTimeRetrieveTimeseriesParams = RealTimeAPI.RealTimeRetrieveTimeseriesParams;
+export declare namespace RealTime {
+  export {
+    type RealTimeBreakdownResponse as RealTimeBreakdownResponse,
+    type RealTimeDimensionsResponse as RealTimeDimensionsResponse,
+    type RealTimeHistogramTimeseriesResponse as RealTimeHistogramTimeseriesResponse,
+    type RealTimeMetricsResponse as RealTimeMetricsResponse,
+    type RealTimeTimeseriesResponse as RealTimeTimeseriesResponse,
+    type RealTimeRetrieveBreakdownParams as RealTimeRetrieveBreakdownParams,
+    type RealTimeRetrieveHistogramTimeseriesParams as RealTimeRetrieveHistogramTimeseriesParams,
+    type RealTimeRetrieveTimeseriesParams as RealTimeRetrieveTimeseriesParams,
+  };
 }

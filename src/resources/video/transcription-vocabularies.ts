@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as TranscriptionVocabulariesAPI from '@mux/mux-node/resources/video/transcription-vocabularies';
-import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import { BasePage, type BasePageParams } from '../../pagination';
 
 export class TranscriptionVocabularies extends APIResource {
   /**
@@ -184,11 +183,15 @@ export interface TranscriptionVocabularyUpdateParams {
 
 export interface TranscriptionVocabularyListParams extends BasePageParams {}
 
-export namespace TranscriptionVocabularies {
-  export import TranscriptionVocabulary = TranscriptionVocabulariesAPI.TranscriptionVocabulary;
-  export import TranscriptionVocabularyResponse = TranscriptionVocabulariesAPI.TranscriptionVocabularyResponse;
-  export import TranscriptionVocabulariesBasePage = TranscriptionVocabulariesAPI.TranscriptionVocabulariesBasePage;
-  export import TranscriptionVocabularyCreateParams = TranscriptionVocabulariesAPI.TranscriptionVocabularyCreateParams;
-  export import TranscriptionVocabularyUpdateParams = TranscriptionVocabulariesAPI.TranscriptionVocabularyUpdateParams;
-  export import TranscriptionVocabularyListParams = TranscriptionVocabulariesAPI.TranscriptionVocabularyListParams;
+TranscriptionVocabularies.TranscriptionVocabulariesBasePage = TranscriptionVocabulariesBasePage;
+
+export declare namespace TranscriptionVocabularies {
+  export {
+    type TranscriptionVocabulary as TranscriptionVocabulary,
+    type TranscriptionVocabularyResponse as TranscriptionVocabularyResponse,
+    TranscriptionVocabulariesBasePage as TranscriptionVocabulariesBasePage,
+    type TranscriptionVocabularyCreateParams as TranscriptionVocabularyCreateParams,
+    type TranscriptionVocabularyUpdateParams as TranscriptionVocabularyUpdateParams,
+    type TranscriptionVocabularyListParams as TranscriptionVocabularyListParams,
+  };
 }

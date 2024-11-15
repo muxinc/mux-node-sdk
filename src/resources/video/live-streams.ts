@@ -1,12 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as LiveStreamsAPI from '@mux/mux-node/resources/video/live-streams';
-import * as Shared from '@mux/mux-node/resources/shared';
-import * as AssetsAPI from '@mux/mux-node/resources/video/assets';
-import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import * as Shared from '../shared';
+import * as AssetsAPI from './assets';
+import { BasePage, type BasePageParams } from '../../pagination';
 
 export class LiveStreams extends APIResource {
   /**
@@ -573,10 +572,10 @@ export interface SimulcastTarget {
 export interface LiveStreamCreateParams {
   /**
    * An array of playback policy objects that you want applied to this asset and
-   * available through `playback_ids`. `advanced_playback_policy` must be used
+   * available through `playback_ids`. `advanced_playback_policies` must be used
    * instead of `playback_policy` when creating a DRM playback ID.
    */
-  advanced_playback_policy?: Array<LiveStreamCreateParams.AdvancedPlaybackPolicy>;
+  advanced_playback_policies?: Array<LiveStreamCreateParams.AdvancedPlaybackPolicy>;
 
   /**
    * Force the live stream to only process the audio track when the value is set to
@@ -705,6 +704,9 @@ export namespace LiveStreamCreateParams {
      *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
      *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
      *   details about creating tokens.
+     *
+     * - `drm` playback IDs are protected with DRM technologies.
+     *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
      */
     policy?: Shared.PlaybackPolicy;
   }
@@ -803,7 +805,7 @@ export interface LiveStreamUpdateParams {
 
   /**
    * Updates the new asset settings to use to generate a new asset for this live
-   * stream. Only the `mp4_support` setting may be updated.
+   * stream. Only the `mp4_support` and `master_access` settings may be updated.
    */
   new_asset_settings?: LiveStreamUpdateParams.NewAssetSettings;
 
@@ -853,9 +855,14 @@ export interface LiveStreamUpdateParams {
 export namespace LiveStreamUpdateParams {
   /**
    * Updates the new asset settings to use to generate a new asset for this live
-   * stream. Only the `mp4_support` setting may be updated.
+   * stream. Only the `mp4_support` and `master_access` settings may be updated.
    */
   export interface NewAssetSettings {
+    /**
+     * Add or remove access to the master version of the video.
+     */
+    master_access?: 'temporary' | 'none';
+
     /**
      * Specify what level of support for mp4 playback should be added to new assets
      * generated from this live stream.
@@ -907,6 +914,9 @@ export interface LiveStreamCreatePlaybackIDParams {
    *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
    *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
    *   details about creating tokens.
+   *
+   * - `drm` playback IDs are protected with DRM technologies.
+   *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
    */
   policy?: Shared.PlaybackPolicy;
 }
@@ -1007,15 +1017,19 @@ export namespace LiveStreamUpdateGeneratedSubtitlesParams {
   }
 }
 
-export namespace LiveStreams {
-  export import LiveStream = LiveStreamsAPI.LiveStream;
-  export import SimulcastTarget = LiveStreamsAPI.SimulcastTarget;
-  export import LiveStreamsBasePage = LiveStreamsAPI.LiveStreamsBasePage;
-  export import LiveStreamCreateParams = LiveStreamsAPI.LiveStreamCreateParams;
-  export import LiveStreamUpdateParams = LiveStreamsAPI.LiveStreamUpdateParams;
-  export import LiveStreamListParams = LiveStreamsAPI.LiveStreamListParams;
-  export import LiveStreamCreatePlaybackIDParams = LiveStreamsAPI.LiveStreamCreatePlaybackIDParams;
-  export import LiveStreamCreateSimulcastTargetParams = LiveStreamsAPI.LiveStreamCreateSimulcastTargetParams;
-  export import LiveStreamUpdateEmbeddedSubtitlesParams = LiveStreamsAPI.LiveStreamUpdateEmbeddedSubtitlesParams;
-  export import LiveStreamUpdateGeneratedSubtitlesParams = LiveStreamsAPI.LiveStreamUpdateGeneratedSubtitlesParams;
+LiveStreams.LiveStreamsBasePage = LiveStreamsBasePage;
+
+export declare namespace LiveStreams {
+  export {
+    type LiveStream as LiveStream,
+    type SimulcastTarget as SimulcastTarget,
+    LiveStreamsBasePage as LiveStreamsBasePage,
+    type LiveStreamCreateParams as LiveStreamCreateParams,
+    type LiveStreamUpdateParams as LiveStreamUpdateParams,
+    type LiveStreamListParams as LiveStreamListParams,
+    type LiveStreamCreatePlaybackIDParams as LiveStreamCreatePlaybackIDParams,
+    type LiveStreamCreateSimulcastTargetParams as LiveStreamCreateSimulcastTargetParams,
+    type LiveStreamUpdateEmbeddedSubtitlesParams as LiveStreamUpdateEmbeddedSubtitlesParams,
+    type LiveStreamUpdateGeneratedSubtitlesParams as LiveStreamUpdateGeneratedSubtitlesParams,
+  };
 }

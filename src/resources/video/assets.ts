@@ -1,11 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as AssetsAPI from '@mux/mux-node/resources/video/assets';
-import * as Shared from '@mux/mux-node/resources/shared';
-import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import * as Shared from '../shared';
+import { BasePage, type BasePageParams } from '../../pagination';
 
 export class Assets extends APIResource {
   /**
@@ -226,11 +225,12 @@ export interface Asset {
   created_at: string;
 
   /**
-   * The encoding tier informs the cost, quality, and available platform features for
-   * the asset. By default the `smart` encoding tier is used.
-   * [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * @deprecated: This field is deprecated. Please use `video_quality` instead. The
+   * encoding tier informs the cost, quality, and available platform features for the
+   * asset. The default encoding tier for an account can be set in the Mux Dashboard.
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
-  encoding_tier: 'smart' | 'baseline';
+  encoding_tier: 'smart' | 'baseline' | 'premium';
 
   master_access: 'temporary' | 'none';
 
@@ -384,6 +384,14 @@ export interface Asset {
    * when the asset is created from a direct upload.
    */
   upload_id?: string;
+
+  /**
+   * The video quality controls the cost, quality, and available platform features
+   * for the asset. The default video quality for an account can be set in the Mux
+   * Dashboard. This field replaces the deprecated `encoding_tier` value.
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
+   */
+  video_quality?: 'basic' | 'plus' | 'premium';
 }
 
 export namespace Asset {
@@ -567,17 +575,18 @@ export namespace Asset {
 export interface AssetOptions {
   /**
    * An array of playback policy objects that you want applied to this asset and
-   * available through `playback_ids`. `advanced_playback_policy` must be used
+   * available through `playback_ids`. `advanced_playback_policies` must be used
    * instead of `playback_policy` when creating a DRM playback ID.
    */
-  advanced_playback_policy?: Array<AssetOptions.AdvancedPlaybackPolicy>;
+  advanced_playback_policies?: Array<AssetOptions.AdvancedPlaybackPolicy>;
 
   /**
-   * The encoding tier informs the cost, quality, and available platform features for
-   * the asset. By default the `smart` encoding tier is used.
-   * [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * @deprecated: This field is deprecated. Please use `video_quality` instead. The
+   * encoding tier informs the cost, quality, and available platform features for the
+   * asset. The default encoding tier for an account can be set in the Mux Dashboard.
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
-  encoding_tier?: 'smart' | 'baseline';
+  encoding_tier?: 'smart' | 'baseline' | 'premium';
 
   /**
    * An array of objects that each describe an input file to be used to create the
@@ -667,6 +676,14 @@ export interface AssetOptions {
    * limited to 10 seconds, deleted after 24 hrs.
    */
   test?: boolean;
+
+  /**
+   * The video quality controls the cost, quality, and available platform features
+   * for the asset. The default video quality for an account can be set in the Mux
+   * Dashboard. This field replaces the deprecated `encoding_tier` value.
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
+   */
+  video_quality?: 'basic' | 'plus' | 'premium';
 }
 
 export namespace AssetOptions {
@@ -685,6 +702,9 @@ export namespace AssetOptions {
      *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
      *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
      *   details about creating tokens.
+     *
+     * - `drm` playback IDs are protected with DRM technologies.
+     *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
      */
     policy?: Shared.PlaybackPolicy;
   }
@@ -1294,17 +1314,18 @@ export interface AssetCreateParams {
 
   /**
    * An array of playback policy objects that you want applied to this asset and
-   * available through `playback_ids`. `advanced_playback_policy` must be used
+   * available through `playback_ids`. `advanced_playback_policies` must be used
    * instead of `playback_policy` when creating a DRM playback ID.
    */
-  advanced_playback_policy?: Array<AssetCreateParams.AdvancedPlaybackPolicy>;
+  advanced_playback_policies?: Array<AssetCreateParams.AdvancedPlaybackPolicy>;
 
   /**
-   * The encoding tier informs the cost, quality, and available platform features for
-   * the asset. By default the `smart` encoding tier is used.
-   * [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * This field is deprecated. Please use `video_quality` instead. The encoding tier
+   * informs the cost, quality, and available platform features for the asset. The
+   * default encoding tier for an account can be set in the Mux Dashboard.
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
-  encoding_tier?: 'smart' | 'baseline';
+  encoding_tier?: 'smart' | 'baseline' | 'premium';
 
   /**
    * Specify what level (if any) of support for master access. Master access can be
@@ -1384,6 +1405,14 @@ export interface AssetCreateParams {
    * limited to 10 seconds, deleted after 24 hrs.
    */
   test?: boolean;
+
+  /**
+   * The video quality controls the cost, quality, and available platform features
+   * for the asset. The default video quality for an account can be set in the Mux
+   * Dashboard. This field replaces the deprecated `encoding_tier` value.
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
+   */
+  video_quality?: 'basic' | 'plus' | 'premium';
 }
 
 export namespace AssetCreateParams {
@@ -1615,6 +1644,9 @@ export namespace AssetCreateParams {
      *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
      *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
      *   details about creating tokens.
+     *
+     * - `drm` playback IDs are protected with DRM technologies.
+     *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
      */
     policy?: Shared.PlaybackPolicy;
   }
@@ -1655,6 +1687,9 @@ export interface AssetCreatePlaybackIDParams {
    *   `https://stream.mux.com/${PLAYBACK_ID}?token={TOKEN}`. See
    *   [Secure video playback](https://docs.mux.com/guides/secure-video-playback) for
    *   details about creating tokens.
+   *
+   * - `drm` playback IDs are protected with DRM technologies.
+   *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
    */
   policy?: Shared.PlaybackPolicy;
 }
@@ -1786,21 +1821,25 @@ export interface AssetUpdateMP4SupportParams {
   mp4_support: 'standard' | 'none' | 'capped-1080p' | 'audio-only' | 'audio-only,capped-1080p';
 }
 
-export namespace Assets {
-  export import Asset = AssetsAPI.Asset;
-  export import AssetOptions = AssetsAPI.AssetOptions;
-  export import AssetResponse = AssetsAPI.AssetResponse;
-  export import InputInfo = AssetsAPI.InputInfo;
-  export import Track = AssetsAPI.Track;
-  export import AssetGenerateSubtitlesResponse = AssetsAPI.AssetGenerateSubtitlesResponse;
-  export import AssetRetrieveInputInfoResponse = AssetsAPI.AssetRetrieveInputInfoResponse;
-  export import AssetsBasePage = AssetsAPI.AssetsBasePage;
-  export import AssetCreateParams = AssetsAPI.AssetCreateParams;
-  export import AssetUpdateParams = AssetsAPI.AssetUpdateParams;
-  export import AssetListParams = AssetsAPI.AssetListParams;
-  export import AssetCreatePlaybackIDParams = AssetsAPI.AssetCreatePlaybackIDParams;
-  export import AssetCreateTrackParams = AssetsAPI.AssetCreateTrackParams;
-  export import AssetGenerateSubtitlesParams = AssetsAPI.AssetGenerateSubtitlesParams;
-  export import AssetUpdateMasterAccessParams = AssetsAPI.AssetUpdateMasterAccessParams;
-  export import AssetUpdateMP4SupportParams = AssetsAPI.AssetUpdateMP4SupportParams;
+Assets.AssetsBasePage = AssetsBasePage;
+
+export declare namespace Assets {
+  export {
+    type Asset as Asset,
+    type AssetOptions as AssetOptions,
+    type AssetResponse as AssetResponse,
+    type InputInfo as InputInfo,
+    type Track as Track,
+    type AssetGenerateSubtitlesResponse as AssetGenerateSubtitlesResponse,
+    type AssetRetrieveInputInfoResponse as AssetRetrieveInputInfoResponse,
+    AssetsBasePage as AssetsBasePage,
+    type AssetCreateParams as AssetCreateParams,
+    type AssetUpdateParams as AssetUpdateParams,
+    type AssetListParams as AssetListParams,
+    type AssetCreatePlaybackIDParams as AssetCreatePlaybackIDParams,
+    type AssetCreateTrackParams as AssetCreateTrackParams,
+    type AssetGenerateSubtitlesParams as AssetGenerateSubtitlesParams,
+    type AssetUpdateMasterAccessParams as AssetUpdateMasterAccessParams,
+    type AssetUpdateMP4SupportParams as AssetUpdateMP4SupportParams,
+  };
 }

@@ -1,9 +1,20 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import * as MonitoringAPI from '@mux/mux-node/resources/data/monitoring/monitoring';
-import * as MetricsAPI from '@mux/mux-node/resources/data/monitoring/metrics';
+import { APIResource } from '../../../resource';
+import * as Core from '../../../core';
+import * as MetricsAPI from './metrics';
+import {
+  MetricGetBreakdownParams,
+  MetricGetBreakdownResponse,
+  MetricGetBreakdownTimeseriesParams,
+  MetricGetBreakdownTimeseriesResponse,
+  MetricGetHistogramTimeseriesParams,
+  MetricGetHistogramTimeseriesResponse,
+  MetricGetTimeseriesParams,
+  MetricGetTimeseriesResponse,
+  MetricListResponse,
+  Metrics,
+} from './metrics';
 
 export class Monitoring extends APIResource {
   metrics: MetricsAPI.Metrics = new MetricsAPI.Metrics(this._client);
@@ -32,16 +43,21 @@ export namespace MonitoringListDimensionsResponse {
   }
 }
 
-export namespace Monitoring {
-  export import MonitoringListDimensionsResponse = MonitoringAPI.MonitoringListDimensionsResponse;
-  export import Metrics = MetricsAPI.Metrics;
-  export import MetricListResponse = MetricsAPI.MetricListResponse;
-  export import MetricGetBreakdownResponse = MetricsAPI.MetricGetBreakdownResponse;
-  export import MetricGetBreakdownTimeseriesResponse = MetricsAPI.MetricGetBreakdownTimeseriesResponse;
-  export import MetricGetHistogramTimeseriesResponse = MetricsAPI.MetricGetHistogramTimeseriesResponse;
-  export import MetricGetTimeseriesResponse = MetricsAPI.MetricGetTimeseriesResponse;
-  export import MetricGetBreakdownParams = MetricsAPI.MetricGetBreakdownParams;
-  export import MetricGetBreakdownTimeseriesParams = MetricsAPI.MetricGetBreakdownTimeseriesParams;
-  export import MetricGetHistogramTimeseriesParams = MetricsAPI.MetricGetHistogramTimeseriesParams;
-  export import MetricGetTimeseriesParams = MetricsAPI.MetricGetTimeseriesParams;
+Monitoring.Metrics = Metrics;
+
+export declare namespace Monitoring {
+  export { type MonitoringListDimensionsResponse as MonitoringListDimensionsResponse };
+
+  export {
+    Metrics as Metrics,
+    type MetricListResponse as MetricListResponse,
+    type MetricGetBreakdownResponse as MetricGetBreakdownResponse,
+    type MetricGetBreakdownTimeseriesResponse as MetricGetBreakdownTimeseriesResponse,
+    type MetricGetHistogramTimeseriesResponse as MetricGetHistogramTimeseriesResponse,
+    type MetricGetTimeseriesResponse as MetricGetTimeseriesResponse,
+    type MetricGetBreakdownParams as MetricGetBreakdownParams,
+    type MetricGetBreakdownTimeseriesParams as MetricGetBreakdownTimeseriesParams,
+    type MetricGetHistogramTimeseriesParams as MetricGetHistogramTimeseriesParams,
+    type MetricGetTimeseriesParams as MetricGetTimeseriesParams,
+  };
 }

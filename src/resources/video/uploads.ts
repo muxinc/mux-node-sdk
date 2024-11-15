@@ -1,11 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as UploadsAPI from '@mux/mux-node/resources/video/uploads';
-import * as AssetsAPI from '@mux/mux-node/resources/video/assets';
-import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import * as AssetsAPI from './assets';
+import { BasePage, type BasePageParams } from '../../pagination';
 
 export class Uploads extends APIResource {
   /**
@@ -147,10 +146,14 @@ export interface UploadCreateParams {
 
 export interface UploadListParams extends BasePageParams {}
 
-export namespace Uploads {
-  export import Upload = UploadsAPI.Upload;
-  export import UploadResponse = UploadsAPI.UploadResponse;
-  export import UploadsBasePage = UploadsAPI.UploadsBasePage;
-  export import UploadCreateParams = UploadsAPI.UploadCreateParams;
-  export import UploadListParams = UploadsAPI.UploadListParams;
+Uploads.UploadsBasePage = UploadsBasePage;
+
+export declare namespace Uploads {
+  export {
+    type Upload as Upload,
+    type UploadResponse as UploadResponse,
+    UploadsBasePage as UploadsBasePage,
+    type UploadCreateParams as UploadCreateParams,
+    type UploadListParams as UploadListParams,
+  };
 }

@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as DeliveryUsageAPI from '@mux/mux-node/resources/video/delivery-usage';
-import { PageWithTotal, type PageWithTotalParams } from '@mux/mux-node/pagination';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import { PageWithTotal, type PageWithTotalParams } from '../../pagination';
 
 export class DeliveryUsage extends APIResource {
   /**
@@ -39,10 +38,11 @@ export interface DeliveryReport {
   asset_duration: number;
 
   /**
+   * @deprecated: This field is deprecated. Please use `asset_video_quality` instead.
    * The encoding tier that the asset was ingested at.
-   * [See the encoding tiers guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
-  asset_encoding_tier: 'smart' | 'baseline';
+  asset_encoding_tier: 'smart' | 'baseline' | 'premium';
 
   /**
    * Unique identifier for the asset.
@@ -75,6 +75,13 @@ export interface DeliveryReport {
    * if there was content delivered in the tier.
    */
   delivered_seconds_by_resolution: DeliveryReport.DeliveredSecondsByResolution;
+
+  /**
+   * The video quality that the asset was ingested at. This field replaces
+   * `asset_encoding_tier`.
+   * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
+   */
+  asset_video_quality?: 'basic' | 'plus' | 'premium';
 
   /**
    * If exists, time at which the asset was deleted. Measured in seconds since the
@@ -155,8 +162,12 @@ export interface DeliveryUsageListParams extends PageWithTotalParams {
   timeframe?: Array<string>;
 }
 
-export namespace DeliveryUsage {
-  export import DeliveryReport = DeliveryUsageAPI.DeliveryReport;
-  export import DeliveryReportsPageWithTotal = DeliveryUsageAPI.DeliveryReportsPageWithTotal;
-  export import DeliveryUsageListParams = DeliveryUsageAPI.DeliveryUsageListParams;
+DeliveryUsage.DeliveryReportsPageWithTotal = DeliveryReportsPageWithTotal;
+
+export declare namespace DeliveryUsage {
+  export {
+    type DeliveryReport as DeliveryReport,
+    DeliveryReportsPageWithTotal as DeliveryReportsPageWithTotal,
+    type DeliveryUsageListParams as DeliveryUsageListParams,
+  };
 }

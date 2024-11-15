@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import * as Core from '@mux/mux-node/core';
-import { APIResource } from '@mux/mux-node/resource';
-import { isRequestOptions } from '@mux/mux-node/core';
-import * as DRMConfigurationsAPI from '@mux/mux-node/resources/video/drm-configurations';
-import { BasePage, type BasePageParams } from '@mux/mux-node/pagination';
+import { APIResource } from '../../resource';
+import { isRequestOptions } from '../../core';
+import * as Core from '../../core';
+import { BasePage, type BasePageParams } from '../../pagination';
 
 export class DRMConfigurations extends APIResource {
   /**
@@ -51,8 +50,12 @@ export interface DRMConfiguration {
 
 export interface DRMConfigurationListParams extends BasePageParams {}
 
-export namespace DRMConfigurations {
-  export import DRMConfiguration = DRMConfigurationsAPI.DRMConfiguration;
-  export import DRMConfigurationsBasePage = DRMConfigurationsAPI.DRMConfigurationsBasePage;
-  export import DRMConfigurationListParams = DRMConfigurationsAPI.DRMConfigurationListParams;
+DRMConfigurations.DRMConfigurationsBasePage = DRMConfigurationsBasePage;
+
+export declare namespace DRMConfigurations {
+  export {
+    type DRMConfiguration as DRMConfiguration,
+    DRMConfigurationsBasePage as DRMConfigurationsBasePage,
+    type DRMConfigurationListParams as DRMConfigurationListParams,
+  };
 }
