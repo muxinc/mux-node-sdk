@@ -262,7 +262,7 @@ export declare namespace Mux {
   export type PlaybackPolicy = API.PlaybackPolicy;
 }
 
-export { toFile, fileFromPath } from '@mux/mux-node/uploads';
+export { toFile, fileFromPath } from './uploads';
 export {
   MuxError,
   APIError,
@@ -277,6 +277,6 @@ export {
   InternalServerError,
   PermissionDeniedError,
   UnprocessableEntityError,
-} from '@mux/mux-node/error';
+} from './error';
 
 export default Mux;
