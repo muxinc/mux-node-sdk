@@ -1,5 +1,13 @@
 # Changelog
 
+## 9.0.1 (2024-11-15)
+
+Full Changelog: [v9.0.0...v9.0.1](https://github.com/muxinc/mux-node-sdk/compare/v9.0.0...v9.0.1)
+
+### Features
+
+* **api:** api update ([#520](https://github.com/muxinc/mux-node-sdk/issues/520)) ([c7b88ed](https://github.com/muxinc/mux-node-sdk/commit/c7b88edae889926f620d6ff64798be684c68b194))
+
 ## 9.0.0 (2024-11-14)
 
 Full Changelog: [v8.8.0...v9.0.0](https://github.com/muxinc/mux-node-sdk/compare/v8.8.0...v9.0.0)
