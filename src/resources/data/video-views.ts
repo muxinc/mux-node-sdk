@@ -103,8 +103,6 @@ export namespace VideoViewResponse {
 
     ad_startup_error_percentage: string | null;
 
-    ad_watch_time: number | null;
-
     asn: number | null;
 
     asn_name: string | null;
@@ -326,8 +324,6 @@ export namespace VideoViewResponse {
     view_average_request_throughput: number | null;
 
     view_content_startup_time: number | null;
-
-    view_content_watch_time: number | null;
 
     view_drm_type: string | null;
 

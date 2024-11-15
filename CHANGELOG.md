@@ -1,5 +1,13 @@
 # Changelog
 
+## 9.0.1 (2024-11-15)
+
+Full Changelog: [v9.0.0...v9.0.1](https://github.com/muxinc/mux-node-sdk/compare/v9.0.0...v9.0.1)
+
+### Bug Fixes (breaking)
+
+* Remove `ad_watch_time` and `view_content_watch_time` from Video View model and Data APIs. Note: this _may_ be a breaking change, but was missed in the 9.0.0 release.
+
 ## 9.0.0 (2024-11-14)
 
 Full Changelog: [v8.8.0...v9.0.0](https://github.com/muxinc/mux-node-sdk/compare/v8.8.0...v9.0.0)
