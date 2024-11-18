@@ -51,13 +51,7 @@ describe('resource dimensions', () => {
     await expect(
       client.data.dimensions.listValues(
         'abcd1234',
-        {
-          filters: ['string', 'string', 'string'],
-          limit: 0,
-          metric_filters: ['string', 'string', 'string'],
-          page: 0,
-          timeframe: ['string', 'string', 'string'],
-        },
+        { filters: ['string'], limit: 0, metric_filters: ['string'], page: 0, timeframe: ['string'] },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);

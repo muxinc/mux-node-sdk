@@ -27,11 +27,7 @@ describe('resource assets', () => {
         {
           closed_captions: true,
           end_time: 0,
-          generated_subtitles: [
-            { language_code: 'en', name: 'name', passthrough: 'passthrough' },
-            { language_code: 'en', name: 'name', passthrough: 'passthrough' },
-            { language_code: 'en', name: 'name', passthrough: 'passthrough' },
-          ],
+          generated_subtitles: [{ language_code: 'en', name: 'name', passthrough: 'passthrough' }],
           language_code: 'language_code',
           name: 'name',
           overlay_settings: {
@@ -50,11 +46,7 @@ describe('resource assets', () => {
           url: 'https://muxed.s3.amazonaws.com/leds.mp4',
         },
       ],
-      advanced_playback_policies: [
-        { drm_configuration_id: 'drm_configuration_id', policy: 'public' },
-        { drm_configuration_id: 'drm_configuration_id', policy: 'public' },
-        { drm_configuration_id: 'drm_configuration_id', policy: 'public' },
-      ],
+      advanced_playback_policies: [{ drm_configuration_id: 'drm_configuration_id', policy: 'public' }],
       encoding_tier: 'smart',
       master_access: 'none',
       max_resolution_tier: '1080p',
