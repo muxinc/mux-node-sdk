@@ -34,9 +34,9 @@ describe('resource metrics', () => {
       client.data.metrics.list(
         {
           dimension: 'asn',
-          filters: ['string', 'string', 'string'],
-          metric_filters: ['string', 'string', 'string'],
-          timeframe: ['string', 'string', 'string'],
+          filters: ['string'],
+          metric_filters: ['string'],
+          timeframe: ['string'],
           value: 'value',
         },
         { path: '/_stainless_unknown_path' },
@@ -68,11 +68,11 @@ describe('resource metrics', () => {
       client.data.metrics.getInsights(
         'aggregate_startup_time',
         {
-          filters: ['string', 'string', 'string'],
+          filters: ['string'],
           measurement: '95th',
-          metric_filters: ['string', 'string', 'string'],
+          metric_filters: ['string'],
           order_direction: 'asc',
-          timeframe: ['string', 'string', 'string'],
+          timeframe: ['string'],
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -102,12 +102,7 @@ describe('resource metrics', () => {
     await expect(
       client.data.metrics.getOverallValues(
         'aggregate_startup_time',
-        {
-          filters: ['string', 'string', 'string'],
-          measurement: '95th',
-          metric_filters: ['string', 'string', 'string'],
-          timeframe: ['string', 'string', 'string'],
-        },
+        { filters: ['string'], measurement: '95th', metric_filters: ['string'], timeframe: ['string'] },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
@@ -137,12 +132,12 @@ describe('resource metrics', () => {
       client.data.metrics.getTimeseries(
         'aggregate_startup_time',
         {
-          filters: ['string', 'string', 'string'],
+          filters: ['string'],
           group_by: 'minute',
           measurement: '95th',
-          metric_filters: ['string', 'string', 'string'],
+          metric_filters: ['string'],
           order_direction: 'asc',
-          timeframe: ['string', 'string', 'string'],
+          timeframe: ['string'],
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -173,15 +168,15 @@ describe('resource metrics', () => {
       client.data.metrics.listBreakdownValues(
         'aggregate_startup_time',
         {
-          filters: ['string', 'string', 'string'],
+          filters: ['string'],
           group_by: 'asn',
           limit: 0,
           measurement: '95th',
-          metric_filters: ['string', 'string', 'string'],
+          metric_filters: ['string'],
           order_by: 'negative_impact',
           order_direction: 'asc',
           page: 0,
-          timeframe: ['string', 'string', 'string'],
+          timeframe: ['string'],
         },
         { path: '/_stainless_unknown_path' },
       ),

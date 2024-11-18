@@ -98,7 +98,7 @@ describe('resource playbackRestrictions', () => {
 
   test('updateReferrer: only required params', async () => {
     const responsePromise = client.video.playbackRestrictions.updateReferrer('PLAYBACK_RESTRICTION_ID', {
-      allowed_domains: ['string', 'string', 'string'],
+      allowed_domains: ['string'],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -111,7 +111,7 @@ describe('resource playbackRestrictions', () => {
 
   test('updateReferrer: required and optional params', async () => {
     const response = await client.video.playbackRestrictions.updateReferrer('PLAYBACK_RESTRICTION_ID', {
-      allowed_domains: ['string', 'string', 'string'],
+      allowed_domains: ['string'],
       allow_no_referrer: true,
     });
   });

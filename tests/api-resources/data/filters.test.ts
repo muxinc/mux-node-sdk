@@ -33,12 +33,7 @@ describe('resource filters', () => {
     await expect(
       client.data.filters.listValues(
         'abcd1234',
-        {
-          filters: ['string', 'string', 'string'],
-          limit: 0,
-          page: 0,
-          timeframe: ['string', 'string', 'string'],
-        },
+        { filters: ['string'], limit: 0, page: 0, timeframe: ['string'] },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
