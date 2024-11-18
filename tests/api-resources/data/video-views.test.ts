@@ -52,12 +52,12 @@ describe('resource videoViews', () => {
       client.data.videoViews.list(
         {
           error_id: 0,
-          filters: ['string', 'string', 'string'],
+          filters: ['string'],
           limit: 0,
-          metric_filters: ['string', 'string', 'string'],
+          metric_filters: ['string'],
           order_direction: 'asc',
           page: 0,
-          timeframe: ['string', 'string', 'string'],
+          timeframe: ['string'],
           viewer_id: 'viewer_id',
         },
         { path: '/_stainless_unknown_path' },
