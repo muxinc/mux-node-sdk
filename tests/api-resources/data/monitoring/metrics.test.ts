@@ -55,7 +55,7 @@ describe('resource metrics', () => {
         'current-concurrent-viewers',
         {
           dimension: 'asn',
-          filters: ['string', 'string', 'string'],
+          filters: ['string'],
           order_by: 'negative_impact',
           order_direction: 'asc',
           timestamp: 0,
@@ -94,11 +94,11 @@ describe('resource metrics', () => {
         'current-concurrent-viewers',
         {
           dimension: 'asn',
-          filters: ['string', 'string', 'string'],
+          filters: ['string'],
           limit: 0,
           order_by: 'negative_impact',
           order_direction: 'asc',
-          timeframe: ['string', 'string', 'string'],
+          timeframe: ['string'],
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -130,7 +130,7 @@ describe('resource metrics', () => {
     await expect(
       client.data.monitoring.metrics.getHistogramTimeseries(
         'video-startup-time',
-        { filters: ['string', 'string', 'string'] },
+        { filters: ['string'] },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
@@ -161,7 +161,7 @@ describe('resource metrics', () => {
     await expect(
       client.data.monitoring.metrics.getTimeseries(
         'current-concurrent-viewers',
-        { filters: ['string', 'string', 'string'], timestamp: 0 },
+        { filters: ['string'], timestamp: 0 },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);

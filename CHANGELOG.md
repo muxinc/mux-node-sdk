@@ -1,5 +1,24 @@
 # Changelog
 
+## 9.1.0 (2024-11-27)
+
+Full Changelog: [v9.0.1...v9.1.0](https://github.com/muxinc/mux-node-sdk/compare/v9.0.1...v9.1.0)
+
+### Features
+
+* **internal:** make git install file structure match npm ([#527](https://github.com/muxinc/mux-node-sdk/issues/527)) ([10ae8eb](https://github.com/muxinc/mux-node-sdk/commit/10ae8ebf80dd4f2962739694229c700c55b682b3))
+
+
+### Chores
+
+* rebuild project due to codegen change ([#523](https://github.com/muxinc/mux-node-sdk/issues/523)) ([9cc566c](https://github.com/muxinc/mux-node-sdk/commit/9cc566cdeba6d3e1f6ed6bcd4643ecbafedda110))
+* remove redundant word in comment ([#526](https://github.com/muxinc/mux-node-sdk/issues/526)) ([f5dd390](https://github.com/muxinc/mux-node-sdk/commit/f5dd3901391cb3d210a42cbfe4874e203013107a))
+
+
+### Documentation
+
+* remove suggestion to use `npm` call out ([#525](https://github.com/muxinc/mux-node-sdk/issues/525)) ([a1250bc](https://github.com/muxinc/mux-node-sdk/commit/a1250bcb104d1e0a93cec2bcc19d96d56f323fe9))
+
 ## 9.0.1 (2024-11-15)
 
 Full Changelog: [v9.0.0...v9.0.1](https://github.com/muxinc/mux-node-sdk/compare/v9.0.0...v9.0.1)
