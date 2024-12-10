@@ -25,71 +25,13 @@ describe('resource uploads', () => {
     const response = await client.video.uploads.create({
       cors_origin: 'https://example.com/',
       new_asset_settings: {
-        advanced_playback_policies: [
-          { drm_configuration_id: 'drm_configuration_id', policy: 'public' },
-          { drm_configuration_id: 'drm_configuration_id', policy: 'public' },
-          { drm_configuration_id: 'drm_configuration_id', policy: 'public' },
-        ],
+        advanced_playback_policies: [{ drm_configuration_id: 'drm_configuration_id', policy: 'public' }],
         encoding_tier: 'smart',
         input: [
           {
             closed_captions: true,
             end_time: 0,
-            generated_subtitles: [
-              { language_code: 'en', name: 'name', passthrough: 'passthrough' },
-              { language_code: 'en', name: 'name', passthrough: 'passthrough' },
-              { language_code: 'en', name: 'name', passthrough: 'passthrough' },
-            ],
-            language_code: 'language_code',
-            name: 'name',
-            overlay_settings: {
-              height: 'height',
-              horizontal_align: 'left',
-              horizontal_margin: 'horizontal_margin',
-              opacity: 'opacity',
-              vertical_align: 'top',
-              vertical_margin: 'vertical_margin',
-              width: 'width',
-            },
-            passthrough: 'passthrough',
-            start_time: 0,
-            text_type: 'subtitles',
-            type: 'video',
-            url: 'url',
-          },
-          {
-            closed_captions: true,
-            end_time: 0,
-            generated_subtitles: [
-              { language_code: 'en', name: 'name', passthrough: 'passthrough' },
-              { language_code: 'en', name: 'name', passthrough: 'passthrough' },
-              { language_code: 'en', name: 'name', passthrough: 'passthrough' },
-            ],
-            language_code: 'language_code',
-            name: 'name',
-            overlay_settings: {
-              height: 'height',
-              horizontal_align: 'left',
-              horizontal_margin: 'horizontal_margin',
-              opacity: 'opacity',
-              vertical_align: 'top',
-              vertical_margin: 'vertical_margin',
-              width: 'width',
-            },
-            passthrough: 'passthrough',
-            start_time: 0,
-            text_type: 'subtitles',
-            type: 'video',
-            url: 'url',
-          },
-          {
-            closed_captions: true,
-            end_time: 0,
-            generated_subtitles: [
-              { language_code: 'en', name: 'name', passthrough: 'passthrough' },
-              { language_code: 'en', name: 'name', passthrough: 'passthrough' },
-              { language_code: 'en', name: 'name', passthrough: 'passthrough' },
-            ],
+            generated_subtitles: [{ language_code: 'en', name: 'name', passthrough: 'passthrough' }],
             language_code: 'language_code',
             name: 'name',
             overlay_settings: {
