@@ -805,7 +805,8 @@ export interface LiveStreamUpdateParams {
 
   /**
    * Updates the new asset settings to use to generate a new asset for this live
-   * stream. Only the `mp4_support` and `master_access` settings may be updated.
+   * stream. Only the `mp4_support`, `master_access`, and `video_quality` settings
+   * may be updated.
    */
   new_asset_settings?: LiveStreamUpdateParams.NewAssetSettings;
 
@@ -855,7 +856,8 @@ export interface LiveStreamUpdateParams {
 export namespace LiveStreamUpdateParams {
   /**
    * Updates the new asset settings to use to generate a new asset for this live
-   * stream. Only the `mp4_support` and `master_access` settings may be updated.
+   * stream. Only the `mp4_support`, `master_access`, and `video_quality` settings
+   * may be updated.
    */
   export interface NewAssetSettings {
     /**
@@ -884,6 +886,13 @@ export namespace LiveStreamUpdateParams {
      *   `audio.m4a` for an audio-only asset).
      */
     mp4_support?: 'none' | 'standard' | 'capped-1080p' | 'audio-only' | 'audio-only,capped-1080p';
+
+    /**
+     * The video quality controls the cost, quality, and available platform features
+     * for the asset.
+     * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
+     */
+    video_quality?: 'plus' | 'premium';
   }
 }
 

@@ -197,7 +197,7 @@ describe('instantiate client', () => {
     expect(client.tokenSecret).toBe('my secret');
   });
 
-  test('with overriden environment variable arguments', () => {
+  test('with overridden environment variable arguments', () => {
     // set options via env var
     process.env['MUX_TOKEN_ID'] = 'another my token id';
     process.env['MUX_TOKEN_SECRET'] = 'another my secret';
