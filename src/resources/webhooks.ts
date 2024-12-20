@@ -227,6 +227,12 @@ export interface VideoAssetWarningWebhookEvent extends BaseWebhookEvent {
   type: 'video.asset.warning';
 }
 
+export interface VideoAssetNonStandardInputDetectedWebhookEvent extends BaseWebhookEvent {
+  data: AssetsAPI.Asset;
+
+  type: 'video.asset.non_standard_input_detected';
+}
+
 export interface VideoUploadAssetCreatedWebhookEvent extends BaseWebhookEvent {
   data: UploadsAPI.Upload;
 
@@ -511,6 +517,7 @@ export type UnwrapWebhookEvent =
   | VideoAssetTrackErroredWebhookEvent
   | VideoAssetTrackDeletedWebhookEvent
   | VideoAssetWarningWebhookEvent
+  | VideoAssetNonStandardInputDetectedWebhookEvent
   | VideoUploadAssetCreatedWebhookEvent
   | VideoUploadCancelledWebhookEvent
   | VideoUploadCreatedWebhookEvent
