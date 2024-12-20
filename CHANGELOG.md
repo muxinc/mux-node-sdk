@@ -1,5 +1,38 @@
 # Changelog
 
+## 9.1.0 (2024-12-20)
+
+Full Changelog: [v9.0.1...v9.1.0](https://github.com/muxinc/mux-node-sdk/compare/v9.0.1...v9.1.0)
+
+### Features
+
+* Add video.asset.non_standard_input_detected webhook ([#317](https://github.com/muxinc/mux-node-sdk/issues/317)) ([#536](https://github.com/muxinc/mux-node-sdk/issues/536)) ([d39b407](https://github.com/muxinc/mux-node-sdk/commit/d39b407da4e2cf57e600a0181175de8e0ecd7aeb))
+* **api:** api update ([#533](https://github.com/muxinc/mux-node-sdk/issues/533)) ([febeae5](https://github.com/muxinc/mux-node-sdk/commit/febeae5171526e60460024b6c46a142533eeb235))
+* generate more types that are used as request bodies ([#532](https://github.com/muxinc/mux-node-sdk/issues/532)) ([17dc3e2](https://github.com/muxinc/mux-node-sdk/commit/17dc3e216554bf18b3e015577f192c024c63bc38))
+* **internal:** make git install file structure match npm ([#527](https://github.com/muxinc/mux-node-sdk/issues/527)) ([10ae8eb](https://github.com/muxinc/mux-node-sdk/commit/10ae8ebf80dd4f2962739694229c700c55b682b3))
+
+
+### Bug Fixes
+
+* **client:** normalize method ([#535](https://github.com/muxinc/mux-node-sdk/issues/535)) ([7993276](https://github.com/muxinc/mux-node-sdk/commit/799327684ce912491a776a272e0f13ad0ac23944))
+
+
+### Chores
+
+* **internal:** bump cross-spawn to v7.0.6 ([#529](https://github.com/muxinc/mux-node-sdk/issues/529)) ([625f90b](https://github.com/muxinc/mux-node-sdk/commit/625f90b108126c7940dc668d5ee4e0bd6095b39a))
+* **internal:** fix some typos ([#534](https://github.com/muxinc/mux-node-sdk/issues/534)) ([5ea0e8e](https://github.com/muxinc/mux-node-sdk/commit/5ea0e8e9c26fe491f63c44be522748c1e267bf5e))
+* **internal:** remove unnecessary getRequestClient function ([#528](https://github.com/muxinc/mux-node-sdk/issues/528)) ([a8a00ef](https://github.com/muxinc/mux-node-sdk/commit/a8a00eff2bb0586d5780c93199d120b5673f0d49))
+* **internal:** update isAbsoluteURL ([#531](https://github.com/muxinc/mux-node-sdk/issues/531)) ([e1b231d](https://github.com/muxinc/mux-node-sdk/commit/e1b231dabdd236cb773de2e9e13c26ca8866356b))
+* rebuild project due to codegen change ([#523](https://github.com/muxinc/mux-node-sdk/issues/523)) ([9cc566c](https://github.com/muxinc/mux-node-sdk/commit/9cc566cdeba6d3e1f6ed6bcd4643ecbafedda110))
+* remove redundant word in comment ([#526](https://github.com/muxinc/mux-node-sdk/issues/526)) ([f5dd390](https://github.com/muxinc/mux-node-sdk/commit/f5dd3901391cb3d210a42cbfe4874e203013107a))
+* **types:** nicer error class types + jsdocs ([#530](https://github.com/muxinc/mux-node-sdk/issues/530)) ([2b6cf7e](https://github.com/muxinc/mux-node-sdk/commit/2b6cf7e1da6895a7a1f5ab348f8b28f82dcc856d))
+
+
+### Documentation
+
+* minor formatting changes ([#537](https://github.com/muxinc/mux-node-sdk/issues/537)) ([69e736a](https://github.com/muxinc/mux-node-sdk/commit/69e736a7f8b7f24a23624f3ba9e0cefb35bd1415))
+* remove suggestion to use `npm` call out ([#525](https://github.com/muxinc/mux-node-sdk/issues/525)) ([a1250bc](https://github.com/muxinc/mux-node-sdk/commit/a1250bcb104d1e0a93cec2bcc19d96d56f323fe9))
+
 ## 9.0.1 (2024-11-15)
 
 Full Changelog: [v9.0.0...v9.0.1](https://github.com/muxinc/mux-node-sdk/compare/v9.0.0...v9.0.1)
