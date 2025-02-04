@@ -225,7 +225,7 @@ export interface Asset {
   created_at: string;
 
   /**
-   * @deprecated: This field is deprecated. Please use `video_quality` instead. The
+   * @deprecated This field is deprecated. Please use `video_quality` instead. The
    * encoding tier informs the cost, quality, and available platform features for the
    * asset. The default encoding tier for an account can be set in the Mux Dashboard.
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
@@ -297,7 +297,7 @@ export interface Asset {
   max_stored_frame_rate?: number;
 
   /**
-   * @deprecated: This field is deprecated. Please use `resolution_tier` instead. The
+   * @deprecated This field is deprecated. Please use `resolution_tier` instead. The
    * maximum resolution that has been stored for the asset. The asset may be
    * delivered at lower resolutions depending on the device and bandwidth, however it
    * cannot be delivered at a higher value than is stored.
@@ -581,7 +581,7 @@ export interface AssetOptions {
   advanced_playback_policies?: Array<AssetOptions.AdvancedPlaybackPolicy>;
 
   /**
-   * @deprecated: This field is deprecated. Please use `video_quality` instead. The
+   * @deprecated This field is deprecated. Please use `video_quality` instead. The
    * encoding tier informs the cost, quality, and available platform features for the
    * asset. The default encoding tier for an account can be set in the Mux Dashboard.
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
@@ -1210,7 +1210,7 @@ export interface Track {
   language_code?: string;
 
   /**
-   * @deprecated: Only set for the `audio` type track.
+   * @deprecated Only set for the `audio` type track.
    */
   max_channel_layout?: string;
 
