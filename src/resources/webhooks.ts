@@ -393,7 +393,7 @@ export namespace VideoDeliveryHighTrafficWebhookEvent {
       asset_duration?: number;
 
       /**
-       * @deprecated: This field is deprecated. Please use `asset_video_quality` instead.
+       * @deprecated This field is deprecated. Please use `asset_video_quality` instead.
        * The encoding tier that the asset was ingested at.
        * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
        */
