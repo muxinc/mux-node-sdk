@@ -109,6 +109,8 @@ export namespace VideoViewResponse {
 
     asset_id: string | null;
 
+    audio_codec: string | null;
+
     buffering_count: number | null;
 
     buffering_duration: number | null;
@@ -118,6 +120,10 @@ export namespace VideoViewResponse {
     cdn: string | null;
 
     city: string | null;
+
+    client_application_name: string | null;
+
+    client_application_version: string | null;
 
     continent_code: string | null;
 
@@ -283,15 +289,29 @@ export namespace VideoViewResponse {
 
     sub_property_id: string | null;
 
+    time_shift_enabled: boolean;
+
     time_to_first_frame: number | null;
 
     updated_at: string;
 
+    used_captions: boolean;
+
     used_fullscreen: boolean;
+
+    used_pip: boolean;
+
+    video_affiliate: string | null;
+
+    video_brand: string | null;
+
+    video_codec: string | null;
 
     video_content_type: string | null;
 
     video_duration: number | null;
+
+    video_dynamic_range_type: string | null;
 
     video_encoding_variant: string | null;
 
@@ -323,7 +343,13 @@ export namespace VideoViewResponse {
 
     view_average_request_throughput: number | null;
 
+    view_cdn_edge_pop: string | null;
+
+    view_cdn_origin: string | null;
+
     view_content_startup_time: number | null;
+
+    view_drm_level: string | null;
 
     view_drm_type: string | null;
 
@@ -386,6 +412,12 @@ export namespace VideoViewResponse {
     viewer_os_family: string | null;
 
     viewer_os_version: string | null;
+
+    viewer_plan: string | null;
+
+    viewer_plan_category: string | null;
+
+    viewer_plan_status: string | null;
 
     viewer_user_agent: string | null;
 
