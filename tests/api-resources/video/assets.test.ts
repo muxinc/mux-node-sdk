@@ -55,6 +55,7 @@ describe('resource assets', () => {
       passthrough: 'passthrough',
       per_title_encode: true,
       playback_policy: ['public'],
+      static_renditions: [{ resolution: 'highest', passthrough: 'passthrough' }],
       test: true,
       video_quality: 'basic',
     });
