@@ -918,7 +918,23 @@ export interface MetricListParams {
     | 'viewer_user_id'
     | 'ad_playback_failure'
     | 'content_playback_failure'
-    | 'view_dropped';
+    | 'view_dropped'
+    | 'client_application_name'
+    | 'client_application_version'
+    | 'video_affiliate'
+    | 'viewer_plan'
+    | 'viewer_plan_status'
+    | 'viewer_plan_category'
+    | 'view_drm_level'
+    | 'video_brand'
+    | 'used_pip'
+    | 'time_shift_enabled'
+    | 'used_captions'
+    | 'video_codec'
+    | 'audio_codec'
+    | 'video_dynamic_range_type'
+    | 'view_cdn_edge_pop'
+    | 'view_cdn_origin';
 
   /**
    * Limit the results to rows that match conditions from provided key:value pairs.
@@ -1276,7 +1292,23 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
     | 'viewer_user_id'
     | 'ad_playback_failure'
     | 'content_playback_failure'
-    | 'view_dropped';
+    | 'view_dropped'
+    | 'client_application_name'
+    | 'client_application_version'
+    | 'video_affiliate'
+    | 'viewer_plan'
+    | 'viewer_plan_status'
+    | 'viewer_plan_category'
+    | 'view_drm_level'
+    | 'video_brand'
+    | 'used_pip'
+    | 'time_shift_enabled'
+    | 'used_captions'
+    | 'video_codec'
+    | 'audio_codec'
+    | 'video_dynamic_range_type'
+    | 'view_cdn_edge_pop'
+    | 'view_cdn_origin';
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
