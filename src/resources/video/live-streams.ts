@@ -865,8 +865,10 @@ export namespace LiveStreamUpdateParams {
     master_access?: 'temporary' | 'none';
 
     /**
-     * Specify what level of support for mp4 playback should be added to new assets
-     * generated from this live stream.
+     * @deprecated Deprecated. See the
+     * [Static Renditions API](https://www.mux.com/docs/guides/enable-static-mp4-renditions#during-live-stream-creation)
+     * for the updated API. Specify what level of support for mp4 playback should be
+     * added to new assets generated from this live stream.
      *
      * - The `none` option disables MP4 support for new assets. MP4 files will not be
      *   produced for an asset generated from this live stream.
