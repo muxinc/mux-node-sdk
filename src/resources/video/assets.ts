@@ -192,6 +192,8 @@ export class Assets extends APIResource {
   }
 
   /**
+   * This method has been deprecated. Please see the
+   * [Static Rendition API](https://www.mux.com/docs/guides/enable-static-mp4-renditions#after-asset-creation).
    * Allows you to add or remove mp4 support for assets that were created without it.
    * The values supported are `capped-1080p`, `audio-only`,
    * `audio-only,capped-1080p`, `standard`(deprecated), and `none`. `none` means that
@@ -239,8 +241,6 @@ export interface Asset {
    * asset is encoded, stored, and streamed at. If not set, this defaults to `1080p`.
    */
   max_resolution_tier: '1080p' | '1440p' | '2160p';
-
-  mp4_support: 'standard' | 'none' | 'capped-1080p' | 'audio-only' | 'audio-only,capped-1080p';
 
   /**
    * The status of the asset.
@@ -303,6 +303,11 @@ export interface Asset {
    * cannot be delivered at a higher value than is stored.
    */
   max_stored_resolution?: 'Audio only' | 'SD' | 'HD' | 'FHD' | 'UHD';
+
+  /**
+   * @deprecated
+   */
+  mp4_support?: 'standard' | 'none' | 'capped-1080p' | 'audio-only' | 'audio-only,capped-1080p';
 
   /**
    * An object containing one or more reasons the input file is non-standard. See
@@ -683,6 +688,10 @@ export interface AssetOptions {
   max_resolution_tier?: '1080p' | '1440p' | '2160p';
 
   /**
+   * @deprecated Deprecated. See the
+   * [Static Renditions API](https://www.mux.com/docs/guides/enable-static-mp4-renditions)
+   * for the updated API.
+   *
    * Specify what level of support for mp4 playback. You may not enable both
    * `mp4_support` and `static_renditions`.
    *
@@ -745,7 +754,7 @@ export interface AssetOptions {
 
   /**
    * An array of static renditions to create for this asset. You may not enable both
-   * `static_renditions` and `mp4_support`
+   * `static_renditions` and `mp4_support (the latter being deprecated)`
    */
   static_renditions?: Array<AssetOptions.StaticRendition>;
 
@@ -1442,6 +1451,10 @@ export interface AssetCreateParams {
   max_resolution_tier?: '1080p' | '1440p' | '2160p';
 
   /**
+   * Deprecated. See the
+   * [Static Renditions API](https://www.mux.com/docs/guides/enable-static-mp4-renditions)
+   * for the updated API.
+   *
    * Specify what level of support for mp4 playback. You may not enable both
    * `mp4_support` and `static_renditions`.
    *
@@ -1501,7 +1514,7 @@ export interface AssetCreateParams {
 
   /**
    * An array of static renditions to create for this asset. You may not enable both
-   * `static_renditions` and `mp4_support`
+   * `static_renditions` and `mp4_support (the latter being deprecated)`
    */
   static_renditions?: Array<AssetCreateParams.StaticRendition>;
 
