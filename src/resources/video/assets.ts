@@ -192,6 +192,8 @@ export class Assets extends APIResource {
   }
 
   /**
+   * This method has been deprecated. Please see the
+   * [Static Rendition API](https://www.mux.com/docs/guides/enable-static-mp4-renditions#after-asset-creation).
    * Allows you to add or remove mp4 support for assets that were created without it.
    * The values supported are `capped-1080p`, `audio-only`,
    * `audio-only,capped-1080p`, `standard`(deprecated), and `none`. `none` means that
@@ -225,7 +227,7 @@ export interface Asset {
   created_at: string;
 
   /**
-   * @deprecated: This field is deprecated. Please use `video_quality` instead. The
+   * @deprecated This field is deprecated. Please use `video_quality` instead. The
    * encoding tier informs the cost, quality, and available platform features for the
    * asset. The default encoding tier for an account can be set in the Mux Dashboard.
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
@@ -239,8 +241,6 @@ export interface Asset {
    * asset is encoded, stored, and streamed at. If not set, this defaults to `1080p`.
    */
   max_resolution_tier: '1080p' | '1440p' | '2160p';
-
-  mp4_support: 'standard' | 'none' | 'capped-1080p' | 'audio-only' | 'audio-only,capped-1080p';
 
   /**
    * The status of the asset.
@@ -297,12 +297,17 @@ export interface Asset {
   max_stored_frame_rate?: number;
 
   /**
-   * @deprecated: This field is deprecated. Please use `resolution_tier` instead. The
+   * @deprecated This field is deprecated. Please use `resolution_tier` instead. The
    * maximum resolution that has been stored for the asset. The asset may be
    * delivered at lower resolutions depending on the device and bandwidth, however it
    * cannot be delivered at a higher value than is stored.
    */
   max_stored_resolution?: 'Audio only' | 'SD' | 'HD' | 'FHD' | 'UHD';
+
+  /**
+   * @deprecated
+   */
+  mp4_support?: 'standard' | 'none' | 'capped-1080p' | 'audio-only' | 'audio-only,capped-1080p';
 
   /**
    * An object containing one or more reasons the input file is non-standard. See
@@ -535,13 +540,20 @@ export namespace Asset {
     files?: Array<StaticRenditions.File>;
 
     /**
-     * Indicates the status of downloadable MP4 versions of this asset.
+     * Indicates the status of downloadable MP4 versions of this asset. This field is
+     * only valid when `mp4_support` is enabled
      */
     status?: 'ready' | 'preparing' | 'disabled' | 'errored';
   }
 
   export namespace StaticRenditions {
     export interface File {
+      /**
+       * The ID of this static rendition, used in managing this static rendition. This
+       * field is only valid for `static_renditions`, not for `mp4_support`.
+       */
+      id?: string;
+
       /**
        * The bitrate in bits per second
        */
@@ -562,7 +574,73 @@ export namespace Asset {
        */
       height?: number;
 
-      name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'audio.m4a' | 'capped-1080p.mp4';
+      /**
+       * Name of the static rendition file
+       */
+      name?:
+        | 'low.mp4'
+        | 'medium.mp4'
+        | 'high.mp4'
+        | 'highest.mp4'
+        | 'audio.m4a'
+        | 'capped-1080p.mp4'
+        | '2160p.mp4'
+        | '1440p.mp4'
+        | '1080p.mp4'
+        | '720p.mp4'
+        | '540p.mp4'
+        | '480p.mp4'
+        | '360p.mp4'
+        | '270p.mp4';
+
+      /**
+       * Arbitrary user-supplied metadata set for the static rendition. Max 255
+       * characters.
+       */
+      passthrough?: string;
+
+      /**
+       * Indicates the resolution of this specific MP4 version of this asset. This field
+       * is only valid for `static_renditions`, not for `mp4_support`.
+       */
+      resolution?:
+        | 'highest'
+        | 'audio-only'
+        | '2160p'
+        | '1440p'
+        | '1080p'
+        | '720p'
+        | '540p'
+        | '480p'
+        | '360p'
+        | '270p';
+
+      /**
+       * Indicates the resolution tier of this specific MP4 version of this asset. This
+       * field is only valid for `static_renditions`, not for `mp4_support`.
+       */
+      resolution_tier?: '2160p' | '1440p' | '1080p' | '720p';
+
+      /**
+       * Indicates the status of this specific MP4 version of this asset. This field is
+       * only valid for `static_renditions`, not for `mp4_support`.
+       *
+       * - `ready` indicates the MP4 has been generated and is ready for download
+       * - `preparing` indicates the asset has not been ingested or the static rendition
+       *   is still being generated after an asset is ready
+       * - `skipped` indicates the static rendition will not be generated because the
+       *   requested resolution conflicts with the asset attributes after the asset has
+       *   been ingested
+       * - `errored` indicates the static rendition cannot be generated. For example, an
+       *   asset could not be ingested
+       */
+      status?: 'ready' | 'preparing' | 'skipped' | 'errored';
+
+      /**
+       * Indicates the static rendition type of this specific MP4 version of this asset.
+       * This field is only valid for `static_renditions`, not for `mp4_support`.
+       */
+      type?: 'standard' | 'advanced';
 
       /**
        * The width of the static rendition's file in pixels
@@ -581,7 +659,7 @@ export interface AssetOptions {
   advanced_playback_policies?: Array<AssetOptions.AdvancedPlaybackPolicy>;
 
   /**
-   * @deprecated: This field is deprecated. Please use `video_quality` instead. The
+   * @deprecated This field is deprecated. Please use `video_quality` instead. The
    * encoding tier informs the cost, quality, and available platform features for the
    * asset. The default encoding tier for an account can be set in the Mux Dashboard.
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
@@ -610,7 +688,12 @@ export interface AssetOptions {
   max_resolution_tier?: '1080p' | '1440p' | '2160p';
 
   /**
-   * Specify what level of support for mp4 playback.
+   * @deprecated Deprecated. See the
+   * [Static Renditions API](https://www.mux.com/docs/guides/enable-static-mp4-renditions)
+   * for the updated API.
+   *
+   * Specify what level of support for mp4 playback. You may not enable both
+   * `mp4_support` and `static_renditions`.
    *
    * - The `capped-1080p` option produces a single MP4 file, called
    *   `capped-1080p.mp4`, with the video resolution capped at 1080p. This option
@@ -668,6 +751,12 @@ export interface AssetOptions {
    * place of the array in the case of only one playback policy.
    */
   playback_policy?: Array<Shared.PlaybackPolicy>;
+
+  /**
+   * An array of static renditions to create for this asset. You may not enable both
+   * `static_renditions` and `mp4_support (the latter being deprecated)`
+   */
+  static_renditions?: Array<AssetOptions.StaticRendition>;
 
   /**
    * Marks the asset as a test asset when the value is set to true. A Test asset can
@@ -769,7 +858,7 @@ export namespace AssetOptions {
     overlay_settings?: Input.OverlaySettings;
 
     /**
-     * This optional parameter should be used tracks with `type` of `text` and
+     * This optional parameter should be used for tracks with `type` of `text` and
      * `text_type` set to `subtitles`.
      */
     passthrough?: string;
@@ -921,6 +1010,26 @@ export namespace AssetOptions {
       width?: string;
     }
   }
+
+  export interface StaticRendition {
+    resolution:
+      | 'highest'
+      | 'audio-only'
+      | '2160p'
+      | '1440p'
+      | '1080p'
+      | '720p'
+      | '540p'
+      | '480p'
+      | '360p'
+      | '270p';
+
+    /**
+     * Arbitrary user-supplied metadata set for the static rendition. Max 255
+     * characters.
+     */
+    passthrough?: string;
+  }
 }
 
 export interface AssetResponse {
@@ -1027,7 +1136,7 @@ export namespace InputInfo {
     overlay_settings?: Settings.OverlaySettings;
 
     /**
-     * This optional parameter should be used tracks with `type` of `text` and
+     * This optional parameter should be used for tracks with `type` of `text` and
      * `text_type` set to `subtitles`.
      */
     passthrough?: string;
@@ -1210,7 +1319,7 @@ export interface Track {
   language_code?: string;
 
   /**
-   * @deprecated: Only set for the `audio` type track.
+   * @deprecated Only set for the `audio` type track.
    */
   max_channel_layout?: string;
 
@@ -1342,7 +1451,12 @@ export interface AssetCreateParams {
   max_resolution_tier?: '1080p' | '1440p' | '2160p';
 
   /**
-   * Specify what level of support for mp4 playback.
+   * Deprecated. See the
+   * [Static Renditions API](https://www.mux.com/docs/guides/enable-static-mp4-renditions)
+   * for the updated API.
+   *
+   * Specify what level of support for mp4 playback. You may not enable both
+   * `mp4_support` and `static_renditions`.
    *
    * - The `capped-1080p` option produces a single MP4 file, called
    *   `capped-1080p.mp4`, with the video resolution capped at 1080p. This option
@@ -1397,6 +1511,12 @@ export interface AssetCreateParams {
    * place of the array in the case of only one playback policy.
    */
   playback_policy?: Array<Shared.PlaybackPolicy>;
+
+  /**
+   * An array of static renditions to create for this asset. You may not enable both
+   * `static_renditions` and `mp4_support (the latter being deprecated)`
+   */
+  static_renditions?: Array<AssetCreateParams.StaticRendition>;
 
   /**
    * Marks the asset as a test asset when the value is set to true. A Test asset can
@@ -1476,7 +1596,7 @@ export namespace AssetCreateParams {
     overlay_settings?: Input.OverlaySettings;
 
     /**
-     * This optional parameter should be used tracks with `type` of `text` and
+     * This optional parameter should be used for tracks with `type` of `text` and
      * `text_type` set to `subtitles`.
      */
     passthrough?: string;
@@ -1649,6 +1769,26 @@ export namespace AssetCreateParams {
      *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
      */
     policy?: Shared.PlaybackPolicy;
+  }
+
+  export interface StaticRendition {
+    resolution:
+      | 'highest'
+      | 'audio-only'
+      | '2160p'
+      | '1440p'
+      | '1080p'
+      | '720p'
+      | '540p'
+      | '480p'
+      | '360p'
+      | '270p';
+
+    /**
+     * Arbitrary user-supplied metadata set for the static rendition. Max 255
+     * characters.
+     */
+    passthrough?: string;
   }
 }
 

@@ -358,11 +358,11 @@ export interface LiveStream {
   generated_subtitles?: Array<LiveStream.GeneratedSubtitle>;
 
   /**
-   * @deprecated: This field is deprecated. Please use `latency_mode` instead.
-   * Latency is the time from when the streamer transmits a frame of video to when
-   * you see it in the player. Setting this option will enable compatibility with the
-   * LL-HLS specification for low-latency streaming. This typically has lower latency
-   * than Reduced Latency streams, and cannot be combined with Reduced Latency.
+   * @deprecated This field is deprecated. Please use `latency_mode` instead. Latency
+   * is the time from when the streamer transmits a frame of video to when you see it
+   * in the player. Setting this option will enable compatibility with the LL-HLS
+   * specification for low-latency streaming. This typically has lower latency than
+   * Reduced Latency streams, and cannot be combined with Reduced Latency.
    */
   low_latency?: boolean;
 
@@ -415,10 +415,9 @@ export interface LiveStream {
   reconnect_window?: number;
 
   /**
-   * @deprecated: This field is deprecated. Please use `latency_mode` instead.
-   * Latency is the time from when the streamer transmits a frame of video to when
-   * you see it in the player. Set this if you want lower latency for your live
-   * stream. See the
+   * @deprecated This field is deprecated. Please use `latency_mode` instead. Latency
+   * is the time from when the streamer transmits a frame of video to when you see it
+   * in the player. Set this if you want lower latency for your live stream. See the
    * [Reduce live stream latency guide](https://docs.mux.com/guides/reduce-live-stream-latency)
    * to understand the tradeoffs.
    */
@@ -805,7 +804,8 @@ export interface LiveStreamUpdateParams {
 
   /**
    * Updates the new asset settings to use to generate a new asset for this live
-   * stream. Only the `mp4_support` and `master_access` settings may be updated.
+   * stream. Only the `mp4_support`, `master_access`, and `video_quality` settings
+   * may be updated.
    */
   new_asset_settings?: LiveStreamUpdateParams.NewAssetSettings;
 
@@ -855,7 +855,8 @@ export interface LiveStreamUpdateParams {
 export namespace LiveStreamUpdateParams {
   /**
    * Updates the new asset settings to use to generate a new asset for this live
-   * stream. Only the `mp4_support` and `master_access` settings may be updated.
+   * stream. Only the `mp4_support`, `master_access`, and `video_quality` settings
+   * may be updated.
    */
   export interface NewAssetSettings {
     /**
@@ -864,8 +865,10 @@ export namespace LiveStreamUpdateParams {
     master_access?: 'temporary' | 'none';
 
     /**
-     * Specify what level of support for mp4 playback should be added to new assets
-     * generated from this live stream.
+     * @deprecated Deprecated. See the
+     * [Static Renditions API](https://www.mux.com/docs/guides/enable-static-mp4-renditions#during-live-stream-creation)
+     * for the updated API. Specify what level of support for mp4 playback should be
+     * added to new assets generated from this live stream.
      *
      * - The `none` option disables MP4 support for new assets. MP4 files will not be
      *   produced for an asset generated from this live stream.
@@ -884,6 +887,13 @@ export namespace LiveStreamUpdateParams {
      *   `audio.m4a` for an audio-only asset).
      */
     mp4_support?: 'none' | 'standard' | 'capped-1080p' | 'audio-only' | 'audio-only,capped-1080p';
+
+    /**
+     * The video quality controls the cost, quality, and available platform features
+     * for the asset.
+     * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
+     */
+    video_quality?: 'plus' | 'premium';
   }
 }
 

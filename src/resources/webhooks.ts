@@ -377,6 +377,12 @@ export interface VideoAssetWarningWebhookEvent extends BaseWebhookEvent {
   type: 'video.asset.warning';
 }
 
+export interface VideoAssetNonStandardInputDetectedWebhookEvent extends BaseWebhookEvent {
+  data: AssetsAPI.Asset;
+
+  type: 'video.asset.non_standard_input_detected';
+}
+
 export interface VideoUploadAssetCreatedWebhookEvent extends BaseWebhookEvent {
   data: UploadsAPI.Upload;
 
@@ -537,7 +543,7 @@ export namespace VideoDeliveryHighTrafficWebhookEvent {
       asset_duration?: number;
 
       /**
-       * @deprecated: This field is deprecated. Please use `asset_video_quality` instead.
+       * @deprecated This field is deprecated. Please use `asset_video_quality` instead.
        * The encoding tier that the asset was ingested at.
        * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
        */
@@ -661,6 +667,7 @@ export type UnwrapWebhookEvent =
   | VideoAssetTrackErroredWebhookEvent
   | VideoAssetTrackDeletedWebhookEvent
   | VideoAssetWarningWebhookEvent
+  | VideoAssetNonStandardInputDetectedWebhookEvent
   | VideoUploadAssetCreatedWebhookEvent
   | VideoUploadCancelledWebhookEvent
   | VideoUploadCreatedWebhookEvent

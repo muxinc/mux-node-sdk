@@ -1,6 +1,6 @@
 {
   "name": "@mux/mux-node",
-  "version": "9.0.1",
+  "version": "10.0.0",
   "description": "The official TypeScript library for the Mux API",
   "author": "Mux <devex@mux.com>",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     "build": "./scripts/build",
     "prepublishOnly": "echo 'to publish, run yarn build && (cd dist; yarn publish)' && exit 1",
     "format": "prettier --write --cache --cache-strategy metadata . !dist",
-    "prepare": "if ./scripts/utils/check-is-in-git-install.sh; then ./scripts/build; fi",
+    "prepare": "if ./scripts/utils/check-is-in-git-install.sh; then ./scripts/build && ./scripts/utils/git-swap.sh; fi",
     "tsn": "ts-node -r tsconfig-paths/register",
     "lint": "./scripts/lint",
     "fix": "./scripts/format"
@@ -108,17 +108,38 @@
       "default": "./dist/index.mjs"
     },
     "./*.mjs": {
-      "types": "./dist/*.d.ts",
-      "default": "./dist/*.mjs"
+      "types": [
+        "./dist/*.d.ts",
+        "./dist/*/index.d.ts"
+      ],
+      "default": [
+        "./dist/*.mjs",
+        "./dist/*/index.mjs"
+      ]
     },
     "./*.js": {
-      "types": "./dist/*.d.ts",
-      "default": "./dist/*.js"
+      "types": [
+        "./dist/*.d.ts",
+        "./dist/*/index.d.ts"
+      ],
+      "default": [
+        "./dist/*.js",
+        "./dist/*/index.js"
+      ]
     },
     "./*": {
-      "types": "./dist/*.d.ts",
-      "require": "./dist/*.js",
-      "default": "./dist/*.mjs"
+      "types": [
+        "./dist/*.d.ts",
+        "./dist/*/index.d.ts"
+      ],
+      "require": [
+        "./dist/*.js",
+        "./dist/*/index.js"
+      ],
+      "default": [
+        "./dist/*.mjs",
+        "./dist/*/index.mjs"
+      ]
     }
   }
 }
