@@ -50,6 +50,7 @@ describe('resource assets', () => {
       encoding_tier: 'smart',
       master_access: 'none',
       max_resolution_tier: '1080p',
+      meta: { creator_id: 'creator_id', external_id: 'external_id', title: 'title' },
       mp4_support: 'none',
       normalize_audio: true,
       passthrough: 'passthrough',
