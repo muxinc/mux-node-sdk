@@ -304,6 +304,8 @@ export interface Asset {
    */
   max_stored_resolution?: 'Audio only' | 'SD' | 'HD' | 'FHD' | 'UHD';
 
+  meta?: Asset.Meta;
+
   /**
    * @deprecated
    */
@@ -325,7 +327,10 @@ export interface Asset {
   normalize_audio?: boolean;
 
   /**
-   * Arbitrary user-supplied metadata set for the asset. Max 255 characters.
+   * You can set this field to anything you want. It will be included in the asset
+   * details and related webhooks. If you're looking for more structured metadata,
+   * such as `title` or `external_id` , you can use the `meta` object instead. **Max:
+   * 255 characters**.
    */
   passthrough?: string;
 
@@ -428,6 +433,25 @@ export namespace Asset {
      * will expire after 24 hours.
      */
     url?: string;
+  }
+
+  export interface Meta {
+    /**
+     * This is an identifier you provide to keep track of the creator of the video. Max
+     * 128 code points.
+     */
+    creator_id?: string;
+
+    /**
+     * This is an identifier you provide to link the video to your own data. Max 128
+     * code points.
+     */
+    external_id?: string;
+
+    /**
+     * The video title. Max 512 code points.
+     */
+    title?: string;
   }
 
   /**
@@ -687,6 +711,8 @@ export interface AssetOptions {
    */
   max_resolution_tier?: '1080p' | '1440p' | '2160p';
 
+  meta?: AssetOptions.Meta;
+
   /**
    * @deprecated Deprecated. See the
    * [Static Renditions API](https://www.mux.com/docs/guides/enable-static-mp4-renditions)
@@ -728,9 +754,10 @@ export interface AssetOptions {
   normalize_audio?: boolean;
 
   /**
-   * Arbitrary user-supplied metadata that will be included in the asset details and
-   * related webhooks. Can be used to store your own ID for a video along with the
-   * asset. **Max: 255 characters**.
+   * You can set this field to anything you want. It will be included in the asset
+   * details and related webhooks. If you're looking for more structured metadata,
+   * such as `title` or `external_id`, you can use the `meta` object instead. **Max:
+   * 255 characters**.
    */
   passthrough?: string;
 
@@ -1009,6 +1036,25 @@ export namespace AssetOptions {
        */
       width?: string;
     }
+  }
+
+  export interface Meta {
+    /**
+     * This is an identifier you provide to keep track of the creator of the video. Max
+     * 128 code points.
+     */
+    creator_id?: string;
+
+    /**
+     * This is an identifier you provide to link the video to your own data. Max 128
+     * code points.
+     */
+    external_id?: string;
+
+    /**
+     * The video title. Max 512 code points.
+     */
+    title?: string;
   }
 
   export interface StaticRendition {
@@ -1450,6 +1496,8 @@ export interface AssetCreateParams {
    */
   max_resolution_tier?: '1080p' | '1440p' | '2160p';
 
+  meta?: AssetCreateParams.Meta;
+
   /**
    * Deprecated. See the
    * [Static Renditions API](https://www.mux.com/docs/guides/enable-static-mp4-renditions)
@@ -1491,9 +1539,10 @@ export interface AssetCreateParams {
   normalize_audio?: boolean;
 
   /**
-   * Arbitrary user-supplied metadata that will be included in the asset details and
-   * related webhooks. Can be used to store your own ID for a video along with the
-   * asset. **Max: 255 characters**.
+   * You can set this field to anything you want. It will be included in the asset
+   * details and related webhooks. If you're looking for more structured metadata,
+   * such as `title` or `external_id`, you can use the `meta` object instead. **Max:
+   * 255 characters**.
    */
   passthrough?: string;
 
@@ -1771,6 +1820,25 @@ export namespace AssetCreateParams {
     policy?: Shared.PlaybackPolicy;
   }
 
+  export interface Meta {
+    /**
+     * This is an identifier you provide to keep track of the creator of the video. Max
+     * 128 code points.
+     */
+    creator_id?: string;
+
+    /**
+     * This is an identifier you provide to link the video to your own data. Max 128
+     * code points.
+     */
+    external_id?: string;
+
+    /**
+     * The video title. Max 512 code points.
+     */
+    title?: string;
+  }
+
   export interface StaticRendition {
     resolution:
       | 'highest'
@@ -1793,11 +1861,37 @@ export namespace AssetCreateParams {
 }
 
 export interface AssetUpdateParams {
+  meta?: AssetUpdateParams.Meta;
+
   /**
-   * Arbitrary metadata set for the Asset. Max 255 characters. In order to clear this
-   * value, the field should be included with an empty string value.
+   * You can set this field to anything you want. It will be included in the asset
+   * details and related webhooks. If you're looking for more structured metadata,
+   * such as `title` or `external_id` , you can use the `meta` object instead. **Max:
+   * 255 characters**. In order to clear this value, the field should be included
+   * with an empty string value.
    */
   passthrough?: string;
+}
+
+export namespace AssetUpdateParams {
+  export interface Meta {
+    /**
+     * This is an identifier you provide to keep track of the creator of the video. Max
+     * 128 code points.
+     */
+    creator_id?: string;
+
+    /**
+     * This is an identifier you provide to link the video to your own data. Max 128
+     * code points.
+     */
+    external_id?: string;
+
+    /**
+     * The video title. Max 512 code points.
+     */
+    title?: string;
+  }
 }
 
 export interface AssetListParams extends BasePageParams {
