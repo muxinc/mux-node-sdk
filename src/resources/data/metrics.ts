@@ -934,7 +934,8 @@ export interface MetricListParams {
     | 'audio_codec'
     | 'video_dynamic_range_type'
     | 'view_cdn_edge_pop'
-    | 'view_cdn_origin';
+    | 'view_cdn_origin'
+    | 'video_creator_id';
 
   /**
    * Limit the results to rows that match conditions from provided key:value pairs.
@@ -1308,7 +1309,8 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
     | 'audio_codec'
     | 'video_dynamic_range_type'
     | 'view_cdn_edge_pop'
-    | 'view_cdn_origin';
+    | 'view_cdn_origin'
+    | 'video_creator_id';
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
