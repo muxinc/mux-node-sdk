@@ -336,6 +336,11 @@ Types:
 - <code><a href="./src/resources/webhooks.ts">VideoAssetTrackReadyWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">VideoAssetTrackErroredWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">VideoAssetTrackDeletedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">VideoAssetStaticRenditionCreatedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">VideoAssetStaticRenditionReadyWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">VideoAssetStaticRenditionErroredWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">VideoAssetStaticRenditionDeletedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">VideoAssetStaticRenditionSkippedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">VideoAssetWarningWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">VideoAssetNonStandardInputDetectedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">VideoUploadAssetCreatedWebhookEvent</a></code>

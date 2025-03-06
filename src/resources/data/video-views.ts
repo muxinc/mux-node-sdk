@@ -309,6 +309,8 @@ export namespace VideoViewResponse {
 
     video_content_type: string | null;
 
+    video_creator_id: string | null;
+
     video_duration: number | null;
 
     video_dynamic_range_type: string | null;

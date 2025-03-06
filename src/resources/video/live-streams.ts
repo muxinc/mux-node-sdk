@@ -864,6 +864,8 @@ export namespace LiveStreamUpdateParams {
      */
     master_access?: 'temporary' | 'none';
 
+    meta?: NewAssetSettings.Meta;
+
     /**
      * @deprecated Deprecated. See the
      * [Static Renditions API](https://www.mux.com/docs/guides/enable-static-mp4-renditions#during-live-stream-creation)
@@ -894,6 +896,27 @@ export namespace LiveStreamUpdateParams {
      * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
      */
     video_quality?: 'plus' | 'premium';
+  }
+
+  export namespace NewAssetSettings {
+    export interface Meta {
+      /**
+       * This is an identifier you provide to keep track of the creator of the video. Max
+       * 128 code points.
+       */
+      creator_id?: string;
+
+      /**
+       * This is an identifier you provide to link the video to your own data. Max 128
+       * code points.
+       */
+      external_id?: string;
+
+      /**
+       * The video title. Max 512 code points.
+       */
+      title?: string;
+    }
   }
 }
 
