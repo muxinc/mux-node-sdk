@@ -371,6 +371,36 @@ export interface VideoAssetTrackDeletedWebhookEvent extends BaseWebhookEvent {
   type: 'video.asset.track.deleted';
 }
 
+export interface VideoAssetStaticRenditionCreatedWebhookEvent extends BaseWebhookEvent {
+  data: AssetsAPI.Asset;
+
+  type: 'video.asset.static_rendition.created';
+}
+
+export interface VideoAssetStaticRenditionReadyWebhookEvent extends BaseWebhookEvent {
+  data: AssetsAPI.Asset;
+
+  type: 'video.asset.static_rendition.ready';
+}
+
+export interface VideoAssetStaticRenditionErroredWebhookEvent extends BaseWebhookEvent {
+  data: AssetsAPI.Asset;
+
+  type: 'video.asset.static_rendition.errored';
+}
+
+export interface VideoAssetStaticRenditionDeletedWebhookEvent extends BaseWebhookEvent {
+  data: AssetsAPI.Asset;
+
+  type: 'video.asset.static_rendition.deleted';
+}
+
+export interface VideoAssetStaticRenditionSkippedWebhookEvent extends BaseWebhookEvent {
+  data: AssetsAPI.Asset;
+
+  type: 'video.asset.static_rendition.skipped';
+}
+
 export interface VideoAssetWarningWebhookEvent extends BaseWebhookEvent {
   data: AssetsAPI.Asset;
 
@@ -666,6 +696,11 @@ export type UnwrapWebhookEvent =
   | VideoAssetTrackReadyWebhookEvent
   | VideoAssetTrackErroredWebhookEvent
   | VideoAssetTrackDeletedWebhookEvent
+  | VideoAssetStaticRenditionCreatedWebhookEvent
+  | VideoAssetStaticRenditionReadyWebhookEvent
+  | VideoAssetStaticRenditionErroredWebhookEvent
+  | VideoAssetStaticRenditionDeletedWebhookEvent
+  | VideoAssetStaticRenditionSkippedWebhookEvent
   | VideoAssetWarningWebhookEvent
   | VideoAssetNonStandardInputDetectedWebhookEvent
   | VideoUploadAssetCreatedWebhookEvent
