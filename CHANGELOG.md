@@ -1,5 +1,20 @@
 # Changelog
 
+## 10.1.0 (2025-03-06)
+
+Full Changelog: [v10.0.0...v10.1.0](https://github.com/muxinc/mux-node-sdk/compare/v10.0.0...v10.1.0)
+
+### Features
+
+* add asset metadata schema ([#323](https://github.com/muxinc/mux-node-sdk/issues/323)) ([#552](https://github.com/muxinc/mux-node-sdk/issues/552)) ([769d578](https://github.com/muxinc/mux-node-sdk/commit/769d5783a1278fd7e22353a28ab1d8f0bedbe044))
+* add static_rendition webhooks ([#327](https://github.com/muxinc/mux-node-sdk/issues/327)) ([#554](https://github.com/muxinc/mux-node-sdk/issues/554)) ([b483052](https://github.com/muxinc/mux-node-sdk/commit/b48305245dcb4b9eac7053239d2050305d542e1c))
+* Add Video Creator ID dimension ([#325](https://github.com/muxinc/mux-node-sdk/issues/325)) ([#553](https://github.com/muxinc/mux-node-sdk/issues/553)) ([0246142](https://github.com/muxinc/mux-node-sdk/commit/024614201acffe3e227534e4ba353aa4cc7ac229))
+
+
+### Documentation
+
+* update URLs from stainlessapi.com to stainless.com ([#550](https://github.com/muxinc/mux-node-sdk/issues/550)) ([0be8bb7](https://github.com/muxinc/mux-node-sdk/commit/0be8bb743e1e5c551d950dfca5dce7aa2ab84830))
+
 ## 10.0.0 (2025-02-21)
 
 Full Changelog: [v9.0.1...v10.0.0](https://github.com/muxinc/mux-node-sdk/compare/v9.0.1...v10.0.0)
