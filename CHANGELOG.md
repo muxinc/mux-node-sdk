@@ -1,5 +1,13 @@
 # Changelog
 
+## 10.2.0 (2025-03-08)
+
+Full Changelog: [v10.1.0...v10.2.0](https://github.com/muxinc/mux-node-sdk/compare/v10.1.0...v10.2.0)
+
+### Features
+
+* add SKIP_BREW env var to ./scripts/bootstrap ([#556](https://github.com/muxinc/mux-node-sdk/issues/556)) ([d7b9122](https://github.com/muxinc/mux-node-sdk/commit/d7b91226ab8174fbdc836f7f2348a6915f3e15f9))
+
 ## 10.1.0 (2025-03-06)
 
 Full Changelog: [v10.0.0...v10.1.0](https://github.com/muxinc/mux-node-sdk/compare/v10.0.0...v10.1.0)
