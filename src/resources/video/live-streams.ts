@@ -864,6 +864,12 @@ export namespace LiveStreamUpdateParams {
      */
     master_access?: 'temporary' | 'none';
 
+    /**
+     * Customer provided metadata about this asset.
+     *
+     * Note: This metadata may be publicly available via the video player. Do not
+     * include PII or sensitive information.
+     */
     meta?: NewAssetSettings.Meta;
 
     /**
@@ -899,6 +905,12 @@ export namespace LiveStreamUpdateParams {
   }
 
   export namespace NewAssetSettings {
+    /**
+     * Customer provided metadata about this asset.
+     *
+     * Note: This metadata may be publicly available via the video player. Do not
+     * include PII or sensitive information.
+     */
     export interface Meta {
       /**
        * This is an identifier you provide to keep track of the creator of the video. Max
