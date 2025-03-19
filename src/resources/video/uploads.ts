@@ -91,7 +91,7 @@ export interface Upload {
    */
   error?: Upload.Error;
 
-  new_asset_settings?: AssetsAPI.Asset;
+  new_asset_settings?: AssetsAPI.AssetOptions;
 
   /**
    * Indicates if this is a test Direct Upload, in which case the Asset that gets

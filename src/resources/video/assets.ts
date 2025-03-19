@@ -304,6 +304,12 @@ export interface Asset {
    */
   max_stored_resolution?: 'Audio only' | 'SD' | 'HD' | 'FHD' | 'UHD';
 
+  /**
+   * Customer provided metadata about this asset.
+   *
+   * Note: This metadata may be publicly available via the video player. Do not
+   * include PII or sensitive information.
+   */
   meta?: Asset.Meta;
 
   /**
@@ -435,6 +441,12 @@ export namespace Asset {
     url?: string;
   }
 
+  /**
+   * Customer provided metadata about this asset.
+   *
+   * Note: This metadata may be publicly available via the video player. Do not
+   * include PII or sensitive information.
+   */
   export interface Meta {
     /**
      * This is an identifier you provide to keep track of the creator of the video. Max
@@ -711,6 +723,12 @@ export interface AssetOptions {
    */
   max_resolution_tier?: '1080p' | '1440p' | '2160p';
 
+  /**
+   * Customer provided metadata about this asset.
+   *
+   * Note: This metadata may be publicly available via the video player. Do not
+   * include PII or sensitive information.
+   */
   meta?: AssetOptions.Meta;
 
   /**
@@ -1038,6 +1056,12 @@ export namespace AssetOptions {
     }
   }
 
+  /**
+   * Customer provided metadata about this asset.
+   *
+   * Note: This metadata may be publicly available via the video player. Do not
+   * include PII or sensitive information.
+   */
   export interface Meta {
     /**
      * This is an identifier you provide to keep track of the creator of the video. Max
@@ -1496,6 +1520,12 @@ export interface AssetCreateParams {
    */
   max_resolution_tier?: '1080p' | '1440p' | '2160p';
 
+  /**
+   * Customer provided metadata about this asset.
+   *
+   * Note: This metadata may be publicly available via the video player. Do not
+   * include PII or sensitive information.
+   */
   meta?: AssetCreateParams.Meta;
 
   /**
@@ -1820,6 +1850,12 @@ export namespace AssetCreateParams {
     policy?: Shared.PlaybackPolicy;
   }
 
+  /**
+   * Customer provided metadata about this asset.
+   *
+   * Note: This metadata may be publicly available via the video player. Do not
+   * include PII or sensitive information.
+   */
   export interface Meta {
     /**
      * This is an identifier you provide to keep track of the creator of the video. Max
@@ -1861,6 +1897,12 @@ export namespace AssetCreateParams {
 }
 
 export interface AssetUpdateParams {
+  /**
+   * Customer provided metadata about this asset.
+   *
+   * Note: This metadata may be publicly available via the video player. Do not
+   * include PII or sensitive information.
+   */
   meta?: AssetUpdateParams.Meta;
 
   /**
@@ -1874,6 +1916,12 @@ export interface AssetUpdateParams {
 }
 
 export namespace AssetUpdateParams {
+  /**
+   * Customer provided metadata about this asset.
+   *
+   * Note: This metadata may be publicly available via the video player. Do not
+   * include PII or sensitive information.
+   */
   export interface Meta {
     /**
      * This is an identifier you provide to keep track of the creator of the video. Max
