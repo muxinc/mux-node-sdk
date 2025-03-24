@@ -570,9 +570,9 @@ export interface SimulcastTarget {
 
 export interface LiveStreamCreateParams {
   /**
-   * An array of playback policy objects that you want applied to this asset and
-   * available through `playback_ids`. `advanced_playback_policies` must be used
-   * instead of `playback_policy` when creating a DRM playback ID.
+   * An array of playback policy objects that you want applied on this live stream
+   * and available through `playback_ids`. `advanced_playback_policies` must be used
+   * instead of `playback_policies` when creating a DRM playback ID.
    */
   advanced_playback_policies?: Array<LiveStreamCreateParams.AdvancedPlaybackPolicy>;
 
@@ -628,6 +628,22 @@ export interface LiveStreamCreateParams {
 
   passthrough?: string;
 
+  /**
+   * An array of playback policy names that you want applied to this live stream and
+   * available through `playback_ids`. Options include:
+   *
+   * - `"public"` (anyone with the playback URL can stream the live stream).
+   * - `"signed"` (an additional access token is required to play the live stream).
+   *
+   * If no `playback_policies` is set, the live stream will have no playback IDs and
+   * will therefore not be playable. For simplicity, a single string name can be used
+   * in place of the array in the case of only one playback policy.
+   */
+  playback_policies?: Array<Shared.PlaybackPolicy>;
+
+  /**
+   * Deprecated. Use `playback_policies` instead, which accepts an identical type.
+   */
   playback_policy?: Array<Shared.PlaybackPolicy>;
 
   /**

@@ -690,7 +690,7 @@ export interface AssetOptions {
   /**
    * An array of playback policy objects that you want applied to this asset and
    * available through `playback_ids`. `advanced_playback_policies` must be used
-   * instead of `playback_policy` when creating a DRM playback ID.
+   * instead of `playback_policies` when creating a DRM playback ID.
    */
   advanced_playback_policies?: Array<AssetOptions.AdvancedPlaybackPolicy>;
 
@@ -703,11 +703,16 @@ export interface AssetOptions {
   encoding_tier?: 'smart' | 'baseline' | 'premium';
 
   /**
+   * @deprecated Deprecated. Use `inputs` instead, which accepts an identical type.
+   */
+  input?: Array<AssetOptions.Input>;
+
+  /**
    * An array of objects that each describe an input file to be used to create the
    * asset. As a shortcut, input can also be a string URL for a file when only one
    * input file is used. See `input[].url` for requirements.
    */
-  input?: Array<AssetOptions.Input>;
+  inputs?: Array<AssetOptions.Input>;
 
   /**
    * Specify what level (if any) of support for master access. Master access can be
@@ -791,9 +796,15 @@ export interface AssetOptions {
    * - `"public"` (anyone with the playback URL can stream the asset).
    * - `"signed"` (an additional access token is required to play the asset).
    *
-   * If no `playback_policy` is set, the asset will have no playback IDs and will
+   * If no `playback_policies` are set, the asset will have no playback IDs and will
    * therefore not be playable. For simplicity, a single string name can be used in
    * place of the array in the case of only one playback policy.
+   */
+  playback_policies?: Array<Shared.PlaybackPolicy>;
+
+  /**
+   * @deprecated Deprecated. Use `playback_policies` instead, which accepts an
+   * identical type.
    */
   playback_policy?: Array<Shared.PlaybackPolicy>;
 
@@ -841,6 +852,219 @@ export namespace AssetOptions {
      *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
      */
     policy?: Shared.PlaybackPolicy;
+  }
+
+  /**
+   * An array of objects that each describe an input file to be used to create the
+   * asset. As a shortcut, `input` can also be a string URL for a file when only one
+   * input file is used. See `input[].url` for requirements.
+   */
+  export interface Input {
+    /**
+     * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
+     * This optional parameter should be used for tracks with `type` of `text` and
+     * `text_type` set to `subtitles`.
+     */
+    closed_captions?: boolean;
+
+    /**
+     * The time offset in seconds from the beginning of the video, indicating the
+     * clip's ending marker. The default value is the duration of the video when not
+     * included. This parameter is only applicable for creating clips when `input.url`
+     * has `mux://assets/{asset_id}` format.
+     */
+    end_time?: number;
+
+    /**
+     * Generate subtitle tracks using automatic speech recognition with this
+     * configuration. This may only be provided for the first input object (the main
+     * input file). For direct uploads, this first input should omit the url parameter,
+     * as the main input file is provided via the direct upload. This will create
+     * subtitles based on the audio track ingested from that main input file. Note that
+     * subtitle generation happens after initial ingest, so the generated tracks will
+     * be in the `preparing` state when the asset transitions to `ready`.
+     */
+    generated_subtitles?: Array<Input.GeneratedSubtitle>;
+
+    /**
+     * The language code value must be a valid
+     * [BCP 47](https://tools.ietf.org/html/bcp47) specification compliant value. For
+     * example, `en` for English or `en-US` for the US version of English. This
+     * parameter is required for `text` and `audio` track types.
+     */
+    language_code?: string;
+
+    /**
+     * The name of the track containing a human-readable description. This value must
+     * be unique within each group of `text` or `audio` track types. The HLS manifest
+     * will associate a subtitle text track with this value. For example, the value
+     * should be "English" for a subtitle text track with `language_code` set to `en`.
+     * This optional parameter should be used only for `text` and `audio` type tracks.
+     * This parameter can be optionally provided for the first video input to denote
+     * the name of the muxed audio track if present. If this parameter is not included,
+     * Mux will auto-populate based on the `input[].language_code` value.
+     */
+    name?: string;
+
+    /**
+     * An object that describes how the image file referenced in URL should be placed
+     * over the video (i.e. watermarking). Ensure that the URL is active and persists
+     * the entire lifespan of the video object.
+     */
+    overlay_settings?: Input.OverlaySettings;
+
+    /**
+     * This optional parameter should be used for tracks with `type` of `text` and
+     * `text_type` set to `subtitles`.
+     */
+    passthrough?: string;
+
+    /**
+     * The time offset in seconds from the beginning of the video indicating the clip's
+     * starting marker. The default value is 0 when not included. This parameter is
+     * only applicable for creating clips when `input.url` has
+     * `mux://assets/{asset_id}` format.
+     */
+    start_time?: number;
+
+    /**
+     * Type of text track. This parameter only supports subtitles value. For more
+     * information on Subtitles / Closed Captions,
+     * [see this blog post](https://mux.com/blog/subtitles-captions-webvtt-hls-and-those-magic-flags/).
+     * This parameter is required for `text` type tracks.
+     */
+    text_type?: 'subtitles';
+
+    /**
+     * This parameter is required for `text` type tracks.
+     */
+    type?: 'video' | 'audio' | 'text';
+
+    /**
+     * The URL of the file that Mux should download and use.
+     *
+     * - For the main input file, this should be the URL to the muxed file for Mux to
+     *   download, for example an MP4, MOV, MKV, or TS file. Mux supports most
+     *   audio/video file formats and codecs, but for fastest processing, you should
+     *   [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).
+     * - For `audio` tracks, the URL is the location of the audio file for Mux to
+     *   download, for example an M4A, WAV, or MP3 file. Mux supports most audio file
+     *   formats and codecs, but for fastest processing, you should
+     *   [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).
+     * - For `text` tracks, the URL is the location of subtitle/captions file. Mux
+     *   supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and
+     *   [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) formats for ingesting
+     *   Subtitles and Closed Captions.
+     * - For Watermarking or Overlay, the URL is the location of the watermark image.
+     *   The maximum size is 4096x4096.
+     * - When creating clips from existing Mux assets, the URL is defined with
+     *   `mux://assets/{asset_id}` template where `asset_id` is the Asset Identifier
+     *   for creating the clip from. The url property may be omitted on the first input
+     *   object when providing asset settings for LiveStream and Upload objects, in
+     *   order to configure settings related to the primary (live stream or direct
+     *   upload) input.
+     */
+    url?: string;
+  }
+
+  export namespace Input {
+    export interface GeneratedSubtitle {
+      /**
+       * The language to generate subtitles in.
+       */
+      language_code?:
+        | 'en'
+        | 'es'
+        | 'it'
+        | 'pt'
+        | 'de'
+        | 'fr'
+        | 'pl'
+        | 'ru'
+        | 'nl'
+        | 'ca'
+        | 'tr'
+        | 'sv'
+        | 'uk'
+        | 'no'
+        | 'fi'
+        | 'sk'
+        | 'el'
+        | 'cs'
+        | 'hr'
+        | 'da'
+        | 'ro'
+        | 'bg';
+
+      /**
+       * A name for this subtitle track.
+       */
+      name?: string;
+
+      /**
+       * Arbitrary metadata set for the subtitle track. Max 255 characters.
+       */
+      passthrough?: string;
+    }
+
+    /**
+     * An object that describes how the image file referenced in URL should be placed
+     * over the video (i.e. watermarking). Ensure that the URL is active and persists
+     * the entire lifespan of the video object.
+     */
+    export interface OverlaySettings {
+      /**
+       * How tall the overlay should appear. Can be expressed as a percent ("10%") or as
+       * a pixel value ("100px"). If both width and height are left blank the height will
+       * be the true pixels of the image, applied as if the video has been scaled to fit
+       * a 1920x1080 frame. If width is supplied with no height, the height will scale
+       * proportionally to the width.
+       */
+      height?: string;
+
+      /**
+       * Where the horizontal positioning of the overlay/watermark should begin from.
+       */
+      horizontal_align?: 'left' | 'center' | 'right';
+
+      /**
+       * The distance from the horizontal_align starting point and the image's closest
+       * edge. Can be expressed as a percent ("10%") or as a pixel value ("100px").
+       * Negative values will move the overlay offscreen. In the case of 'center', a
+       * positive value will shift the image towards the right and and a negative value
+       * will shift it towards the left.
+       */
+      horizontal_margin?: string;
+
+      /**
+       * How opaque the overlay should appear, expressed as a percent. (Default 100%)
+       */
+      opacity?: string;
+
+      /**
+       * Where the vertical positioning of the overlay/watermark should begin from.
+       * Defaults to `"top"`
+       */
+      vertical_align?: 'top' | 'middle' | 'bottom';
+
+      /**
+       * The distance from the vertical_align starting point and the image's closest
+       * edge. Can be expressed as a percent ("10%") or as a pixel value ("100px").
+       * Negative values will move the overlay offscreen. In the case of 'middle', a
+       * positive value will shift the overlay towards the bottom and and a negative
+       * value will shift it towards the top.
+       */
+      vertical_margin?: string;
+
+      /**
+       * How wide the overlay should appear. Can be expressed as a percent ("10%") or as
+       * a pixel value ("100px"). If both width and height are left blank the width will
+       * be the true pixels of the image, applied as if the video has been scaled to fit
+       * a 1920x1080 frame. If height is supplied with no width, the width will scale
+       * proportionally to the height.
+       */
+      width?: string;
+    }
   }
 
   /**
@@ -1485,16 +1709,14 @@ export type AssetRetrieveInputInfoResponse = Array<InputInfo>;
 
 export interface AssetCreateParams {
   /**
-   * An array of objects that each describe an input file to be used to create the
-   * asset. As a shortcut, input can also be a string URL for a file when only one
-   * input file is used. See `input[].url` for requirements.
+   * Deprecated. Use `inputs` instead, which accepts an identical type.
    */
   input: Array<AssetCreateParams.Input>;
 
   /**
    * An array of playback policy objects that you want applied to this asset and
    * available through `playback_ids`. `advanced_playback_policies` must be used
-   * instead of `playback_policy` when creating a DRM playback ID.
+   * instead of `playback_policies` when creating a DRM playback ID.
    */
   advanced_playback_policies?: Array<AssetCreateParams.AdvancedPlaybackPolicy>;
 
@@ -1505,6 +1727,13 @@ export interface AssetCreateParams {
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   encoding_tier?: 'smart' | 'baseline' | 'premium';
+
+  /**
+   * An array of objects that each describe an input file to be used to create the
+   * asset. As a shortcut, input can also be a string URL for a file when only one
+   * input file is used. See `input[].url` for requirements.
+   */
+  inputs?: Array<AssetCreateParams.Input>;
 
   /**
    * Specify what level (if any) of support for master access. Master access can be
@@ -1585,9 +1814,14 @@ export interface AssetCreateParams {
    * - `"public"` (anyone with the playback URL can stream the asset).
    * - `"signed"` (an additional access token is required to play the asset).
    *
-   * If no `playback_policy` is set, the asset will have no playback IDs and will
+   * If no `playback_policies` are set, the asset will have no playback IDs and will
    * therefore not be playable. For simplicity, a single string name can be used in
    * place of the array in the case of only one playback policy.
+   */
+  playback_policies?: Array<Shared.PlaybackPolicy>;
+
+  /**
+   * Deprecated. Use `playback_policies` instead, which accepts an identical type.
    */
   playback_policy?: Array<Shared.PlaybackPolicy>;
 
@@ -1848,6 +2082,219 @@ export namespace AssetCreateParams {
      *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
      */
     policy?: Shared.PlaybackPolicy;
+  }
+
+  /**
+   * An array of objects that each describe an input file to be used to create the
+   * asset. As a shortcut, `input` can also be a string URL for a file when only one
+   * input file is used. See `input[].url` for requirements.
+   */
+  export interface Input {
+    /**
+     * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
+     * This optional parameter should be used for tracks with `type` of `text` and
+     * `text_type` set to `subtitles`.
+     */
+    closed_captions?: boolean;
+
+    /**
+     * The time offset in seconds from the beginning of the video, indicating the
+     * clip's ending marker. The default value is the duration of the video when not
+     * included. This parameter is only applicable for creating clips when `input.url`
+     * has `mux://assets/{asset_id}` format.
+     */
+    end_time?: number;
+
+    /**
+     * Generate subtitle tracks using automatic speech recognition with this
+     * configuration. This may only be provided for the first input object (the main
+     * input file). For direct uploads, this first input should omit the url parameter,
+     * as the main input file is provided via the direct upload. This will create
+     * subtitles based on the audio track ingested from that main input file. Note that
+     * subtitle generation happens after initial ingest, so the generated tracks will
+     * be in the `preparing` state when the asset transitions to `ready`.
+     */
+    generated_subtitles?: Array<Input.GeneratedSubtitle>;
+
+    /**
+     * The language code value must be a valid
+     * [BCP 47](https://tools.ietf.org/html/bcp47) specification compliant value. For
+     * example, `en` for English or `en-US` for the US version of English. This
+     * parameter is required for `text` and `audio` track types.
+     */
+    language_code?: string;
+
+    /**
+     * The name of the track containing a human-readable description. This value must
+     * be unique within each group of `text` or `audio` track types. The HLS manifest
+     * will associate a subtitle text track with this value. For example, the value
+     * should be "English" for a subtitle text track with `language_code` set to `en`.
+     * This optional parameter should be used only for `text` and `audio` type tracks.
+     * This parameter can be optionally provided for the first video input to denote
+     * the name of the muxed audio track if present. If this parameter is not included,
+     * Mux will auto-populate based on the `input[].language_code` value.
+     */
+    name?: string;
+
+    /**
+     * An object that describes how the image file referenced in URL should be placed
+     * over the video (i.e. watermarking). Ensure that the URL is active and persists
+     * the entire lifespan of the video object.
+     */
+    overlay_settings?: Input.OverlaySettings;
+
+    /**
+     * This optional parameter should be used for tracks with `type` of `text` and
+     * `text_type` set to `subtitles`.
+     */
+    passthrough?: string;
+
+    /**
+     * The time offset in seconds from the beginning of the video indicating the clip's
+     * starting marker. The default value is 0 when not included. This parameter is
+     * only applicable for creating clips when `input.url` has
+     * `mux://assets/{asset_id}` format.
+     */
+    start_time?: number;
+
+    /**
+     * Type of text track. This parameter only supports subtitles value. For more
+     * information on Subtitles / Closed Captions,
+     * [see this blog post](https://mux.com/blog/subtitles-captions-webvtt-hls-and-those-magic-flags/).
+     * This parameter is required for `text` type tracks.
+     */
+    text_type?: 'subtitles';
+
+    /**
+     * This parameter is required for `text` type tracks.
+     */
+    type?: 'video' | 'audio' | 'text';
+
+    /**
+     * The URL of the file that Mux should download and use.
+     *
+     * - For the main input file, this should be the URL to the muxed file for Mux to
+     *   download, for example an MP4, MOV, MKV, or TS file. Mux supports most
+     *   audio/video file formats and codecs, but for fastest processing, you should
+     *   [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).
+     * - For `audio` tracks, the URL is the location of the audio file for Mux to
+     *   download, for example an M4A, WAV, or MP3 file. Mux supports most audio file
+     *   formats and codecs, but for fastest processing, you should
+     *   [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).
+     * - For `text` tracks, the URL is the location of subtitle/captions file. Mux
+     *   supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and
+     *   [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) formats for ingesting
+     *   Subtitles and Closed Captions.
+     * - For Watermarking or Overlay, the URL is the location of the watermark image.
+     *   The maximum size is 4096x4096.
+     * - When creating clips from existing Mux assets, the URL is defined with
+     *   `mux://assets/{asset_id}` template where `asset_id` is the Asset Identifier
+     *   for creating the clip from. The url property may be omitted on the first input
+     *   object when providing asset settings for LiveStream and Upload objects, in
+     *   order to configure settings related to the primary (live stream or direct
+     *   upload) input.
+     */
+    url?: string;
+  }
+
+  export namespace Input {
+    export interface GeneratedSubtitle {
+      /**
+       * The language to generate subtitles in.
+       */
+      language_code?:
+        | 'en'
+        | 'es'
+        | 'it'
+        | 'pt'
+        | 'de'
+        | 'fr'
+        | 'pl'
+        | 'ru'
+        | 'nl'
+        | 'ca'
+        | 'tr'
+        | 'sv'
+        | 'uk'
+        | 'no'
+        | 'fi'
+        | 'sk'
+        | 'el'
+        | 'cs'
+        | 'hr'
+        | 'da'
+        | 'ro'
+        | 'bg';
+
+      /**
+       * A name for this subtitle track.
+       */
+      name?: string;
+
+      /**
+       * Arbitrary metadata set for the subtitle track. Max 255 characters.
+       */
+      passthrough?: string;
+    }
+
+    /**
+     * An object that describes how the image file referenced in URL should be placed
+     * over the video (i.e. watermarking). Ensure that the URL is active and persists
+     * the entire lifespan of the video object.
+     */
+    export interface OverlaySettings {
+      /**
+       * How tall the overlay should appear. Can be expressed as a percent ("10%") or as
+       * a pixel value ("100px"). If both width and height are left blank the height will
+       * be the true pixels of the image, applied as if the video has been scaled to fit
+       * a 1920x1080 frame. If width is supplied with no height, the height will scale
+       * proportionally to the width.
+       */
+      height?: string;
+
+      /**
+       * Where the horizontal positioning of the overlay/watermark should begin from.
+       */
+      horizontal_align?: 'left' | 'center' | 'right';
+
+      /**
+       * The distance from the horizontal_align starting point and the image's closest
+       * edge. Can be expressed as a percent ("10%") or as a pixel value ("100px").
+       * Negative values will move the overlay offscreen. In the case of 'center', a
+       * positive value will shift the image towards the right and and a negative value
+       * will shift it towards the left.
+       */
+      horizontal_margin?: string;
+
+      /**
+       * How opaque the overlay should appear, expressed as a percent. (Default 100%)
+       */
+      opacity?: string;
+
+      /**
+       * Where the vertical positioning of the overlay/watermark should begin from.
+       * Defaults to `"top"`
+       */
+      vertical_align?: 'top' | 'middle' | 'bottom';
+
+      /**
+       * The distance from the vertical_align starting point and the image's closest
+       * edge. Can be expressed as a percent ("10%") or as a pixel value ("100px").
+       * Negative values will move the overlay offscreen. In the case of 'middle', a
+       * positive value will shift the overlay towards the bottom and and a negative
+       * value will shift it towards the top.
+       */
+      vertical_margin?: string;
+
+      /**
+       * How wide the overlay should appear. Can be expressed as a percent ("10%") or as
+       * a pixel value ("100px"). If both width and height are left blank the width will
+       * be the true pixels of the image, applied as if the video has been scaled to fit
+       * a 1920x1080 frame. If height is supplied with no width, the width will scale
+       * proportionally to the height.
+       */
+      width?: string;
+    }
   }
 
   /**
