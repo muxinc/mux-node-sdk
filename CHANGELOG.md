@@ -1,5 +1,35 @@
 # Changelog
 
+## 11.0.0 (2025-03-27)
+
+Full Changelog: [v10.1.0...v11.0.0](https://github.com/muxinc/mux-node-sdk/compare/v10.1.0...v11.0.0)
+
+### ⚠ BREAKING CHANGES
+
+* Fix type of new_asset_settings in Direct Uploads, and inline UpdateReferrerDomainRestrictionRequest ([#331](https://github.com/muxinc/mux-node-sdk/issues/331)) (#563)
+
+### Features
+
+* add SKIP_BREW env var to ./scripts/bootstrap ([#556](https://github.com/muxinc/mux-node-sdk/issues/556)) ([d7b9122](https://github.com/muxinc/mux-node-sdk/commit/d7b91226ab8174fbdc836f7f2348a6915f3e15f9))
+* Replace input with inputs and playback_policy with playback_policies ([#335](https://github.com/muxinc/mux-node-sdk/issues/335)) ([#565](https://github.com/muxinc/mux-node-sdk/issues/565)) ([f477926](https://github.com/muxinc/mux-node-sdk/commit/f4779269b5b0939ac22d917bfccfdcaf56a73347))
+
+
+### Bug Fixes
+
+* avoid type error in certain environments ([#564](https://github.com/muxinc/mux-node-sdk/issues/564)) ([d57d25d](https://github.com/muxinc/mux-node-sdk/commit/d57d25d7e6693978e9fb06e0517aa1f9c9d57f54))
+* **exports:** add missing type exports ([#566](https://github.com/muxinc/mux-node-sdk/issues/566)) ([94654c9](https://github.com/muxinc/mux-node-sdk/commit/94654c940956c4f7744441612b1ef45567ff6802))
+* **exports:** ensure resource imports don't require /index ([#560](https://github.com/muxinc/mux-node-sdk/issues/560)) ([31a9554](https://github.com/muxinc/mux-node-sdk/commit/31a95542229094432ec901f763ee566f684bfda7))
+* Fix type of new_asset_settings in Direct Uploads, and inline UpdateReferrerDomainRestrictionRequest ([#331](https://github.com/muxinc/mux-node-sdk/issues/331)) ([#563](https://github.com/muxinc/mux-node-sdk/issues/563)) ([f8342e9](https://github.com/muxinc/mux-node-sdk/commit/f8342e9cfd33ac1d720f0649cc9043ad3920e44f))
+* **internal:** work around https://github.com/vercel/next.js/issues/76881 ([#567](https://github.com/muxinc/mux-node-sdk/issues/567)) ([6305af8](https://github.com/muxinc/mux-node-sdk/commit/6305af861e3a79eb6b74fc7958d1346fecf4e54c))
+
+
+### Chores
+
+* **exports:** cleaner resource index imports ([#561](https://github.com/muxinc/mux-node-sdk/issues/561)) ([7a71c93](https://github.com/muxinc/mux-node-sdk/commit/7a71c9309c6bcc22841ae404c068b84bbb0ef226))
+* **exports:** stop using path fallbacks ([#562](https://github.com/muxinc/mux-node-sdk/issues/562)) ([ab7f871](https://github.com/muxinc/mux-node-sdk/commit/ab7f8717b6e3b521eeefef13ab69918cab8bd3a7))
+* **internal:** codegen related update ([#558](https://github.com/muxinc/mux-node-sdk/issues/558)) ([a1a797a](https://github.com/muxinc/mux-node-sdk/commit/a1a797a82b0183e087824fc9b05cecd82a8bec1e))
+* **internal:** remove extra empty newlines ([#559](https://github.com/muxinc/mux-node-sdk/issues/559)) ([407398f](https://github.com/muxinc/mux-node-sdk/commit/407398fd5eb873af96860ebd267de81a5f9b91c7))
+
 ## 10.1.0 (2025-03-06)
 
 Full Changelog: [v10.0.0...v10.1.0](https://github.com/muxinc/mux-node-sdk/compare/v10.0.0...v10.1.0)
