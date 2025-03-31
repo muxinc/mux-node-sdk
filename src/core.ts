@@ -16,7 +16,12 @@ import {
   type RequestInit,
   type Response,
   type HeadersInit,
+  init,
 } from './_shims/index';
+
+// try running side effects outside of _shims/index to workaround https://github.com/vercel/next.js/issues/76881
+init();
+
 export { type Response };
 import { isMultipartBody } from './uploads';
 export {
@@ -48,8 +53,8 @@ async function defaultParseResponse<T>(props: APIResponseProps): Promise<T> {
   }
 
   const contentType = response.headers.get('content-type');
-  const isJSON =
-    contentType?.includes('application/json') || contentType?.includes('application/vnd.api+json');
+  const mediaType = contentType?.split(';')[0]?.trim();
+  const isJSON = mediaType?.includes('application/json') || mediaType?.endsWith('+json');
   if (isJSON) {
     const json = await response.json();
 
@@ -381,7 +386,7 @@ export abstract class APIClient {
       !headers ? {}
       : Symbol.iterator in headers ?
         Object.fromEntries(Array.from(headers as Iterable<string[]>).map((header) => [...header]))
-      : { ...headers }
+      : { ...(headers as any as Record<string, string>) }
     );
   }
 
