@@ -6,7 +6,10 @@ Full Changelog: [v10.1.0...v11.0.0](https://github.com/muxinc/mux-node-sdk/compa
 
 ### ⚠ BREAKING CHANGES
 
-* Fix type of new_asset_settings in Direct Uploads, and inline UpdateReferrerDomainRestrictionRequest ([#331](https://github.com/muxinc/mux-node-sdk/issues/331)) (#563)
+* Fix type of `new_asset_settings` in Direct Uploads, and inline `UpdateReferrerDomainRestrictionRequest` ([#331](https://github.com/muxinc/mux-node-sdk/issues/331)) (#563)
+* Changes the type of `new_asset_settings` to be a `CreateAssetRequest`, which exposes the correct set of fields to control asset creation
+* Replaces `input` on `CreateAssetRequest` with `inputs`, which accepts the same type, and added deprecation notices
+* Replaces `playback_policy` on `CreateAssetRequest` with `playback_policies`, which accepts the same type, and added deprecation notices
 
 ### Features
 
