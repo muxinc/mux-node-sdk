@@ -30,7 +30,8 @@ const client = new Mux({
 
 async function main() {
   const asset = await client.video.assets.create({
-    input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    playback_policies: ['public'],
   });
 
   console.log(asset.id);
@@ -54,7 +55,8 @@ const client = new Mux({
 
 async function main() {
   const params: Mux.Video.AssetCreateParams = {
-    input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    playback_policies: ['public'],
   };
   const asset: Mux.Video.Asset = await client.video.assets.create(params);
 }
@@ -282,15 +284,17 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const liveStream = await client.video.liveStreams.create().catch(async (err) => {
-    if (err instanceof Mux.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
+  const liveStream = await client.video.liveStreams
+    .create({ playback_policies: ['public'] })
+    .catch(async (err) => {
+      if (err instanceof Mux.APIError) {
+        console.log(err.status); // 400
+        console.log(err.name); // BadRequestError
+        console.log(err.headers); // {server: 'nginx', ...}
+      } else {
+        throw err;
+      }
+    });
 }
 
 main();
@@ -395,13 +399,19 @@ You can also use the `.withResponse()` method to get the raw `Response` along wi
 const client = new Mux();
 
 const response = await client.video.assets
-  .create({ input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }] })
+  .create({
+    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    playback_policies: ['public'],
+  })
   .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
 const { data: asset, response: raw } = await client.video.assets
-  .create({ input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }] })
+  .create({
+    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    playback_policies: ['public'],
+  })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(asset.id);
