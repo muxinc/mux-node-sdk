@@ -1709,9 +1709,11 @@ export type AssetRetrieveInputInfoResponse = Array<InputInfo>;
 
 export interface AssetCreateParams {
   /**
-   * Deprecated. Use `inputs` instead, which accepts an identical type.
+   * An array of objects that each describe an input file to be used to create the
+   * asset. As a shortcut, input can also be a string URL for a file when only one
+   * input file is used. See `input[].url` for requirements.
    */
-  input: Array<AssetCreateParams.Input>;
+  inputs: Array<AssetCreateParams.Input>;
 
   /**
    * An array of playback policy objects that you want applied to this asset and
@@ -1729,11 +1731,9 @@ export interface AssetCreateParams {
   encoding_tier?: 'smart' | 'baseline' | 'premium';
 
   /**
-   * An array of objects that each describe an input file to be used to create the
-   * asset. As a shortcut, input can also be a string URL for a file when only one
-   * input file is used. See `input[].url` for requirements.
+   * Deprecated. Use `inputs` instead, which accepts an identical type.
    */
-  inputs?: Array<AssetCreateParams.Input>;
+  input?: Array<AssetCreateParams.Input>;
 
   /**
    * Specify what level (if any) of support for master access. Master access can be
