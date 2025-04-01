@@ -1,5 +1,15 @@
 # Changelog
 
+## 11.0.1 (2025-04-01)
+
+Full Changelog: [v11.0.0...v11.0.1](https://github.com/muxinc/mux-node-sdk/compare/v11.0.0...v11.0.1)
+
+### Bug Fixes
+
+* Fix example to also use inputs & policies ([fef7268](https://github.com/muxinc/mux-node-sdk/commit/fef72687669c6d77152d7c1f572de276528aabcd))
+* Fix README to match asset and live stream settings ([#572](https://github.com/muxinc/mux-node-sdk/issues/572)) ([92e8e26](https://github.com/muxinc/mux-node-sdk/commit/92e8e264fec6810c09a475b8845488356e9c34d3))
+* Fix validation on `input` / `inputs` when creating an asset ([#337](https://github.com/muxinc/mux-node-sdk/issues/337)) ([#570](https://github.com/muxinc/mux-node-sdk/issues/570)) ([4186f78](https://github.com/muxinc/mux-node-sdk/commit/4186f7828f4663df68e1d4ff23982ea569bfaddf))
+
 ## 11.0.0 (2025-03-27)
 
 Full Changelog: [v10.1.0...v11.0.0](https://github.com/muxinc/mux-node-sdk/compare/v10.1.0...v11.0.0)
