@@ -11,7 +11,7 @@ const client = new Mux({
 
 describe('resource assets', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.video.assets.create({ input: [{}] });
+    const responsePromise = client.video.assets.create({ inputs: [{}] });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -23,7 +23,7 @@ describe('resource assets', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.video.assets.create({
-      input: [
+      inputs: [
         {
           closed_captions: true,
           end_time: 0,
@@ -43,12 +43,12 @@ describe('resource assets', () => {
           start_time: 0,
           text_type: 'subtitles',
           type: 'video',
-          url: 'url',
+          url: 'https://muxed.s3.amazonaws.com/leds.mp4',
         },
       ],
       advanced_playback_policies: [{ drm_configuration_id: 'drm_configuration_id', policy: 'public' }],
       encoding_tier: 'smart',
-      inputs: [
+      input: [
         {
           closed_captions: true,
           end_time: 0,
