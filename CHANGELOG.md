@@ -1,5 +1,25 @@
 # Changelog
 
+## 11.0.2 (2025-04-04)
+
+Full Changelog: [v11.0.1...v11.0.2](https://github.com/muxinc/mux-node-sdk/compare/v11.0.1...v11.0.2)
+
+### Bug Fixes
+
+* **api:** improve type resolution when importing as a package ([#578](https://github.com/muxinc/mux-node-sdk/issues/578)) ([eaa6190](https://github.com/muxinc/mux-node-sdk/commit/eaa6190a2d8615cae7497076b5b484bf7a17bbd0))
+* **client:** send `X-Stainless-Timeout` in seconds ([#576](https://github.com/muxinc/mux-node-sdk/issues/576)) ([365f84d](https://github.com/muxinc/mux-node-sdk/commit/365f84d3950de97ddf05d1e417d2284dfb7063b6))
+* **mcp:** remove unused tools.ts ([#579](https://github.com/muxinc/mux-node-sdk/issues/579)) ([65b514b](https://github.com/muxinc/mux-node-sdk/commit/65b514bf697ba0de7d144174d516940c91e53869))
+
+
+### Chores
+
+* **internal:** add aliases for Record and Array ([#577](https://github.com/muxinc/mux-node-sdk/issues/577)) ([ae647ce](https://github.com/muxinc/mux-node-sdk/commit/ae647ced0dc096d78d0487c5aab272424bb7a9ae))
+
+
+### Documentation
+
+* Document add-asset-track requirements a little more ([#338](https://github.com/muxinc/mux-node-sdk/issues/338)) ([#574](https://github.com/muxinc/mux-node-sdk/issues/574)) ([21bbfa3](https://github.com/muxinc/mux-node-sdk/commit/21bbfa3f2a531229b8ef80bab877849eb0c6ff35))
+
 ## 11.0.1 (2025-04-01)
 
 Full Changelog: [v11.0.0...v11.0.1](https://github.com/muxinc/mux-node-sdk/compare/v11.0.0...v11.0.1)
