@@ -82,7 +82,7 @@ export class Assets extends APIResource {
 
   /**
    * Adds an asset track (for example, subtitles, or an alternate audio track) to an
-   * asset.
+   * asset. Assets must be in the `ready` state before tracks can be added.
    */
   createTrack(
     assetId: string,
