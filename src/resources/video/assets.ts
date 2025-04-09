@@ -655,7 +655,7 @@ export namespace Asset {
        * Indicates the resolution tier of this specific MP4 version of this asset. This
        * field is only valid for `static_renditions`, not for `mp4_support`.
        */
-      resolution_tier?: '2160p' | '1440p' | '1080p' | '720p';
+      resolution_tier?: '2160p' | '1440p' | '1080p' | '720p' | 'audio-only';
 
       /**
        * Indicates the status of this specific MP4 version of this asset. This field is
