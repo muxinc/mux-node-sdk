@@ -82,7 +82,7 @@ export class Assets extends APIResource {
 
   /**
    * Adds an asset track (for example, subtitles, or an alternate audio track) to an
-   * asset.
+   * asset. Assets must be in the `ready` state before tracks can be added.
    */
   createTrack(
     assetId: string,
@@ -449,19 +449,19 @@ export namespace Asset {
    */
   export interface Meta {
     /**
-     * This is an identifier you provide to keep track of the creator of the video. Max
+     * This is an identifier you provide to keep track of the creator of the asset. Max
      * 128 code points.
      */
     creator_id?: string;
 
     /**
-     * This is an identifier you provide to link the video to your own data. Max 128
+     * This is an identifier you provide to link the asset to your own data. Max 128
      * code points.
      */
     external_id?: string;
 
     /**
-     * The video title. Max 512 code points.
+     * The asset title. Max 512 code points.
      */
     title?: string;
   }
@@ -655,7 +655,7 @@ export namespace Asset {
        * Indicates the resolution tier of this specific MP4 version of this asset. This
        * field is only valid for `static_renditions`, not for `mp4_support`.
        */
-      resolution_tier?: '2160p' | '1440p' | '1080p' | '720p';
+      resolution_tier?: '2160p' | '1440p' | '1080p' | '720p' | 'audio-only';
 
       /**
        * Indicates the status of this specific MP4 version of this asset. This field is
@@ -1288,19 +1288,19 @@ export namespace AssetOptions {
    */
   export interface Meta {
     /**
-     * This is an identifier you provide to keep track of the creator of the video. Max
+     * This is an identifier you provide to keep track of the creator of the asset. Max
      * 128 code points.
      */
     creator_id?: string;
 
     /**
-     * This is an identifier you provide to link the video to your own data. Max 128
+     * This is an identifier you provide to link the asset to your own data. Max 128
      * code points.
      */
     external_id?: string;
 
     /**
-     * The video title. Max 512 code points.
+     * The asset title. Max 512 code points.
      */
     title?: string;
   }
@@ -2305,19 +2305,19 @@ export namespace AssetCreateParams {
    */
   export interface Meta {
     /**
-     * This is an identifier you provide to keep track of the creator of the video. Max
+     * This is an identifier you provide to keep track of the creator of the asset. Max
      * 128 code points.
      */
     creator_id?: string;
 
     /**
-     * This is an identifier you provide to link the video to your own data. Max 128
+     * This is an identifier you provide to link the asset to your own data. Max 128
      * code points.
      */
     external_id?: string;
 
     /**
-     * The video title. Max 512 code points.
+     * The asset title. Max 512 code points.
      */
     title?: string;
   }
@@ -2371,19 +2371,19 @@ export namespace AssetUpdateParams {
    */
   export interface Meta {
     /**
-     * This is an identifier you provide to keep track of the creator of the video. Max
+     * This is an identifier you provide to keep track of the creator of the asset. Max
      * 128 code points.
      */
     creator_id?: string;
 
     /**
-     * This is an identifier you provide to link the video to your own data. Max 128
+     * This is an identifier you provide to link the asset to your own data. Max 128
      * code points.
      */
     external_id?: string;
 
     /**
-     * The video title. Max 512 code points.
+     * The asset title. Max 512 code points.
      */
     title?: string;
   }
