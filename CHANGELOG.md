@@ -1,5 +1,31 @@
 # Changelog
 
+## 11.0.2 (2025-04-14)
+
+Full Changelog: [v11.0.1...v11.0.2](https://github.com/muxinc/mux-node-sdk/compare/v11.0.1...v11.0.2)
+
+### Bug Fixes
+
+* add `audio-only` enum option in `resolution_tier` for Static Rendition responses ([#339](https://github.com/muxinc/mux-node-sdk/issues/339)) ([#581](https://github.com/muxinc/mux-node-sdk/issues/581)) ([08a6aed](https://github.com/muxinc/mux-node-sdk/commit/08a6aedb36689e9857603405a8f680ea00874215))
+* **api:** improve type resolution when importing as a package ([#578](https://github.com/muxinc/mux-node-sdk/issues/578)) ([eaa6190](https://github.com/muxinc/mux-node-sdk/commit/eaa6190a2d8615cae7497076b5b484bf7a17bbd0))
+* **client:** send `X-Stainless-Timeout` in seconds ([#576](https://github.com/muxinc/mux-node-sdk/issues/576)) ([365f84d](https://github.com/muxinc/mux-node-sdk/commit/365f84d3950de97ddf05d1e417d2284dfb7063b6))
+* **mcp:** remove unused tools.ts ([#579](https://github.com/muxinc/mux-node-sdk/issues/579)) ([65b514b](https://github.com/muxinc/mux-node-sdk/commit/65b514bf697ba0de7d144174d516940c91e53869))
+
+
+### Chores
+
+* **client:** minor internal fixes ([b991d1e](https://github.com/muxinc/mux-node-sdk/commit/b991d1eaae02f6a368c5fcbc7aef615ab24c7726))
+* **internal:** add aliases for Record and Array ([#577](https://github.com/muxinc/mux-node-sdk/issues/577)) ([ae647ce](https://github.com/muxinc/mux-node-sdk/commit/ae647ced0dc096d78d0487c5aab272424bb7a9ae))
+* **internal:** reduce CI branch coverage ([e015341](https://github.com/muxinc/mux-node-sdk/commit/e01534171f4e55eba0602782a75aef917461c3ed))
+* **internal:** upload builds and expand CI branch coverage ([#582](https://github.com/muxinc/mux-node-sdk/issues/582)) ([e61097a](https://github.com/muxinc/mux-node-sdk/commit/e61097a30d72011f248e13ef15c53ba6c8ff5803))
+* **tests:** improve enum examples ([#580](https://github.com/muxinc/mux-node-sdk/issues/580)) ([9519087](https://github.com/muxinc/mux-node-sdk/commit/9519087018d6aacf81981a9c0785cd7747661f2c))
+
+
+### Documentation
+
+* change video to asset in metadata docs ([#340](https://github.com/muxinc/mux-node-sdk/issues/340)) ([cc9a980](https://github.com/muxinc/mux-node-sdk/commit/cc9a98088586e56872af9923154f0c4f7c1be5f4))
+* Document add-asset-track requirements a little more ([#338](https://github.com/muxinc/mux-node-sdk/issues/338)) ([#574](https://github.com/muxinc/mux-node-sdk/issues/574)) ([21bbfa3](https://github.com/muxinc/mux-node-sdk/commit/21bbfa3f2a531229b8ef80bab877849eb0c6ff35))
+
 ## 11.0.1 (2025-04-01)
 
 Full Changelog: [v11.0.0...v11.0.1](https://github.com/muxinc/mux-node-sdk/compare/v11.0.0...v11.0.1)
