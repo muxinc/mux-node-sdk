@@ -2391,6 +2391,12 @@ export namespace AssetUpdateParams {
 
 export interface AssetListParams extends BasePageParams {
   /**
+   * This parameter is used to request pages beyond the first. You can find the
+   * cursor value in the `next_cursor` field of paginated responses.
+   */
+  cursor?: string;
+
+  /**
    * Filter response to return all the assets for this live stream only
    */
   live_stream_id?: string;
