@@ -137,7 +137,7 @@ describe('resource assets', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.video.assets.list(
-        { limit: 0, live_stream_id: 'live_stream_id', page: 0, upload_id: 'upload_id' },
+        { cursor: 'cursor', limit: 0, live_stream_id: 'live_stream_id', page: 0, upload_id: 'upload_id' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
