@@ -317,6 +317,7 @@ export interface LiveStream {
   /**
    * Unique key used for streaming to a Mux RTMP endpoint. This should be considered
    * as sensitive as credentials, anyone with this stream key can begin streaming.
+   * Max 64 characters.
    */
   stream_key: string;
 
@@ -431,7 +432,8 @@ export interface LiveStream {
   simulcast_targets?: Array<SimulcastTarget>;
 
   /**
-   * Unique key used for encrypting a stream to a Mux SRT endpoint.
+   * Unique key used for encrypting a stream to a Mux SRT endpoint. Max 64
+   * characters.
    */
   srt_passphrase?: string;
 
