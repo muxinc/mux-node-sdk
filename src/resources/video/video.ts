@@ -17,7 +17,7 @@ import {
   AssetUpdateMasterAccessParams,
   AssetUpdateParams,
   Assets,
-  AssetsBasePage,
+  AssetsCursorPage,
   InputInfo,
   Track,
 } from './assets';
@@ -114,7 +114,7 @@ export class Video extends APIResource {
 }
 
 Video.Assets = Assets;
-Video.AssetsBasePage = AssetsBasePage;
+Video.AssetsCursorPage = AssetsCursorPage;
 Video.DeliveryUsage = DeliveryUsage;
 Video.DeliveryReportsPageWithTotal = DeliveryReportsPageWithTotal;
 Video.LiveStreams = LiveStreams;
@@ -141,7 +141,7 @@ export declare namespace Video {
     type Track as Track,
     type AssetGenerateSubtitlesResponse as AssetGenerateSubtitlesResponse,
     type AssetRetrieveInputInfoResponse as AssetRetrieveInputInfoResponse,
-    AssetsBasePage as AssetsBasePage,
+    AssetsCursorPage as AssetsCursorPage,
     type AssetCreateParams as AssetCreateParams,
     type AssetUpdateParams as AssetUpdateParams,
     type AssetListParams as AssetListParams,

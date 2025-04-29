@@ -9,8 +9,8 @@ const mux = new Mux({
 
 async function main() {
   const asset = await mux.video.assets.create({
-    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
-    playback_policies: ['public'],
+    input: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+    playback_policy: ['public'],
   });
   console.log(asset);
 

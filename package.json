@@ -30,7 +30,6 @@
     "agentkeepalive": "^4.2.1",
     "form-data-encoder": "1.7.2",
     "formdata-node": "^4.3.2",
-    "jose": "^4.14.4",
     "node-fetch": "^2.6.7"
   },
   "devDependencies": {
