@@ -114,3 +114,60 @@ export class BasePage<Item> extends AbstractPage<Item> implements BasePageRespon
     return { params: { page: currentPage + 1 } };
   }
 }
+
+export interface CursorPageResponse<Item> {
+  data: Array<Item>;
+
+  next_cursor: string;
+}
+
+export interface CursorPageParams {
+  cursor?: string;
+
+  limit?: number;
+}
+
+export class CursorPage<Item> extends AbstractPage<Item> implements CursorPageResponse<Item> {
+  data: Array<Item>;
+
+  next_cursor: string;
+
+  constructor(
+    client: APIClient,
+    response: Response,
+    body: CursorPageResponse<Item>,
+    options: FinalRequestOptions,
+  ) {
+    super(client, response, body, options);
+
+    this.data = body.data || [];
+    this.next_cursor = body.next_cursor || '';
+  }
+
+  getPaginatedItems(): Item[] {
+    return this.data ?? [];
+  }
+
+  // @deprecated Please use `nextPageInfo()` instead
+  nextPageParams(): Partial<CursorPageParams> | null {
+    const info = this.nextPageInfo();
+    if (!info) return null;
+    if ('params' in info) return info.params;
+    const params = Object.fromEntries(info.url.searchParams);
+    if (!Object.keys(params).length) return null;
+    return params;
+  }
+
+  nextPageInfo(): PageInfo | null {
+    const cursor = this.next_cursor;
+    if (!cursor) {
+      return null;
+    }
+
+    return {
+      params: {
+        cursor,
+      },
+    };
+  }
+}

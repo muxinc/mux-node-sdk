@@ -8,6 +8,8 @@ import * as Pagination from './pagination';
 import {
   type BasePageParams,
   BasePageResponse,
+  type CursorPageParams,
+  CursorPageResponse,
   type PageWithTotalParams,
   PageWithTotalResponse,
 } from './pagination';
@@ -246,6 +248,9 @@ export declare namespace Mux {
 
   export import BasePage = Pagination.BasePage;
   export { type BasePageParams as BasePageParams, type BasePageResponse as BasePageResponse };
+
+  export import CursorPage = Pagination.CursorPage;
+  export { type CursorPageParams as CursorPageParams, type CursorPageResponse as CursorPageResponse };
 
   export { Video as Video };
 
