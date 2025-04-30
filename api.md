@@ -24,7 +24,7 @@ Methods:
 - <code title="post /video/v1/assets">client.video.assets.<a href="./src/resources/video/assets.ts">create</a>({ ...params }) -> Asset</code>
 - <code title="get /video/v1/assets/{ASSET_ID}">client.video.assets.<a href="./src/resources/video/assets.ts">retrieve</a>(assetId) -> Asset</code>
 - <code title="patch /video/v1/assets/{ASSET_ID}">client.video.assets.<a href="./src/resources/video/assets.ts">update</a>(assetId, { ...params }) -> Asset</code>
-- <code title="get /video/v1/assets">client.video.assets.<a href="./src/resources/video/assets.ts">list</a>({ ...params }) -> AssetsCursorPage</code>
+- <code title="get /video/v1/assets">client.video.assets.<a href="./src/resources/video/assets.ts">list</a>({ ...params }) -> AssetsBasePage</code>
 - <code title="delete /video/v1/assets/{ASSET_ID}">client.video.assets.<a href="./src/resources/video/assets.ts">delete</a>(assetId) -> void</code>
 - <code title="post /video/v1/assets/{ASSET_ID}/playback-ids">client.video.assets.<a href="./src/resources/video/assets.ts">createPlaybackId</a>(assetId, { ...params }) -> PlaybackID</code>
 - <code title="post /video/v1/assets/{ASSET_ID}/tracks">client.video.assets.<a href="./src/resources/video/assets.ts">createTrack</a>(assetId, { ...params }) -> Track</code>
@@ -370,4 +370,13 @@ Types:
 
 Methods:
 
-- <code>client.webhooks.<a href="./src/resources/webhooks.ts">unwrap</a>(body) -> void</code>
+- <code>client.webhooks.<a href="./src/resources/webhooks.ts">unwrap</a>(body, headers, secret) -> UnwrapWebhookEvent</code>
+- <code>client.webhooks.<a href="./src/resources/webhooks.ts">verifySignature</a>(body, headers, secret) -> void</code>
+
+# JWT
+
+Methods:
+
+- <code>client.jwt.<a href="./src/resources/jwt.ts">signPlaybackId</a>(playbackId, config) -> Promise&lt;string&gt;</code>
+- <code>client.jwt.<a href="./src/resources/jwt.ts">signSpaceId</a>(spaceId, config) -> Promise&lt;string&gt;</code>
+- <code>client.jwt.<a href="./src/resources/jwt.ts">signViewerCounts</a>(id, config) -> Promise&lt;string&gt;</code>

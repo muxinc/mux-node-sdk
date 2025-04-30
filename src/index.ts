@@ -8,8 +8,6 @@ import * as Pagination from './pagination';
 import {
   type BasePageParams,
   BasePageResponse,
-  type CursorPageParams,
-  CursorPageResponse,
   type PageWithTotalParams,
   PageWithTotalResponse,
 } from './pagination';
@@ -182,6 +180,7 @@ export class Mux extends Core.APIClient {
   data: API.Data = new API.Data(this);
   system: API.System = new API.System(this);
   webhooks: API.Webhooks = new API.Webhooks(this);
+  jwt: API.Jwt = new API.Jwt(this);
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
@@ -249,9 +248,6 @@ export declare namespace Mux {
   export import BasePage = Pagination.BasePage;
   export { type BasePageParams as BasePageParams, type BasePageResponse as BasePageResponse };
 
-  export import CursorPage = Pagination.CursorPage;
-  export { type CursorPageParams as CursorPageParams, type CursorPageResponse as CursorPageResponse };
-
   export { Video as Video };
 
   export { Data as Data };
@@ -259,6 +255,8 @@ export declare namespace Mux {
   export { System as System };
 
   export { Webhooks as Webhooks };
+
+  export import Jwt = API.Jwt;
 
   export type PlaybackID = API.PlaybackID;
   export type PlaybackPolicy = API.PlaybackPolicy;

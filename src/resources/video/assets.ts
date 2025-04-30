@@ -4,7 +4,7 @@ import { APIResource } from '../../resource';
 import { isRequestOptions } from '../../core';
 import * as Core from '../../core';
 import * as Shared from '../shared';
-import { CursorPage, type CursorPageParams } from '../../pagination';
+import { BasePage, type BasePageParams } from '../../pagination';
 
 export class Assets extends APIResource {
   /**
@@ -43,16 +43,16 @@ export class Assets extends APIResource {
   /**
    * List all Mux assets.
    */
-  list(query?: AssetListParams, options?: Core.RequestOptions): Core.PagePromise<AssetsCursorPage, Asset>;
-  list(options?: Core.RequestOptions): Core.PagePromise<AssetsCursorPage, Asset>;
+  list(query?: AssetListParams, options?: Core.RequestOptions): Core.PagePromise<AssetsBasePage, Asset>;
+  list(options?: Core.RequestOptions): Core.PagePromise<AssetsBasePage, Asset>;
   list(
     query: AssetListParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
-  ): Core.PagePromise<AssetsCursorPage, Asset> {
+  ): Core.PagePromise<AssetsBasePage, Asset> {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/video/v1/assets', AssetsCursorPage, { query, ...options });
+    return this._client.getAPIList('/video/v1/assets', AssetsBasePage, { query, ...options });
   }
 
   /**
@@ -213,7 +213,7 @@ export class Assets extends APIResource {
   }
 }
 
-export class AssetsCursorPage extends CursorPage<Asset> {}
+export class AssetsBasePage extends BasePage<Asset> {}
 
 export interface Asset {
   /**
@@ -2389,16 +2389,17 @@ export namespace AssetUpdateParams {
   }
 }
 
-export interface AssetListParams extends CursorPageParams {
+export interface AssetListParams extends BasePageParams {
+  /**
+   * This parameter is used to request pages beyond the first. You can find the
+   * cursor value in the `next_cursor` field of paginated responses.
+   */
+  cursor?: string;
+
   /**
    * Filter response to return all the assets for this live stream only
    */
   live_stream_id?: string;
-
-  /**
-   * Offset by this many pages, of the size of `limit`
-   */
-  page?: number;
 
   /**
    * Filter response to return an asset created from this direct upload only
@@ -2555,7 +2556,7 @@ export interface AssetUpdateMP4SupportParams {
   mp4_support: 'standard' | 'none' | 'capped-1080p' | 'audio-only' | 'audio-only,capped-1080p';
 }
 
-Assets.AssetsCursorPage = AssetsCursorPage;
+Assets.AssetsBasePage = AssetsBasePage;
 
 export declare namespace Assets {
   export {
@@ -2566,7 +2567,7 @@ export declare namespace Assets {
     type Track as Track,
     type AssetGenerateSubtitlesResponse as AssetGenerateSubtitlesResponse,
     type AssetRetrieveInputInfoResponse as AssetRetrieveInputInfoResponse,
-    AssetsCursorPage as AssetsCursorPage,
+    AssetsBasePage as AssetsBasePage,
     type AssetCreateParams as AssetCreateParams,
     type AssetUpdateParams as AssetUpdateParams,
     type AssetListParams as AssetListParams,
