@@ -1723,15 +1723,15 @@ export interface AssetCreateParams {
   advanced_playback_policies?: Array<AssetCreateParams.AdvancedPlaybackPolicy>;
 
   /**
-   * This field is deprecated. Please use `video_quality` instead. The encoding tier
-   * informs the cost, quality, and available platform features for the asset. The
-   * default encoding tier for an account can be set in the Mux Dashboard.
+   * @deprecated This field is deprecated. Please use `video_quality` instead. The
+   * encoding tier informs the cost, quality, and available platform features for the
+   * asset. The default encoding tier for an account can be set in the Mux Dashboard.
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   encoding_tier?: 'smart' | 'baseline' | 'premium';
 
   /**
-   * Deprecated. Use `inputs` instead, which accepts an identical type.
+   * @deprecated Deprecated. Use `inputs` instead, which accepts an identical type.
    */
   input?: Array<AssetCreateParams.Input>;
 
@@ -1758,7 +1758,7 @@ export interface AssetCreateParams {
   meta?: AssetCreateParams.Meta;
 
   /**
-   * Deprecated. See the
+   * @deprecated Deprecated. See the
    * [Static Renditions API](https://www.mux.com/docs/guides/enable-static-mp4-renditions)
    * for the updated API.
    *
@@ -1805,6 +1805,9 @@ export interface AssetCreateParams {
    */
   passthrough?: string;
 
+  /**
+   * @deprecated
+   */
   per_title_encode?: boolean;
 
   /**
@@ -1821,7 +1824,8 @@ export interface AssetCreateParams {
   playback_policies?: Array<Shared.PlaybackPolicy>;
 
   /**
-   * Deprecated. Use `playback_policies` instead, which accepts an identical type.
+   * @deprecated Deprecated. Use `playback_policies` instead, which accepts an
+   * identical type.
    */
   playback_policy?: Array<Shared.PlaybackPolicy>;
 
