@@ -612,9 +612,9 @@ export interface LiveStreamCreateParams {
   latency_mode?: 'low' | 'reduced' | 'standard';
 
   /**
-   * This field is deprecated. Please use `latency_mode` instead. Latency is the time
-   * from when the streamer transmits a frame of video to when you see it in the
-   * player. Setting this option will enable compatibility with the LL-HLS
+   * @deprecated This field is deprecated. Please use `latency_mode` instead. Latency
+   * is the time from when the streamer transmits a frame of video to when you see it
+   * in the player. Setting this option will enable compatibility with the LL-HLS
    * specification for low-latency streaming. This typically has lower latency than
    * Reduced Latency streams, and cannot be combined with Reduced Latency.
    */
@@ -631,8 +631,8 @@ export interface LiveStreamCreateParams {
   passthrough?: string;
 
   /**
-   * An array of playback policy names that you want applied to this live stream and
-   * available through `playback_ids`. Options include:
+   * @deprecated An array of playback policy names that you want applied to this live
+   * stream and available through `playback_ids`. Options include:
    *
    * - `"public"` (anyone with the playback URL can stream the live stream).
    * - `"signed"` (an additional access token is required to play the live stream).
@@ -644,7 +644,8 @@ export interface LiveStreamCreateParams {
   playback_policies?: Array<Shared.PlaybackPolicy>;
 
   /**
-   * Deprecated. Use `playback_policies` instead, which accepts an identical type.
+   * @deprecated Deprecated. Use `playback_policies` instead, which accepts an
+   * identical type.
    */
   playback_policy?: Array<Shared.PlaybackPolicy>;
 
@@ -678,9 +679,10 @@ export interface LiveStreamCreateParams {
   reconnect_window?: number;
 
   /**
-   * This field is deprecated. Please use `latency_mode` instead. Latency is the time
-   * from when the streamer transmits a frame of video to when you see it in the
-   * player. Set this if you want lower latency for your live stream. Read more here:
+   * @deprecated This field is deprecated. Please use `latency_mode` instead. Latency
+   * is the time from when the streamer transmits a frame of video to when you see it
+   * in the player. Set this if you want lower latency for your live stream. Read
+   * more here:
    * https://mux.com/blog/reduced-latency-for-mux-live-streaming-now-available/
    */
   reduced_latency?: boolean;
