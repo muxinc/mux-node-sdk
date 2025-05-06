@@ -8,6 +8,15 @@ import { BasePage, type BasePageParams } from '../../pagination';
 export class WebInputs extends APIResource {
   /**
    * Create a new Web Input
+   *
+   * @example
+   * ```ts
+   * const webInput = await client.video.webInputs.create({
+   *   live_stream_id:
+   *     'ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag',
+   *   url: 'https://example.com/hello.html',
+   * });
+   * ```
    */
   create(body: WebInputCreateParams, options?: Core.RequestOptions): Core.APIPromise<WebInputCreateResponse> {
     return (
@@ -19,6 +28,13 @@ export class WebInputs extends APIResource {
 
   /**
    * Retrieve a single Web Input's info
+   *
+   * @example
+   * ```ts
+   * const webInput = await client.video.webInputs.retrieve(
+   *   'abcd1234',
+   * );
+   * ```
    */
   retrieve(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputRetrieveResponse> {
     return (
@@ -30,6 +46,14 @@ export class WebInputs extends APIResource {
 
   /**
    * List Web Inputs
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const webInputListResponse of client.video.webInputs.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: WebInputListParams,
@@ -51,6 +75,11 @@ export class WebInputs extends APIResource {
 
   /**
    * Deletes a Web Input and all its data
+   *
+   * @example
+   * ```ts
+   * await client.video.webInputs.delete('abcd1234');
+   * ```
    */
   delete(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/web-inputs/${webInputId}`, {
@@ -62,6 +91,13 @@ export class WebInputs extends APIResource {
   /**
    * Launches the browsers instance, loads the URL specified, and then starts
    * streaming to the specified Live Stream.
+   *
+   * @example
+   * ```ts
+   * const response = await client.video.webInputs.launch(
+   *   'abcd1234',
+   * );
+   * ```
    */
   launch(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputLaunchResponse> {
     return (
@@ -76,6 +112,13 @@ export class WebInputs extends APIResource {
    *
    * Note: Using this when the Web Input is streaming will display the page
    * reloading.
+   *
+   * @example
+   * ```ts
+   * const response = await client.video.webInputs.reload(
+   *   'abcd1234',
+   * );
+   * ```
    */
   reload(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputReloadResponse> {
     return (
@@ -88,6 +131,13 @@ export class WebInputs extends APIResource {
   /**
    * Ends streaming to the specified Live Stream, and then shuts down the Web Input
    * browser instance.
+   *
+   * @example
+   * ```ts
+   * const response = await client.video.webInputs.shutdown(
+   *   'abcd1234',
+   * );
+   * ```
    */
   shutdown(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputShutdownResponse> {
     return (
@@ -101,6 +151,14 @@ export class WebInputs extends APIResource {
    * Changes the URL that a Web Input loads when it launches.
    *
    * Note: This can only be called when the Web Input is idle.
+   *
+   * @example
+   * ```ts
+   * const response = await client.video.webInputs.updateURL(
+   *   'abcd1234',
+   *   { url: 'https://example.com/hello-there.html' },
+   * );
+   * ```
    */
   updateURL(
     webInputId: string,

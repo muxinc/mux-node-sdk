@@ -8,6 +8,20 @@ import { BasePage, type BasePageParams } from '../../pagination';
 export class TranscriptionVocabularies extends APIResource {
   /**
    * Create a new Transcription Vocabulary.
+   *
+   * @example
+   * ```ts
+   * const transcriptionVocabulary =
+   *   await client.video.transcriptionVocabularies.create({
+   *     phrases: [
+   *       'Mux',
+   *       'Live Stream',
+   *       'Playback ID',
+   *       'video encoding',
+   *     ],
+   *     name: 'Mux API Vocabulary',
+   *   });
+   * ```
    */
   create(
     body: TranscriptionVocabularyCreateParams,
@@ -25,6 +39,14 @@ export class TranscriptionVocabularies extends APIResource {
    * created. Supply the unique Transcription Vocabulary ID and Mux will return the
    * corresponding Transcription Vocabulary information. The same information is
    * returned when creating a Transcription Vocabulary.
+   *
+   * @example
+   * ```ts
+   * const transcriptionVocabulary =
+   *   await client.video.transcriptionVocabularies.retrieve(
+   *     'TRANSCRIPTION_VOCABULARY_ID',
+   *   );
+   * ```
    */
   retrieve(
     transcriptionVocabularyId: string,
@@ -42,6 +64,18 @@ export class TranscriptionVocabularies extends APIResource {
    * Updates the details of a previously-created Transcription Vocabulary. Updates to
    * Transcription Vocabularies are allowed while associated live streams are active.
    * However, updates will not be applied to those streams while they are active.
+   *
+   * @example
+   * ```ts
+   * const transcriptionVocabulary =
+   *   await client.video.transcriptionVocabularies.update(
+   *     'TRANSCRIPTION_VOCABULARY_ID',
+   *     {
+   *       phrases: ['Mux', 'Live Stream', 'RTMP', 'Stream Key'],
+   *       name: 'Mux API Vocabulary - Updated',
+   *     },
+   *   );
+   * ```
    */
   update(
     transcriptionVocabularyId: string,
@@ -58,6 +92,14 @@ export class TranscriptionVocabularies extends APIResource {
 
   /**
    * List all Transcription Vocabularies.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const transcriptionVocabulary of client.video.transcriptionVocabularies.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: TranscriptionVocabularyListParams,
@@ -86,6 +128,13 @@ export class TranscriptionVocabularies extends APIResource {
    * deleted while associated live streams are active. However, the words and phrases
    * in the deleted Transcription Vocabulary will remain attached to those streams
    * while they are active.
+   *
+   * @example
+   * ```ts
+   * await client.video.transcriptionVocabularies.delete(
+   *   'TRANSCRIPTION_VOCABULARY_ID',
+   * );
+   * ```
    */
   delete(transcriptionVocabularyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {

@@ -11,6 +11,14 @@ export class LiveStreams extends APIResource {
   /**
    * Creates a new live stream. Once created, an encoder can connect to Mux via the
    * specified stream key and begin streaming to an audience.
+   *
+   * @example
+   * ```ts
+   * const liveStream = await client.video.liveStreams.create({
+   *   new_asset_settings: { playback_policies: ['public'] },
+   *   playback_policies: ['public'],
+   * });
+   * ```
    */
   create(body: LiveStreamCreateParams, options?: Core.RequestOptions): Core.APIPromise<LiveStream> {
     return (
@@ -25,6 +33,13 @@ export class LiveStreams extends APIResource {
    * the unique live stream ID that was returned from your previous request, and Mux
    * will return the corresponding live stream information. The same information is
    * returned when creating a live stream.
+   *
+   * @example
+   * ```ts
+   * const liveStream = await client.video.liveStreams.retrieve(
+   *   'LIVE_STREAM_ID',
+   * );
+   * ```
    */
   retrieve(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<LiveStream> {
     return (
@@ -40,6 +55,18 @@ export class LiveStreams extends APIResource {
    * parameters and Mux will return the corresponding live stream information. The
    * information returned will be the same after update as for subsequent get live
    * stream requests.
+   *
+   * @example
+   * ```ts
+   * const liveStream = await client.video.liveStreams.update(
+   *   'LIVE_STREAM_ID',
+   *   {
+   *     latency_mode: 'standard',
+   *     max_continuous_duration: 1200,
+   *     reconnect_window: 30,
+   *   },
+   * );
+   * ```
    */
   update(
     liveStreamId: string,
@@ -55,6 +82,14 @@ export class LiveStreams extends APIResource {
 
   /**
    * Lists the live streams that currently exist in the current environment.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const liveStream of client.video.liveStreams.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: LiveStreamListParams,
@@ -75,6 +110,11 @@ export class LiveStreams extends APIResource {
    * Deletes a live stream from the current environment. If the live stream is
    * currently active and being streamed to, ingest will be terminated and the
    * encoder will be disconnected.
+   *
+   * @example
+   * ```ts
+   * await client.video.liveStreams.delete('LIVE_STREAM_ID');
+   * ```
    */
   delete(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/live-streams/${liveStreamId}`, {
@@ -93,6 +133,11 @@ export class LiveStreams extends APIResource {
    * recorded asset. For this reason, Mux waits for 60s before closing the connection
    * with the encoder. This 60s timeframe is meant to give encoder operators a chance
    * to disconnect from their end.
+   *
+   * @example
+   * ```ts
+   * await client.video.liveStreams.complete('LIVE_STREAM_ID');
+   * ```
    */
   complete(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.put(`/video/v1/live-streams/${liveStreamId}/complete`, {
@@ -104,6 +149,15 @@ export class LiveStreams extends APIResource {
   /**
    * Create a new playback ID for this live stream, through which a viewer can watch
    * the streamed content of the live stream.
+   *
+   * @example
+   * ```ts
+   * const playbackId =
+   *   await client.video.liveStreams.createPlaybackId(
+   *     'LIVE_STREAM_ID',
+   *     { policy: 'signed' },
+   *   );
+   * ```
    */
   createPlaybackId(
     liveStreamId: string,
@@ -122,6 +176,19 @@ export class LiveStreams extends APIResource {
    * Create a simulcast target for the parent live stream. Simulcast target can only
    * be created when the parent live stream is in idle state. Only one simulcast
    * target can be created at a time with this API.
+   *
+   * @example
+   * ```ts
+   * const simulcastTarget =
+   *   await client.video.liveStreams.createSimulcastTarget(
+   *     'LIVE_STREAM_ID',
+   *     {
+   *       url: 'rtmp://live.example.com/app',
+   *       passthrough: 'Example',
+   *       stream_key: 'abcdefgh',
+   *     },
+   *   );
+   * ```
    */
   createSimulcastTarget(
     liveStreamId: string,
@@ -141,6 +208,14 @@ export class LiveStreams extends APIResource {
    * the live stream still exists). New attempts to play back the live stream will
    * fail immediately. However, current viewers will be able to continue watching the
    * stream for some period of time.
+   *
+   * @example
+   * ```ts
+   * await client.video.liveStreams.deletePlaybackId(
+   *   'LIVE_STREAM_ID',
+   *   'PLAYBACK_ID',
+   * );
+   * ```
    */
   deletePlaybackId(
     liveStreamId: string,
@@ -157,6 +232,14 @@ export class LiveStreams extends APIResource {
    * Delete the simulcast target using the simulcast target ID returned when creating
    * the simulcast target. Simulcast Target can only be deleted when the parent live
    * stream is in idle state.
+   *
+   * @example
+   * ```ts
+   * await client.video.liveStreams.deleteSimulcastTarget(
+   *   'LIVE_STREAM_ID',
+   *   'SIMULCAST_TARGET_ID',
+   * );
+   * ```
    */
   deleteSimulcastTarget(
     liveStreamId: string,
@@ -177,6 +260,11 @@ export class LiveStreams extends APIResource {
    *
    * Mux also closes the encoder connection immediately. Any attempt from the encoder
    * to re-establish connection will fail till the live stream is re-enabled.
+   *
+   * @example
+   * ```ts
+   * await client.video.liveStreams.disable('LIVE_STREAM_ID');
+   * ```
    */
   disable(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.put(`/video/v1/live-streams/${liveStreamId}/disable`, {
@@ -187,6 +275,11 @@ export class LiveStreams extends APIResource {
 
   /**
    * Enables a live stream, allowing it to accept an incoming RTMP stream.
+   *
+   * @example
+   * ```ts
+   * await client.video.liveStreams.enable('LIVE_STREAM_ID');
+   * ```
    */
   enable(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.put(`/video/v1/live-streams/${liveStreamId}/enable`, {
@@ -198,6 +291,14 @@ export class LiveStreams extends APIResource {
   /**
    * Reset a live stream key if you want to immediately stop the current stream key
    * from working and create a new stream key that can be used for future broadcasts.
+   *
+   * @example
+   * ```ts
+   * const liveStream =
+   *   await client.video.liveStreams.resetStreamKey(
+   *     'LIVE_STREAM_ID',
+   *   );
+   * ```
    */
   resetStreamKey(liveStreamId: string, options?: Core.RequestOptions): Core.APIPromise<LiveStream> {
     return (
@@ -211,6 +312,15 @@ export class LiveStreams extends APIResource {
   /**
    * Fetches information about a live stream's playback ID, through which a viewer
    * can watch the streamed content from this live stream.
+   *
+   * @example
+   * ```ts
+   * const playbackId =
+   *   await client.video.liveStreams.retrievePlaybackId(
+   *     'LIVE_STREAM_ID',
+   *     'PLAYBACK_ID',
+   *   );
+   * ```
    */
   retrievePlaybackId(
     liveStreamId: string,
@@ -230,6 +340,15 @@ export class LiveStreams extends APIResource {
    * stream. Supply the unique live stream ID and simulcast target ID that was
    * returned in the response of create simulcast target request, and Mux will return
    * the corresponding information.
+   *
+   * @example
+   * ```ts
+   * const simulcastTarget =
+   *   await client.video.liveStreams.retrieveSimulcastTarget(
+   *     'LIVE_STREAM_ID',
+   *     'SIMULCAST_TARGET_ID',
+   *   );
+   * ```
    */
   retrieveSimulcastTarget(
     liveStreamId: string,
@@ -247,6 +366,15 @@ export class LiveStreams extends APIResource {
   /**
    * Configures a live stream to receive embedded closed captions. The resulting
    * Asset's subtitle text track will have `closed_captions: true` set.
+   *
+   * @example
+   * ```ts
+   * const liveStream =
+   *   await client.video.liveStreams.updateEmbeddedSubtitles(
+   *     'LIVE_STREAM_ID',
+   *     { embedded_subtitles: [{ passthrough: 'Example' }] },
+   *   );
+   * ```
    */
   updateEmbeddedSubtitles(
     liveStreamId: string,
@@ -265,6 +393,23 @@ export class LiveStreams extends APIResource {
    * Updates a live stream's automatic-speech-recognition-generated subtitle
    * configuration. Automatic speech recognition subtitles can be removed by sending
    * an empty array in the request payload.
+   *
+   * @example
+   * ```ts
+   * const liveStream =
+   *   await client.video.liveStreams.updateGeneratedSubtitles(
+   *     'LIVE_STREAM_ID',
+   *     {
+   *       generated_subtitles: [
+   *         {
+   *           name: 'English CC (ASR)',
+   *           language_code: 'en',
+   *           passthrough: 'Example',
+   *         },
+   *       ],
+   *     },
+   *   );
+   * ```
    */
   updateGeneratedSubtitles(
     liveStreamId: string,

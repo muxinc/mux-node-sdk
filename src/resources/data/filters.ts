@@ -10,6 +10,16 @@ export class Filters extends APIResource {
    * The API has been replaced by the list-dimension-values API call.
    *
    * Lists the values for a filter along with a total count of related views.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const filterValue of client.data.filters.listValues(
+   *   'abcd1234',
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   listValues(
     filterId: string,

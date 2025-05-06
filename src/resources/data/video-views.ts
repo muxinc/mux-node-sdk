@@ -8,6 +8,12 @@ import { BasePage, type BasePageParams } from '../../pagination';
 export class VideoViews extends APIResource {
   /**
    * Returns the details of a video view.
+   *
+   * @example
+   * ```ts
+   * const videoViewResponse =
+   *   await client.data.videoViews.retrieve('abcd1234');
+   * ```
    */
   retrieve(videoViewId: string, options?: Core.RequestOptions): Core.APIPromise<VideoViewResponse> {
     return this._client.get(`/data/v1/video-views/${videoViewId}`, options);
@@ -16,6 +22,14 @@ export class VideoViews extends APIResource {
   /**
    * Returns a list of video views which match the filters and have a `view_end`
    * within the specified timeframe.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const abridgedVideoView of client.data.videoViews.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: VideoViewListParams,

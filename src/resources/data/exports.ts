@@ -6,6 +6,12 @@ import * as Core from '../../core';
 export class Exports extends APIResource {
   /**
    * Lists the available video view exports along with URLs to retrieve them.
+   *
+   * @example
+   * ```ts
+   * const videoViewExportsResponse =
+   *   await client.data.exports.listVideoViews();
+   * ```
    */
   listVideoViews(options?: Core.RequestOptions): Core.APIPromise<VideoViewExportsResponse> {
     return this._client.get('/data/v1/exports/views', options);
