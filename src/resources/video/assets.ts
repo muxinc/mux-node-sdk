@@ -9,6 +9,17 @@ import { CursorPage, type CursorPageParams } from '../../pagination';
 export class Assets extends APIResource {
   /**
    * Create a new Mux Video asset.
+   *
+   * @example
+   * ```ts
+   * const asset = await client.video.assets.create({
+   *   inputs: [
+   *     { url: 'https://muxed.s3.amazonaws.com/leds.mp4' },
+   *   ],
+   *   playback_policies: ['public'],
+   *   video_quality: 'basic',
+   * });
+   * ```
    */
   create(body: AssetCreateParams, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
@@ -21,6 +32,13 @@ export class Assets extends APIResource {
    * unique asset ID that was returned from your previous request, and Mux will
    * return the corresponding asset information. The same information is returned
    * when creating an asset.
+   *
+   * @example
+   * ```ts
+   * const asset = await client.video.assets.retrieve(
+   *   'ASSET_ID',
+   * );
+   * ```
    */
   retrieve(assetId: string, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
@@ -31,6 +49,13 @@ export class Assets extends APIResource {
   /**
    * Updates the details of an already-created Asset with the provided Asset ID. This
    * currently supports only the `passthrough` field.
+   *
+   * @example
+   * ```ts
+   * const asset = await client.video.assets.update('ASSET_ID', {
+   *   passthrough: 'Example',
+   * });
+   * ```
    */
   update(assetId: string, body: AssetUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
@@ -42,6 +67,14 @@ export class Assets extends APIResource {
 
   /**
    * List all Mux assets.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const asset of client.video.assets.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(query?: AssetListParams, options?: Core.RequestOptions): Core.PagePromise<AssetsCursorPage, Asset>;
   list(options?: Core.RequestOptions): Core.PagePromise<AssetsCursorPage, Asset>;
@@ -57,6 +90,11 @@ export class Assets extends APIResource {
 
   /**
    * Deletes a video asset and all its data.
+   *
+   * @example
+   * ```ts
+   * await client.video.assets.delete('ASSET_ID');
+   * ```
    */
   delete(assetId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}`, {
@@ -67,6 +105,14 @@ export class Assets extends APIResource {
 
   /**
    * Creates a playback ID that can be used to stream the asset to a viewer.
+   *
+   * @example
+   * ```ts
+   * const playbackId =
+   *   await client.video.assets.createPlaybackId('ASSET_ID', {
+   *     policy: 'public',
+   *   });
+   * ```
    */
   createPlaybackId(
     assetId: string,
@@ -83,6 +129,22 @@ export class Assets extends APIResource {
   /**
    * Adds an asset track (for example, subtitles, or an alternate audio track) to an
    * asset. Assets must be in the `ready` state before tracks can be added.
+   *
+   * @example
+   * ```ts
+   * const track = await client.video.assets.createTrack(
+   *   'ASSET_ID',
+   *   {
+   *     language_code: 'en-US',
+   *     type: 'text',
+   *     url: 'https://example.com/myVideo_en.srt',
+   *     closed_captions: true,
+   *     name: 'English',
+   *     passthrough: 'English',
+   *     text_type: 'subtitles',
+   *   },
+   * );
+   * ```
    */
   createTrack(
     assetId: string,
@@ -101,6 +163,14 @@ export class Assets extends APIResource {
    * content. Please note that deleting the playback ID removes access to the
    * underlying asset; a viewer who started playback before the playback ID was
    * deleted may be able to watch the entire video for a limited duration.
+   *
+   * @example
+   * ```ts
+   * await client.video.assets.deletePlaybackId(
+   *   'ASSET_ID',
+   *   'PLAYBACK_ID',
+   * );
+   * ```
    */
   deletePlaybackId(
     assetId: string,
@@ -116,6 +186,14 @@ export class Assets extends APIResource {
   /**
    * Removes a text track from an asset. Audio and video tracks on assets cannot be
    * removed.
+   *
+   * @example
+   * ```ts
+   * await client.video.assets.deleteTrack(
+   *   'ASSET_ID',
+   *   'TRACK_ID',
+   * );
+   * ```
    */
   deleteTrack(assetId: string, trackId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}/tracks/${trackId}`, {
@@ -127,6 +205,23 @@ export class Assets extends APIResource {
   /**
    * Generates subtitles (captions) for a given audio track. This API can be used for
    * up to 7 days after an asset is created.
+   *
+   * @example
+   * ```ts
+   * const tracks = await client.video.assets.generateSubtitles(
+   *   'ASSET_ID',
+   *   'TRACK_ID',
+   *   {
+   *     generated_subtitles: [
+   *       {
+   *         language_code: 'en',
+   *         name: 'English (generated)',
+   *         passthrough: 'English (generated)',
+   *       },
+   *     ],
+   *   },
+   * );
+   * ```
    */
   generateSubtitles(
     assetId: string,
@@ -145,6 +240,12 @@ export class Assets extends APIResource {
   /**
    * Returns a list of the input objects that were used to create the asset along
    * with any settings that were applied to each input.
+   *
+   * @example
+   * ```ts
+   * const inputInfos =
+   *   await client.video.assets.retrieveInputInfo('ASSET_ID');
+   * ```
    */
   retrieveInputInfo(
     assetId: string,
@@ -159,6 +260,15 @@ export class Assets extends APIResource {
 
   /**
    * Retrieves information about the specified playback ID.
+   *
+   * @example
+   * ```ts
+   * const playbackId =
+   *   await client.video.assets.retrievePlaybackId(
+   *     'ASSET_ID',
+   *     'PLAYBACK_ID',
+   *   );
+   * ```
    */
   retrievePlaybackId(
     assetId: string,
@@ -178,6 +288,14 @@ export class Assets extends APIResource {
    * master version for 24 hours. After 24 hours Master Access will revert to "none".
    * This master version is not optimized for web and not meant to be streamed, only
    * downloaded for purposes like archiving or editing the video offline.
+   *
+   * @example
+   * ```ts
+   * const asset = await client.video.assets.updateMasterAccess(
+   *   'ASSET_ID',
+   *   { master_access: 'temporary' },
+   * );
+   * ```
    */
   updateMasterAccess(
     assetId: string,
@@ -199,6 +317,14 @@ export class Assets extends APIResource {
    * `audio-only,capped-1080p`, `standard`(deprecated), and `none`. `none` means that
    * an asset _does not_ have mp4 support, so submitting a request with `mp4_support`
    * set to `none` will delete the mp4 assets from the asset in question.
+   *
+   * @example
+   * ```ts
+   * const asset = await client.video.assets.updateMP4Support(
+   *   'ASSET_ID',
+   *   { mp4_support: 'capped-1080p' },
+   * );
+   * ```
    */
   updateMP4Support(
     assetId: string,

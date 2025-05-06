@@ -10,6 +10,14 @@ export class Uploads extends APIResource {
   /**
    * Creates a new direct upload, through which video content can be uploaded for
    * ingest to Mux.
+   *
+   * @example
+   * ```ts
+   * const upload = await client.video.uploads.create({
+   *   cors_origin: 'https://example.com/',
+   *   new_asset_settings: { playback_policies: ['public'] },
+   * });
+   * ```
    */
   create(body: UploadCreateParams, options?: Core.RequestOptions): Core.APIPromise<Upload> {
     return (
@@ -19,6 +27,13 @@ export class Uploads extends APIResource {
 
   /**
    * Fetches information about a single direct upload in the current environment.
+   *
+   * @example
+   * ```ts
+   * const upload = await client.video.uploads.retrieve(
+   *   'abcd1234',
+   * );
+   * ```
    */
   retrieve(uploadId: string, options?: Core.RequestOptions): Core.APIPromise<Upload> {
     return (
@@ -28,6 +43,14 @@ export class Uploads extends APIResource {
 
   /**
    * Lists direct uploads in the current environment.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const upload of client.video.uploads.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(query?: UploadListParams, options?: Core.RequestOptions): Core.PagePromise<UploadsBasePage, Upload>;
   list(options?: Core.RequestOptions): Core.PagePromise<UploadsBasePage, Upload>;
@@ -45,6 +68,13 @@ export class Uploads extends APIResource {
    * Cancels a direct upload and marks it as cancelled. If a pending upload finishes
    * after this request, no asset will be created. This request will only succeed if
    * the upload is still in the `waiting` state.
+   *
+   * @example
+   * ```ts
+   * const upload = await client.video.uploads.cancel(
+   *   'abcd1234',
+   * );
+   * ```
    */
   cancel(uploadId: string, options?: Core.RequestOptions): Core.APIPromise<Upload> {
     return (

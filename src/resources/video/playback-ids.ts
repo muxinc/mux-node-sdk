@@ -8,6 +8,13 @@ export class PlaybackIDs extends APIResource {
   /**
    * Retrieves the Identifier of the Asset or Live Stream associated with the
    * Playback ID.
+   *
+   * @example
+   * ```ts
+   * const playbackId = await client.video.playbackIds.retrieve(
+   *   'PLAYBACK_ID',
+   * );
+   * ```
    */
   retrieve(playbackId: string, options?: Core.RequestOptions): Core.APIPromise<PlaybackIDRetrieveResponse> {
     return (

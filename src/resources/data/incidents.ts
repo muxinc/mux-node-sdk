@@ -8,6 +8,12 @@ import { BasePage, type BasePageParams } from '../../pagination';
 export class Incidents extends APIResource {
   /**
    * Returns the details of an incident.
+   *
+   * @example
+   * ```ts
+   * const incidentResponse =
+   *   await client.data.incidents.retrieve('abcd1234');
+   * ```
    */
   retrieve(incidentId: string, options?: Core.RequestOptions): Core.APIPromise<IncidentResponse> {
     return this._client.get(`/data/v1/incidents/${incidentId}`, options);
@@ -15,6 +21,14 @@ export class Incidents extends APIResource {
 
   /**
    * Returns a list of incidents.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const incident of client.data.incidents.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: IncidentListParams,
@@ -33,6 +47,16 @@ export class Incidents extends APIResource {
 
   /**
    * Returns all the incidents that seem related to a specific incident.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const incident of client.data.incidents.listRelated(
+   *   'abcd1234',
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   listRelated(
     incidentId: string,

@@ -8,6 +8,12 @@ export class RealTime extends APIResource {
   /**
    * Lists available real-time dimensions. This API is now deprecated, please use the
    * `List Monitoring Dimensions` API.
+   *
+   * @example
+   * ```ts
+   * const realTimeDimensionsResponse =
+   *   await client.data.realTime.listDimensions();
+   * ```
    */
   listDimensions(options?: Core.RequestOptions): Core.APIPromise<RealTimeDimensionsResponse> {
     return this._client.get('/data/v1/realtime/dimensions', options);
@@ -16,6 +22,12 @@ export class RealTime extends APIResource {
   /**
    * Lists available real-time metrics. This API is now deprecated, please use the
    * `List Monitoring Metrics` API.
+   *
+   * @example
+   * ```ts
+   * const realTimeMetricsResponse =
+   *   await client.data.realTime.listMetrics();
+   * ```
    */
   listMetrics(options?: Core.RequestOptions): Core.APIPromise<RealTimeMetricsResponse> {
     return this._client.get('/data/v1/realtime/metrics', options);
@@ -25,6 +37,14 @@ export class RealTime extends APIResource {
    * Gets breakdown information for a specific dimension and metric along with the
    * number of concurrent viewers and negative impact score. This API is now
    * deprecated, please use the `Get Monitoring Breakdown` API.
+   *
+   * @example
+   * ```ts
+   * const realTimeBreakdownResponse =
+   *   await client.data.realTime.retrieveBreakdown(
+   *     'current-concurrent-viewers',
+   *   );
+   * ```
    */
   retrieveBreakdown(
     realtimeMetricId:
@@ -64,6 +84,14 @@ export class RealTime extends APIResource {
   /**
    * Gets histogram timeseries information for a specific metric. This API is now
    * deprecated, please use the `Get Monitoring Histogram Timeseries` API.
+   *
+   * @example
+   * ```ts
+   * const realTimeHistogramTimeseriesResponse =
+   *   await client.data.realTime.retrieveHistogramTimeseries(
+   *     'video-startup-time',
+   *   );
+   * ```
    */
   retrieveHistogramTimeseries(
     realtimeHistogramMetricId: 'video-startup-time',
@@ -92,6 +120,14 @@ export class RealTime extends APIResource {
    * Gets Time series information for a specific metric along with the number of
    * concurrent viewers. This API is now deprecated, please use the
    * `Get Monitoring Timeseries` API.
+   *
+   * @example
+   * ```ts
+   * const realTimeTimeseriesResponse =
+   *   await client.data.realTime.retrieveTimeseries(
+   *     'current-concurrent-viewers',
+   *   );
+   * ```
    */
   retrieveTimeseries(
     realtimeMetricId:

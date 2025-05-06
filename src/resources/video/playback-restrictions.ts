@@ -8,6 +8,21 @@ import { BasePage, type BasePageParams } from '../../pagination';
 export class PlaybackRestrictions extends APIResource {
   /**
    * Create a new Playback Restriction.
+   *
+   * @example
+   * ```ts
+   * const playbackRestriction =
+   *   await client.video.playbackRestrictions.create({
+   *     referrer: {
+   *       allowed_domains: ['*.example.com'],
+   *       allow_no_referrer: true,
+   *     },
+   *     user_agent: {
+   *       allow_no_user_agent: false,
+   *       allow_high_risk_user_agent: false,
+   *     },
+   *   });
+   * ```
    */
   create(
     body: PlaybackRestrictionCreateParams,
@@ -22,6 +37,14 @@ export class PlaybackRestrictions extends APIResource {
 
   /**
    * Retrieves a Playback Restriction associated with the unique identifier.
+   *
+   * @example
+   * ```ts
+   * const playbackRestriction =
+   *   await client.video.playbackRestrictions.retrieve(
+   *     'PLAYBACK_RESTRICTION_ID',
+   *   );
+   * ```
    */
   retrieve(
     playbackRestrictionId: string,
@@ -37,6 +60,14 @@ export class PlaybackRestrictions extends APIResource {
 
   /**
    * Returns a list of all Playback Restrictions.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const playbackRestriction of client.video.playbackRestrictions.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: PlaybackRestrictionListParams,
@@ -58,6 +89,13 @@ export class PlaybackRestrictions extends APIResource {
 
   /**
    * Deletes a single Playback Restriction.
+   *
+   * @example
+   * ```ts
+   * await client.video.playbackRestrictions.delete(
+   *   'PLAYBACK_RESTRICTION_ID',
+   * );
+   * ```
    */
   delete(playbackRestrictionId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/playback-restrictions/${playbackRestrictionId}`, {
@@ -70,6 +108,18 @@ export class PlaybackRestrictions extends APIResource {
    * Allows you to modify the list of domains or change how Mux validates playback
    * requests without the `Referer` HTTP header. The Referrer restriction fully
    * replaces the old list with this new list of domains.
+   *
+   * @example
+   * ```ts
+   * const playbackRestriction =
+   *   await client.video.playbackRestrictions.updateReferrer(
+   *     'PLAYBACK_RESTRICTION_ID',
+   *     {
+   *       allowed_domains: ['*.example.com'],
+   *       allow_no_referrer: true,
+   *     },
+   *   );
+   * ```
    */
   updateReferrer(
     playbackRestrictionId: string,
@@ -89,6 +139,18 @@ export class PlaybackRestrictions extends APIResource {
    * agents. Please see
    * [Using User-Agent HTTP header for validation](https://docs.mux.com/guides/secure-video-playback#using-user-agent-http-header-for-validation)
    * for more details on this feature.
+   *
+   * @example
+   * ```ts
+   * const playbackRestriction =
+   *   await client.video.playbackRestrictions.updateUserAgent(
+   *     'PLAYBACK_RESTRICTION_ID',
+   *     {
+   *       allow_high_risk_user_agent: false,
+   *       allow_no_user_agent: false,
+   *     },
+   *   );
+   * ```
    */
   updateUserAgent(
     playbackRestrictionId: string,

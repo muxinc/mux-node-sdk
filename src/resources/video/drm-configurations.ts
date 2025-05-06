@@ -8,6 +8,14 @@ import { BasePage, type BasePageParams } from '../../pagination';
 export class DRMConfigurations extends APIResource {
   /**
    * Retrieves a single DRM Configuration.
+   *
+   * @example
+   * ```ts
+   * const drmConfiguration =
+   *   await client.video.drmConfigurations.retrieve(
+   *     'DRM_CONFIGURATION_ID',
+   *   );
+   * ```
    */
   retrieve(drmConfigurationId: string, options?: Core.RequestOptions): Core.APIPromise<DRMConfiguration> {
     return (
@@ -19,6 +27,14 @@ export class DRMConfigurations extends APIResource {
 
   /**
    * Returns a list of DRM Configurations
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const drmConfiguration of client.video.drmConfigurations.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: DRMConfigurationListParams,
