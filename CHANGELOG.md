@@ -1,5 +1,40 @@
 # Changelog
 
+## 11.1.0 (2025-05-09)
+
+Full Changelog: [v11.0.2...v11.1.0](https://github.com/muxinc/mux-node-sdk/compare/v11.0.2...v11.1.0)
+
+### Features
+
+* add cursor pagination ([#330](https://github.com/muxinc/mux-node-sdk/issues/330)) ([9602721](https://github.com/muxinc/mux-node-sdk/commit/9602721156971e6491be468c01e95bfaef2961ee))
+* **api:** Config update for Dashron/dev ([dd9c399](https://github.com/muxinc/mux-node-sdk/commit/dd9c399153b074a9fe2ecd28324494164869b232))
+* **api:** expose annotations APIs and additional static_rendition APIs ([6f82e92](https://github.com/muxinc/mux-node-sdk/commit/6f82e924b5b7d8c26eff7c696d961c7a0622994a))
+
+
+### Bug Fixes
+
+* add timeframe to annotations ([#349](https://github.com/muxinc/mux-node-sdk/issues/349)) ([6ad1698](https://github.com/muxinc/mux-node-sdk/commit/6ad16987dd017b7193807335da1330793a1c8b82))
+* fix delete annotation example ([#350](https://github.com/muxinc/mux-node-sdk/issues/350)) ([8582caf](https://github.com/muxinc/mux-node-sdk/commit/8582cafafea199b240eb7b42ea41f69caa8f1310))
+
+
+### Chores
+
+* **ci:** add timeout thresholds for CI jobs ([a16f2f5](https://github.com/muxinc/mux-node-sdk/commit/a16f2f583e76462014b18964c8b740a1d5ca0f1f))
+* **ci:** bump node version for release workflows ([1c2612a](https://github.com/muxinc/mux-node-sdk/commit/1c2612a62927d850da73a80d6c1af5feb9d66074))
+* **ci:** only use depot for staging repos ([036fb4a](https://github.com/muxinc/mux-node-sdk/commit/036fb4a71a13dcc082292a1b9a0c7d63e14da3ad))
+* **ci:** run on more branches and use depot runners ([4edb8f1](https://github.com/muxinc/mux-node-sdk/commit/4edb8f15bbab7dfb5ae88cd02619580c8dbb693c))
+* **docs:** add missing deprecation warnings ([599d3b9](https://github.com/muxinc/mux-node-sdk/commit/599d3b9db55e8f12b99809f13ffc6603568932c6))
+* fix docs build by adding Annotations to the tag groups ([#345](https://github.com/muxinc/mux-node-sdk/issues/345)) ([e3c9cd5](https://github.com/muxinc/mux-node-sdk/commit/e3c9cd51968df3fe30213f11fb6bd347e6aba84a))
+* fix nesting of annotation_id for docs ([#346](https://github.com/muxinc/mux-node-sdk/issues/346)) ([d782348](https://github.com/muxinc/mux-node-sdk/commit/d7823486342f2d07cfbc34521b0b234b13e0e107))
+* **internal:** restore custom code ([e8e3334](https://github.com/muxinc/mux-node-sdk/commit/e8e3334c5838fb5bc3797ad775c9509ac04b7a64))
+
+
+### Documentation
+
+* add examples to tsdocs ([034fd66](https://github.com/muxinc/mux-node-sdk/commit/034fd666fabf9e35285777392ab417385a2eba5f))
+* Document max length for srt_passphrase and stream_key ([#344](https://github.com/muxinc/mux-node-sdk/issues/344)) ([0c33d5e](https://github.com/muxinc/mux-node-sdk/commit/0c33d5e1ccd8a299e03c0a89c4f7160b52f5f6a7))
+* **readme:** fix typo ([78b5b43](https://github.com/muxinc/mux-node-sdk/commit/78b5b43ebd2fefdd6c5f86cf92d27218570dd0f5))
+
 ## 11.0.2 (2025-04-14)
 
 Full Changelog: [v11.0.1...v11.0.2](https://github.com/muxinc/mux-node-sdk/compare/v11.0.1...v11.0.2)
