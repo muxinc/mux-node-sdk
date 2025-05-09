@@ -16,6 +16,7 @@ Types:
 - <code><a href="./src/resources/video/assets.ts">AssetResponse</a></code>
 - <code><a href="./src/resources/video/assets.ts">InputInfo</a></code>
 - <code><a href="./src/resources/video/assets.ts">Track</a></code>
+- <code><a href="./src/resources/video/assets.ts">AssetCreateStaticRenditionResponse</a></code>
 - <code><a href="./src/resources/video/assets.ts">AssetGenerateSubtitlesResponse</a></code>
 - <code><a href="./src/resources/video/assets.ts">AssetRetrieveInputInfoResponse</a></code>
 
@@ -27,8 +28,10 @@ Methods:
 - <code title="get /video/v1/assets">client.video.assets.<a href="./src/resources/video/assets.ts">list</a>({ ...params }) -> AssetsBasePage</code>
 - <code title="delete /video/v1/assets/{ASSET_ID}">client.video.assets.<a href="./src/resources/video/assets.ts">delete</a>(assetId) -> void</code>
 - <code title="post /video/v1/assets/{ASSET_ID}/playback-ids">client.video.assets.<a href="./src/resources/video/assets.ts">createPlaybackId</a>(assetId, { ...params }) -> PlaybackID</code>
+- <code title="post /video/v1/assets/{ASSET_ID}/static-renditions">client.video.assets.<a href="./src/resources/video/assets.ts">createStaticRendition</a>(assetId, { ...params }) -> AssetCreateStaticRenditionResponse</code>
 - <code title="post /video/v1/assets/{ASSET_ID}/tracks">client.video.assets.<a href="./src/resources/video/assets.ts">createTrack</a>(assetId, { ...params }) -> Track</code>
 - <code title="delete /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}">client.video.assets.<a href="./src/resources/video/assets.ts">deletePlaybackId</a>(assetId, playbackId) -> void</code>
+- <code title="delete /video/v1/assets/{ASSET_ID}/static-renditions/{STATIC_RENDITION_ID}">client.video.assets.<a href="./src/resources/video/assets.ts">deleteStaticRendition</a>(assetId, staticRenditionId) -> void</code>
 - <code title="delete /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}">client.video.assets.<a href="./src/resources/video/assets.ts">deleteTrack</a>(assetId, trackId) -> void</code>
 - <code title="post /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}/generate-subtitles">client.video.assets.<a href="./src/resources/video/assets.ts">generateSubtitles</a>(assetId, trackId, { ...params }) -> AssetGenerateSubtitlesResponse</code>
 - <code title="get /video/v1/assets/{ASSET_ID}/input-info">client.video.assets.<a href="./src/resources/video/assets.ts">retrieveInputInfo</a>(assetId) -> AssetRetrieveInputInfoResponse</code>
@@ -63,6 +66,7 @@ Methods:
 - <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/complete">client.video.liveStreams.<a href="./src/resources/video/live-streams.ts">complete</a>(liveStreamId) -> void</code>
 - <code title="post /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids">client.video.liveStreams.<a href="./src/resources/video/live-streams.ts">createPlaybackId</a>(liveStreamId, { ...params }) -> PlaybackID</code>
 - <code title="post /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets">client.video.liveStreams.<a href="./src/resources/video/live-streams.ts">createSimulcastTarget</a>(liveStreamId, { ...params }) -> SimulcastTarget</code>
+- <code title="delete /video/v1/live-streams/{LIVE_STREAM_ID}/new-asset-settings/static-renditions">client.video.liveStreams.<a href="./src/resources/video/live-streams.ts">deleteNewAssetSettingsStaticRenditions</a>(liveStreamId) -> void</code>
 - <code title="delete /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}">client.video.liveStreams.<a href="./src/resources/video/live-streams.ts">deletePlaybackId</a>(liveStreamId, playbackId) -> void</code>
 - <code title="delete /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}">client.video.liveStreams.<a href="./src/resources/video/live-streams.ts">deleteSimulcastTarget</a>(liveStreamId, simulcastTargetId) -> void</code>
 - <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/disable">client.video.liveStreams.<a href="./src/resources/video/live-streams.ts">disable</a>(liveStreamId) -> void</code>
@@ -72,6 +76,7 @@ Methods:
 - <code title="get /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}">client.video.liveStreams.<a href="./src/resources/video/live-streams.ts">retrieveSimulcastTarget</a>(liveStreamId, simulcastTargetId) -> SimulcastTarget</code>
 - <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles">client.video.liveStreams.<a href="./src/resources/video/live-streams.ts">updateEmbeddedSubtitles</a>(liveStreamId, { ...params }) -> LiveStream</code>
 - <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/generated-subtitles">client.video.liveStreams.<a href="./src/resources/video/live-streams.ts">updateGeneratedSubtitles</a>(liveStreamId, { ...params }) -> LiveStream</code>
+- <code title="put /video/v1/live-streams/{LIVE_STREAM_ID}/new-asset-settings/static-renditions">client.video.liveStreams.<a href="./src/resources/video/live-streams.ts">updateNewAssetSettingsStaticRenditions</a>(liveStreamId, { ...params }) -> LiveStream</code>
 
 ## PlaybackIDs
 
@@ -296,6 +301,23 @@ Methods:
 
 - <code title="get /data/v1/video-views/{VIDEO_VIEW_ID}">client.data.videoViews.<a href="./src/resources/data/video-views.ts">retrieve</a>(videoViewId) -> VideoViewResponse</code>
 - <code title="get /data/v1/video-views">client.data.videoViews.<a href="./src/resources/data/video-views.ts">list</a>({ ...params }) -> AbridgedVideoViewsBasePage</code>
+
+## Annotations
+
+Types:
+
+- <code><a href="./src/resources/data/annotations.ts">Annotation</a></code>
+- <code><a href="./src/resources/data/annotations.ts">AnnotationInput</a></code>
+- <code><a href="./src/resources/data/annotations.ts">AnnotationResponse</a></code>
+- <code><a href="./src/resources/data/annotations.ts">ListAnnotationsResponse</a></code>
+
+Methods:
+
+- <code title="post /data/v1/annotations">client.data.annotations.<a href="./src/resources/data/annotations.ts">create</a>({ ...params }) -> Annotation</code>
+- <code title="get /data/v1/annotations/{ANNOTATION_ID}">client.data.annotations.<a href="./src/resources/data/annotations.ts">retrieve</a>(annotationId) -> Annotation</code>
+- <code title="patch /data/v1/annotations/{ANNOTATION_ID}">client.data.annotations.<a href="./src/resources/data/annotations.ts">update</a>(annotationId, { ...params }) -> Annotation</code>
+- <code title="get /data/v1/annotations">client.data.annotations.<a href="./src/resources/data/annotations.ts">list</a>({ ...params }) -> AnnotationsBasePage</code>
+- <code title="delete /data/v1/annotations/{ANNOTATION_ID}">client.data.annotations.<a href="./src/resources/data/annotations.ts">delete</a>(annotationId) -> void</code>
 
 # System
 

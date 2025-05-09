@@ -204,6 +204,28 @@ export class LiveStreams extends APIResource {
   }
 
   /**
+   * Deletes a live stream's static renditions settings for new assets. Further
+   * assets made via this live stream will not create static renditions unless
+   * re-added.
+   *
+   * @example
+   * ```ts
+   * await client.video.liveStreams.deleteNewAssetSettingsStaticRenditions(
+   *   'LIVE_STREAM_ID',
+   * );
+   * ```
+   */
+  deleteNewAssetSettingsStaticRenditions(
+    liveStreamId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.delete(
+      `/video/v1/live-streams/${liveStreamId}/new-asset-settings/static-renditions`,
+      { ...options, headers: { Accept: '*/*', ...options?.headers } },
+    );
+  }
+
+  /**
    * Deletes the playback ID for the live stream. This will not disable ingest (as
    * the live stream still exists). New attempts to play back the live stream will
    * fail immediately. However, current viewers will be able to continue watching the
@@ -418,6 +440,38 @@ export class LiveStreams extends APIResource {
   ): Core.APIPromise<LiveStream> {
     return (
       this._client.put(`/video/v1/live-streams/${liveStreamId}/generated-subtitles`, {
+        body,
+        ...options,
+      }) as Core.APIPromise<{ data: LiveStream }>
+    )._thenUnwrap((obj) => obj.data);
+  }
+
+  /**
+   * Updates a live stream's static renditions settings for new assets. Further
+   * assets made via this live stream will create static renditions per the settings
+   * provided. You must provide all static renditions desired.
+   *
+   * @example
+   * ```ts
+   * const liveStream =
+   *   await client.video.liveStreams.updateNewAssetSettingsStaticRenditions(
+   *     'LIVE_STREAM_ID',
+   *     {
+   *       static_renditions: [
+   *         { resolution: 'audio-only' },
+   *         { resolution: 'highest' },
+   *       ],
+   *     },
+   *   );
+   * ```
+   */
+  updateNewAssetSettingsStaticRenditions(
+    liveStreamId: string,
+    body: LiveStreamUpdateNewAssetSettingsStaticRenditionsParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<LiveStream> {
+    return (
+      this._client.put(`/video/v1/live-streams/${liveStreamId}/new-asset-settings/static-renditions`, {
         body,
         ...options,
       }) as Core.APIPromise<{ data: LiveStream }>
@@ -1227,6 +1281,32 @@ export namespace LiveStreamUpdateGeneratedSubtitlesParams {
   }
 }
 
+export interface LiveStreamUpdateNewAssetSettingsStaticRenditionsParams {
+  static_renditions: Array<LiveStreamUpdateNewAssetSettingsStaticRenditionsParams.StaticRendition>;
+}
+
+export namespace LiveStreamUpdateNewAssetSettingsStaticRenditionsParams {
+  export interface StaticRendition {
+    resolution:
+      | 'highest'
+      | 'audio-only'
+      | '2160p'
+      | '1440p'
+      | '1080p'
+      | '720p'
+      | '540p'
+      | '480p'
+      | '360p'
+      | '270p';
+
+    /**
+     * Arbitrary user-supplied metadata set for the static rendition. Max 255
+     * characters.
+     */
+    passthrough?: string;
+  }
+}
+
 LiveStreams.LiveStreamsBasePage = LiveStreamsBasePage;
 
 export declare namespace LiveStreams {
@@ -1241,5 +1321,6 @@ export declare namespace LiveStreams {
     type LiveStreamCreateSimulcastTargetParams as LiveStreamCreateSimulcastTargetParams,
     type LiveStreamUpdateEmbeddedSubtitlesParams as LiveStreamUpdateEmbeddedSubtitlesParams,
     type LiveStreamUpdateGeneratedSubtitlesParams as LiveStreamUpdateGeneratedSubtitlesParams,
+    type LiveStreamUpdateNewAssetSettingsStaticRenditionsParams as LiveStreamUpdateNewAssetSettingsStaticRenditionsParams,
   };
 }

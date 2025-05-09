@@ -127,6 +127,31 @@ export class Assets extends APIResource {
   }
 
   /**
+   * Creates a static rendition (i.e. MP4) for an asset
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.video.assets.createStaticRendition(
+   *     'ASSET_ID',
+   *     { resolution: 'highest' },
+   *   );
+   * ```
+   */
+  createStaticRendition(
+    assetId: string,
+    body: AssetCreateStaticRenditionParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<AssetCreateStaticRenditionResponse> {
+    return (
+      this._client.post(`/video/v1/assets/${assetId}/static-renditions`, {
+        body,
+        ...options,
+      }) as Core.APIPromise<{ data: AssetCreateStaticRenditionResponse }>
+    )._thenUnwrap((obj) => obj.data);
+  }
+
+  /**
    * Adds an asset track (for example, subtitles, or an alternate audio track) to an
    * asset. Assets must be in the `ready` state before tracks can be added.
    *
@@ -178,6 +203,28 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
+   * Deletes a single static rendition for an asset
+   *
+   * @example
+   * ```ts
+   * await client.video.assets.deleteStaticRendition(
+   *   'ASSET_ID',
+   *   'STATIC_RENDITION_ID',
+   * );
+   * ```
+   */
+  deleteStaticRendition(
+    assetId: string,
+    staticRenditionId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.delete(`/video/v1/assets/${assetId}/static-renditions/${staticRenditionId}`, {
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -1829,6 +1876,107 @@ export interface Track {
   type?: 'video' | 'audio' | 'text';
 }
 
+export interface AssetCreateStaticRenditionResponse {
+  /**
+   * The ID of this static rendition, used in managing this static rendition. This
+   * field is only valid for `static_renditions`, not for `mp4_support`.
+   */
+  id?: string;
+
+  /**
+   * The bitrate in bits per second
+   */
+  bitrate?: number;
+
+  /**
+   * Extension of the static rendition file
+   */
+  ext?: 'mp4' | 'm4a';
+
+  /**
+   * The file size in bytes
+   */
+  filesize?: string;
+
+  /**
+   * The height of the static rendition's file in pixels
+   */
+  height?: number;
+
+  /**
+   * Name of the static rendition file
+   */
+  name?:
+    | 'low.mp4'
+    | 'medium.mp4'
+    | 'high.mp4'
+    | 'highest.mp4'
+    | 'audio.m4a'
+    | 'capped-1080p.mp4'
+    | '2160p.mp4'
+    | '1440p.mp4'
+    | '1080p.mp4'
+    | '720p.mp4'
+    | '540p.mp4'
+    | '480p.mp4'
+    | '360p.mp4'
+    | '270p.mp4';
+
+  /**
+   * Arbitrary user-supplied metadata set for the static rendition. Max 255
+   * characters.
+   */
+  passthrough?: string;
+
+  /**
+   * Indicates the resolution of this specific MP4 version of this asset. This field
+   * is only valid for `static_renditions`, not for `mp4_support`.
+   */
+  resolution?:
+    | 'highest'
+    | 'audio-only'
+    | '2160p'
+    | '1440p'
+    | '1080p'
+    | '720p'
+    | '540p'
+    | '480p'
+    | '360p'
+    | '270p';
+
+  /**
+   * Indicates the resolution tier of this specific MP4 version of this asset. This
+   * field is only valid for `static_renditions`, not for `mp4_support`.
+   */
+  resolution_tier?: '2160p' | '1440p' | '1080p' | '720p' | 'audio-only';
+
+  /**
+   * Indicates the status of this specific MP4 version of this asset. This field is
+   * only valid for `static_renditions`, not for `mp4_support`.
+   *
+   * - `ready` indicates the MP4 has been generated and is ready for download
+   * - `preparing` indicates the asset has not been ingested or the static rendition
+   *   is still being generated after an asset is ready
+   * - `skipped` indicates the static rendition will not be generated because the
+   *   requested resolution conflicts with the asset attributes after the asset has
+   *   been ingested
+   * - `errored` indicates the static rendition cannot be generated. For example, an
+   *   asset could not be ingested
+   */
+  status?: 'ready' | 'preparing' | 'skipped' | 'errored';
+
+  /**
+   * Indicates the static rendition type of this specific MP4 version of this asset.
+   * This field is only valid for `static_renditions`, not for `mp4_support`.
+   */
+  type?: 'standard' | 'advanced';
+
+  /**
+   * The width of the static rendition's file in pixels
+   */
+  width?: number;
+}
+
 export type AssetGenerateSubtitlesResponse = Array<Track>;
 
 export type AssetRetrieveInputInfoResponse = Array<InputInfo>;
@@ -2559,6 +2707,26 @@ export interface AssetCreatePlaybackIDParams {
   policy?: Shared.PlaybackPolicy;
 }
 
+export interface AssetCreateStaticRenditionParams {
+  resolution:
+    | 'highest'
+    | 'audio-only'
+    | '2160p'
+    | '1440p'
+    | '1080p'
+    | '720p'
+    | '540p'
+    | '480p'
+    | '360p'
+    | '270p';
+
+  /**
+   * Arbitrary user-supplied metadata set for the static rendition. Max 255
+   * characters.
+   */
+  passthrough?: string;
+}
+
 export interface AssetCreateTrackParams {
   /**
    * The language code value must be a valid BCP 47 specification compliant value.
@@ -2695,6 +2863,7 @@ export declare namespace Assets {
     type AssetResponse as AssetResponse,
     type InputInfo as InputInfo,
     type Track as Track,
+    type AssetCreateStaticRenditionResponse as AssetCreateStaticRenditionResponse,
     type AssetGenerateSubtitlesResponse as AssetGenerateSubtitlesResponse,
     type AssetRetrieveInputInfoResponse as AssetRetrieveInputInfoResponse,
     AssetsBasePage as AssetsBasePage,
@@ -2702,6 +2871,7 @@ export declare namespace Assets {
     type AssetUpdateParams as AssetUpdateParams,
     type AssetListParams as AssetListParams,
     type AssetCreatePlaybackIDParams as AssetCreatePlaybackIDParams,
+    type AssetCreateStaticRenditionParams as AssetCreateStaticRenditionParams,
     type AssetCreateTrackParams as AssetCreateTrackParams,
     type AssetGenerateSubtitlesParams as AssetGenerateSubtitlesParams,
     type AssetUpdateMasterAccessParams as AssetUpdateMasterAccessParams,

@@ -8,6 +8,17 @@ export {
   type VideoViewListParams,
 } from './video-views';
 export {
+  AnnotationsBasePage,
+  Annotations,
+  type Annotation,
+  type AnnotationInput,
+  type AnnotationResponse,
+  type ListAnnotationsResponse,
+  type AnnotationCreateParams,
+  type AnnotationUpdateParams,
+  type AnnotationListParams,
+} from './annotations';
+export {
   BreakdownValuesBasePage,
   Metrics,
   type AllMetricValuesResponse,
