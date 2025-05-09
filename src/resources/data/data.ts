@@ -1,6 +1,18 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../resource';
+import * as AnnotationsAPI from './annotations';
+import {
+  Annotation,
+  AnnotationCreateParams,
+  AnnotationInput,
+  AnnotationListParams,
+  AnnotationResponse,
+  AnnotationUpdateParams,
+  Annotations,
+  AnnotationsBasePage,
+  ListAnnotationsResponse,
+} from './annotations';
 import * as DimensionsAPI from './dimensions';
 import {
   DimensionListValuesParams,
@@ -78,6 +90,7 @@ export class Data extends APIResource {
   metrics: MetricsAPI.Metrics = new MetricsAPI.Metrics(this._client);
   realTime: RealTimeAPI.RealTime = new RealTimeAPI.RealTime(this._client);
   videoViews: VideoViewsAPI.VideoViews = new VideoViewsAPI.VideoViews(this._client);
+  annotations: AnnotationsAPI.Annotations = new AnnotationsAPI.Annotations(this._client);
 }
 
 Data.Dimensions = Dimensions;
@@ -94,6 +107,8 @@ Data.BreakdownValuesBasePage = BreakdownValuesBasePage;
 Data.RealTime = RealTime;
 Data.VideoViews = VideoViews;
 Data.AbridgedVideoViewsBasePage = AbridgedVideoViewsBasePage;
+Data.Annotations = Annotations;
+Data.AnnotationsBasePage = AnnotationsBasePage;
 
 export declare namespace Data {
   export {
@@ -167,5 +182,17 @@ export declare namespace Data {
     type VideoViewResponse as VideoViewResponse,
     AbridgedVideoViewsBasePage as AbridgedVideoViewsBasePage,
     type VideoViewListParams as VideoViewListParams,
+  };
+
+  export {
+    Annotations as Annotations,
+    type Annotation as Annotation,
+    type AnnotationInput as AnnotationInput,
+    type AnnotationResponse as AnnotationResponse,
+    type ListAnnotationsResponse as ListAnnotationsResponse,
+    AnnotationsBasePage as AnnotationsBasePage,
+    type AnnotationCreateParams as AnnotationCreateParams,
+    type AnnotationUpdateParams as AnnotationUpdateParams,
+    type AnnotationListParams as AnnotationListParams,
   };
 }

@@ -6,6 +6,8 @@ import {
   Asset,
   AssetCreateParams,
   AssetCreatePlaybackIDParams,
+  AssetCreateStaticRenditionParams,
+  AssetCreateStaticRenditionResponse,
   AssetCreateTrackParams,
   AssetGenerateSubtitlesParams,
   AssetGenerateSubtitlesResponse,
@@ -44,6 +46,7 @@ import {
   LiveStreamListParams,
   LiveStreamUpdateEmbeddedSubtitlesParams,
   LiveStreamUpdateGeneratedSubtitlesParams,
+  LiveStreamUpdateNewAssetSettingsStaticRenditionsParams,
   LiveStreamUpdateParams,
   LiveStreams,
   LiveStreamsBasePage,
@@ -139,6 +142,7 @@ export declare namespace Video {
     type AssetResponse as AssetResponse,
     type InputInfo as InputInfo,
     type Track as Track,
+    type AssetCreateStaticRenditionResponse as AssetCreateStaticRenditionResponse,
     type AssetGenerateSubtitlesResponse as AssetGenerateSubtitlesResponse,
     type AssetRetrieveInputInfoResponse as AssetRetrieveInputInfoResponse,
     AssetsCursorPage as AssetsCursorPage,
@@ -146,6 +150,7 @@ export declare namespace Video {
     type AssetUpdateParams as AssetUpdateParams,
     type AssetListParams as AssetListParams,
     type AssetCreatePlaybackIDParams as AssetCreatePlaybackIDParams,
+    type AssetCreateStaticRenditionParams as AssetCreateStaticRenditionParams,
     type AssetCreateTrackParams as AssetCreateTrackParams,
     type AssetGenerateSubtitlesParams as AssetGenerateSubtitlesParams,
     type AssetUpdateMasterAccessParams as AssetUpdateMasterAccessParams,
@@ -171,6 +176,7 @@ export declare namespace Video {
     type LiveStreamCreateSimulcastTargetParams as LiveStreamCreateSimulcastTargetParams,
     type LiveStreamUpdateEmbeddedSubtitlesParams as LiveStreamUpdateEmbeddedSubtitlesParams,
     type LiveStreamUpdateGeneratedSubtitlesParams as LiveStreamUpdateGeneratedSubtitlesParams,
+    type LiveStreamUpdateNewAssetSettingsStaticRenditionsParams as LiveStreamUpdateNewAssetSettingsStaticRenditionsParams,
   };
 
   export { PlaybackIDs as PlaybackIDs, type PlaybackIDRetrieveResponse as PlaybackIDRetrieveResponse };
