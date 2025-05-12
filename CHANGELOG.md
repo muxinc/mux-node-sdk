@@ -6,7 +6,7 @@ Full Changelog: [v11.0.2...v11.1.0](https://github.com/muxinc/mux-node-sdk/compa
 
 ### Features
 
-* add cursor pagination ([#330](https://github.com/muxinc/mux-node-sdk/issues/330)) ([9602721](https://github.com/muxinc/mux-node-sdk/commit/9602721156971e6491be468c01e95bfaef2961ee))
+* add cursor pagination for listing assets ([#330](https://github.com/muxinc/mux-node-sdk/issues/330)) ([9602721](https://github.com/muxinc/mux-node-sdk/commit/9602721156971e6491be468c01e95bfaef2961ee))
 * **api:** Config update for Dashron/dev ([dd9c399](https://github.com/muxinc/mux-node-sdk/commit/dd9c399153b074a9fe2ecd28324494164869b232))
 * **api:** expose annotations APIs and additional static_rendition APIs ([6f82e92](https://github.com/muxinc/mux-node-sdk/commit/6f82e924b5b7d8c26eff7c696d961c7a0622994a))
 
