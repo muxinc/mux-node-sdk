@@ -7,6 +7,11 @@ import * as Core from '../../../core';
 export class Metrics extends APIResource {
   /**
    * Lists available monitoring metrics.
+   *
+   * @example
+   * ```ts
+   * const metrics = await client.data.monitoring.metrics.list();
+   * ```
    */
   list(options?: Core.RequestOptions): Core.APIPromise<MetricListResponse> {
     return this._client.get('/data/v1/monitoring/metrics', options);
@@ -15,6 +20,14 @@ export class Metrics extends APIResource {
   /**
    * Gets breakdown information for a specific dimension and metric along with the
    * number of concurrent viewers and negative impact score.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.data.monitoring.metrics.getBreakdown(
+   *     'current-concurrent-viewers',
+   *   );
+   * ```
    */
   getBreakdown(
     monitoringMetricId:
@@ -60,6 +73,14 @@ export class Metrics extends APIResource {
   /**
    * Gets timeseries of breakdown information for a specific dimension and metric.
    * Each datapoint in the response represents 5 seconds worth of data.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.data.monitoring.metrics.getBreakdownTimeseries(
+   *     'current-concurrent-viewers',
+   *   );
+   * ```
    */
   getBreakdownTimeseries(
     monitoringMetricId:
@@ -104,6 +125,14 @@ export class Metrics extends APIResource {
 
   /**
    * Gets histogram timeseries information for a specific metric.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.data.monitoring.metrics.getHistogramTimeseries(
+   *     'video-startup-time',
+   *   );
+   * ```
    */
   getHistogramTimeseries(
     monitoringHistogramMetricId: 'video-startup-time',
@@ -131,6 +160,14 @@ export class Metrics extends APIResource {
   /**
    * Gets Time series information for a specific metric along with the number of
    * concurrent viewers.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.data.monitoring.metrics.getTimeseries(
+   *     'current-concurrent-viewers',
+   *   );
+   * ```
    */
   getTimeseries(
     monitoringMetricId:

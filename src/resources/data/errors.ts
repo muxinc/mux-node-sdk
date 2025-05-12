@@ -7,6 +7,11 @@ import * as Core from '../../core';
 export class Errors extends APIResource {
   /**
    * Returns a list of errors.
+   *
+   * @example
+   * ```ts
+   * const errorsResponse = await client.data.errors.list();
+   * ```
    */
   list(query?: ErrorListParams, options?: Core.RequestOptions): Core.APIPromise<ErrorsResponse>;
   list(options?: Core.RequestOptions): Core.APIPromise<ErrorsResponse>;

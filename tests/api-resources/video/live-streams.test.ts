@@ -146,6 +146,26 @@ describe('resource liveStreams', () => {
     });
   });
 
+  test('deleteNewAssetSettingsStaticRenditions', async () => {
+    const responsePromise = client.video.liveStreams.deleteNewAssetSettingsStaticRenditions('LIVE_STREAM_ID');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('deleteNewAssetSettingsStaticRenditions: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.video.liveStreams.deleteNewAssetSettingsStaticRenditions('LIVE_STREAM_ID', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(Mux.NotFoundError);
+  });
+
   test('deletePlaybackId', async () => {
     const responsePromise = client.video.liveStreams.deletePlaybackId('LIVE_STREAM_ID', 'PLAYBACK_ID');
     const rawResponse = await responsePromise.asResponse();
@@ -306,5 +326,28 @@ describe('resource liveStreams', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('updateNewAssetSettingsStaticRenditions: only required params', async () => {
+    const responsePromise = client.video.liveStreams.updateNewAssetSettingsStaticRenditions(
+      'LIVE_STREAM_ID',
+      { static_renditions: [{ resolution: 'audio-only' }, { resolution: 'highest' }] },
+    );
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  test('updateNewAssetSettingsStaticRenditions: required and optional params', async () => {
+    const response = await client.video.liveStreams.updateNewAssetSettingsStaticRenditions('LIVE_STREAM_ID', {
+      static_renditions: [
+        { resolution: 'audio-only', passthrough: 'passthrough' },
+        { resolution: 'highest', passthrough: 'passthrough' },
+      ],
+    });
   });
 });

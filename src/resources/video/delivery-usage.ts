@@ -9,6 +9,14 @@ export class DeliveryUsage extends APIResource {
   /**
    * Returns a list of delivery usage records and their associated Asset IDs or Live
    * Stream IDs.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const deliveryReport of client.video.deliveryUsage.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query?: DeliveryUsageListParams,

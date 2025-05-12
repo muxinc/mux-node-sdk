@@ -8,6 +8,12 @@ import { BasePage, type BasePageParams } from '../../pagination';
 export class Metrics extends APIResource {
   /**
    * List all of the values across every breakdown for a specific metric.
+   *
+   * @example
+   * ```ts
+   * const allMetricValuesResponse =
+   *   await client.data.metrics.list();
+   * ```
    */
   list(query?: MetricListParams, options?: Core.RequestOptions): Core.APIPromise<AllMetricValuesResponse>;
   list(options?: Core.RequestOptions): Core.APIPromise<AllMetricValuesResponse>;
@@ -25,6 +31,14 @@ export class Metrics extends APIResource {
    * Returns a list of insights for a metric. These are the worst performing values
    * across all breakdowns sorted by how much they negatively impact a specific
    * metric.
+   *
+   * @example
+   * ```ts
+   * const insightsResponse =
+   *   await client.data.metrics.getInsights(
+   *     'video_startup_time',
+   *   );
+   * ```
    */
   getInsights(
     metricId:
@@ -193,6 +207,14 @@ export class Metrics extends APIResource {
   /**
    * Returns the overall value for a specific metric, as well as the total view
    * count, watch time, and the Mux Global metric value for the metric.
+   *
+   * @example
+   * ```ts
+   * const overallValuesResponse =
+   *   await client.data.metrics.getOverallValues(
+   *     'video_startup_time',
+   *   );
+   * ```
    */
   getOverallValues(
     metricId:
@@ -368,6 +390,14 @@ export class Metrics extends APIResource {
    * - the second element is the calculated metric value
    * - the third element is the number of views in the interval that have a valid
    *   metric value
+   *
+   * @example
+   * ```ts
+   * const metricTimeseriesDataResponse =
+   *   await client.data.metrics.getTimeseries(
+   *     'video_startup_time',
+   *   );
+   * ```
    */
   getTimeseries(
     metricId:
@@ -535,6 +565,16 @@ export class Metrics extends APIResource {
 
   /**
    * List the breakdown values for a specific metric.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const breakdownValue of client.data.metrics.listBreakdownValues(
+   *   'video_startup_time',
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   listBreakdownValues(
     metricId:

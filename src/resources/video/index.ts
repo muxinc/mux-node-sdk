@@ -8,12 +8,14 @@ export {
   type AssetResponse,
   type InputInfo,
   type Track,
+  type AssetCreateStaticRenditionResponse,
   type AssetGenerateSubtitlesResponse,
   type AssetRetrieveInputInfoResponse,
   type AssetCreateParams,
   type AssetUpdateParams,
   type AssetListParams,
   type AssetCreatePlaybackIDParams,
+  type AssetCreateStaticRenditionParams,
   type AssetCreateTrackParams,
   type AssetGenerateSubtitlesParams,
   type AssetUpdateMasterAccessParams,
@@ -43,6 +45,7 @@ export {
   type LiveStreamCreateSimulcastTargetParams,
   type LiveStreamUpdateEmbeddedSubtitlesParams,
   type LiveStreamUpdateGeneratedSubtitlesParams,
+  type LiveStreamUpdateNewAssetSettingsStaticRenditionsParams,
 } from './live-streams';
 export { PlaybackIDs, type PlaybackIDRetrieveResponse } from './playback-ids';
 export {

@@ -21,6 +21,12 @@ export class Monitoring extends APIResource {
 
   /**
    * Lists available monitoring dimensions.
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.data.monitoring.listDimensions();
+   * ```
    */
   listDimensions(options?: Core.RequestOptions): Core.APIPromise<MonitoringListDimensionsResponse> {
     return this._client.get('/data/v1/monitoring/dimensions', options);

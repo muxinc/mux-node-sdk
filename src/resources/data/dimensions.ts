@@ -10,6 +10,12 @@ export class Dimensions extends APIResource {
    * List all available dimensions.
    *
    * Note: This API replaces the list-filters API call.
+   *
+   * @example
+   * ```ts
+   * const dimensionsResponse =
+   *   await client.data.dimensions.list();
+   * ```
    */
   list(options?: Core.RequestOptions): Core.APIPromise<DimensionsResponse> {
     return this._client.get('/data/v1/dimensions', options);
@@ -19,6 +25,16 @@ export class Dimensions extends APIResource {
    * Lists the values for a dimension along with a total count of related views.
    *
    * Note: This API replaces the list-filter-values API call.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const dimensionValue of client.data.dimensions.listValues(
+   *   'abcd1234',
+   * )) {
+   *   // ...
+   * }
+   * ```
    */
   listValues(
     dimensionId: string,

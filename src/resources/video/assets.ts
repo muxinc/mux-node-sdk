@@ -9,6 +9,17 @@ import { BasePage, type BasePageParams } from '../../pagination';
 export class Assets extends APIResource {
   /**
    * Create a new Mux Video asset.
+   *
+   * @example
+   * ```ts
+   * const asset = await client.video.assets.create({
+   *   inputs: [
+   *     { url: 'https://muxed.s3.amazonaws.com/leds.mp4' },
+   *   ],
+   *   playback_policies: ['public'],
+   *   video_quality: 'basic',
+   * });
+   * ```
    */
   create(body: AssetCreateParams, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
@@ -21,6 +32,13 @@ export class Assets extends APIResource {
    * unique asset ID that was returned from your previous request, and Mux will
    * return the corresponding asset information. The same information is returned
    * when creating an asset.
+   *
+   * @example
+   * ```ts
+   * const asset = await client.video.assets.retrieve(
+   *   'ASSET_ID',
+   * );
+   * ```
    */
   retrieve(assetId: string, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
@@ -31,6 +49,13 @@ export class Assets extends APIResource {
   /**
    * Updates the details of an already-created Asset with the provided Asset ID. This
    * currently supports only the `passthrough` field.
+   *
+   * @example
+   * ```ts
+   * const asset = await client.video.assets.update('ASSET_ID', {
+   *   passthrough: 'Example',
+   * });
+   * ```
    */
   update(assetId: string, body: AssetUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
@@ -42,6 +67,14 @@ export class Assets extends APIResource {
 
   /**
    * List all Mux assets.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const asset of client.video.assets.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(query?: AssetListParams, options?: Core.RequestOptions): Core.PagePromise<AssetsBasePage, Asset>;
   list(options?: Core.RequestOptions): Core.PagePromise<AssetsBasePage, Asset>;
@@ -57,6 +90,11 @@ export class Assets extends APIResource {
 
   /**
    * Deletes a video asset and all its data.
+   *
+   * @example
+   * ```ts
+   * await client.video.assets.delete('ASSET_ID');
+   * ```
    */
   delete(assetId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}`, {
@@ -67,6 +105,14 @@ export class Assets extends APIResource {
 
   /**
    * Creates a playback ID that can be used to stream the asset to a viewer.
+   *
+   * @example
+   * ```ts
+   * const playbackId =
+   *   await client.video.assets.createPlaybackId('ASSET_ID', {
+   *     policy: 'public',
+   *   });
+   * ```
    */
   createPlaybackId(
     assetId: string,
@@ -81,8 +127,49 @@ export class Assets extends APIResource {
   }
 
   /**
+   * Creates a static rendition (i.e. MP4) for an asset
+   *
+   * @example
+   * ```ts
+   * const response =
+   *   await client.video.assets.createStaticRendition(
+   *     'ASSET_ID',
+   *     { resolution: 'highest' },
+   *   );
+   * ```
+   */
+  createStaticRendition(
+    assetId: string,
+    body: AssetCreateStaticRenditionParams,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<AssetCreateStaticRenditionResponse> {
+    return (
+      this._client.post(`/video/v1/assets/${assetId}/static-renditions`, {
+        body,
+        ...options,
+      }) as Core.APIPromise<{ data: AssetCreateStaticRenditionResponse }>
+    )._thenUnwrap((obj) => obj.data);
+  }
+
+  /**
    * Adds an asset track (for example, subtitles, or an alternate audio track) to an
    * asset. Assets must be in the `ready` state before tracks can be added.
+   *
+   * @example
+   * ```ts
+   * const track = await client.video.assets.createTrack(
+   *   'ASSET_ID',
+   *   {
+   *     language_code: 'en-US',
+   *     type: 'text',
+   *     url: 'https://example.com/myVideo_en.srt',
+   *     closed_captions: true,
+   *     name: 'English',
+   *     passthrough: 'English',
+   *     text_type: 'subtitles',
+   *   },
+   * );
+   * ```
    */
   createTrack(
     assetId: string,
@@ -101,6 +188,14 @@ export class Assets extends APIResource {
    * content. Please note that deleting the playback ID removes access to the
    * underlying asset; a viewer who started playback before the playback ID was
    * deleted may be able to watch the entire video for a limited duration.
+   *
+   * @example
+   * ```ts
+   * await client.video.assets.deletePlaybackId(
+   *   'ASSET_ID',
+   *   'PLAYBACK_ID',
+   * );
+   * ```
    */
   deletePlaybackId(
     assetId: string,
@@ -114,8 +209,38 @@ export class Assets extends APIResource {
   }
 
   /**
+   * Deletes a single static rendition for an asset
+   *
+   * @example
+   * ```ts
+   * await client.video.assets.deleteStaticRendition(
+   *   'ASSET_ID',
+   *   'STATIC_RENDITION_ID',
+   * );
+   * ```
+   */
+  deleteStaticRendition(
+    assetId: string,
+    staticRenditionId: string,
+    options?: Core.RequestOptions,
+  ): Core.APIPromise<void> {
+    return this._client.delete(`/video/v1/assets/${assetId}/static-renditions/${staticRenditionId}`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
+  }
+
+  /**
    * Removes a text track from an asset. Audio and video tracks on assets cannot be
    * removed.
+   *
+   * @example
+   * ```ts
+   * await client.video.assets.deleteTrack(
+   *   'ASSET_ID',
+   *   'TRACK_ID',
+   * );
+   * ```
    */
   deleteTrack(assetId: string, trackId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}/tracks/${trackId}`, {
@@ -127,6 +252,23 @@ export class Assets extends APIResource {
   /**
    * Generates subtitles (captions) for a given audio track. This API can be used for
    * up to 7 days after an asset is created.
+   *
+   * @example
+   * ```ts
+   * const tracks = await client.video.assets.generateSubtitles(
+   *   'ASSET_ID',
+   *   'TRACK_ID',
+   *   {
+   *     generated_subtitles: [
+   *       {
+   *         language_code: 'en',
+   *         name: 'English (generated)',
+   *         passthrough: 'English (generated)',
+   *       },
+   *     ],
+   *   },
+   * );
+   * ```
    */
   generateSubtitles(
     assetId: string,
@@ -145,6 +287,12 @@ export class Assets extends APIResource {
   /**
    * Returns a list of the input objects that were used to create the asset along
    * with any settings that were applied to each input.
+   *
+   * @example
+   * ```ts
+   * const inputInfos =
+   *   await client.video.assets.retrieveInputInfo('ASSET_ID');
+   * ```
    */
   retrieveInputInfo(
     assetId: string,
@@ -159,6 +307,15 @@ export class Assets extends APIResource {
 
   /**
    * Retrieves information about the specified playback ID.
+   *
+   * @example
+   * ```ts
+   * const playbackId =
+   *   await client.video.assets.retrievePlaybackId(
+   *     'ASSET_ID',
+   *     'PLAYBACK_ID',
+   *   );
+   * ```
    */
   retrievePlaybackId(
     assetId: string,
@@ -178,6 +335,14 @@ export class Assets extends APIResource {
    * master version for 24 hours. After 24 hours Master Access will revert to "none".
    * This master version is not optimized for web and not meant to be streamed, only
    * downloaded for purposes like archiving or editing the video offline.
+   *
+   * @example
+   * ```ts
+   * const asset = await client.video.assets.updateMasterAccess(
+   *   'ASSET_ID',
+   *   { master_access: 'temporary' },
+   * );
+   * ```
    */
   updateMasterAccess(
     assetId: string,
@@ -199,6 +364,14 @@ export class Assets extends APIResource {
    * `audio-only,capped-1080p`, `standard`(deprecated), and `none`. `none` means that
    * an asset _does not_ have mp4 support, so submitting a request with `mp4_support`
    * set to `none` will delete the mp4 assets from the asset in question.
+   *
+   * @example
+   * ```ts
+   * const asset = await client.video.assets.updateMP4Support(
+   *   'ASSET_ID',
+   *   { mp4_support: 'capped-1080p' },
+   * );
+   * ```
    */
   updateMP4Support(
     assetId: string,
@@ -1703,6 +1876,107 @@ export interface Track {
   type?: 'video' | 'audio' | 'text';
 }
 
+export interface AssetCreateStaticRenditionResponse {
+  /**
+   * The ID of this static rendition, used in managing this static rendition. This
+   * field is only valid for `static_renditions`, not for `mp4_support`.
+   */
+  id?: string;
+
+  /**
+   * The bitrate in bits per second
+   */
+  bitrate?: number;
+
+  /**
+   * Extension of the static rendition file
+   */
+  ext?: 'mp4' | 'm4a';
+
+  /**
+   * The file size in bytes
+   */
+  filesize?: string;
+
+  /**
+   * The height of the static rendition's file in pixels
+   */
+  height?: number;
+
+  /**
+   * Name of the static rendition file
+   */
+  name?:
+    | 'low.mp4'
+    | 'medium.mp4'
+    | 'high.mp4'
+    | 'highest.mp4'
+    | 'audio.m4a'
+    | 'capped-1080p.mp4'
+    | '2160p.mp4'
+    | '1440p.mp4'
+    | '1080p.mp4'
+    | '720p.mp4'
+    | '540p.mp4'
+    | '480p.mp4'
+    | '360p.mp4'
+    | '270p.mp4';
+
+  /**
+   * Arbitrary user-supplied metadata set for the static rendition. Max 255
+   * characters.
+   */
+  passthrough?: string;
+
+  /**
+   * Indicates the resolution of this specific MP4 version of this asset. This field
+   * is only valid for `static_renditions`, not for `mp4_support`.
+   */
+  resolution?:
+    | 'highest'
+    | 'audio-only'
+    | '2160p'
+    | '1440p'
+    | '1080p'
+    | '720p'
+    | '540p'
+    | '480p'
+    | '360p'
+    | '270p';
+
+  /**
+   * Indicates the resolution tier of this specific MP4 version of this asset. This
+   * field is only valid for `static_renditions`, not for `mp4_support`.
+   */
+  resolution_tier?: '2160p' | '1440p' | '1080p' | '720p' | 'audio-only';
+
+  /**
+   * Indicates the status of this specific MP4 version of this asset. This field is
+   * only valid for `static_renditions`, not for `mp4_support`.
+   *
+   * - `ready` indicates the MP4 has been generated and is ready for download
+   * - `preparing` indicates the asset has not been ingested or the static rendition
+   *   is still being generated after an asset is ready
+   * - `skipped` indicates the static rendition will not be generated because the
+   *   requested resolution conflicts with the asset attributes after the asset has
+   *   been ingested
+   * - `errored` indicates the static rendition cannot be generated. For example, an
+   *   asset could not be ingested
+   */
+  status?: 'ready' | 'preparing' | 'skipped' | 'errored';
+
+  /**
+   * Indicates the static rendition type of this specific MP4 version of this asset.
+   * This field is only valid for `static_renditions`, not for `mp4_support`.
+   */
+  type?: 'standard' | 'advanced';
+
+  /**
+   * The width of the static rendition's file in pixels
+   */
+  width?: number;
+}
+
 export type AssetGenerateSubtitlesResponse = Array<Track>;
 
 export type AssetRetrieveInputInfoResponse = Array<InputInfo>;
@@ -1723,15 +1997,15 @@ export interface AssetCreateParams {
   advanced_playback_policies?: Array<AssetCreateParams.AdvancedPlaybackPolicy>;
 
   /**
-   * This field is deprecated. Please use `video_quality` instead. The encoding tier
-   * informs the cost, quality, and available platform features for the asset. The
-   * default encoding tier for an account can be set in the Mux Dashboard.
+   * @deprecated This field is deprecated. Please use `video_quality` instead. The
+   * encoding tier informs the cost, quality, and available platform features for the
+   * asset. The default encoding tier for an account can be set in the Mux Dashboard.
    * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
    */
   encoding_tier?: 'smart' | 'baseline' | 'premium';
 
   /**
-   * Deprecated. Use `inputs` instead, which accepts an identical type.
+   * @deprecated Deprecated. Use `inputs` instead, which accepts an identical type.
    */
   input?: Array<AssetCreateParams.Input>;
 
@@ -1758,7 +2032,7 @@ export interface AssetCreateParams {
   meta?: AssetCreateParams.Meta;
 
   /**
-   * Deprecated. See the
+   * @deprecated Deprecated. See the
    * [Static Renditions API](https://www.mux.com/docs/guides/enable-static-mp4-renditions)
    * for the updated API.
    *
@@ -1805,6 +2079,9 @@ export interface AssetCreateParams {
    */
   passthrough?: string;
 
+  /**
+   * @deprecated
+   */
   per_title_encode?: boolean;
 
   /**
@@ -1821,7 +2098,8 @@ export interface AssetCreateParams {
   playback_policies?: Array<Shared.PlaybackPolicy>;
 
   /**
-   * Deprecated. Use `playback_policies` instead, which accepts an identical type.
+   * @deprecated Deprecated. Use `playback_policies` instead, which accepts an
+   * identical type.
    */
   playback_policy?: Array<Shared.PlaybackPolicy>;
 
@@ -2391,6 +2669,12 @@ export namespace AssetUpdateParams {
 
 export interface AssetListParams extends BasePageParams {
   /**
+   * This parameter is used to request pages beyond the first. You can find the
+   * cursor value in the `next_cursor` field of paginated responses.
+   */
+  cursor?: string;
+
+  /**
    * Filter response to return all the assets for this live stream only
    */
   live_stream_id?: string;
@@ -2421,6 +2705,26 @@ export interface AssetCreatePlaybackIDParams {
    *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
    */
   policy?: Shared.PlaybackPolicy;
+}
+
+export interface AssetCreateStaticRenditionParams {
+  resolution:
+    | 'highest'
+    | 'audio-only'
+    | '2160p'
+    | '1440p'
+    | '1080p'
+    | '720p'
+    | '540p'
+    | '480p'
+    | '360p'
+    | '270p';
+
+  /**
+   * Arbitrary user-supplied metadata set for the static rendition. Max 255
+   * characters.
+   */
+  passthrough?: string;
 }
 
 export interface AssetCreateTrackParams {
@@ -2559,6 +2863,7 @@ export declare namespace Assets {
     type AssetResponse as AssetResponse,
     type InputInfo as InputInfo,
     type Track as Track,
+    type AssetCreateStaticRenditionResponse as AssetCreateStaticRenditionResponse,
     type AssetGenerateSubtitlesResponse as AssetGenerateSubtitlesResponse,
     type AssetRetrieveInputInfoResponse as AssetRetrieveInputInfoResponse,
     AssetsBasePage as AssetsBasePage,
@@ -2566,6 +2871,7 @@ export declare namespace Assets {
     type AssetUpdateParams as AssetUpdateParams,
     type AssetListParams as AssetListParams,
     type AssetCreatePlaybackIDParams as AssetCreatePlaybackIDParams,
+    type AssetCreateStaticRenditionParams as AssetCreateStaticRenditionParams,
     type AssetCreateTrackParams as AssetCreateTrackParams,
     type AssetGenerateSubtitlesParams as AssetGenerateSubtitlesParams,
     type AssetUpdateMasterAccessParams as AssetUpdateMasterAccessParams,
