@@ -416,6 +416,11 @@ export interface Asset {
   max_resolution_tier: '1080p' | '1440p' | '2160p';
 
   /**
+   * Detailed state information about the asset ingest process.
+   */
+  progress: Asset.Progress;
+
+  /**
    * The status of the asset.
    */
   status: 'preparing' | 'ready' | 'errored';
@@ -584,6 +589,35 @@ export interface Asset {
 }
 
 export namespace Asset {
+  /**
+   * Detailed state information about the asset ingest process.
+   */
+  export interface Progress {
+    /**
+     * Represents the estimated completion percentage. Returns `0 - 100` when in
+     * `ingesting`, `transcoding`, or `completed` state, and `-1` when in `live` or
+     * `errored` state.
+     */
+    progress: number;
+
+    /**
+     * The detailed state of the asset ingest process. This field is useful for
+     * relaying more granular processing information to end users when a
+     * [non-standard input is encountered](https://www.mux.com/docs/guides/minimize-processing-time#non-standard-input).
+     *
+     * - `ingesting`: Asset is being ingested (initial processing before or after
+     *   transcoding). While in this state, the `progress` percentage will be 0.
+     * - `transcoding`: Asset is undergoing non-standard transcoding.
+     * - `completed`: Asset processing is complete (`status` is `ready`). While in this
+     *   state, the `progress` percentage will be 100.
+     * - `live`: Asset is a live stream currently in progress. While in this state, the
+     *   `progress` percentage will be -1.
+     * - `errored`: Asset has encountered an error (`status` is `errored`). While in
+     *   this state, the `progress` percentage will be -1.
+     */
+    state: 'ingesting' | 'transcoding' | 'completed' | 'live' | 'errored';
+  }
+
   /**
    * Object that describes any errors that happened when processing this asset.
    */
