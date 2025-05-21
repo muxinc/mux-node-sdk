@@ -1,0 +1,32 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Metadata } from '../../';
+import Mux from '@mux/mux-node';
+
+export const metadata: Metadata = {
+  resource: 'video.live_streams',
+  operation: 'write',
+  tags: [],
+};
+
+export const tool: Tool = {
+  name: 'delete_new_asset_settings_static_renditions_video_live_streams',
+  description:
+    "Deletes a live stream's static renditions settings for new assets. Further assets made via this live stream will not create static renditions unless re-added.",
+  inputSchema: {
+    type: 'object',
+    properties: {
+      LIVE_STREAM_ID: {
+        type: 'string',
+      },
+    },
+  },
+};
+
+export const handler = (client: Mux, args: Record<string, unknown> | undefined) => {
+  const { LIVE_STREAM_ID, ...body } = args as any;
+  return client.video.liveStreams.deleteNewAssetSettingsStaticRenditions(LIVE_STREAM_ID);
+};
+
+export default { metadata, tool, handler };
