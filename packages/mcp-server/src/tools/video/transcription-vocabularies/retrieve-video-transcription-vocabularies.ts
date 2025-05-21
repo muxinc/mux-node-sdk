@@ -1,0 +1,32 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Metadata } from '../../';
+import Mux from '@mux/mux-node';
+
+export const metadata: Metadata = {
+  resource: 'video.transcription_vocabularies',
+  operation: 'read',
+  tags: [],
+};
+
+export const tool: Tool = {
+  name: 'retrieve_video_transcription_vocabularies',
+  description:
+    'Retrieves the details of a Transcription Vocabulary that has previously been created. Supply the unique Transcription Vocabulary ID and Mux will return the corresponding Transcription Vocabulary information. The same information is returned when creating a Transcription Vocabulary.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      TRANSCRIPTION_VOCABULARY_ID: {
+        type: 'string',
+      },
+    },
+  },
+};
+
+export const handler = (client: Mux, args: Record<string, unknown> | undefined) => {
+  const { TRANSCRIPTION_VOCABULARY_ID, ...body } = args as any;
+  return client.video.transcriptionVocabularies.retrieve(TRANSCRIPTION_VOCABULARY_ID);
+};
+
+export default { metadata, tool, handler };

@@ -1,0 +1,31 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Metadata } from '../../';
+import Mux from '@mux/mux-node';
+
+export const metadata: Metadata = {
+  resource: 'video.live_streams',
+  operation: 'write',
+  tags: [],
+};
+
+export const tool: Tool = {
+  name: 'enable_video_live_streams',
+  description: 'Enables a live stream, allowing it to accept an incoming RTMP stream.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      LIVE_STREAM_ID: {
+        type: 'string',
+      },
+    },
+  },
+};
+
+export const handler = (client: Mux, args: Record<string, unknown> | undefined) => {
+  const { LIVE_STREAM_ID, ...body } = args as any;
+  return client.video.liveStreams.enable(LIVE_STREAM_ID);
+};
+
+export default { metadata, tool, handler };

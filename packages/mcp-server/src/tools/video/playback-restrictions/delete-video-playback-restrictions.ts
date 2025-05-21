@@ -1,0 +1,31 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Metadata } from '../../';
+import Mux from '@mux/mux-node';
+
+export const metadata: Metadata = {
+  resource: 'video.playback_restrictions',
+  operation: 'write',
+  tags: [],
+};
+
+export const tool: Tool = {
+  name: 'delete_video_playback_restrictions',
+  description: 'Deletes a single Playback Restriction.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      PLAYBACK_RESTRICTION_ID: {
+        type: 'string',
+      },
+    },
+  },
+};
+
+export const handler = (client: Mux, args: Record<string, unknown> | undefined) => {
+  const { PLAYBACK_RESTRICTION_ID, ...body } = args as any;
+  return client.video.playbackRestrictions.delete(PLAYBACK_RESTRICTION_ID);
+};
+
+export default { metadata, tool, handler };
