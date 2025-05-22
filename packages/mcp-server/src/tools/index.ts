@@ -100,7 +100,6 @@ import create_system_signing_keys from './system/signing-keys/create-system-sign
 import retrieve_system_signing_keys from './system/signing-keys/retrieve-system-signing-keys';
 import list_system_signing_keys from './system/signing-keys/list-system-signing-keys';
 import delete_system_signing_keys from './system/signing-keys/delete-system-signing-keys';
-import unwrap_webhooks from './webhooks/unwrap-webhooks';
 
 export type HandlerFunction = (client: Mux, args: Record<string, unknown> | undefined) => Promise<any>;
 
@@ -219,7 +218,6 @@ addEndpoint(create_system_signing_keys);
 addEndpoint(retrieve_system_signing_keys);
 addEndpoint(list_system_signing_keys);
 addEndpoint(delete_system_signing_keys);
-addEndpoint(unwrap_webhooks);
 
 export type Filter = {
   type: 'resource' | 'operation' | 'tag' | 'tool';
