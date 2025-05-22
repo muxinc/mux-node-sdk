@@ -364,7 +364,3 @@ Each interval represented in the data array contains an array with the following
   **The private key is not returned in this response.**
 - `list_system_signing_keys` (`read`): Returns a list of signing keys.
 - `delete_system_signing_keys` (`write`): Deletes an existing signing key. Use with caution, as this will invalidate any existing signatures and no JWTs can be signed using the key again.
-
-### Resource `webhooks`:
-
-- `unwrap_webhooks` (`write`): Validates that the given payload was sent by Mux and parses the payload.
