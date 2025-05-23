@@ -205,7 +205,7 @@ The following tools are available in this MCP server.
 - `delete_video_live_streams` (`write`): Deletes a live stream from the current environment. If the live stream is currently active and being streamed to, ingest will be terminated and the encoder will be disconnected.
 - `complete_video_live_streams` (`write`): (Optional) End the live stream recording immediately instead of waiting for the reconnect_window. `EXT-X-ENDLIST` tag is added to the HLS manifest which notifies the player that this live stream is over.
 
-Mux does not close the encoder connection immediately. Encoders are often configured to re-establish connections immediately which would result in a new recorded asset. For this reason, Mux waits for 60s before closing the connection with the encoder. This 60s timeframe is meant to give encoder operators a chance to disconnect from their end.
+  Mux does not close the encoder connection immediately. Encoders are often configured to re-establish connections immediately which would result in a new recorded asset. For this reason, Mux waits for 60s before closing the connection with the encoder. This 60s timeframe is meant to give encoder operators a chance to disconnect from their end.
 
 - `create_playback_id_video_live_streams` (`write`): Create a new playback ID for this live stream, through which a viewer can watch the streamed content of the live stream.
 - `create_simulcast_target_video_live_streams` (`write`): Create a simulcast target for the parent live stream. Simulcast target can only be created when the parent live stream is in idle state. Only one simulcast target can be created at a time with this API.
@@ -214,7 +214,7 @@ Mux does not close the encoder connection immediately. Encoders are often config
 - `delete_simulcast_target_video_live_streams` (`write`): Delete the simulcast target using the simulcast target ID returned when creating the simulcast target. Simulcast Target can only be deleted when the parent live stream is in idle state.
 - `disable_video_live_streams` (`write`): Disables a live stream, making it reject incoming RTMP streams until re-enabled. The API also ends the live stream recording immediately when active. Ending the live stream recording adds the `EXT-X-ENDLIST` tag to the HLS manifest which notifies the player that this live stream is over.
 
-Mux also closes the encoder connection immediately. Any attempt from the encoder to re-establish connection will fail till the live stream is re-enabled.
+  Mux also closes the encoder connection immediately. Any attempt from the encoder to re-establish connection will fail till the live stream is re-enabled.
 
 - `enable_video_live_streams` (`write`): Enables a live stream, allowing it to accept an incoming RTMP stream.
 - `reset_stream_key_video_live_streams` (`write`): Reset a live stream key if you want to immediately stop the current stream key from working and create a new stream key that can be used for future broadcasts.
@@ -266,12 +266,12 @@ Mux also closes the encoder connection immediately. Any attempt from the encoder
 - `launch_video_web_inputs` (`write`): Launches the browsers instance, loads the URL specified, and then starts streaming to the specified Live Stream.
 - `reload_video_web_inputs` (`write`): Reloads the page that a Web Input is displaying.
 
-Note: Using this when the Web Input is streaming will display the page reloading.
+  Note: Using this when the Web Input is streaming will display the page reloading.
 
 - `shutdown_video_web_inputs` (`write`): Ends streaming to the specified Live Stream, and then shuts down the Web Input browser instance.
 - `update_url_video_web_inputs` (`write`): Changes the URL that a Web Input loads when it launches.
 
-Note: This can only be called when the Web Input is idle.
+  Note: This can only be called when the Web Input is idle.
 
 ### Resource `video.drm_configurations`:
 
@@ -282,11 +282,11 @@ Note: This can only be called when the Web Input is idle.
 
 - `list_data_dimensions` (`read`): List all available dimensions.
 
-Note: This API replaces the list-filters API call.
+  Note: This API replaces the list-filters API call.
 
 - `list_values_data_dimensions` (`read`): Lists the values for a dimension along with a total count of related views.
 
-Note: This API replaces the list-filter-values API call.
+  Note: This API replaces the list-filter-values API call.
 
 ### Resource `data.monitoring`:
 
@@ -312,7 +312,7 @@ Note: This API replaces the list-filter-values API call.
 
 - `list_values_data_filters` (`read`): The API has been replaced by the list-dimension-values API call.
 
-Lists the values for a filter along with a total count of related views.
+  Lists the values for a filter along with a total count of related views.
 
 ### Resource `data.incidents`:
 
@@ -327,11 +327,12 @@ Lists the values for a filter along with a total count of related views.
 - `get_overall_values_data_metrics` (`read`): Returns the overall value for a specific metric, as well as the total view count, watch time, and the Mux Global metric value for the metric.
 - `get_timeseries_data_metrics` (`read`): Returns timeseries data for a specific metric.
 
-Each interval represented in the data array contains an array with the following values:
+  Each interval represented in the data array contains an array with the following values:
 
-- the first element is the interval time
-- the second element is the calculated metric value
-- the third element is the number of views in the interval that have a valid metric value
+  - the first element is the interval time
+  - the second element is the calculated metric value
+  - the third element is the number of views in the interval that have a valid metric value
+
 - `list_breakdown_values_data_metrics` (`read`): List the breakdown values for a specific metric.
 
 ### Resource `data.real_time`:
