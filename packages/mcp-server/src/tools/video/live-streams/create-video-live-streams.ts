@@ -117,6 +117,18 @@ export const tool: Tool = {
         description:
           'The time in seconds a live stream may be continuously active before being disconnected. Defaults to 12 hours.',
       },
+      meta: {
+        type: 'object',
+        description:
+          'Customer provided metadata about this live stream.\n\nNote: This metadata may be publicly available via the video player. Do not include PII or sensitive information.\n',
+        properties: {
+          title: {
+            type: 'string',
+            description: 'The live stream title. Max 512 code points.',
+          },
+        },
+        required: [],
+      },
       new_asset_settings: {
         $ref: '#/$defs/asset_options',
       },

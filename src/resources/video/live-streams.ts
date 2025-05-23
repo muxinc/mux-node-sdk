@@ -566,6 +566,14 @@ export interface LiveStream {
    */
   low_latency?: boolean;
 
+  /**
+   * Customer provided metadata about this live stream.
+   *
+   * Note: This metadata may be publicly available via the video player. Do not
+   * include PII or sensitive information.
+   */
+  meta?: LiveStream.Meta;
+
   new_asset_settings?: AssetsAPI.AssetOptions;
 
   /**
@@ -701,6 +709,19 @@ export namespace LiveStream {
      */
     transcription_vocabulary_ids?: Array<string>;
   }
+
+  /**
+   * Customer provided metadata about this live stream.
+   *
+   * Note: This metadata may be publicly available via the video player. Do not
+   * include PII or sensitive information.
+   */
+  export interface Meta {
+    /**
+     * The live stream title. Max 512 code points.
+     */
+    title?: string;
+  }
 }
 
 export interface SimulcastTarget {
@@ -824,6 +845,14 @@ export interface LiveStreamCreateParams {
    * disconnected. Defaults to 12 hours.
    */
   max_continuous_duration?: number;
+
+  /**
+   * Customer provided metadata about this live stream.
+   *
+   * Note: This metadata may be publicly available via the video player. Do not
+   * include PII or sensitive information.
+   */
+  meta?: LiveStreamCreateParams.Meta;
 
   new_asset_settings?: AssetsAPI.AssetOptions;
 
@@ -977,6 +1006,19 @@ export namespace LiveStreamCreateParams {
     transcription_vocabulary_ids?: Array<string>;
   }
 
+  /**
+   * Customer provided metadata about this live stream.
+   *
+   * Note: This metadata may be publicly available via the video player. Do not
+   * include PII or sensitive information.
+   */
+  export interface Meta {
+    /**
+     * The live stream title. Max 512 code points.
+     */
+    title?: string;
+  }
+
   export interface SimulcastTarget {
     /**
      * The RTMP(s) or SRT endpoint for a simulcast destination.
@@ -1020,6 +1062,14 @@ export interface LiveStreamUpdateParams {
    * disconnected. Defaults to 12 hours.
    */
   max_continuous_duration?: number;
+
+  /**
+   * Customer provided metadata about this live stream.
+   *
+   * Note: This metadata may be publicly available via the video player. Do not
+   * include PII or sensitive information.
+   */
+  meta?: LiveStreamUpdateParams.Meta;
 
   /**
    * Updates the new asset settings to use to generate a new asset for this live
@@ -1072,6 +1122,19 @@ export interface LiveStreamUpdateParams {
 }
 
 export namespace LiveStreamUpdateParams {
+  /**
+   * Customer provided metadata about this live stream.
+   *
+   * Note: This metadata may be publicly available via the video player. Do not
+   * include PII or sensitive information.
+   */
+  export interface Meta {
+    /**
+     * The live stream title. Max 512 code points.
+     */
+    title?: string;
+  }
+
   /**
    * Updates the new asset settings to use to generate a new asset for this live
    * stream. Only the `mp4_support`, `master_access`, and `video_quality` settings
