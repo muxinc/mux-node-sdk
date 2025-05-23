@@ -1,4 +1,4 @@
 configured_endpoints: 97
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/mux%2Fmux-2dc770f60821fde4f231553e2dd01f60f6b48a88095b3ae1558ffa195070453e.yml
-openapi_spec_hash: 23c422671d41cfd5cd932aedc232d79d
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/mux%2Fmux-d2e7438f31a03233e20cd3229cc54a38a389fedba637036369e46c9f0a4979a8.yml
+openapi_spec_hash: e8e1c6a4827ce05f9f0ea59074c2d725
 config_hash: 5443bbeedb5bc470992d99c631fd72b4
