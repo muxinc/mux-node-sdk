@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.web_inputs',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/video/v1/web-inputs/{WEB_INPUT_ID}',
+  operationId: 'get-web-input',
 };
 
 export const tool: Tool = {

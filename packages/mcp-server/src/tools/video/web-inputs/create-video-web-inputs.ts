@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.web_inputs',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/video/v1/web-inputs',
+  operationId: 'create-web-input',
 };
 
 export const tool: Tool = {

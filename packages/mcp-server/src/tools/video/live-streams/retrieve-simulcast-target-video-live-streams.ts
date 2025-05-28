@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.live_streams',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}',
+  operationId: 'get-live-stream-simulcast-target',
 };
 
 export const tool: Tool = {

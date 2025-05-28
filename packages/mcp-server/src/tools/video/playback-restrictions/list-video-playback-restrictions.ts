@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.playback_restrictions',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/video/v1/playback-restrictions',
+  operationId: 'list-playback-restrictions',
 };
 
 export const tool: Tool = {

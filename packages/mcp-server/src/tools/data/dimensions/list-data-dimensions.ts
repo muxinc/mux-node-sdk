@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'data.dimensions',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/data/v1/dimensions',
+  operationId: 'list-dimensions',
 };
 
 export const tool: Tool = {

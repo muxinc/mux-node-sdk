@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.assets',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/video/v1/assets/{ASSET_ID}/static-renditions',
+  operationId: 'create-asset-static-rendition',
 };
 
 export const tool: Tool = {

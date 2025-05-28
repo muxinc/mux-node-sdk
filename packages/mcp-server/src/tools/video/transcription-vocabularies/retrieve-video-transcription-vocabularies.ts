@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.transcription_vocabularies',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID}',
+  operationId: 'get-transcription-vocabulary',
 };
 
 export const tool: Tool = {

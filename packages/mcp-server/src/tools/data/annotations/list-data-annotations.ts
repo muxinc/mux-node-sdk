@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'data.annotations',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/data/v1/annotations',
+  operationId: 'list-annotations',
 };
 
 export const tool: Tool = {

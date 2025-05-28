@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.uploads',
   operation: 'write',
   tags: [],
+  httpMethod: 'put',
+  httpPath: '/video/v1/uploads/{UPLOAD_ID}/cancel',
+  operationId: 'cancel-direct-upload',
 };
 
 export const tool: Tool = {

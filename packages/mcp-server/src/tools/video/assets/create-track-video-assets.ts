@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.assets',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/video/v1/assets/{ASSET_ID}/tracks',
+  operationId: 'create-asset-track',
 };
 
 export const tool: Tool = {

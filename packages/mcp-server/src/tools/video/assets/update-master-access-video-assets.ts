@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.assets',
   operation: 'write',
   tags: [],
+  httpMethod: 'put',
+  httpPath: '/video/v1/assets/{ASSET_ID}/master-access',
+  operationId: 'update-asset-master-access',
 };
 
 export const tool: Tool = {

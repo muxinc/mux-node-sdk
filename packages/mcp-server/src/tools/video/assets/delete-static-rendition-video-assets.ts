@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.assets',
   operation: 'write',
   tags: [],
+  httpMethod: 'delete',
+  httpPath: '/video/v1/assets/{ASSET_ID}/static-renditions/{STATIC_RENDITION_ID}',
+  operationId: 'delete-asset-static-rendition',
 };
 
 export const tool: Tool = {

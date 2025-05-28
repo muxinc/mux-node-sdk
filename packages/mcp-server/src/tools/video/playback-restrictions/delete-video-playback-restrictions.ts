@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.playback_restrictions',
   operation: 'write',
   tags: [],
+  httpMethod: 'delete',
+  httpPath: '/video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}',
+  operationId: 'delete-playback-restriction',
 };
 
 export const tool: Tool = {

@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.live_streams',
   operation: 'write',
   tags: [],
+  httpMethod: 'put',
+  httpPath: '/video/v1/live-streams/{LIVE_STREAM_ID}/enable',
+  operationId: 'enable-live-stream',
 };
 
 export const tool: Tool = {

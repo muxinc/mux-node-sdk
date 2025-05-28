@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.transcription_vocabularies',
   operation: 'write',
   tags: [],
+  httpMethod: 'delete',
+  httpPath: '/video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID}',
+  operationId: 'delete-transcription-vocabulary',
 };
 
 export const tool: Tool = {

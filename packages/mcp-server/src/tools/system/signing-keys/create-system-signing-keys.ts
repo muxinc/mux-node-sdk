@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'system.signing_keys',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/system/v1/signing-keys',
+  operationId: 'create-signing-key',
 };
 
 export const tool: Tool = {

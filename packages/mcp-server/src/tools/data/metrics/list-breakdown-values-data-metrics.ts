@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'data.metrics',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/data/v1/metrics/{METRIC_ID}/breakdown',
+  operationId: 'list-breakdown-values',
 };
 
 export const tool: Tool = {

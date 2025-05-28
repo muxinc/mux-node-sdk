@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.live_streams',
   operation: 'write',
   tags: [],
+  httpMethod: 'delete',
+  httpPath: '/video/v1/live-streams/{LIVE_STREAM_ID}/new-asset-settings/static-renditions',
+  operationId: 'delete-live-stream-new-asset-settings-static-renditions',
 };
 
 export const tool: Tool = {

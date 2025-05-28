@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'data.metrics',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/data/v1/metrics/{METRIC_ID}/timeseries',
+  operationId: 'get-metric-timeseries-data',
 };
 
 export const tool: Tool = {
