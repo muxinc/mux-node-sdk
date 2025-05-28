@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.assets',
   operation: 'write',
   tags: [],
+  httpMethod: 'delete',
+  httpPath: '/video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}',
+  operationId: 'delete-asset-track',
 };
 
 export const tool: Tool = {

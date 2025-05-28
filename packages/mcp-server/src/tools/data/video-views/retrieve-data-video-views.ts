@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'data.video_views',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/data/v1/video-views/{VIDEO_VIEW_ID}',
+  operationId: 'get-video-view',
 };
 
 export const tool: Tool = {

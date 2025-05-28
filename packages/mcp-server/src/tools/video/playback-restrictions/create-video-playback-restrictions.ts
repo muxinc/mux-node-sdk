@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.playback_restrictions',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/video/v1/playback-restrictions',
+  operationId: 'create-playback-restriction',
 };
 
 export const tool: Tool = {

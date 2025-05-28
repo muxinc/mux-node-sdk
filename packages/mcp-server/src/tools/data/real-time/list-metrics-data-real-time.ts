@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'data.real_time',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/data/v1/realtime/metrics',
+  operationId: 'list-realtime-metrics',
 };
 
 export const tool: Tool = {

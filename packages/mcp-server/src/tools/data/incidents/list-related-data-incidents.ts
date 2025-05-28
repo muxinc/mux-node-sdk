@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'data.incidents',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/data/v1/incidents/{INCIDENT_ID}/related',
+  operationId: 'list-related-incidents',
 };
 
 export const tool: Tool = {

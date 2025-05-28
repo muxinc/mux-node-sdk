@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'data.metrics',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/data/v1/metrics/comparison',
+  operationId: 'list-all-metric-values',
 };
 
 export const tool: Tool = {

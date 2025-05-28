@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.drm_configurations',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/video/v1/drm-configurations',
+  operationId: 'list-drm-configurations',
 };
 
 export const tool: Tool = {

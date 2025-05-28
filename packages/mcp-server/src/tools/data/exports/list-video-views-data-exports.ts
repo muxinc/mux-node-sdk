@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'data.exports',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/data/v1/exports/views',
+  operationId: 'list-exports-views',
 };
 
 export const tool: Tool = {

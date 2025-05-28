@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'data.annotations',
   operation: 'write',
   tags: [],
+  httpMethod: 'patch',
+  httpPath: '/data/v1/annotations/{ANNOTATION_ID}',
+  operationId: 'update-annotation',
 };
 
 export const tool: Tool = {

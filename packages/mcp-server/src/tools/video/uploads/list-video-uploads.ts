@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.uploads',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/video/v1/uploads',
+  operationId: 'list-direct-uploads',
 };
 
 export const tool: Tool = {

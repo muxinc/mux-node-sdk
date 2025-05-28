@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.assets',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/video/v1/assets/{ASSET_ID}',
+  operationId: 'get-asset',
 };
 
 export const tool: Tool = {

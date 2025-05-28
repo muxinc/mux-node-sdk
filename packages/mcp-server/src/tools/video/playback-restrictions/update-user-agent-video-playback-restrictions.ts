@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'video.playback_restrictions',
   operation: 'write',
   tags: [],
+  httpMethod: 'put',
+  httpPath: '/video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/user_agent',
+  operationId: 'update-user-agent-restriction',
 };
 
 export const tool: Tool = {

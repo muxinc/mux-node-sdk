@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'system.signing_keys',
   operation: 'write',
   tags: [],
+  httpMethod: 'delete',
+  httpPath: '/system/v1/signing-keys/{SIGNING_KEY_ID}',
+  operationId: 'delete-signing-key',
 };
 
 export const tool: Tool = {

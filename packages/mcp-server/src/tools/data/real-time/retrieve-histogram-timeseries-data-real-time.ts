@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'data.real_time',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/data/v1/realtime/metrics/{REALTIME_HISTOGRAM_METRIC_ID}/histogram-timeseries',
+  operationId: 'get-realtime-histogram-timeseries',
 };
 
 export const tool: Tool = {
