@@ -365,13 +365,7 @@ export class Assets extends APIResource {
    * an asset _does not_ have mp4 support, so submitting a request with `mp4_support`
    * set to `none` will delete the mp4 assets from the asset in question.
    *
-   * @example
-   * ```ts
-   * const asset = await client.video.assets.updateMP4Support(
-   *   'ASSET_ID',
-   *   { mp4_support: 'capped-1080p' },
-   * );
-   * ```
+   * @deprecated
    */
   updateMP4Support(
     assetId: string,
