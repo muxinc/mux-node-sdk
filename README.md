@@ -149,13 +149,13 @@ List methods in the Mux API are paginated.
 You can use the `for await … of` syntax to iterate through items across all pages:
 
 ```ts
-async function fetchAllVideoDeliveryUsages(params) {
-  const allVideoDeliveryUsages = [];
+async function fetchAllDeliveryReports(params) {
+  const allDeliveryReports = [];
   // Automatically fetches more pages as needed.
   for await (const deliveryReport of client.video.deliveryUsage.list()) {
-    allVideoDeliveryUsages.push(deliveryReport);
+    allDeliveryReports.push(deliveryReport);
   }
-  return allVideoDeliveryUsages;
+  return allDeliveryReports;
 }
 ```
 
