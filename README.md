@@ -28,16 +28,12 @@ const client = new Mux({
   tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted
 });
 
-async function main() {
-  const asset = await client.video.assets.create({
-    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
-    playback_policies: ['public'],
-  });
+const asset = await client.video.assets.create({
+  inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+  playback_policies: ['public'],
+});
 
-  console.log(asset.id);
-}
-
-main();
+console.log(asset.id);
 ```
 
 ### Request & Response types
@@ -53,15 +49,11 @@ const client = new Mux({
   tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted
 });
 
-async function main() {
-  const params: Mux.Video.AssetCreateParams = {
-    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
-    playback_policies: ['public'],
-  };
-  const asset: Mux.Video.Asset = await client.video.assets.create(params);
-}
-
-main();
+const params: Mux.Video.AssetCreateParams = {
+  inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+  playback_policies: ['public'],
+};
+const asset: Mux.Video.Asset = await client.video.assets.create(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -283,21 +275,17 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-async function main() {
-  const liveStream = await client.video.liveStreams
-    .create({ playback_policies: ['public'] })
-    .catch(async (err) => {
-      if (err instanceof Mux.APIError) {
-        console.log(err.status); // 400
-        console.log(err.name); // BadRequestError
-        console.log(err.headers); // {server: 'nginx', ...}
-      } else {
-        throw err;
-      }
-    });
-}
-
-main();
+const liveStream = await client.video.liveStreams
+  .create({ playback_policies: ['public'] })
+  .catch(async (err) => {
+    if (err instanceof Mux.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 ```
 
 Error codes are as follows:
