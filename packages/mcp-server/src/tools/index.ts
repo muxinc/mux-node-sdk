@@ -1,7 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Mux from '@mux/mux-node';
-import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import { Metadata, Endpoint, HandlerFunction } from './types';
+
+export { Metadata, Endpoint, HandlerFunction };
 
 import create_video_assets from './video/assets/create-video-assets';
 import retrieve_video_assets from './video/assets/retrieve-video-assets';
@@ -100,24 +101,6 @@ import create_system_signing_keys from './system/signing-keys/create-system-sign
 import retrieve_system_signing_keys from './system/signing-keys/retrieve-system-signing-keys';
 import list_system_signing_keys from './system/signing-keys/list-system-signing-keys';
 import delete_system_signing_keys from './system/signing-keys/delete-system-signing-keys';
-
-export type HandlerFunction = (client: Mux, args: Record<string, unknown> | undefined) => Promise<any>;
-
-export type Metadata = {
-  resource: string;
-  operation: 'read' | 'write';
-  tags: string[];
-
-  httpMethod?: string;
-  httpPath?: string;
-  operationId?: string;
-};
-
-export type Endpoint = {
-  metadata: Metadata;
-  tool: Tool;
-  handler: HandlerFunction;
-};
 
 export const endpoints: Endpoint[] = [];
 
