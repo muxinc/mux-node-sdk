@@ -1,5 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { asTextContentResult } from '@mux/mux-node-mcp/tools/types';
+
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../../';
 import Mux from '@mux/mux-node';
@@ -35,9 +37,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: Mux, args: Record<string, unknown> | undefined) => {
+export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return client.data.annotations.create(body);
+  return asTextContentResult(await client.data.annotations.create(body));
 };
 
 export default { metadata, tool, handler };
