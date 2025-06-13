@@ -2,7 +2,7 @@
 
 import type { Mux } from './index';
 
-export class APIResource {
+export abstract class APIResource {
   protected _client: Mux;
 
   constructor(client: Mux) {
