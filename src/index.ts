@@ -161,6 +161,7 @@ export class Mux extends Core.APIClient {
 
     super({
       baseURL: options.baseURL!,
+      baseURLOverridden: baseURL ? baseURL !== 'https://api.mux.com' : false,
       timeout: options.timeout ?? 60000 /* 1 minute */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,
@@ -181,6 +182,13 @@ export class Mux extends Core.APIClient {
   system: API.System = new API.System(this);
   webhooks: API.Webhooks = new API.Webhooks(this);
   jwt: API.Jwt = new API.Jwt(this);
+
+  /**
+   * Check whether the base URL is set to its default.
+   */
+  #baseURLOverridden(): boolean {
+    return this.baseURL !== 'https://api.mux.com';
+  }
 
   protected override defaultQuery(): Core.DefaultQuery | undefined {
     return this._options.defaultQuery;
