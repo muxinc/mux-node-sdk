@@ -570,30 +570,46 @@ export namespace VideoDeliveryHighTrafficWebhookEvent {
       /**
        * The duration of the asset in seconds.
        */
-      asset_duration?: number;
+      asset_duration: number;
 
       /**
        * @deprecated This field is deprecated. Please use `asset_video_quality` instead.
        * The encoding tier that the asset was ingested at.
        * [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
        */
-      asset_encoding_tier?: 'smart' | 'baseline' | 'premium';
+      asset_encoding_tier: 'smart' | 'baseline' | 'premium';
 
       /**
        * Unique identifier for the asset.
        */
-      asset_id?: string;
+      asset_id: string;
 
       /**
        * The resolution tier that the asset was ingested at, affecting billing for ingest
        * & storage
        */
-      asset_resolution_tier?: 'audio-only' | '720p' | '1080p' | '1440p' | '2160p';
+      asset_resolution_tier: 'audio-only' | '720p' | '1080p' | '1440p' | '2160p';
 
       /**
        * The state of the asset.
        */
-      asset_state?: 'ready' | 'errored' | 'deleted';
+      asset_state: 'ready' | 'errored' | 'deleted';
+
+      /**
+       * Time at which the asset was created. Measured in seconds since the Unix epoch.
+       */
+      created_at: number;
+
+      /**
+       * Total number of delivered seconds during this time window.
+       */
+      delivered_seconds: number;
+
+      /**
+       * Seconds delivered broken into resolution tiers. Each tier will only be displayed
+       * if there was content delivered in the tier.
+       */
+      delivered_seconds_by_resolution: Data.DeliveredSecondsByResolution;
 
       /**
        * The video quality that the asset was ingested at. This field replaces
@@ -603,26 +619,10 @@ export namespace VideoDeliveryHighTrafficWebhookEvent {
       asset_video_quality?: 'basic' | 'plus' | 'premium';
 
       /**
-       * Time at which the asset was created. Measured in seconds since the Unix epoch.
-       */
-      created_at?: number;
-
-      /**
        * If exists, time at which the asset was deleted. Measured in seconds since the
        * Unix epoch.
        */
       deleted_at?: number;
-
-      /**
-       * Total number of delivered seconds during this time window.
-       */
-      delivered_seconds?: number;
-
-      /**
-       * Seconds delivered broken into resolution tiers. Each tier will only be displayed
-       * if there was content delivered in the tier.
-       */
-      delivered_seconds_by_resolution?: Data.DeliveredSecondsByResolution;
 
       /**
        * Unique identifier for the live stream that created the asset.
