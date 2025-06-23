@@ -450,7 +450,7 @@ export namespace VideoViewResponse {
 
   export namespace Data {
     export interface Event {
-      details: Record<string, unknown>;
+      details: { [key: string]: unknown };
 
       event_time: number;
 
