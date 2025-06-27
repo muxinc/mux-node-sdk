@@ -33,8 +33,10 @@ export const tool: Tool = {
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
   const { ASSET_ID, STATIC_RENDITION_ID, ...body } = args as any;
-  await client.video.assets.deleteStaticRendition(ASSET_ID, STATIC_RENDITION_ID);
-  return asTextContentResult('Successful tool call');
+  const response = await client.video.assets
+    .deleteStaticRendition(ASSET_ID, STATIC_RENDITION_ID)
+    .asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };

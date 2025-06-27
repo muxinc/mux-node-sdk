@@ -34,8 +34,8 @@ export const tool: Tool = {
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
   const { LIVE_STREAM_ID, PLAYBACK_ID, ...body } = args as any;
-  await client.video.liveStreams.deletePlaybackId(LIVE_STREAM_ID, PLAYBACK_ID);
-  return asTextContentResult('Successful tool call');
+  const response = await client.video.liveStreams.deletePlaybackId(LIVE_STREAM_ID, PLAYBACK_ID).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };

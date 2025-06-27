@@ -30,8 +30,8 @@ export const tool: Tool = {
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
   const { WEB_INPUT_ID, ...body } = args as any;
-  await client.video.webInputs.delete(WEB_INPUT_ID);
-  return asTextContentResult('Successful tool call');
+  const response = await client.video.webInputs.delete(WEB_INPUT_ID).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };
