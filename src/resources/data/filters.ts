@@ -32,6 +32,7 @@ export class Filters extends APIResource {
     }
     return this._client.getAPIList(`/data/v1/filters/${filterId}`, FilterValuesBasePage, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }

@@ -23,7 +23,11 @@ export class Assets extends APIResource {
    */
   create(body: AssetCreateParams, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
-      this._client.post('/video/v1/assets', { body, ...options }) as Core.APIPromise<{ data: Asset }>
+      this._client.post('/video/v1/assets', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Asset }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -42,7 +46,10 @@ export class Assets extends APIResource {
    */
   retrieve(assetId: string, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
-      this._client.get(`/video/v1/assets/${assetId}`, options) as Core.APIPromise<{ data: Asset }>
+      this._client.get(`/video/v1/assets/${assetId}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Asset }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -59,9 +66,11 @@ export class Assets extends APIResource {
    */
   update(assetId: string, body: AssetUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
-      this._client.patch(`/video/v1/assets/${assetId}`, { body, ...options }) as Core.APIPromise<{
-        data: Asset;
-      }>
+      this._client.patch(`/video/v1/assets/${assetId}`, {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Asset }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -85,7 +94,11 @@ export class Assets extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/video/v1/assets', AssetsCursorPage, { query, ...options });
+    return this._client.getAPIList('/video/v1/assets', AssetsCursorPage, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -98,6 +111,7 @@ export class Assets extends APIResource {
    */
   delete(assetId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}`, {
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -120,9 +134,11 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.PlaybackID> {
     return (
-      this._client.post(`/video/v1/assets/${assetId}/playback-ids`, { body, ...options }) as Core.APIPromise<{
-        data: Shared.PlaybackID;
-      }>
+      this._client.post(`/video/v1/assets/${assetId}/playback-ids`, {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Shared.PlaybackID }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -146,6 +162,7 @@ export class Assets extends APIResource {
     return (
       this._client.post(`/video/v1/assets/${assetId}/static-renditions`, {
         body,
+        defaultBaseURL: 'https://api.mux.com',
         ...options,
       }) as Core.APIPromise<{ data: AssetCreateStaticRenditionResponse }>
     )._thenUnwrap((obj) => obj.data);
@@ -177,9 +194,11 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Track> {
     return (
-      this._client.post(`/video/v1/assets/${assetId}/tracks`, { body, ...options }) as Core.APIPromise<{
-        data: Track;
-      }>
+      this._client.post(`/video/v1/assets/${assetId}/tracks`, {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Track }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -203,6 +222,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -225,6 +245,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}/static-renditions/${staticRenditionId}`, {
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -244,6 +265,7 @@ export class Assets extends APIResource {
    */
   deleteTrack(assetId: string, trackId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}/tracks/${trackId}`, {
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -279,6 +301,7 @@ export class Assets extends APIResource {
     return (
       this._client.post(`/video/v1/assets/${assetId}/tracks/${trackId}/generate-subtitles`, {
         body,
+        defaultBaseURL: 'https://api.mux.com',
         ...options,
       }) as Core.APIPromise<{ data: AssetGenerateSubtitlesResponse }>
     )._thenUnwrap((obj) => obj.data);
@@ -299,9 +322,10 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<AssetRetrieveInputInfoResponse> {
     return (
-      this._client.get(`/video/v1/assets/${assetId}/input-info`, options) as Core.APIPromise<{
-        data: AssetRetrieveInputInfoResponse;
-      }>
+      this._client.get(`/video/v1/assets/${assetId}/input-info`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: AssetRetrieveInputInfoResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -323,9 +347,10 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.PlaybackID> {
     return (
-      this._client.get(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, options) as Core.APIPromise<{
-        data: Shared.PlaybackID;
-      }>
+      this._client.get(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Shared.PlaybackID }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -350,9 +375,11 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Asset> {
     return (
-      this._client.put(`/video/v1/assets/${assetId}/master-access`, { body, ...options }) as Core.APIPromise<{
-        data: Asset;
-      }>
+      this._client.put(`/video/v1/assets/${assetId}/master-access`, {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Asset }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -373,9 +400,11 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Asset> {
     return (
-      this._client.put(`/video/v1/assets/${assetId}/mp4-support`, { body, ...options }) as Core.APIPromise<{
-        data: Asset;
-      }>
+      this._client.put(`/video/v1/assets/${assetId}/mp4-support`, {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Asset }>
     )._thenUnwrap((obj) => obj.data);
   }
 }

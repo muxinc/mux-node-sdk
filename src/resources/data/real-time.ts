@@ -12,7 +12,10 @@ export class RealTime extends APIResource {
    * @deprecated
    */
   listDimensions(options?: Core.RequestOptions): Core.APIPromise<RealTimeDimensionsResponse> {
-    return this._client.get('/data/v1/realtime/dimensions', options);
+    return this._client.get('/data/v1/realtime/dimensions', {
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -22,7 +25,10 @@ export class RealTime extends APIResource {
    * @deprecated
    */
   listMetrics(options?: Core.RequestOptions): Core.APIPromise<RealTimeMetricsResponse> {
-    return this._client.get('/data/v1/realtime/metrics', options);
+    return this._client.get('/data/v1/realtime/metrics', {
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -64,7 +70,11 @@ export class RealTime extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieveBreakdown(realtimeMetricId, {}, query);
     }
-    return this._client.get(`/data/v1/realtime/metrics/${realtimeMetricId}/breakdown`, { query, ...options });
+    return this._client.get(`/data/v1/realtime/metrics/${realtimeMetricId}/breakdown`, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -92,6 +102,7 @@ export class RealTime extends APIResource {
     }
     return this._client.get(`/data/v1/realtime/metrics/${realtimeHistogramMetricId}/histogram-timeseries`, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }
@@ -137,6 +148,7 @@ export class RealTime extends APIResource {
     }
     return this._client.get(`/data/v1/realtime/metrics/${realtimeMetricId}/timeseries`, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }

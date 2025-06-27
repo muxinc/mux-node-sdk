@@ -22,7 +22,7 @@ export class Errors extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.get('/data/v1/errors', { query, ...options });
+    return this._client.get('/data/v1/errors', { query, defaultBaseURL: 'https://api.mux.com', ...options });
   }
 }
 

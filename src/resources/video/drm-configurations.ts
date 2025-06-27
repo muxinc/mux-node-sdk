@@ -19,9 +19,10 @@ export class DRMConfigurations extends APIResource {
    */
   retrieve(drmConfigurationId: string, options?: Core.RequestOptions): Core.APIPromise<DRMConfiguration> {
     return (
-      this._client.get(`/video/v1/drm-configurations/${drmConfigurationId}`, options) as Core.APIPromise<{
-        data: DRMConfiguration;
-      }>
+      this._client.get(`/video/v1/drm-configurations/${drmConfigurationId}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: DRMConfiguration }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -50,6 +51,7 @@ export class DRMConfigurations extends APIResource {
     }
     return this._client.getAPIList('/video/v1/drm-configurations', DRMConfigurationsBasePage, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }

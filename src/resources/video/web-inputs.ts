@@ -20,9 +20,11 @@ export class WebInputs extends APIResource {
    */
   create(body: WebInputCreateParams, options?: Core.RequestOptions): Core.APIPromise<WebInputCreateResponse> {
     return (
-      this._client.post('/video/v1/web-inputs', { body, ...options }) as Core.APIPromise<{
-        data: WebInputCreateResponse;
-      }>
+      this._client.post('/video/v1/web-inputs', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: WebInputCreateResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -38,9 +40,10 @@ export class WebInputs extends APIResource {
    */
   retrieve(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputRetrieveResponse> {
     return (
-      this._client.get(`/video/v1/web-inputs/${webInputId}`, options) as Core.APIPromise<{
-        data: WebInputRetrieveResponse;
-      }>
+      this._client.get(`/video/v1/web-inputs/${webInputId}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: WebInputRetrieveResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -69,6 +72,7 @@ export class WebInputs extends APIResource {
     }
     return this._client.getAPIList('/video/v1/web-inputs', WebInputListResponsesBasePage, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }
@@ -83,6 +87,7 @@ export class WebInputs extends APIResource {
    */
   delete(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/web-inputs/${webInputId}`, {
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -101,9 +106,10 @@ export class WebInputs extends APIResource {
    */
   launch(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputLaunchResponse> {
     return (
-      this._client.put(`/video/v1/web-inputs/${webInputId}/launch`, options) as Core.APIPromise<{
-        data: WebInputLaunchResponse;
-      }>
+      this._client.put(`/video/v1/web-inputs/${webInputId}/launch`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: WebInputLaunchResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -122,9 +128,10 @@ export class WebInputs extends APIResource {
    */
   reload(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputReloadResponse> {
     return (
-      this._client.put(`/video/v1/web-inputs/${webInputId}/reload`, options) as Core.APIPromise<{
-        data: WebInputReloadResponse;
-      }>
+      this._client.put(`/video/v1/web-inputs/${webInputId}/reload`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: WebInputReloadResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -141,9 +148,10 @@ export class WebInputs extends APIResource {
    */
   shutdown(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputShutdownResponse> {
     return (
-      this._client.put(`/video/v1/web-inputs/${webInputId}/shutdown`, options) as Core.APIPromise<{
-        data: WebInputShutdownResponse;
-      }>
+      this._client.put(`/video/v1/web-inputs/${webInputId}/shutdown`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: WebInputShutdownResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -166,9 +174,11 @@ export class WebInputs extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<WebInputUpdateURLResponse> {
     return (
-      this._client.put(`/video/v1/web-inputs/${webInputId}/url`, { body, ...options }) as Core.APIPromise<{
-        data: WebInputUpdateURLResponse;
-      }>
+      this._client.put(`/video/v1/web-inputs/${webInputId}/url`, {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: WebInputUpdateURLResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 }

@@ -14,7 +14,10 @@ export class Metrics extends APIResource {
    * ```
    */
   list(options?: Core.RequestOptions): Core.APIPromise<MetricListResponse> {
-    return this._client.get('/data/v1/monitoring/metrics', options);
+    return this._client.get('/data/v1/monitoring/metrics', {
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -66,6 +69,7 @@ export class Metrics extends APIResource {
     }
     return this._client.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/breakdown`, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }
@@ -119,6 +123,7 @@ export class Metrics extends APIResource {
     }
     return this._client.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/breakdown-timeseries`, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }
@@ -153,7 +158,7 @@ export class Metrics extends APIResource {
     }
     return this._client.get(
       `/data/v1/monitoring/metrics/${monitoringHistogramMetricId}/histogram-timeseries`,
-      { query, ...options },
+      { query, defaultBaseURL: 'https://api.mux.com', ...options },
     );
   }
 
@@ -206,6 +211,7 @@ export class Metrics extends APIResource {
     }
     return this._client.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/timeseries`, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }

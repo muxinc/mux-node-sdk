@@ -32,6 +32,7 @@ export class DeliveryUsage extends APIResource {
     }
     return this._client.getAPIList('/video/v1/delivery-usage', DeliveryReportsPageWithTotal, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }

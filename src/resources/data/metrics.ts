@@ -24,7 +24,11 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.get('/data/v1/metrics/comparison', { query, ...options });
+    return this._client.get('/data/v1/metrics/comparison', {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -201,7 +205,11 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getInsights(metricId, {}, query);
     }
-    return this._client.get(`/data/v1/metrics/${metricId}/insights`, { query, ...options });
+    return this._client.get(`/data/v1/metrics/${metricId}/insights`, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -377,7 +385,11 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getOverallValues(metricId, {}, query);
     }
-    return this._client.get(`/data/v1/metrics/${metricId}/overall`, { query, ...options });
+    return this._client.get(`/data/v1/metrics/${metricId}/overall`, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -560,7 +572,11 @@ export class Metrics extends APIResource {
     if (isRequestOptions(query)) {
       return this.getTimeseries(metricId, {}, query);
     }
-    return this._client.get(`/data/v1/metrics/${metricId}/timeseries`, { query, ...options });
+    return this._client.get(`/data/v1/metrics/${metricId}/timeseries`, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -739,6 +755,7 @@ export class Metrics extends APIResource {
     }
     return this._client.getAPIList(`/data/v1/metrics/${metricId}/breakdown`, BreakdownValuesBasePage, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }
