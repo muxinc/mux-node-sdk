@@ -30,8 +30,8 @@ export const tool: Tool = {
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
   const { ANNOTATION_ID, ...body } = args as any;
-  await client.data.annotations.delete(ANNOTATION_ID);
-  return asTextContentResult('Successful tool call');
+  const response = await client.data.annotations.delete(ANNOTATION_ID).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };

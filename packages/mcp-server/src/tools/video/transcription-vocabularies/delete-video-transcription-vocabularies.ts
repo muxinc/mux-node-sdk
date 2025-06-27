@@ -31,8 +31,10 @@ export const tool: Tool = {
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
   const { TRANSCRIPTION_VOCABULARY_ID, ...body } = args as any;
-  await client.video.transcriptionVocabularies.delete(TRANSCRIPTION_VOCABULARY_ID);
-  return asTextContentResult('Successful tool call');
+  const response = await client.video.transcriptionVocabularies
+    .delete(TRANSCRIPTION_VOCABULARY_ID)
+    .asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };

@@ -31,8 +31,8 @@ export const tool: Tool = {
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
   const { SIGNING_KEY_ID, ...body } = args as any;
-  await client.system.signingKeys.delete(SIGNING_KEY_ID);
-  return asTextContentResult('Successful tool call');
+  const response = await client.system.signingKeys.delete(SIGNING_KEY_ID).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };
