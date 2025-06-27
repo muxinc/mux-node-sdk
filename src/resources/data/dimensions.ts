@@ -18,7 +18,7 @@ export class Dimensions extends APIResource {
    * ```
    */
   list(options?: Core.RequestOptions): Core.APIPromise<DimensionsResponse> {
-    return this._client.get('/data/v1/dimensions', options);
+    return this._client.get('/data/v1/dimensions', { defaultBaseURL: 'https://api.mux.com', ...options });
   }
 
   /**
@@ -55,6 +55,7 @@ export class Dimensions extends APIResource {
     }
     return this._client.getAPIList(`/data/v1/dimensions/${dimensionId}`, DimensionValuesBasePage, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }

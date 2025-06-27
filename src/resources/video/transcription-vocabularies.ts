@@ -28,9 +28,11 @@ export class TranscriptionVocabularies extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<TranscriptionVocabulary> {
     return (
-      this._client.post('/video/v1/transcription-vocabularies', { body, ...options }) as Core.APIPromise<{
-        data: TranscriptionVocabulary;
-      }>
+      this._client.post('/video/v1/transcription-vocabularies', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: TranscriptionVocabulary }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -53,10 +55,10 @@ export class TranscriptionVocabularies extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<TranscriptionVocabulary> {
     return (
-      this._client.get(
-        `/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`,
-        options,
-      ) as Core.APIPromise<{ data: TranscriptionVocabulary }>
+      this._client.get(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: TranscriptionVocabulary }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -85,6 +87,7 @@ export class TranscriptionVocabularies extends APIResource {
     return (
       this._client.put(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
         body,
+        defaultBaseURL: 'https://api.mux.com',
         ...options,
       }) as Core.APIPromise<{ data: TranscriptionVocabulary }>
     )._thenUnwrap((obj) => obj.data);
@@ -118,7 +121,7 @@ export class TranscriptionVocabularies extends APIResource {
     return this._client.getAPIList(
       '/video/v1/transcription-vocabularies',
       TranscriptionVocabulariesBasePage,
-      { query, ...options },
+      { query, defaultBaseURL: 'https://api.mux.com', ...options },
     );
   }
 
@@ -138,6 +141,7 @@ export class TranscriptionVocabularies extends APIResource {
    */
   delete(transcriptionVocabularyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });

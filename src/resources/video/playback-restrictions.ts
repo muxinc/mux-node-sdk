@@ -29,9 +29,11 @@ export class PlaybackRestrictions extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<PlaybackRestriction> {
     return (
-      this._client.post('/video/v1/playback-restrictions', { body, ...options }) as Core.APIPromise<{
-        data: PlaybackRestriction;
-      }>
+      this._client.post('/video/v1/playback-restrictions', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: PlaybackRestriction }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -51,10 +53,10 @@ export class PlaybackRestrictions extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<PlaybackRestriction> {
     return (
-      this._client.get(
-        `/video/v1/playback-restrictions/${playbackRestrictionId}`,
-        options,
-      ) as Core.APIPromise<{ data: PlaybackRestriction }>
+      this._client.get(`/video/v1/playback-restrictions/${playbackRestrictionId}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: PlaybackRestriction }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -83,6 +85,7 @@ export class PlaybackRestrictions extends APIResource {
     }
     return this._client.getAPIList('/video/v1/playback-restrictions', PlaybackRestrictionsBasePage, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }
@@ -99,6 +102,7 @@ export class PlaybackRestrictions extends APIResource {
    */
   delete(playbackRestrictionId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/playback-restrictions/${playbackRestrictionId}`, {
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -129,6 +133,7 @@ export class PlaybackRestrictions extends APIResource {
     return (
       this._client.put(`/video/v1/playback-restrictions/${playbackRestrictionId}/referrer`, {
         body,
+        defaultBaseURL: 'https://api.mux.com',
         ...options,
       }) as Core.APIPromise<{ data: PlaybackRestriction }>
     )._thenUnwrap((obj) => obj.data);
@@ -160,6 +165,7 @@ export class PlaybackRestrictions extends APIResource {
     return (
       this._client.put(`/video/v1/playback-restrictions/${playbackRestrictionId}/user_agent`, {
         body,
+        defaultBaseURL: 'https://api.mux.com',
         ...options,
       }) as Core.APIPromise<{ data: PlaybackRestriction }>
     )._thenUnwrap((obj) => obj.data);

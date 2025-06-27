@@ -16,7 +16,10 @@ export class Incidents extends APIResource {
    * ```
    */
   retrieve(incidentId: string, options?: Core.RequestOptions): Core.APIPromise<IncidentResponse> {
-    return this._client.get(`/data/v1/incidents/${incidentId}`, options);
+    return this._client.get(`/data/v1/incidents/${incidentId}`, {
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -42,7 +45,11 @@ export class Incidents extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/data/v1/incidents', IncidentsBasePage, { query, ...options });
+    return this._client.getAPIList('/data/v1/incidents', IncidentsBasePage, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -77,6 +84,7 @@ export class Incidents extends APIResource {
     }
     return this._client.getAPIList(`/data/v1/incidents/${incidentId}/related`, IncidentsBasePage, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }

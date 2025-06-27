@@ -21,7 +21,11 @@ export class Uploads extends APIResource {
    */
   create(body: UploadCreateParams, options?: Core.RequestOptions): Core.APIPromise<Upload> {
     return (
-      this._client.post('/video/v1/uploads', { body, ...options }) as Core.APIPromise<{ data: Upload }>
+      this._client.post('/video/v1/uploads', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Upload }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -37,7 +41,10 @@ export class Uploads extends APIResource {
    */
   retrieve(uploadId: string, options?: Core.RequestOptions): Core.APIPromise<Upload> {
     return (
-      this._client.get(`/video/v1/uploads/${uploadId}`, options) as Core.APIPromise<{ data: Upload }>
+      this._client.get(`/video/v1/uploads/${uploadId}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Upload }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -61,7 +68,11 @@ export class Uploads extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/video/v1/uploads', UploadsBasePage, { query, ...options });
+    return this._client.getAPIList('/video/v1/uploads', UploadsBasePage, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -78,7 +89,10 @@ export class Uploads extends APIResource {
    */
   cancel(uploadId: string, options?: Core.RequestOptions): Core.APIPromise<Upload> {
     return (
-      this._client.put(`/video/v1/uploads/${uploadId}/cancel`, options) as Core.APIPromise<{ data: Upload }>
+      this._client.put(`/video/v1/uploads/${uploadId}/cancel`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Upload }>
     )._thenUnwrap((obj) => obj.data);
   }
 }
