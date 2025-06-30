@@ -177,7 +177,6 @@ The following tools are available in this MCP server.
 - `retrieve_video_assets` (`read`): Retrieves the details of an asset that has previously been created. Supply the unique asset ID that was returned from your previous request, and Mux will return the corresponding asset information. The same information is returned when creating an asset.
 - `update_video_assets` (`write`): Updates the details of an already-created Asset with the provided Asset ID. This currently supports only the `passthrough` field.
 - `list_video_assets` (`read`): List all Mux assets.
-- `delete_video_assets` (`write`): Deletes a video asset and all its data.
 - `create_playback_id_video_assets` (`write`): Creates a playback ID that can be used to stream the asset to a viewer.
 - `create_static_rendition_video_assets` (`write`): Creates a static rendition (i.e. MP4) for an asset
 - `create_track_video_assets` (`write`): Adds an asset track (for example, subtitles, or an alternate audio track) to an asset. Assets must be in the `ready` state before tracks can be added.
@@ -202,7 +201,6 @@ The following tools are available in this MCP server.
 - `retrieve_video_live_streams` (`read`): Retrieves the details of a live stream that has previously been created. Supply the unique live stream ID that was returned from your previous request, and Mux will return the corresponding live stream information. The same information is returned when creating a live stream.
 - `update_video_live_streams` (`write`): Updates the parameters of a previously-created live stream. This currently supports a subset of variables. Supply the live stream ID and the updated parameters and Mux will return the corresponding live stream information. The information returned will be the same after update as for subsequent get live stream requests.
 - `list_video_live_streams` (`read`): Lists the live streams that currently exist in the current environment.
-- `delete_video_live_streams` (`write`): Deletes a live stream from the current environment. If the live stream is currently active and being streamed to, ingest will be terminated and the encoder will be disconnected.
 - `complete_video_live_streams` (`write`): (Optional) End the live stream recording immediately instead of waiting for the reconnect_window. `EXT-X-ENDLIST` tag is added to the HLS manifest which notifies the player that this live stream is over.
 
   Mux does not close the encoder connection immediately. Encoders are often configured to re-establish connections immediately which would result in a new recorded asset. For this reason, Mux waits for 60s before closing the connection with the encoder. This 60s timeframe is meant to give encoder operators a chance to disconnect from their end.
@@ -257,26 +255,22 @@ The following tools are available in this MCP server.
   request, no asset will be created. This request will only succeed if the upload is still in
   the `waiting` state.
 
-### Resource `video.web_inputs`:
-
-- `create_video_web_inputs` (`write`): Create a new Web Input
-- `retrieve_video_web_inputs` (`read`): Retrieve a single Web Input's info
-- `list_video_web_inputs` (`read`): List Web Inputs
-- `delete_video_web_inputs` (`write`): Deletes a Web Input and all its data
-- `launch_video_web_inputs` (`write`): Launches the browsers instance, loads the URL specified, and then starts streaming to the specified Live Stream.
-- `reload_video_web_inputs` (`write`): Reloads the page that a Web Input is displaying.
-
-  Note: Using this when the Web Input is streaming will display the page reloading.
-
-- `shutdown_video_web_inputs` (`write`): Ends streaming to the specified Live Stream, and then shuts down the Web Input browser instance.
-- `update_url_video_web_inputs` (`write`): Changes the URL that a Web Input loads when it launches.
-
-  Note: This can only be called when the Web Input is idle.
-
 ### Resource `video.drm_configurations`:
 
 - `retrieve_video_drm_configurations` (`read`): Retrieves a single DRM Configuration.
 - `list_video_drm_configurations` (`read`): Returns a list of DRM Configurations
+
+### Resource `video.playback`:
+
+- `animated_video_playback` (`read`): [Fetch an animated GIF or WebP image](https://docs.mux.com/guides/get-images-from-a-video#get-an-animated-gif-from-a-video) from a video segment with optional transformations.
+- `hls_video_playback` (`read`): Fetch an HLS (HTTP Live Streaming) playlist for the specified video asset, with optional query parameters to [modify playback behavior](https://docs.mux.com/guides/modify-playback-behavior).
+- `static_rendition_video_playback` (`read`): Fetch a static rendition (usually an MP4 or M4A file) of the specified video asset. [MP4 Support](https://docs.mux.com/guides/enable-static-mp4-renditions) must be enabled on the asset before using these URLs.
+- `storyboard_video_playback` (`read`): Fetch a storyboard image composed of multiple thumbnails for use in [timeline hover previews](https://docs.mux.com/guides/create-timeline-hover-previews).
+- `storyboard_meta_video_playback` (`read`): Fetch metadata for the [storyboard image in JSON format](https://docs.mux.com/guides/create-timeline-hover-previews#json), detailing the coordinates and time ranges of each thumbnail.
+- `storyboard_vtt_video_playback` (`read`): Fetch metadata for the [storyboard image in WebVTT format](https://docs.mux.com/guides/create-timeline-hover-previews#webvtt), detailing the coordinates and time ranges of each thumbnail.
+- `thumbnail_video_playback` (`read`): [Fetch a thumbnail image from a video](https://docs.mux.com/guides/get-images-from-a-video) at a specified time with optional transformations.
+- `track_video_playback` (`read`): Fetch a standalone WebVTT version of a text track from an asset.
+- `transcript_video_playback` (`read`): Fetch a [transcript of an asset](https://docs.mux.com/guides/add-autogenerated-captions-and-use-transcripts#retrieve-a-transcript). This is only possible for assets with a text track generated using the [VOD generated captions feature](https://docs.mux.com/guides/add-autogenerated-captions-and-use-transcripts).
 
 ### Resource `data.dimensions`:
 

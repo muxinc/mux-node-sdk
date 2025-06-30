@@ -47,6 +47,22 @@ export {
   type LiveStreamUpdateGeneratedSubtitlesParams,
   type LiveStreamUpdateNewAssetSettingsStaticRenditionsParams,
 } from './live-streams';
+export {
+  Playback,
+  type PlaybackStoryboardMetaResponse,
+  type PlaybackStoryboardVttResponse,
+  type PlaybackTrackResponse,
+  type PlaybackTranscriptResponse,
+  type PlaybackAnimatedParams,
+  type PlaybackHlsParams,
+  type PlaybackStaticRenditionParams,
+  type PlaybackStoryboardParams,
+  type PlaybackStoryboardMetaParams,
+  type PlaybackStoryboardVttParams,
+  type PlaybackThumbnailParams,
+  type PlaybackTrackParams,
+  type PlaybackTranscriptParams,
+} from './playback';
 export { PlaybackIDs, type PlaybackIDRetrieveResponse } from './playback-ids';
 export {
   PlaybackRestrictionsBasePage,

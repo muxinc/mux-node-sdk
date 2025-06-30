@@ -52,6 +52,23 @@ import {
   LiveStreamsBasePage,
   SimulcastTarget,
 } from './live-streams';
+import * as PlaybackAPI from './playback';
+import {
+  Playback,
+  PlaybackAnimatedParams,
+  PlaybackHlsParams,
+  PlaybackStaticRenditionParams,
+  PlaybackStoryboardMetaParams,
+  PlaybackStoryboardMetaResponse,
+  PlaybackStoryboardParams,
+  PlaybackStoryboardVttParams,
+  PlaybackStoryboardVttResponse,
+  PlaybackThumbnailParams,
+  PlaybackTrackParams,
+  PlaybackTrackResponse,
+  PlaybackTranscriptParams,
+  PlaybackTranscriptResponse,
+} from './playback';
 import * as PlaybackIDsAPI from './playback-ids';
 import { PlaybackIDRetrieveResponse, PlaybackIDs } from './playback-ids';
 import * as PlaybackRestrictionsAPI from './playback-restrictions';
@@ -114,6 +131,7 @@ export class Video extends APIResource {
   drmConfigurations: DRMConfigurationsAPI.DRMConfigurations = new DRMConfigurationsAPI.DRMConfigurations(
     this._client,
   );
+  playback: PlaybackAPI.Playback = new PlaybackAPI.Playback(this._client);
 }
 
 Video.Assets = Assets;
@@ -133,6 +151,7 @@ Video.WebInputs = WebInputs;
 Video.WebInputListResponsesBasePage = WebInputListResponsesBasePage;
 Video.DRMConfigurations = DRMConfigurations;
 Video.DRMConfigurationsBasePage = DRMConfigurationsBasePage;
+Video.Playback = Playback;
 
 export declare namespace Video {
   export {
@@ -231,5 +250,22 @@ export declare namespace Video {
     type DRMConfiguration as DRMConfiguration,
     DRMConfigurationsBasePage as DRMConfigurationsBasePage,
     type DRMConfigurationListParams as DRMConfigurationListParams,
+  };
+
+  export {
+    Playback as Playback,
+    type PlaybackStoryboardMetaResponse as PlaybackStoryboardMetaResponse,
+    type PlaybackStoryboardVttResponse as PlaybackStoryboardVttResponse,
+    type PlaybackTrackResponse as PlaybackTrackResponse,
+    type PlaybackTranscriptResponse as PlaybackTranscriptResponse,
+    type PlaybackAnimatedParams as PlaybackAnimatedParams,
+    type PlaybackHlsParams as PlaybackHlsParams,
+    type PlaybackStaticRenditionParams as PlaybackStaticRenditionParams,
+    type PlaybackStoryboardParams as PlaybackStoryboardParams,
+    type PlaybackStoryboardMetaParams as PlaybackStoryboardMetaParams,
+    type PlaybackStoryboardVttParams as PlaybackStoryboardVttParams,
+    type PlaybackThumbnailParams as PlaybackThumbnailParams,
+    type PlaybackTrackParams as PlaybackTrackParams,
+    type PlaybackTranscriptParams as PlaybackTranscriptParams,
   };
 }
