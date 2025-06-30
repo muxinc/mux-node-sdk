@@ -7,35 +7,38 @@ import type { Metadata } from '../../';
 import Mux from '@mux/mux-node';
 
 export const metadata: Metadata = {
-  resource: 'video.web_inputs',
-  operation: 'write',
+  resource: 'video.playback',
+  operation: 'read',
   tags: [],
-  httpMethod: 'put',
-  httpPath: '/video/v1/web-inputs/{WEB_INPUT_ID}/url',
-  operationId: 'update-web-input-url',
+  httpMethod: 'get',
+  httpPath: '/{PLAYBACK_ID}/text/{TRACK_ID}.vtt',
+  operationId: 'get-vtt-text-track',
 };
 
 export const tool: Tool = {
-  name: 'update_url_video_web_inputs',
-  description:
-    'Changes the URL that a Web Input loads when it launches.\n\nNote: This can only be called when the Web Input is idle.\n',
+  name: 'track_video_playback',
+  description: 'Fetch a standalone WebVTT version of a text track from an asset.',
   inputSchema: {
     type: 'object',
     properties: {
-      WEB_INPUT_ID: {
+      PLAYBACK_ID: {
         type: 'string',
       },
-      url: {
+      TRACK_ID: {
         type: 'string',
-        description: 'The URL for the Web Input to load.',
+      },
+      TOKEN: {
+        type: 'string',
+        description:
+          'Signed token (JWT) for [secure video playback](https://docs.mux.com/guides/secure-video-playback).',
       },
     },
   },
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { WEB_INPUT_ID, ...body } = args as any;
-  return asTextContentResult(await client.video.webInputs.updateURL(WEB_INPUT_ID, body));
+  const { PLAYBACK_ID, TRACK_ID, ...body } = args as any;
+  return asTextContentResult(await client.video.playback.track(PLAYBACK_ID, TRACK_ID, body));
 };
 
 export default { metadata, tool, handler };
