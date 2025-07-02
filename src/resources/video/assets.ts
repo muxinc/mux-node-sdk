@@ -23,7 +23,11 @@ export class Assets extends APIResource {
    */
   create(body: AssetCreateParams, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
-      this._client.post('/video/v1/assets', { body, ...options }) as Core.APIPromise<{ data: Asset }>
+      this._client.post('/video/v1/assets', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Asset }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -42,7 +46,10 @@ export class Assets extends APIResource {
    */
   retrieve(assetId: string, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
-      this._client.get(`/video/v1/assets/${assetId}`, options) as Core.APIPromise<{ data: Asset }>
+      this._client.get(`/video/v1/assets/${assetId}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Asset }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -59,9 +66,11 @@ export class Assets extends APIResource {
    */
   update(assetId: string, body: AssetUpdateParams, options?: Core.RequestOptions): Core.APIPromise<Asset> {
     return (
-      this._client.patch(`/video/v1/assets/${assetId}`, { body, ...options }) as Core.APIPromise<{
-        data: Asset;
-      }>
+      this._client.patch(`/video/v1/assets/${assetId}`, {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Asset }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -85,7 +94,11 @@ export class Assets extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/video/v1/assets', AssetsBasePage, { query, ...options });
+    return this._client.getAPIList('/video/v1/assets', AssetsBasePage, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -98,6 +111,7 @@ export class Assets extends APIResource {
    */
   delete(assetId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}`, {
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -120,9 +134,11 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.PlaybackID> {
     return (
-      this._client.post(`/video/v1/assets/${assetId}/playback-ids`, { body, ...options }) as Core.APIPromise<{
-        data: Shared.PlaybackID;
-      }>
+      this._client.post(`/video/v1/assets/${assetId}/playback-ids`, {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Shared.PlaybackID }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -146,6 +162,7 @@ export class Assets extends APIResource {
     return (
       this._client.post(`/video/v1/assets/${assetId}/static-renditions`, {
         body,
+        defaultBaseURL: 'https://api.mux.com',
         ...options,
       }) as Core.APIPromise<{ data: AssetCreateStaticRenditionResponse }>
     )._thenUnwrap((obj) => obj.data);
@@ -177,9 +194,11 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Track> {
     return (
-      this._client.post(`/video/v1/assets/${assetId}/tracks`, { body, ...options }) as Core.APIPromise<{
-        data: Track;
-      }>
+      this._client.post(`/video/v1/assets/${assetId}/tracks`, {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Track }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -203,6 +222,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -225,6 +245,7 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}/static-renditions/${staticRenditionId}`, {
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -244,6 +265,7 @@ export class Assets extends APIResource {
    */
   deleteTrack(assetId: string, trackId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/video/v1/assets/${assetId}/tracks/${trackId}`, {
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });
@@ -279,6 +301,7 @@ export class Assets extends APIResource {
     return (
       this._client.post(`/video/v1/assets/${assetId}/tracks/${trackId}/generate-subtitles`, {
         body,
+        defaultBaseURL: 'https://api.mux.com',
         ...options,
       }) as Core.APIPromise<{ data: AssetGenerateSubtitlesResponse }>
     )._thenUnwrap((obj) => obj.data);
@@ -299,9 +322,10 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<AssetRetrieveInputInfoResponse> {
     return (
-      this._client.get(`/video/v1/assets/${assetId}/input-info`, options) as Core.APIPromise<{
-        data: AssetRetrieveInputInfoResponse;
-      }>
+      this._client.get(`/video/v1/assets/${assetId}/input-info`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: AssetRetrieveInputInfoResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -323,9 +347,10 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Shared.PlaybackID> {
     return (
-      this._client.get(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, options) as Core.APIPromise<{
-        data: Shared.PlaybackID;
-      }>
+      this._client.get(`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Shared.PlaybackID }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -350,9 +375,11 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Asset> {
     return (
-      this._client.put(`/video/v1/assets/${assetId}/master-access`, { body, ...options }) as Core.APIPromise<{
-        data: Asset;
-      }>
+      this._client.put(`/video/v1/assets/${assetId}/master-access`, {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Asset }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -365,13 +392,7 @@ export class Assets extends APIResource {
    * an asset _does not_ have mp4 support, so submitting a request with `mp4_support`
    * set to `none` will delete the mp4 assets from the asset in question.
    *
-   * @example
-   * ```ts
-   * const asset = await client.video.assets.updateMP4Support(
-   *   'ASSET_ID',
-   *   { mp4_support: 'capped-1080p' },
-   * );
-   * ```
+   * @deprecated
    */
   updateMP4Support(
     assetId: string,
@@ -379,9 +400,11 @@ export class Assets extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Asset> {
     return (
-      this._client.put(`/video/v1/assets/${assetId}/mp4-support`, { body, ...options }) as Core.APIPromise<{
-        data: Asset;
-      }>
+      this._client.put(`/video/v1/assets/${assetId}/mp4-support`, {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Asset }>
     )._thenUnwrap((obj) => obj.data);
   }
 }
@@ -414,6 +437,11 @@ export interface Asset {
    * asset is encoded, stored, and streamed at. If not set, this defaults to `1080p`.
    */
   max_resolution_tier: '1080p' | '1440p' | '2160p';
+
+  /**
+   * Detailed state information about the asset ingest process.
+   */
+  progress: Asset.Progress;
 
   /**
    * The status of the asset.
@@ -584,6 +612,35 @@ export interface Asset {
 }
 
 export namespace Asset {
+  /**
+   * Detailed state information about the asset ingest process.
+   */
+  export interface Progress {
+    /**
+     * Represents the estimated completion percentage. Returns `0 - 100` when in
+     * `ingesting`, `transcoding`, or `completed` state, and `-1` when in `live` or
+     * `errored` state.
+     */
+    progress: number;
+
+    /**
+     * The detailed state of the asset ingest process. This field is useful for
+     * relaying more granular processing information to end users when a
+     * [non-standard input is encountered](https://www.mux.com/docs/guides/minimize-processing-time#non-standard-input).
+     *
+     * - `ingesting`: Asset is being ingested (initial processing before or after
+     *   transcoding). While in this state, the `progress` percentage will be 0.
+     * - `transcoding`: Asset is undergoing non-standard transcoding.
+     * - `completed`: Asset processing is complete (`status` is `ready`). While in this
+     *   state, the `progress` percentage will be 100.
+     * - `live`: Asset is a live stream currently in progress. While in this state, the
+     *   `progress` percentage will be -1.
+     * - `errored`: Asset has encountered an error (`status` is `errored`). While in
+     *   this state, the `progress` percentage will be -1.
+     */
+    state: 'ingesting' | 'transcoding' | 'completed' | 'live' | 'errored';
+  }
+
   /**
    * Object that describes any errors that happened when processing this asset.
    */
@@ -866,6 +923,12 @@ export interface AssetOptions {
    * instead of `playback_policies` when creating a DRM playback ID.
    */
   advanced_playback_policies?: Array<AssetOptions.AdvancedPlaybackPolicy>;
+
+  /**
+   * If the created asset is a clip, this controls whether overlays are copied from
+   * the source asset.
+   */
+  copy_overlays?: boolean;
 
   /**
    * @deprecated This field is deprecated. Please use `video_quality` instead. The
@@ -1995,6 +2058,12 @@ export interface AssetCreateParams {
    * instead of `playback_policies` when creating a DRM playback ID.
    */
   advanced_playback_policies?: Array<AssetCreateParams.AdvancedPlaybackPolicy>;
+
+  /**
+   * If the created asset is a clip, this controls whether overlays are copied from
+   * the source asset.
+   */
+  copy_overlays?: boolean;
 
   /**
    * @deprecated This field is deprecated. Please use `video_quality` instead. The

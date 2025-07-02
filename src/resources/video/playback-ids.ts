@@ -18,9 +18,10 @@ export class PlaybackIDs extends APIResource {
    */
   retrieve(playbackId: string, options?: Core.RequestOptions): Core.APIPromise<PlaybackIDRetrieveResponse> {
     return (
-      this._client.get(`/video/v1/playback-ids/${playbackId}`, options) as Core.APIPromise<{
-        data: PlaybackIDRetrieveResponse;
-      }>
+      this._client.get(`/video/v1/playback-ids/${playbackId}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: PlaybackIDRetrieveResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 }

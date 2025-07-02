@@ -7,19 +7,24 @@ on:
       - 'integrated/**'
       - 'stl-preview-head/**'
       - 'stl-preview-base/**'
+  pull_request:
+    branches-ignore:
+      - 'stl-preview-head/**'
+      - 'stl-preview-base/**'
 
 jobs:
   lint:
     timeout-minutes: 10
     name: lint
     runs-on: ${{ github.repository == 'stainless-sdks/mux-node' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22'
 
       - name: Bootstrap
         run: ./scripts/bootstrap
@@ -31,6 +36,7 @@ jobs:
     timeout-minutes: 5
     name: build
     runs-on: ${{ github.repository == 'stainless-sdks/mux-node' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     permissions:
       contents: read
       id-token: write
@@ -40,7 +46,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22'
 
       - name: Bootstrap
         run: ./scripts/bootstrap
@@ -66,16 +72,20 @@ jobs:
     timeout-minutes: 10
     name: test
     runs-on: ${{ github.repository == 'stainless-sdks/mux-node' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Bootstrap
         run: ./scripts/bootstrap
+
+      - name: Build
+        run: ./scripts/build
 
       - name: Run tests
         run: ./scripts/test

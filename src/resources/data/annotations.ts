@@ -20,7 +20,11 @@ export class Annotations extends APIResource {
    */
   create(body: AnnotationCreateParams, options?: Core.RequestOptions): Core.APIPromise<Annotation> {
     return (
-      this._client.post('/data/v1/annotations', { body, ...options }) as Core.APIPromise<{ data: Annotation }>
+      this._client.post('/data/v1/annotations', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Annotation }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -36,9 +40,10 @@ export class Annotations extends APIResource {
    */
   retrieve(annotationId: string, options?: Core.RequestOptions): Core.APIPromise<Annotation> {
     return (
-      this._client.get(`/data/v1/annotations/${annotationId}`, options) as Core.APIPromise<{
-        data: Annotation;
-      }>
+      this._client.get(`/data/v1/annotations/${annotationId}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Annotation }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -63,9 +68,11 @@ export class Annotations extends APIResource {
     options?: Core.RequestOptions,
   ): Core.APIPromise<Annotation> {
     return (
-      this._client.patch(`/data/v1/annotations/${annotationId}`, { body, ...options }) as Core.APIPromise<{
-        data: Annotation;
-      }>
+      this._client.patch(`/data/v1/annotations/${annotationId}`, {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as Core.APIPromise<{ data: Annotation }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -92,7 +99,11 @@ export class Annotations extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/data/v1/annotations', AnnotationsBasePage, { query, ...options });
+    return this._client.getAPIList('/data/v1/annotations', AnnotationsBasePage, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -107,6 +118,7 @@ export class Annotations extends APIResource {
    */
   delete(annotationId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
     return this._client.delete(`/data/v1/annotations/${annotationId}`, {
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: { Accept: '*/*', ...options?.headers },
     });

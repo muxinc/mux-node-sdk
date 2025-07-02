@@ -9,28 +9,26 @@ export class RealTime extends APIResource {
    * Lists available real-time dimensions. This API is now deprecated, please use the
    * `List Monitoring Dimensions` API.
    *
-   * @example
-   * ```ts
-   * const realTimeDimensionsResponse =
-   *   await client.data.realTime.listDimensions();
-   * ```
+   * @deprecated
    */
   listDimensions(options?: Core.RequestOptions): Core.APIPromise<RealTimeDimensionsResponse> {
-    return this._client.get('/data/v1/realtime/dimensions', options);
+    return this._client.get('/data/v1/realtime/dimensions', {
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
    * Lists available real-time metrics. This API is now deprecated, please use the
    * `List Monitoring Metrics` API.
    *
-   * @example
-   * ```ts
-   * const realTimeMetricsResponse =
-   *   await client.data.realTime.listMetrics();
-   * ```
+   * @deprecated
    */
   listMetrics(options?: Core.RequestOptions): Core.APIPromise<RealTimeMetricsResponse> {
-    return this._client.get('/data/v1/realtime/metrics', options);
+    return this._client.get('/data/v1/realtime/metrics', {
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -38,13 +36,7 @@ export class RealTime extends APIResource {
    * number of concurrent viewers and negative impact score. This API is now
    * deprecated, please use the `Get Monitoring Breakdown` API.
    *
-   * @example
-   * ```ts
-   * const realTimeBreakdownResponse =
-   *   await client.data.realTime.retrieveBreakdown(
-   *     'current-concurrent-viewers',
-   *   );
-   * ```
+   * @deprecated
    */
   retrieveBreakdown(
     realtimeMetricId:
@@ -78,20 +70,18 @@ export class RealTime extends APIResource {
     if (isRequestOptions(query)) {
       return this.retrieveBreakdown(realtimeMetricId, {}, query);
     }
-    return this._client.get(`/data/v1/realtime/metrics/${realtimeMetricId}/breakdown`, { query, ...options });
+    return this._client.get(`/data/v1/realtime/metrics/${realtimeMetricId}/breakdown`, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
    * Gets histogram timeseries information for a specific metric. This API is now
    * deprecated, please use the `Get Monitoring Histogram Timeseries` API.
    *
-   * @example
-   * ```ts
-   * const realTimeHistogramTimeseriesResponse =
-   *   await client.data.realTime.retrieveHistogramTimeseries(
-   *     'video-startup-time',
-   *   );
-   * ```
+   * @deprecated
    */
   retrieveHistogramTimeseries(
     realtimeHistogramMetricId: 'video-startup-time',
@@ -112,6 +102,7 @@ export class RealTime extends APIResource {
     }
     return this._client.get(`/data/v1/realtime/metrics/${realtimeHistogramMetricId}/histogram-timeseries`, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }
@@ -121,13 +112,7 @@ export class RealTime extends APIResource {
    * concurrent viewers. This API is now deprecated, please use the
    * `Get Monitoring Timeseries` API.
    *
-   * @example
-   * ```ts
-   * const realTimeTimeseriesResponse =
-   *   await client.data.realTime.retrieveTimeseries(
-   *     'current-concurrent-viewers',
-   *   );
-   * ```
+   * @deprecated
    */
   retrieveTimeseries(
     realtimeMetricId:
@@ -163,6 +148,7 @@ export class RealTime extends APIResource {
     }
     return this._client.get(`/data/v1/realtime/metrics/${realtimeMetricId}/timeseries`, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }

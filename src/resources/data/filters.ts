@@ -11,15 +11,7 @@ export class Filters extends APIResource {
    *
    * Lists the values for a filter along with a total count of related views.
    *
-   * @example
-   * ```ts
-   * // Automatically fetches more pages as needed.
-   * for await (const filterValue of client.data.filters.listValues(
-   *   'abcd1234',
-   * )) {
-   *   // ...
-   * }
-   * ```
+   * @deprecated
    */
   listValues(
     filterId: string,
@@ -40,6 +32,7 @@ export class Filters extends APIResource {
     }
     return this._client.getAPIList(`/data/v1/filters/${filterId}`, FilterValuesBasePage, {
       query,
+      defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
   }

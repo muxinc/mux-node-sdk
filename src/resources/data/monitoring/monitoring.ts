@@ -29,7 +29,10 @@ export class Monitoring extends APIResource {
    * ```
    */
   listDimensions(options?: Core.RequestOptions): Core.APIPromise<MonitoringListDimensionsResponse> {
-    return this._client.get('/data/v1/monitoring/dimensions', options);
+    return this._client.get('/data/v1/monitoring/dimensions', {
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 }
 

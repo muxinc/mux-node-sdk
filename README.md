@@ -23,21 +23,14 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import Mux from '@mux/mux-node';
 
-const client = new Mux({
-  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted
-  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted
+const client = new Mux();
+
+const asset = await client.video.assets.create({
+  inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+  playback_policies: ['public'],
 });
 
-async function main() {
-  const asset = await client.video.assets.create({
-    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
-    playback_policies: ['public'],
-  });
-
-  console.log(asset.id);
-}
-
-main();
+console.log(asset.id);
 ```
 
 ### Request & Response types
@@ -48,20 +41,13 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import Mux from '@mux/mux-node';
 
-const client = new Mux({
-  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted
-  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted
-});
+const client = new Mux();
 
-async function main() {
-  const params: Mux.Video.AssetCreateParams = {
-    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
-    playback_policies: ['public'],
-  };
-  const asset: Mux.Video.Asset = await client.video.assets.create(params);
-}
-
-main();
+const params: Mux.Video.AssetCreateParams = {
+  inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
+  playback_policies: ['public'],
+};
+const asset: Mux.Video.Asset = await client.video.assets.create(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -283,21 +269,17 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-async function main() {
-  const liveStream = await client.video.liveStreams
-    .create({ playback_policies: ['public'] })
-    .catch(async (err) => {
-      if (err instanceof Mux.APIError) {
-        console.log(err.status); // 400
-        console.log(err.name); // BadRequestError
-        console.log(err.headers); // {server: 'nginx', ...}
-      } else {
-        throw err;
-      }
-    });
-}
-
-main();
+const liveStream = await client.video.liveStreams
+  .create({ playback_policies: ['public'] })
+  .catch(async (err) => {
+    if (err instanceof Mux.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 ```
 
 Error codes are as follows:
@@ -361,13 +343,13 @@ List methods in the Mux API are paginated.
 You can use the `for await … of` syntax to iterate through items across all pages:
 
 ```ts
-async function fetchAllVideoDeliveryUsages(params) {
-  const allVideoDeliveryUsages = [];
+async function fetchAllDeliveryReports(params) {
+  const allDeliveryReports = [];
   // Automatically fetches more pages as needed.
   for await (const deliveryReport of client.video.deliveryUsage.list()) {
-    allVideoDeliveryUsages.push(deliveryReport);
+    allDeliveryReports.push(deliveryReport);
   }
-  return allVideoDeliveryUsages;
+  return allDeliveryReports;
 }
 ```
 

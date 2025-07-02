@@ -16,7 +16,10 @@ export class VideoViews extends APIResource {
    * ```
    */
   retrieve(videoViewId: string, options?: Core.RequestOptions): Core.APIPromise<VideoViewResponse> {
-    return this._client.get(`/data/v1/video-views/${videoViewId}`, options);
+    return this._client.get(`/data/v1/video-views/${videoViewId}`, {
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -43,7 +46,11 @@ export class VideoViews extends APIResource {
     if (isRequestOptions(query)) {
       return this.list({}, query);
     }
-    return this._client.getAPIList('/data/v1/video-views', AbridgedVideoViewsBasePage, { query, ...options });
+    return this._client.getAPIList('/data/v1/video-views', AbridgedVideoViewsBasePage, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 }
 
@@ -450,7 +457,7 @@ export namespace VideoViewResponse {
 
   export namespace Data {
     export interface Event {
-      details: Record<string, unknown>;
+      details: { [key: string]: unknown };
 
       event_time: number;
 

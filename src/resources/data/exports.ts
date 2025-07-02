@@ -14,7 +14,7 @@ export class Exports extends APIResource {
    * ```
    */
   listVideoViews(options?: Core.RequestOptions): Core.APIPromise<VideoViewExportsResponse> {
-    return this._client.get('/data/v1/exports/views', options);
+    return this._client.get('/data/v1/exports/views', { defaultBaseURL: 'https://api.mux.com', ...options });
   }
 }
 
