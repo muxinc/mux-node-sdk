@@ -6,6 +6,8 @@ Full Changelog: [v11.1.0...v12.0.0](https://github.com/muxinc/mux-node-sdk/compa
 
 ### Features
 
+* Expose methods for playback, images, captions, and transcripts
+* Expose MCP server in build
 * Add live stream metadata ([#351](https://github.com/muxinc/mux-node-sdk/issues/351)) ([4bb8e63](https://github.com/muxinc/mux-node-sdk/commit/4bb8e63a3a45330fd1a414148665796750d58eb1))
 * add new copy_overlays asset option ([#355](https://github.com/muxinc/mux-node-sdk/issues/355)) ([7c24f4a](https://github.com/muxinc/mux-node-sdk/commit/7c24f4a9f350568ee1a1dc8c4df54b1e4efe857d))
 * Add progress API fields to the asset model ([#328](https://github.com/muxinc/mux-node-sdk/issues/328)) ([0137bee](https://github.com/muxinc/mux-node-sdk/commit/0137bee04847d310dd74f957de110dda37c28891))
