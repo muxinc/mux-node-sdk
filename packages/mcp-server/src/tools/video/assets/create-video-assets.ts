@@ -189,6 +189,11 @@ export const tool: Tool = {
           required: [],
         },
       },
+      copy_overlays: {
+        type: 'boolean',
+        description:
+          'If the created asset is a clip, this controls whether overlays are copied from the source asset.',
+      },
       encoding_tier: {
         type: 'string',
         description:

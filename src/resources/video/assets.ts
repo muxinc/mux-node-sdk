@@ -925,6 +925,12 @@ export interface AssetOptions {
   advanced_playback_policies?: Array<AssetOptions.AdvancedPlaybackPolicy>;
 
   /**
+   * If the created asset is a clip, this controls whether overlays are copied from
+   * the source asset.
+   */
+  copy_overlays?: boolean;
+
+  /**
    * @deprecated This field is deprecated. Please use `video_quality` instead. The
    * encoding tier informs the cost, quality, and available platform features for the
    * asset. The default encoding tier for an account can be set in the Mux Dashboard.
@@ -2052,6 +2058,12 @@ export interface AssetCreateParams {
    * instead of `playback_policies` when creating a DRM playback ID.
    */
   advanced_playback_policies?: Array<AssetCreateParams.AdvancedPlaybackPolicy>;
+
+  /**
+   * If the created asset is a clip, this controls whether overlays are copied from
+   * the source asset.
+   */
+  copy_overlays?: boolean;
 
   /**
    * @deprecated This field is deprecated. Please use `video_quality` instead. The
