@@ -12,7 +12,7 @@ export MUX_TOKEN_SECRET="my secret"
 export MUX_WEBHOOK_SECRET="My Webhook Secret"
 export MUX_SIGNING_KEY="My Jwt Signing Key"
 export MUX_PRIVATE_KEY="My Jwt Private Key"
-npx -y @mux/mux-node-mcp@latest
+npx -y @mux/mcp@latest
 ```
 
 ### Via MCP Client
@@ -27,7 +27,7 @@ For clients with a configuration JSON, it might look something like this:
   "mcpServers": {
     "mux_mux_node_api": {
       "command": "npx",
-      "args": ["-y", "@mux/mux-node-mcp", "--client=claude", "--tools=dynamic"],
+      "args": ["-y", "@mux/mcp", "--client=claude", "--tools=dynamic"],
       "env": {
         "MUX_TOKEN_ID": "my token id",
         "MUX_TOKEN_SECRET": "my secret",
@@ -136,10 +136,10 @@ over time, you can manually enable or disable certain capabilities:
 
 ```js
 // Import the server, generated endpoints, or the init function
-import { server, endpoints, init } from "@mux/mux-node-mcp/server";
+import { server, endpoints, init } from "@mux/mcp/server";
 
 // import a specific tool
-import createVideoAssets from "@mux/mux-node-mcp/tools/video/assets/create-video-assets";
+import createVideoAssets from "@mux/mcp/tools/video/assets/create-video-assets";
 
 // initialize the server and all endpoints
 init({ server, endpoints });
