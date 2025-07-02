@@ -25,7 +25,7 @@ export { endpoints } from './tools';
 // Create server instance
 export const server = new McpServer(
   {
-    name: 'mux_mux_node_api',
+    name: 'mux',
     version: '12.0.0',
   },
   {
