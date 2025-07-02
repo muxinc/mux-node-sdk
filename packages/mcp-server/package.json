@@ -1,5 +1,5 @@
 {
-  "name": "@mux/mux-node-mcp",
+  "name": "@mux/mcp",
   "version": "11.1.0",
   "description": "The official MCP Server for the Mux API",
   "author": "Mux <devex@mux.com>",
@@ -54,8 +54,8 @@
     "typescript": "5.8.3"
   },
   "imports": {
-    "@mux/mux-node-mcp": ".",
-    "@mux/mux-node-mcp/*": "./src/*"
+    "@mux/mcp": ".",
+    "@mux/mcp/*": "./src/*"
   },
   "exports": {
     ".": {

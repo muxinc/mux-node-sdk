@@ -29,4 +29,4 @@ cp tsconfig.dist-src.json dist/src/tsconfig.json
 
 chmod +x dist/index.js
 
-DIST_PATH=./dist PKG_IMPORT_PATH=@mux/mux-node-mcp/ node ../../scripts/utils/postprocess-files.cjs
+DIST_PATH=./dist PKG_IMPORT_PATH=@mux/mcp/ node ../../scripts/utils/postprocess-files.cjs

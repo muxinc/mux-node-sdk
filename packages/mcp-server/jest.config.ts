@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^@mux/mux-node-mcp$': '<rootDir>/src/index.ts',
-    '^@mux/mux-node-mcp/(.*)$': '<rootDir>/src/$1',
+    '^@mux/mcp$': '<rootDir>/src/index.ts',
+    '^@mux/mcp/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   testPathIgnorePatterns: ['scripts'],
