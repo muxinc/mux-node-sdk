@@ -1,5 +1,59 @@
 # Changelog
 
+## 12.0.0 (2025-07-02)
+
+Full Changelog: [v11.1.0...v12.0.0](https://github.com/muxinc/mux-node-sdk/compare/v11.1.0...v12.0.0)
+
+### Features
+
+* Add live stream metadata ([#351](https://github.com/muxinc/mux-node-sdk/issues/351)) ([4bb8e63](https://github.com/muxinc/mux-node-sdk/commit/4bb8e63a3a45330fd1a414148665796750d58eb1))
+* add new copy_overlays asset option ([#355](https://github.com/muxinc/mux-node-sdk/issues/355)) ([7c24f4a](https://github.com/muxinc/mux-node-sdk/commit/7c24f4a9f350568ee1a1dc8c4df54b1e4efe857d))
+* Add progress API fields to the asset model ([#328](https://github.com/muxinc/mux-node-sdk/issues/328)) ([0137bee](https://github.com/muxinc/mux-node-sdk/commit/0137bee04847d310dd74f957de110dda37c28891))
+* **api:** expose playback APIs ([8609c47](https://github.com/muxinc/mux-node-sdk/commit/8609c471e8fbfccc2a34a4e33de23fdd9e76f7ca))
+* **client:** add support for endpoint-specific base URLs ([e3f4bdc](https://github.com/muxinc/mux-node-sdk/commit/e3f4bdca804a846b4a87dac8c04fac26dce6798d))
+* **mcp:** fallback for void-typed methods ([9a9f95f](https://github.com/muxinc/mux-node-sdk/commit/9a9f95fb407f45125a4dbd052852f955f06e5115))
+* **mcp:** implement support for binary responses ([58d6395](https://github.com/muxinc/mux-node-sdk/commit/58d6395935e9a62463578a8c56fd861ef1bc258c))
+* **mcp:** include http information in tools ([24bfa89](https://github.com/muxinc/mux-node-sdk/commit/24bfa892c33d92c2ef84e5b400376f9edb979db6))
+* **mcp:** set X-Stainless-MCP header ([3fc5387](https://github.com/muxinc/mux-node-sdk/commit/3fc53874c819871245e6f8fe32ff4922d0d9683b))
+
+
+### Bug Fixes
+
+* **ci:** release-doctor — report correct token name ([828e709](https://github.com/muxinc/mux-node-sdk/commit/828e7097c6ccc20296d02693664ec7021b835c50))
+* **client:** correct webhooks types ([1c7a3f2](https://github.com/muxinc/mux-node-sdk/commit/1c7a3f27cf9747801429e19d450f1103ff649599))
+* **mcp:** fix cursor schema transformation issue with recursive references ([f02fd01](https://github.com/muxinc/mux-node-sdk/commit/f02fd01050ad69d37110a9f7c5e2e0d4c31775ba))
+* **mcp:** include description in dynamic tool search ([784bb2d](https://github.com/muxinc/mux-node-sdk/commit/784bb2dc1459f2a2066a374281a8a9636d688cb7))
+* publish script — handle NPM errors correctly ([877dd7a](https://github.com/muxinc/mux-node-sdk/commit/877dd7afa69cc0fb4c9105c5bbacd4e0a966aa56))
+
+
+### Chores
+
+* **api:** mark some methods as deprecated ([217c45e](https://github.com/muxinc/mux-node-sdk/commit/217c45e22fd03fb70bcb85c9abf2a0396eed9fe9))
+* **api:** remove webhooks from mcp ([f994bab](https://github.com/muxinc/mux-node-sdk/commit/f994bab88e16aaa5cfb83e58e124fbfff7e25ee3))
+* bump node to 22 in tool-versions ([f80b9be](https://github.com/muxinc/mux-node-sdk/commit/f80b9be030460d3808f3ffa4b2c573e280b7f6b4))
+* **ci:** enable for pull requests ([5c8229d](https://github.com/muxinc/mux-node-sdk/commit/5c8229dc453dc76d98c6786a0b1b39bd4385699d))
+* **ci:** only run for pushes and fork pull requests ([e2d4018](https://github.com/muxinc/mux-node-sdk/commit/e2d40187fdec6354f4ebb0160c352cad8b3c3b25))
+* configure new SDK language ([a4e9260](https://github.com/muxinc/mux-node-sdk/commit/a4e9260a4c79340fa81a77fdf98d16f373f5f1c1))
+* **docs:** grammar improvements ([9735730](https://github.com/muxinc/mux-node-sdk/commit/973573020303420bf493e5cb96a9fa9707a23c76))
+* **docs:** use top-level-await in example snippets ([20bf891](https://github.com/muxinc/mux-node-sdk/commit/20bf8915251e6cb3a6154f476de1a4198043cc6a))
+* improve docs for MCP servers ([252617d](https://github.com/muxinc/mux-node-sdk/commit/252617d0a4d44f5a84a4f16a082ec36bfc380208))
+* improve publish-npm script --latest tag logic ([ac97f0b](https://github.com/muxinc/mux-node-sdk/commit/ac97f0baca1d2feb0446b036538b7855ebaa0700))
+* **internal:** make base APIResource abstract ([d8287a6](https://github.com/muxinc/mux-node-sdk/commit/d8287a6f16341d3dd7e8619f85275d5b124e8c51))
+* **mcp:** provides high-level initMcpServer function and exports known clients ([ff89d71](https://github.com/muxinc/mux-node-sdk/commit/ff89d718e02f7b0992ef4f05752dbab01dcf0c12))
+* **mcp:** remove duplicate assignment ([cec01d6](https://github.com/muxinc/mux-node-sdk/commit/cec01d63d581bb35cc0588150ed3f3c7ff513b94))
+* update mcp package name ([3269450](https://github.com/muxinc/mux-node-sdk/commit/3269450a5a1eb57f791d93e90e7c7f098e17ff5c))
+* upgrade node in upload step ([#354](https://github.com/muxinc/mux-node-sdk/issues/354)) ([5873d7b](https://github.com/muxinc/mux-node-sdk/commit/5873d7bd5f855208b163f90c933f4bec8617e0d4))
+
+
+### Documentation
+
+* **pagination:** improve naming ([289ee67](https://github.com/muxinc/mux-node-sdk/commit/289ee67158efa899084ffe3576c7725111014be7))
+
+
+### Refactors
+
+* **types:** replace Record with mapped types ([8d7ea9c](https://github.com/muxinc/mux-node-sdk/commit/8d7ea9c1ffe3f481a70b8e883d809fd2697500e0))
+
 ## 11.1.0 (2025-05-09)
 
 Full Changelog: [v11.0.2...v11.1.0](https://github.com/muxinc/mux-node-sdk/compare/v11.0.2...v11.1.0)
