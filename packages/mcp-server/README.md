@@ -2,19 +2,6 @@
 
 ## Installation
 
-### Direct invocation
-
-You can run the MCP Server directly via `npx`:
-
-```sh
-export MUX_TOKEN_ID="my token id"
-export MUX_TOKEN_SECRET="my secret"
-export MUX_WEBHOOK_SECRET="My Webhook Secret"
-export MUX_SIGNING_KEY="My Jwt Signing Key"
-export MUX_PRIVATE_KEY="My Jwt Private Key"
-npx -y @mux/mcp@latest
-```
-
 ### Via MCP Client
 
 There is a partial list of existing clients at [modelcontextprotocol.io](https://modelcontextprotocol.io/clients). If you already
@@ -25,7 +12,7 @@ For clients with a configuration JSON, it might look something like this:
 ```json
 {
   "mcpServers": {
-    "mux_mux_node_api": {
+    "mux": {
       "command": "npx",
       "args": ["-y", "@mux/mcp", "--client=claude", "--tools=dynamic"],
       "env": {
