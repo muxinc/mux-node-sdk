@@ -38,6 +38,7 @@
     "mcp-server": "dist/index.js"
   },
   "devDependencies": {
+    "@anthropic-ai/dxt": "^0.2.0",
     "@types/jest": "^29.4.0",
     "@typescript-eslint/eslint-plugin": "8.31.1",
     "@typescript-eslint/parser": "8.31.1",
