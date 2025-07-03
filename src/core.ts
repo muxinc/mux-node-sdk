@@ -217,7 +217,7 @@ export abstract class APIClient {
   protected defaultHeaders(opts: FinalRequestOptions): Headers {
     return {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
+      ...(['head', 'get'].includes(opts.method) ? {} : { 'Content-Type': 'application/json' }),
       'User-Agent': this.getUserAgent(),
       ...getPlatformHeaders(),
       ...this.authHeaders(opts),
@@ -355,6 +355,10 @@ export abstract class APIClient {
     const defaultHeaders = this.defaultHeaders(options);
     applyHeadersMut(reqHeaders, defaultHeaders);
     applyHeadersMut(reqHeaders, headers);
+
+    if (options.method === 'get') {
+      delete reqHeaders['content-type'];
+    }
 
     // let builtin fetch set the Content-Type for multipart bodies
     if (isMultipartBody(options.body) && shimsKind !== 'node') {
