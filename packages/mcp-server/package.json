@@ -27,10 +27,10 @@
     "fix": "eslint --fix --ext ts,js ."
   },
   "dependencies": {
-    "@mux/mux-node": "file:../../dist/",
-    "@modelcontextprotocol/sdk": "^1.11.5",
-    "yargs": "^17.7.2",
     "@cloudflare/cabidela": "^0.2.4",
+    "@modelcontextprotocol/sdk": "^1.11.5",
+    "@mux/mux-node": "file:../../dist/",
+    "yargs": "^17.7.2",
     "zod": "^3.25.20",
     "zod-to-json-schema": "^3.24.5"
   },
@@ -38,6 +38,7 @@
     "mcp-server": "dist/index.js"
   },
   "devDependencies": {
+    "@anthropic-ai/dxt": "^0.2.0",
     "@types/jest": "^29.4.0",
     "@typescript-eslint/eslint-plugin": "8.31.1",
     "@typescript-eslint/parser": "8.31.1",
