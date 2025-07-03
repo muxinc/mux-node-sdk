@@ -27,10 +27,10 @@
     "fix": "eslint --fix --ext ts,js ."
   },
   "dependencies": {
-    "@cloudflare/cabidela": "^0.2.4",
-    "@modelcontextprotocol/sdk": "^1.11.5",
     "@mux/mux-node": "file:../../dist/",
+    "@modelcontextprotocol/sdk": "^1.11.5",
     "yargs": "^17.7.2",
+    "@cloudflare/cabidela": "^0.2.4",
     "zod": "^3.25.20",
     "zod-to-json-schema": "^3.24.5"
   },
