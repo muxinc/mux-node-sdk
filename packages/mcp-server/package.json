@@ -1,6 +1,6 @@
 {
   "name": "@mux/mcp",
-  "version": "12.0.1",
+  "version": "12.1.0",
   "description": "The official MCP Server for the Mux API",
   "author": "Mux <devex@mux.com>",
   "types": "dist/index.d.ts",
@@ -38,6 +38,7 @@
     "mcp-server": "dist/index.js"
   },
   "devDependencies": {
+    "@anthropic-ai/dxt": "^0.2.0",
     "@types/jest": "^29.4.0",
     "@typescript-eslint/eslint-plugin": "8.31.1",
     "@typescript-eslint/parser": "8.31.1",

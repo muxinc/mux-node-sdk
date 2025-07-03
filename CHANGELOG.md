@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.1.0 (2025-07-03)
+
+Full Changelog: [v12.0.1...v12.1.0](https://github.com/muxinc/mux-node-sdk/compare/v12.0.1...v12.1.0)
+
+### Features
+
+* mcp desktop extension ([#594](https://github.com/muxinc/mux-node-sdk/issues/594)) ([da573cc](https://github.com/muxinc/mux-node-sdk/commit/da573cce4f7f6c9208c8fbc60d4bf3f4af0246b7))
+
 ## 12.0.1 (2025-07-03)
 
 Full Changelog: [v12.0.0...v12.0.1](https://github.com/muxinc/mux-node-sdk/compare/v12.0.0...v12.0.1)

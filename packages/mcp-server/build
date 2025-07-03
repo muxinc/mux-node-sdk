@@ -30,3 +30,23 @@ cp tsconfig.dist-src.json dist/src/tsconfig.json
 chmod +x dist/index.js
 
 DIST_PATH=./dist PKG_IMPORT_PATH=@mux/mcp/ node ../../scripts/utils/postprocess-files.cjs
+
+# copy package.json to dxt
+cp dist/package.json dxt/package.json
+
+# copy dist to the dxt directory
+rm -rf dxt/dist
+mkdir dxt/dist
+cp -rp dist/*.js dxt/dist
+
+# copy license files to dxt
+cp ../../LICENSE dxt/LICENSE
+
+# update dxt manifest version
+node scripts/update-dxt.js
+
+# pack the dxt directory
+dxt pack dxt dxt/mux.dxt
+
+# sign the dxt package
+dxt sign dxt/mux.dxt --self-signed

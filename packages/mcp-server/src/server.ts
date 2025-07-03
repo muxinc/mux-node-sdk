@@ -26,7 +26,7 @@ export { endpoints } from './tools';
 export const server = new McpServer(
   {
     name: 'mux',
-    version: '12.0.1',
+    version: '12.1.0',
   },
   {
     capabilities: {
