@@ -1,8 +1,8 @@
 {
-  "name": "Mux MCP Extension",
+  "name": "Mux",
   "version": "12.0.1",
   "dxt_version": "0.0.1",
-  "description": "Official Mux MCP Extension",
+  "description": "Manage video infrastructure, analyze performance, and get deep insights into your Mux Video and Mux Data accounts.",
   "author": {
     "name": "Mux",
     "email": "devex@mux.com",
