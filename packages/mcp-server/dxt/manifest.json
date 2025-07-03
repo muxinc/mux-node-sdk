@@ -1,0 +1,81 @@
+{
+  "name": "Mux MCP Extension",
+  "version": "12.0.1",
+  "dxt_version": "0.0.1",
+  "description": "Official Mux MCP Extension",
+  "author": {
+    "name": "Mux",
+    "email": "devex@mux.com",
+    "url": "https://mux.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muxinc/mux-node-sdk.git",
+    "directory": "packages/mcp-server"
+  },
+  "homepage": "https://mux.com",
+  "documentation": "https://www.mux.com/docs",
+  "support": "https://mux.com/support",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "${__dirname}/dist/index.js",
+    "mcp_config": {
+      "command": "npx",
+      "args": ["-y", "@mux/mcp@latest", "--tools=dynamic"],
+      "env": {
+        "MUX_TOKEN_ID": "${user_config.MUX_TOKEN_ID}",
+        "MUX_TOKEN_SECRET": "${user_config.MUX_TOKEN_SECRET}",
+        "MUX_WEBHOOK_SECRET": "${user_config.MUX_WEBHOOK_SECRET}",
+        "MUX_SIGNING_KEY": "${user_config.MUX_SIGNING_KEY}",
+        "MUX_PRIVATE_KEY": "${user_config.MUX_PRIVATE_KEY}"
+      }
+    }
+  },
+  "user_config": {
+    "MUX_TOKEN_ID": {
+      "title": "Mux API Token ID",
+      "description": "Your Mux API Token ID. You can find this in your Mux account settings.",
+      "required": true,
+      "type": "string"
+    },
+    "MUX_TOKEN_SECRET": {
+      "title": "Mux API Token Secret",
+      "description": "Your Mux API Token Secret. You can find this in your Mux account settings.",
+      "required": true,
+      "type": "string"
+    },
+    "MUX_WEBHOOK_SECRET": {
+      "title": "Mux Webhook Secret (optional)",
+      "description": "Your Mux Webhook Secret. This is used to verify webhook requests from Mux.",
+      "required": false,
+      "type": "string"
+    },
+    "MUX_SIGNING_KEY": {
+      "title": "Mux JWT Signing Key (optional)",
+      "description": "Your Mux JWT Signing Key. This is used for signing JWTs for secure video playback.",
+      "required": false,
+      "type": "string"
+    },
+    "MUX_PRIVATE_KEY": {
+      "title": "Mux JWT Private Key (optional)",
+      "description": "Your Mux JWT Private Key. This is used for signing JWTs for secure video playback.",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "tools_generated": true,
+  "compatibility": {
+    "claude_desktop": ">=0.11.6",
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  },
+  "categories": ["media", "api", "video"],
+  "keywords": ["mux", "video", "data", "streaming", "api", "transcoding", "analytics", "media"],
+  "security": {
+    "permissions": ["network"],
+    "sandboxed": false
+  }
+}
