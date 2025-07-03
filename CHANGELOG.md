@@ -1,5 +1,20 @@
 # Changelog
 
+## 12.0.1 (2025-07-03)
+
+Full Changelog: [v12.0.0...v12.0.1](https://github.com/muxinc/mux-node-sdk/compare/v12.0.0...v12.0.1)
+
+### Bug Fixes
+
+* **client:** don't send `Content-Type` for bodyless methods ([b12e006](https://github.com/muxinc/mux-node-sdk/commit/b12e00652be1cbfd89c8568166a788d410ce5e70))
+* set name of MCP server to just mux ([8219d6b](https://github.com/muxinc/mux-node-sdk/commit/8219d6ba84c263b8dac9e1ae5c8b5c7dd96d17f3))
+
+
+### Chores
+
+* mention unit type in timeout docs ([f715c2a](https://github.com/muxinc/mux-node-sdk/commit/f715c2a120f8b1e44aea47212ec32fdee05cc33f))
+* update readme to remove manually running ([fb006cc](https://github.com/muxinc/mux-node-sdk/commit/fb006cc5c93c6e29f9b269c31c824a9783b45f47))
+
 ## 12.0.0 (2025-07-02)
 
 Full Changelog: [v11.1.0...v12.0.0](https://github.com/muxinc/mux-node-sdk/compare/v11.1.0...v12.0.0)
