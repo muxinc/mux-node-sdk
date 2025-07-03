@@ -12,3 +12,4 @@ dist-deno
 packages/mcp-server/dxt/dist
 packages/mcp-server/dxt/package.json
 packages/mcp-server/dxt/mux.dxt
+packages/mcp-server/dxt/LICENSE
