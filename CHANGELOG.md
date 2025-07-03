@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.1.1 (2025-07-03)
+
+Full Changelog: [v12.1.0...v12.1.1](https://github.com/muxinc/mux-node-sdk/compare/v12.1.0...v12.1.1)
+
+### Chores
+
+* upload dxt file as release asset ([86c5ad1](https://github.com/muxinc/mux-node-sdk/commit/86c5ad16f7b749a3cd6cb9132f955241f9697f0e))
+
 ## 12.1.0 (2025-07-03)
 
 Full Changelog: [v12.0.1...v12.1.0](https://github.com/muxinc/mux-node-sdk/compare/v12.0.1...v12.1.0)

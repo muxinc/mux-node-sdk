@@ -39,3 +39,11 @@ jobs:
           yarn tsn scripts/publish-packages.ts "{ \"paths_released\": \"$PATHS_RELEASED\" }"
         env:
           NPM_TOKEN: ${{ secrets.MUX_NPM_TOKEN || secrets.NPM_TOKEN }}
+
+      - name: Upload DXT file to release
+        if: github.event_name == 'release'
+        run: |
+          gh release upload ${{ github.event.release.tag_name }} \
+            packages/mcp-server/dxt/mux.dxt#mux-mcp.dxt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
