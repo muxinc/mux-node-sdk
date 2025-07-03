@@ -14,7 +14,7 @@ For clients with a configuration JSON, it might look something like this:
   "mcpServers": {
     "mux": {
       "command": "npx",
-      "args": ["-y", "@mux/mcp", "--client=claude", "--tools=dynamic"],
+      "args": ["-y", "@mux/mcp@latest", "--client=claude", "--tools=dynamic"],
       "env": {
         "MUX_TOKEN_ID": "my token id",
         "MUX_TOKEN_SECRET": "my secret",
