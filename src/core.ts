@@ -356,6 +356,10 @@ export abstract class APIClient {
     applyHeadersMut(reqHeaders, defaultHeaders);
     applyHeadersMut(reqHeaders, headers);
 
+    if (options.method === 'get') {
+      delete reqHeaders['content-type'];
+    }
+
     // let builtin fetch set the Content-Type for multipart bodies
     if (isMultipartBody(options.body) && shimsKind !== 'node') {
       delete reqHeaders['content-type'];
