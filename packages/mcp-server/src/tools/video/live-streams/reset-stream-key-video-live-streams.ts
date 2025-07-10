@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'reset_stream_key_video_live_streams',
   description:
-    'Reset a live stream key if you want to immediately stop the current stream key from working and create a new stream key that can be used for future broadcasts.',
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReset a live stream key if you want to immediately stop the current stream key from working and create a new stream key that can be used for future broadcasts.",
   inputSchema: {
     type: 'object',
     properties: {
