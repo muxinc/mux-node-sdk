@@ -1,5 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { maybeFilter } from '@mux/mcp/filtering';
 import { asTextContentResult } from '@mux/mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'get_overall_values_data_metrics',
   description:
-    'Returns the overall value for a specific metric, as well as the total view count, watch time, and the Mux Global metric value for the metric.',
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns the overall value for a specific metric, as well as the total view count, watch time, and the Mux Global metric value for the metric.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/overall_values_response',\n  $defs: {\n    overall_values_response: {\n      type: 'object',\n      properties: {\n        data: {\n          type: 'object',\n          properties: {\n            global_value: {\n              type: 'number'\n            },\n            total_playing_time: {\n              type: 'integer'\n            },\n            total_views: {\n              type: 'integer'\n            },\n            total_watch_time: {\n              type: 'integer'\n            },\n            value: {\n              type: 'number'\n            }\n          },\n          required: [            'global_value',\n            'total_playing_time',\n            'total_views',\n            'total_watch_time',\n            'value'\n          ]\n        },\n        meta: {\n          type: 'object',\n          properties: {\n            aggregation: {\n              type: 'string'\n            },\n            granularity: {\n              type: 'string'\n            }\n          },\n          required: []\n        },\n        timeframe: {\n          type: 'array',\n          items: {\n            type: 'integer'\n          }\n        },\n        total_row_count: {\n          type: 'integer'\n        }\n      },\n      required: [        'data',\n        'meta',\n        'timeframe',\n        'total_row_count'\n      ]\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
@@ -105,13 +106,21 @@ export const tool: Tool = {
           type: 'string',
         },
       },
+      jq_filter: {
+        type: 'string',
+        title: 'jq Filter',
+        description:
+          'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
+      },
     },
   },
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
   const { METRIC_ID, ...body } = args as any;
-  return asTextContentResult(await client.data.metrics.getOverallValues(METRIC_ID, body));
+  return asTextContentResult(
+    await maybeFilter(args, await client.data.metrics.getOverallValues(METRIC_ID, body)),
+  );
 };
 
 export default { metadata, tool, handler };
