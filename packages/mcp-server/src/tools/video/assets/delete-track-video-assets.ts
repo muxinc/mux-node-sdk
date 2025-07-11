@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'delete_track_video_assets',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nRemoves a text track from an asset. Audio and video tracks on assets cannot be removed.\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {}\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nRemoves a text or additional audio track from an asset. Neither video nor the primary audio track can be removed.\n\n# Response Schema\n```json\n{\n  type: 'object',\n  properties: {}\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {

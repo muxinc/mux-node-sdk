@@ -252,8 +252,8 @@ export class Assets extends APIResource {
   }
 
   /**
-   * Removes a text track from an asset. Audio and video tracks on assets cannot be
-   * removed.
+   * Removes a text or additional audio track from an asset. Neither video nor the
+   * primary audio track can be removed.
    *
    * @example
    * ```ts
