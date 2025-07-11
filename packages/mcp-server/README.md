@@ -169,7 +169,7 @@ The following tools are available in this MCP server.
 - `create_track_video_assets` (`write`): Adds an asset track (for example, subtitles, or an alternate audio track) to an asset. Assets must be in the `ready` state before tracks can be added.
 - `delete_playback_id_video_assets` (`write`): Deletes a playback ID, rendering it nonfunctional for viewing an asset's video content. Please note that deleting the playback ID removes access to the underlying asset; a viewer who started playback before the playback ID was deleted may be able to watch the entire video for a limited duration.
 - `delete_static_rendition_video_assets` (`write`): Deletes a single static rendition for an asset
-- `delete_track_video_assets` (`write`): Removes a text track from an asset. Audio and video tracks on assets cannot be removed.
+- `delete_track_video_assets` (`write`): Removes a text or additional audio track from an asset. Neither video nor the primary audio track can be removed.
 - `generate_subtitles_video_assets` (`write`): Generates subtitles (captions) for a given audio track. This API can be used for up to 7 days after an asset is created.
 - `retrieve_input_info_video_assets` (`read`): Returns a list of the input objects that were used to create the asset along with any settings that were applied to each input.
 - `retrieve_playback_id_video_assets` (`read`): Retrieves information about the specified playback ID.
