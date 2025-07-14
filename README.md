@@ -20,7 +20,10 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import Mux from '@mux/mux-node';
 
-const client = new Mux();
+const client = new Mux({
+  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted
+  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted
+});
 
 const asset = await client.video.assets.create({
   inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
@@ -38,7 +41,10 @@ This library includes TypeScript definitions for all request params and response
 ```ts
 import Mux from '@mux/mux-node';
 
-const client = new Mux();
+const client = new Mux({
+  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted
+  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted
+});
 
 const params: Mux.Video.AssetCreateParams = {
   inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],
