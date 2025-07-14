@@ -878,8 +878,8 @@ export interface LiveStreamCreateParams {
   passthrough?: string;
 
   /**
-   * @deprecated An array of playback policy names that you want applied to this live
-   * stream and available through `playback_ids`. Options include:
+   * An array of playback policy names that you want applied to this live stream and
+   * available through `playback_ids`. Options include:
    *
    * - `"public"` (anyone with the playback URL can stream the live stream).
    * - `"signed"` (an additional access token is required to play the live stream).
