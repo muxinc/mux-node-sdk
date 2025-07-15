@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { maybeFilter } from '@mux/mcp/filtering';
-import { asTextContentResult } from '@mux/mcp/tools/types';
+import { Metadata, asTextContentResult } from '@mux/mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import type { Metadata } from '../../../';
 import Mux from '@mux/mux-node';
 
 export const metadata: Metadata = {
