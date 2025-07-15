@@ -1,9 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { asBinaryContentResult } from '@mux/mcp/tools/types';
+import { Metadata, asBinaryContentResult } from '@mux/mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import type { Metadata } from '../../';
 import Mux from '@mux/mux-node';
 
 export const metadata: Metadata = {
