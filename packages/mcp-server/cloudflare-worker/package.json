@@ -1,0 +1,27 @@
+{
+  "name": "remote-mcp-server-with-stainless",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "format": "biome format --write",
+    "lint:fix": "biome lint --fix",
+    "start": "wrangler dev",
+    "cf-typegen": "wrangler types"
+  },
+  "devDependencies": {
+    "marked": "^15.0.11",
+    "typescript": "^5.8.3",
+    "workers-mcp": "0.1.0-3",
+    "wrangler": "^4.15.2"
+  },
+  "dependencies": {
+    "@cloudflare/workers-oauth-provider": "^0.0.5",
+    "@modelcontextprotocol/sdk": "^1.11.4",
+    "agents": "^0.0.88",
+    "hono": "^4.7.9",
+    "@mux/mcp": "latest",
+    "zod": "^3.24.4"
+  }
+}
