@@ -1,9 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { asTextContentResult } from '@mux/mcp/tools/types';
+import { Metadata, asTextContentResult } from '@mux/mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import type { Metadata } from '../../';
 import Mux from '@mux/mux-node';
 
 export const metadata: Metadata = {
@@ -17,7 +16,8 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_video_uploads',
-  description: 'Creates a new direct upload, through which video content can be uploaded for ingest to Mux.',
+  description:
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nCreates a new direct upload, through which video content can be uploaded for ingest to Mux.",
   inputSchema: {
     type: 'object',
     properties: {

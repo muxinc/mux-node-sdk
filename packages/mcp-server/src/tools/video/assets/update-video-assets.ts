@@ -1,9 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { asTextContentResult } from '@mux/mcp/tools/types';
+import { Metadata, asTextContentResult } from '@mux/mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import type { Metadata } from '../../';
 import Mux from '@mux/mux-node';
 
 export const metadata: Metadata = {
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'update_video_assets',
   description:
-    'Updates the details of an already-created Asset with the provided Asset ID. This currently supports only the `passthrough` field.',
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nUpdates the details of an already-created Asset with the provided Asset ID. This currently supports only the `passthrough` field.",
   inputSchema: {
     type: 'object',
     properties: {

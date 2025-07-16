@@ -1,9 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { asTextContentResult } from '@mux/mcp/tools/types';
+import { Metadata, asTextContentResult } from '@mux/mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import type { Metadata } from '../../';
 import Mux from '@mux/mux-node';
 
 export const metadata: Metadata = {
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'create_video_live_streams',
   description:
-    'Creates a new live stream. Once created, an encoder can connect to Mux via the specified stream key and begin streaming to an audience.',
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nCreates a new live stream. Once created, an encoder can connect to Mux via the specified stream key and begin streaming to an audience.",
   inputSchema: {
     type: 'object',
     properties: {
