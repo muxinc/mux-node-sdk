@@ -1,5 +1,37 @@
 # Changelog
 
+## 12.2.0 (2025-07-16)
+
+Full Changelog: [v12.1.0...v12.2.0](https://github.com/muxinc/mux-node-sdk/compare/v12.1.0...v12.2.0)
+
+### Features
+
+* clean up environment call outs ([b6bd416](https://github.com/muxinc/mux-node-sdk/commit/b6bd416af78cd2010189e26c5b24ac188d6b5f51))
+* **mcp:** support filtering tool results by a jq expression ([24ee59b](https://github.com/muxinc/mux-node-sdk/commit/24ee59be71cae71c8d570df1f0c0b77d505d567d))
+
+
+### Bug Fixes
+
+* **build:** bump node version in CI build to 20 to be compatible with MCP package ([31a0909](https://github.com/muxinc/mux-node-sdk/commit/31a09098aa083c0e4dc8c320d5459331351bd5ea))
+* Fix incorrect deprecated message in live streaming playback policies ([#358](https://github.com/muxinc/mux-node-sdk/issues/358)) ([4fe35bb](https://github.com/muxinc/mux-node-sdk/commit/4fe35bb6af229f6d2a046ec2778830e0c72b618c))
+* **mcp:** relax input type for asTextContextResult ([b6e7352](https://github.com/muxinc/mux-node-sdk/commit/b6e7352dbab0f99ccf7484a7b1701aea52b7e846))
+* **mcp:** support jq filtering on cloudflare workers ([2bd8dc6](https://github.com/muxinc/mux-node-sdk/commit/2bd8dc658156a31a6082dcb82614a8b63889c1eb))
+
+
+### Chores
+
+* **api:** build cloudflare worker mcp server ([69e6f8c](https://github.com/muxinc/mux-node-sdk/commit/69e6f8c0395b58faab0bd0142764b514e3ea10bb))
+* **internal:** version bump ([e312932](https://github.com/muxinc/mux-node-sdk/commit/e312932665b6e64bddd158cb417a8ef08e66b7d8))
+* make some internal functions async ([4e78a17](https://github.com/muxinc/mux-node-sdk/commit/4e78a1788fe1da9a98ef75fa0693ae74df1ce369))
+* **mcp:** formatting ([4844bf6](https://github.com/muxinc/mux-node-sdk/commit/4844bf69e84b4c7bfc7fdbfef3ff63bd963981b1))
+* **mcp:** rework imports in tools ([4ee527f](https://github.com/muxinc/mux-node-sdk/commit/4ee527f9c107b94c0b74962a500c7f86c25aeb1f))
+* upload dxt file as release asset ([86c5ad1](https://github.com/muxinc/mux-node-sdk/commit/86c5ad16f7b749a3cd6cb9132f955241f9697f0e))
+
+
+### Documentation
+
+* clarify that additional audio tracks may be removed ([#357](https://github.com/muxinc/mux-node-sdk/issues/357)) ([8577e42](https://github.com/muxinc/mux-node-sdk/commit/8577e42a3f1b7f9d2307be6151c83d9fae57a56c))
+
 ## 12.1.0 (2025-07-03)
 
 Full Changelog: [v12.0.1...v12.1.0](https://github.com/muxinc/mux-node-sdk/compare/v12.0.1...v12.1.0)
