@@ -43,6 +43,7 @@ export const tool: Tool = {
         description: 'Filter response to return an asset created from this direct upload only',
       },
     },
+    required: [],
   },
 };
 

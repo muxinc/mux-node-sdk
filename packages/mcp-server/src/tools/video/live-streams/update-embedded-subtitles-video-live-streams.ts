@@ -49,10 +49,10 @@ export const tool: Tool = {
                 'Arbitrary user-supplied metadata set for the live stream closed caption track. Max 255 characters.',
             },
           },
-          required: [],
         },
       },
     },
+    required: ['LIVE_STREAM_ID'],
   },
 };
 

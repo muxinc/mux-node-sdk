@@ -30,6 +30,7 @@ export const tool: Tool = {
         description: 'Offset by this many pages, of the size of `limit`',
       },
     },
+    required: [],
   },
 };
 

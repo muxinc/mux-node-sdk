@@ -45,7 +45,6 @@ export const tool: Tool = {
             description: 'The live stream title. Max 512 code points.',
           },
         },
-        required: [],
       },
       new_asset_settings: {
         type: 'object',
@@ -77,7 +76,6 @@ export const tool: Tool = {
                 description: 'The asset title. Max 512 code points.',
               },
             },
-            required: [],
           },
           mp4_support: {
             type: 'string',
@@ -92,7 +90,6 @@ export const tool: Tool = {
             enum: ['plus', 'premium'],
           },
         },
-        required: [],
       },
       passthrough: {
         type: 'string',
@@ -115,6 +112,7 @@ export const tool: Tool = {
           'By default, Standard Latency live streams do not have slate media inserted while waiting for live streaming software to reconnect to Mux. Setting this to true enables slate insertion on a Standard Latency stream.',
       },
     },
+    required: ['LIVE_STREAM_ID'],
   },
 };
 

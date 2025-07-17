@@ -31,6 +31,7 @@ export const tool: Tool = {
         enum: ['standard', 'none', 'capped-1080p', 'audio-only', 'audio-only,capped-1080p'],
       },
     },
+    required: ['ASSET_ID', 'mp4_support'],
   },
 };
 

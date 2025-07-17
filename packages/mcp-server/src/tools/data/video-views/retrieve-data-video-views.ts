@@ -25,6 +25,7 @@ export const tool: Tool = {
         type: 'string',
       },
     },
+    required: ['VIDEO_VIEW_ID'],
   },
 };
 
