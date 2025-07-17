@@ -30,6 +30,7 @@ export const tool: Tool = {
         enum: ['temporary', 'none'],
       },
     },
+    required: ['ASSET_ID', 'master_access'],
   },
 };
 

@@ -53,10 +53,10 @@ export const tool: Tool = {
               },
             },
           },
-          required: [],
         },
       },
     },
+    required: ['LIVE_STREAM_ID'],
   },
 };
 

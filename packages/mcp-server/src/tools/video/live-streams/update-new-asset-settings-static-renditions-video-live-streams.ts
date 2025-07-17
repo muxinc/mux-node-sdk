@@ -54,6 +54,7 @@ export const tool: Tool = {
         },
       },
     },
+    required: ['LIVE_STREAM_ID', 'static_renditions'],
   },
 };
 

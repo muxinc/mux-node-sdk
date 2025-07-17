@@ -39,6 +39,7 @@ export const tool: Tool = {
         description: 'Filter response to return live stream for this stream key only',
       },
     },
+    required: [],
   },
 };
 
