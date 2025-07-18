@@ -222,33 +222,548 @@ export interface VideoAssetTrackDeletedWebhookEvent extends BaseWebhookEvent {
 }
 
 export interface VideoAssetStaticRenditionCreatedWebhookEvent extends BaseWebhookEvent {
-  data: AssetsAPI.Asset;
+  data: VideoAssetStaticRenditionCreatedWebhookEvent.Data;
 
   type: 'video.asset.static_rendition.created';
 }
 
+export namespace VideoAssetStaticRenditionCreatedWebhookEvent {
+  export interface Data {
+    /**
+     * The ID of this static rendition, used in managing this static rendition. This
+     * field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    id?: string;
+
+    /**
+     * The bitrate in bits per second
+     */
+    bitrate?: number;
+
+    /**
+     * Extension of the static rendition file
+     */
+    ext?: 'mp4' | 'm4a';
+
+    /**
+     * The file size in bytes
+     */
+    filesize?: string;
+
+    /**
+     * The height of the static rendition's file in pixels
+     */
+    height?: number;
+
+    /**
+     * Name of the static rendition file
+     */
+    name?:
+      | 'low.mp4'
+      | 'medium.mp4'
+      | 'high.mp4'
+      | 'highest.mp4'
+      | 'audio.m4a'
+      | 'capped-1080p.mp4'
+      | '2160p.mp4'
+      | '1440p.mp4'
+      | '1080p.mp4'
+      | '720p.mp4'
+      | '540p.mp4'
+      | '480p.mp4'
+      | '360p.mp4'
+      | '270p.mp4';
+
+    /**
+     * Arbitrary user-supplied metadata set for the static rendition. Max 255
+     * characters.
+     */
+    passthrough?: string;
+
+    /**
+     * Indicates the resolution of this specific MP4 version of this asset. This field
+     * is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    resolution?:
+      | 'highest'
+      | 'audio-only'
+      | '2160p'
+      | '1440p'
+      | '1080p'
+      | '720p'
+      | '540p'
+      | '480p'
+      | '360p'
+      | '270p';
+
+    /**
+     * Indicates the resolution tier of this specific MP4 version of this asset. This
+     * field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    resolution_tier?: '2160p' | '1440p' | '1080p' | '720p' | 'audio-only';
+
+    /**
+     * Indicates the status of this specific MP4 version of this asset. This field is
+     * only valid for `static_renditions`, not for `mp4_support`.
+     *
+     * - `ready` indicates the MP4 has been generated and is ready for download
+     * - `preparing` indicates the asset has not been ingested or the static rendition
+     *   is still being generated after an asset is ready
+     * - `skipped` indicates the static rendition will not be generated because the
+     *   requested resolution conflicts with the asset attributes after the asset has
+     *   been ingested
+     * - `errored` indicates the static rendition cannot be generated. For example, an
+     *   asset could not be ingested
+     */
+    status?: 'ready' | 'preparing' | 'skipped' | 'errored';
+
+    /**
+     * Indicates the static rendition type of this specific MP4 version of this asset.
+     * This field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    type?: 'standard' | 'advanced';
+
+    /**
+     * The width of the static rendition's file in pixels
+     */
+    width?: number;
+  }
+}
+
 export interface VideoAssetStaticRenditionReadyWebhookEvent extends BaseWebhookEvent {
-  data: AssetsAPI.Asset;
+  data: VideoAssetStaticRenditionReadyWebhookEvent.Data;
 
   type: 'video.asset.static_rendition.ready';
 }
 
+export namespace VideoAssetStaticRenditionReadyWebhookEvent {
+  export interface Data {
+    /**
+     * The ID of this static rendition, used in managing this static rendition. This
+     * field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    id?: string;
+
+    /**
+     * The bitrate in bits per second
+     */
+    bitrate?: number;
+
+    /**
+     * Extension of the static rendition file
+     */
+    ext?: 'mp4' | 'm4a';
+
+    /**
+     * The file size in bytes
+     */
+    filesize?: string;
+
+    /**
+     * The height of the static rendition's file in pixels
+     */
+    height?: number;
+
+    /**
+     * Name of the static rendition file
+     */
+    name?:
+      | 'low.mp4'
+      | 'medium.mp4'
+      | 'high.mp4'
+      | 'highest.mp4'
+      | 'audio.m4a'
+      | 'capped-1080p.mp4'
+      | '2160p.mp4'
+      | '1440p.mp4'
+      | '1080p.mp4'
+      | '720p.mp4'
+      | '540p.mp4'
+      | '480p.mp4'
+      | '360p.mp4'
+      | '270p.mp4';
+
+    /**
+     * Arbitrary user-supplied metadata set for the static rendition. Max 255
+     * characters.
+     */
+    passthrough?: string;
+
+    /**
+     * Indicates the resolution of this specific MP4 version of this asset. This field
+     * is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    resolution?:
+      | 'highest'
+      | 'audio-only'
+      | '2160p'
+      | '1440p'
+      | '1080p'
+      | '720p'
+      | '540p'
+      | '480p'
+      | '360p'
+      | '270p';
+
+    /**
+     * Indicates the resolution tier of this specific MP4 version of this asset. This
+     * field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    resolution_tier?: '2160p' | '1440p' | '1080p' | '720p' | 'audio-only';
+
+    /**
+     * Indicates the status of this specific MP4 version of this asset. This field is
+     * only valid for `static_renditions`, not for `mp4_support`.
+     *
+     * - `ready` indicates the MP4 has been generated and is ready for download
+     * - `preparing` indicates the asset has not been ingested or the static rendition
+     *   is still being generated after an asset is ready
+     * - `skipped` indicates the static rendition will not be generated because the
+     *   requested resolution conflicts with the asset attributes after the asset has
+     *   been ingested
+     * - `errored` indicates the static rendition cannot be generated. For example, an
+     *   asset could not be ingested
+     */
+    status?: 'ready' | 'preparing' | 'skipped' | 'errored';
+
+    /**
+     * Indicates the static rendition type of this specific MP4 version of this asset.
+     * This field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    type?: 'standard' | 'advanced';
+
+    /**
+     * The width of the static rendition's file in pixels
+     */
+    width?: number;
+  }
+}
+
 export interface VideoAssetStaticRenditionErroredWebhookEvent extends BaseWebhookEvent {
-  data: AssetsAPI.Asset;
+  data: VideoAssetStaticRenditionErroredWebhookEvent.Data;
 
   type: 'video.asset.static_rendition.errored';
 }
 
+export namespace VideoAssetStaticRenditionErroredWebhookEvent {
+  export interface Data {
+    /**
+     * The ID of this static rendition, used in managing this static rendition. This
+     * field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    id?: string;
+
+    /**
+     * The bitrate in bits per second
+     */
+    bitrate?: number;
+
+    /**
+     * Extension of the static rendition file
+     */
+    ext?: 'mp4' | 'm4a';
+
+    /**
+     * The file size in bytes
+     */
+    filesize?: string;
+
+    /**
+     * The height of the static rendition's file in pixels
+     */
+    height?: number;
+
+    /**
+     * Name of the static rendition file
+     */
+    name?:
+      | 'low.mp4'
+      | 'medium.mp4'
+      | 'high.mp4'
+      | 'highest.mp4'
+      | 'audio.m4a'
+      | 'capped-1080p.mp4'
+      | '2160p.mp4'
+      | '1440p.mp4'
+      | '1080p.mp4'
+      | '720p.mp4'
+      | '540p.mp4'
+      | '480p.mp4'
+      | '360p.mp4'
+      | '270p.mp4';
+
+    /**
+     * Arbitrary user-supplied metadata set for the static rendition. Max 255
+     * characters.
+     */
+    passthrough?: string;
+
+    /**
+     * Indicates the resolution of this specific MP4 version of this asset. This field
+     * is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    resolution?:
+      | 'highest'
+      | 'audio-only'
+      | '2160p'
+      | '1440p'
+      | '1080p'
+      | '720p'
+      | '540p'
+      | '480p'
+      | '360p'
+      | '270p';
+
+    /**
+     * Indicates the resolution tier of this specific MP4 version of this asset. This
+     * field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    resolution_tier?: '2160p' | '1440p' | '1080p' | '720p' | 'audio-only';
+
+    /**
+     * Indicates the status of this specific MP4 version of this asset. This field is
+     * only valid for `static_renditions`, not for `mp4_support`.
+     *
+     * - `ready` indicates the MP4 has been generated and is ready for download
+     * - `preparing` indicates the asset has not been ingested or the static rendition
+     *   is still being generated after an asset is ready
+     * - `skipped` indicates the static rendition will not be generated because the
+     *   requested resolution conflicts with the asset attributes after the asset has
+     *   been ingested
+     * - `errored` indicates the static rendition cannot be generated. For example, an
+     *   asset could not be ingested
+     */
+    status?: 'ready' | 'preparing' | 'skipped' | 'errored';
+
+    /**
+     * Indicates the static rendition type of this specific MP4 version of this asset.
+     * This field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    type?: 'standard' | 'advanced';
+
+    /**
+     * The width of the static rendition's file in pixels
+     */
+    width?: number;
+  }
+}
+
 export interface VideoAssetStaticRenditionDeletedWebhookEvent extends BaseWebhookEvent {
-  data: AssetsAPI.Asset;
+  data: VideoAssetStaticRenditionDeletedWebhookEvent.Data;
 
   type: 'video.asset.static_rendition.deleted';
 }
 
+export namespace VideoAssetStaticRenditionDeletedWebhookEvent {
+  export interface Data {
+    /**
+     * The ID of this static rendition, used in managing this static rendition. This
+     * field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    id?: string;
+
+    /**
+     * The bitrate in bits per second
+     */
+    bitrate?: number;
+
+    /**
+     * Extension of the static rendition file
+     */
+    ext?: 'mp4' | 'm4a';
+
+    /**
+     * The file size in bytes
+     */
+    filesize?: string;
+
+    /**
+     * The height of the static rendition's file in pixels
+     */
+    height?: number;
+
+    /**
+     * Name of the static rendition file
+     */
+    name?:
+      | 'low.mp4'
+      | 'medium.mp4'
+      | 'high.mp4'
+      | 'highest.mp4'
+      | 'audio.m4a'
+      | 'capped-1080p.mp4'
+      | '2160p.mp4'
+      | '1440p.mp4'
+      | '1080p.mp4'
+      | '720p.mp4'
+      | '540p.mp4'
+      | '480p.mp4'
+      | '360p.mp4'
+      | '270p.mp4';
+
+    /**
+     * Arbitrary user-supplied metadata set for the static rendition. Max 255
+     * characters.
+     */
+    passthrough?: string;
+
+    /**
+     * Indicates the resolution of this specific MP4 version of this asset. This field
+     * is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    resolution?:
+      | 'highest'
+      | 'audio-only'
+      | '2160p'
+      | '1440p'
+      | '1080p'
+      | '720p'
+      | '540p'
+      | '480p'
+      | '360p'
+      | '270p';
+
+    /**
+     * Indicates the resolution tier of this specific MP4 version of this asset. This
+     * field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    resolution_tier?: '2160p' | '1440p' | '1080p' | '720p' | 'audio-only';
+
+    /**
+     * Indicates the status of this specific MP4 version of this asset. This field is
+     * only valid for `static_renditions`, not for `mp4_support`.
+     *
+     * - `ready` indicates the MP4 has been generated and is ready for download
+     * - `preparing` indicates the asset has not been ingested or the static rendition
+     *   is still being generated after an asset is ready
+     * - `skipped` indicates the static rendition will not be generated because the
+     *   requested resolution conflicts with the asset attributes after the asset has
+     *   been ingested
+     * - `errored` indicates the static rendition cannot be generated. For example, an
+     *   asset could not be ingested
+     */
+    status?: 'ready' | 'preparing' | 'skipped' | 'errored';
+
+    /**
+     * Indicates the static rendition type of this specific MP4 version of this asset.
+     * This field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    type?: 'standard' | 'advanced';
+
+    /**
+     * The width of the static rendition's file in pixels
+     */
+    width?: number;
+  }
+}
+
 export interface VideoAssetStaticRenditionSkippedWebhookEvent extends BaseWebhookEvent {
-  data: AssetsAPI.Asset;
+  data: VideoAssetStaticRenditionSkippedWebhookEvent.Data;
 
   type: 'video.asset.static_rendition.skipped';
+}
+
+export namespace VideoAssetStaticRenditionSkippedWebhookEvent {
+  export interface Data {
+    /**
+     * The ID of this static rendition, used in managing this static rendition. This
+     * field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    id?: string;
+
+    /**
+     * The bitrate in bits per second
+     */
+    bitrate?: number;
+
+    /**
+     * Extension of the static rendition file
+     */
+    ext?: 'mp4' | 'm4a';
+
+    /**
+     * The file size in bytes
+     */
+    filesize?: string;
+
+    /**
+     * The height of the static rendition's file in pixels
+     */
+    height?: number;
+
+    /**
+     * Name of the static rendition file
+     */
+    name?:
+      | 'low.mp4'
+      | 'medium.mp4'
+      | 'high.mp4'
+      | 'highest.mp4'
+      | 'audio.m4a'
+      | 'capped-1080p.mp4'
+      | '2160p.mp4'
+      | '1440p.mp4'
+      | '1080p.mp4'
+      | '720p.mp4'
+      | '540p.mp4'
+      | '480p.mp4'
+      | '360p.mp4'
+      | '270p.mp4';
+
+    /**
+     * Arbitrary user-supplied metadata set for the static rendition. Max 255
+     * characters.
+     */
+    passthrough?: string;
+
+    /**
+     * Indicates the resolution of this specific MP4 version of this asset. This field
+     * is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    resolution?:
+      | 'highest'
+      | 'audio-only'
+      | '2160p'
+      | '1440p'
+      | '1080p'
+      | '720p'
+      | '540p'
+      | '480p'
+      | '360p'
+      | '270p';
+
+    /**
+     * Indicates the resolution tier of this specific MP4 version of this asset. This
+     * field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    resolution_tier?: '2160p' | '1440p' | '1080p' | '720p' | 'audio-only';
+
+    /**
+     * Indicates the status of this specific MP4 version of this asset. This field is
+     * only valid for `static_renditions`, not for `mp4_support`.
+     *
+     * - `ready` indicates the MP4 has been generated and is ready for download
+     * - `preparing` indicates the asset has not been ingested or the static rendition
+     *   is still being generated after an asset is ready
+     * - `skipped` indicates the static rendition will not be generated because the
+     *   requested resolution conflicts with the asset attributes after the asset has
+     *   been ingested
+     * - `errored` indicates the static rendition cannot be generated. For example, an
+     *   asset could not be ingested
+     */
+    status?: 'ready' | 'preparing' | 'skipped' | 'errored';
+
+    /**
+     * Indicates the static rendition type of this specific MP4 version of this asset.
+     * This field is only valid for `static_renditions`, not for `mp4_support`.
+     */
+    type?: 'standard' | 'advanced';
+
+    /**
+     * The width of the static rendition's file in pixels
+     */
+    width?: number;
+  }
 }
 
 export interface VideoAssetWarningWebhookEvent extends BaseWebhookEvent {
