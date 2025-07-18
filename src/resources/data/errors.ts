@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
 export class Errors extends APIResource {
   /**
@@ -13,15 +13,7 @@ export class Errors extends APIResource {
    * const errorsResponse = await client.data.errors.list();
    * ```
    */
-  list(query?: ErrorListParams, options?: Core.RequestOptions): Core.APIPromise<ErrorsResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<ErrorsResponse>;
-  list(
-    query: ErrorListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ErrorsResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
+  list(query: ErrorListParams | null | undefined = {}, options?: RequestOptions): APIPromise<ErrorsResponse> {
     return this._client.get('/data/v1/errors', { query, defaultBaseURL: 'https://api.mux.com', ...options });
   }
 }

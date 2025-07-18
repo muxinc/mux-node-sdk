@@ -1,9 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { BasePage, type BasePageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { BasePage, type BasePageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class PlaybackRestrictions extends APIResource {
   /**
@@ -24,16 +26,13 @@ export class PlaybackRestrictions extends APIResource {
    *   });
    * ```
    */
-  create(
-    body: PlaybackRestrictionCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PlaybackRestriction> {
+  create(body: PlaybackRestrictionCreateParams, options?: RequestOptions): APIPromise<PlaybackRestriction> {
     return (
       this._client.post('/video/v1/playback-restrictions', {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: PlaybackRestriction }>
+      }) as APIPromise<{ data: PlaybackRestriction }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -48,15 +47,12 @@ export class PlaybackRestrictions extends APIResource {
    *   );
    * ```
    */
-  retrieve(
-    playbackRestrictionId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PlaybackRestriction> {
+  retrieve(playbackRestrictionID: string, options?: RequestOptions): APIPromise<PlaybackRestriction> {
     return (
-      this._client.get(`/video/v1/playback-restrictions/${playbackRestrictionId}`, {
+      this._client.get(path`/video/v1/playback-restrictions/${playbackRestrictionID}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: PlaybackRestriction }>
+      }) as APIPromise<{ data: PlaybackRestriction }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -72,18 +68,10 @@ export class PlaybackRestrictions extends APIResource {
    * ```
    */
   list(
-    query?: PlaybackRestrictionListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<PlaybackRestrictionsBasePage, PlaybackRestriction>;
-  list(options?: Core.RequestOptions): Core.PagePromise<PlaybackRestrictionsBasePage, PlaybackRestriction>;
-  list(
-    query: PlaybackRestrictionListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<PlaybackRestrictionsBasePage, PlaybackRestriction> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/video/v1/playback-restrictions', PlaybackRestrictionsBasePage, {
+    query: PlaybackRestrictionListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<PlaybackRestrictionsBasePage, PlaybackRestriction> {
+    return this._client.getAPIList('/video/v1/playback-restrictions', BasePage<PlaybackRestriction>, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -100,11 +88,11 @@ export class PlaybackRestrictions extends APIResource {
    * );
    * ```
    */
-  delete(playbackRestrictionId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/video/v1/playback-restrictions/${playbackRestrictionId}`, {
+  delete(playbackRestrictionID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/video/v1/playback-restrictions/${playbackRestrictionID}`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -126,16 +114,16 @@ export class PlaybackRestrictions extends APIResource {
    * ```
    */
   updateReferrer(
-    playbackRestrictionId: string,
+    playbackRestrictionID: string,
     body: PlaybackRestrictionUpdateReferrerParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PlaybackRestriction> {
+    options?: RequestOptions,
+  ): APIPromise<PlaybackRestriction> {
     return (
-      this._client.put(`/video/v1/playback-restrictions/${playbackRestrictionId}/referrer`, {
+      this._client.put(path`/video/v1/playback-restrictions/${playbackRestrictionID}/referrer`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: PlaybackRestriction }>
+      }) as APIPromise<{ data: PlaybackRestriction }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -158,21 +146,21 @@ export class PlaybackRestrictions extends APIResource {
    * ```
    */
   updateUserAgent(
-    playbackRestrictionId: string,
+    playbackRestrictionID: string,
     body: PlaybackRestrictionUpdateUserAgentParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<PlaybackRestriction> {
+    options?: RequestOptions,
+  ): APIPromise<PlaybackRestriction> {
     return (
-      this._client.put(`/video/v1/playback-restrictions/${playbackRestrictionId}/user_agent`, {
+      this._client.put(path`/video/v1/playback-restrictions/${playbackRestrictionID}/user_agent`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: PlaybackRestriction }>
+      }) as APIPromise<{ data: PlaybackRestriction }>
     )._thenUnwrap((obj) => obj.data);
   }
 }
 
-export class PlaybackRestrictionsBasePage extends BasePage<PlaybackRestriction> {}
+export type PlaybackRestrictionsBasePage = BasePage<PlaybackRestriction>;
 
 export interface PlaybackRestriction {
   /**
@@ -347,13 +335,11 @@ export interface PlaybackRestrictionUpdateUserAgentParams {
   allow_no_user_agent: boolean;
 }
 
-PlaybackRestrictions.PlaybackRestrictionsBasePage = PlaybackRestrictionsBasePage;
-
 export declare namespace PlaybackRestrictions {
   export {
     type PlaybackRestriction as PlaybackRestriction,
     type PlaybackRestrictionResponse as PlaybackRestrictionResponse,
-    PlaybackRestrictionsBasePage as PlaybackRestrictionsBasePage,
+    type PlaybackRestrictionsBasePage as PlaybackRestrictionsBasePage,
     type PlaybackRestrictionCreateParams as PlaybackRestrictionCreateParams,
     type PlaybackRestrictionListParams as PlaybackRestrictionListParams,
     type PlaybackRestrictionUpdateReferrerParams as PlaybackRestrictionUpdateReferrerParams,

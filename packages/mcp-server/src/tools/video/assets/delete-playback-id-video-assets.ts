@@ -39,8 +39,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { ASSET_ID, PLAYBACK_ID, ...body } = args as any;
-  const response = await client.video.assets.deletePlaybackId(ASSET_ID, PLAYBACK_ID).asResponse();
+  const { PLAYBACK_ID, ...body } = args as any;
+  const response = await client.video.assets.deletePlaybackID(PLAYBACK_ID, body).asResponse();
   return asTextContentResult(await response.text());
 };
 

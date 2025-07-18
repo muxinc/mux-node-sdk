@@ -17,7 +17,7 @@ const serverConfig: ServerConfig = {
   logoUrl: undefined, // Set a custom logo url to appear during the OAuth flow
   clientProperties: [
     {
-      key: 'tokenId',
+      key: 'tokenID',
       label: 'Token ID',
       description: '',
       required: true,

@@ -1,39 +1,24 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Mux from '@mux/mux-node';
-import { Response } from 'node-fetch';
 
 const client = new Mux({
-  tokenId: 'my token id',
+  tokenID: 'my token id',
   tokenSecret: 'my secret',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource playback', () => {
-  test('animated: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.animated('PLAYBACK_ID', 'gif', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
-  test('animated: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.animated(
-        'PLAYBACK_ID',
-        'gif',
-        { end: 0, fps: 0, height: 0, start: 0, TOKEN: 'TOKEN', width: 0 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
-  test('hls: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.hls('PLAYBACK_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
+  test('animated: required and optional params', async () => {
+    const response = await client.video.playback.animated('gif', {
+      PLAYBACK_ID: 'PLAYBACK_ID',
+      end: 0,
+      fps: 0,
+      height: 0,
+      start: 0,
+      TOKEN: 'TOKEN',
+      width: 0,
+    });
   });
 
   test('hls: request options and params are passed correctly', async () => {
@@ -59,44 +44,18 @@ describe('resource playback', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('staticRendition: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.staticRendition('PLAYBACK_ID', 'capped-1080p.mp4', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(Mux.NotFoundError);
+  test('staticRendition: required and optional params', async () => {
+    const response = await client.video.playback.staticRendition('capped-1080p.mp4', {
+      PLAYBACK_ID: 'PLAYBACK_ID',
+      TOKEN: 'TOKEN',
+    });
   });
 
-  test('staticRendition: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.staticRendition(
-        'PLAYBACK_ID',
-        'capped-1080p.mp4',
-        { TOKEN: 'TOKEN' },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
-  test('storyboard: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.storyboard('PLAYBACK_ID', 'jpg', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
-  test('storyboard: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.storyboard(
-        'PLAYBACK_ID',
-        'jpg',
-        { TOKEN: 'TOKEN' },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+  test('storyboard: required and optional params', async () => {
+    const response = await client.video.playback.storyboard('jpg', {
+      PLAYBACK_ID: 'PLAYBACK_ID',
+      TOKEN: 'TOKEN',
+    });
   });
 
   // Prism routes incorrectly
@@ -109,14 +68,6 @@ describe('resource playback', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Prism routes incorrectly
-  test.skip('storyboardMeta: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.storyboardMeta('PLAYBACK_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
   });
 
   // Prism routes incorrectly
@@ -144,14 +95,6 @@ describe('resource playback', () => {
   });
 
   // Prism routes incorrectly
-  test.skip('storyboardVtt: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.storyboardVtt('PLAYBACK_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
-  // Prism routes incorrectly
   test.skip('storyboardVtt: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -163,36 +106,22 @@ describe('resource playback', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('thumbnail: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.thumbnail('PLAYBACK_ID', 'jpg', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
+  test('thumbnail: required and optional params', async () => {
+    const response = await client.video.playback.thumbnail('jpg', {
+      PLAYBACK_ID: 'PLAYBACK_ID',
+      fit_mode: 'preserve',
+      flip_h: true,
+      flip_v: true,
+      height: 0,
+      rotate: 90,
+      time: 0,
+      TOKEN: 'TOKEN',
+      width: 0,
+    });
   });
 
-  test('thumbnail: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.thumbnail(
-        'PLAYBACK_ID',
-        'jpg',
-        {
-          fit_mode: 'preserve',
-          flip_h: true,
-          flip_v: true,
-          height: 0,
-          rotate: 90,
-          time: 0,
-          TOKEN: 'TOKEN',
-          width: 0,
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
-  test('track', async () => {
-    const responsePromise = client.video.playback.track('PLAYBACK_ID', 'TRACK_ID');
+  test('track: only required params', async () => {
+    const responsePromise = client.video.playback.track('TRACK_ID', { PLAYBACK_ID: 'PLAYBACK_ID' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -202,27 +131,15 @@ describe('resource playback', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('track: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.track('PLAYBACK_ID', 'TRACK_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
+  test('track: required and optional params', async () => {
+    const response = await client.video.playback.track('TRACK_ID', {
+      PLAYBACK_ID: 'PLAYBACK_ID',
+      TOKEN: 'TOKEN',
+    });
   });
 
-  test('track: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.track(
-        'PLAYBACK_ID',
-        'TRACK_ID',
-        { TOKEN: 'TOKEN' },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
-  test('transcript', async () => {
-    const responsePromise = client.video.playback.transcript('PLAYBACK_ID', 'TRACK_ID');
+  test('transcript: only required params', async () => {
+    const responsePromise = client.video.playback.transcript('TRACK_ID', { PLAYBACK_ID: 'PLAYBACK_ID' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -232,22 +149,10 @@ describe('resource playback', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('transcript: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.transcript('PLAYBACK_ID', 'TRACK_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
-  test('transcript: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playback.transcript(
-        'PLAYBACK_ID',
-        'TRACK_ID',
-        { TOKEN: 'TOKEN' },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+  test('transcript: required and optional params', async () => {
+    const response = await client.video.playback.transcript('TRACK_ID', {
+      PLAYBACK_ID: 'PLAYBACK_ID',
+      TOKEN: 'TOKEN',
+    });
   });
 });

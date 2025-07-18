@@ -39,10 +39,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { ASSET_ID, STATIC_RENDITION_ID, ...body } = args as any;
-  const response = await client.video.assets
-    .deleteStaticRendition(ASSET_ID, STATIC_RENDITION_ID)
-    .asResponse();
+  const { STATIC_RENDITION_ID, ...body } = args as any;
+  const response = await client.video.assets.deleteStaticRendition(STATIC_RENDITION_ID, body).asResponse();
   return asTextContentResult(await response.text());
 };
 

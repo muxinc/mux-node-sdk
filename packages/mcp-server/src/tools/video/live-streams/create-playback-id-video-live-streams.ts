@@ -55,7 +55,7 @@ export const tool: Tool = {
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
   const { LIVE_STREAM_ID, ...body } = args as any;
   return asTextContentResult(
-    await maybeFilter(args, await client.video.liveStreams.createPlaybackId(LIVE_STREAM_ID, body)),
+    await maybeFilter(args, await client.video.liveStreams.createPlaybackID(LIVE_STREAM_ID, body)),
   );
 };
 

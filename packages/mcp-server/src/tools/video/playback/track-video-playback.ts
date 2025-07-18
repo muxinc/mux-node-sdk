@@ -45,10 +45,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { PLAYBACK_ID, TRACK_ID, ...body } = args as any;
-  return asTextContentResult(
-    await maybeFilter(args, await client.video.playback.track(PLAYBACK_ID, TRACK_ID, body)),
-  );
+  const { TRACK_ID, ...body } = args as any;
+  return asTextContentResult(await maybeFilter(args, await client.video.playback.track(TRACK_ID, body)));
 };
 
 export default { metadata, tool, handler };

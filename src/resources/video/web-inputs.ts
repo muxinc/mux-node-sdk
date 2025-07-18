@@ -1,9 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { BasePage, type BasePageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { BasePage, type BasePageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class WebInputs extends APIResource {
   /**
@@ -18,13 +20,13 @@ export class WebInputs extends APIResource {
    * });
    * ```
    */
-  create(body: WebInputCreateParams, options?: Core.RequestOptions): Core.APIPromise<WebInputCreateResponse> {
+  create(body: WebInputCreateParams, options?: RequestOptions): APIPromise<WebInputCreateResponse> {
     return (
       this._client.post('/video/v1/web-inputs', {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: WebInputCreateResponse }>
+      }) as APIPromise<{ data: WebInputCreateResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -38,12 +40,12 @@ export class WebInputs extends APIResource {
    * );
    * ```
    */
-  retrieve(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputRetrieveResponse> {
+  retrieve(webInputID: string, options?: RequestOptions): APIPromise<WebInputRetrieveResponse> {
     return (
-      this._client.get(`/video/v1/web-inputs/${webInputId}`, {
+      this._client.get(path`/video/v1/web-inputs/${webInputID}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: WebInputRetrieveResponse }>
+      }) as APIPromise<{ data: WebInputRetrieveResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -59,18 +61,10 @@ export class WebInputs extends APIResource {
    * ```
    */
   list(
-    query?: WebInputListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<WebInputListResponsesBasePage, WebInputListResponse>;
-  list(options?: Core.RequestOptions): Core.PagePromise<WebInputListResponsesBasePage, WebInputListResponse>;
-  list(
-    query: WebInputListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<WebInputListResponsesBasePage, WebInputListResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/video/v1/web-inputs', WebInputListResponsesBasePage, {
+    query: WebInputListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<WebInputListResponsesBasePage, WebInputListResponse> {
+    return this._client.getAPIList('/video/v1/web-inputs', BasePage<WebInputListResponse>, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -85,11 +79,11 @@ export class WebInputs extends APIResource {
    * await client.video.webInputs.delete('abcd1234');
    * ```
    */
-  delete(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/video/v1/web-inputs/${webInputId}`, {
+  delete(webInputID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/video/v1/web-inputs/${webInputID}`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -104,12 +98,12 @@ export class WebInputs extends APIResource {
    * );
    * ```
    */
-  launch(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputLaunchResponse> {
+  launch(webInputID: string, options?: RequestOptions): APIPromise<WebInputLaunchResponse> {
     return (
-      this._client.put(`/video/v1/web-inputs/${webInputId}/launch`, {
+      this._client.put(path`/video/v1/web-inputs/${webInputID}/launch`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: WebInputLaunchResponse }>
+      }) as APIPromise<{ data: WebInputLaunchResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -126,12 +120,12 @@ export class WebInputs extends APIResource {
    * );
    * ```
    */
-  reload(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputReloadResponse> {
+  reload(webInputID: string, options?: RequestOptions): APIPromise<WebInputReloadResponse> {
     return (
-      this._client.put(`/video/v1/web-inputs/${webInputId}/reload`, {
+      this._client.put(path`/video/v1/web-inputs/${webInputID}/reload`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: WebInputReloadResponse }>
+      }) as APIPromise<{ data: WebInputReloadResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -146,12 +140,12 @@ export class WebInputs extends APIResource {
    * );
    * ```
    */
-  shutdown(webInputId: string, options?: Core.RequestOptions): Core.APIPromise<WebInputShutdownResponse> {
+  shutdown(webInputID: string, options?: RequestOptions): APIPromise<WebInputShutdownResponse> {
     return (
-      this._client.put(`/video/v1/web-inputs/${webInputId}/shutdown`, {
+      this._client.put(path`/video/v1/web-inputs/${webInputID}/shutdown`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: WebInputShutdownResponse }>
+      }) as APIPromise<{ data: WebInputShutdownResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -169,21 +163,21 @@ export class WebInputs extends APIResource {
    * ```
    */
   updateURL(
-    webInputId: string,
+    webInputID: string,
     body: WebInputUpdateURLParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<WebInputUpdateURLResponse> {
+    options?: RequestOptions,
+  ): APIPromise<WebInputUpdateURLResponse> {
     return (
-      this._client.put(`/video/v1/web-inputs/${webInputId}/url`, {
+      this._client.put(path`/video/v1/web-inputs/${webInputID}/url`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: WebInputUpdateURLResponse }>
+      }) as APIPromise<{ data: WebInputUpdateURLResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 }
 
-export class WebInputListResponsesBasePage extends BasePage<WebInputListResponse> {}
+export type WebInputListResponsesBasePage = BasePage<WebInputListResponse>;
 
 export interface WebInputCreateResponse {
   /**
@@ -450,8 +444,6 @@ export interface WebInputUpdateURLParams {
   url: string;
 }
 
-WebInputs.WebInputListResponsesBasePage = WebInputListResponsesBasePage;
-
 export declare namespace WebInputs {
   export {
     type WebInputCreateResponse as WebInputCreateResponse,
@@ -461,7 +453,7 @@ export declare namespace WebInputs {
     type WebInputReloadResponse as WebInputReloadResponse,
     type WebInputShutdownResponse as WebInputShutdownResponse,
     type WebInputUpdateURLResponse as WebInputUpdateURLResponse,
-    WebInputListResponsesBasePage as WebInputListResponsesBasePage,
+    type WebInputListResponsesBasePage as WebInputListResponsesBasePage,
     type WebInputCreateParams as WebInputCreateParams,
     type WebInputListParams as WebInputListParams,
     type WebInputUpdateURLParams as WebInputUpdateURLParams,

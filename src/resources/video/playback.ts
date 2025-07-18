@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { type Response } from '../../_shims/index';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Playback extends APIResource {
   /**
@@ -13,8 +14,8 @@ export class Playback extends APIResource {
    * @example
    * ```ts
    * const response = await client.video.playback.animated(
-   *   'PLAYBACK_ID',
    *   'gif',
+   *   { PLAYBACK_ID: 'PLAYBACK_ID' },
    * );
    *
    * const content = await response.blob();
@@ -22,30 +23,16 @@ export class Playback extends APIResource {
    * ```
    */
   animated(
-    playbackId: string,
     extension: 'gif' | 'webp',
-    query?: PlaybackAnimatedParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  animated(
-    playbackId: string,
-    extension: 'gif' | 'webp',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  animated(
-    playbackId: string,
-    extension: 'gif' | 'webp',
-    query: PlaybackAnimatedParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response> {
-    if (isRequestOptions(query)) {
-      return this.animated(playbackId, extension, {}, query);
-    }
-    return this._client.get(`/${playbackId}/animated.${extension}`, {
+    params: PlaybackAnimatedParams,
+    options?: RequestOptions,
+  ): APIPromise<Response> {
+    const { PLAYBACK_ID, ...query } = params;
+    return this._client.get(path`/${PLAYBACK_ID}/animated.${extension}`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
-      headers: { Accept: 'image/gif', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'image/gif' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -66,24 +53,15 @@ export class Playback extends APIResource {
    * ```
    */
   hls(
-    playbackId: string,
-    query?: PlaybackHlsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  hls(playbackId: string, options?: Core.RequestOptions): Core.APIPromise<Response>;
-  hls(
-    playbackId: string,
-    query: PlaybackHlsParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response> {
-    if (isRequestOptions(query)) {
-      return this.hls(playbackId, {}, query);
-    }
-    return this._client.get(`/${playbackId}.m3u8`, {
+    playbackID: string,
+    query: PlaybackHlsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
+    return this._client.get(path`/${playbackID}.m3u8`, {
       query,
       defaultBaseURL: 'https://stream.mux.com',
       ...options,
-      headers: { Accept: 'application/vnd.apple.mpegurl', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'application/vnd.apple.mpegurl' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -97,8 +75,8 @@ export class Playback extends APIResource {
    * ```ts
    * const response =
    *   await client.video.playback.staticRendition(
-   *     'PLAYBACK_ID',
    *     'capped-1080p.mp4',
+   *     { PLAYBACK_ID: 'PLAYBACK_ID' },
    *   );
    *
    * const content = await response.blob();
@@ -106,30 +84,16 @@ export class Playback extends APIResource {
    * ```
    */
   staticRendition(
-    playbackId: string,
     filename: 'capped-1080p.mp4' | 'audio.m4a' | 'low.mp4' | 'medium.mp4' | 'high.mp4',
-    query?: PlaybackStaticRenditionParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  staticRendition(
-    playbackId: string,
-    filename: 'capped-1080p.mp4' | 'audio.m4a' | 'low.mp4' | 'medium.mp4' | 'high.mp4',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  staticRendition(
-    playbackId: string,
-    filename: 'capped-1080p.mp4' | 'audio.m4a' | 'low.mp4' | 'medium.mp4' | 'high.mp4',
-    query: PlaybackStaticRenditionParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response> {
-    if (isRequestOptions(query)) {
-      return this.staticRendition(playbackId, filename, {}, query);
-    }
-    return this._client.get(`/${playbackId}/${filename}`, {
+    params: PlaybackStaticRenditionParams,
+    options?: RequestOptions,
+  ): APIPromise<Response> {
+    const { PLAYBACK_ID, ...query } = params;
+    return this._client.get(path`/${PLAYBACK_ID}/${filename}`, {
       query,
       defaultBaseURL: 'https://stream.mux.com',
       ...options,
-      headers: { Accept: 'video/mp4', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'video/mp4' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -141,8 +105,8 @@ export class Playback extends APIResource {
    * @example
    * ```ts
    * const response = await client.video.playback.storyboard(
-   *   'PLAYBACK_ID',
    *   'jpg',
+   *   { PLAYBACK_ID: 'PLAYBACK_ID' },
    * );
    *
    * const content = await response.blob();
@@ -150,30 +114,16 @@ export class Playback extends APIResource {
    * ```
    */
   storyboard(
-    playbackId: string,
     extension: 'jpg' | 'png' | 'webp',
-    query?: PlaybackStoryboardParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  storyboard(
-    playbackId: string,
-    extension: 'jpg' | 'png' | 'webp',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  storyboard(
-    playbackId: string,
-    extension: 'jpg' | 'png' | 'webp',
-    query: PlaybackStoryboardParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response> {
-    if (isRequestOptions(query)) {
-      return this.storyboard(playbackId, extension, {}, query);
-    }
-    return this._client.get(`/${playbackId}/storyboard.${extension}`, {
+    params: PlaybackStoryboardParams,
+    options?: RequestOptions,
+  ): APIPromise<Response> {
+    const { PLAYBACK_ID, ...query } = params;
+    return this._client.get(path`/${PLAYBACK_ID}/storyboard.${extension}`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
-      headers: { Accept: 'image/jpeg', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'image/jpeg' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -191,20 +141,11 @@ export class Playback extends APIResource {
    * ```
    */
   storyboardMeta(
-    playbackId: string,
-    query?: PlaybackStoryboardMetaParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string>;
-  storyboardMeta(playbackId: string, options?: Core.RequestOptions): Core.APIPromise<string>;
-  storyboardMeta(
-    playbackId: string,
-    query: PlaybackStoryboardMetaParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.storyboardMeta(playbackId, {}, query);
-    }
-    return this._client.get(`/${playbackId}/storyboard.json`, {
+    playbackID: string,
+    query: PlaybackStoryboardMetaParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get(path`/${playbackID}/storyboard.json`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
@@ -224,24 +165,15 @@ export class Playback extends APIResource {
    * ```
    */
   storyboardVtt(
-    playbackId: string,
-    query?: PlaybackStoryboardVttParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string>;
-  storyboardVtt(playbackId: string, options?: Core.RequestOptions): Core.APIPromise<string>;
-  storyboardVtt(
-    playbackId: string,
-    query: PlaybackStoryboardVttParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.storyboardVtt(playbackId, {}, query);
-    }
-    return this._client.get(`/${playbackId}/storyboard.vtt`, {
+    playbackID: string,
+    query: PlaybackStoryboardVttParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get(path`/${playbackID}/storyboard.vtt`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
-      headers: { Accept: 'text/vtt', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/vtt' }, options?.headers]),
     });
   }
 
@@ -252,8 +184,8 @@ export class Playback extends APIResource {
    * @example
    * ```ts
    * const response = await client.video.playback.thumbnail(
-   *   'PLAYBACK_ID',
    *   'jpg',
+   *   { PLAYBACK_ID: 'PLAYBACK_ID' },
    * );
    *
    * const content = await response.blob();
@@ -261,30 +193,16 @@ export class Playback extends APIResource {
    * ```
    */
   thumbnail(
-    playbackId: string,
     extension: 'jpg' | 'png' | 'webp',
-    query?: PlaybackThumbnailParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  thumbnail(
-    playbackId: string,
-    extension: 'jpg' | 'png' | 'webp',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  thumbnail(
-    playbackId: string,
-    extension: 'jpg' | 'png' | 'webp',
-    query: PlaybackThumbnailParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response> {
-    if (isRequestOptions(query)) {
-      return this.thumbnail(playbackId, extension, {}, query);
-    }
-    return this._client.get(`/${playbackId}/thumbnail.${extension}`, {
+    params: PlaybackThumbnailParams,
+    options?: RequestOptions,
+  ): APIPromise<Response> {
+    const { PLAYBACK_ID, ...query } = params;
+    return this._client.get(path`/${PLAYBACK_ID}/thumbnail.${extension}`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
-      headers: { Accept: 'image/jpeg', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'image/jpeg' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -295,32 +213,18 @@ export class Playback extends APIResource {
    * @example
    * ```ts
    * const response = await client.video.playback.track(
-   *   'PLAYBACK_ID',
    *   'TRACK_ID',
+   *   { PLAYBACK_ID: 'PLAYBACK_ID' },
    * );
    * ```
    */
-  track(
-    playbackId: string,
-    trackId: string,
-    query?: PlaybackTrackParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string>;
-  track(playbackId: string, trackId: string, options?: Core.RequestOptions): Core.APIPromise<string>;
-  track(
-    playbackId: string,
-    trackId: string,
-    query: PlaybackTrackParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.track(playbackId, trackId, {}, query);
-    }
-    return this._client.get(`/${playbackId}/text/${trackId}.vtt`, {
+  track(trackID: string, params: PlaybackTrackParams, options?: RequestOptions): APIPromise<string> {
+    const { PLAYBACK_ID, ...query } = params;
+    return this._client.get(path`/${PLAYBACK_ID}/text/${trackID}.vtt`, {
       query,
       defaultBaseURL: 'https://stream.mux.com',
       ...options,
-      headers: { Accept: 'text/vtt', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/vtt' }, options?.headers]),
     });
   }
 
@@ -333,32 +237,22 @@ export class Playback extends APIResource {
    * @example
    * ```ts
    * const response = await client.video.playback.transcript(
-   *   'PLAYBACK_ID',
    *   'TRACK_ID',
+   *   { PLAYBACK_ID: 'PLAYBACK_ID' },
    * );
    * ```
    */
   transcript(
-    playbackId: string,
-    trackId: string,
-    query?: PlaybackTranscriptParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string>;
-  transcript(playbackId: string, trackId: string, options?: Core.RequestOptions): Core.APIPromise<string>;
-  transcript(
-    playbackId: string,
-    trackId: string,
-    query: PlaybackTranscriptParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.transcript(playbackId, trackId, {}, query);
-    }
-    return this._client.get(`/${playbackId}/text/${trackId}.txt`, {
+    trackID: string,
+    params: PlaybackTranscriptParams,
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    const { PLAYBACK_ID, ...query } = params;
+    return this._client.get(path`/${PLAYBACK_ID}/text/${trackID}.txt`, {
       query,
       defaultBaseURL: 'https://stream.mux.com',
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 }
@@ -373,39 +267,46 @@ export type PlaybackTranscriptResponse = string;
 
 export interface PlaybackAnimatedParams {
   /**
-   * The time (in seconds) of the video timeline where the GIF ends. Defaults to 5
-   * seconds after the start. Maximum total duration of GIF is limited to 10 seconds;
-   * minimum total duration of GIF is 250ms.
+   * Path param: The asset or live stream's playback ID.
+   */
+  PLAYBACK_ID: string;
+
+  /**
+   * Query param: The time (in seconds) of the video timeline where the GIF ends.
+   * Defaults to 5 seconds after the start. Maximum total duration of GIF is limited
+   * to 10 seconds; minimum total duration of GIF is 250ms.
    */
   end?: number;
 
   /**
-   * The frame rate of the generated GIF. Defaults to 15 fps. Max 30 fps.
+   * Query param: The frame rate of the generated GIF. Defaults to 15 fps. Max 30
+   * fps.
    */
   fps?: number;
 
   /**
-   * The height in pixels of the animated GIF. The default height is determined by
-   * preserving aspect ratio with the width provided. Maximum height is 640px.
+   * Query param: The height in pixels of the animated GIF. The default height is
+   * determined by preserving aspect ratio with the width provided. Maximum height is
+   * 640px.
    */
   height?: number;
 
   /**
-   * The time (in seconds) of the video timeline where the animated GIF should begin.
-   * Defaults to 0.
+   * Query param: The time (in seconds) of the video timeline where the animated GIF
+   * should begin. Defaults to 0.
    */
   start?: number;
 
   /**
-   * Signed token (JWT) for
+   * Query param: Signed token (JWT) for
    * [secure video playback](https://docs.mux.com/guides/secure-video-playback).
    */
   TOKEN?: string;
 
   /**
-   * The width in pixels of the animated GIF. Default is 320px, or if height is
-   * provided, the width is determined by preserving aspect ratio with the height.
-   * Max width is 640px.
+   * Query param: The width in pixels of the animated GIF. Default is 320px, or if
+   * height is provided, the width is determined by preserving aspect ratio with the
+   * height. Max width is 640px.
    */
   width?: number;
 }
@@ -488,7 +389,12 @@ export interface PlaybackHlsParams {
 
 export interface PlaybackStaticRenditionParams {
   /**
-   * Signed token (JWT) for
+   * Path param: The asset or live stream's playback ID.
+   */
+  PLAYBACK_ID: string;
+
+  /**
+   * Query param: Signed token (JWT) for
    * [secure video playback](https://docs.mux.com/guides/secure-video-playback).
    */
   TOKEN?: string;
@@ -496,7 +402,12 @@ export interface PlaybackStaticRenditionParams {
 
 export interface PlaybackStoryboardParams {
   /**
-   * Signed token (JWT) for
+   * Path param: The asset or live stream's playback ID.
+   */
+  PLAYBACK_ID: string;
+
+  /**
+   * Query param: Signed token (JWT) for
    * [secure video playback](https://docs.mux.com/guides/secure-video-playback).
    */
   TOKEN?: string;
@@ -520,53 +431,65 @@ export interface PlaybackStoryboardVttParams {
 
 export interface PlaybackThumbnailParams {
   /**
-   * How to fit a thumbnail within the specified width + height.
+   * Path param: The asset or live stream's playback ID.
+   */
+  PLAYBACK_ID: string;
+
+  /**
+   * Query param: How to fit a thumbnail within the specified width + height.
    */
   fit_mode?: 'preserve' | 'stretch' | 'crop' | 'smartcrop' | 'pad';
 
   /**
-   * Flip the image left-right after performing all other transformations.
+   * Query param: Flip the image left-right after performing all other
+   * transformations.
    */
   flip_h?: boolean;
 
   /**
-   * Flip the image top-bottom after performing all other transformations.
+   * Query param: Flip the image top-bottom after performing all other
+   * transformations.
    */
   flip_v?: boolean;
 
   /**
-   * The height of the thumbnail (in pixels). Defaults to the height of the original
-   * video.
+   * Query param: The height of the thumbnail (in pixels). Defaults to the height of
+   * the original video.
    */
   height?: number;
 
   /**
-   * Rotate the image clockwise by the given number of degrees.
+   * Query param: Rotate the image clockwise by the given number of degrees.
    */
   rotate?: 90 | 180 | 270;
 
   /**
-   * The time (in seconds) of the video timeline where the image should be pulled.
-   * Defaults to the middle of the original video.
+   * Query param: The time (in seconds) of the video timeline where the image should
+   * be pulled. Defaults to the middle of the original video.
    */
   time?: number;
 
   /**
-   * Signed token (JWT) for
+   * Query param: Signed token (JWT) for
    * [secure video playback](https://docs.mux.com/guides/secure-video-playback).
    */
   TOKEN?: string;
 
   /**
-   * The width of the thumbnail (in pixels). Defaults to the width of the original
-   * video.
+   * Query param: The width of the thumbnail (in pixels). Defaults to the width of
+   * the original video.
    */
   width?: number;
 }
 
 export interface PlaybackTrackParams {
   /**
-   * Signed token (JWT) for
+   * Path param: The asset or live stream's playback ID.
+   */
+  PLAYBACK_ID: string;
+
+  /**
+   * Query param: Signed token (JWT) for
    * [secure video playback](https://docs.mux.com/guides/secure-video-playback).
    */
   TOKEN?: string;
@@ -574,7 +497,12 @@ export interface PlaybackTrackParams {
 
 export interface PlaybackTranscriptParams {
   /**
-   * Signed token (JWT) for
+   * Path param: The asset or live stream's playback ID.
+   */
+  PLAYBACK_ID: string;
+
+  /**
+   * Query param: Signed token (JWT) for
    * [secure video playback](https://docs.mux.com/guides/secure-video-playback).
    */
   TOKEN?: string;

@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
+import { APIResource } from '../../core/resource';
 import * as AnnotationsAPI from './annotations';
 import {
   Annotation,
@@ -94,28 +94,22 @@ export class Data extends APIResource {
 }
 
 Data.Dimensions = Dimensions;
-Data.DimensionValuesBasePage = DimensionValuesBasePage;
 Data.Monitoring = Monitoring;
 Data.Errors = Errors;
 Data.Exports = Exports;
 Data.Filters = Filters;
-Data.FilterValuesBasePage = FilterValuesBasePage;
 Data.Incidents = Incidents;
-Data.IncidentsBasePage = IncidentsBasePage;
 Data.Metrics = Metrics;
-Data.BreakdownValuesBasePage = BreakdownValuesBasePage;
 Data.RealTime = RealTime;
 Data.VideoViews = VideoViews;
-Data.AbridgedVideoViewsBasePage = AbridgedVideoViewsBasePage;
 Data.Annotations = Annotations;
-Data.AnnotationsBasePage = AnnotationsBasePage;
 
 export declare namespace Data {
   export {
     Dimensions as Dimensions,
     type DimensionValue as DimensionValue,
     type DimensionsResponse as DimensionsResponse,
-    DimensionValuesBasePage as DimensionValuesBasePage,
+    type DimensionValuesBasePage as DimensionValuesBasePage,
     type DimensionListValuesParams as DimensionListValuesParams,
   };
 
@@ -136,7 +130,7 @@ export declare namespace Data {
     Filters as Filters,
     type FilterValue as FilterValue,
     type FiltersResponse as FiltersResponse,
-    FilterValuesBasePage as FilterValuesBasePage,
+    type FilterValuesBasePage as FilterValuesBasePage,
     type FilterListValuesParams as FilterListValuesParams,
   };
 
@@ -144,7 +138,7 @@ export declare namespace Data {
     Incidents as Incidents,
     type Incident as Incident,
     type IncidentResponse as IncidentResponse,
-    IncidentsBasePage as IncidentsBasePage,
+    type IncidentsBasePage as IncidentsBasePage,
     type IncidentListParams as IncidentListParams,
     type IncidentListRelatedParams as IncidentListRelatedParams,
   };
@@ -156,7 +150,7 @@ export declare namespace Data {
     type InsightsResponse as InsightsResponse,
     type MetricTimeseriesDataResponse as MetricTimeseriesDataResponse,
     type OverallValuesResponse as OverallValuesResponse,
-    BreakdownValuesBasePage as BreakdownValuesBasePage,
+    type BreakdownValuesBasePage as BreakdownValuesBasePage,
     type MetricListParams as MetricListParams,
     type MetricGetInsightsParams as MetricGetInsightsParams,
     type MetricGetOverallValuesParams as MetricGetOverallValuesParams,
@@ -180,7 +174,7 @@ export declare namespace Data {
     VideoViews as VideoViews,
     type AbridgedVideoView as AbridgedVideoView,
     type VideoViewResponse as VideoViewResponse,
-    AbridgedVideoViewsBasePage as AbridgedVideoViewsBasePage,
+    type AbridgedVideoViewsBasePage as AbridgedVideoViewsBasePage,
     type VideoViewListParams as VideoViewListParams,
   };
 
@@ -190,7 +184,7 @@ export declare namespace Data {
     type AnnotationInput as AnnotationInput,
     type AnnotationResponse as AnnotationResponse,
     type ListAnnotationsResponse as ListAnnotationsResponse,
-    AnnotationsBasePage as AnnotationsBasePage,
+    type AnnotationsBasePage as AnnotationsBasePage,
     type AnnotationCreateParams as AnnotationCreateParams,
     type AnnotationUpdateParams as AnnotationUpdateParams,
     type AnnotationListParams as AnnotationListParams,

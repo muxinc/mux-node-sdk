@@ -1,10 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as AssetsAPI from './assets';
-import { BasePage, type BasePageParams } from '../../pagination';
+import { APIPromise } from '../../core/api-promise';
+import { BasePage, type BasePageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Uploads extends APIResource {
   /**
@@ -19,13 +20,13 @@ export class Uploads extends APIResource {
    * });
    * ```
    */
-  create(body: UploadCreateParams, options?: Core.RequestOptions): Core.APIPromise<Upload> {
+  create(body: UploadCreateParams, options?: RequestOptions): APIPromise<Upload> {
     return (
       this._client.post('/video/v1/uploads', {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: Upload }>
+      }) as APIPromise<{ data: Upload }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -39,12 +40,12 @@ export class Uploads extends APIResource {
    * );
    * ```
    */
-  retrieve(uploadId: string, options?: Core.RequestOptions): Core.APIPromise<Upload> {
+  retrieve(uploadID: string, options?: RequestOptions): APIPromise<Upload> {
     return (
-      this._client.get(`/video/v1/uploads/${uploadId}`, {
+      this._client.get(path`/video/v1/uploads/${uploadID}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: Upload }>
+      }) as APIPromise<{ data: Upload }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -59,16 +60,11 @@ export class Uploads extends APIResource {
    * }
    * ```
    */
-  list(query?: UploadListParams, options?: Core.RequestOptions): Core.PagePromise<UploadsBasePage, Upload>;
-  list(options?: Core.RequestOptions): Core.PagePromise<UploadsBasePage, Upload>;
   list(
-    query: UploadListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<UploadsBasePage, Upload> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/video/v1/uploads', UploadsBasePage, {
+    query: UploadListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<UploadsBasePage, Upload> {
+    return this._client.getAPIList('/video/v1/uploads', BasePage<Upload>, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -87,17 +83,17 @@ export class Uploads extends APIResource {
    * );
    * ```
    */
-  cancel(uploadId: string, options?: Core.RequestOptions): Core.APIPromise<Upload> {
+  cancel(uploadID: string, options?: RequestOptions): APIPromise<Upload> {
     return (
-      this._client.put(`/video/v1/uploads/${uploadId}/cancel`, {
+      this._client.put(path`/video/v1/uploads/${uploadID}/cancel`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: Upload }>
+      }) as APIPromise<{ data: Upload }>
     )._thenUnwrap((obj) => obj.data);
   }
 }
 
-export class UploadsBasePage extends BasePage<Upload> {}
+export type UploadsBasePage = BasePage<Upload>;
 
 export interface Upload {
   /**
@@ -190,13 +186,11 @@ export interface UploadCreateParams {
 
 export interface UploadListParams extends BasePageParams {}
 
-Uploads.UploadsBasePage = UploadsBasePage;
-
 export declare namespace Uploads {
   export {
     type Upload as Upload,
     type UploadResponse as UploadResponse,
-    UploadsBasePage as UploadsBasePage,
+    type UploadsBasePage as UploadsBasePage,
     type UploadCreateParams as UploadCreateParams,
     type UploadListParams as UploadListParams,
   };

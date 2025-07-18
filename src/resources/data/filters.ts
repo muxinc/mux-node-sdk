@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { BasePage, type BasePageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { BasePage, type BasePageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Filters extends APIResource {
   /**
@@ -14,23 +14,11 @@ export class Filters extends APIResource {
    * @deprecated
    */
   listValues(
-    filterId: string,
-    query?: FilterListValuesParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<FilterValuesBasePage, FilterValue>;
-  listValues(
-    filterId: string,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<FilterValuesBasePage, FilterValue>;
-  listValues(
-    filterId: string,
-    query: FilterListValuesParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<FilterValuesBasePage, FilterValue> {
-    if (isRequestOptions(query)) {
-      return this.listValues(filterId, {}, query);
-    }
-    return this._client.getAPIList(`/data/v1/filters/${filterId}`, FilterValuesBasePage, {
+    filterID: string,
+    query: FilterListValuesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<FilterValuesBasePage, FilterValue> {
+    return this._client.getAPIList(path`/data/v1/filters/${filterID}`, BasePage<FilterValue>, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -38,7 +26,7 @@ export class Filters extends APIResource {
   }
 }
 
-export class FilterValuesBasePage extends BasePage<FilterValue> {}
+export type FilterValuesBasePage = BasePage<FilterValue>;
 
 export interface FilterValue {
   total_count: number;
@@ -90,13 +78,11 @@ export interface FilterListValuesParams extends BasePageParams {
   timeframe?: Array<string>;
 }
 
-Filters.FilterValuesBasePage = FilterValuesBasePage;
-
 export declare namespace Filters {
   export {
     type FilterValue as FilterValue,
     type FiltersResponse as FiltersResponse,
-    FilterValuesBasePage as FilterValuesBasePage,
+    type FilterValuesBasePage as FilterValuesBasePage,
     type FilterListValuesParams as FilterListValuesParams,
   };
 }

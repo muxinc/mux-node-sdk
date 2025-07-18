@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
+import { APIResource } from '../../core/resource';
 import * as AssetsAPI from './assets';
 import {
   Asset,
@@ -9,12 +9,16 @@ import {
   AssetCreateStaticRenditionParams,
   AssetCreateStaticRenditionResponse,
   AssetCreateTrackParams,
+  AssetDeletePlaybackIDParams,
+  AssetDeleteStaticRenditionParams,
+  AssetDeleteTrackParams,
   AssetGenerateSubtitlesParams,
   AssetGenerateSubtitlesResponse,
   AssetListParams,
   AssetOptions,
   AssetResponse,
   AssetRetrieveInputInfoResponse,
+  AssetRetrievePlaybackIDParams,
   AssetUpdateMP4SupportParams,
   AssetUpdateMasterAccessParams,
   AssetUpdateParams,
@@ -43,7 +47,11 @@ import {
   LiveStreamCreateParams,
   LiveStreamCreatePlaybackIDParams,
   LiveStreamCreateSimulcastTargetParams,
+  LiveStreamDeletePlaybackIDParams,
+  LiveStreamDeleteSimulcastTargetParams,
   LiveStreamListParams,
+  LiveStreamRetrievePlaybackIDParams,
+  LiveStreamRetrieveSimulcastTargetParams,
   LiveStreamUpdateEmbeddedSubtitlesParams,
   LiveStreamUpdateGeneratedSubtitlesParams,
   LiveStreamUpdateNewAssetSettingsStaticRenditionsParams,
@@ -121,7 +129,7 @@ export class Video extends APIResource {
   assets: AssetsAPI.Assets = new AssetsAPI.Assets(this._client);
   deliveryUsage: DeliveryUsageAPI.DeliveryUsage = new DeliveryUsageAPI.DeliveryUsage(this._client);
   liveStreams: LiveStreamsAPI.LiveStreams = new LiveStreamsAPI.LiveStreams(this._client);
-  playbackIds: PlaybackIDsAPI.PlaybackIDs = new PlaybackIDsAPI.PlaybackIDs(this._client);
+  playbackIDs: PlaybackIDsAPI.PlaybackIDs = new PlaybackIDsAPI.PlaybackIDs(this._client);
   playbackRestrictions: PlaybackRestrictionsAPI.PlaybackRestrictions =
     new PlaybackRestrictionsAPI.PlaybackRestrictions(this._client);
   transcriptionVocabularies: TranscriptionVocabulariesAPI.TranscriptionVocabularies =
@@ -135,22 +143,14 @@ export class Video extends APIResource {
 }
 
 Video.Assets = Assets;
-Video.AssetsCursorPage = AssetsCursorPage;
 Video.DeliveryUsage = DeliveryUsage;
-Video.DeliveryReportsPageWithTotal = DeliveryReportsPageWithTotal;
 Video.LiveStreams = LiveStreams;
-Video.LiveStreamsBasePage = LiveStreamsBasePage;
 Video.PlaybackIDs = PlaybackIDs;
 Video.PlaybackRestrictions = PlaybackRestrictions;
-Video.PlaybackRestrictionsBasePage = PlaybackRestrictionsBasePage;
 Video.TranscriptionVocabularies = TranscriptionVocabularies;
-Video.TranscriptionVocabulariesBasePage = TranscriptionVocabulariesBasePage;
 Video.Uploads = Uploads;
-Video.UploadsBasePage = UploadsBasePage;
 Video.WebInputs = WebInputs;
-Video.WebInputListResponsesBasePage = WebInputListResponsesBasePage;
 Video.DRMConfigurations = DRMConfigurations;
-Video.DRMConfigurationsBasePage = DRMConfigurationsBasePage;
 Video.Playback = Playback;
 
 export declare namespace Video {
@@ -164,14 +164,18 @@ export declare namespace Video {
     type AssetCreateStaticRenditionResponse as AssetCreateStaticRenditionResponse,
     type AssetGenerateSubtitlesResponse as AssetGenerateSubtitlesResponse,
     type AssetRetrieveInputInfoResponse as AssetRetrieveInputInfoResponse,
-    AssetsCursorPage as AssetsCursorPage,
+    type AssetsCursorPage as AssetsCursorPage,
     type AssetCreateParams as AssetCreateParams,
     type AssetUpdateParams as AssetUpdateParams,
     type AssetListParams as AssetListParams,
     type AssetCreatePlaybackIDParams as AssetCreatePlaybackIDParams,
     type AssetCreateStaticRenditionParams as AssetCreateStaticRenditionParams,
     type AssetCreateTrackParams as AssetCreateTrackParams,
+    type AssetDeletePlaybackIDParams as AssetDeletePlaybackIDParams,
+    type AssetDeleteStaticRenditionParams as AssetDeleteStaticRenditionParams,
+    type AssetDeleteTrackParams as AssetDeleteTrackParams,
     type AssetGenerateSubtitlesParams as AssetGenerateSubtitlesParams,
+    type AssetRetrievePlaybackIDParams as AssetRetrievePlaybackIDParams,
     type AssetUpdateMasterAccessParams as AssetUpdateMasterAccessParams,
     type AssetUpdateMP4SupportParams as AssetUpdateMP4SupportParams,
   };
@@ -179,7 +183,7 @@ export declare namespace Video {
   export {
     DeliveryUsage as DeliveryUsage,
     type DeliveryReport as DeliveryReport,
-    DeliveryReportsPageWithTotal as DeliveryReportsPageWithTotal,
+    type DeliveryReportsPageWithTotal as DeliveryReportsPageWithTotal,
     type DeliveryUsageListParams as DeliveryUsageListParams,
   };
 
@@ -187,12 +191,16 @@ export declare namespace Video {
     LiveStreams as LiveStreams,
     type LiveStream as LiveStream,
     type SimulcastTarget as SimulcastTarget,
-    LiveStreamsBasePage as LiveStreamsBasePage,
+    type LiveStreamsBasePage as LiveStreamsBasePage,
     type LiveStreamCreateParams as LiveStreamCreateParams,
     type LiveStreamUpdateParams as LiveStreamUpdateParams,
     type LiveStreamListParams as LiveStreamListParams,
     type LiveStreamCreatePlaybackIDParams as LiveStreamCreatePlaybackIDParams,
     type LiveStreamCreateSimulcastTargetParams as LiveStreamCreateSimulcastTargetParams,
+    type LiveStreamDeletePlaybackIDParams as LiveStreamDeletePlaybackIDParams,
+    type LiveStreamDeleteSimulcastTargetParams as LiveStreamDeleteSimulcastTargetParams,
+    type LiveStreamRetrievePlaybackIDParams as LiveStreamRetrievePlaybackIDParams,
+    type LiveStreamRetrieveSimulcastTargetParams as LiveStreamRetrieveSimulcastTargetParams,
     type LiveStreamUpdateEmbeddedSubtitlesParams as LiveStreamUpdateEmbeddedSubtitlesParams,
     type LiveStreamUpdateGeneratedSubtitlesParams as LiveStreamUpdateGeneratedSubtitlesParams,
     type LiveStreamUpdateNewAssetSettingsStaticRenditionsParams as LiveStreamUpdateNewAssetSettingsStaticRenditionsParams,
@@ -204,7 +212,7 @@ export declare namespace Video {
     PlaybackRestrictions as PlaybackRestrictions,
     type PlaybackRestriction as PlaybackRestriction,
     type PlaybackRestrictionResponse as PlaybackRestrictionResponse,
-    PlaybackRestrictionsBasePage as PlaybackRestrictionsBasePage,
+    type PlaybackRestrictionsBasePage as PlaybackRestrictionsBasePage,
     type PlaybackRestrictionCreateParams as PlaybackRestrictionCreateParams,
     type PlaybackRestrictionListParams as PlaybackRestrictionListParams,
     type PlaybackRestrictionUpdateReferrerParams as PlaybackRestrictionUpdateReferrerParams,
@@ -215,7 +223,7 @@ export declare namespace Video {
     TranscriptionVocabularies as TranscriptionVocabularies,
     type TranscriptionVocabulary as TranscriptionVocabulary,
     type TranscriptionVocabularyResponse as TranscriptionVocabularyResponse,
-    TranscriptionVocabulariesBasePage as TranscriptionVocabulariesBasePage,
+    type TranscriptionVocabulariesBasePage as TranscriptionVocabulariesBasePage,
     type TranscriptionVocabularyCreateParams as TranscriptionVocabularyCreateParams,
     type TranscriptionVocabularyUpdateParams as TranscriptionVocabularyUpdateParams,
     type TranscriptionVocabularyListParams as TranscriptionVocabularyListParams,
@@ -225,7 +233,7 @@ export declare namespace Video {
     Uploads as Uploads,
     type Upload as Upload,
     type UploadResponse as UploadResponse,
-    UploadsBasePage as UploadsBasePage,
+    type UploadsBasePage as UploadsBasePage,
     type UploadCreateParams as UploadCreateParams,
     type UploadListParams as UploadListParams,
   };
@@ -239,7 +247,7 @@ export declare namespace Video {
     type WebInputReloadResponse as WebInputReloadResponse,
     type WebInputShutdownResponse as WebInputShutdownResponse,
     type WebInputUpdateURLResponse as WebInputUpdateURLResponse,
-    WebInputListResponsesBasePage as WebInputListResponsesBasePage,
+    type WebInputListResponsesBasePage as WebInputListResponsesBasePage,
     type WebInputCreateParams as WebInputCreateParams,
     type WebInputListParams as WebInputListParams,
     type WebInputUpdateURLParams as WebInputUpdateURLParams,
@@ -248,7 +256,7 @@ export declare namespace Video {
   export {
     DRMConfigurations as DRMConfigurations,
     type DRMConfiguration as DRMConfiguration,
-    DRMConfigurationsBasePage as DRMConfigurationsBasePage,
+    type DRMConfigurationsBasePage as DRMConfigurationsBasePage,
     type DRMConfigurationListParams as DRMConfigurationListParams,
   };
 

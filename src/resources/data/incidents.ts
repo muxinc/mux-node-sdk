@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { BasePage, type BasePageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { BasePage, type BasePageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Incidents extends APIResource {
   /**
@@ -15,8 +16,8 @@ export class Incidents extends APIResource {
    *   await client.data.incidents.retrieve('abcd1234');
    * ```
    */
-  retrieve(incidentId: string, options?: Core.RequestOptions): Core.APIPromise<IncidentResponse> {
-    return this._client.get(`/data/v1/incidents/${incidentId}`, {
+  retrieve(incidentID: string, options?: RequestOptions): APIPromise<IncidentResponse> {
+    return this._client.get(path`/data/v1/incidents/${incidentID}`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
@@ -34,18 +35,10 @@ export class Incidents extends APIResource {
    * ```
    */
   list(
-    query?: IncidentListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<IncidentsBasePage, Incident>;
-  list(options?: Core.RequestOptions): Core.PagePromise<IncidentsBasePage, Incident>;
-  list(
-    query: IncidentListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<IncidentsBasePage, Incident> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/data/v1/incidents', IncidentsBasePage, {
+    query: IncidentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<IncidentsBasePage, Incident> {
+    return this._client.getAPIList('/data/v1/incidents', BasePage<Incident>, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -66,23 +59,11 @@ export class Incidents extends APIResource {
    * ```
    */
   listRelated(
-    incidentId: string,
-    query?: IncidentListRelatedParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<IncidentsBasePage, Incident>;
-  listRelated(
-    incidentId: string,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<IncidentsBasePage, Incident>;
-  listRelated(
-    incidentId: string,
-    query: IncidentListRelatedParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<IncidentsBasePage, Incident> {
-    if (isRequestOptions(query)) {
-      return this.listRelated(incidentId, {}, query);
-    }
-    return this._client.getAPIList(`/data/v1/incidents/${incidentId}/related`, IncidentsBasePage, {
+    incidentID: string,
+    query: IncidentListRelatedParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<IncidentsBasePage, Incident> {
+    return this._client.getAPIList(path`/data/v1/incidents/${incidentID}/related`, BasePage<Incident>, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -90,7 +71,7 @@ export class Incidents extends APIResource {
   }
 }
 
-export class IncidentsBasePage extends BasePage<Incident> {}
+export type IncidentsBasePage = BasePage<Incident>;
 
 export interface Incident {
   id: string;
@@ -218,13 +199,11 @@ export interface IncidentListRelatedParams extends BasePageParams {
   order_direction?: 'asc' | 'desc';
 }
 
-Incidents.IncidentsBasePage = IncidentsBasePage;
-
 export declare namespace Incidents {
   export {
     type Incident as Incident,
     type IncidentResponse as IncidentResponse,
-    IncidentsBasePage as IncidentsBasePage,
+    type IncidentsBasePage as IncidentsBasePage,
     type IncidentListParams as IncidentListParams,
     type IncidentListRelatedParams as IncidentListRelatedParams,
   };

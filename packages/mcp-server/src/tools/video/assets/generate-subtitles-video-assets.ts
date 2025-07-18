@@ -85,9 +85,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { ASSET_ID, TRACK_ID, ...body } = args as any;
+  const { TRACK_ID, ...body } = args as any;
   return asTextContentResult(
-    await maybeFilter(args, await client.video.assets.generateSubtitles(ASSET_ID, TRACK_ID, body)),
+    await maybeFilter(args, await client.video.assets.generateSubtitles(TRACK_ID, body)),
   );
 };
 

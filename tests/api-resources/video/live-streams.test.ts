@@ -1,10 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Mux from '@mux/mux-node';
-import { Response } from 'node-fetch';
 
 const client = new Mux({
-  tokenId: 'my token id',
+  tokenID: 'my token id',
   tokenSecret: 'my secret',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
@@ -32,13 +31,6 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.liveStreams.retrieve('LIVE_STREAM_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
   test('update', async () => {
     const responsePromise = client.video.liveStreams.update('LIVE_STREAM_ID', {});
     const rawResponse = await responsePromise.asResponse();
@@ -59,13 +51,6 @@ describe('resource liveStreams', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.video.liveStreams.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Mux.NotFoundError,
-    );
   });
 
   test('list: request options and params are passed correctly', async () => {
@@ -89,13 +74,6 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.liveStreams.delete('LIVE_STREAM_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
   test('complete', async () => {
     const responsePromise = client.video.liveStreams.complete('LIVE_STREAM_ID');
     const rawResponse = await responsePromise.asResponse();
@@ -107,15 +85,8 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('complete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.liveStreams.complete('LIVE_STREAM_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
-  test('createPlaybackId', async () => {
-    const responsePromise = client.video.liveStreams.createPlaybackId('LIVE_STREAM_ID', {});
+  test('createPlaybackID', async () => {
+    const responsePromise = client.video.liveStreams.createPlaybackID('LIVE_STREAM_ID', {});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -157,17 +128,10 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('deleteNewAssetSettingsStaticRenditions: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.liveStreams.deleteNewAssetSettingsStaticRenditions('LIVE_STREAM_ID', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
-  test('deletePlaybackId', async () => {
-    const responsePromise = client.video.liveStreams.deletePlaybackId('LIVE_STREAM_ID', 'PLAYBACK_ID');
+  test('deletePlaybackID: only required params', async () => {
+    const responsePromise = client.video.liveStreams.deletePlaybackID('PLAYBACK_ID', {
+      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -177,20 +141,16 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('deletePlaybackId: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.liveStreams.deletePlaybackId('LIVE_STREAM_ID', 'PLAYBACK_ID', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(Mux.NotFoundError);
+  test('deletePlaybackID: required and optional params', async () => {
+    const response = await client.video.liveStreams.deletePlaybackID('PLAYBACK_ID', {
+      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
+    });
   });
 
-  test('deleteSimulcastTarget', async () => {
-    const responsePromise = client.video.liveStreams.deleteSimulcastTarget(
-      'LIVE_STREAM_ID',
-      'SIMULCAST_TARGET_ID',
-    );
+  test('deleteSimulcastTarget: only required params', async () => {
+    const responsePromise = client.video.liveStreams.deleteSimulcastTarget('SIMULCAST_TARGET_ID', {
+      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -200,13 +160,10 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('deleteSimulcastTarget: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.liveStreams.deleteSimulcastTarget('LIVE_STREAM_ID', 'SIMULCAST_TARGET_ID', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(Mux.NotFoundError);
+  test('deleteSimulcastTarget: required and optional params', async () => {
+    const response = await client.video.liveStreams.deleteSimulcastTarget('SIMULCAST_TARGET_ID', {
+      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
+    });
   });
 
   test('disable', async () => {
@@ -220,13 +177,6 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('disable: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.liveStreams.disable('LIVE_STREAM_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
   test('enable', async () => {
     const responsePromise = client.video.liveStreams.enable('LIVE_STREAM_ID');
     const rawResponse = await responsePromise.asResponse();
@@ -236,13 +186,6 @@ describe('resource liveStreams', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('enable: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.liveStreams.enable('LIVE_STREAM_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('resetStreamKey', async () => {
@@ -256,15 +199,10 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('resetStreamKey: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.liveStreams.resetStreamKey('LIVE_STREAM_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
-  test('retrievePlaybackId', async () => {
-    const responsePromise = client.video.liveStreams.retrievePlaybackId('LIVE_STREAM_ID', 'PLAYBACK_ID');
+  test('retrievePlaybackID: only required params', async () => {
+    const responsePromise = client.video.liveStreams.retrievePlaybackID('PLAYBACK_ID', {
+      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -274,20 +212,16 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrievePlaybackId: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.liveStreams.retrievePlaybackId('LIVE_STREAM_ID', 'PLAYBACK_ID', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(Mux.NotFoundError);
+  test('retrievePlaybackID: required and optional params', async () => {
+    const response = await client.video.liveStreams.retrievePlaybackID('PLAYBACK_ID', {
+      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
+    });
   });
 
-  test('retrieveSimulcastTarget', async () => {
-    const responsePromise = client.video.liveStreams.retrieveSimulcastTarget(
-      'LIVE_STREAM_ID',
-      'SIMULCAST_TARGET_ID',
-    );
+  test('retrieveSimulcastTarget: only required params', async () => {
+    const responsePromise = client.video.liveStreams.retrieveSimulcastTarget('SIMULCAST_TARGET_ID', {
+      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -297,13 +231,10 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieveSimulcastTarget: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.liveStreams.retrieveSimulcastTarget('LIVE_STREAM_ID', 'SIMULCAST_TARGET_ID', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(Mux.NotFoundError);
+  test('retrieveSimulcastTarget: required and optional params', async () => {
+    const response = await client.video.liveStreams.retrieveSimulcastTarget('SIMULCAST_TARGET_ID', {
+      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
+    });
   });
 
   test('updateEmbeddedSubtitles', async () => {

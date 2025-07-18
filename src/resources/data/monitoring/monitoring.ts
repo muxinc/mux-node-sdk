@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../resource';
-import * as Core from '../../../core';
+import { APIResource } from '../../../core/resource';
 import * as MetricsAPI from './metrics';
 import {
   MetricGetBreakdownParams,
@@ -15,6 +14,8 @@ import {
   MetricListResponse,
   Metrics,
 } from './metrics';
+import { APIPromise } from '../../../core/api-promise';
+import { RequestOptions } from '../../../internal/request-options';
 
 export class Monitoring extends APIResource {
   metrics: MetricsAPI.Metrics = new MetricsAPI.Metrics(this._client);
@@ -28,7 +29,7 @@ export class Monitoring extends APIResource {
    *   await client.data.monitoring.listDimensions();
    * ```
    */
-  listDimensions(options?: Core.RequestOptions): Core.APIPromise<MonitoringListDimensionsResponse> {
+  listDimensions(options?: RequestOptions): APIPromise<MonitoringListDimensionsResponse> {
     return this._client.get('/data/v1/monitoring/dimensions', {
       defaultBaseURL: 'https://api.mux.com',
       ...options,

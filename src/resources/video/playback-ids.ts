@@ -1,8 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class PlaybackIDs extends APIResource {
   /**
@@ -11,17 +13,17 @@ export class PlaybackIDs extends APIResource {
    *
    * @example
    * ```ts
-   * const playbackId = await client.video.playbackIds.retrieve(
+   * const playbackID = await client.video.playbackIDs.retrieve(
    *   'PLAYBACK_ID',
    * );
    * ```
    */
-  retrieve(playbackId: string, options?: Core.RequestOptions): Core.APIPromise<PlaybackIDRetrieveResponse> {
+  retrieve(playbackID: string, options?: RequestOptions): APIPromise<PlaybackIDRetrieveResponse> {
     return (
-      this._client.get(`/video/v1/playback-ids/${playbackId}`, {
+      this._client.get(path`/video/v1/playback-ids/${playbackID}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: PlaybackIDRetrieveResponse }>
+      }) as APIPromise<{ data: PlaybackIDRetrieveResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 }

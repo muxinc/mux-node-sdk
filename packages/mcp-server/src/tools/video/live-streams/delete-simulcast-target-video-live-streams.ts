@@ -39,9 +39,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { LIVE_STREAM_ID, SIMULCAST_TARGET_ID, ...body } = args as any;
+  const { SIMULCAST_TARGET_ID, ...body } = args as any;
   const response = await client.video.liveStreams
-    .deleteSimulcastTarget(LIVE_STREAM_ID, SIMULCAST_TARGET_ID)
+    .deleteSimulcastTarget(SIMULCAST_TARGET_ID, body)
     .asResponse();
   return asTextContentResult(await response.text());
 };

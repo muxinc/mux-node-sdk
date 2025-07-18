@@ -1,9 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { BasePage, type BasePageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { BasePage, type BasePageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Annotations extends APIResource {
   /**
@@ -18,13 +20,13 @@ export class Annotations extends APIResource {
    * });
    * ```
    */
-  create(body: AnnotationCreateParams, options?: Core.RequestOptions): Core.APIPromise<Annotation> {
+  create(body: AnnotationCreateParams, options?: RequestOptions): APIPromise<Annotation> {
     return (
       this._client.post('/data/v1/annotations', {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: Annotation }>
+      }) as APIPromise<{ data: Annotation }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -38,12 +40,12 @@ export class Annotations extends APIResource {
    * );
    * ```
    */
-  retrieve(annotationId: string, options?: Core.RequestOptions): Core.APIPromise<Annotation> {
+  retrieve(annotationID: string, options?: RequestOptions): APIPromise<Annotation> {
     return (
-      this._client.get(`/data/v1/annotations/${annotationId}`, {
+      this._client.get(path`/data/v1/annotations/${annotationID}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: Annotation }>
+      }) as APIPromise<{ data: Annotation }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -63,16 +65,16 @@ export class Annotations extends APIResource {
    * ```
    */
   update(
-    annotationId: string,
+    annotationID: string,
     body: AnnotationUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Annotation> {
+    options?: RequestOptions,
+  ): APIPromise<Annotation> {
     return (
-      this._client.patch(`/data/v1/annotations/${annotationId}`, {
+      this._client.patch(path`/data/v1/annotations/${annotationID}`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: Annotation }>
+      }) as APIPromise<{ data: Annotation }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -88,18 +90,10 @@ export class Annotations extends APIResource {
    * ```
    */
   list(
-    query?: AnnotationListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<AnnotationsBasePage, Annotation>;
-  list(options?: Core.RequestOptions): Core.PagePromise<AnnotationsBasePage, Annotation>;
-  list(
-    query: AnnotationListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<AnnotationsBasePage, Annotation> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/data/v1/annotations', AnnotationsBasePage, {
+    query: AnnotationListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<AnnotationsBasePage, Annotation> {
+    return this._client.getAPIList('/data/v1/annotations', BasePage<Annotation>, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -116,16 +110,16 @@ export class Annotations extends APIResource {
    * );
    * ```
    */
-  delete(annotationId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/data/v1/annotations/${annotationId}`, {
+  delete(annotationID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/data/v1/annotations/${annotationID}`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
-export class AnnotationsBasePage extends BasePage<Annotation> {}
+export type AnnotationsBasePage = BasePage<Annotation>;
 
 export interface Annotation {
   /**
@@ -236,15 +230,13 @@ export interface AnnotationListParams extends BasePageParams {
   timeframe?: Array<string>;
 }
 
-Annotations.AnnotationsBasePage = AnnotationsBasePage;
-
 export declare namespace Annotations {
   export {
     type Annotation as Annotation,
     type AnnotationInput as AnnotationInput,
     type AnnotationResponse as AnnotationResponse,
     type ListAnnotationsResponse as ListAnnotationsResponse,
-    AnnotationsBasePage as AnnotationsBasePage,
+    type AnnotationsBasePage as AnnotationsBasePage,
     type AnnotationCreateParams as AnnotationCreateParams,
     type AnnotationUpdateParams as AnnotationUpdateParams,
     type AnnotationListParams as AnnotationListParams,

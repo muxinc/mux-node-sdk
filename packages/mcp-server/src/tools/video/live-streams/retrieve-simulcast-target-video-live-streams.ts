@@ -40,11 +40,11 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { LIVE_STREAM_ID, SIMULCAST_TARGET_ID, ...body } = args as any;
+  const { SIMULCAST_TARGET_ID, ...body } = args as any;
   return asTextContentResult(
     await maybeFilter(
       args,
-      await client.video.liveStreams.retrieveSimulcastTarget(LIVE_STREAM_ID, SIMULCAST_TARGET_ID),
+      await client.video.liveStreams.retrieveSimulcastTarget(SIMULCAST_TARGET_ID, body),
     ),
   );
 };

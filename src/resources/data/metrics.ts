@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { BasePage, type BasePageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { BasePage, type BasePageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Metrics extends APIResource {
   /**
@@ -15,15 +16,10 @@ export class Metrics extends APIResource {
    *   await client.data.metrics.list();
    * ```
    */
-  list(query?: MetricListParams, options?: Core.RequestOptions): Core.APIPromise<AllMetricValuesResponse>;
-  list(options?: Core.RequestOptions): Core.APIPromise<AllMetricValuesResponse>;
   list(
-    query: MetricListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AllMetricValuesResponse> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
+    query: MetricListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AllMetricValuesResponse> {
     return this._client.get('/data/v1/metrics/comparison', {
       query,
       defaultBaseURL: 'https://api.mux.com',
@@ -45,7 +41,7 @@ export class Metrics extends APIResource {
    * ```
    */
   getInsights(
-    metricId:
+    metricID:
       | 'aggregate_startup_time'
       | 'downscale_percentage'
       | 'exits_before_video_start'
@@ -94,118 +90,10 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'view_dropped_percentage',
-    query?: MetricGetInsightsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InsightsResponse>;
-  getInsights(
-    metricId:
-      | 'aggregate_startup_time'
-      | 'downscale_percentage'
-      | 'exits_before_video_start'
-      | 'live_stream_latency'
-      | 'max_downscale_percentage'
-      | 'max_request_latency'
-      | 'max_upscale_percentage'
-      | 'page_load_time'
-      | 'playback_failure_percentage'
-      | 'playback_success_score'
-      | 'player_startup_time'
-      | 'playing_time'
-      | 'rebuffer_count'
-      | 'rebuffer_duration'
-      | 'rebuffer_frequency'
-      | 'rebuffer_percentage'
-      | 'request_latency'
-      | 'request_throughput'
-      | 'rebuffer_score'
-      | 'requests_for_first_preroll'
-      | 'seek_latency'
-      | 'startup_time_score'
-      | 'unique_viewers'
-      | 'upscale_percentage'
-      | 'video_quality_score'
-      | 'video_startup_preroll_load_time'
-      | 'video_startup_preroll_request_time'
-      | 'video_startup_time'
-      | 'viewer_experience_score'
-      | 'views'
-      | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage'
-      | 'ad_attempt_count'
-      | 'ad_break_count'
-      | 'ad_break_error_count'
-      | 'ad_break_error_percentage'
-      | 'ad_error_count'
-      | 'ad_error_percentage'
-      | 'ad_exit_before_start_count'
-      | 'ad_exit_before_start_percentage'
-      | 'ad_impression_count'
-      | 'ad_startup_error_count'
-      | 'ad_startup_error_percentage'
-      | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage'
-      | 'view_content_startup_time'
-      | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InsightsResponse>;
-  getInsights(
-    metricId:
-      | 'aggregate_startup_time'
-      | 'downscale_percentage'
-      | 'exits_before_video_start'
-      | 'live_stream_latency'
-      | 'max_downscale_percentage'
-      | 'max_request_latency'
-      | 'max_upscale_percentage'
-      | 'page_load_time'
-      | 'playback_failure_percentage'
-      | 'playback_success_score'
-      | 'player_startup_time'
-      | 'playing_time'
-      | 'rebuffer_count'
-      | 'rebuffer_duration'
-      | 'rebuffer_frequency'
-      | 'rebuffer_percentage'
-      | 'request_latency'
-      | 'request_throughput'
-      | 'rebuffer_score'
-      | 'requests_for_first_preroll'
-      | 'seek_latency'
-      | 'startup_time_score'
-      | 'unique_viewers'
-      | 'upscale_percentage'
-      | 'video_quality_score'
-      | 'video_startup_preroll_load_time'
-      | 'video_startup_preroll_request_time'
-      | 'video_startup_time'
-      | 'viewer_experience_score'
-      | 'views'
-      | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage'
-      | 'ad_attempt_count'
-      | 'ad_break_count'
-      | 'ad_break_error_count'
-      | 'ad_break_error_percentage'
-      | 'ad_error_count'
-      | 'ad_error_percentage'
-      | 'ad_exit_before_start_count'
-      | 'ad_exit_before_start_percentage'
-      | 'ad_impression_count'
-      | 'ad_startup_error_count'
-      | 'ad_startup_error_percentage'
-      | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage'
-      | 'view_content_startup_time'
-      | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
-    query: MetricGetInsightsParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<InsightsResponse> {
-    if (isRequestOptions(query)) {
-      return this.getInsights(metricId, {}, query);
-    }
-    return this._client.get(`/data/v1/metrics/${metricId}/insights`, {
+    query: MetricGetInsightsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<InsightsResponse> {
+    return this._client.get(path`/data/v1/metrics/${metricID}/insights`, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -225,7 +113,7 @@ export class Metrics extends APIResource {
    * ```
    */
   getOverallValues(
-    metricId:
+    metricID:
       | 'aggregate_startup_time'
       | 'downscale_percentage'
       | 'exits_before_video_start'
@@ -274,118 +162,10 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'view_dropped_percentage',
-    query?: MetricGetOverallValuesParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OverallValuesResponse>;
-  getOverallValues(
-    metricId:
-      | 'aggregate_startup_time'
-      | 'downscale_percentage'
-      | 'exits_before_video_start'
-      | 'live_stream_latency'
-      | 'max_downscale_percentage'
-      | 'max_request_latency'
-      | 'max_upscale_percentage'
-      | 'page_load_time'
-      | 'playback_failure_percentage'
-      | 'playback_success_score'
-      | 'player_startup_time'
-      | 'playing_time'
-      | 'rebuffer_count'
-      | 'rebuffer_duration'
-      | 'rebuffer_frequency'
-      | 'rebuffer_percentage'
-      | 'request_latency'
-      | 'request_throughput'
-      | 'rebuffer_score'
-      | 'requests_for_first_preroll'
-      | 'seek_latency'
-      | 'startup_time_score'
-      | 'unique_viewers'
-      | 'upscale_percentage'
-      | 'video_quality_score'
-      | 'video_startup_preroll_load_time'
-      | 'video_startup_preroll_request_time'
-      | 'video_startup_time'
-      | 'viewer_experience_score'
-      | 'views'
-      | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage'
-      | 'ad_attempt_count'
-      | 'ad_break_count'
-      | 'ad_break_error_count'
-      | 'ad_break_error_percentage'
-      | 'ad_error_count'
-      | 'ad_error_percentage'
-      | 'ad_exit_before_start_count'
-      | 'ad_exit_before_start_percentage'
-      | 'ad_impression_count'
-      | 'ad_startup_error_count'
-      | 'ad_startup_error_percentage'
-      | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage'
-      | 'view_content_startup_time'
-      | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OverallValuesResponse>;
-  getOverallValues(
-    metricId:
-      | 'aggregate_startup_time'
-      | 'downscale_percentage'
-      | 'exits_before_video_start'
-      | 'live_stream_latency'
-      | 'max_downscale_percentage'
-      | 'max_request_latency'
-      | 'max_upscale_percentage'
-      | 'page_load_time'
-      | 'playback_failure_percentage'
-      | 'playback_success_score'
-      | 'player_startup_time'
-      | 'playing_time'
-      | 'rebuffer_count'
-      | 'rebuffer_duration'
-      | 'rebuffer_frequency'
-      | 'rebuffer_percentage'
-      | 'request_latency'
-      | 'request_throughput'
-      | 'rebuffer_score'
-      | 'requests_for_first_preroll'
-      | 'seek_latency'
-      | 'startup_time_score'
-      | 'unique_viewers'
-      | 'upscale_percentage'
-      | 'video_quality_score'
-      | 'video_startup_preroll_load_time'
-      | 'video_startup_preroll_request_time'
-      | 'video_startup_time'
-      | 'viewer_experience_score'
-      | 'views'
-      | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage'
-      | 'ad_attempt_count'
-      | 'ad_break_count'
-      | 'ad_break_error_count'
-      | 'ad_break_error_percentage'
-      | 'ad_error_count'
-      | 'ad_error_percentage'
-      | 'ad_exit_before_start_count'
-      | 'ad_exit_before_start_percentage'
-      | 'ad_impression_count'
-      | 'ad_startup_error_count'
-      | 'ad_startup_error_percentage'
-      | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage'
-      | 'view_content_startup_time'
-      | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
-    query: MetricGetOverallValuesParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<OverallValuesResponse> {
-    if (isRequestOptions(query)) {
-      return this.getOverallValues(metricId, {}, query);
-    }
-    return this._client.get(`/data/v1/metrics/${metricId}/overall`, {
+    query: MetricGetOverallValuesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OverallValuesResponse> {
+    return this._client.get(path`/data/v1/metrics/${metricID}/overall`, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -412,7 +192,7 @@ export class Metrics extends APIResource {
    * ```
    */
   getTimeseries(
-    metricId:
+    metricID:
       | 'aggregate_startup_time'
       | 'downscale_percentage'
       | 'exits_before_video_start'
@@ -461,118 +241,10 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'view_dropped_percentage',
-    query?: MetricGetTimeseriesParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricTimeseriesDataResponse>;
-  getTimeseries(
-    metricId:
-      | 'aggregate_startup_time'
-      | 'downscale_percentage'
-      | 'exits_before_video_start'
-      | 'live_stream_latency'
-      | 'max_downscale_percentage'
-      | 'max_request_latency'
-      | 'max_upscale_percentage'
-      | 'page_load_time'
-      | 'playback_failure_percentage'
-      | 'playback_success_score'
-      | 'player_startup_time'
-      | 'playing_time'
-      | 'rebuffer_count'
-      | 'rebuffer_duration'
-      | 'rebuffer_frequency'
-      | 'rebuffer_percentage'
-      | 'request_latency'
-      | 'request_throughput'
-      | 'rebuffer_score'
-      | 'requests_for_first_preroll'
-      | 'seek_latency'
-      | 'startup_time_score'
-      | 'unique_viewers'
-      | 'upscale_percentage'
-      | 'video_quality_score'
-      | 'video_startup_preroll_load_time'
-      | 'video_startup_preroll_request_time'
-      | 'video_startup_time'
-      | 'viewer_experience_score'
-      | 'views'
-      | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage'
-      | 'ad_attempt_count'
-      | 'ad_break_count'
-      | 'ad_break_error_count'
-      | 'ad_break_error_percentage'
-      | 'ad_error_count'
-      | 'ad_error_percentage'
-      | 'ad_exit_before_start_count'
-      | 'ad_exit_before_start_percentage'
-      | 'ad_impression_count'
-      | 'ad_startup_error_count'
-      | 'ad_startup_error_percentage'
-      | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage'
-      | 'view_content_startup_time'
-      | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricTimeseriesDataResponse>;
-  getTimeseries(
-    metricId:
-      | 'aggregate_startup_time'
-      | 'downscale_percentage'
-      | 'exits_before_video_start'
-      | 'live_stream_latency'
-      | 'max_downscale_percentage'
-      | 'max_request_latency'
-      | 'max_upscale_percentage'
-      | 'page_load_time'
-      | 'playback_failure_percentage'
-      | 'playback_success_score'
-      | 'player_startup_time'
-      | 'playing_time'
-      | 'rebuffer_count'
-      | 'rebuffer_duration'
-      | 'rebuffer_frequency'
-      | 'rebuffer_percentage'
-      | 'request_latency'
-      | 'request_throughput'
-      | 'rebuffer_score'
-      | 'requests_for_first_preroll'
-      | 'seek_latency'
-      | 'startup_time_score'
-      | 'unique_viewers'
-      | 'upscale_percentage'
-      | 'video_quality_score'
-      | 'video_startup_preroll_load_time'
-      | 'video_startup_preroll_request_time'
-      | 'video_startup_time'
-      | 'viewer_experience_score'
-      | 'views'
-      | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage'
-      | 'ad_attempt_count'
-      | 'ad_break_count'
-      | 'ad_break_error_count'
-      | 'ad_break_error_percentage'
-      | 'ad_error_count'
-      | 'ad_error_percentage'
-      | 'ad_exit_before_start_count'
-      | 'ad_exit_before_start_percentage'
-      | 'ad_impression_count'
-      | 'ad_startup_error_count'
-      | 'ad_startup_error_percentage'
-      | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage'
-      | 'view_content_startup_time'
-      | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
-    query: MetricGetTimeseriesParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricTimeseriesDataResponse> {
-    if (isRequestOptions(query)) {
-      return this.getTimeseries(metricId, {}, query);
-    }
-    return this._client.get(`/data/v1/metrics/${metricId}/timeseries`, {
+    query: MetricGetTimeseriesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<MetricTimeseriesDataResponse> {
+    return this._client.get(path`/data/v1/metrics/${metricID}/timeseries`, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -593,7 +265,7 @@ export class Metrics extends APIResource {
    * ```
    */
   listBreakdownValues(
-    metricId:
+    metricID:
       | 'aggregate_startup_time'
       | 'downscale_percentage'
       | 'exits_before_video_start'
@@ -642,118 +314,10 @@ export class Metrics extends APIResource {
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
       | 'view_dropped_percentage',
-    query?: MetricListBreakdownValuesParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue>;
-  listBreakdownValues(
-    metricId:
-      | 'aggregate_startup_time'
-      | 'downscale_percentage'
-      | 'exits_before_video_start'
-      | 'live_stream_latency'
-      | 'max_downscale_percentage'
-      | 'max_request_latency'
-      | 'max_upscale_percentage'
-      | 'page_load_time'
-      | 'playback_failure_percentage'
-      | 'playback_success_score'
-      | 'player_startup_time'
-      | 'playing_time'
-      | 'rebuffer_count'
-      | 'rebuffer_duration'
-      | 'rebuffer_frequency'
-      | 'rebuffer_percentage'
-      | 'request_latency'
-      | 'request_throughput'
-      | 'rebuffer_score'
-      | 'requests_for_first_preroll'
-      | 'seek_latency'
-      | 'startup_time_score'
-      | 'unique_viewers'
-      | 'upscale_percentage'
-      | 'video_quality_score'
-      | 'video_startup_preroll_load_time'
-      | 'video_startup_preroll_request_time'
-      | 'video_startup_time'
-      | 'viewer_experience_score'
-      | 'views'
-      | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage'
-      | 'ad_attempt_count'
-      | 'ad_break_count'
-      | 'ad_break_error_count'
-      | 'ad_break_error_percentage'
-      | 'ad_error_count'
-      | 'ad_error_percentage'
-      | 'ad_exit_before_start_count'
-      | 'ad_exit_before_start_percentage'
-      | 'ad_impression_count'
-      | 'ad_startup_error_count'
-      | 'ad_startup_error_percentage'
-      | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage'
-      | 'view_content_startup_time'
-      | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue>;
-  listBreakdownValues(
-    metricId:
-      | 'aggregate_startup_time'
-      | 'downscale_percentage'
-      | 'exits_before_video_start'
-      | 'live_stream_latency'
-      | 'max_downscale_percentage'
-      | 'max_request_latency'
-      | 'max_upscale_percentage'
-      | 'page_load_time'
-      | 'playback_failure_percentage'
-      | 'playback_success_score'
-      | 'player_startup_time'
-      | 'playing_time'
-      | 'rebuffer_count'
-      | 'rebuffer_duration'
-      | 'rebuffer_frequency'
-      | 'rebuffer_percentage'
-      | 'request_latency'
-      | 'request_throughput'
-      | 'rebuffer_score'
-      | 'requests_for_first_preroll'
-      | 'seek_latency'
-      | 'startup_time_score'
-      | 'unique_viewers'
-      | 'upscale_percentage'
-      | 'video_quality_score'
-      | 'video_startup_preroll_load_time'
-      | 'video_startup_preroll_request_time'
-      | 'video_startup_time'
-      | 'viewer_experience_score'
-      | 'views'
-      | 'weighted_average_bitrate'
-      | 'video_startup_failure_percentage'
-      | 'ad_attempt_count'
-      | 'ad_break_count'
-      | 'ad_break_error_count'
-      | 'ad_break_error_percentage'
-      | 'ad_error_count'
-      | 'ad_error_percentage'
-      | 'ad_exit_before_start_count'
-      | 'ad_exit_before_start_percentage'
-      | 'ad_impression_count'
-      | 'ad_startup_error_count'
-      | 'ad_startup_error_percentage'
-      | 'playback_business_exception_percentage'
-      | 'video_startup_business_exception_percentage'
-      | 'view_content_startup_time'
-      | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
-    query: MetricListBreakdownValuesParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue> {
-    if (isRequestOptions(query)) {
-      return this.listBreakdownValues(metricId, {}, query);
-    }
-    return this._client.getAPIList(`/data/v1/metrics/${metricId}/breakdown`, BreakdownValuesBasePage, {
+    query: MetricListBreakdownValuesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BreakdownValuesBasePage, BreakdownValue> {
+    return this._client.getAPIList(path`/data/v1/metrics/${metricID}/breakdown`, BasePage<BreakdownValue>, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -761,7 +325,7 @@ export class Metrics extends APIResource {
   }
 }
 
-export class BreakdownValuesBasePage extends BasePage<BreakdownValue> {}
+export type BreakdownValuesBasePage = BasePage<BreakdownValue>;
 
 export interface AllMetricValuesResponse {
   data: Array<AllMetricValuesResponse.Data>;
@@ -1431,8 +995,6 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
   timeframe?: Array<string>;
 }
 
-Metrics.BreakdownValuesBasePage = BreakdownValuesBasePage;
-
 export declare namespace Metrics {
   export {
     type AllMetricValuesResponse as AllMetricValuesResponse,
@@ -1440,7 +1002,7 @@ export declare namespace Metrics {
     type InsightsResponse as InsightsResponse,
     type MetricTimeseriesDataResponse as MetricTimeseriesDataResponse,
     type OverallValuesResponse as OverallValuesResponse,
-    BreakdownValuesBasePage as BreakdownValuesBasePage,
+    type BreakdownValuesBasePage as BreakdownValuesBasePage,
     type MetricListParams as MetricListParams,
     type MetricGetInsightsParams as MetricGetInsightsParams,
     type MetricGetOverallValuesParams as MetricGetOverallValuesParams,

@@ -1,9 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { APIPromise } from '@mux/mux-node/core/api-promise';
+
+import util from 'node:util';
 import Mux from '@mux/mux-node';
 import { APIUserAbortError } from '@mux/mux-node';
-import { Headers } from '@mux/mux-node/core';
-import defaultFetch, { Response, type RequestInit, type RequestInfo } from 'node-fetch';
+const defaultFetch = fetch;
 
 describe('instantiate client', () => {
   const env = process.env;
@@ -11,8 +13,6 @@ describe('instantiate client', () => {
   beforeEach(() => {
     jest.resetModules();
     process.env = { ...env };
-
-    console.warn = jest.fn();
   });
 
   afterEach(() => {
@@ -23,13 +23,13 @@ describe('instantiate client', () => {
     const client = new Mux({
       baseURL: 'http://localhost:5000/',
       defaultHeaders: { 'X-My-Default-Header': '2' },
-      tokenId: 'my token id',
+      tokenID: 'my token id',
       tokenSecret: 'my secret',
     });
 
     test('they are used in the request', async () => {
       const { req } = await client.buildRequest({ path: '/foo', method: 'post' });
-      expect((req.headers as Headers)['x-my-default-header']).toEqual('2');
+      expect(req.headers.get('x-my-default-header')).toEqual('2');
     });
 
     test('can ignore `undefined` and leave the default', async () => {
@@ -38,7 +38,7 @@ describe('instantiate client', () => {
         method: 'post',
         headers: { 'X-My-Default-Header': undefined },
       });
-      expect((req.headers as Headers)['x-my-default-header']).toEqual('2');
+      expect(req.headers.get('x-my-default-header')).toEqual('2');
     });
 
     test('can be removed with `null`', async () => {
@@ -47,7 +47,156 @@ describe('instantiate client', () => {
         method: 'post',
         headers: { 'X-My-Default-Header': null },
       });
-      expect(req.headers as Headers).not.toHaveProperty('x-my-default-header');
+      expect(req.headers.has('x-my-default-header')).toBe(false);
+    });
+  });
+  describe('logging', () => {
+    const env = process.env;
+
+    beforeEach(() => {
+      process.env = { ...env };
+      process.env['MUX_LOG'] = undefined;
+    });
+
+    afterEach(() => {
+      process.env = env;
+    });
+
+    const forceAPIResponseForClient = async (client: Mux) => {
+      await new APIPromise(
+        client,
+        Promise.resolve({
+          response: new Response(),
+          controller: new AbortController(),
+          requestLogID: 'log_000000',
+          retryOfRequestLogID: undefined,
+          startTime: Date.now(),
+          options: {
+            method: 'get',
+            path: '/',
+          },
+        }),
+      );
+    };
+
+    test('debug logs when log level is debug', async () => {
+      const debugMock = jest.fn();
+      const logger = {
+        debug: debugMock,
+        info: jest.fn(),
+        warn: jest.fn(),
+        error: jest.fn(),
+      };
+
+      const client = new Mux({
+        logger: logger,
+        logLevel: 'debug',
+        tokenID: 'my token id',
+        tokenSecret: 'my secret',
+      });
+
+      await forceAPIResponseForClient(client);
+      expect(debugMock).toHaveBeenCalled();
+    });
+
+    test('default logLevel is warn', async () => {
+      const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
+      expect(client.logLevel).toBe('warn');
+    });
+
+    test('debug logs are skipped when log level is info', async () => {
+      const debugMock = jest.fn();
+      const logger = {
+        debug: debugMock,
+        info: jest.fn(),
+        warn: jest.fn(),
+        error: jest.fn(),
+      };
+
+      const client = new Mux({
+        logger: logger,
+        logLevel: 'info',
+        tokenID: 'my token id',
+        tokenSecret: 'my secret',
+      });
+
+      await forceAPIResponseForClient(client);
+      expect(debugMock).not.toHaveBeenCalled();
+    });
+
+    test('debug logs happen with debug env var', async () => {
+      const debugMock = jest.fn();
+      const logger = {
+        debug: debugMock,
+        info: jest.fn(),
+        warn: jest.fn(),
+        error: jest.fn(),
+      };
+
+      process.env['MUX_LOG'] = 'debug';
+      const client = new Mux({ logger: logger, tokenID: 'my token id', tokenSecret: 'my secret' });
+      expect(client.logLevel).toBe('debug');
+
+      await forceAPIResponseForClient(client);
+      expect(debugMock).toHaveBeenCalled();
+    });
+
+    test('warn when env var level is invalid', async () => {
+      const warnMock = jest.fn();
+      const logger = {
+        debug: jest.fn(),
+        info: jest.fn(),
+        warn: warnMock,
+        error: jest.fn(),
+      };
+
+      process.env['MUX_LOG'] = 'not a log level';
+      const client = new Mux({ logger: logger, tokenID: 'my token id', tokenSecret: 'my secret' });
+      expect(client.logLevel).toBe('warn');
+      expect(warnMock).toHaveBeenCalledWith(
+        'process.env[\'MUX_LOG\'] was set to "not a log level", expected one of ["off","error","warn","info","debug"]',
+      );
+    });
+
+    test('client log level overrides env var', async () => {
+      const debugMock = jest.fn();
+      const logger = {
+        debug: debugMock,
+        info: jest.fn(),
+        warn: jest.fn(),
+        error: jest.fn(),
+      };
+
+      process.env['MUX_LOG'] = 'debug';
+      const client = new Mux({
+        logger: logger,
+        logLevel: 'off',
+        tokenID: 'my token id',
+        tokenSecret: 'my secret',
+      });
+
+      await forceAPIResponseForClient(client);
+      expect(debugMock).not.toHaveBeenCalled();
+    });
+
+    test('no warning logged for invalid env var level + valid client level', async () => {
+      const warnMock = jest.fn();
+      const logger = {
+        debug: jest.fn(),
+        info: jest.fn(),
+        warn: warnMock,
+        error: jest.fn(),
+      };
+
+      process.env['MUX_LOG'] = 'not a log level';
+      const client = new Mux({
+        logger: logger,
+        logLevel: 'debug',
+        tokenID: 'my token id',
+        tokenSecret: 'my secret',
+      });
+      expect(client.logLevel).toBe('debug');
+      expect(warnMock).not.toHaveBeenCalled();
     });
   });
 
@@ -56,7 +205,7 @@ describe('instantiate client', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo' },
-        tokenId: 'my token id',
+        tokenID: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo');
@@ -66,7 +215,7 @@ describe('instantiate client', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo', hello: 'world' },
-        tokenId: 'my token id',
+        tokenID: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo&hello=world');
@@ -76,7 +225,7 @@ describe('instantiate client', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { hello: 'world' },
-        tokenId: 'my token id',
+        tokenID: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', { hello: undefined })).toEqual('http://localhost:5000/foo');
@@ -86,7 +235,7 @@ describe('instantiate client', () => {
   test('custom fetch', async () => {
     const client = new Mux({
       baseURL: 'http://localhost:5000/',
-      tokenId: 'my token id',
+      tokenID: 'my token id',
       tokenSecret: 'my secret',
       fetch: (url) => {
         return Promise.resolve(
@@ -105,7 +254,7 @@ describe('instantiate client', () => {
     // make sure the global fetch type is assignable to our Fetch type
     const client = new Mux({
       baseURL: 'http://localhost:5000/',
-      tokenId: 'my token id',
+      tokenID: 'my token id',
       tokenSecret: 'my secret',
       fetch: defaultFetch,
     });
@@ -114,7 +263,7 @@ describe('instantiate client', () => {
   test('custom signal', async () => {
     const client = new Mux({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-      tokenId: 'my token id',
+      tokenID: 'my token id',
       tokenSecret: 'my secret',
       fetch: (...args) => {
         return new Promise((resolve, reject) =>
@@ -140,14 +289,14 @@ describe('instantiate client', () => {
 
   test('normalized method', async () => {
     let capturedRequest: RequestInit | undefined;
-    const testFetch = async (url: RequestInfo, init: RequestInit = {}): Promise<Response> => {
+    const testFetch = async (url: string | URL | Request, init: RequestInit = {}): Promise<Response> => {
       capturedRequest = init;
       return new Response(JSON.stringify({}), { headers: { 'Content-Type': 'application/json' } });
     };
 
     const client = new Mux({
       baseURL: 'http://localhost:5000/',
-      tokenId: 'my token id',
+      tokenID: 'my token id',
       tokenSecret: 'my secret',
       fetch: testFetch,
     });
@@ -160,7 +309,7 @@ describe('instantiate client', () => {
     test('trailing slash', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/custom/path/',
-        tokenId: 'my token id',
+        tokenID: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
@@ -169,7 +318,7 @@ describe('instantiate client', () => {
     test('no trailing slash', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/custom/path',
-        tokenId: 'my token id',
+        tokenID: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
@@ -182,7 +331,7 @@ describe('instantiate client', () => {
     test('explicit option', () => {
       const client = new Mux({
         baseURL: 'https://example.com',
-        tokenId: 'my token id',
+        tokenID: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.baseURL).toEqual('https://example.com');
@@ -190,24 +339,24 @@ describe('instantiate client', () => {
 
     test('env variable', () => {
       process.env['MUX_BASE_URL'] = 'https://example.com/from_env';
-      const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
+      const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
       expect(client.baseURL).toEqual('https://example.com/from_env');
     });
 
     test('empty env variable', () => {
       process.env['MUX_BASE_URL'] = ''; // empty
-      const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
+      const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
       expect(client.baseURL).toEqual('https://api.mux.com');
     });
 
     test('blank env variable', () => {
       process.env['MUX_BASE_URL'] = '  '; // blank
-      const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
+      const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
       expect(client.baseURL).toEqual('https://api.mux.com');
     });
 
     test('in request options', () => {
-      const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
+      const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
       expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
         'http://localhost:5000/option/foo',
       );
@@ -215,7 +364,7 @@ describe('instantiate client', () => {
 
     test('in request options overridden by client options', () => {
       const client = new Mux({
-        tokenId: 'my token id',
+        tokenID: 'my token id',
         tokenSecret: 'my secret',
         baseURL: 'http://localhost:5000/client',
       });
@@ -226,7 +375,7 @@ describe('instantiate client', () => {
 
     test('in request options overridden by env variable', () => {
       process.env['MUX_BASE_URL'] = 'http://localhost:5000/env';
-      const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
+      const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
       expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
         'http://localhost:5000/env/foo',
       );
@@ -234,12 +383,91 @@ describe('instantiate client', () => {
   });
 
   test('maxRetries option is correctly set', () => {
-    const client = new Mux({ maxRetries: 4, tokenId: 'my token id', tokenSecret: 'my secret' });
+    const client = new Mux({ maxRetries: 4, tokenID: 'my token id', tokenSecret: 'my secret' });
     expect(client.maxRetries).toEqual(4);
 
     // default
-    const client2 = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
+    const client2 = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
     expect(client2.maxRetries).toEqual(2);
+  });
+
+  describe('withOptions', () => {
+    test('creates a new client with overridden options', async () => {
+      const client = new Mux({
+        baseURL: 'http://localhost:5000/',
+        maxRetries: 3,
+        tokenID: 'my token id',
+        tokenSecret: 'my secret',
+      });
+
+      const newClient = client.withOptions({
+        maxRetries: 5,
+        baseURL: 'http://localhost:5001/',
+      });
+
+      // Verify the new client has updated options
+      expect(newClient.maxRetries).toEqual(5);
+      expect(newClient.baseURL).toEqual('http://localhost:5001/');
+
+      // Verify the original client is unchanged
+      expect(client.maxRetries).toEqual(3);
+      expect(client.baseURL).toEqual('http://localhost:5000/');
+
+      // Verify it's a different instance
+      expect(newClient).not.toBe(client);
+      expect(newClient.constructor).toBe(client.constructor);
+    });
+
+    test('inherits options from the parent client', async () => {
+      const client = new Mux({
+        baseURL: 'http://localhost:5000/',
+        defaultHeaders: { 'X-Test-Header': 'test-value' },
+        defaultQuery: { 'test-param': 'test-value' },
+        tokenID: 'my token id',
+        tokenSecret: 'my secret',
+      });
+
+      const newClient = client.withOptions({
+        baseURL: 'http://localhost:5001/',
+      });
+
+      // Test inherited options remain the same
+      expect(newClient.buildURL('/foo', null)).toEqual('http://localhost:5001/foo?test-param=test-value');
+
+      const { req } = await newClient.buildRequest({ path: '/foo', method: 'get' });
+      expect(req.headers.get('x-test-header')).toEqual('test-value');
+    });
+
+    test('respects runtime property changes when creating new client', () => {
+      const client = new Mux({
+        baseURL: 'http://localhost:5000/',
+        timeout: 1000,
+        tokenID: 'my token id',
+        tokenSecret: 'my secret',
+      });
+
+      // Modify the client properties directly after creation
+      client.baseURL = 'http://localhost:6000/';
+      client.timeout = 2000;
+
+      // Create a new client with withOptions
+      const newClient = client.withOptions({
+        maxRetries: 10,
+      });
+
+      // Verify the new client uses the updated properties, not the original ones
+      expect(newClient.baseURL).toEqual('http://localhost:6000/');
+      expect(newClient.timeout).toEqual(2000);
+      expect(newClient.maxRetries).toEqual(10);
+
+      // Original client should still have its modified properties
+      expect(client.baseURL).toEqual('http://localhost:6000/');
+      expect(client.timeout).toEqual(2000);
+      expect(client.maxRetries).not.toEqual(10);
+
+      // Verify URL building uses the updated baseURL
+      expect(newClient.buildURL('/bar', null)).toEqual('http://localhost:6000/bar');
+    });
   });
 
   test('with environment variable arguments', () => {
@@ -247,7 +475,7 @@ describe('instantiate client', () => {
     process.env['MUX_TOKEN_ID'] = 'my token id';
     process.env['MUX_TOKEN_SECRET'] = 'my secret';
     const client = new Mux();
-    expect(client.tokenId).toBe('my token id');
+    expect(client.tokenID).toBe('my token id');
     expect(client.tokenSecret).toBe('my secret');
   });
 
@@ -255,26 +483,14 @@ describe('instantiate client', () => {
     // set options via env var
     process.env['MUX_TOKEN_ID'] = 'another my token id';
     process.env['MUX_TOKEN_SECRET'] = 'another my secret';
-    const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
-    expect(client.tokenId).toBe('my token id');
+    const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
+    expect(client.tokenID).toBe('my token id');
     expect(client.tokenSecret).toBe('my secret');
   });
 });
 
 describe('request building', () => {
-  const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
-
-  describe('Content-Length', () => {
-    test('handles multi-byte characters', async () => {
-      const { req } = await client.buildRequest({ path: '/foo', method: 'post', body: { value: '—' } });
-      expect((req.headers as Record<string, string>)['content-length']).toEqual('20');
-    });
-
-    test('handles standard characters', async () => {
-      const { req } = await client.buildRequest({ path: '/foo', method: 'post', body: { value: 'hello' } });
-      expect((req.headers as Record<string, string>)['content-length']).toEqual('22');
-    });
-  });
+  const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
 
   describe('custom headers', () => {
     test('handles undefined', async () => {
@@ -284,18 +500,92 @@ describe('request building', () => {
         body: { value: 'hello' },
         headers: { 'X-Foo': 'baz', 'x-foo': 'bar', 'x-Foo': undefined, 'x-baz': 'bam', 'X-Baz': null },
       });
-      expect((req.headers as Record<string, string>)['x-foo']).toEqual('bar');
-      expect((req.headers as Record<string, string>)['x-Foo']).toEqual(undefined);
-      expect((req.headers as Record<string, string>)['X-Foo']).toEqual(undefined);
-      expect((req.headers as Record<string, string>)['x-baz']).toEqual(undefined);
+      expect(req.headers.get('x-foo')).toEqual('bar');
+      expect(req.headers.get('x-Foo')).toEqual('bar');
+      expect(req.headers.get('X-Foo')).toEqual('bar');
+      expect(req.headers.get('x-baz')).toEqual(null);
     });
+  });
+});
+
+describe('default encoder', () => {
+  const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
+
+  class Serializable {
+    toJSON() {
+      return { $type: 'Serializable' };
+    }
+  }
+  class Collection<T> {
+    #things: T[];
+    constructor(things: T[]) {
+      this.#things = Array.from(things);
+    }
+    toJSON() {
+      return Array.from(this.#things);
+    }
+    [Symbol.iterator]() {
+      return this.#things[Symbol.iterator];
+    }
+  }
+  for (const jsonValue of [{}, [], { __proto__: null }, new Serializable(), new Collection(['item'])]) {
+    test(`serializes ${util.inspect(jsonValue)} as json`, async () => {
+      const { req } = await client.buildRequest({
+        path: '/foo',
+        method: 'post',
+        body: jsonValue,
+      });
+      expect(req.headers).toBeInstanceOf(Headers);
+      expect(req.headers.get('content-type')).toEqual('application/json');
+      expect(req.body).toBe(JSON.stringify(jsonValue));
+    });
+  }
+
+  const encoder = new TextEncoder();
+  const asyncIterable = (async function* () {
+    yield encoder.encode('a\n');
+    yield encoder.encode('b\n');
+    yield encoder.encode('c\n');
+  })();
+  for (const streamValue of [
+    [encoder.encode('a\nb\nc\n')][Symbol.iterator](),
+    new Response('a\nb\nc\n').body,
+    asyncIterable,
+  ]) {
+    test(`converts ${util.inspect(streamValue)} to ReadableStream`, async () => {
+      const { req } = await client.buildRequest({
+        path: '/foo',
+        method: 'post',
+        body: streamValue,
+      });
+      expect(req.headers).toBeInstanceOf(Headers);
+      expect(req.headers.get('content-type')).toEqual(null);
+      expect(req.body).toBeInstanceOf(ReadableStream);
+      expect(await new Response(req.body).text()).toBe('a\nb\nc\n');
+    });
+  }
+
+  test(`can set content-type for ReadableStream`, async () => {
+    const { req } = await client.buildRequest({
+      path: '/foo',
+      method: 'post',
+      body: new Response('a\nb\nc\n').body,
+      headers: { 'Content-Type': 'text/plain' },
+    });
+    expect(req.headers).toBeInstanceOf(Headers);
+    expect(req.headers.get('content-type')).toEqual('text/plain');
+    expect(req.body).toBeInstanceOf(ReadableStream);
+    expect(await new Response(req.body).text()).toBe('a\nb\nc\n');
   });
 });
 
 describe('retries', () => {
   test('retry on timeout', async () => {
     let count = 0;
-    const testFetch = async (url: RequestInfo, { signal }: RequestInit = {}): Promise<Response> => {
+    const testFetch = async (
+      url: string | URL | Request,
+      { signal }: RequestInit = {},
+    ): Promise<Response> => {
       if (count++ === 0) {
         return new Promise(
           (resolve, reject) => signal?.addEventListener('abort', () => reject(new Error('timed out'))),
@@ -305,7 +595,7 @@ describe('retries', () => {
     };
 
     const client = new Mux({
-      tokenId: 'my token id',
+      tokenID: 'my token id',
       tokenSecret: 'my secret',
       timeout: 10,
       fetch: testFetch,
@@ -325,7 +615,7 @@ describe('retries', () => {
   test('retry count header', async () => {
     let count = 0;
     let capturedRequest: RequestInit | undefined;
-    const testFetch = async (url: RequestInfo, init: RequestInit = {}): Promise<Response> => {
+    const testFetch = async (url: string | URL | Request, init: RequestInit = {}): Promise<Response> => {
       count++;
       if (count <= 2) {
         return new Response(undefined, {
@@ -340,7 +630,7 @@ describe('retries', () => {
     };
 
     const client = new Mux({
-      tokenId: 'my token id',
+      tokenID: 'my token id',
       tokenSecret: 'my secret',
       fetch: testFetch,
       maxRetries: 4,
@@ -348,14 +638,14 @@ describe('retries', () => {
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
 
-    expect((capturedRequest!.headers as Headers)['x-stainless-retry-count']).toEqual('2');
+    expect((capturedRequest!.headers as Headers).get('x-stainless-retry-count')).toEqual('2');
     expect(count).toEqual(3);
   });
 
   test('omit retry count header', async () => {
     let count = 0;
     let capturedRequest: RequestInit | undefined;
-    const testFetch = async (url: RequestInfo, init: RequestInit = {}): Promise<Response> => {
+    const testFetch = async (url: string | URL | Request, init: RequestInit = {}): Promise<Response> => {
       count++;
       if (count <= 2) {
         return new Response(undefined, {
@@ -369,7 +659,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
     const client = new Mux({
-      tokenId: 'my token id',
+      tokenID: 'my token id',
       tokenSecret: 'my secret',
       fetch: testFetch,
       maxRetries: 4,
@@ -383,13 +673,13 @@ describe('retries', () => {
       }),
     ).toEqual({ a: 1 });
 
-    expect(capturedRequest!.headers as Headers).not.toHaveProperty('x-stainless-retry-count');
+    expect((capturedRequest!.headers as Headers).has('x-stainless-retry-count')).toBe(false);
   });
 
   test('omit retry count header by default', async () => {
     let count = 0;
     let capturedRequest: RequestInit | undefined;
-    const testFetch = async (url: RequestInfo, init: RequestInit = {}): Promise<Response> => {
+    const testFetch = async (url: string | URL | Request, init: RequestInit = {}): Promise<Response> => {
       count++;
       if (count <= 2) {
         return new Response(undefined, {
@@ -403,7 +693,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
     const client = new Mux({
-      tokenId: 'my token id',
+      tokenID: 'my token id',
       tokenSecret: 'my secret',
       fetch: testFetch,
       maxRetries: 4,
@@ -423,7 +713,7 @@ describe('retries', () => {
   test('overwrite retry count header', async () => {
     let count = 0;
     let capturedRequest: RequestInit | undefined;
-    const testFetch = async (url: RequestInfo, init: RequestInit = {}): Promise<Response> => {
+    const testFetch = async (url: string | URL | Request, init: RequestInit = {}): Promise<Response> => {
       count++;
       if (count <= 2) {
         return new Response(undefined, {
@@ -437,7 +727,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
     const client = new Mux({
-      tokenId: 'my token id',
+      tokenID: 'my token id',
       tokenSecret: 'my secret',
       fetch: testFetch,
       maxRetries: 4,
@@ -451,12 +741,15 @@ describe('retries', () => {
       }),
     ).toEqual({ a: 1 });
 
-    expect((capturedRequest!.headers as Headers)['x-stainless-retry-count']).toBe('42');
+    expect((capturedRequest!.headers as Headers).get('x-stainless-retry-count')).toEqual('42');
   });
 
   test('retry on 429 with retry-after', async () => {
     let count = 0;
-    const testFetch = async (url: RequestInfo, { signal }: RequestInit = {}): Promise<Response> => {
+    const testFetch = async (
+      url: string | URL | Request,
+      { signal }: RequestInit = {},
+    ): Promise<Response> => {
       if (count++ === 0) {
         return new Response(undefined, {
           status: 429,
@@ -468,7 +761,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret', fetch: testFetch });
+    const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret', fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -483,7 +776,10 @@ describe('retries', () => {
 
   test('retry on 429 with retry-after-ms', async () => {
     let count = 0;
-    const testFetch = async (url: RequestInfo, { signal }: RequestInit = {}): Promise<Response> => {
+    const testFetch = async (
+      url: string | URL | Request,
+      { signal }: RequestInit = {},
+    ): Promise<Response> => {
       if (count++ === 0) {
         return new Response(undefined, {
           status: 429,
@@ -495,7 +791,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret', fetch: testFetch });
+    const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret', fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
