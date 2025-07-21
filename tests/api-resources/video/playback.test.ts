@@ -30,6 +30,7 @@ describe('resource playback', () => {
           asset_end_time: 0,
           asset_start_time: 0,
           default_subtitles_lang: 'default_subtitles_lang',
+          exclude_pdt: true,
           max_resolution: '270p',
           min_resolution: '270p',
           program_end_time: 0,
@@ -54,6 +55,10 @@ describe('resource playback', () => {
   test('storyboard: required and optional params', async () => {
     const response = await client.video.playback.storyboard('jpg', {
       PLAYBACK_ID: 'PLAYBACK_ID',
+      asset_end_time: 0,
+      asset_start_time: 0,
+      program_end_time: 0,
+      program_start_time: 0,
       TOKEN: 'TOKEN',
     });
   });
@@ -76,7 +81,13 @@ describe('resource playback', () => {
     await expect(
       client.video.playback.storyboardMeta(
         'PLAYBACK_ID',
-        { TOKEN: 'TOKEN' },
+        {
+          asset_end_time: 0,
+          asset_start_time: 0,
+          program_end_time: 0,
+          program_start_time: 0,
+          TOKEN: 'TOKEN',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
@@ -100,7 +111,13 @@ describe('resource playback', () => {
     await expect(
       client.video.playback.storyboardVtt(
         'PLAYBACK_ID',
-        { TOKEN: 'TOKEN' },
+        {
+          asset_end_time: 0,
+          asset_start_time: 0,
+          program_end_time: 0,
+          program_start_time: 0,
+          TOKEN: 'TOKEN',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
@@ -113,6 +130,7 @@ describe('resource playback', () => {
       flip_h: true,
       flip_v: true,
       height: 0,
+      program_time: 0,
       rotate: 90,
       time: 0,
       TOKEN: 'TOKEN',
