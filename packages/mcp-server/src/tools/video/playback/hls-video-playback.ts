@@ -39,6 +39,11 @@ export const tool: Tool = {
         description:
           'Set the [default subtitles/captions language](https://docs.mux.com/guides/add-subtitles-to-your-videos#showing-subtitles-by-default) (BCP47 compliant language code).',
       },
+      exclude_pdt: {
+        type: 'boolean',
+        description:
+          'If set to true, EXT-X-PROGRAM-DATE-TIME tags will be omitted from HLS manifests for assets from live streams.',
+      },
       max_resolution: {
         type: 'string',
         description:
