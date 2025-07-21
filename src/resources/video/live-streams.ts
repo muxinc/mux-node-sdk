@@ -708,7 +708,7 @@ export namespace LiveStream {
     /**
      * The language to generate subtitles in.
      */
-    language_code: 'en' | 'en-US';
+    language_code: 'en' | 'en-US' | 'es' | 'fr' | 'de' | 'pt' | 'it';
 
     /**
      * A name for this live stream subtitle track.
@@ -1004,7 +1004,7 @@ export namespace LiveStreamCreateParams {
     /**
      * The language to generate subtitles in.
      */
-    language_code?: 'en' | 'en-US';
+    language_code?: 'en' | 'en-US' | 'es' | 'fr' | 'de' | 'pt' | 'it';
 
     /**
      * A name for this live stream subtitle track.
@@ -1341,7 +1341,7 @@ export namespace LiveStreamUpdateGeneratedSubtitlesParams {
     /**
      * The language to generate subtitles in.
      */
-    language_code?: 'en' | 'en-US';
+    language_code?: 'en' | 'en-US' | 'es' | 'fr' | 'de' | 'pt' | 'it';
 
     /**
      * A name for this live stream subtitle track.
