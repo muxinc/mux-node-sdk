@@ -90,6 +90,9 @@ export const tool: Tool = {
     },
     required: ['MONITORING_METRIC_ID'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

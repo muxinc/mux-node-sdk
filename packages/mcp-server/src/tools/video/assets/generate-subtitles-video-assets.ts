@@ -82,6 +82,7 @@ export const tool: Tool = {
     },
     required: ['ASSET_ID', 'TRACK_ID', 'generated_subtitles'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
