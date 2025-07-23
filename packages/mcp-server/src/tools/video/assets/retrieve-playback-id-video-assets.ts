@@ -37,6 +37,9 @@ export const tool: Tool = {
     },
     required: ['ASSET_ID', 'PLAYBACK_ID'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

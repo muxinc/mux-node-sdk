@@ -47,6 +47,9 @@ export const tool: Tool = {
     },
     required: ['PLAYBACK_RESTRICTION_ID', 'allowed_domains'],
   },
+  annotations: {
+    idempotentHint: true,
+  },
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

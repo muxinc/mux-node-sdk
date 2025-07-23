@@ -33,6 +33,9 @@ export const tool: Tool = {
     },
     required: ['ANNOTATION_ID'],
   },
+  annotations: {
+    idempotentHint: true,
+  },
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

@@ -46,6 +46,7 @@ export const tool: Tool = {
     },
     required: ['ANNOTATION_ID', 'date', 'note'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

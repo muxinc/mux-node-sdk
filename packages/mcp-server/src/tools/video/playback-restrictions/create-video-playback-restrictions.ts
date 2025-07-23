@@ -67,6 +67,7 @@ export const tool: Tool = {
     },
     required: ['referrer', 'user_agent'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

@@ -66,6 +66,9 @@ export const tool: Tool = {
     },
     required: ['PLAYBACK_ID', 'EXTENSION'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
