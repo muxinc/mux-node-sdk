@@ -33,6 +33,9 @@ export const tool: Tool = {
     },
     required: ['TRANSCRIPTION_VOCABULARY_ID'],
   },
+  annotations: {
+    idempotentHint: true,
+  },
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

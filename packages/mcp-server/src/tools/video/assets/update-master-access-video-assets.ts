@@ -32,6 +32,9 @@ export const tool: Tool = {
     },
     required: ['ASSET_ID', 'master_access'],
   },
+  annotations: {
+    idempotentHint: true,
+  },
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

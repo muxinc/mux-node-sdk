@@ -34,6 +34,9 @@ export const tool: Tool = {
     },
     required: ['DRM_CONFIGURATION_ID'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

@@ -42,6 +42,7 @@ export const tool: Tool = {
     },
     required: ['ASSET_ID', 'resolution'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

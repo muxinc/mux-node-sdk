@@ -49,6 +49,7 @@ export const tool: Tool = {
     },
     required: ['phrases'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

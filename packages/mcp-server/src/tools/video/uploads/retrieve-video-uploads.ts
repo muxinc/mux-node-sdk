@@ -27,6 +27,9 @@ export const tool: Tool = {
     },
     required: ['UPLOAD_ID'],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

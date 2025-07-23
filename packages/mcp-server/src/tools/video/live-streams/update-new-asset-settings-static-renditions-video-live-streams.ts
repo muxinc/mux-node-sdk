@@ -56,6 +56,9 @@ export const tool: Tool = {
     },
     required: ['LIVE_STREAM_ID', 'static_renditions'],
   },
+  annotations: {
+    idempotentHint: true,
+  },
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
