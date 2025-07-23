@@ -45,6 +45,11 @@ export const tool: Tool = {
         type: 'integer',
         description: 'The height of the thumbnail (in pixels). Defaults to the height of the original video.',
       },
+      latest: {
+        type: 'boolean',
+        description:
+          'When set to `true`, pulls the latest thumbnail from the playback ID of an ongoing live stream. Can only be used with live streams. Can be used to build moderation and classification workflows, [see documentation for more details](https://mux.com/docs/guides/get-images-from-a-video#getting-the-latest-thumbnail-from-a-live-stream).',
+      },
       program_time: {
         type: 'integer',
         description:

@@ -130,6 +130,7 @@ describe('resource playback', () => {
       flip_h: true,
       flip_v: true,
       height: 0,
+      latest: true,
       program_time: 0,
       rotate: 90,
       time: 0,
