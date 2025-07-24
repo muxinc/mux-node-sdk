@@ -346,3 +346,7 @@ The following tools are available in this MCP server.
   **The private key is not returned in this response.**
 - `list_system_signing_keys` (`read`): Returns a list of signing keys.
 - `delete_system_signing_keys` (`write`): Deletes an existing signing key. Use with caution, as this will invalidate any existing signatures and no JWTs can be signed using the key again.
+
+### Resource `system.utilities`:
+
+- `whoami_system_utilities` (`read`): Retrieve information about your current access token, including organization, environment, and permissions. Note that this can only be access with an access token, and _all_ access tokens can access this route, regardless of what permissions they have assigned.

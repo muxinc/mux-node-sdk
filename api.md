@@ -356,6 +356,17 @@ Methods:
 - <code title="get /system/v1/signing-keys">client.system.signingKeys.<a href="./src/resources/system/signing-keys.ts">list</a>({ ...params }) -> SigningKeysBasePage</code>
 - <code title="delete /system/v1/signing-keys/{SIGNING_KEY_ID}">client.system.signingKeys.<a href="./src/resources/system/signing-keys.ts">delete</a>(signingKeyId) -> void</code>
 
+## Utilities
+
+Types:
+
+- <code><a href="./src/resources/system/utilities.ts">WhoamiResponse</a></code>
+- <code><a href="./src/resources/system/utilities.ts">UtilityWhoamiResponse</a></code>
+
+Methods:
+
+- <code title="get /system/v1/whoami">client.system.utilities.<a href="./src/resources/system/utilities.ts">whoami</a>() -> UtilityWhoamiResponse</code>
+
 # Webhooks
 
 Types:
