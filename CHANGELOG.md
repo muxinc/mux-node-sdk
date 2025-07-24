@@ -1,5 +1,28 @@
 # Changelog
 
+## 12.3.0 (2025-07-24)
+
+Full Changelog: [v12.2.0...v12.3.0](https://github.com/muxinc/mux-node-sdk/compare/v12.2.0...v12.3.0)
+
+### Features
+
+* add more languages for live generated captions ([#361](https://github.com/muxinc/mux-node-sdk/issues/361)) ([6dc6350](https://github.com/muxinc/mux-node-sdk/commit/6dc6350f64d07ba9c4e185a6128540eab28c80b5))
+* **api:** expose /system/v1/whoami route ([3fa346b](https://github.com/muxinc/mux-node-sdk/commit/3fa346b461f2aad57d4c87194c91c69a6668748d))
+* Spec for latest thumbnail ([#363](https://github.com/muxinc/mux-node-sdk/issues/363)) ([72f8669](https://github.com/muxinc/mux-node-sdk/commit/72f8669588736e4c72324792bda69f24c01213c8))
+
+
+### Bug Fixes
+
+* Make all the regexes for webhook payloads more explicit, to fix `video.asset.static_rendition.*` webhooks ([#360](https://github.com/muxinc/mux-node-sdk/issues/360)) ([f276b25](https://github.com/muxinc/mux-node-sdk/commit/f276b252dfad47d0fa2b4d435505f935a17c327a))
+* **mcp:** include required section for top-level properties and support naming transformations ([6c2ea9f](https://github.com/muxinc/mux-node-sdk/commit/6c2ea9fe8bd7b952c57da816ce29938710b3e529))
+
+
+### Chores
+
+* **internal:** codegen related update ([dc7ea3e](https://github.com/muxinc/mux-node-sdk/commit/dc7ea3ed285180e0f426b5d5b594dc832db60cb0))
+* **internal:** version bump ([997eca2](https://github.com/muxinc/mux-node-sdk/commit/997eca2ef922a37ada5fc996e48e852ac0424b0a))
+* remove log from internal build step ([#362](https://github.com/muxinc/mux-node-sdk/issues/362)) ([c06d7e2](https://github.com/muxinc/mux-node-sdk/commit/c06d7e2b18eeb3095a1232fc67c83ee5e4fd933c))
+
 ## 12.2.0 (2025-07-16)
 
 Full Changelog: [v12.1.0...v12.2.0](https://github.com/muxinc/mux-node-sdk/compare/v12.1.0...v12.2.0)
