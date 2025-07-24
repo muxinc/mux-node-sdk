@@ -25,6 +25,10 @@ export const tool: Tool = {
         type: 'string',
       },
     },
+    required: ['LIVE_STREAM_ID'],
+  },
+  annotations: {
+    readOnlyHint: true,
   },
 };
 

@@ -25,6 +25,10 @@ export const tool: Tool = {
         type: 'string',
       },
     },
+    required: ['ASSET_ID'],
+  },
+  annotations: {
+    readOnlyHint: true,
   },
 };
 

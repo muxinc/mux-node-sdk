@@ -44,7 +44,6 @@ export const tool: Tool = {
             description: 'The asset title. Max 512 code points.',
           },
         },
-        required: [],
       },
       passthrough: {
         type: 'string',
@@ -52,7 +51,9 @@ export const tool: Tool = {
           "You can set this field to anything you want. It will be included in the asset details and related webhooks. If you're looking for more structured metadata, such as `title` or `external_id` , you can use the `meta` object instead. **Max: 255 characters**. In order to clear this value, the field should be included with an empty string value.",
       },
     },
+    required: ['ASSET_ID'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

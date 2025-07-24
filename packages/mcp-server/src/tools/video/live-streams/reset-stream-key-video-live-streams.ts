@@ -25,7 +25,9 @@ export const tool: Tool = {
         type: 'string',
       },
     },
+    required: ['LIVE_STREAM_ID'],
   },
+  annotations: {},
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

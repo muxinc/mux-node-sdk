@@ -40,6 +40,7 @@ export const tool: Tool = {
           'Max time in seconds for the signed upload URL to be valid. If a successful upload has not occurred before the timeout limit, the direct upload is marked `timed_out`',
       },
     },
+    required: ['cors_origin'],
     $defs: {
       asset_options: {
         type: 'object',
@@ -60,7 +61,6 @@ export const tool: Tool = {
                   $ref: '#/$defs/playback_policy',
                 },
               },
-              required: [],
             },
           },
           copy_overlays: {
@@ -136,7 +136,6 @@ export const tool: Tool = {
                         description: 'Arbitrary metadata set for the subtitle track. Max 255 characters.',
                       },
                     },
-                    required: [],
                   },
                 },
                 language_code: {
@@ -192,7 +191,6 @@ export const tool: Tool = {
                         'How wide the overlay should appear. Can be expressed as a percent ("10%") or as a pixel value ("100px"). If both width and height are left blank the width will be the true pixels of the image, applied as if the video has been scaled to fit a 1920x1080 frame. If height is supplied with no width, the width will scale proportionally to the height.',
                     },
                   },
-                  required: [],
                 },
                 passthrough: {
                   type: 'string',
@@ -221,7 +219,6 @@ export const tool: Tool = {
                     'The URL of the file that Mux should download and use.\n* For the main input file, this should be the URL to the muxed file for Mux to download, for example an MP4, MOV, MKV, or TS file. Mux supports most audio/video file formats and codecs, but for fastest processing, you should [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).\n* For `audio` tracks, the URL is the location of the audio file for Mux to download, for example an M4A, WAV, or MP3 file. Mux supports most audio file formats and codecs, but for fastest processing, you should [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).\n* For `text` tracks, the URL is the location of subtitle/captions file. Mux supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) formats for ingesting Subtitles and Closed Captions.\n* For Watermarking or Overlay, the URL is the location of the watermark image. The maximum size is 4096x4096.\n* When creating clips from existing Mux assets, the URL is defined with `mux://assets/{asset_id}` template where `asset_id` is the Asset Identifier for creating the clip from.\nThe url property may be omitted on the first input object when providing asset settings for LiveStream and Upload objects, in order to configure settings related to the primary (live stream or direct upload) input.\n',
                 },
               },
-              required: [],
             },
           },
           inputs: {
@@ -287,7 +284,6 @@ export const tool: Tool = {
                         description: 'Arbitrary metadata set for the subtitle track. Max 255 characters.',
                       },
                     },
-                    required: [],
                   },
                 },
                 language_code: {
@@ -343,7 +339,6 @@ export const tool: Tool = {
                         'How wide the overlay should appear. Can be expressed as a percent ("10%") or as a pixel value ("100px"). If both width and height are left blank the width will be the true pixels of the image, applied as if the video has been scaled to fit a 1920x1080 frame. If height is supplied with no width, the width will scale proportionally to the height.',
                     },
                   },
-                  required: [],
                 },
                 passthrough: {
                   type: 'string',
@@ -372,7 +367,6 @@ export const tool: Tool = {
                     'The URL of the file that Mux should download and use.\n* For the main input file, this should be the URL to the muxed file for Mux to download, for example an MP4, MOV, MKV, or TS file. Mux supports most audio/video file formats and codecs, but for fastest processing, you should [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).\n* For `audio` tracks, the URL is the location of the audio file for Mux to download, for example an M4A, WAV, or MP3 file. Mux supports most audio file formats and codecs, but for fastest processing, you should [use standard inputs wherever possible](https://docs.mux.com/guides/minimize-processing-time).\n* For `text` tracks, the URL is the location of subtitle/captions file. Mux supports [SubRip Text (SRT)](https://en.wikipedia.org/wiki/SubRip) and [Web Video Text Tracks](https://www.w3.org/TR/webvtt1/) formats for ingesting Subtitles and Closed Captions.\n* For Watermarking or Overlay, the URL is the location of the watermark image. The maximum size is 4096x4096.\n* When creating clips from existing Mux assets, the URL is defined with `mux://assets/{asset_id}` template where `asset_id` is the Asset Identifier for creating the clip from.\nThe url property may be omitted on the first input object when providing asset settings for LiveStream and Upload objects, in order to configure settings related to the primary (live stream or direct upload) input.\n',
                 },
               },
-              required: [],
             },
           },
           master_access: {
@@ -407,7 +401,6 @@ export const tool: Tool = {
                 description: 'The asset title. Max 512 code points.',
               },
             },
-            required: [],
           },
           mp4_support: {
             type: 'string',
@@ -486,7 +479,6 @@ export const tool: Tool = {
             enum: ['basic', 'plus', 'premium'],
           },
         },
-        required: [],
       },
       playback_policy: {
         type: 'string',
@@ -496,6 +488,7 @@ export const tool: Tool = {
       },
     },
   },
+  annotations: {},
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {

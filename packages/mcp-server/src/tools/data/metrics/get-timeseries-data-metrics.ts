@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'get_timeseries_data_metrics',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns timeseries data for a specific metric.\n\nEach interval represented in the data array contains an array with the following values:\n  * the first element is the interval time\n  * the second element is the calculated metric value\n  * the third element is the number of views in the interval that have a valid metric value\n\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/metric_timeseries_data_response',\n  $defs: {\n    metric_timeseries_data_response: {\n      type: 'object',\n      properties: {\n        data: {\n          type: 'array',\n          items: {\n            type: 'array',\n            items: {\n              anyOf: [                {\n                  type: 'string'\n                },\n                {\n                  type: 'number'\n                }\n              ]\n            }\n          }\n        },\n        meta: {\n          type: 'object',\n          properties: {\n            aggregation: {\n              type: 'string'\n            },\n            granularity: {\n              type: 'string'\n            }\n          },\n          required: []\n        },\n        timeframe: {\n          type: 'array',\n          items: {\n            type: 'integer'\n          }\n        },\n        total_row_count: {\n          type: 'integer'\n        }\n      },\n      required: [        'data',\n        'meta',\n        'timeframe',\n        'total_row_count'\n      ]\n    }\n  }\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns timeseries data for a specific metric.\n\nEach interval represented in the data array contains an array with the following values:\n  * the first element is the interval time\n  * the second element is the calculated metric value\n  * the third element is the number of views in the interval that have a valid metric value\n\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/metric_timeseries_data_response',\n  $defs: {\n    metric_timeseries_data_response: {\n      type: 'object',\n      properties: {\n        data: {\n          type: 'array',\n          items: {\n            type: 'array',\n            items: {\n              anyOf: [                {\n                  type: 'string'\n                },\n                {\n                  type: 'number'\n                }\n              ]\n            }\n          }\n        },\n        meta: {\n          type: 'object',\n          properties: {\n            aggregation: {\n              type: 'string'\n            },\n            granularity: {\n              type: 'string'\n            }\n          }\n        },\n        timeframe: {\n          type: 'array',\n          items: {\n            type: 'integer'\n          }\n        },\n        total_row_count: {\n          type: 'integer'\n        }\n      },\n      required: [        'data',\n        'meta',\n        'timeframe',\n        'total_row_count'\n      ]\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
@@ -123,6 +123,10 @@ export const tool: Tool = {
           'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
+    required: ['METRIC_ID'],
+  },
+  annotations: {
+    readOnlyHint: true,
   },
 };
 
