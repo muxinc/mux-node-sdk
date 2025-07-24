@@ -100,6 +100,7 @@ import create_system_signing_keys from './system/signing-keys/create-system-sign
 import retrieve_system_signing_keys from './system/signing-keys/retrieve-system-signing-keys';
 import list_system_signing_keys from './system/signing-keys/list-system-signing-keys';
 import delete_system_signing_keys from './system/signing-keys/delete-system-signing-keys';
+import whoami_system_utilities from './system/utilities/whoami-system-utilities';
 
 export const endpoints: Endpoint[] = [];
 
@@ -203,6 +204,7 @@ addEndpoint(create_system_signing_keys);
 addEndpoint(retrieve_system_signing_keys);
 addEndpoint(list_system_signing_keys);
 addEndpoint(delete_system_signing_keys);
+addEndpoint(whoami_system_utilities);
 
 export type Filter = {
   type: 'resource' | 'operation' | 'tag' | 'tool';
