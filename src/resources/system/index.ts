@@ -8,3 +8,4 @@ export {
   type SigningKeysBasePage,
 } from './signing-keys';
 export { System } from './system';
+export { Utilities, type WhoamiResponse, type UtilityWhoamiResponse } from './utilities';

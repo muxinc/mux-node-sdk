@@ -9,12 +9,16 @@ import {
   SigningKeys,
   SigningKeysBasePage,
 } from './signing-keys';
+import * as UtilitiesAPI from './utilities';
+import { Utilities, UtilityWhoamiResponse, WhoamiResponse } from './utilities';
 
 export class System extends APIResource {
   signingKeys: SigningKeysAPI.SigningKeys = new SigningKeysAPI.SigningKeys(this._client);
+  utilities: UtilitiesAPI.Utilities = new UtilitiesAPI.Utilities(this._client);
 }
 
 System.SigningKeys = SigningKeys;
+System.Utilities = Utilities;
 
 export declare namespace System {
   export {
@@ -23,5 +27,11 @@ export declare namespace System {
     type SigningKeyResponse as SigningKeyResponse,
     type SigningKeysBasePage as SigningKeysBasePage,
     type SigningKeyListParams as SigningKeyListParams,
+  };
+
+  export {
+    Utilities as Utilities,
+    type WhoamiResponse as WhoamiResponse,
+    type UtilityWhoamiResponse as UtilityWhoamiResponse,
   };
 }
