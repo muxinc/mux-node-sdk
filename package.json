@@ -59,10 +59,6 @@
     "./shims/web.js",
     "./shims/web.mjs"
   ],
-  "imports": {
-    "@mux/mux-node": ".",
-    "@mux/mux-node/*": "./src/*"
-  },
   "exports": {
     "./_shims/auto/*": {
       "deno": {
