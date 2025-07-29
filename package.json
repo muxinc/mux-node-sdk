@@ -46,10 +46,6 @@
     "typescript": "5.8.3",
     "typescript-eslint": "8.31.1"
   },
-  "imports": {
-    "@mux/mux-node": ".",
-    "@mux/mux-node/*": "./src/*"
-  },
   "bin": {
     "mux-mux-node": "bin/cli"
   },
