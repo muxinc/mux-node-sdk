@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'retrieve_input_info_video_assets',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns a list of the input objects that were used to create the asset along with any settings that were applied to each input.",
+    'Returns a list of the input objects that were used to create the asset along with any settings that were applied to each input.',
   inputSchema: {
     type: 'object',
     properties: {
