@@ -16,8 +16,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'retrieve_data_video_views',
-  description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nReturns the details of a video view.",
+  description: 'Returns the details of a video view.',
   inputSchema: {
     type: 'object',
     properties: {

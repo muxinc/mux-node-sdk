@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'update_master_access_video_assets',
   description:
-    'When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you\'re sure you don\'t need the data.\n\nAllows you to add temporary access to the master (highest-quality) version of the asset in MP4 format. A URL will be created that can be used to download the master version for 24 hours. After 24 hours Master Access will revert to "none".\nThis master version is not optimized for web and not meant to be streamed, only downloaded for purposes like archiving or editing the video offline.',
+    'Allows you to add temporary access to the master (highest-quality) version of the asset in MP4 format. A URL will be created that can be used to download the master version for 24 hours. After 24 hours Master Access will revert to "none".\nThis master version is not optimized for web and not meant to be streamed, only downloaded for purposes like archiving or editing the video offline.',
   inputSchema: {
     type: 'object',
     properties: {
