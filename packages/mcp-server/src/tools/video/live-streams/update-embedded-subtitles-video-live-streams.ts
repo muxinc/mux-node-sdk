@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'update_embedded_subtitles_video_live_streams',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nConfigures a live stream to receive embedded closed captions.\nThe resulting Asset's subtitle text track will have `closed_captions: true` set.\n",
+    "Configures a live stream to receive embedded closed captions.\nThe resulting Asset's subtitle text track will have `closed_captions: true` set.\n",
   inputSchema: {
     type: 'object',
     properties: {
