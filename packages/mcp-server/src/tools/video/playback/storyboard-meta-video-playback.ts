@@ -65,9 +65,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { PLAYBACK_ID, ...body } = args as any;
+  const { PLAYBACK_ID, jq_filter, ...body } = args as any;
   return asTextContentResult(
-    await maybeFilter(args, await client.video.playback.storyboardMeta(PLAYBACK_ID, body)),
+    await maybeFilter(jq_filter, await client.video.playback.storyboardMeta(PLAYBACK_ID, body)),
   );
 };
 
