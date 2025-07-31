@@ -49,10 +49,10 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { PLAYBACK_RESTRICTION_ID, ...body } = args as any;
+  const { PLAYBACK_RESTRICTION_ID, jq_filter, ...body } = args as any;
   return asTextContentResult(
     await maybeFilter(
-      args,
+      jq_filter,
       await client.video.playbackRestrictions.updateUserAgent(PLAYBACK_RESTRICTION_ID, body),
     ),
   );

@@ -46,9 +46,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { ASSET_ID, ...body } = args as any;
+  const { ASSET_ID, jq_filter, ...body } = args as any;
   return asTextContentResult(
-    await maybeFilter(args, await client.video.assets.createStaticRendition(ASSET_ID, body)),
+    await maybeFilter(jq_filter, await client.video.assets.createStaticRendition(ASSET_ID, body)),
   );
 };
 

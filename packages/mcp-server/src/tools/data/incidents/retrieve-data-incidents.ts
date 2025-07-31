@@ -40,8 +40,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { INCIDENT_ID, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(args, await client.data.incidents.retrieve(INCIDENT_ID)));
+  const { INCIDENT_ID, jq_filter, ...body } = args as any;
+  return asTextContentResult(await maybeFilter(jq_filter, await client.data.incidents.retrieve(INCIDENT_ID)));
 };
 
 export default { metadata, tool, handler };

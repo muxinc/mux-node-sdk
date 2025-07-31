@@ -64,9 +64,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { FILTER_ID, ...body } = args as any;
+  const { FILTER_ID, jq_filter, ...body } = args as any;
   const response = await client.data.filters.listValues(FILTER_ID, body).asResponse();
-  return asTextContentResult(await maybeFilter(args, await response.json()));
+  return asTextContentResult(await maybeFilter(jq_filter, await response.json()));
 };
 
 export default { metadata, tool, handler };

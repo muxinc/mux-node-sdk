@@ -37,7 +37,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  return asTextContentResult(await maybeFilter(args, await client.data.dimensions.list()));
+  const { jq_filter } = args as any;
+  return asTextContentResult(await maybeFilter(jq_filter, await client.data.dimensions.list()));
 };
 
 export default { metadata, tool, handler };

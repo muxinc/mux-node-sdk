@@ -49,10 +49,10 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { REALTIME_HISTOGRAM_METRIC_ID, ...body } = args as any;
+  const { REALTIME_HISTOGRAM_METRIC_ID, jq_filter, ...body } = args as any;
   return asTextContentResult(
     await maybeFilter(
-      args,
+      jq_filter,
       await client.data.realTime.retrieveHistogramTimeseries(REALTIME_HISTOGRAM_METRIC_ID, body),
     ),
   );

@@ -40,9 +40,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { SIGNING_KEY_ID, ...body } = args as any;
+  const { SIGNING_KEY_ID, jq_filter, ...body } = args as any;
   return asTextContentResult(
-    await maybeFilter(args, await client.system.signingKeys.retrieve(SIGNING_KEY_ID)),
+    await maybeFilter(jq_filter, await client.system.signingKeys.retrieve(SIGNING_KEY_ID)),
   );
 };
 

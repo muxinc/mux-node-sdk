@@ -48,8 +48,10 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { TRACK_ID, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(args, await client.video.playback.transcript(TRACK_ID, body)));
+  const { TRACK_ID, jq_filter, ...body } = args as any;
+  return asTextContentResult(
+    await maybeFilter(jq_filter, await client.video.playback.transcript(TRACK_ID, body)),
+  );
 };
 
 export default { metadata, tool, handler };
