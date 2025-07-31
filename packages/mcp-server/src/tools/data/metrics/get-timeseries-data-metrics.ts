@@ -131,9 +131,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { METRIC_ID, ...body } = args as any;
+  const { METRIC_ID, jq_filter, ...body } = args as any;
   return asTextContentResult(
-    await maybeFilter(args, await client.data.metrics.getTimeseries(METRIC_ID, body)),
+    await maybeFilter(jq_filter, await client.data.metrics.getTimeseries(METRIC_ID, body)),
   );
 };
 
