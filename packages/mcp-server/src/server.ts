@@ -28,7 +28,7 @@ export const server = new McpServer(
     name: 'mux',
     version: '12.3.0',
   },
-  { capabilities: { tools: {} } },
+  { capabilities: { tools: {}, logging: {} } },
 );
 
 /**
