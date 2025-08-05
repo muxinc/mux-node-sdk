@@ -6,7 +6,7 @@ Full Changelog: [v12.3.0...v12.4.0](https://github.com/muxinc/mux-node-sdk/compa
 
 ### Features
 
-* **api:** expose authorizationToken as valid auth mechanism ([cbd38d5](https://github.com/muxinc/mux-node-sdk/commit/cbd38d5cf18966172b9f0aeb947253c67c47be0b))
+* **api:** expose authorizationToken as valid auth mechanism for remote MCP server ([cbd38d5](https://github.com/muxinc/mux-node-sdk/commit/cbd38d5cf18966172b9f0aeb947253c67c47be0b))
 * **mcp:** add logging when environment variable is set ([4b25b46](https://github.com/muxinc/mux-node-sdk/commit/4b25b46de16bb2a9f381306d05c2c83141a475d1))
 * **mcp:** remote server with passthru auth ([a535888](https://github.com/muxinc/mux-node-sdk/commit/a535888596ae66eeb8a5a0a678c51461407716ef))
 
