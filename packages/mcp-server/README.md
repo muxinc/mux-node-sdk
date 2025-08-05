@@ -2,6 +2,7 @@
 
 ## Installation
 
+
 ### Via MCP Client
 
 There is a partial list of existing clients at [modelcontextprotocol.io](https://modelcontextprotocol.io/clients). If you already
@@ -20,7 +21,8 @@ For clients with a configuration JSON, it might look something like this:
         "MUX_TOKEN_SECRET": "my secret",
         "MUX_WEBHOOK_SECRET": "My Webhook Secret",
         "MUX_SIGNING_KEY": "My Jwt Signing Key",
-        "MUX_PRIVATE_KEY": "My Jwt Private Key"
+        "MUX_PRIVATE_KEY": "My Jwt Private Key",
+        "MUX_AUTHORIZATION_TOKEN": "my authorization token"
       }
     }
   }

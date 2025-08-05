@@ -15,6 +15,8 @@ export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> =
           tokenId: rawValue.slice(0, rawValue.search(':')),
           tokenSecret: rawValue.slice(rawValue.search(':') + 1),
         };
+      case 'Bearer':
+        return { authorizationToken: req.headers.authorization.slice('Bearer '.length) };
       default:
         throw new Error(`Unsupported authorization scheme`);
     }
@@ -28,5 +30,9 @@ export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> =
     req.headers['x-mux-token-secret'] instanceof Array ?
       req.headers['x-mux-token-secret'][0]
     : req.headers['x-mux-token-secret'];
-  return { tokenId, tokenSecret };
+  const authorizationToken =
+    req.headers['x-mux-authorization-token'] instanceof Array ?
+      req.headers['x-mux-authorization-token'][0]
+    : req.headers['x-mux-authorization-token'];
+  return { tokenId, tokenSecret, authorizationToken };
 };
