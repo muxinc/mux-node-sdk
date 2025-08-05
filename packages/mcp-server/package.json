@@ -1,6 +1,6 @@
 {
   "name": "@mux/mcp",
-  "version": "12.3.0",
+  "version": "12.4.0",
   "description": "The official MCP Server for the Mux API",
   "author": "Mux <devex@mux.com>",
   "types": "dist/index.d.ts",
@@ -29,6 +29,7 @@
   "dependencies": {
     "@mux/mux-node": "file:../../dist/",
     "@modelcontextprotocol/sdk": "^1.11.5",
+    "express": "^5.1.0",
     "jq-web": "https://github.com/stainless-api/jq-web/releases/download/v0.8.2/jq-web.tar.gz",
     "yargs": "^17.7.2",
     "@cloudflare/cabidela": "^0.2.4",
@@ -41,6 +42,7 @@
   "devDependencies": {
     "@anthropic-ai/dxt": "^0.2.0",
     "@types/jest": "^29.4.0",
+    "@types/express": "^5.0.3",
     "@typescript-eslint/eslint-plugin": "8.31.1",
     "@typescript-eslint/parser": "8.31.1",
     "eslint": "^8.49.0",

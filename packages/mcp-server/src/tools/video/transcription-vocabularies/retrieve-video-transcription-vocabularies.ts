@@ -40,10 +40,10 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { TRANSCRIPTION_VOCABULARY_ID, ...body } = args as any;
+  const { TRANSCRIPTION_VOCABULARY_ID, jq_filter, ...body } = args as any;
   return asTextContentResult(
     await maybeFilter(
-      args,
+      jq_filter,
       await client.video.transcriptionVocabularies.retrieve(TRANSCRIPTION_VOCABULARY_ID),
     ),
   );

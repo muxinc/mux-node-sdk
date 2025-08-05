@@ -96,10 +96,10 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { MONITORING_METRIC_ID, ...body } = args as any;
+  const { MONITORING_METRIC_ID, jq_filter, ...body } = args as any;
   return asTextContentResult(
     await maybeFilter(
-      args,
+      jq_filter,
       await client.data.monitoring.metrics.getBreakdownTimeseries(MONITORING_METRIC_ID, body),
     ),
   );

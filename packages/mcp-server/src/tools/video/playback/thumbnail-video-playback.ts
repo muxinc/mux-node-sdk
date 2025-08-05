@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'thumbnail_video_playback',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\n[Fetch a thumbnail image from a video](https://docs.mux.com/guides/get-images-from-a-video) at a specified time with optional transformations.\n\n# Response Schema\n```json\n{\n  type: 'string'\n}\n```",
+    '[Fetch a thumbnail image from a video](https://docs.mux.com/guides/get-images-from-a-video) at a specified time with optional transformations.',
   inputSchema: {
     type: 'object',
     properties: {
@@ -73,12 +73,6 @@ export const tool: Tool = {
       width: {
         type: 'integer',
         description: 'The width of the thumbnail (in pixels). Defaults to the width of the original video.',
-      },
-      jq_filter: {
-        type: 'string',
-        title: 'jq Filter',
-        description:
-          'A jq filter to apply to the response to include certain fields. Consult the output schema in the tool description to see the fields that are available.\n\nFor example: to include only the `name` field in every object of a results array, you can provide ".results[].name".\n\nFor more information, see the [jq documentation](https://jqlang.org/manual/).',
       },
     },
     required: ['PLAYBACK_ID', 'EXTENSION'],

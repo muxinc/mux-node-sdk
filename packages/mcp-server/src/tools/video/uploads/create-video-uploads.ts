@@ -16,8 +16,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'create_video_uploads',
-  description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nCreates a new direct upload, through which video content can be uploaded for ingest to Mux.",
+  description: 'Creates a new direct upload, through which video content can be uploaded for ingest to Mux.',
   inputSchema: {
     type: 'object',
     properties: {

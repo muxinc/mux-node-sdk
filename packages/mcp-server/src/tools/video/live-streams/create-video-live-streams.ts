@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'create_video_live_streams',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nCreates a new live stream. Once created, an encoder can connect to Mux via the specified stream key and begin streaming to an audience.",
+    'Creates a new live stream. Once created, an encoder can connect to Mux via the specified stream key and begin streaming to an audience.',
   inputSchema: {
     type: 'object',
     properties: {

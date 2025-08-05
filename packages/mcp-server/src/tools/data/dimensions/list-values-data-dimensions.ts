@@ -72,9 +72,9 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
-  const { DIMENSION_ID, ...body } = args as any;
+  const { DIMENSION_ID, jq_filter, ...body } = args as any;
   const response = await client.data.dimensions.listValues(DIMENSION_ID, body).asResponse();
-  return asTextContentResult(await maybeFilter(args, await response.json()));
+  return asTextContentResult(await maybeFilter(jq_filter, await response.json()));
 };
 
 export default { metadata, tool, handler };
