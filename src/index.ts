@@ -218,7 +218,7 @@ export class Mux extends Core.APIClient {
     }
 
     throw new Error(
-      'Could not resolve authentication method. Expected either tokenId, tokenSecret or authorizationToken to be set. Or for one of the "Authorization" or "Authorization" headers to be explicitly omitted',
+      'Could not resolve authentication method. Expected token tokenId and tokenSecret to be set.',
     );
   }
 
