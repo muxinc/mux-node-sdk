@@ -49,12 +49,12 @@ export interface ClientOptions {
   /**
    * Defaults to process.env['MUX_TOKEN_ID'].
    */
-  tokenID?: string | undefined;
+  tokenID?: string | null | undefined;
 
   /**
    * Defaults to process.env['MUX_TOKEN_SECRET'].
    */
-  tokenSecret?: string | undefined;
+  tokenSecret?: string | null | undefined;
 
   /**
    * Defaults to process.env['MUX_WEBHOOK_SECRET'].
@@ -70,6 +70,11 @@ export interface ClientOptions {
    * Defaults to process.env['MUX_PRIVATE_KEY'].
    */
   jwtPrivateKey?: string | null | undefined;
+
+  /**
+   * Defaults to process.env['MUX_AUTHORIZATION_TOKEN'].
+   */
+  authorizationToken?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -144,11 +149,12 @@ export interface ClientOptions {
  * API Client for interfacing with the Mux API.
  */
 export class Mux {
-  tokenID: string;
-  tokenSecret: string;
+  tokenID: string | null;
+  tokenSecret: string | null;
   webhookSecret: string | null;
   jwtSigningKey: string | null;
   jwtPrivateKey: string | null;
+  authorizationToken: string | null;
 
   baseURL: string;
   maxRetries: number;
@@ -165,11 +171,12 @@ export class Mux {
   /**
    * API Client for interfacing with the Mux API.
    *
-   * @param {string | undefined} [opts.tokenID=process.env['MUX_TOKEN_ID'] ?? undefined]
-   * @param {string | undefined} [opts.tokenSecret=process.env['MUX_TOKEN_SECRET'] ?? undefined]
+   * @param {string | null | undefined} [opts.tokenID=process.env['MUX_TOKEN_ID'] ?? null]
+   * @param {string | null | undefined} [opts.tokenSecret=process.env['MUX_TOKEN_SECRET'] ?? null]
    * @param {string | null | undefined} [opts.webhookSecret=process.env['MUX_WEBHOOK_SECRET'] ?? null]
    * @param {string | null | undefined} [opts.jwtSigningKey=process.env['MUX_SIGNING_KEY'] ?? null]
    * @param {string | null | undefined} [opts.jwtPrivateKey=process.env['MUX_PRIVATE_KEY'] ?? null]
+   * @param {string | null | undefined} [opts.authorizationToken=process.env['MUX_AUTHORIZATION_TOKEN'] ?? null]
    * @param {string} [opts.baseURL=process.env['MUX_BASE_URL'] ?? https://api.mux.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -180,30 +187,21 @@ export class Mux {
    */
   constructor({
     baseURL = readEnv('MUX_BASE_URL'),
-    tokenID = readEnv('MUX_TOKEN_ID'),
-    tokenSecret = readEnv('MUX_TOKEN_SECRET'),
+    tokenID = readEnv('MUX_TOKEN_ID') ?? null,
+    tokenSecret = readEnv('MUX_TOKEN_SECRET') ?? null,
     webhookSecret = readEnv('MUX_WEBHOOK_SECRET') ?? null,
     jwtSigningKey = readEnv('MUX_SIGNING_KEY') ?? null,
     jwtPrivateKey = readEnv('MUX_PRIVATE_KEY') ?? null,
+    authorizationToken = readEnv('MUX_AUTHORIZATION_TOKEN') ?? null,
     ...opts
   }: ClientOptions = {}) {
-    if (tokenID === undefined) {
-      throw new Errors.MuxError(
-        "The MUX_TOKEN_ID environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenID option, like new Mux({ tokenID: 'my token id' }).",
-      );
-    }
-    if (tokenSecret === undefined) {
-      throw new Errors.MuxError(
-        "The MUX_TOKEN_SECRET environment variable is missing or empty; either provide it, or instantiate the Mux client with an tokenSecret option, like new Mux({ tokenSecret: 'my secret' }).",
-      );
-    }
-
     const options: ClientOptions = {
       tokenID,
       tokenSecret,
       webhookSecret,
       jwtSigningKey,
       jwtPrivateKey,
+      authorizationToken,
       ...opts,
       baseURL: baseURL || `https://api.mux.com`,
     };
@@ -230,6 +228,7 @@ export class Mux {
     this.webhookSecret = webhookSecret;
     this.jwtSigningKey = jwtSigningKey;
     this.jwtPrivateKey = jwtPrivateKey;
+    this.authorizationToken = authorizationToken;
   }
 
   /**
@@ -250,6 +249,7 @@ export class Mux {
       webhookSecret: this.webhookSecret,
       jwtSigningKey: this.jwtSigningKey,
       jwtPrivateKey: this.jwtPrivateKey,
+      authorizationToken: this.authorizationToken,
       ...options,
     });
     return client;
@@ -267,10 +267,30 @@ export class Mux {
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
-    return;
+    if (this.tokenID && this.tokenSecret && values.get('authorization')) {
+      return;
+    }
+    if (nulls.has('authorization')) {
+      return;
+    }
+
+    if (this.authorizationToken && values.get('authorization')) {
+      return;
+    }
+    if (nulls.has('authorization')) {
+      return;
+    }
+
+    throw new Error(
+      'Could not resolve authentication method. Expected either tokenID, tokenSecret or authorizationToken to be set. Or for one of the "Authorization" or "Authorization" headers to be explicitly omitted',
+    );
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
+    return buildHeaders([await this.accessTokenAuth(opts), await this.authorizationTokenAuth(opts)]);
+  }
+
+  protected async accessTokenAuth(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
     if (!this.tokenID) {
       return undefined;
     }
@@ -282,6 +302,13 @@ export class Mux {
     const credentials = `${this.tokenID}:${this.tokenSecret}`;
     const Authorization = `Basic ${toBase64(credentials)}`;
     return buildHeaders([{ Authorization }]);
+  }
+
+  protected async authorizationTokenAuth(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
+    if (this.authorizationToken == null) {
+      return undefined;
+    }
+    return buildHeaders([{ Authorization: `Bearer ${this.authorizationToken}` }]);
   }
 
   protected stringifyQuery(query: Record<string, unknown>): string {
