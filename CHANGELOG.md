@@ -1,5 +1,28 @@
 # Changelog
 
+## 12.4.0 (2025-08-05)
+
+Full Changelog: [v12.3.0...v12.4.0](https://github.com/muxinc/mux-node-sdk/compare/v12.3.0...v12.4.0)
+
+### Features
+
+* **api:** expose authorizationToken as valid auth mechanism ([cbd38d5](https://github.com/muxinc/mux-node-sdk/commit/cbd38d5cf18966172b9f0aeb947253c67c47be0b))
+* **mcp:** add logging when environment variable is set ([4b25b46](https://github.com/muxinc/mux-node-sdk/commit/4b25b46de16bb2a9f381306d05c2c83141a475d1))
+* **mcp:** remote server with passthru auth ([a535888](https://github.com/muxinc/mux-node-sdk/commit/a535888596ae66eeb8a5a0a678c51461407716ef))
+
+
+### Bug Fixes
+
+* **mcp:** avoid sending `jq_filter` to base API ([8d9d790](https://github.com/muxinc/mux-node-sdk/commit/8d9d7904342ad6fc03e49ec916bb29246f0d6637))
+* **mcp:** fix tool description of jq_filter ([56ce5dd](https://github.com/muxinc/mux-node-sdk/commit/56ce5dded1744997275b58d570fb868b51411c79))
+* **mcp:** reverse validJson capability option and limit scope ([8fecaf7](https://github.com/muxinc/mux-node-sdk/commit/8fecaf79e42e3b119e56593107c6dd9d94e94cdc))
+
+
+### Chores
+
+* **internal:** remove redundant imports config ([6f1bd7b](https://github.com/muxinc/mux-node-sdk/commit/6f1bd7b3af54a78cb3685dfdf97e95098e4d208b))
+* update error message on instantiation ([ef387e2](https://github.com/muxinc/mux-node-sdk/commit/ef387e271e3fa57772f0762a232f317bcec8a896))
+
 ## 12.3.0 (2025-07-24)
 
 Full Changelog: [v12.2.0...v12.3.0](https://github.com/muxinc/mux-node-sdk/compare/v12.2.0...v12.3.0)
