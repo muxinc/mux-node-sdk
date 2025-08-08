@@ -1,5 +1,26 @@
 # Changelog
 
+## 12.4.1 (2025-08-08)
+
+Full Changelog: [v12.4.0...v12.4.1](https://github.com/muxinc/mux-node-sdk/compare/v12.4.0...v12.4.1)
+
+### Features
+
+* **mcp:** add unix socket option for remote MCP ([839d999](https://github.com/muxinc/mux-node-sdk/commit/839d999865094e8ddce0e56d1257d518b26bc858))
+
+
+### Bug Fixes
+
+* **mcp:** fix bug in header handling ([01d65d1](https://github.com/muxinc/mux-node-sdk/commit/01d65d1f88f722a71f674ffe95a65dcb9afdb2b0))
+
+
+### Chores
+
+* **internal:** move publish config ([870995a](https://github.com/muxinc/mux-node-sdk/commit/870995abf7002274a9e8a7e7f3d9cf1e4c384b4c))
+* **internal:** update comment in script ([8f6a4a0](https://github.com/muxinc/mux-node-sdk/commit/8f6a4a0906ac902beb21d5bb46451939f064b9d7))
+* **mcp:** refactor streamable http transport ([8b40da7](https://github.com/muxinc/mux-node-sdk/commit/8b40da7f2f93e110794664c1811c8412ce3534f3))
+* update @stainless-api/prism-cli to v5.15.0 ([6d47536](https://github.com/muxinc/mux-node-sdk/commit/6d47536322556ca25805c16dff4e5ccb3bba41c6))
+
 ## 12.4.0 (2025-08-05)
 
 Full Changelog: [v12.3.0...v12.4.0](https://github.com/muxinc/mux-node-sdk/compare/v12.3.0...v12.4.0)

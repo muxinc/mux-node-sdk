@@ -6,11 +6,11 @@ import { IncomingMessage } from 'node:http';
 
 export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> => {
   if (req.headers.authorization) {
-    const scheme = req.headers.authorization.slice(req.headers.authorization.search(' '));
+    const scheme = req.headers.authorization.split(' ')[0]!;
     const value = req.headers.authorization.slice(scheme.length + 1);
     switch (scheme) {
       case 'Basic':
-        const rawValue = Buffer.from(value).toString('base64');
+        const rawValue = Buffer.from(value, 'base64').toString();
         return {
           tokenId: rawValue.slice(0, rawValue.search(':')),
           tokenSecret: rawValue.slice(rawValue.search(':') + 1),
