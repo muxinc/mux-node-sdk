@@ -556,20 +556,28 @@ export interface MetricListParams {
     | 'video_dynamic_range_type'
     | 'view_cdn_edge_pop'
     | 'view_cdn_origin'
-    | 'video_creator_id';
+    | 'video_creator_id'
+    | 'video_cdn_trace';
 
   /**
-   * Limit the results to rows that match conditions from provided key:value pairs.
-   * Must be provided as an array query string parameter.
+   * Filter results using key:value pairs. Must be provided as an array query string
+   * parameter.
    *
-   * To exclude rows that match a certain condition, prepend a `!` character to the
-   * dimension.
+   * **Basic filtering:**
    *
-   * Possible filter names are the same as returned by the List Filters endpoint.
+   * - `filters[]=dimension:value` - Include rows where dimension equals value
+   * - `filters[]=!dimension:value` - Exclude rows where dimension equals value
    *
-   * Example:
+   * **For trace dimensions (like video_cdn_trace):**
    *
-   * - `filters[]=operating_system:windows&filters[]=!country:US`
+   * - `filters[]=+dimension:value` - Include rows where trace contains value
+   * - `filters[]=-dimension:value` - Exclude rows where trace contains value
+   * - `filters[]=dimension:[value1,value2]` - Exact trace match
+   *
+   * **Examples:**
+   *
+   * - `filters[]=country:US` - US views only
+   * - `filters[]=+video_cdn_trace:fastly` - Views using Fastly CDN
    */
   filters?: Array<string>;
 
@@ -606,17 +614,24 @@ export interface MetricListParams {
 
 export interface MetricGetInsightsParams {
   /**
-   * Limit the results to rows that match conditions from provided key:value pairs.
-   * Must be provided as an array query string parameter.
+   * Filter results using key:value pairs. Must be provided as an array query string
+   * parameter.
    *
-   * To exclude rows that match a certain condition, prepend a `!` character to the
-   * dimension.
+   * **Basic filtering:**
    *
-   * Possible filter names are the same as returned by the List Filters endpoint.
+   * - `filters[]=dimension:value` - Include rows where dimension equals value
+   * - `filters[]=!dimension:value` - Exclude rows where dimension equals value
    *
-   * Example:
+   * **For trace dimensions (like video_cdn_trace):**
    *
-   * - `filters[]=operating_system:windows&filters[]=!country:US`
+   * - `filters[]=+dimension:value` - Include rows where trace contains value
+   * - `filters[]=-dimension:value` - Exclude rows where trace contains value
+   * - `filters[]=dimension:[value1,value2]` - Exact trace match
+   *
+   * **Examples:**
+   *
+   * - `filters[]=country:US` - US views only
+   * - `filters[]=+video_cdn_trace:fastly` - Views using Fastly CDN
    */
   filters?: Array<string>;
 
@@ -679,17 +694,24 @@ export interface MetricGetInsightsParams {
 
 export interface MetricGetOverallValuesParams {
   /**
-   * Limit the results to rows that match conditions from provided key:value pairs.
-   * Must be provided as an array query string parameter.
+   * Filter results using key:value pairs. Must be provided as an array query string
+   * parameter.
    *
-   * To exclude rows that match a certain condition, prepend a `!` character to the
-   * dimension.
+   * **Basic filtering:**
    *
-   * Possible filter names are the same as returned by the List Filters endpoint.
+   * - `filters[]=dimension:value` - Include rows where dimension equals value
+   * - `filters[]=!dimension:value` - Exclude rows where dimension equals value
    *
-   * Example:
+   * **For trace dimensions (like video_cdn_trace):**
    *
-   * - `filters[]=operating_system:windows&filters[]=!country:US`
+   * - `filters[]=+dimension:value` - Include rows where trace contains value
+   * - `filters[]=-dimension:value` - Exclude rows where trace contains value
+   * - `filters[]=dimension:[value1,value2]` - Exact trace match
+   *
+   * **Examples:**
+   *
+   * - `filters[]=country:US` - US views only
+   * - `filters[]=+video_cdn_trace:fastly` - Views using Fastly CDN
    */
   filters?: Array<string>;
 
@@ -747,17 +769,24 @@ export interface MetricGetOverallValuesParams {
 
 export interface MetricGetTimeseriesParams {
   /**
-   * Limit the results to rows that match conditions from provided key:value pairs.
-   * Must be provided as an array query string parameter.
+   * Filter results using key:value pairs. Must be provided as an array query string
+   * parameter.
    *
-   * To exclude rows that match a certain condition, prepend a `!` character to the
-   * dimension.
+   * **Basic filtering:**
    *
-   * Possible filter names are the same as returned by the List Filters endpoint.
+   * - `filters[]=dimension:value` - Include rows where dimension equals value
+   * - `filters[]=!dimension:value` - Exclude rows where dimension equals value
    *
-   * Example:
+   * **For trace dimensions (like video_cdn_trace):**
    *
-   * - `filters[]=operating_system:windows&filters[]=!country:US`
+   * - `filters[]=+dimension:value` - Include rows where trace contains value
+   * - `filters[]=-dimension:value` - Exclude rows where trace contains value
+   * - `filters[]=dimension:[value1,value2]` - Exact trace match
+   *
+   * **Examples:**
+   *
+   * - `filters[]=country:US` - US views only
+   * - `filters[]=+video_cdn_trace:fastly` - Views using Fastly CDN
    */
   filters?: Array<string>;
 
@@ -833,17 +862,24 @@ export interface MetricGetTimeseriesParams {
 
 export interface MetricListBreakdownValuesParams extends BasePageParams {
   /**
-   * Limit the results to rows that match conditions from provided key:value pairs.
-   * Must be provided as an array query string parameter.
+   * Filter results using key:value pairs. Must be provided as an array query string
+   * parameter.
    *
-   * To exclude rows that match a certain condition, prepend a `!` character to the
-   * dimension.
+   * **Basic filtering:**
    *
-   * Possible filter names are the same as returned by the List Filters endpoint.
+   * - `filters[]=dimension:value` - Include rows where dimension equals value
+   * - `filters[]=!dimension:value` - Exclude rows where dimension equals value
    *
-   * Example:
+   * **For trace dimensions (like video_cdn_trace):**
    *
-   * - `filters[]=operating_system:windows&filters[]=!country:US`
+   * - `filters[]=+dimension:value` - Include rows where trace contains value
+   * - `filters[]=-dimension:value` - Exclude rows where trace contains value
+   * - `filters[]=dimension:[value1,value2]` - Exact trace match
+   *
+   * **Examples:**
+   *
+   * - `filters[]=country:US` - US views only
+   * - `filters[]=+video_cdn_trace:fastly` - Views using Fastly CDN
    */
   filters?: Array<string>;
 
@@ -931,7 +967,8 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
     | 'video_dynamic_range_type'
     | 'view_cdn_edge_pop'
     | 'view_cdn_origin'
-    | 'video_creator_id';
+    | 'video_creator_id'
+    | 'video_cdn_trace';
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
