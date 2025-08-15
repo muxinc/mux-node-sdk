@@ -1,5 +1,33 @@
 # Changelog
 
+## 12.4.1 (2025-08-15)
+
+Full Changelog: [v12.4.0...v12.4.1](https://github.com/muxinc/mux-node-sdk/compare/v12.4.0...v12.4.1)
+
+### Features
+
+* add support for CDN trace and trace dimension-specific API methods ([#365](https://github.com/muxinc/mux-node-sdk/issues/365)) ([1ba1635](https://github.com/muxinc/mux-node-sdk/commit/1ba1635bfdefce6f1900fa7d7b7407a19ed560e6))
+* **mcp:** add unix socket option for remote MCP ([839d999](https://github.com/muxinc/mux-node-sdk/commit/839d999865094e8ddce0e56d1257d518b26bc858))
+
+
+### Bug Fixes
+
+* **mcp:** fix bug in header handling ([01d65d1](https://github.com/muxinc/mux-node-sdk/commit/01d65d1f88f722a71f674ffe95a65dcb9afdb2b0))
+* **mcp:** fix jq type bug ([6b46735](https://github.com/muxinc/mux-node-sdk/commit/6b46735b637051fb54809fa606ab132c08843965))
+
+
+### Chores
+
+* **deps:** update dependency node-fetch to v2.6.13 ([5f509de](https://github.com/muxinc/mux-node-sdk/commit/5f509def4f289910ebaeb692c1b4b56b117ba055))
+* **internal:** move publish config ([870995a](https://github.com/muxinc/mux-node-sdk/commit/870995abf7002274a9e8a7e7f3d9cf1e4c384b4c))
+* **internal:** update comment in script ([8f6a4a0](https://github.com/muxinc/mux-node-sdk/commit/8f6a4a0906ac902beb21d5bb46451939f064b9d7))
+* **mcp:** bump JQ version ([e5b6779](https://github.com/muxinc/mux-node-sdk/commit/e5b67797968191ab425f0fa6e52e5f2ee50242ba))
+* **mcp:** document remote server in README.md ([3344229](https://github.com/muxinc/mux-node-sdk/commit/334422990ac35284a439e084953820542a23ef89))
+* **mcp:** minor cleanup of types and package.json ([24097ba](https://github.com/muxinc/mux-node-sdk/commit/24097ba76b69b98d4fcea804c74524eef8f0bf77))
+* **mcp:** refactor streamable http transport ([8b40da7](https://github.com/muxinc/mux-node-sdk/commit/8b40da7f2f93e110794664c1811c8412ce3534f3))
+* **mcp:** update README ([2bdad30](https://github.com/muxinc/mux-node-sdk/commit/2bdad3016326d9e04b108839ffe2030ae9f4c1c0))
+* update @stainless-api/prism-cli to v5.15.0 ([6d47536](https://github.com/muxinc/mux-node-sdk/commit/6d47536322556ca25805c16dff4e5ccb3bba41c6))
+
 ## 12.4.0 (2025-08-05)
 
 Full Changelog: [v12.3.0...v12.4.0](https://github.com/muxinc/mux-node-sdk/compare/v12.3.0...v12.4.0)

@@ -326,6 +326,8 @@ export namespace VideoViewResponse {
 
     video_brand: string | null;
 
+    video_cdn_trace: Array<string>;
+
     video_codec: string | null;
 
     video_content_type: string | null;
@@ -479,17 +481,24 @@ export interface VideoViewListParams extends BasePageParams {
   error_id?: number;
 
   /**
-   * Limit the results to rows that match conditions from provided key:value pairs.
-   * Must be provided as an array query string parameter.
+   * Filter results using key:value pairs. Must be provided as an array query string
+   * parameter.
    *
-   * To exclude rows that match a certain condition, prepend a `!` character to the
-   * dimension.
+   * **Basic filtering:**
    *
-   * Possible filter names are the same as returned by the List Filters endpoint.
+   * - `filters[]=dimension:value` - Include rows where dimension equals value
+   * - `filters[]=!dimension:value` - Exclude rows where dimension equals value
    *
-   * Example:
+   * **For trace dimensions (like video_cdn_trace):**
    *
-   * - `filters[]=operating_system:windows&filters[]=!country:US`
+   * - `filters[]=+dimension:value` - Include rows where trace contains value
+   * - `filters[]=-dimension:value` - Exclude rows where trace contains value
+   * - `filters[]=dimension:[value1,value2]` - Exact trace match
+   *
+   * **Examples:**
+   *
+   * - `filters[]=country:US` - US views only
+   * - `filters[]=+video_cdn_trace:fastly` - Views using Fastly CDN
    */
   filters?: Array<string>;
 
