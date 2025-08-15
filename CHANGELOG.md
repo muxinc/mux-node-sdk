@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.4.2 (2025-08-15)
+
+Full Changelog: [v12.4.1...v12.4.2](https://github.com/muxinc/mux-node-sdk/compare/v12.4.1...v12.4.2)
+
+### Chores
+
+* **internal:** formatting change ([82f6e1a](https://github.com/muxinc/mux-node-sdk/commit/82f6e1ac65a36bff638f56ede503dcdecd6cf428))
+
 ## 12.4.1 (2025-08-15)
 
 Full Changelog: [v12.4.0...v12.4.1](https://github.com/muxinc/mux-node-sdk/compare/v12.4.0...v12.4.1)
