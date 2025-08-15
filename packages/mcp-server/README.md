@@ -134,13 +134,13 @@ Additionally, authorization can be provided via the following headers:
 | `x-mux-token-secret` | `tokenSecret` | accessToken |
 | `x-mux-authorization-token` | `authorizationToken` | authorizationToken |
 
-A configuration JSON for this server might look like this:
+A configuration JSON for this server might look like this, assuming the server is hosted at `http://localhost:3000`:
 
 ```json
 {
   "mcpServers": {
     "mux_mux_node_api": {
-      "url": "http://localhost:3000", # or wherever the server is hosted
+      "url": "http://localhost:3000",
       "headers": {
         "Authorization": "Basic <auth value>"
       }
