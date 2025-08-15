@@ -279,6 +279,7 @@ Mux.Video = Video;
 Mux.Data = Data;
 Mux.System = System;
 Mux.Webhooks = Webhooks;
+
 export declare namespace Mux {
   export type RequestOptions = Core.RequestOptions;
 
