@@ -23,15 +23,15 @@ export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> =
   }
 
   const tokenId =
-    req.headers['x-mux-token-id'] instanceof Array ?
+    Array.isArray(req.headers['x-mux-token-id']) ?
       req.headers['x-mux-token-id'][0]
     : req.headers['x-mux-token-id'];
   const tokenSecret =
-    req.headers['x-mux-token-secret'] instanceof Array ?
+    Array.isArray(req.headers['x-mux-token-secret']) ?
       req.headers['x-mux-token-secret'][0]
     : req.headers['x-mux-token-secret'];
   const authorizationToken =
-    req.headers['x-mux-authorization-token'] instanceof Array ?
+    Array.isArray(req.headers['x-mux-authorization-token']) ?
       req.headers['x-mux-authorization-token'][0]
     : req.headers['x-mux-authorization-token'];
   return { tokenId, tokenSecret, authorizationToken };
