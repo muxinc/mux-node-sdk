@@ -16,6 +16,7 @@ export {
   Dimensions,
   type DimensionValue,
   type DimensionsResponse,
+  type DimensionListTraceElementsParams,
   type DimensionListValuesParams,
   type DimensionValuesBasePage,
 } from './dimensions';

@@ -89,11 +89,17 @@ const del = async (req: express.Request, res: express.Response) => {
   });
 };
 
+const oauthMetadata = (req: express.Request, res: express.Response) => {
+  const origin = `${req.protocol}://${req.get('host')}`;
+  res.json({ resource: origin, authorization_servers: ['https://auth.mux.com'], scopes_supported: 'header' });
+};
+
 export const streamableHTTPApp = (options: McpOptions): express.Express => {
   const app = express();
   app.set('query parser', 'extended');
   app.use(express.json());
 
+  app.get('/.well-known/oauth-protected-resource', oauthMetadata);
   app.get('/', get);
   app.post('/', post(options));
   app.delete('/', del);

@@ -15,6 +15,7 @@ import {
 } from './annotations';
 import * as DimensionsAPI from './dimensions';
 import {
+  DimensionListTraceElementsParams,
   DimensionListValuesParams,
   DimensionValue,
   DimensionValuesBasePage,
@@ -110,6 +111,7 @@ export declare namespace Data {
     type DimensionValue as DimensionValue,
     type DimensionsResponse as DimensionsResponse,
     type DimensionValuesBasePage as DimensionValuesBasePage,
+    type DimensionListTraceElementsParams as DimensionListTraceElementsParams,
     type DimensionListValuesParams as DimensionListValuesParams,
   };
 

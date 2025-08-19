@@ -200,6 +200,7 @@ Types:
 Methods:
 
 - <code title="get /data/v1/dimensions">client.data.dimensions.<a href="./src/resources/data/dimensions.ts">list</a>() -> DimensionsResponse</code>
+- <code title="get /data/v1/dimensions/{DIMENSION_ID}/elements">client.data.dimensions.<a href="./src/resources/data/dimensions.ts">listTraceElements</a>(dimensionID, { ...params }) -> DimensionValuesBasePage</code>
 - <code title="get /data/v1/dimensions/{DIMENSION_ID}">client.data.dimensions.<a href="./src/resources/data/dimensions.ts">listValues</a>(dimensionID, { ...params }) -> DimensionValuesBasePage</code>
 
 ## Monitoring
