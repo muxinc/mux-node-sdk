@@ -3,6 +3,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 
+import cors from 'cors';
 import express from 'express';
 import { fromError } from 'zod-validation-error/v3';
 import { McpOptions, parseQueryOptions } from './options';
@@ -99,7 +100,7 @@ export const streamableHTTPApp = (options: McpOptions): express.Express => {
   app.set('query parser', 'extended');
   app.use(express.json());
 
-  app.get('/.well-known/oauth-protected-resource', oauthMetadata);
+  app.get('/.well-known/oauth-protected-resource', cors(), oauthMetadata);
   app.get('/', get);
   app.post('/', post(options));
   app.delete('/', del);
