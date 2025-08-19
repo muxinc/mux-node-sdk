@@ -1,5 +1,22 @@
 # Changelog
 
+## 12.5.0 (2025-08-19)
+
+Full Changelog: [v12.4.1...v12.5.0](https://github.com/muxinc/mux-node-sdk/compare/v12.4.1...v12.5.0)
+
+### Features
+
+* **mcp:** add authorization servers to config ([e07584f](https://github.com/muxinc/mux-node-sdk/commit/e07584f60f28efb4b22b2ce64803e6ce3377db05))
+* **mcp:** add oauth_resource_metadata ([a67d1cd](https://github.com/muxinc/mux-node-sdk/commit/a67d1cdbb8a1f4656412bdd0d7f2ad4d90963288))
+* **mcp:** parse query string as mcp client options in mcp server ([715c289](https://github.com/muxinc/mux-node-sdk/commit/715c289017fdf7465b1a596fa139995d32cfc8dd))
+
+
+### Chores
+
+* **internal:** formatting change ([82f6e1a](https://github.com/muxinc/mux-node-sdk/commit/82f6e1ac65a36bff638f56ede503dcdecd6cf428))
+* **internal:** refactor array check ([f788c43](https://github.com/muxinc/mux-node-sdk/commit/f788c43aded1f6db498c4eef533a8c0e7eb7a4af))
+* **mcp:** add cors to oauth metadata route ([0a8796a](https://github.com/muxinc/mux-node-sdk/commit/0a8796aea676d94508c7c9ee1c14f4454bb87d8a))
+
 ## 12.4.1 (2025-08-15)
 
 Full Changelog: [v12.4.0...v12.4.1](https://github.com/muxinc/mux-node-sdk/compare/v12.4.0...v12.4.1)
