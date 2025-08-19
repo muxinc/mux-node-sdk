@@ -22,6 +22,45 @@ export class Dimensions extends APIResource {
   }
 
   /**
+   * Lists the elements (values) for a trace dimension along with their total counts.
+   * This endpoint is specifically designed for trace dimensions like video_cdn_trace
+   * that contain arrays of values.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const dimensionValue of client.data.dimensions.listTraceElements(
+   *   'abcd1234',
+   * )) {
+   *   // ...
+   * }
+   * ```
+   */
+  listTraceElements(
+    dimensionId: string,
+    query?: DimensionListTraceElementsParams,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<DimensionValuesBasePage, DimensionValue>;
+  listTraceElements(
+    dimensionId: string,
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<DimensionValuesBasePage, DimensionValue>;
+  listTraceElements(
+    dimensionId: string,
+    query: DimensionListTraceElementsParams | Core.RequestOptions = {},
+    options?: Core.RequestOptions,
+  ): Core.PagePromise<DimensionValuesBasePage, DimensionValue> {
+    if (isRequestOptions(query)) {
+      return this.listTraceElements(dimensionId, {}, query);
+    }
+    return this._client.getAPIList(`/data/v1/dimensions/${dimensionId}/elements`, DimensionValuesBasePage, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
+  }
+
+  /**
    * Lists the values for a dimension along with a total count of related views.
    *
    * Note: This API replaces the list-filter-values API call.
@@ -85,6 +124,65 @@ export namespace DimensionsResponse {
   }
 }
 
+export interface DimensionListTraceElementsParams extends BasePageParams {
+  /**
+   * Filter results using key:value pairs. Must be provided as an array query string
+   * parameter.
+   *
+   * **Basic filtering:**
+   *
+   * - `filters[]=dimension:value` - Include rows where dimension equals value
+   * - `filters[]=!dimension:value` - Exclude rows where dimension equals value
+   *
+   * **For trace dimensions (like video_cdn_trace):**
+   *
+   * - `filters[]=+dimension:value` - Include rows where trace contains value
+   * - `filters[]=-dimension:value` - Exclude rows where trace contains value
+   * - `filters[]=dimension:[value1,value2]` - Exact trace match
+   *
+   * **Examples:**
+   *
+   * - `filters[]=country:US` - US views only
+   * - `filters[]=+video_cdn_trace:fastly` - Views using Fastly CDN
+   */
+  filters?: Array<string>;
+
+  /**
+   * Limit the results to rows that match inequality conditions from provided metric
+   * comparison clauses. Must be provided as an array query string parameter.
+   *
+   * Possible filterable metrics are the same as the set of metric ids, with the
+   * exceptions of `exits_before_video_start`, `unique_viewers`,
+   * `video_startup_failure_percentage`, `view_dropped_percentage`, and `views`.
+   *
+   * Example:
+   *
+   * - `metric_filters[]=aggregate_startup_time>=1000`
+   */
+  metric_filters?: Array<string>;
+
+  /**
+   * Value to order the results by
+   */
+  order_by?: 'negative_impact' | 'value' | 'views' | 'field';
+
+  /**
+   * Sort order.
+   */
+  order_direction?: 'asc' | 'desc';
+
+  /**
+   * Timeframe window to limit results by. Must be provided as an array query string
+   * parameter (e.g. timeframe[]=).
+   *
+   * Accepted formats are...
+   *
+   * - array of epoch timestamps e.g. `timeframe[]=1498867200&timeframe[]=1498953600`
+   * - duration string e.g. `timeframe[]=24:hours or timeframe[]=7:days`
+   */
+  timeframe?: Array<string>;
+}
+
 export interface DimensionListValuesParams extends BasePageParams {
   /**
    * Filter results using key:value pairs. Must be provided as an array query string
@@ -141,6 +239,7 @@ export declare namespace Dimensions {
     type DimensionValue as DimensionValue,
     type DimensionsResponse as DimensionsResponse,
     DimensionValuesBasePage as DimensionValuesBasePage,
+    type DimensionListTraceElementsParams as DimensionListTraceElementsParams,
     type DimensionListValuesParams as DimensionListValuesParams,
   };
 }

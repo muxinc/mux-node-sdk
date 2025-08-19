@@ -66,6 +66,7 @@ import thumbnail_video_playback from './video/playback/thumbnail-video-playback'
 import track_video_playback from './video/playback/track-video-playback';
 import transcript_video_playback from './video/playback/transcript-video-playback';
 import list_data_dimensions from './data/dimensions/list-data-dimensions';
+import list_trace_elements_data_dimensions from './data/dimensions/list-trace-elements-data-dimensions';
 import list_values_data_dimensions from './data/dimensions/list-values-data-dimensions';
 import list_dimensions_data_monitoring from './data/monitoring/list-dimensions-data-monitoring';
 import list_monitoring_data_metrics from './data/monitoring/metrics/list-monitoring-data-metrics';
@@ -170,6 +171,7 @@ addEndpoint(thumbnail_video_playback);
 addEndpoint(track_video_playback);
 addEndpoint(transcript_video_playback);
 addEndpoint(list_data_dimensions);
+addEndpoint(list_trace_elements_data_dimensions);
 addEndpoint(list_values_data_dimensions);
 addEndpoint(list_dimensions_data_monitoring);
 addEndpoint(list_monitoring_data_metrics);

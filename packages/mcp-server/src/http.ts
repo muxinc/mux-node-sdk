@@ -3,14 +3,35 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 
+import cors from 'cors';
 import express from 'express';
-import { McpOptions } from './options';
+import { fromError } from 'zod-validation-error/v3';
+import { McpOptions, parseQueryOptions } from './options';
 import { initMcpServer, newMcpServer } from './server';
 import { parseAuthHeaders } from './headers';
 import { Endpoint } from './tools';
 
-const newServer = (mcpOptions: McpOptions, req: express.Request, res: express.Response): McpServer | null => {
+const newServer = (
+  defaultMcpOptions: McpOptions,
+  req: express.Request,
+  res: express.Response,
+): McpServer | null => {
   const server = newMcpServer();
+
+  let mcpOptions: McpOptions;
+  try {
+    mcpOptions = parseQueryOptions(defaultMcpOptions, req.query);
+  } catch (error) {
+    res.status(400).json({
+      jsonrpc: '2.0',
+      error: {
+        code: -32000,
+        message: `Invalid request: ${fromError(error)}`,
+      },
+    });
+    return null;
+  }
+
   try {
     const authOptions = parseAuthHeaders(req);
     initMcpServer({
@@ -69,10 +90,17 @@ const del = async (req: express.Request, res: express.Response) => {
   });
 };
 
+const oauthMetadata = (req: express.Request, res: express.Response) => {
+  const origin = `${req.protocol}://${req.get('host')}`;
+  res.json({ resource: origin, authorization_servers: ['https://auth.mux.com'], scopes_supported: 'header' });
+};
+
 export const streamableHTTPApp = (options: McpOptions): express.Express => {
   const app = express();
+  app.set('query parser', 'extended');
   app.use(express.json());
 
+  app.get('/.well-known/oauth-protected-resource', cors(), oauthMetadata);
   app.get('/', get);
   app.post('/', post(options));
   app.delete('/', del);

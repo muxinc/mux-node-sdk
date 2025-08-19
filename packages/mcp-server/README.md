@@ -149,6 +149,19 @@ A configuration JSON for this server might look like this, assuming the server i
 }
 ```
 
+The command-line arguments for filtering tools and specifying clients can also be used as query parameters in the URL.
+For example, to exclude specific tools while including others, use the URL:
+
+```
+http://localhost:3000?resource=cards&resource=accounts&no_tool=create_cards
+```
+
+Or, to configure for the Cursor client, with a custom max tool name length, use the URL:
+
+```
+http://localhost:3000?client=cursor&capability=tool-name-length%3D40
+```
+
 ## Importing the tools and server individually
 
 ```js
@@ -295,6 +308,9 @@ The following tools are available in this MCP server.
 
   Note: This API replaces the list-filters API call.
 
+- `list_trace_elements_data_dimensions` (`read`): Lists the elements (values) for a trace dimension along with their total counts.
+  This endpoint is specifically designed for trace dimensions like video_cdn_trace
+  that contain arrays of values.
 - `list_values_data_dimensions` (`read`): Lists the values for a dimension along with a total count of related views.
 
   Note: This API replaces the list-filter-values API call.
