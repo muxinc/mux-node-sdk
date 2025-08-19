@@ -6,6 +6,7 @@ Full Changelog: [v12.4.1...v12.5.0](https://github.com/muxinc/mux-node-sdk/compa
 
 ### Features
 
+* **api:** actually expose support for CDN trace and trace dimension-specific API methods which was inadvertently missing
 * **mcp:** add authorization servers to config ([e07584f](https://github.com/muxinc/mux-node-sdk/commit/e07584f60f28efb4b22b2ce64803e6ce3377db05))
 * **mcp:** add oauth_resource_metadata ([a67d1cd](https://github.com/muxinc/mux-node-sdk/commit/a67d1cdbb8a1f4656412bdd0d7f2ad4d90963288))
 * **mcp:** parse query string as mcp client options in mcp server ([715c289](https://github.com/muxinc/mux-node-sdk/commit/715c289017fdf7465b1a596fa139995d32cfc8dd))
