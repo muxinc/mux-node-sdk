@@ -38,6 +38,7 @@ export {
   Dimensions,
   type DimensionValue,
   type DimensionsResponse,
+  type DimensionListTraceElementsParams,
   type DimensionListValuesParams,
 } from './dimensions';
 export { Errors, type ErrorsResponse, type ErrorListParams } from './errors';
