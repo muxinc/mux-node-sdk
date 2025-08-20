@@ -91,7 +91,7 @@ const del = async (req: express.Request, res: express.Response) => {
 
 const oauthMetadata = (req: express.Request, res: express.Response) => {
   const origin = `${req.protocol}://${req.get('host')}`;
-  res.json({ resource: origin, authorization_servers: ['https://auth.mux.com'], scopes_supported: 'header' });
+  res.json({ resource: origin, authorization_servers: ['https://auth.mux.com'] });
 };
 
 export const streamableHTTPApp = (options: McpOptions): express.Express => {
