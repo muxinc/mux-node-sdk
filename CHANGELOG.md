@@ -6,6 +6,7 @@ Full Changelog: [v12.5.0...v12.6.0](https://github.com/muxinc/mux-node-sdk/compa
 
 ### Features
 
+* **mcp:** add Vercel function hosting option
 * **mcp:** add code execution tool ([d5c777b](https://github.com/muxinc/mux-node-sdk/commit/d5c777b3363fddd098e0be97a12e63778afb322a))
 * **mcp:** add option to infer mcp client ([a7b0225](https://github.com/muxinc/mux-node-sdk/commit/a7b0225e17614f841148ece5125fd8bdcf664ed0))
 
