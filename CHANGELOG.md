@@ -1,5 +1,27 @@
 # Changelog
 
+## 12.6.0 (2025-08-21)
+
+Full Changelog: [v12.5.0...v12.6.0](https://github.com/muxinc/mux-node-sdk/compare/v12.5.0...v12.6.0)
+
+### Features
+
+* **mcp:** add code execution tool ([d5c777b](https://github.com/muxinc/mux-node-sdk/commit/d5c777b3363fddd098e0be97a12e63778afb322a))
+* **mcp:** add option to infer mcp client ([a7b0225](https://github.com/muxinc/mux-node-sdk/commit/a7b0225e17614f841148ece5125fd8bdcf664ed0))
+
+
+### Bug Fixes
+
+* **mcp:** clean up oauth info for mcp ([0cafe63](https://github.com/muxinc/mux-node-sdk/commit/0cafe632849f9c96bf3c866ec308eb06a8db2c07))
+* **mcp:** oauth metadata ([630a21b](https://github.com/muxinc/mux-node-sdk/commit/630a21b8b6476942943a9b00166d46ad166b0f57))
+
+
+### Chores
+
+* **internal:** make mcp-server publishing public by defaut ([4a3dfa2](https://github.com/muxinc/mux-node-sdk/commit/4a3dfa251810675929e543b5e855cc2f2e100169))
+* **mcp:** update package.json ([da084a7](https://github.com/muxinc/mux-node-sdk/commit/da084a730ca4118467815c475bc13289b197371e))
+* **mcp:** update types ([f90aed3](https://github.com/muxinc/mux-node-sdk/commit/f90aed36f91dc610465312017f4ff5b200144537))
+
 ## 12.5.0 (2025-08-19)
 
 Full Changelog: [v12.4.1...v12.5.0](https://github.com/muxinc/mux-node-sdk/compare/v12.4.1...v12.5.0)
