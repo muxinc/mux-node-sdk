@@ -115,7 +115,7 @@ export const streamableHTTPApp = (options: McpOptions): express.Express => {
 
   app.get('/.well-known/oauth-protected-resource', cors(), oauthMetadata);
   app.get('/', get);
-  app.post('/', post(options));
+  app.post('/', cors(), post(options));
   app.delete('/', del);
 
   return app;

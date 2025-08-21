@@ -114,10 +114,10 @@ export function selectTools(endpoints: Endpoint[], options?: McpOptions): Endpoi
       includedTools = dynamicTools(includedTools);
     }
   } else {
-    if (options?.includeAllTools) {
-      includedTools = endpoints;
-    } else if (options?.includeDynamicTools) {
+    if (options?.includeDynamicTools) {
       includedTools = dynamicTools(endpoints);
+    } else if (options?.includeAllTools) {
+      includedTools = endpoints;
     } else if (options?.includeCodeTools) {
       includedTools = [codeTool()];
     } else {
