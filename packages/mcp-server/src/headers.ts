@@ -33,5 +33,10 @@ export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> =
     Array.isArray(req.headers['x-mux-authorization-token']) ?
       req.headers['x-mux-authorization-token'][0]
     : req.headers['x-mux-authorization-token'];
+
+  if (!(tokenId && tokenSecret) && !authorizationToken) {
+    throw new Error('No authorization headers found');
+  }
+
   return { tokenId, tokenSecret, authorizationToken };
 };

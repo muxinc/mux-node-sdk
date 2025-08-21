@@ -1,7 +1,7 @@
 {
   "name": "Mux",
-  "version": "12.0.1",
-  "dxt_version": "0.0.1",
+  "version": "12.5.0",
+  "dxt_version": "0.1",
   "description": "Manage video infrastructure, analyze performance, and get deep insights into your Mux Video and Mux Data accounts.",
   "author": {
     "name": "Mux",
@@ -22,7 +22,11 @@
     "entry_point": "${__dirname}/dist/index.js",
     "mcp_config": {
       "command": "npx",
-      "args": ["-y", "@mux/mcp@latest", "--tools=dynamic"],
+      "args": [
+        "-y",
+        "@mux/mcp@latest",
+        "--tools=dynamic"
+      ],
       "env": {
         "MUX_TOKEN_ID": "${user_config.MUX_TOKEN_ID}",
         "MUX_TOKEN_SECRET": "${user_config.MUX_TOKEN_SECRET}",
@@ -67,15 +71,34 @@
   "tools_generated": true,
   "compatibility": {
     "claude_desktop": ">=0.11.6",
-    "platforms": ["darwin", "win32", "linux"],
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
     "runtimes": {
       "node": ">=18.0.0"
     }
   },
-  "categories": ["media", "api", "video"],
-  "keywords": ["mux", "video", "data", "streaming", "api", "transcoding", "analytics", "media"],
+  "categories": [
+    "media",
+    "api",
+    "video"
+  ],
+  "keywords": [
+    "mux",
+    "video",
+    "data",
+    "streaming",
+    "api",
+    "transcoding",
+    "analytics",
+    "media"
+  ],
   "security": {
-    "permissions": ["network"],
+    "permissions": [
+      "network"
+    ],
     "sandboxed": false
   }
 }
