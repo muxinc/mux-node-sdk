@@ -9,7 +9,11 @@ import { fromError } from 'zod-validation-error/v3';
 import { McpOptions, parseQueryOptions } from './options';
 import { initMcpServer, newMcpServer } from './server';
 import { parseAuthHeaders } from './headers';
-import { Endpoint } from './tools';
+
+const oauthResourceIdentifier = (req: express.Request): string => {
+  const protocol = req.headers['x-forwarded-proto'] ?? req.protocol;
+  return `${protocol}://${req.get('host')}/`;
+};
 
 const newServer = (
   defaultMcpOptions: McpOptions,
@@ -45,6 +49,11 @@ const newServer = (
       mcpOptions,
     });
   } catch {
+    const resourceIdentifier = oauthResourceIdentifier(req);
+    res.set(
+      'WWW-Authenticate',
+      `Bearer resource_metadata="${resourceIdentifier}.well-known/oauth-protected-resource"`,
+    );
     res.status(401).json({
       jsonrpc: '2.0',
       error: {
@@ -91,8 +100,12 @@ const del = async (req: express.Request, res: express.Response) => {
 };
 
 const oauthMetadata = (req: express.Request, res: express.Response) => {
-  const origin = `${req.protocol}://${req.get('host')}`;
-  res.json({ resource: origin, authorization_servers: ['https://auth.mux.com'], scopes_supported: 'header' });
+  const resourceIdentifier = oauthResourceIdentifier(req);
+  res.json({
+    resource: resourceIdentifier,
+    authorization_servers: ['https://auth.mux.com'],
+    bearer_methods_supported: ['header'],
+  });
 };
 
 export const streamableHTTPApp = (options: McpOptions): express.Express => {
@@ -102,17 +115,13 @@ export const streamableHTTPApp = (options: McpOptions): express.Express => {
 
   app.get('/.well-known/oauth-protected-resource', cors(), oauthMetadata);
   app.get('/', get);
-  app.post('/', post(options));
+  app.post('/', cors(), post(options));
   app.delete('/', del);
 
   return app;
 };
 
-export const launchStreamableHTTPServer = async (
-  options: McpOptions,
-  endpoints: Endpoint[],
-  port: number | string | undefined,
-) => {
+export const launchStreamableHTTPServer = async (options: McpOptions, port: number | string | undefined) => {
   const app = streamableHTTPApp(options);
   const server = app.listen(port);
   const address = server.address();

@@ -13,11 +13,12 @@ export type CLIOptions = McpOptions & {
 };
 
 export type McpOptions = {
-  client: ClientType | undefined;
-  includeDynamicTools: boolean | undefined;
-  includeAllTools: boolean | undefined;
-  filters: Filter[];
-  capabilities?: Partial<ClientCapabilities>;
+  client?: ClientType | undefined;
+  includeDynamicTools?: boolean | undefined;
+  includeAllTools?: boolean | undefined;
+  includeCodeTools?: boolean | undefined;
+  filters?: Filter[] | undefined;
+  capabilities?: Partial<ClientCapabilities> | undefined;
 };
 
 const CAPABILITY_CHOICES = [
@@ -54,13 +55,13 @@ export function parseCLIOptions(): CLIOptions {
     .option('tools', {
       type: 'string',
       array: true,
-      choices: ['dynamic', 'all'],
+      choices: ['dynamic', 'all', 'code'],
       description: 'Use dynamic tools or all tools',
     })
     .option('no-tools', {
       type: 'string',
       array: true,
-      choices: ['dynamic', 'all'],
+      choices: ['dynamic', 'all', 'code'],
       description: 'Do not use any dynamic or all tools',
     })
     .option('tool', {
@@ -203,14 +204,7 @@ export function parseCLIOptions(): CLIOptions {
   }
 
   // Parse client capabilities
-  const clientCapabilities: ClientCapabilities = {
-    topLevelUnions: true,
-    validJson: true,
-    refs: true,
-    unions: true,
-    formats: true,
-    toolNameLength: undefined,
-  };
+  const clientCapabilities: Partial<ClientCapabilities> = {};
 
   // Apply individual capability overrides
   if (Array.isArray(argv.capability)) {
@@ -251,19 +245,22 @@ export function parseCLIOptions(): CLIOptions {
     }
   }
 
+  const shouldIncludeToolType = (toolType: 'dynamic' | 'all' | 'code') =>
+    explicitTools ? argv.tools?.includes(toolType) && !argv.noTools?.includes(toolType) : undefined;
+
   const explicitTools = Boolean(argv.tools || argv.noTools);
-  const includeDynamicTools =
-    explicitTools ? argv.tools?.includes('dynamic') && !argv.noTools?.includes('dynamic') : undefined;
-  const includeAllTools =
-    explicitTools ? argv.tools?.includes('all') && !argv.noTools?.includes('all') : undefined;
+  const includeDynamicTools = shouldIncludeToolType('dynamic');
+  const includeAllTools = shouldIncludeToolType('all');
+  const includeCodeTools = shouldIncludeToolType('code');
 
   const transport = argv.transport as 'stdio' | 'http';
 
   const client = argv.client as ClientType;
   return {
-    client: client && knownClients[client] ? client : undefined,
+    client: client && client !== 'infer' && knownClients[client] ? client : undefined,
     includeDynamicTools,
     includeAllTools,
+    includeCodeTools,
     filters,
     capabilities: clientCapabilities,
     list: argv.list || false,
@@ -306,7 +303,7 @@ export function parseQueryOptions(defaultOptions: McpOptions, query: unknown): M
   const queryObject = typeof query === 'string' ? qs.parse(query) : query;
   const queryOptions = QueryOptions.parse(queryObject);
 
-  const filters: Filter[] = [...defaultOptions.filters];
+  const filters: Filter[] = [...(defaultOptions.filters ?? [])];
 
   for (const resource of queryOptions.resource || []) {
     filters.push({ type: 'resource', op: 'include', value: resource });
@@ -334,15 +331,7 @@ export function parseQueryOptions(defaultOptions: McpOptions, query: unknown): M
   }
 
   // Parse client capabilities
-  const clientCapabilities: ClientCapabilities = {
-    topLevelUnions: true,
-    validJson: true,
-    refs: true,
-    unions: true,
-    formats: true,
-    toolNameLength: undefined,
-    ...defaultOptions.capabilities,
-  };
+  const clientCapabilities: Partial<ClientCapabilities> = { ...defaultOptions.capabilities };
 
   for (const cap of queryOptions.capability || []) {
     const parsed = parseCapabilityValue(cap);
@@ -377,14 +366,21 @@ export function parseQueryOptions(defaultOptions: McpOptions, query: unknown): M
     }
   }
 
+  let dynamicTools: boolean | undefined =
+    queryOptions.no_tools && queryOptions.no_tools?.includes('dynamic') ? false
+    : queryOptions.tools?.includes('dynamic') ? true
+    : defaultOptions.includeDynamicTools;
+
+  let allTools: boolean | undefined =
+    queryOptions.no_tools && queryOptions.no_tools?.includes('all') ? false
+    : queryOptions.tools?.includes('all') ? true
+    : defaultOptions.includeAllTools;
+
   return {
     client: queryOptions.client ?? defaultOptions.client,
-    includeDynamicTools:
-      defaultOptions.includeDynamicTools ??
-      (queryOptions.tools?.includes('dynamic') && !queryOptions.no_tools?.includes('dynamic')),
-    includeAllTools:
-      defaultOptions.includeAllTools ??
-      (queryOptions.tools?.includes('all') && !queryOptions.no_tools?.includes('all')),
+    includeDynamicTools: dynamicTools,
+    includeAllTools: allTools,
+    includeCodeTools: undefined,
     filters,
     capabilities: clientCapabilities,
   };

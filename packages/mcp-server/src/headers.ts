@@ -1,8 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type ClientOptions } from '@mux/mux-node/index';
-
 import { IncomingMessage } from 'node:http';
+import { ClientOptions } from '@mux/mux-node';
 
 export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> => {
   if (req.headers.authorization) {
@@ -34,5 +33,10 @@ export const parseAuthHeaders = (req: IncomingMessage): Partial<ClientOptions> =
     Array.isArray(req.headers['x-mux-authorization-token']) ?
       req.headers['x-mux-authorization-token'][0]
     : req.headers['x-mux-authorization-token'];
+
+  if (!(tokenId && tokenSecret) && !authorizationToken) {
+    throw new Error('No authorization headers found');
+  }
+
   return { tokenId, tokenSecret, authorizationToken };
 };
