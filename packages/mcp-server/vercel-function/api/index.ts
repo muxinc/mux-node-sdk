@@ -8,6 +8,7 @@ const defaults: McpOptions = {
   includeDynamicTools: false,
 };
 
+console.log('cahnge');
 const app = streamableHTTPApp(defaults);
 
 export default app;
