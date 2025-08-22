@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.7.0 (2025-08-22)
+
+Full Changelog: [v12.6.1...v12.7.0](https://github.com/muxinc/mux-node-sdk/compare/v12.6.1...v12.7.0)
+
+### Features
+
+* **mcp:** change remote server query option parsing logic ([b207dcf](https://github.com/muxinc/mux-node-sdk/commit/b207dcfaf1f0ea73511b95593b26b936f33bfd7c))
+
 ## 12.6.1 (2025-08-22)
 
 Full Changelog: [v12.6.0...v12.6.1](https://github.com/muxinc/mux-node-sdk/compare/v12.6.0...v12.6.1)
