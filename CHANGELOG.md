@@ -1,5 +1,13 @@
 # Changelog
 
+## 12.6.1 (2025-08-22)
+
+Full Changelog: [v12.6.0...v12.6.1](https://github.com/muxinc/mux-node-sdk/compare/v12.6.0...v12.6.1)
+
+### Chores
+
+* update CI script ([41acbcb](https://github.com/muxinc/mux-node-sdk/commit/41acbcbf10059cfeae1b7004eb3203ba6681e344))
+
 ## 12.6.0 (2025-08-21)
 
 Full Changelog: [v12.5.0...v12.6.0](https://github.com/muxinc/mux-node-sdk/compare/v12.5.0...v12.6.0)

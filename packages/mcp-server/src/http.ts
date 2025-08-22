@@ -80,6 +80,11 @@ const post = (defaultOptions: McpOptions) => async (req: express.Request, res: e
 };
 
 const get = async (req: express.Request, res: express.Response) => {
+  if (req.headers['sec-fetch-dest'] === 'document') {
+    res.redirect('https://www.mux.com/docs/integrations/mcp-server');
+    return;
+  }
+
   res.status(405).json({
     jsonrpc: '2.0',
     error: {
