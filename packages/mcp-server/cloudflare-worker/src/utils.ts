@@ -300,11 +300,12 @@ export const renderLoggedOutAuthorizeScreen = async (
                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
                 >
                   <option
-                    value="claude"
-                    ${selected(defaultOptions?.client === 'claude' || !defaultOptions?.client)}
+                    value="infer"
+                    ${selected(defaultOptions?.client === 'infer' || !defaultOptions?.client)}
                   >
-                    Claude
+                    Infer client
                   </option>
+                  <option value="claude" ${selected(defaultOptions?.client === 'claude')}>Claude</option>
                   <option value="cursor" ${selected(defaultOptions?.client === 'cursor')}>Cursor</option>
                   <option value="claude-code" ${selected(defaultOptions?.client === 'claude-code')}>
                     Claude Code
