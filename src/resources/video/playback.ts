@@ -550,6 +550,12 @@ export interface PlaybackStoryboardMetaParams {
   asset_start_time?: number;
 
   /**
+   * The format of the storyboard image URL in the response. Can be either 'jpg',
+   * 'png', or 'webp'. Defaults to 'jpg'.
+   */
+  format?: 'jpg' | 'png' | 'webp';
+
+  /**
    * Set the end time of the asset created from a live stream when using the
    * [instant clipping feature](https://docs.mux.com/guides/create-instant-clips).
    * The timestamp should be provided as an epoch integer, and is compared to the

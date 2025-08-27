@@ -113,11 +113,16 @@ const oauthMetadata = (req: express.Request, res: express.Response) => {
   });
 };
 
+const oauthAuthorizationServer = (req: express.Request, res: express.Response) => {
+  res.redirect('https://auth.mux.com/.well-known/oauth-authorization-server');
+};
+
 export const streamableHTTPApp = (options: McpOptions): express.Express => {
   const app = express();
   app.set('query parser', 'extended');
   app.use(express.json());
 
+  app.get('/.well-known/oauth-authorization-server', cors(), oauthAuthorizationServer);
   app.get('/.well-known/oauth-protected-resource', cors(), oauthMetadata);
   app.get('/', get);
   app.post('/', cors(), post(options));
