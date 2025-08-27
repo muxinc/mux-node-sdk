@@ -35,6 +35,12 @@ export const tool: Tool = {
         description:
           'Set the relative start time of the asset (in seconds) when using the [instant clipping feature](https://docs.mux.com/guides/create-instant-clips).',
       },
+      format: {
+        type: 'string',
+        description:
+          "The format of the storyboard image URL in the response. Can be either 'jpg', 'png', or 'webp'. Defaults to 'jpg'.",
+        enum: ['jpg', 'png', 'webp'],
+      },
       program_end_time: {
         type: 'integer',
         description:

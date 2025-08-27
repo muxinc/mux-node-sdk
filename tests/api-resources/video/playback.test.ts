@@ -135,6 +135,7 @@ describe('resource playback', () => {
         {
           asset_end_time: 0,
           asset_start_time: 0,
+          format: 'jpg',
           program_end_time: 0,
           program_start_time: 0,
           TOKEN: 'TOKEN',
