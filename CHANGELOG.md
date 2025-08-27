@@ -1,5 +1,20 @@
 # Changelog
 
+## 12.7.0 (2025-08-27)
+
+Full Changelog: [v12.6.1...v12.7.0](https://github.com/muxinc/mux-node-sdk/compare/v12.6.1...v12.7.0)
+
+### Features
+
+* **mcp:** add client infer to cloudflare oauth screen ([1773deb](https://github.com/muxinc/mux-node-sdk/commit/1773deb1c4d0d0ec7d6eb8a381c302a9d1a7d64b))
+* **mcp:** change remote server query option parsing logic ([b207dcf](https://github.com/muxinc/mux-node-sdk/commit/b207dcfaf1f0ea73511b95593b26b936f33bfd7c))
+
+
+### Bug Fixes
+
+* **image:** expose format param for storyboard.json calls ([#370](https://github.com/muxinc/mux-node-sdk/issues/370)) ([cd09584](https://github.com/muxinc/mux-node-sdk/commit/cd09584c0847ee54f79a1f5c26370f392d0c074b))
+* **mcp:** redirect oauth-authorization-server ([#611](https://github.com/muxinc/mux-node-sdk/issues/611)) ([8bf978e](https://github.com/muxinc/mux-node-sdk/commit/8bf978e7e238fddf1c8766817990252cd0700dd2))
+
 ## 12.6.1 (2025-08-22)
 
 Full Changelog: [v12.6.0...v12.6.1](https://github.com/muxinc/mux-node-sdk/compare/v12.6.0...v12.6.1)
