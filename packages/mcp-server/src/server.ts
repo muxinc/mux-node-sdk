@@ -32,7 +32,7 @@ export const newMcpServer = () =>
   new McpServer(
     {
       name: 'mux_mux_node_api',
-      version: '12.6.1',
+      version: '12.7.0',
     },
     { capabilities: { tools: {}, logging: {} } },
   );
