@@ -1,0 +1,81 @@
+{
+  "dxt_version": "0.1",
+  "name": "@mux/mcp",
+  "version": "12.7.0",
+  "description": "The official MCP Server for the Mux API",
+  "author": {
+    "name": "Mux",
+    "email": "devex@mux.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muxinc/mux-node-sdk.git"
+  },
+  "homepage": "https://github.com/muxinc/mux-node-sdk/tree/main/packages/mcp-server#readme",
+  "documentation": "https://docs.mux.com",
+  "server": {
+    "type": "node",
+    "entry_point": "${"templates/TypeScriptSDK/mcp"}/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${"templates/TypeScriptSDK/mcp"}/index.js"
+      ],
+      "env": {
+        "MUX_TOKEN_ID": "${user_config.MUX_TOKEN_ID}",
+        "MUX_TOKEN_SECRET": "${user_config.MUX_TOKEN_SECRET}",
+        "MUX_WEBHOOK_SECRET": "${user_config.MUX_WEBHOOK_SECRET}",
+        "MUX_SIGNING_KEY": "${user_config.MUX_SIGNING_KEY}",
+        "MUX_PRIVATE_KEY": "${user_config.MUX_PRIVATE_KEY}",
+        "MUX_AUTHORIZATION_TOKEN": "${user_config.MUX_AUTHORIZATION_TOKEN}"
+      }
+    }
+  },
+  "user_config": {
+    "MUX_TOKEN_ID": {
+      "title": "token_id",
+      "description": "",
+      "required": false,
+      "type": "string"
+    },
+    "MUX_TOKEN_SECRET": {
+      "title": "token_secret",
+      "description": "",
+      "required": false,
+      "type": "string"
+    },
+    "MUX_WEBHOOK_SECRET": {
+      "title": "webhook_secret",
+      "description": "",
+      "required": false,
+      "type": "string"
+    },
+    "MUX_SIGNING_KEY": {
+      "title": "jwt_signing_key",
+      "description": "",
+      "required": false,
+      "type": "string"
+    },
+    "MUX_PRIVATE_KEY": {
+      "title": "jwt_private_key",
+      "description": "",
+      "required": false,
+      "type": "string"
+    },
+    "MUX_AUTHORIZATION_TOKEN": {
+      "title": "authorization_token",
+      "description": "",
+      "required": false,
+      "type": "string"
+    }
+  },
+  "tools_generated": true,
+  "compatibility": {
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  },
+  "keywords": [
+    "api"
+  ]
+}
