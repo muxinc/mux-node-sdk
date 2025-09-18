@@ -7,7 +7,7 @@ import cors from 'cors';
 import express from 'express';
 import { fromError } from 'zod-validation-error/v3';
 import { McpOptions, parseQueryOptions } from './options';
-import { initMcpServer, newMcpServer } from './server';
+import { ClientOptions, initMcpServer, newMcpServer } from './server';
 import { parseAuthHeaders } from './headers';
 
 const oauthResourceIdentifier = (req: express.Request): string => {
@@ -15,11 +15,17 @@ const oauthResourceIdentifier = (req: express.Request): string => {
   return `${protocol}://${req.get('host')}/`;
 };
 
-const newServer = (
-  defaultMcpOptions: McpOptions,
-  req: express.Request,
-  res: express.Response,
-): McpServer | null => {
+const newServer = ({
+  clientOptions,
+  mcpOptions: defaultMcpOptions,
+  req,
+  res,
+}: {
+  clientOptions: ClientOptions;
+  mcpOptions: McpOptions;
+  req: express.Request;
+  res: express.Response;
+}): McpServer | null => {
   const server = newMcpServer();
 
   let mcpOptions: McpOptions;
@@ -41,10 +47,8 @@ const newServer = (
     initMcpServer({
       server: server,
       clientOptions: {
+        ...clientOptions,
         ...authOptions,
-        defaultHeaders: {
-          'X-Stainless-MCP': 'true',
-        },
       },
       mcpOptions,
     });
@@ -67,17 +71,19 @@ const newServer = (
   return server;
 };
 
-const post = (defaultOptions: McpOptions) => async (req: express.Request, res: express.Response) => {
-  const server = newServer(defaultOptions, req, res);
-  // If we return null, we already set the authorization error.
-  if (server === null) return;
-  const transport = new StreamableHTTPServerTransport({
-    // Stateless server
-    sessionIdGenerator: undefined,
-  });
-  await server.connect(transport);
-  await transport.handleRequest(req, res, req.body);
-};
+const post =
+  (options: { clientOptions: ClientOptions; mcpOptions: McpOptions }) =>
+  async (req: express.Request, res: express.Response) => {
+    const server = newServer({ ...options, req, res });
+    // If we return null, we already set the authorization error.
+    if (server === null) return;
+    const transport = new StreamableHTTPServerTransport({
+      // Stateless server
+      sessionIdGenerator: undefined,
+    });
+    await server.connect(transport);
+    await transport.handleRequest(req, res, req.body);
+  };
 
 const get = async (req: express.Request, res: express.Response) => {
   if (req.headers['sec-fetch-dest'] === 'document') {
@@ -117,7 +123,13 @@ const oauthAuthorizationServer = (req: express.Request, res: express.Response) =
   res.redirect('https://auth.mux.com/.well-known/oauth-authorization-server');
 };
 
-export const streamableHTTPApp = (options: McpOptions): express.Express => {
+export const streamableHTTPApp = ({
+  clientOptions = {},
+  mcpOptions = {},
+}: {
+  clientOptions?: ClientOptions;
+  mcpOptions?: McpOptions;
+}): express.Express => {
   const app = express();
   app.set('query parser', 'extended');
   app.use(express.json());
@@ -125,14 +137,14 @@ export const streamableHTTPApp = (options: McpOptions): express.Express => {
   app.get('/.well-known/oauth-authorization-server', cors(), oauthAuthorizationServer);
   app.get('/.well-known/oauth-protected-resource', cors(), oauthMetadata);
   app.get('/', get);
-  app.post('/', cors(), post(options));
+  app.post('/', cors(), post({ clientOptions, mcpOptions }));
   app.delete('/', del);
 
   return app;
 };
 
 export const launchStreamableHTTPServer = async (options: McpOptions, port: number | string | undefined) => {
-  const app = streamableHTTPApp(options);
+  const app = streamableHTTPApp({ mcpOptions: options });
   const server = app.listen(port);
   const address = server.address();
 
