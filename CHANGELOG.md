@@ -1,5 +1,24 @@
 # Changelog
 
+## 12.8.0 (2025-09-18)
+
+Full Changelog: [v12.7.0...v12.8.0](https://github.com/muxinc/mux-node-sdk/compare/v12.7.0...v12.8.0)
+
+### Features
+
+* **mcp:** allow setting logging level ([cf8ef79](https://github.com/muxinc/mux-node-sdk/commit/cf8ef795cd13ac0505f84f87dcc98698c26d6e5b))
+* **mcp:** expose client options in `streamableHTTPApp` ([2321073](https://github.com/muxinc/mux-node-sdk/commit/23210734b3ea348d6d8e18fa43e050928a743912))
+
+
+### Bug Fixes
+
+* **mcp:** avoid importing unsupported libraries on non-node environments ([6e3db76](https://github.com/muxinc/mux-node-sdk/commit/6e3db76730719347ad239075c7293a989d8571d5))
+
+
+### Chores
+
+* add server.json to publish to Github's MCP registry ([#613](https://github.com/muxinc/mux-node-sdk/issues/613)) ([fd07791](https://github.com/muxinc/mux-node-sdk/commit/fd0779160400d828c16c1dca6f0db1eb30c06e69))
+
 ## 12.7.0 (2025-08-27)
 
 Full Changelog: [v12.6.1...v12.7.0](https://github.com/muxinc/mux-node-sdk/compare/v12.6.1...v12.7.0)
