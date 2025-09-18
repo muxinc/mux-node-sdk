@@ -8,13 +8,13 @@
     "source": "github",
     "subfolder": "packages/mcp-server"
   },
-  "version": "12.7.0",
+  "version": "12.8.0",
   "packages": [
     {
       "registry_type": "npm",
       "registry_base_url": "https://registry.npmjs.org",
       "identifier": "@mux/mcp",
-      "version": "12.7.0",
+      "version": "12.8.0",
       "transport": {
         "type": "stdio"
       },
@@ -46,7 +46,7 @@
           "format": "string",
           "is_secret": true,
           "name": "MUX_PRIVATE_KEY"
-        },
+        }
       ]
     }
   ],
