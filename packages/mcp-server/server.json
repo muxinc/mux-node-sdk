@@ -1,0 +1,67 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "com.mux/mcp",
+  "description": "The official MCP Server for the Mux API",
+  "status": "active",
+  "repository": {
+    "url": "https://github.com/muxinc/mux-node-sdk",
+    "source": "github",
+    "subfolder": "packages/mcp-server"
+  },
+  "version": "12.7.0",
+  "packages": [
+    {
+      "registry_type": "npm",
+      "registry_base_url": "https://registry.npmjs.org",
+      "identifier": "@mux/mcp",
+      "version": "12.7.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environment_variables": [
+        {
+          "description": "Your Mux access token ID",
+          "is_required": true,
+          "format": "string",
+          "is_secret": true,
+          "name": "MUX_TOKEN_ID"
+        },
+        {
+          "description": "Your Mux access token secret",
+          "is_required": true,
+          "format": "string",
+          "is_secret": true,
+          "name": "MUX_TOKEN_SECRET"
+        },
+        {
+          "description": "Your JWT signing key ID, for use with signed playback IDs",
+          "is_required": false,
+          "format": "string",
+          "is_secret": true,
+          "name": "MUX_SIGNING_KEY"
+        },
+        {
+          "description": "Your JWT private key, for use with signed playback IDs",
+          "is_required": false,
+          "format": "string",
+          "is_secret": true,
+          "name": "MUX_PRIVATE_KEY"
+        },
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.mux.com",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Optional basic authorization header you can include, combining your Access Token and Secret using HTTP Basic Auth. If not provided, authorization will be handled via OAuth.",
+          "is_required": false,
+          "is_secret": true
+        }
+      ]
+    }
+  ]
+}
