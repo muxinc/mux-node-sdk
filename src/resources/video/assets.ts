@@ -728,7 +728,7 @@ export namespace Asset {
 
     /**
      * The video pixel format, as a string, returned by libav. Considered non-standard
-     * if not one of yuv420p or yuvj420p.
+     * if not one of yuv420p or yuvj420p. HEVC inputs additionally permit yuv420p10le.
      */
     unsupported_pixel_format?: string;
 
@@ -741,7 +741,7 @@ export namespace Asset {
 
     /**
      * The video codec used on the input file. For example, the input file encoded with
-     * `hevc` video codec is non-standard and the value of this parameter is `hevc`.
+     * `av1` video codec is non-standard and the value of this parameter is `av1`.
      */
     video_codec?: string;
 
