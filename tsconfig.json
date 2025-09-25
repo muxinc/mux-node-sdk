@@ -7,11 +7,10 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "@mux/mux-node/_shims/auto/*": ["src/_shims/auto/*-node"],
-      "@mux/mux-node/*": ["src/*"],
-      "@mux/mux-node": ["src/index.ts"]
+      "@mux/mux-node/_shims/auto/*": ["./src/_shims/auto/*-node"],
+      "@mux/mux-node/*": ["./src/*"],
+      "@mux/mux-node": ["./src/index.ts"]
     },
     "noEmit": true,
 
@@ -32,7 +31,7 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
-		"isolatedModules": false,
+    "isolatedModules": false,
 
     "skipLibCheck": true
   }

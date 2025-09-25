@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "@mux/mux-node/*": ["dist/src/*"],
-      "@mux/mux-node": ["dist/src/index.ts"],
+      "@mux/mux-node/*": ["./dist/src/*"],
+      "@mux/mux-node": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
