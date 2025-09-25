@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "@mux/mcp/*": ["src/*"],
-      "@mux/mcp": ["src/index.ts"]
+      "@mux/mcp/*": ["./src/*"],
+      "@mux/mcp": ["./src/index.ts"]
     },
     "noEmit": true,
 
