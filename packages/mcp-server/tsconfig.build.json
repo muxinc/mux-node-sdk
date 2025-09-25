@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "@mux/mcp/*": ["dist/src/*"],
-      "@mux/mcp": ["dist/src/index.ts"]
+      "@mux/mcp/*": ["./dist/src/*"],
+      "@mux/mcp": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
