@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'storyboard_meta_video_playback',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nFetch metadata for the [storyboard image in JSON format](https://docs.mux.com/guides/create-timeline-hover-previews#json), detailing the coordinates and time ranges of each thumbnail.\n\n# Response Schema\n```json\n{\n  type: 'string'\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nFetch metadata for the [storyboard image in JSON format](https://docs.mux.com/guides/create-timeline-hover-previews#json), detailing the coordinates and time ranges of each thumbnail.\n\n# Response Schema\n```json\n{\n  $ref: '#/$defs/playback_storyboard_meta_response',\n  $defs: {\n    playback_storyboard_meta_response: {\n      type: 'string'\n    }\n  }\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
