@@ -49,6 +49,22 @@ in Cursor's `mcp.json`, which can be found in Cursor Settings > Tools & MCP > Ne
 
 [![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=@mux/mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBtdXgvbWNwIl0sImVudiI6eyJNVVhfVE9LRU5fSUQiOiJTZXQgeW91ciBNVVhfVE9LRU5fSUQgaGVyZS4iLCJNVVhfVE9LRU5fU0VDUkVUIjoiU2V0IHlvdXIgTVVYX1RPS0VOX1NFQ1JFVCBoZXJlLiIsIk1VWF9XRUJIT09LX1NFQ1JFVCI6IlNldCB5b3VyIE1VWF9XRUJIT09LX1NFQ1JFVCBoZXJlLiIsIk1VWF9TSUdOSU5HX0tFWSI6IlNldCB5b3VyIE1VWF9TSUdOSU5HX0tFWSBoZXJlLiIsIk1VWF9QUklWQVRFX0tFWSI6IlNldCB5b3VyIE1VWF9QUklWQVRFX0tFWSBoZXJlLiIsIk1VWF9BVVRIT1JJWkFUSU9OX1RPS0VOIjoiU2V0IHlvdXIgTVVYX0FVVEhPUklaQVRJT05fVE9LRU4gaGVyZS4ifX0)
 
+### VS Code
+
+If you use MCP, you can install the MCP server by clicking the link below. You will need to set your environment variables
+in VS Code's `mcp.json`, which can be found via Command Palette > MCP: Open User Configuration.
+
+[Open VS Code](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40mux%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40mux%2Fmcp%22%5D%2C%22env%22%3A%7B%22MUX_TOKEN_ID%22%3A%22Set%20your%20MUX_TOKEN_ID%20here.%22%2C%22MUX_TOKEN_SECRET%22%3A%22Set%20your%20MUX_TOKEN_SECRET%20here.%22%2C%22MUX_WEBHOOK_SECRET%22%3A%22Set%20your%20MUX_WEBHOOK_SECRET%20here.%22%2C%22MUX_SIGNING_KEY%22%3A%22Set%20your%20MUX_SIGNING_KEY%20here.%22%2C%22MUX_PRIVATE_KEY%22%3A%22Set%20your%20MUX_PRIVATE_KEY%20here.%22%2C%22MUX_AUTHORIZATION_TOKEN%22%3A%22Set%20your%20MUX_AUTHORIZATION_TOKEN%20here.%22%7D%7D)
+
+### Claude Code
+
+If you use Claude Code, you can install the MCP server by running the command below in your terminal. You will need to set your
+environment variables in Claude Code's `.claude.json`, which can be found in your home directory.
+
+```
+claude mcp add --transport stdio mux_mux_node_api --env MUX_TOKEN_ID="Your MUX_TOKEN_ID here." MUX_TOKEN_SECRET="Your MUX_TOKEN_SECRET here." MUX_WEBHOOK_SECRET="Your MUX_WEBHOOK_SECRET here." MUX_SIGNING_KEY="Your MUX_SIGNING_KEY here." MUX_PRIVATE_KEY="Your MUX_PRIVATE_KEY here." MUX_AUTHORIZATION_TOKEN="Your MUX_AUTHORIZATION_TOKEN here." -- npx -y @mux/mcp
+```
+
 ## Exposing endpoints to your MCP Client
 
 There are three ways to expose endpoints as tools in the MCP server:
