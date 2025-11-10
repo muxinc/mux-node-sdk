@@ -52,7 +52,7 @@ const newServer = ({
       },
       mcpOptions,
     });
-  } catch {
+  } catch (error) {
     const resourceIdentifier = oauthResourceIdentifier(req);
     res.set(
       'WWW-Authenticate',
@@ -62,7 +62,7 @@ const newServer = ({
       jsonrpc: '2.0',
       error: {
         code: -32000,
-        message: 'Unauthorized',
+        message: `Unauthorized: ${error instanceof Error ? error.message : error}`,
       },
     });
     return null;
