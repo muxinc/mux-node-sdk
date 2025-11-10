@@ -63,7 +63,7 @@ export const tool: Tool = {
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
   const { EXTENSION, ...body } = args as any;
-  return asBinaryContentResult(await client.video.playback.storyboard(EXTENSION, body));
+  return asBinaryContentResult(await client.video.playback.storyboard(EXTENSION, body).asResponse());
 };
 
 export default { metadata, tool, handler };
