@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { maybeFilter } from '@mux/mcp/filtering';
-import { Metadata, asTextContentResult } from '@mux/mcp/tools/types';
+import { isJqError, maybeFilter } from '@mux/mcp/filtering';
+import { Metadata, asErrorResult, asTextContentResult } from '@mux/mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Mux from '@mux/mux-node';
@@ -62,12 +62,19 @@ export const tool: Tool = {
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
   const { MONITORING_METRIC_ID, jq_filter, ...body } = args as any;
-  return asTextContentResult(
-    await maybeFilter(
-      jq_filter,
-      await client.data.monitoring.metrics.getTimeseries(MONITORING_METRIC_ID, body),
-    ),
-  );
+  try {
+    return asTextContentResult(
+      await maybeFilter(
+        jq_filter,
+        await client.data.monitoring.metrics.getTimeseries(MONITORING_METRIC_ID, body),
+      ),
+    );
+  } catch (error) {
+    if (isJqError(error)) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };
