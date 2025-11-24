@@ -89,7 +89,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     query: MetricGetInsightsParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<InsightsResponse> {
@@ -161,7 +164,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     query: MetricGetOverallValuesParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<OverallValuesResponse> {
@@ -240,7 +246,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     query: MetricGetTimeseriesParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<MetricTimeseriesDataResponse> {
@@ -313,7 +322,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     query: MetricListBreakdownValuesParams | null | undefined = {},
     options?: RequestOptions,
   ): PagePromise<BreakdownValuesBasePage, BreakdownValue> {
@@ -968,7 +980,18 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
     | 'view_cdn_edge_pop'
     | 'view_cdn_origin'
     | 'video_creator_id'
-    | 'video_cdn_trace';
+    | 'video_cdn_trace'
+    | 'video_source_height_initial'
+    | 'video_source_width_initial'
+    | 'video_source_bitrate_initial'
+    | 'video_codec_initial'
+    | 'audio_codec_initial'
+    | 'video_source_fps_initial'
+    | 'video_dynamic_range_type_initial'
+    | 'video_source_fps'
+    | 'video_source_bitrate'
+    | 'video_source_height'
+    | 'video_source_width';
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
