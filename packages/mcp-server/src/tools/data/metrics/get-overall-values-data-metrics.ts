@@ -73,6 +73,9 @@ export const tool: Tool = {
           'view_content_startup_time',
           'ad_preroll_startup_time',
           'view_dropped_percentage',
+          'rendition_change_count',
+          'rendition_upshift_count',
+          'rendition_downshift_count',
         ],
       },
       filters: {

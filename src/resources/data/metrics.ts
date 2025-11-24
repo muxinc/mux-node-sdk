@@ -93,7 +93,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     query?: MetricGetInsightsParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<InsightsResponse>;
@@ -146,7 +149,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     options?: Core.RequestOptions,
   ): Core.APIPromise<InsightsResponse>;
   getInsights(
@@ -198,7 +204,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     query: MetricGetInsightsParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<InsightsResponse> {
@@ -273,7 +282,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     query?: MetricGetOverallValuesParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<OverallValuesResponse>;
@@ -326,7 +338,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     options?: Core.RequestOptions,
   ): Core.APIPromise<OverallValuesResponse>;
   getOverallValues(
@@ -378,7 +393,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     query: MetricGetOverallValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<OverallValuesResponse> {
@@ -460,7 +478,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     query?: MetricGetTimeseriesParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<MetricTimeseriesDataResponse>;
@@ -513,7 +534,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     options?: Core.RequestOptions,
   ): Core.APIPromise<MetricTimeseriesDataResponse>;
   getTimeseries(
@@ -565,7 +589,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     query: MetricGetTimeseriesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.APIPromise<MetricTimeseriesDataResponse> {
@@ -641,7 +668,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     query?: MetricListBreakdownValuesParams,
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue>;
@@ -694,7 +724,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue>;
   listBreakdownValues(
@@ -746,7 +779,10 @@ export class Metrics extends APIResource {
       | 'video_startup_business_exception_percentage'
       | 'view_content_startup_time'
       | 'ad_preroll_startup_time'
-      | 'view_dropped_percentage',
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
     query: MetricListBreakdownValuesParams | Core.RequestOptions = {},
     options?: Core.RequestOptions,
   ): Core.PagePromise<BreakdownValuesBasePage, BreakdownValue> {
@@ -1404,7 +1440,18 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
     | 'view_cdn_edge_pop'
     | 'view_cdn_origin'
     | 'video_creator_id'
-    | 'video_cdn_trace';
+    | 'video_cdn_trace'
+    | 'video_source_height_initial'
+    | 'video_source_width_initial'
+    | 'video_source_bitrate_initial'
+    | 'video_codec_initial'
+    | 'audio_codec_initial'
+    | 'video_source_fps_initial'
+    | 'video_dynamic_range_type_initial'
+    | 'video_source_fps'
+    | 'video_source_bitrate'
+    | 'video_source_height'
+    | 'video_source_width';
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will

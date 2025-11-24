@@ -132,6 +132,8 @@ export namespace VideoViewResponse {
 
     audio_codec: string | null;
 
+    audio_codec_initial: string | null;
+
     buffering_count: number | null;
 
     buffering_duration: number | null;
@@ -300,6 +302,12 @@ export namespace VideoViewResponse {
 
     region: string | null;
 
+    rendition_change_count: number | null;
+
+    rendition_downshift_count: number | null;
+
+    rendition_upshift_count: number | null;
+
     requests_for_first_preroll: number | null;
 
     session_id: string;
@@ -330,6 +338,8 @@ export namespace VideoViewResponse {
 
     video_codec: string | null;
 
+    video_codec_initial: string | null;
+
     video_content_type: string | null;
 
     video_creator_id: string | null;
@@ -337,6 +347,8 @@ export namespace VideoViewResponse {
     video_duration: number | null;
 
     video_dynamic_range_type: string | null;
+
+    video_dynamic_range_type_initial: string | null;
 
     video_encoding_variant: string | null;
 
@@ -347,6 +359,22 @@ export namespace VideoViewResponse {
     video_producer: string | null;
 
     video_series: string | null;
+
+    video_source_bitrate: number | null;
+
+    video_source_bitrate_initial: number | null;
+
+    video_source_fps: number | null;
+
+    video_source_fps_initial: number | null;
+
+    video_source_height: number | null;
+
+    video_source_height_initial: number | null;
+
+    video_source_width: number | null;
+
+    video_source_width_initial: number | null;
 
     video_startup_business_exception_error_type_id: number | null;
 
