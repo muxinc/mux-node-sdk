@@ -4,6 +4,10 @@
 
 Full Changelog: [v12.8.0...v12.8.1](https://github.com/muxinc/mux-node-sdk/compare/v12.8.0...v12.8.1)
 
+### Bug Fixes
+
+* **bun:** fix JWT signing for `bun` environments
+
 ## 12.8.0 (2025-09-18)
 
 Full Changelog: [v12.7.0...v12.8.0](https://github.com/muxinc/mux-node-sdk/compare/v12.7.0...v12.8.0)
