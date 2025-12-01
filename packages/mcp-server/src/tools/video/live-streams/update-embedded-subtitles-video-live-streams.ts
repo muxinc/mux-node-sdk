@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { Metadata, asTextContentResult } from '@mux/mcp/tools/types';
+import { Metadata, asErrorResult, asTextContentResult } from '@mux/mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Mux from '@mux/mux-node';
@@ -61,7 +61,14 @@ export const tool: Tool = {
 
 export const handler = async (client: Mux, args: Record<string, unknown> | undefined) => {
   const { LIVE_STREAM_ID, ...body } = args as any;
-  return asTextContentResult(await client.video.liveStreams.updateEmbeddedSubtitles(LIVE_STREAM_ID, body));
+  try {
+    return asTextContentResult(await client.video.liveStreams.updateEmbeddedSubtitles(LIVE_STREAM_ID, body));
+  } catch (error) {
+    if (error instanceof Mux.APIError) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };
