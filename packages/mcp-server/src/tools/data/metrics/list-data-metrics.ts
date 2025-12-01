@@ -157,7 +157,7 @@ export const handler = async (client: Mux, args: Record<string, unknown> | undef
   try {
     return asTextContentResult(await maybeFilter(jq_filter, await client.data.metrics.list(body)));
   } catch (error) {
-    if (isJqError(error)) {
+    if (error instanceof Mux.APIError || isJqError(error)) {
       return asErrorResult(error.message);
     }
     throw error;
