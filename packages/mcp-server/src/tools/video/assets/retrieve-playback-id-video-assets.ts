@@ -49,7 +49,7 @@ export const handler = async (client: Mux, args: Record<string, unknown> | undef
       await maybeFilter(jq_filter, await client.video.assets.retrievePlaybackID(PLAYBACK_ID, body)),
     );
   } catch (error) {
-    if (isJqError(error)) {
+    if (error instanceof Mux.APIError || isJqError(error)) {
       return asErrorResult(error.message);
     }
     throw error;
