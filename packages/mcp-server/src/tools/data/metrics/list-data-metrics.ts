@@ -49,6 +49,7 @@ export const tool: Tool = {
           'operating_system',
           'operating_system_version',
           'page_type',
+          'page_url',
           'playback_failure',
           'playback_business_exception',
           'playback_id',
