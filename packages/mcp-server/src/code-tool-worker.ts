@@ -251,6 +251,8 @@ const fetch = async (req: Request): Promise<Response> => {
       {
         message:
           'The code param is missing. Provide one containing a top-level `run` function. Write code within this template:\n\n```\nasync function run(client) {\n  // Fill this out\n}\n```',
+        logLines: [],
+        errLines: [],
       } satisfies WorkerError,
       { status: 400, statusText: 'Code execution error' },
     );
@@ -262,6 +264,8 @@ const fetch = async (req: Request): Promise<Response> => {
       {
         message:
           'The code is missing a top-level `run` function. Write code within this template:\n\n```\nasync function run(client) {\n  // Fill this out\n}\n```',
+        logLines: [],
+        errLines: [],
       } satisfies WorkerError,
       { status: 400, statusText: 'Code execution error' },
     );
@@ -294,6 +298,8 @@ const fetch = async (req: Request): Promise<Response> => {
     return Response.json(
       {
         message: parseError(code, e),
+        logLines,
+        errLines,
       } satisfies WorkerError,
       { status: 400, statusText: 'Code execution error' },
     );
