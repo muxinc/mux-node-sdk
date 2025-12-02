@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'update_video_assets',
   description:
-    'Updates the details of an already-created Asset with the provided Asset ID. This currently supports only the `passthrough` field.',
+    'Updates the details of an already-created Asset with the provided Asset ID. This API currently only supports the `passthrough` and `meta` fields.',
   inputSchema: {
     type: 'object',
     properties: {

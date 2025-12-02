@@ -254,7 +254,7 @@ The following tools are available in this MCP server.
 
 - `create_video_assets` (`write`): Create a new Mux Video asset.
 - `retrieve_video_assets` (`read`): Retrieves the details of an asset that has previously been created. Supply the unique asset ID that was returned from your previous request, and Mux will return the corresponding asset information. The same information is returned when creating an asset.
-- `update_video_assets` (`write`): Updates the details of an already-created Asset with the provided Asset ID. This currently supports only the `passthrough` field.
+- `update_video_assets` (`write`): Updates the details of an already-created Asset with the provided Asset ID. This API currently only supports the `passthrough` and `meta` fields.
 - `list_video_assets` (`read`): List all Mux assets.
 - `create_playback_id_video_assets` (`write`): Creates a playback ID that can be used to stream the asset to a viewer.
 - `create_static_rendition_video_assets` (`write`): Creates a static rendition (i.e. MP4) for an asset
