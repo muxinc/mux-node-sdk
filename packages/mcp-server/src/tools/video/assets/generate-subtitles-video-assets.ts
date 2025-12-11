@@ -36,7 +36,7 @@ export const tool: Tool = {
           properties: {
             language_code: {
               type: 'string',
-              description: 'The language to generate subtitles in.',
+              description: 'The language of the audio from which subtitles are generated.',
               enum: [
                 'en',
                 'es',
