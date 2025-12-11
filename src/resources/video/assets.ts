@@ -1113,10 +1113,9 @@ export namespace AssetOptions {
 
     /**
      * Generate subtitle tracks using automatic speech recognition with this
-     * configuration. This may only be provided for the first input object (the main
-     * input file). For direct uploads, this first input should omit the url parameter,
-     * as the main input file is provided via the direct upload. This will create
-     * subtitles based on the audio track ingested from that main input file. Note that
+     * configuration. Subtitles are generated using the audio of the input they are
+     * nested within. For direct uploads, this first input should omit the url
+     * parameter, as the main input file is provided via the direct upload. Note that
      * subtitle generation happens after initial ingest, so the generated tracks will
      * be in the `preparing` state when the asset transitions to `ready`.
      */
@@ -1206,7 +1205,7 @@ export namespace AssetOptions {
   export namespace Input {
     export interface GeneratedSubtitle {
       /**
-       * The language to generate subtitles in.
+       * The language of the audio from which subtitles are generated.
        */
       language_code?:
         | 'en'
@@ -1326,10 +1325,9 @@ export namespace AssetOptions {
 
     /**
      * Generate subtitle tracks using automatic speech recognition with this
-     * configuration. This may only be provided for the first input object (the main
-     * input file). For direct uploads, this first input should omit the url parameter,
-     * as the main input file is provided via the direct upload. This will create
-     * subtitles based on the audio track ingested from that main input file. Note that
+     * configuration. Subtitles are generated using the audio of the input they are
+     * nested within. For direct uploads, this first input should omit the url
+     * parameter, as the main input file is provided via the direct upload. Note that
      * subtitle generation happens after initial ingest, so the generated tracks will
      * be in the `preparing` state when the asset transitions to `ready`.
      */
@@ -1419,7 +1417,7 @@ export namespace AssetOptions {
   export namespace Input {
     export interface GeneratedSubtitle {
       /**
-       * The language to generate subtitles in.
+       * The language of the audio from which subtitles are generated.
        */
       language_code?:
         | 'en'
@@ -1629,10 +1627,9 @@ export namespace InputInfo {
 
     /**
      * Generate subtitle tracks using automatic speech recognition with this
-     * configuration. This may only be provided for the first input object (the main
-     * input file). For direct uploads, this first input should omit the url parameter,
-     * as the main input file is provided via the direct upload. This will create
-     * subtitles based on the audio track ingested from that main input file. Note that
+     * configuration. Subtitles are generated using the audio of the input they are
+     * nested within. For direct uploads, this first input should omit the url
+     * parameter, as the main input file is provided via the direct upload. Note that
      * subtitle generation happens after initial ingest, so the generated tracks will
      * be in the `preparing` state when the asset transitions to `ready`.
      */
@@ -1722,7 +1719,7 @@ export namespace InputInfo {
   export namespace Settings {
     export interface GeneratedSubtitle {
       /**
-       * The language to generate subtitles in.
+       * The language of the audio from which subtitles are generated.
        */
       language_code?:
         | 'en'
@@ -2219,10 +2216,9 @@ export namespace AssetCreateParams {
 
     /**
      * Generate subtitle tracks using automatic speech recognition with this
-     * configuration. This may only be provided for the first input object (the main
-     * input file). For direct uploads, this first input should omit the url parameter,
-     * as the main input file is provided via the direct upload. This will create
-     * subtitles based on the audio track ingested from that main input file. Note that
+     * configuration. Subtitles are generated using the audio of the input they are
+     * nested within. For direct uploads, this first input should omit the url
+     * parameter, as the main input file is provided via the direct upload. Note that
      * subtitle generation happens after initial ingest, so the generated tracks will
      * be in the `preparing` state when the asset transitions to `ready`.
      */
@@ -2312,7 +2308,7 @@ export namespace AssetCreateParams {
   export namespace Input {
     export interface GeneratedSubtitle {
       /**
-       * The language to generate subtitles in.
+       * The language of the audio from which subtitles are generated.
        */
       language_code?:
         | 'en'
@@ -2454,10 +2450,9 @@ export namespace AssetCreateParams {
 
     /**
      * Generate subtitle tracks using automatic speech recognition with this
-     * configuration. This may only be provided for the first input object (the main
-     * input file). For direct uploads, this first input should omit the url parameter,
-     * as the main input file is provided via the direct upload. This will create
-     * subtitles based on the audio track ingested from that main input file. Note that
+     * configuration. Subtitles are generated using the audio of the input they are
+     * nested within. For direct uploads, this first input should omit the url
+     * parameter, as the main input file is provided via the direct upload. Note that
      * subtitle generation happens after initial ingest, so the generated tracks will
      * be in the `preparing` state when the asset transitions to `ready`.
      */
@@ -2547,7 +2542,7 @@ export namespace AssetCreateParams {
   export namespace Input {
     export interface GeneratedSubtitle {
       /**
-       * The language to generate subtitles in.
+       * The language of the audio from which subtitles are generated.
        */
       language_code?:
         | 'en'
@@ -2853,7 +2848,7 @@ export interface AssetGenerateSubtitlesParams {
 export namespace AssetGenerateSubtitlesParams {
   export interface GeneratedSubtitle {
     /**
-     * The language to generate subtitles in.
+     * The language of the audio from which subtitles are generated.
      */
     language_code?:
       | 'en'

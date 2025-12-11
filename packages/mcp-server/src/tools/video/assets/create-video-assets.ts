@@ -42,13 +42,13 @@ export const tool: Tool = {
             generated_subtitles: {
               type: 'array',
               description:
-                'Generate subtitle tracks using automatic speech recognition with this configuration. This may only be provided for the first input object (the main input file). For direct uploads, this first input should omit the url parameter, as the main input file is provided via the direct upload. This will create subtitles based on the audio track ingested from that main input file. Note that subtitle generation happens after initial ingest, so the generated tracks will be in the `preparing` state when the asset transitions to `ready`.',
+                'Generate subtitle tracks using automatic speech recognition with this configuration. Subtitles are generated using the audio of the input they are nested within. For direct uploads, this first input should omit the url parameter, as the main input file is provided via the direct upload. Note that subtitle generation happens after initial ingest, so the generated tracks will be in the `preparing` state when the asset transitions to `ready`.',
               items: {
                 type: 'object',
                 properties: {
                   language_code: {
                     type: 'string',
-                    description: 'The language to generate subtitles in.',
+                    description: 'The language of the audio from which subtitles are generated.',
                     enum: [
                       'en',
                       'es',
@@ -216,13 +216,13 @@ export const tool: Tool = {
             generated_subtitles: {
               type: 'array',
               description:
-                'Generate subtitle tracks using automatic speech recognition with this configuration. This may only be provided for the first input object (the main input file). For direct uploads, this first input should omit the url parameter, as the main input file is provided via the direct upload. This will create subtitles based on the audio track ingested from that main input file. Note that subtitle generation happens after initial ingest, so the generated tracks will be in the `preparing` state when the asset transitions to `ready`.',
+                'Generate subtitle tracks using automatic speech recognition with this configuration. Subtitles are generated using the audio of the input they are nested within. For direct uploads, this first input should omit the url parameter, as the main input file is provided via the direct upload. Note that subtitle generation happens after initial ingest, so the generated tracks will be in the `preparing` state when the asset transitions to `ready`.',
               items: {
                 type: 'object',
                 properties: {
                   language_code: {
                     type: 'string',
-                    description: 'The language to generate subtitles in.',
+                    description: 'The language of the audio from which subtitles are generated.',
                     enum: [
                       'en',
                       'es',
