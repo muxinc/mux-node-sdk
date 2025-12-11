@@ -706,7 +706,7 @@ export namespace LiveStream {
 
   export interface GeneratedSubtitle {
     /**
-     * The language to generate subtitles in.
+     * The language of the audio from which subtitles are generated.
      */
     language_code: 'en' | 'en-US' | 'es' | 'fr' | 'de' | 'pt' | 'it';
 
@@ -1002,7 +1002,7 @@ export namespace LiveStreamCreateParams {
 
   export interface GeneratedSubtitle {
     /**
-     * The language to generate subtitles in.
+     * The language of the audio from which subtitles are generated.
      */
     language_code?: 'en' | 'en-US' | 'es' | 'fr' | 'de' | 'pt' | 'it';
 
@@ -1339,7 +1339,7 @@ export interface LiveStreamUpdateGeneratedSubtitlesParams {
 export namespace LiveStreamUpdateGeneratedSubtitlesParams {
   export interface GeneratedSubtitle {
     /**
-     * The language to generate subtitles in.
+     * The language of the audio from which subtitles are generated.
      */
     language_code?: 'en' | 'en-US' | 'es' | 'fr' | 'de' | 'pt' | 'it';
 
