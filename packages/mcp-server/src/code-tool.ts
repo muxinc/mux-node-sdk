@@ -42,6 +42,7 @@ export async function codeTool() {
           MUX_SIGNING_KEY: readEnv('MUX_SIGNING_KEY'),
           MUX_PRIVATE_KEY: readEnv('MUX_PRIVATE_KEY'),
           MUX_AUTHORIZATION_TOKEN: readEnv('MUX_AUTHORIZATION_TOKEN'),
+          MUX_BASE_URL: readEnv('MUX_BASE_URL'),
         }),
       },
       body: JSON.stringify({
