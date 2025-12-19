@@ -1205,7 +1205,9 @@ export namespace AssetOptions {
   export namespace Input {
     export interface GeneratedSubtitle {
       /**
-       * The language of the audio from which subtitles are generated.
+       * The language of the audio from which subtitles are generated. Selecting a
+       * language of "auto" will allow language detection to set the language code
+       * automatically.
        */
       language_code?:
         | 'en'
@@ -1229,7 +1231,8 @@ export namespace AssetOptions {
         | 'hr'
         | 'da'
         | 'ro'
-        | 'bg';
+        | 'bg'
+        | 'auto';
 
       /**
        * A name for this subtitle track.
@@ -1417,7 +1420,9 @@ export namespace AssetOptions {
   export namespace Input {
     export interface GeneratedSubtitle {
       /**
-       * The language of the audio from which subtitles are generated.
+       * The language of the audio from which subtitles are generated. Selecting a
+       * language of "auto" will allow language detection to set the language code
+       * automatically.
        */
       language_code?:
         | 'en'
@@ -1441,7 +1446,8 @@ export namespace AssetOptions {
         | 'hr'
         | 'da'
         | 'ro'
-        | 'bg';
+        | 'bg'
+        | 'auto';
 
       /**
        * A name for this subtitle track.
@@ -1719,7 +1725,9 @@ export namespace InputInfo {
   export namespace Settings {
     export interface GeneratedSubtitle {
       /**
-       * The language of the audio from which subtitles are generated.
+       * The language of the audio from which subtitles are generated. Selecting a
+       * language of "auto" will allow language detection to set the language code
+       * automatically.
        */
       language_code?:
         | 'en'
@@ -1743,7 +1751,8 @@ export namespace InputInfo {
         | 'hr'
         | 'da'
         | 'ro'
-        | 'bg';
+        | 'bg'
+        | 'auto';
 
       /**
        * A name for this subtitle track.
@@ -1824,6 +1833,12 @@ export interface Track {
   id?: string;
 
   /**
+   * The confidence value (0-1) of the determined language. This value only is
+   * available when automatic language detection is utilized in generated subtitles.
+   */
+  auto_language_confidence?: number;
+
+  /**
    * Indicates the track provides Subtitles for the Deaf or Hard-of-hearing (SDH).
    * This parameter is only set tracks where `type` is `text` and `text_type` is
    * `subtitles`.
@@ -1839,9 +1854,10 @@ export interface Track {
 
   /**
    * The language code value represents [BCP 47](https://tools.ietf.org/html/bcp47)
-   * specification compliant value. For example, `en` for English or `en-US` for the
-   * US version of English. This parameter is only set for `text` and `audio` track
-   * types.
+   * specification compliant value, or 'auto'. For example, `en` for English or
+   * `en-US` for the US version of English. This parameter is only set for `text` and
+   * `audio` track types. During automatic language detection for generated
+   * subtitles, this value will be set to `auto` until the language is determined.
    */
   language_code?: string;
 
@@ -2308,7 +2324,9 @@ export namespace AssetCreateParams {
   export namespace Input {
     export interface GeneratedSubtitle {
       /**
-       * The language of the audio from which subtitles are generated.
+       * The language of the audio from which subtitles are generated. Selecting a
+       * language of "auto" will allow language detection to set the language code
+       * automatically.
        */
       language_code?:
         | 'en'
@@ -2332,7 +2350,8 @@ export namespace AssetCreateParams {
         | 'hr'
         | 'da'
         | 'ro'
-        | 'bg';
+        | 'bg'
+        | 'auto';
 
       /**
        * A name for this subtitle track.
@@ -2542,7 +2561,9 @@ export namespace AssetCreateParams {
   export namespace Input {
     export interface GeneratedSubtitle {
       /**
-       * The language of the audio from which subtitles are generated.
+       * The language of the audio from which subtitles are generated. Selecting a
+       * language of "auto" will allow language detection to set the language code
+       * automatically.
        */
       language_code?:
         | 'en'
@@ -2566,7 +2587,8 @@ export namespace AssetCreateParams {
         | 'hr'
         | 'da'
         | 'ro'
-        | 'bg';
+        | 'bg'
+        | 'auto';
 
       /**
        * A name for this subtitle track.
@@ -2793,8 +2815,9 @@ export interface AssetCreateStaticRenditionParams {
 
 export interface AssetCreateTrackParams {
   /**
-   * The language code value must be a valid BCP 47 specification compliant value.
-   * For example, en for English or en-US for the US version of English.
+   * The language code of this track. The value must be a valid BCP 47 specification
+   * compliant value. For example, en for English or en-US for the US version of
+   * English.
    */
   language_code: string;
 
@@ -2849,7 +2872,9 @@ export interface AssetGenerateSubtitlesParams {
 export namespace AssetGenerateSubtitlesParams {
   export interface GeneratedSubtitle {
     /**
-     * The language of the audio from which subtitles are generated.
+     * The language of the audio from which subtitles are generated. Selecting a
+     * language of "auto" will allow language detection to set the language code
+     * automatically.
      */
     language_code?:
       | 'en'
@@ -2873,7 +2898,8 @@ export namespace AssetGenerateSubtitlesParams {
       | 'hr'
       | 'da'
       | 'ro'
-      | 'bg';
+      | 'bg'
+      | 'auto';
 
     /**
      * A name for this subtitle track.
