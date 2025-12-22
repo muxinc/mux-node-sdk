@@ -7,10 +7,7 @@ dist
 dist-deno
 /*.tgz
 .idea/
+dist-bundle
+*.dxt
 .DS_Store
-
-packages/mcp-server/dxt/dist
-packages/mcp-server/dxt/package.json
-packages/mcp-server/dxt/mux.dxt
-packages/mcp-server/dxt/LICENSE
 .vercel

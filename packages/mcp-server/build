@@ -31,22 +31,26 @@ chmod +x dist/index.js
 
 DIST_PATH=./dist PKG_IMPORT_PATH=@mux/mcp/ node ../../scripts/utils/postprocess-files.cjs
 
-# copy package.json to dxt
-cp dist/package.json dxt/package.json
+# mcp bundle
+rm -rf dist-bundle mux.dxt; mkdir dist-bundle
 
-# copy dist to the dxt directory
-rm -rf dxt/dist
-mkdir dxt/dist
-cp -rp dist/*.js dxt/dist
+# copy package.json
+PKG_JSON_PATH=../../packages/mcp-server/package.json node ../../scripts/utils/make-dist-package-json.cjs > dist-bundle/package.json
 
-# copy license files to dxt
-cp ../../LICENSE dxt/LICENSE
+# copy files
+node scripts/copy-bundle-files.cjs
 
-# update dxt manifest version
-node scripts/update-dxt.js
+# install runtime deps
+cd dist-bundle
+npm install
+cd ..
 
-# pack the dxt directory
-dxt pack dxt dxt/mux.dxt
+# pack bundle
+cp manifest.json dist-bundle
 
-# sign the dxt package
-dxt sign dxt/mux.dxt --self-signed
+npx dxt pack dist-bundle mux.dxt
+
+npx dxt sign mux.dxt --self-signed
+
+# clean up
+rm -rf dist-bundle
