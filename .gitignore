@@ -8,6 +8,6 @@ dist-deno
 /*.tgz
 .idea/
 dist-bundle
-*.dxt
+*.mcpb
 .DS_Store
 .vercel
