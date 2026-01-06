@@ -134,7 +134,11 @@ describe('instantiate client', () => {
       };
 
       process.env['MUX_LOG'] = 'debug';
-      const client = new Mux({ logger: logger, tokenID: 'my token id', tokenSecret: 'my secret' });
+      const client = new Mux({
+        logger: logger,
+        tokenID: 'my token id',
+        tokenSecret: 'my secret',
+      });
       expect(client.logLevel).toBe('debug');
 
       await forceAPIResponseForClient(client);
@@ -151,7 +155,11 @@ describe('instantiate client', () => {
       };
 
       process.env['MUX_LOG'] = 'not a log level';
-      const client = new Mux({ logger: logger, tokenID: 'my token id', tokenSecret: 'my secret' });
+      const client = new Mux({
+        logger: logger,
+        tokenID: 'my token id',
+        tokenSecret: 'my secret',
+      });
       expect(client.logLevel).toBe('warn');
       expect(warnMock).toHaveBeenCalledWith(
         'process.env[\'MUX_LOG\'] was set to "not a log level", expected one of ["off","error","warn","info","debug"]',
@@ -383,7 +391,11 @@ describe('instantiate client', () => {
   });
 
   test('maxRetries option is correctly set', () => {
-    const client = new Mux({ maxRetries: 4, tokenID: 'my token id', tokenSecret: 'my secret' });
+    const client = new Mux({
+      maxRetries: 4,
+      tokenID: 'my token id',
+      tokenSecret: 'my secret',
+    });
     expect(client.maxRetries).toEqual(4);
 
     // default
@@ -761,7 +773,11 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret', fetch: testFetch });
+    const client = new Mux({
+      tokenID: 'my token id',
+      tokenSecret: 'my secret',
+      fetch: testFetch,
+    });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -791,7 +807,11 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret', fetch: testFetch });
+    const client = new Mux({
+      tokenID: 'my token id',
+      tokenSecret: 'my secret',
+      fetch: testFetch,
+    });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);

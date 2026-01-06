@@ -26,7 +26,13 @@ describe('resource assets', () => {
         {
           closed_captions: true,
           end_time: 0,
-          generated_subtitles: [{ language_code: 'en', name: 'name', passthrough: 'passthrough' }],
+          generated_subtitles: [
+            {
+              language_code: 'en',
+              name: 'name',
+              passthrough: 'passthrough',
+            },
+          ],
           language_code: 'language_code',
           name: 'name',
           overlay_settings: {
@@ -52,7 +58,13 @@ describe('resource assets', () => {
         {
           closed_captions: true,
           end_time: 0,
-          generated_subtitles: [{ language_code: 'en', name: 'name', passthrough: 'passthrough' }],
+          generated_subtitles: [
+            {
+              language_code: 'en',
+              name: 'name',
+              passthrough: 'passthrough',
+            },
+          ],
           language_code: 'language_code',
           name: 'name',
           overlay_settings: {
@@ -73,7 +85,11 @@ describe('resource assets', () => {
       ],
       master_access: 'none',
       max_resolution_tier: '1080p',
-      meta: { creator_id: 'creator_id', external_id: 'external_id', title: 'title' },
+      meta: {
+        creator_id: 'creator_id',
+        external_id: 'external_id',
+        title: 'title',
+      },
       mp4_support: 'none',
       normalize_audio: true,
       passthrough: 'passthrough',
@@ -123,7 +139,13 @@ describe('resource assets', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.video.assets.list(
-        { cursor: 'cursor', limit: 0, live_stream_id: 'live_stream_id', page: 0, upload_id: 'upload_id' },
+        {
+          cursor: 'cursor',
+          limit: 0,
+          live_stream_id: 'live_stream_id',
+          page: 0,
+          upload_id: 'upload_id',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
@@ -263,7 +285,11 @@ describe('resource assets', () => {
     const response = await client.video.assets.generateSubtitles('TRACK_ID', {
       ASSET_ID: 'ASSET_ID',
       generated_subtitles: [
-        { language_code: 'en', name: 'English (generated)', passthrough: 'English (generated)' },
+        {
+          language_code: 'en',
+          name: 'English (generated)',
+          passthrough: 'English (generated)',
+        },
       ],
     });
   });
