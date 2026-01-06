@@ -1,5 +1,102 @@
 # Changelog
 
+## 13.0.0 (2026-01-06)
+
+Full Changelog: [v12.8.1...v13.0.0](https://github.com/muxinc/mux-node-sdk/compare/v12.8.1...v13.0.0)
+
+### ⚠ BREAKING CHANGES
+
+* **mcp:** remove deprecated tool schemes
+
+### Features
+
+* **mcp:** add detail field to docs search tool ([144248d](https://github.com/muxinc/mux-node-sdk/commit/144248d1b99d935b7fac61c31ab722e5f70f37f9))
+* **mcp:** add docs search tool ([303bf2d](https://github.com/muxinc/mux-node-sdk/commit/303bf2dcbca034dfbc4c88cd86c7e1cda4306d06))
+* **mcp:** add mcp bundles to build script ([55f7e82](https://github.com/muxinc/mux-node-sdk/commit/55f7e82ee70984b595cec6f8b795bdd375881d3c))
+* **mcp:** add option for including docs tools ([af5c82e](https://github.com/muxinc/mux-node-sdk/commit/af5c82ec0215471a3e4bc408417cb34bef62f152))
+* **mcp:** add typescript check to code execution tool ([dae1e4a](https://github.com/muxinc/mux-node-sdk/commit/dae1e4a52690f2ee9cd89632fa19bcf27473df2f))
+* **mcp:** enable experimental docs search tool ([f8091f8](https://github.com/muxinc/mux-node-sdk/commit/f8091f812c26abfe169da36f1628f57871092567))
+* **mcp:** enable optional code execution tool on http mcp servers ([1e1aaf3](https://github.com/muxinc/mux-node-sdk/commit/1e1aaf33e53884a76f7dd4a021274453e728926f))
+* **mcp:** handle code mode calls in the Stainless API ([e0bd156](https://github.com/muxinc/mux-node-sdk/commit/e0bd1565fc95be388fd837baee4f2fd8ed56cb17))
+* **mcp:** return logs on code tool errors ([77c0a59](https://github.com/muxinc/mux-node-sdk/commit/77c0a5962a7d88c5f9c11f42a3dfe59f9f05ce4e))
+* page_url is now an advanced dimension ([#376](https://github.com/muxinc/mux-node-sdk/issues/376)) ([1ef7ae2](https://github.com/muxinc/mux-node-sdk/commit/1ef7ae28cc0f1d0aeddb64df28d5b1eee73c1dd0))
+* Rendition Change Dimensions/Metrics ([#375](https://github.com/muxinc/mux-node-sdk/issues/375)) ([00d4537](https://github.com/muxinc/mux-node-sdk/commit/00d4537d8e12bda9c6710ae37fe18609ae03988d))
+* Support language detection for generated subtitles ([#380](https://github.com/muxinc/mux-node-sdk/issues/380)) ([ca79abc](https://github.com/muxinc/mux-node-sdk/commit/ca79abc308df91bb427ee04bb548ebb176e2cbe1))
+
+
+### Bug Fixes
+
+* **ci:** set permissions for DXT publish action ([04e7d73](https://github.com/muxinc/mux-node-sdk/commit/04e7d7354236dcd71b0fcd606cb0edcf36160e3c))
+* coerce nullable values to undefined ([90b915b](https://github.com/muxinc/mux-node-sdk/commit/90b915b243e766c2127c18c877acf96e2297de0d))
+* **mcp:** add client instantiation options to code tool ([2a28cbb](https://github.com/muxinc/mux-node-sdk/commit/2a28cbb3b85b3e397053854ecd30b5fb2e8e8ad0))
+* **mcpb:** pin @anthropic-ai/mcpb version ([ea4015b](https://github.com/muxinc/mux-node-sdk/commit/ea4015bc184c2cc3417475d2afc67092f450e050))
+* **mcp:** correct code tool API endpoint ([7f4ab44](https://github.com/muxinc/mux-node-sdk/commit/7f4ab441de5edfcde824aafc565b963c8481411e))
+* **mcp:** correct code tool api output types ([470b862](https://github.com/muxinc/mux-node-sdk/commit/470b862ea3e1e3fb985489c704aa02f570a6bbfe))
+* **mcp:** fix cli argument parsing logic ([4033ba5](https://github.com/muxinc/mux-node-sdk/commit/4033ba5340d7bb0ccbd8d3795e18bc9fad93b7e6))
+* **mcp:** fix options parsing ([b04c732](https://github.com/muxinc/mux-node-sdk/commit/b04c732b17369088fc69be4a493864144a77bfeb))
+* **mcp:** fix some response schemas used for jq filtering ([c6874d5](https://github.com/muxinc/mux-node-sdk/commit/c6874d50da6534b32b75d1df712980b98032a249))
+* **mcp:** fix uploading dxt release assets ([cca7f9d](https://github.com/muxinc/mux-node-sdk/commit/cca7f9d0280941ea2d5a4a2ca4f53c844ebb168a))
+* **mcp:** pass base url to code tool ([1003ee4](https://github.com/muxinc/mux-node-sdk/commit/1003ee4e726d6d0e6d1c80b53762ef096bb3d002))
+* **mcp:** resolve a linting issue in server code ([e59a137](https://github.com/muxinc/mux-node-sdk/commit/e59a1370cc008fbfba54ed37092d33135efb0222))
+* **mcp:** return correct lines on typescript errors ([cd783ca](https://github.com/muxinc/mux-node-sdk/commit/cd783caf13160d9b4ee81258cc207d00ea121029))
+* **mcp:** return tool execution error on api error ([d7a5cc0](https://github.com/muxinc/mux-node-sdk/commit/d7a5cc02695f273cf0f6d47b6739661f2982b2ff))
+* **mcp:** return tool execution error on jq failure ([b3dd62a](https://github.com/muxinc/mux-node-sdk/commit/b3dd62a93e40ff916fd416c10f49cbb5fe0b054c))
+* **mcp:** update cloudflare worker host page ([1f59940](https://github.com/muxinc/mux-node-sdk/commit/1f5994042c25ee50f3a8fd9dc0d1e4e93eb434b1))
+* **mcp:** use raw responses for binary content ([52ecb08](https://github.com/muxinc/mux-node-sdk/commit/52ecb08be436adbc626a2fb79b531445925c9699))
+
+
+### Performance Improvements
+
+* faster formatting ([c92853e](https://github.com/muxinc/mux-node-sdk/commit/c92853e2763f232b9c88dbc4cce6e883d1034724))
+
+
+### Chores
+
+* break long lines in snippets into multiline ([6417def](https://github.com/muxinc/mux-node-sdk/commit/6417def5d01bf2fb4070674f0de94f77ca82ad01))
+* ci build action ([427ccf3](https://github.com/muxinc/mux-node-sdk/commit/427ccf381c2212146ae4f6f1ab264b8a6fa2d401))
+* **codegen:** internal codegen update ([ea732c9](https://github.com/muxinc/mux-node-sdk/commit/ea732c9f165a7df6170cf01ad8e7069a6beef150))
+* do not install brew dependencies in ./scripts/bootstrap by default ([f4505bc](https://github.com/muxinc/mux-node-sdk/commit/f4505bc9860e1b7e935f43b11d0a357f4a473467))
+* extract some types in mcp docs ([e51a4ca](https://github.com/muxinc/mux-node-sdk/commit/e51a4ca44b1407f9930bf1c55e7dc54a124bf635))
+* **internal:** codegen related update ([aed512c](https://github.com/muxinc/mux-node-sdk/commit/aed512cf29a7d59986a90d8bb2010d12ccfc6454))
+* **internal:** codegen related update ([bdaf76e](https://github.com/muxinc/mux-node-sdk/commit/bdaf76e6843c164489ea661af9ced2cdb7b92ec3))
+* **internal:** codegen related update ([77d0d13](https://github.com/muxinc/mux-node-sdk/commit/77d0d136c8745d2259a47014873cbfcc8b93ec63))
+* **internal:** codegen related update ([0159371](https://github.com/muxinc/mux-node-sdk/commit/0159371d68837c0398e81c2dbabdf7722b797d7c))
+* **internal:** codegen related update ([1086856](https://github.com/muxinc/mux-node-sdk/commit/1086856bcd94b992afb4516495911c873c37f146))
+* **internal:** codegen related update ([126b23a](https://github.com/muxinc/mux-node-sdk/commit/126b23a7b3999dbf935139a36c85324d89c028f7))
+* **internal:** codegen related update ([ece03e1](https://github.com/muxinc/mux-node-sdk/commit/ece03e1d27637b6c4b498121812e1fdd1f82ee6f))
+* **internal:** fix incremental formatting in some cases ([44dfd8d](https://github.com/muxinc/mux-node-sdk/commit/44dfd8d23354752ae22f0beb135b45c2cdd0a19a))
+* **internal:** gitignore .mcpb files ([08bb272](https://github.com/muxinc/mux-node-sdk/commit/08bb27239d2bd72a2d0c1ce6e699b5f48348d678))
+* **internal:** grammar fix (it's -&gt; its) ([9cb5c52](https://github.com/muxinc/mux-node-sdk/commit/9cb5c52054c2c9e3162373168fc3656e4777c2ba))
+* **internal:** ignore .eslintcache ([bee39de](https://github.com/muxinc/mux-node-sdk/commit/bee39dec7ed68010e340313408d40d3771507d54))
+* **internal:** remove deprecated `compilerOptions.baseUrl` from tsconfig.json ([a5e75a8](https://github.com/muxinc/mux-node-sdk/commit/a5e75a8a7ccc83d7a46d57b95321b07a92ddf549))
+* **internal:** use npm pack for build uploads ([e51c1c5](https://github.com/muxinc/mux-node-sdk/commit/e51c1c571794e610671ebe8d8c07eb0cba88b761))
+* **internal:** version bump ([58594ad](https://github.com/muxinc/mux-node-sdk/commit/58594ad6aa50cee1b6d57eb02d53a93556ac4073))
+* **internal:** version bump ([2f39518](https://github.com/muxinc/mux-node-sdk/commit/2f39518c48fa2a7f35543f6a031f3f01cd2222f9))
+* mcp code tool explicit error message when missing a run function ([ac3e901](https://github.com/muxinc/mux-node-sdk/commit/ac3e90183f13fc9574095d8a435d5e360ba0b3d4))
+* **mcp:** add friendlier MCP code tool errors on incorrect method invocations ([1bf1418](https://github.com/muxinc/mux-node-sdk/commit/1bf1418b5c4fc952c3e12bd6403d4ea62636a947))
+* **mcp:** add line numbers to code tool errors ([7f88a02](https://github.com/muxinc/mux-node-sdk/commit/7f88a02934a3a7db5c6d489a039f39f572df487d))
+* **mcp:** allow pointing `docs_search` tool at other URLs ([1714aff](https://github.com/muxinc/mux-node-sdk/commit/1714aff71af3d9f3f452bf587e47512e05c8a62e))
+* **mcp:** clarify http auth error ([8dbb066](https://github.com/muxinc/mux-node-sdk/commit/8dbb066d1773e1461249c11016dd4a8638739075))
+* **mcp:** remove deprecated tool schemes ([fecab51](https://github.com/muxinc/mux-node-sdk/commit/fecab51a12e2918059cfa009d5d7fba5e364bd78))
+* **mcp:** rename dxt to mcpb ([65504cc](https://github.com/muxinc/mux-node-sdk/commit/65504cc1ddf197de92d3fa12156b831446ff5545))
+* **mcp:** update lockfile ([1589f86](https://github.com/muxinc/mux-node-sdk/commit/1589f860657ee7925b8b87d3bd98fc69ada13951))
+* **mcp:** upgrade jq-web ([23a249b](https://github.com/muxinc/mux-node-sdk/commit/23a249b3ad8c3e6a0246d2161dc59c7944290214))
+* **mcp:** upload dxt as release asset ([c7619b8](https://github.com/muxinc/mux-node-sdk/commit/c7619b8f5d43270cc25b9638f378353184794014))
+* update lockfile ([3ac5109](https://github.com/muxinc/mux-node-sdk/commit/3ac510980f290ad31c90b5da2471fadecca71a70))
+* use latest @modelcontextprotocol/sdk ([be3814d](https://github.com/muxinc/mux-node-sdk/commit/be3814dc3cefea92af49ff12a40da9858ac5709d))
+* use structured error when code execution tool errors ([2aef926](https://github.com/muxinc/mux-node-sdk/commit/2aef926deca0a16fa8432bd68025428ccece221e))
+
+
+### Documentation
+
+* Clarification on Generated Subtitles behavior ([#379](https://github.com/muxinc/mux-node-sdk/issues/379)) ([44e0a74](https://github.com/muxinc/mux-node-sdk/commit/44e0a74f6b2861698ae05a289d70160e3b977158))
+* Fix which fields can be patched in update-asset ([#377](https://github.com/muxinc/mux-node-sdk/issues/377)) ([71cd3ea](https://github.com/muxinc/mux-node-sdk/commit/71cd3ea7ae76357acdba2b5d4f5c69280498a54d))
+* **mcp:** add a README button for one-click add to Cursor ([bbf88a9](https://github.com/muxinc/mux-node-sdk/commit/bbf88a983bd2f8ff0e4d3c369100e60b61f4592f))
+* **mcp:** add a README link to add server to VS Code or Claude Code ([380fb99](https://github.com/muxinc/mux-node-sdk/commit/380fb998d65c7a6fe8acaa59ab29a4a41ea4e531))
+* prominently feature MCP server setup in root SDK readmes ([c703a81](https://github.com/muxinc/mux-node-sdk/commit/c703a8173848cb2b54f702617537563acb4fc74f))
+* Remove 7 day captions gen limitation and replace with link to docs ([#373](https://github.com/muxinc/mux-node-sdk/issues/373)) ([7769e44](https://github.com/muxinc/mux-node-sdk/commit/7769e44c97ca9c0f1ea751c4958c756d02fa1826))
+* update docs for hevc-as-standard ([#371](https://github.com/muxinc/mux-node-sdk/issues/371)) ([e692395](https://github.com/muxinc/mux-node-sdk/commit/e692395a5e8bbf3923cec7d1f411986626390264))
+
 ## 12.8.1 (2025-12-01)
 
 Full Changelog: [v12.8.0...v12.8.1](https://github.com/muxinc/mux-node-sdk/compare/v12.8.0...v12.8.1)
