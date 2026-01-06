@@ -102,7 +102,12 @@ describe('resource metrics', () => {
     await expect(
       client.data.metrics.getOverallValues(
         'video_startup_time',
-        { filters: ['string'], measurement: '95th', metric_filters: ['string'], timeframe: ['string'] },
+        {
+          filters: ['string'],
+          measurement: '95th',
+          metric_filters: ['string'],
+          timeframe: ['string'],
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);

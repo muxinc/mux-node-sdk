@@ -32,7 +32,13 @@ describe('resource uploads', () => {
           {
             closed_captions: true,
             end_time: 0,
-            generated_subtitles: [{ language_code: 'en', name: 'name', passthrough: 'passthrough' }],
+            generated_subtitles: [
+              {
+                language_code: 'en',
+                name: 'name',
+                passthrough: 'passthrough',
+              },
+            ],
             language_code: 'language_code',
             name: 'name',
             overlay_settings: {
@@ -55,7 +61,13 @@ describe('resource uploads', () => {
           {
             closed_captions: true,
             end_time: 0,
-            generated_subtitles: [{ language_code: 'en', name: 'name', passthrough: 'passthrough' }],
+            generated_subtitles: [
+              {
+                language_code: 'en',
+                name: 'name',
+                passthrough: 'passthrough',
+              },
+            ],
             language_code: 'language_code',
             name: 'name',
             overlay_settings: {
@@ -76,7 +88,11 @@ describe('resource uploads', () => {
         ],
         master_access: 'none',
         max_resolution_tier: '1080p',
-        meta: { creator_id: 'creator_id', external_id: 'external_id', title: 'title' },
+        meta: {
+          creator_id: 'creator_id',
+          external_id: 'external_id',
+          title: 'title',
+        },
         mp4_support: 'none',
         normalize_audio: true,
         passthrough: 'passthrough',

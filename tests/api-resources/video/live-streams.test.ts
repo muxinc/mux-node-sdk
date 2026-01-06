@@ -72,7 +72,12 @@ describe('resource liveStreams', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.video.liveStreams.list(
-        { limit: 0, page: 0, status: 'active', stream_key: 'stream_key' },
+        {
+          limit: 0,
+          page: 0,
+          status: 'active',
+          stream_key: 'stream_key',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);

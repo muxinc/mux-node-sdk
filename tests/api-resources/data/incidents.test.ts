@@ -86,7 +86,12 @@ describe('resource incidents', () => {
     await expect(
       client.data.incidents.listRelated(
         'abcd1234',
-        { limit: 0, order_by: 'negative_impact', order_direction: 'asc', page: 0 },
+        {
+          limit: 0,
+          order_by: 'negative_impact',
+          order_direction: 'asc',
+          page: 0,
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);

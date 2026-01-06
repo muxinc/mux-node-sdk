@@ -93,7 +93,12 @@ describe('resource annotations', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.data.annotations.list(
-        { limit: 0, order_direction: 'asc', page: 0, timeframe: ['string'] },
+        {
+          limit: 0,
+          order_direction: 'asc',
+          page: 0,
+          timeframe: ['string'],
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);

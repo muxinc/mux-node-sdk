@@ -32,7 +32,13 @@ describe('resource deliveryUsage', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.video.deliveryUsage.list(
-        { asset_id: 'asset_id', limit: 0, live_stream_id: 'live_stream_id', page: 0, timeframe: ['string'] },
+        {
+          asset_id: 'asset_id',
+          limit: 0,
+          live_stream_id: 'live_stream_id',
+          page: 0,
+          timeframe: ['string'],
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);

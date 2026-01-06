@@ -23,7 +23,14 @@ describe('resource playback', () => {
       client.video.playback.animated(
         'PLAYBACK_ID',
         'gif',
-        { end: 0, fps: 0, height: 0, start: 0, TOKEN: 'TOKEN', width: 0 },
+        {
+          end: 0,
+          fps: 0,
+          height: 0,
+          start: 0,
+          TOKEN: 'TOKEN',
+          width: 0,
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);

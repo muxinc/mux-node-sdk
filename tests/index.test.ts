@@ -234,7 +234,11 @@ describe('instantiate client', () => {
   });
 
   test('maxRetries option is correctly set', () => {
-    const client = new Mux({ maxRetries: 4, tokenId: 'my token id', tokenSecret: 'my secret' });
+    const client = new Mux({
+      maxRetries: 4,
+      tokenId: 'my token id',
+      tokenSecret: 'my secret',
+    });
     expect(client.maxRetries).toEqual(4);
 
     // default
@@ -468,7 +472,11 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret', fetch: testFetch });
+    const client = new Mux({
+      tokenId: 'my token id',
+      tokenSecret: 'my secret',
+      fetch: testFetch,
+    });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -495,7 +503,11 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret', fetch: testFetch });
+    const client = new Mux({
+      tokenId: 'my token id',
+      tokenSecret: 'my secret',
+      fetch: testFetch,
+    });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
