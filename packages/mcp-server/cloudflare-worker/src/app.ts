@@ -8,14 +8,13 @@ import {
   renderAuthorizationRejectedContent,
 } from './utils';
 import type { OAuthHelpers } from '@cloudflare/workers-oauth-provider';
-import { McpOptions } from '@mux/mcp/server';
 import { ServerConfig } from '.';
 
 export type Bindings = Env & {
   OAUTH_PROVIDER: OAuthHelpers;
 };
 
-export function makeOAuthConsent(config: ServerConfig, defaultOptions?: Partial<McpOptions>) {
+export function makeOAuthConsent(config: ServerConfig) {
   const app = new Hono<{
     Bindings: Bindings;
   }>();
@@ -30,17 +29,14 @@ export function makeOAuthConsent(config: ServerConfig, defaultOptions?: Partial<
   app.get('/authorize', async (c) => {
     const oauthReqInfo = await c.env.OAUTH_PROVIDER.parseAuthRequest(c.req.raw);
 
-    const content = await renderLoggedOutAuthorizeScreen(config, oauthReqInfo, defaultOptions);
+    const content = await renderLoggedOutAuthorizeScreen(config, oauthReqInfo);
     return c.html(layout(content, 'Authorization', config));
   });
 
   // This endpoint is responsible for validating any login information and
   // then completing the authorization request with the OAUTH_PROVIDER
   app.post('/approve', async (c) => {
-    const { action, oauthReqInfo, clientProps, clientConfig } = await parseApproveFormBody(
-      await c.req.parseBody(),
-      config,
-    );
+    const { action, oauthReqInfo, clientProps } = await parseApproveFormBody(await c.req.parseBody(), config);
 
     if (action !== 'login_approve') {
       return c.html(
@@ -52,7 +48,7 @@ export function makeOAuthConsent(config: ServerConfig, defaultOptions?: Partial<
       );
     }
 
-    if (!oauthReqInfo || !clientProps || !clientConfig) {
+    if (!oauthReqInfo || !clientProps) {
       return c.html('INVALID LOGIN', 401);
     }
 
@@ -67,7 +63,6 @@ export function makeOAuthConsent(config: ServerConfig, defaultOptions?: Partial<
       scope: oauthReqInfo.scope,
       props: {
         clientProps,
-        clientConfig,
       },
     });
 
@@ -78,7 +73,7 @@ export function makeOAuthConsent(config: ServerConfig, defaultOptions?: Partial<
 
   // Render the authorize screen for demoing the OAuth flow (it won't actually log in)
   app.get('/demo', async (c) => {
-    const content = await renderLoggedOutAuthorizeScreen(config, {} as any, defaultOptions);
+    const content = await renderLoggedOutAuthorizeScreen(config, {} as any);
     return c.html(layout(content, 'Authorization', config));
   });
 

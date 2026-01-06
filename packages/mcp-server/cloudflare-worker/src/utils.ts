@@ -4,7 +4,7 @@ import type { HtmlEscapedString } from 'hono/utils/html';
 import { marked } from 'marked';
 import type { AuthRequest } from '@cloudflare/workers-oauth-provider';
 import { env } from 'cloudflare:workers';
-import { ServerConfig, McpOptions, ClientType, Filter, ClientProperty } from '@mux/mcp/server';
+import { ServerConfig, ClientProperty } from '.';
 
 export const layout = (content: HtmlEscapedString | string, title: string, config: ServerConfig) => html`
   <!doctype html>
@@ -161,46 +161,10 @@ export const homeContent = async (req: Request): Promise<HtmlEscapedString> => {
   return html` <div class="max-w-4xl mx-auto markdown">${raw(content)}</div> `;
 };
 
-export const renderLoggedOutAuthorizeScreen = async (
-  config: ServerConfig,
-  oauthReqInfo: AuthRequest,
-  defaultOptions?: Partial<McpOptions>,
-) => {
+export const renderLoggedOutAuthorizeScreen = async (config: ServerConfig, oauthReqInfo: AuthRequest) => {
   const checked = (condition: boolean) => (condition ? 'checked' : '');
   const selected = (condition: boolean) => (condition ? 'selected' : '');
 
-  // Helper to check if a capability is enabled by default
-  const hasCapability = (capability: string) => {
-    if (!defaultOptions?.capabilities) {
-      // Default capabilities when none specified
-      return ['refs', 'unions', 'formats'].includes(capability);
-    }
-    switch (capability) {
-      case 'top-level-unions':
-        return defaultOptions.capabilities.topLevelUnions || false;
-      case 'valid-json':
-        return defaultOptions.capabilities.validJson || false;
-      case 'refs':
-        return defaultOptions.capabilities.refs || false;
-      case 'unions':
-        return defaultOptions.capabilities.unions || false;
-      case 'formats':
-        return defaultOptions.capabilities.formats || false;
-      default:
-        return false;
-    }
-  };
-
-  // Helper to check if an operation is enabled by default
-  const hasOperation = (operation: string) => {
-    if (!defaultOptions?.filters) {
-      // Default operations when none specified
-      return ['read', 'write'].includes(operation);
-    }
-    return defaultOptions.filters.some(
-      (f) => f.type === 'operation' && f.op === 'include' && f.value === operation,
-    );
-  };
   const renderField = (field: ClientProperty) => {
     if (field.type === 'select' && field.options) {
       return html`
@@ -267,112 +231,6 @@ export const renderLoggedOutAuthorizeScreen = async (
       <form action="/approve" method="POST" class="space-y-4">
         <input type="hidden" name="oauthReqInfo" value="${JSON.stringify(oauthReqInfo)}" />
         <div class="space-y-4">${config.clientProperties.map(renderField)}</div>
-
-        <div class="mt-6 border-t pt-4">
-          <details class="w-full">
-            <summary class="font-medium text-primary cursor-pointer hover:text-primary/80 transition-colors">
-              Configuration Options
-            </summary>
-            <div class="mt-4 space-y-5 bg-gray-50 p-4 rounded-md">
-              <div>
-                <label for="client" class="flex items-center text-sm font-medium text-gray-700 mb-1">
-                  MCP Client
-                  <span class="relative group ml-1 align-middle">
-                    <span
-                      tabindex="0"
-                      class="inline-block w-4 h-4 rounded-full bg-gray-200 text-gray-600 text-xs font-bold flex items-center justify-center cursor-pointer group-hover:bg-gray-300 focus:bg-gray-300"
-                      aria-label="Help"
-                    >
-                      ?
-                    </span>
-                    <span
-                      class="absolute left-1/2 z-10 w-64 -translate-x-1/2 mt-2 px-3 py-2 rounded bg-gray-800 text-xs text-white opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-opacity duration-200"
-                    >
-                      Specify the client that you're connecting from. If yours is not listed, Claude is a
-                      reasonable default.
-                    </span>
-                  </span>
-                </label>
-                <select
-                  id="client"
-                  name="client"
-                  onchange="toggleClientCapabilities()"
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
-                >
-                  <option
-                    value="infer"
-                    ${selected(defaultOptions?.client === 'infer' || !defaultOptions?.client)}
-                  >
-                    Infer client
-                  </option>
-                  <option value="claude" ${selected(defaultOptions?.client === 'claude')}>Claude</option>
-                  <option value="cursor" ${selected(defaultOptions?.client === 'cursor')}>Cursor</option>
-                  <option value="claude-code" ${selected(defaultOptions?.client === 'claude-code')}>
-                    Claude Code
-                  </option>
-                  <option value="openai-agents" ${selected(defaultOptions?.client === 'openai-agents')}>
-                    OpenAI Agents SDK
-                  </option>
-                </select>
-              </div>
-
-              <div class="flex items-center">
-                <input
-                  type="checkbox"
-                  id="dynamic_tools"
-                  name="dynamic_tools"
-                  ${checked(defaultOptions?.includeDynamicTools || false)}
-                  class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-                />
-                <label for="dynamic_tools" class="ml-2 block text-sm text-gray-700"> Dynamic Tools </label>
-                <div class="relative group ml-2">
-                  <span
-                    tabindex="0"
-                    class="inline-block w-4 h-4 rounded-full bg-gray-200 text-gray-600 text-xs font-bold flex items-center justify-center cursor-pointer group-hover:bg-gray-300 focus:bg-gray-300"
-                    aria-label="Help"
-                  >
-                    ?
-                  </span>
-                  <div
-                    class="absolute left-1/2 z-10 w-64 -translate-x-1/2 mt-2 px-3 py-2 rounded bg-gray-800 text-xs text-white opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-opacity duration-200"
-                  >
-                    Have the LLM dynamically discover the endpoints, instead of directly exposing one tool per
-                    endpoint.
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <div class="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="read_only_operations"
-                    name="read_only_operations"
-                    ${!hasOperation('write') ? 'checked' : ''}
-                    class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-                  />
-                  <label for="read_only_operations" class="ml-2 block text-sm text-gray-700">
-                    Read-only
-                  </label>
-                  <div class="relative group ml-2">
-                    <span
-                      tabindex="0"
-                      class="inline-block w-4 h-4 rounded-full bg-gray-200 text-gray-600 text-xs font-bold flex items-center justify-center cursor-pointer group-hover:bg-gray-300 focus:bg-gray-300"
-                      aria-label="Help"
-                    >
-                      ?
-                    </span>
-                    <div
-                      class="absolute left-1/2 z-10 w-64 -translate-x-1/2 mt-2 px-3 py-2 rounded bg-gray-800 text-xs text-white opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-opacity duration-200"
-                    >
-                      Restrict the available tools to only be able to read data.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </details>
-        </div>
 
         <button
           type="submit"
@@ -448,24 +306,6 @@ export const parseApproveFormBody = async (
     }),
   );
 
-  const filters: Filter[] = [];
-
-  if (body.read_only_operations === 'on') {
-    filters.push({
-      type: 'operation',
-      op: 'exclude',
-      value: 'write',
-    });
-  }
-
-  // Parse advanced options
-  const clientConfig: McpOptions = {
-    client: (body.client as ClientType) || undefined,
-    includeDynamicTools: body.dynamic_tools === 'on',
-    includeAllTools: body.dynamic_tools !== 'on',
-    filters,
-  };
-
   let oauthReqInfo: AuthRequest | null = null;
   try {
     oauthReqInfo = JSON.parse(body.oauthReqInfo as string) as AuthRequest;
@@ -476,5 +316,5 @@ export const parseApproveFormBody = async (
     oauthReqInfo = null;
   }
 
-  return { oauthReqInfo, clientProps: parsedClientProps, clientConfig, action: body.action };
+  return { oauthReqInfo, clientProps: parsedClientProps, action: body.action };
 };
