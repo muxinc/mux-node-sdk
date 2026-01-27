@@ -4,6 +4,7 @@ import { McpTool, Metadata, ToolCallResult, asErrorResult, asTextContentResult }
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { readEnv } from './server';
 import { WorkerInput, WorkerOutput } from './code-tool-types';
+import { Mux } from '@mux/mux-node';
 
 const prompt = `Runs JavaScript code to interact with the Mux API.
 
@@ -54,7 +55,7 @@ export function codeTool(): McpTool {
       required: ['code'],
     },
   };
-  const handler = async (_: unknown, args: any): Promise<ToolCallResult> => {
+  const handler = async (client: Mux, args: any): Promise<ToolCallResult> => {
     const code = args.code as string;
     const intent = args.intent as string | undefined;
 
@@ -70,13 +71,14 @@ export function codeTool(): McpTool {
         ...(stainlessAPIKey && { Authorization: stainlessAPIKey }),
         'Content-Type': 'application/json',
         client_envs: JSON.stringify({
-          MUX_TOKEN_ID: readEnv('MUX_TOKEN_ID'),
-          MUX_TOKEN_SECRET: readEnv('MUX_TOKEN_SECRET'),
-          MUX_WEBHOOK_SECRET: readEnv('MUX_WEBHOOK_SECRET'),
-          MUX_SIGNING_KEY: readEnv('MUX_SIGNING_KEY'),
-          MUX_PRIVATE_KEY: readEnv('MUX_PRIVATE_KEY'),
-          MUX_AUTHORIZATION_TOKEN: readEnv('MUX_AUTHORIZATION_TOKEN'),
-          MUX_BASE_URL: readEnv('MUX_BASE_URL'),
+          MUX_TOKEN_ID: readEnv('MUX_TOKEN_ID') ?? client.tokenID ?? undefined,
+          MUX_TOKEN_SECRET: readEnv('MUX_TOKEN_SECRET') ?? client.tokenSecret ?? undefined,
+          MUX_WEBHOOK_SECRET: readEnv('MUX_WEBHOOK_SECRET') ?? client.webhookSecret ?? undefined,
+          MUX_SIGNING_KEY: readEnv('MUX_SIGNING_KEY') ?? client.jwtSigningKey ?? undefined,
+          MUX_PRIVATE_KEY: readEnv('MUX_PRIVATE_KEY') ?? client.jwtPrivateKey ?? undefined,
+          MUX_AUTHORIZATION_TOKEN:
+            readEnv('MUX_AUTHORIZATION_TOKEN') ?? client.authorizationToken ?? undefined,
+          MUX_BASE_URL: readEnv('MUX_BASE_URL') ?? client.baseURL ?? undefined,
         }),
       },
       body: JSON.stringify({
