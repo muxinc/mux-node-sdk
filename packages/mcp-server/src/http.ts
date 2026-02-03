@@ -2,9 +2,9 @@
 
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
-
 import cors from 'cors';
 import express from 'express';
+import morgan from 'morgan';
 import { McpOptions } from './options';
 import { ClientOptions, initMcpServer, newMcpServer } from './server';
 import { parseAuthHeaders } from './headers';
@@ -26,7 +26,7 @@ const newServer = ({
   const server = newMcpServer();
 
   try {
-    const authOptions = parseAuthHeaders(req);
+    const authOptions = parseAuthHeaders(req, false);
     initMcpServer({
       server: server,
       clientOptions: {
@@ -104,17 +104,19 @@ const oauthAuthorizationServer = (req: express.Request, res: express.Response) =
 
 export const streamableHTTPApp = ({
   clientOptions = {},
-  mcpOptions = {},
+  mcpOptions,
 }: {
   clientOptions?: ClientOptions;
-  mcpOptions?: McpOptions;
+  mcpOptions: McpOptions;
 }): express.Express => {
   const app = express();
   app.set('query parser', 'extended');
   app.use(express.json());
+  app.use(morgan('combined'));
 
   app.get('/.well-known/oauth-authorization-server', cors(), oauthAuthorizationServer);
   app.get('/.well-known/oauth-protected-resource', cors(), oauthMetadata);
+
   app.get('/', get);
   app.post('/', cors(), post({ clientOptions, mcpOptions }));
   app.delete('/', del);
