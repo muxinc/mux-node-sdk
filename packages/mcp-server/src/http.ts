@@ -120,6 +120,9 @@ export const streamableHTTPApp = ({
 
   app.get('/.well-known/oauth-protected-resource', cors(), oauthMetadata);
 
+  app.get('/health', async (req: express.Request, res: express.Response) => {
+    res.status(200).send('OK');
+  });
   app.get('/', get);
   app.post('/', post({ clientOptions, mcpOptions }));
   app.delete('/', del);
