@@ -54,7 +54,7 @@ export const newMcpServer = async () =>
   new McpServer(
     {
       name: 'mux',
-      version: '13.0.0',
+      version: '13.1.0',
     },
     {
       instructions: await getInstructions(),

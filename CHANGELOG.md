@@ -1,5 +1,53 @@
 # Changelog
 
+## 13.1.0 (2026-02-11)
+
+Full Changelog: [v13.0.0...v13.1.0](https://github.com/muxinc/mux-node-sdk/compare/v13.0.0...v13.1.0)
+
+### Features
+
+* **mcp:** add initial server instructions ([4c00b59](https://github.com/muxinc/mux-node-sdk/commit/4c00b59d80bb3f3d5858489f7a7d3263fe79a67c))
+
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([6379062](https://github.com/muxinc/mux-node-sdk/commit/63790626c33e2d54071777392c0b567a324b07a7))
+* **mcp:** allow falling back for required env variables ([337675e](https://github.com/muxinc/mux-node-sdk/commit/337675e04a65f43312def7d03ba2810d6145edf7))
+* **mcp:** update code tool prompt ([03f2dde](https://github.com/muxinc/mux-node-sdk/commit/03f2dde51689d02a2a827c543c4556b6a88c3490))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([f4abc1c](https://github.com/muxinc/mux-node-sdk/commit/f4abc1c84f50339a06bd8c28a844cecdd8ef60f4))
+* **client:** do not parse responses with empty content-length ([0a389e8](https://github.com/muxinc/mux-node-sdk/commit/0a389e8f3d83b0cf2f3c9ce3f126da8dd07b684d))
+* **internal:** add health check to MCP server when running in HTTP mode ([39da538](https://github.com/muxinc/mux-node-sdk/commit/39da53854f49d30cfd04c2180ecc14c84d19517a))
+* **internal:** allow basic filtering of methods allowed for MCP code mode ([9cc5481](https://github.com/muxinc/mux-node-sdk/commit/9cc5481ed3ba6cedef6038db7a4f5bdc86705d61))
+* **internal:** always generate MCP server dockerfiles and upgrade associated dependencies ([2bc1352](https://github.com/muxinc/mux-node-sdk/commit/2bc13520636ac36a14f6f7e6a56c377a90a008a0))
+* **internal:** bump MCP dependencies ([8c3ecf2](https://github.com/muxinc/mux-node-sdk/commit/8c3ecf2a8a24c281a8111b29a165cc348ea23df2))
+* **internal:** codegen related update ([82a17c9](https://github.com/muxinc/mux-node-sdk/commit/82a17c935e5d09e2709c235d7355fb090d37f5e5))
+* **internal:** codegen related update ([43bb55f](https://github.com/muxinc/mux-node-sdk/commit/43bb55ffbe453227d4c620b47f512fa9e0b2148d))
+* **internal:** codegen related update ([480397d](https://github.com/muxinc/mux-node-sdk/commit/480397d77503a5a8a5493ef7c604e335e55ec446))
+* **internal:** codegen related update ([a4a9856](https://github.com/muxinc/mux-node-sdk/commit/a4a98568afeff9f8e3ee1a5aa072de0a9a3842de))
+* **internal:** codegen related update ([715d951](https://github.com/muxinc/mux-node-sdk/commit/715d95174f157e90d09e6d7f59c1807e251b41c0))
+* **internal:** codegen related update ([1860c14](https://github.com/muxinc/mux-node-sdk/commit/1860c144830eeea79672ebaa88debd605595f137))
+* **internal:** codegen related update ([098516f](https://github.com/muxinc/mux-node-sdk/commit/098516f9904858c0624f92b276f8121df564b63d))
+* **internal:** codegen related update ([05b8fb3](https://github.com/muxinc/mux-node-sdk/commit/05b8fb3d04fe645ee9994a30caeee7a9650aa1b0))
+* **internal:** refactor flag parsing for MCP servers and add debug flag ([395e5bf](https://github.com/muxinc/mux-node-sdk/commit/395e5bfbcde3828479b7ab321b0c8f6a76b1894a))
+* **internal:** support oauth authorization code flow for MCP servers ([88bee0b](https://github.com/muxinc/mux-node-sdk/commit/88bee0b022fa7c16260339f8eaf5da62f9222fc9))
+* **internal:** update `actions/checkout` version ([49c31a9](https://github.com/muxinc/mux-node-sdk/commit/49c31a997a70fc23e01045c7d0e5cbe04c85b1e0))
+* **internal:** upgrade babel, qs, js-yaml ([eadd645](https://github.com/muxinc/mux-node-sdk/commit/eadd645fa995688ba38e05a6dde522185cc81dae))
+* **internal:** upgrade hono ([7091e4a](https://github.com/muxinc/mux-node-sdk/commit/7091e4a2bf8821015c291e8f955ccad120de2b6a))
+* **internal:** upgrade wrangler version ([211215f](https://github.com/muxinc/mux-node-sdk/commit/211215fd12b4a24acf1376f609d92414fb8fc888))
+* **mcp:** add intent param to execute tool ([57b71cd](https://github.com/muxinc/mux-node-sdk/commit/57b71cd936273184ec003f7a054786eeb26da519))
+* **mcp:** pass intent param to execute handler ([684f525](https://github.com/muxinc/mux-node-sdk/commit/684f52527da52454ace5891abbe04cb51f4924ef))
+* **mcp:** up tsconfig lib version to es2022 ([843be7f](https://github.com/muxinc/mux-node-sdk/commit/843be7f0ba67594f52b1f80aa7f47753850d95aa))
+* **mcp:** upgrade dependencies ([fd1a319](https://github.com/muxinc/mux-node-sdk/commit/fd1a31959c116303ac2c0c7058885781fa13fd69))
+
+
+### Documentation
+
+* Remove plural from update-asset-track ([#386](https://github.com/muxinc/mux-node-sdk/issues/386)) ([bd23f20](https://github.com/muxinc/mux-node-sdk/commit/bd23f2054c111d96ac70c500cf6f26153902ed11))
+
 ## 13.0.0 (2026-01-06)
 
 Full Changelog: [v12.8.1...v13.0.0](https://github.com/muxinc/mux-node-sdk/compare/v12.8.1...v13.0.0)
