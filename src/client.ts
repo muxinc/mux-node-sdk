@@ -27,10 +27,10 @@ import {
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { Webhooks } from './resources/webhooks';
 import { Data } from './resources/data/data';
 import { System } from './resources/system/system';
 import { Video } from './resources/video/video';
+import { Webhooks } from './resources/webhooks/webhooks';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
