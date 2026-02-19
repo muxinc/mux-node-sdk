@@ -30,18 +30,13 @@ const newServer = async ({
   const stainlessApiKey = getStainlessApiKey(req, mcpOptions);
   const server = await newMcpServer(stainlessApiKey);
 
+  // parseClientAuthHeaders throws if the Authorization header uses an unsupported
+  // scheme, or (when the second arg is true) if the header is missing entirely.
+  // On error, we return 401 with WWW-Authenticate pointing to the OAuth metadata
+  // endpoint so clients know how to authenticate (RFC 9728).
+  let authOptions: Partial<ClientOptions>;
   try {
-    const authOptions = parseClientAuthHeaders(req, false);
-
-    await initMcpServer({
-      server: server,
-      mcpOptions: mcpOptions,
-      clientOptions: {
-        ...clientOptions,
-        ...authOptions,
-      },
-      stainlessApiKey: stainlessApiKey,
-    });
+    authOptions = parseClientAuthHeaders(req, false);
   } catch (error) {
     const resourceIdentifier = oauthResourceIdentifier(req);
     res.set(
@@ -57,6 +52,16 @@ const newServer = async ({
     });
     return null;
   }
+
+  await initMcpServer({
+    server: server,
+    mcpOptions: mcpOptions,
+    clientOptions: {
+      ...clientOptions,
+      ...authOptions,
+    },
+    stainlessApiKey: stainlessApiKey,
+  });
 
   return server;
 };
