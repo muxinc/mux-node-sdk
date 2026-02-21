@@ -9,7 +9,8 @@ const client = new Mux({
 });
 
 describe('resource playback', () => {
-  test('animated: required and optional params', async () => {
+  // Mock server doesn't support image/gif responses
+  test.skip('animated: required and optional params', async () => {
     const response = await client.video.playback.animated('gif', {
       PLAYBACK_ID: 'PLAYBACK_ID',
       end: 0,
@@ -45,14 +46,16 @@ describe('resource playback', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('staticRendition: required and optional params', async () => {
+  // Mock server doesn't support video/mp4 responses
+  test.skip('staticRendition: required and optional params', async () => {
     const response = await client.video.playback.staticRendition('capped-1080p.mp4', {
       PLAYBACK_ID: 'PLAYBACK_ID',
       TOKEN: 'TOKEN',
     });
   });
 
-  test('storyboard: required and optional params', async () => {
+  // Mock server doesn't support image/jpeg responses
+  test.skip('storyboard: required and optional params', async () => {
     const response = await client.video.playback.storyboard('jpg', {
       PLAYBACK_ID: 'PLAYBACK_ID',
       asset_end_time: 0,
@@ -124,7 +127,8 @@ describe('resource playback', () => {
     ).rejects.toThrow(Mux.NotFoundError);
   });
 
-  test('thumbnail: required and optional params', async () => {
+  // Mock server doesn't support image/jpeg responses
+  test.skip('thumbnail: required and optional params', async () => {
     const response = await client.video.playback.thumbnail('jpg', {
       PLAYBACK_ID: 'PLAYBACK_ID',
       fit_mode: 'preserve',
