@@ -60,7 +60,7 @@ $ yarn link @mux/mux-node
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global @mux/mux-node
+$ pnpm link --global @mux/mux-node
 ```
 
 ## Running tests
