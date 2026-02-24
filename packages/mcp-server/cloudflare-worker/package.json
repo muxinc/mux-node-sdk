@@ -20,7 +20,7 @@
     "@cloudflare/workers-oauth-provider": "^0.0.5",
     "@modelcontextprotocol/sdk": "^1.26.0",
     "agents": "^0.0.113",
-    "hono": "^4.12.1",
+    "hono": "^4.12.2",
     "@mux/mcp": "latest",
     "zod": "^3.24.4"
   }
