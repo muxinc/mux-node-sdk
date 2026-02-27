@@ -7,6 +7,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * Playback Restrictions allows you to set additional rules for playing videos. You can set the domains/hostnames allowed to play your videos. For instance, viewers can play videos embedded on the `https://example.com` website when you set the Playback Restrictions with `example.com` as an allowed domain. Any Video requests from other websites are denied. Additionally, you can set rules for what user agents to allow. Please see [Using User-Agent HTTP header for validation](https://docs.mux.com/guides/secure-video-playback#using-user-agent-http-header-for-validation) for more details on this feature.
+ */
 export class PlaybackRestrictions extends APIResource {
   /**
    * Create a new Playback Restriction.

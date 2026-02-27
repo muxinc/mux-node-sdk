@@ -8,6 +8,11 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * An asset refers to a piece of media content that is stored or is being live streamed through the Mux system. An asset always has a duration and one or more tracks (audio, video, and text data).
+ *
+ * The media content of an asset cannot be updated once created, however an asset can be used to create another asset, and can be modified within that process.
+ */
 export class Assets extends APIResource {
   /**
    * Create a new Mux Video asset.

@@ -6,6 +6,9 @@ import { BasePage, type BasePageParams, PagePromise } from '../../core/paginatio
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * An individual video view tracked by Mux Data. For the full list of properties for each view please refer to the table of data fields in the [Export raw video view data guide](https://docs.mux.com/guides/export-raw-video-view-data).
+ */
 export class VideoViews extends APIResource {
   /**
    * Returns the details of a video view.

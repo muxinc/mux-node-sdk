@@ -4,6 +4,11 @@ import { APIResource } from '../../core/resource';
 import { PagePromise, PageWithTotal, type PageWithTotalParams } from '../../core/pagination';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * The Delivery Usage API allows you to get delivery/streaming usage details for each asset and across all assets. Delivery usage details are aggregated every hour at the top of the hour and can be requested for a specified time window within the last 90 days starting at 12 hours prior to when the request is made.
+ *
+ * Assets are ordered by delivery usage starting with the one with the highest usage. Only assets with delivery usage greater than 0 seconds are returned in the response.
+ */
 export class DeliveryUsage extends APIResource {
   /**
    * Returns a list of delivery usage records and their associated Asset IDs or Live

@@ -7,6 +7,11 @@ import { BasePage, type BasePageParams, PagePromise } from '../../core/paginatio
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * Direct upload allows you to push assets directly to Mux storage instead of needing to go through your own first. When you create a new direct upload, we'll give you back a signed URL for a Google Cloud Storage bucket. Their storage API is S3 compatible, so whatever tool you use to upload to either GCS or S3 should work, just remember you're probably uploading large video files and should [take advantage of things like resumable or multipart uploads](https://cloud.google.com/storage/docs/json_api/v1/how-tos/resumable-upload).
+ *
+ * Particularly for customers that deal with a lot of user-generated content, it's common to expect quite a few abandoned uploads. To keep those abandoned uploads from cluttering up your asset lists, we don't create an asset for you until the upload is complete. Once that asset is created, you can expect all of the normal asset-related webhooks.
+ */
 export class Uploads extends APIResource {
   /**
    * Creates a new direct upload, through which video content can be uploaded for

@@ -4,6 +4,9 @@ import { APIResource } from '../../core/resource';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * Collection of utility methods for using Mux APIs. There's only one thing in here right now, maybe there will be more later.
+ */
 export class Utilities extends APIResource {
   /**
    * Retrieve information about your current access token, including organization,

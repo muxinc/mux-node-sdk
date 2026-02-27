@@ -6,6 +6,9 @@ import { BasePage, type BasePageParams, PagePromise } from '../../core/paginatio
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * Incidents occur when an anomaly alert is triggered in Mux Data. The Incidents API provides operations related to the raising and managing of alerting incidents.
+ */
 export class Incidents extends APIResource {
   /**
    * Returns the details of an incident.

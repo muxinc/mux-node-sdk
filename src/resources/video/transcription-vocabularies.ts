@@ -7,6 +7,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * Transcription Vocabularies allows you to provide collections of phrases like proper nouns, technical jargon, and uncommon words as part of captioning workflows. When using Auto-Generated Captions, Transcription Vocabularies increase the likelihood of correct speech recognition for these words and phrases.
+ */
 export class TranscriptionVocabularies extends APIResource {
   /**
    * Create a new Transcription Vocabulary.

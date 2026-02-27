@@ -5,6 +5,11 @@ import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * The Mux Data Real-time API has been deprecated, please refer to the
+ * Mux Data `Monitoring` APIs which provide the same functionality.
+ * Mux Data Monitoring metrics are available to Mux Data customers on a Media plan.
+ */
 export class RealTime extends APIResource {
   /**
    * Lists available real-time dimensions. This API is now deprecated, please use the

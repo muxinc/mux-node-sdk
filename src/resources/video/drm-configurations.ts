@@ -6,6 +6,9 @@ import { BasePage, type BasePageParams, PagePromise } from '../../core/paginatio
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * DRM Configurations allow you to adjust the security level of content delivered through Mux Video's Digital Rights Management (DRM) feature.
+ */
 export class DRMConfigurations extends APIResource {
   /**
    * Retrieves a single DRM Configuration.

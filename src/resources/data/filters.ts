@@ -5,6 +5,9 @@ import { BasePage, type BasePageParams, PagePromise } from '../../core/paginatio
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * Deprecated, please refer to the Dimensions APIs.
+ */
 export class Filters extends APIResource {
   /**
    * The API has been replaced by the list-dimension-values API call.

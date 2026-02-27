@@ -17,6 +17,17 @@ import {
 import { APIPromise } from '../../../core/api-promise';
 import { RequestOptions } from '../../../internal/request-options';
 
+/**
+ * Monitoring metrics are used for operational monitoring of a video platform.
+ * The metrics are aggregated in five second intervals, across the views that
+ * are currently being watched. The real-time metrics' timeline, breakdown,
+ * and histogram representations are available via the APIs.
+ *
+ * Monitoring metrics are similar but not directly comparable to the historical
+ * metrics in the Metrics APIs. These metrics are aggregated to provide the most
+ * operational detail possible used for resolving operational issues.
+ * Mux Data Monitoring metrics are available to Mux Data customers on a Media plan.
+ */
 export class Monitoring extends APIResource {
   metrics: MetricsAPI.Metrics = new MetricsAPI.Metrics(this._client);
 

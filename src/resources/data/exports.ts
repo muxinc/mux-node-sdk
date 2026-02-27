@@ -4,6 +4,9 @@ import { APIResource } from '../../core/resource';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * Exports allow you to download the daily CSV files that are generated from the video views that occurred in the previous day. Please contact [support](mailto:support@mux.com) for information about enabling exports for your organization.
+ */
 export class Exports extends APIResource {
   /**
    * Lists the available video view exports along with URLs to retrieve them.

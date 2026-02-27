@@ -7,6 +7,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * Signing keys are used to sign JSON Web Tokens (JWTs) for securing certain requests, such as secure playback URLs and access to real-time viewer counts in Mux Data. **One signing key can be used to sign multiple requests - you probably only need one active at a time.** However, you can create multiple signing keys to enable key rotation, creating a new key and deleting the old only after any existing signed requests have expired.
+ */
 export class SigningKeys extends APIResource {
   /**
    * Creates a new signing key pair. When creating a new signing key, the API will

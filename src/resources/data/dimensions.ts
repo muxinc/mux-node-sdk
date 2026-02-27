@@ -6,6 +6,9 @@ import { BasePage, type BasePageParams, PagePromise } from '../../core/paginatio
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * Dimensions are the types of metadata that can be collected for a video view. Some dimensions are collected automatically based on the playback or device, such as the viewer's Country or the device information. Other dimensions are specified by the developer when configuring a Mux Data video view such as the video title. The Dimensions APIs allow you to get a list of the supported dimensions and their values.
+ */
 export class Dimensions extends APIResource {
   /**
    * List all available dimensions.

@@ -7,6 +7,9 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * Annotations allow you to add notes at a specific datetime to view in the Mux Data dashboard.
+ */
 export class Annotations extends APIResource {
   /**
    * Creates a new annotation.

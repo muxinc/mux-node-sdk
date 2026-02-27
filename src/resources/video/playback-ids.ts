@@ -6,6 +6,9 @@ import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * Operations related to the manipulation of playback IDs, through which users are able to stream videos and live streams from Mux.
+ */
 export class PlaybackIDs extends APIResource {
   /**
    * Retrieves the Identifier of the Asset or Live Stream associated with the

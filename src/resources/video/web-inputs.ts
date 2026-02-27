@@ -7,6 +7,11 @@ import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * Note: Web Inputs are currently in beta. Please [reach out to us](mailto:help@mux.com) if you're interested in using them.
+ *
+ * Web Inputs are Mux-managed web browsers that you can use to broadcast visually compelling live streams from any web page you build.
+ */
 export class WebInputs extends APIResource {
   /**
    * Create a new Web Input

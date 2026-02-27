@@ -6,6 +6,21 @@ import { BasePage, type BasePageParams, PagePromise } from '../../core/paginatio
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
+/**
+ * Historical metrics are used for tracking KPIs, diagnosing issues, and
+ * measuring viewers' quality of experience. Metrics are calculated using the
+ * video views that have been completed and are bucketed on the view end time
+ * for quality of experience metrics and view start time for engagement
+ * metrics. Historical metrics provide a large collection of dimensions that
+ * can be used to aggregate quality of experience based on view metadata. You
+ * can also easily compare experiences across viewer populations to, for
+ * example, find issues with specific devices or geographies.
+ *
+ * Historical metrics are similar but not directly comparable to the real-time
+ * metrics in the Real-time APIs. These metrics are aggregated for long-term
+ * storage historical reporting and are generated using different viewer
+ * populations.
+ */
 export class Metrics extends APIResource {
   /**
    * List all of the values across every breakdown for a specific metric.
