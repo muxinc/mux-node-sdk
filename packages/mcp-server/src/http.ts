@@ -5,9 +5,10 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 import { ClientOptions } from '@mux/mux-node';
 import cors from 'cors';
 import express from 'express';
-import morgan from 'morgan';
-import morganBody from 'morgan-body';
+import pino from 'pino';
+import pinoHttp from 'pino-http';
 import { getStainlessApiKey, parseClientAuthHeaders } from './auth';
+import { getLogger } from './logger';
 import { McpOptions } from './options';
 import { initMcpServer, newMcpServer } from './server';
 
@@ -106,29 +107,60 @@ const oauthMetadata = (req: express.Request, res: express.Response) => {
   });
 };
 
+const redactHeaders = (headers: Record<string, any>) => {
+  const hiddenHeaders = /auth|cookie|key|token/i;
+  const filtered = { ...headers };
+  Object.keys(filtered).forEach((key) => {
+    if (hiddenHeaders.test(key)) {
+      filtered[key] = '[REDACTED]';
+    }
+  });
+  return filtered;
+};
+
 export const streamableHTTPApp = ({
   clientOptions = {},
   mcpOptions,
-  debug,
 }: {
   clientOptions?: ClientOptions;
   mcpOptions: McpOptions;
-  debug: boolean;
 }): express.Express => {
   const app = express();
   app.set('query parser', 'extended');
   app.use(express.json());
-
-  if (debug) {
-    morganBody(app, {
-      logAllReqHeader: true,
-      logAllResHeader: true,
-      logRequestBody: true,
-      logResponseBody: true,
-    });
-  } else {
-    app.use(morgan('combined'));
-  }
+  app.use(
+    pinoHttp({
+      logger: getLogger(),
+      customLogLevel: (req, res) => {
+        if (res.statusCode >= 500) {
+          return 'error';
+        } else if (res.statusCode >= 400) {
+          return 'warn';
+        }
+        return 'info';
+      },
+      customSuccessMessage: function (req, res) {
+        return `Request ${req.method} to ${req.url} completed with status ${res.statusCode}`;
+      },
+      customErrorMessage: function (req, res, err) {
+        return `Request ${req.method} to ${req.url} errored with status ${res.statusCode}`;
+      },
+      serializers: {
+        req: pino.stdSerializers.wrapRequestSerializer((req) => {
+          return {
+            ...req,
+            headers: redactHeaders(req.raw.headers),
+          };
+        }),
+        res: pino.stdSerializers.wrapResponseSerializer((res) => {
+          return {
+            ...res,
+            headers: redactHeaders(res.headers),
+          };
+        }),
+      },
+    }),
+  );
 
   app.get('/.well-known/oauth-protected-resource', cors(), oauthMetadata);
 
@@ -144,22 +176,22 @@ export const streamableHTTPApp = ({
 
 export const launchStreamableHTTPServer = async ({
   mcpOptions,
-  debug,
   port,
 }: {
   mcpOptions: McpOptions;
-  debug: boolean;
   port: number | string | undefined;
 }) => {
-  const app = streamableHTTPApp({ mcpOptions, debug });
+  const app = streamableHTTPApp({ mcpOptions });
   const server = app.listen(port);
   const address = server.address();
 
+  const logger = getLogger();
+
   if (typeof address === 'string') {
-    console.error(`MCP Server running on streamable HTTP at ${address}`);
+    logger.info(`MCP Server running on streamable HTTP at ${address}`);
   } else if (address !== null) {
-    console.error(`MCP Server running on streamable HTTP on port ${address.port}`);
+    logger.info(`MCP Server running on streamable HTTP on port ${address.port}`);
   } else {
-    console.error(`MCP Server running on streamable HTTP on port ${port}`);
+    logger.info(`MCP Server running on streamable HTTP on port ${port}`);
   }
 };
