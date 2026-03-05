@@ -155,7 +155,7 @@ const remoteStainlessHandler = async ({
     headers: {
       ...(reqContext.stainlessApiKey && { Authorization: reqContext.stainlessApiKey }),
       'Content-Type': 'application/json',
-      client_envs: JSON.stringify({
+      'x-stainless-mcp-client-envs': JSON.stringify({
         MUX_TOKEN_ID: readEnv('MUX_TOKEN_ID') ?? client.tokenID ?? undefined,
         MUX_TOKEN_SECRET: readEnv('MUX_TOKEN_SECRET') ?? client.tokenSecret ?? undefined,
         MUX_WEBHOOK_SECRET: readEnv('MUX_WEBHOOK_SECRET') ?? client.webhookSecret ?? undefined,
