@@ -8214,7 +8214,7 @@ interface Ai_Cf_Deepgram_Flux_Input {
     tag?: string;
 }
 /**
- * Output will be returned as websocket messages.
+ * Output will be returned as WebSocket messages.
  */
 interface Ai_Cf_Deepgram_Flux_Output {
     /**
@@ -8428,7 +8428,7 @@ type AiOptions = {
      */
     queueRequest?: boolean;
     /**
-     * Establish websocket connections, only works for supported models
+     * Establish WebSocket connections, only works for supported models
      */
     websocket?: boolean;
     /**
@@ -9372,7 +9372,7 @@ interface IncomingRequestCfPropertiesTLSClientAuthPlaceholder {
     certNotAfter: "";
 }
 /** Possible outcomes of TLS verification */
-declare type CertVerificationStatus = 
+declare type CertVerificationStatus =
 /** Authentication succeeded */
 "SUCCESS"
 /** No certificate was presented */
@@ -9440,7 +9440,7 @@ interface D1ExecResult {
     count: number;
     duration: number;
 }
-type D1SessionConstraint = 
+type D1SessionConstraint =
 // Indicates that the first query should go to the primary, and the rest queries
 // using the same D1DatabaseSession will go to any replica that is consistent with
 // the bookmark maintained by the session (returned by the first query).
@@ -10061,7 +10061,7 @@ declare namespace Rpc {
     // The reason for using a generic type here is to build a serializable subset of structured
     //   cloneable composite types. This allows types defined with the "interface" keyword to pass the
     //   serializable check as well. Otherwise, only types defined with the "type" keyword would pass.
-    type Serializable<T> = 
+    type Serializable<T> =
     // Structured cloneables
     BaseType
     // Structured cloneable composites
@@ -10435,7 +10435,7 @@ declare namespace TailStream {
     }
     // This marks the worker handler return information.
     // This is separate from Outcome because the worker invocation can live for a long time after
-    // returning. For example - Websockets that return an http upgrade response but then continue
+    // returning. For example - WebSockets that return an http upgrade response but then continue
     // streaming information or SSE http connections.
     interface Return {
         readonly type: "return";
