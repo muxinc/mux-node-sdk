@@ -54,6 +54,19 @@ const newServer = async ({
     return null;
   }
 
+  let upstreamClientEnvs: Record<string, string> | undefined;
+  const clientEnvsHeader = req.headers['x-stainless-mcp-client-envs'];
+  if (typeof clientEnvsHeader === 'string') {
+    try {
+      const parsed = JSON.parse(clientEnvsHeader);
+      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+        upstreamClientEnvs = parsed;
+      }
+    } catch {
+      // Ignore malformed header
+    }
+  }
+
   await initMcpServer({
     server: server,
     mcpOptions: mcpOptions,
@@ -62,6 +75,7 @@ const newServer = async ({
       ...authOptions,
     },
     stainlessApiKey: stainlessApiKey,
+    upstreamClientEnvs,
   });
 
   return server;
@@ -108,7 +122,7 @@ const oauthMetadata = (req: express.Request, res: express.Response) => {
 };
 
 const redactHeaders = (headers: Record<string, any>) => {
-  const hiddenHeaders = /auth|cookie|key|token/i;
+  const hiddenHeaders = /auth|cookie|key|token|x-stainless-mcp-client-envs/i;
   const filtered = { ...headers };
   Object.keys(filtered).forEach((key) => {
     if (hiddenHeaders.test(key)) {
