@@ -287,20 +287,20 @@ const localDenoHandler = async ({
 
       // Strip null/undefined values so that the worker SDK client can fall back to
       // reading from environment variables (including any upstreamClientEnvs).
-      const opts: ClientOptions = Object.fromEntries(
-        Object.entries({
-          baseURL: client.baseURL,
-          tokenID: client.tokenID,
-          tokenSecret: client.tokenSecret,
-          webhookSecret: client.webhookSecret,
-          jwtSigningKey: client.jwtSigningKey,
-          jwtPrivateKey: client.jwtPrivateKey,
-          authorizationToken: client.authorizationToken,
-          defaultHeaders: {
-            'X-Stainless-MCP': 'true',
-          },
-        }).filter(([_, v]) => v != null),
-      ) as ClientOptions;
+      const opts = {
+        ...(client.baseURL != null ? { baseURL: client.baseURL } : undefined),
+        ...(client.tokenID != null ? { tokenID: client.tokenID } : undefined),
+        ...(client.tokenSecret != null ? { tokenSecret: client.tokenSecret } : undefined),
+        ...(client.webhookSecret != null ? { webhookSecret: client.webhookSecret } : undefined),
+        ...(client.jwtSigningKey != null ? { jwtSigningKey: client.jwtSigningKey } : undefined),
+        ...(client.jwtPrivateKey != null ? { jwtPrivateKey: client.jwtPrivateKey } : undefined),
+        ...(client.authorizationToken != null ?
+          { authorizationToken: client.authorizationToken }
+        : undefined),
+        defaultHeaders: {
+          'X-Stainless-MCP': 'true',
+        },
+      } satisfies Partial<ClientOptions> as ClientOptions;
 
       const req = worker.request(
         'http://localhost',
