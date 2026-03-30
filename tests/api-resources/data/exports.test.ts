@@ -3,7 +3,7 @@
 import Mux from '@mux/mux-node';
 
 const client = new Mux({
-  tokenID: 'my token id',
+  tokenId: 'my token id',
   tokenSecret: 'my secret',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });

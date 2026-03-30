@@ -23,7 +23,7 @@ describe('instantiate client', () => {
     const client = new Mux({
       baseURL: 'http://localhost:5000/',
       defaultHeaders: { 'X-My-Default-Header': '2' },
-      tokenID: 'my token id',
+      tokenId: 'my token id',
       tokenSecret: 'my secret',
     });
 
@@ -91,7 +91,7 @@ describe('instantiate client', () => {
       const client = new Mux({
         logger: logger,
         logLevel: 'debug',
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
 
@@ -100,7 +100,7 @@ describe('instantiate client', () => {
     });
 
     test('default logLevel is warn', async () => {
-      const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
+      const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
       expect(client.logLevel).toBe('warn');
     });
 
@@ -116,7 +116,7 @@ describe('instantiate client', () => {
       const client = new Mux({
         logger: logger,
         logLevel: 'info',
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
 
@@ -136,7 +136,7 @@ describe('instantiate client', () => {
       process.env['MUX_LOG'] = 'debug';
       const client = new Mux({
         logger: logger,
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.logLevel).toBe('debug');
@@ -157,7 +157,7 @@ describe('instantiate client', () => {
       process.env['MUX_LOG'] = 'not a log level';
       const client = new Mux({
         logger: logger,
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.logLevel).toBe('warn');
@@ -179,7 +179,7 @@ describe('instantiate client', () => {
       const client = new Mux({
         logger: logger,
         logLevel: 'off',
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
 
@@ -200,7 +200,7 @@ describe('instantiate client', () => {
       const client = new Mux({
         logger: logger,
         logLevel: 'debug',
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.logLevel).toBe('debug');
@@ -213,7 +213,7 @@ describe('instantiate client', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo' },
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo');
@@ -223,7 +223,7 @@ describe('instantiate client', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo', hello: 'world' },
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo&hello=world');
@@ -233,7 +233,7 @@ describe('instantiate client', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { hello: 'world' },
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', { hello: undefined })).toEqual('http://localhost:5000/foo');
@@ -243,7 +243,7 @@ describe('instantiate client', () => {
   test('custom fetch', async () => {
     const client = new Mux({
       baseURL: 'http://localhost:5000/',
-      tokenID: 'my token id',
+      tokenId: 'my token id',
       tokenSecret: 'my secret',
       fetch: (url) => {
         return Promise.resolve(
@@ -262,7 +262,7 @@ describe('instantiate client', () => {
     // make sure the global fetch type is assignable to our Fetch type
     const client = new Mux({
       baseURL: 'http://localhost:5000/',
-      tokenID: 'my token id',
+      tokenId: 'my token id',
       tokenSecret: 'my secret',
       fetch: defaultFetch,
     });
@@ -271,7 +271,7 @@ describe('instantiate client', () => {
   test('custom signal', async () => {
     const client = new Mux({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-      tokenID: 'my token id',
+      tokenId: 'my token id',
       tokenSecret: 'my secret',
       fetch: (...args) => {
         return new Promise((resolve, reject) =>
@@ -304,7 +304,7 @@ describe('instantiate client', () => {
 
     const client = new Mux({
       baseURL: 'http://localhost:5000/',
-      tokenID: 'my token id',
+      tokenId: 'my token id',
       tokenSecret: 'my secret',
       fetch: testFetch,
     });
@@ -317,7 +317,7 @@ describe('instantiate client', () => {
     test('trailing slash', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/custom/path/',
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
@@ -326,7 +326,7 @@ describe('instantiate client', () => {
     test('no trailing slash', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/custom/path',
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
@@ -339,7 +339,7 @@ describe('instantiate client', () => {
     test('explicit option', () => {
       const client = new Mux({
         baseURL: 'https://example.com',
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
       expect(client.baseURL).toEqual('https://example.com');
@@ -347,24 +347,24 @@ describe('instantiate client', () => {
 
     test('env variable', () => {
       process.env['MUX_BASE_URL'] = 'https://example.com/from_env';
-      const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
+      const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
       expect(client.baseURL).toEqual('https://example.com/from_env');
     });
 
     test('empty env variable', () => {
       process.env['MUX_BASE_URL'] = ''; // empty
-      const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
+      const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
       expect(client.baseURL).toEqual('https://api.mux.com');
     });
 
     test('blank env variable', () => {
       process.env['MUX_BASE_URL'] = '  '; // blank
-      const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
+      const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
       expect(client.baseURL).toEqual('https://api.mux.com');
     });
 
     test('in request options', () => {
-      const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
+      const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
       expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
         'http://localhost:5000/option/foo',
       );
@@ -372,7 +372,7 @@ describe('instantiate client', () => {
 
     test('in request options overridden by client options', () => {
       const client = new Mux({
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
         baseURL: 'http://localhost:5000/client',
       });
@@ -383,7 +383,7 @@ describe('instantiate client', () => {
 
     test('in request options overridden by env variable', () => {
       process.env['MUX_BASE_URL'] = 'http://localhost:5000/env';
-      const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
+      const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
       expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
         'http://localhost:5000/env/foo',
       );
@@ -393,13 +393,13 @@ describe('instantiate client', () => {
   test('maxRetries option is correctly set', () => {
     const client = new Mux({
       maxRetries: 4,
-      tokenID: 'my token id',
+      tokenId: 'my token id',
       tokenSecret: 'my secret',
     });
     expect(client.maxRetries).toEqual(4);
 
     // default
-    const client2 = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
+    const client2 = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
     expect(client2.maxRetries).toEqual(2);
   });
 
@@ -408,7 +408,7 @@ describe('instantiate client', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/',
         maxRetries: 3,
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
 
@@ -435,7 +435,7 @@ describe('instantiate client', () => {
         baseURL: 'http://localhost:5000/',
         defaultHeaders: { 'X-Test-Header': 'test-value' },
         defaultQuery: { 'test-param': 'test-value' },
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
 
@@ -454,7 +454,7 @@ describe('instantiate client', () => {
       const client = new Mux({
         baseURL: 'http://localhost:5000/',
         timeout: 1000,
-        tokenID: 'my token id',
+        tokenId: 'my token id',
         tokenSecret: 'my secret',
       });
 
@@ -487,7 +487,7 @@ describe('instantiate client', () => {
     process.env['MUX_TOKEN_ID'] = 'my token id';
     process.env['MUX_TOKEN_SECRET'] = 'my secret';
     const client = new Mux();
-    expect(client.tokenID).toBe('my token id');
+    expect(client.tokenId).toBe('my token id');
     expect(client.tokenSecret).toBe('my secret');
   });
 
@@ -495,14 +495,14 @@ describe('instantiate client', () => {
     // set options via env var
     process.env['MUX_TOKEN_ID'] = 'another my token id';
     process.env['MUX_TOKEN_SECRET'] = 'another my secret';
-    const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
-    expect(client.tokenID).toBe('my token id');
+    const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
+    expect(client.tokenId).toBe('my token id');
     expect(client.tokenSecret).toBe('my secret');
   });
 });
 
 describe('request building', () => {
-  const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
+  const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
 
   describe('custom headers', () => {
     test('handles undefined', async () => {
@@ -521,7 +521,7 @@ describe('request building', () => {
 });
 
 describe('default encoder', () => {
-  const client = new Mux({ tokenID: 'my token id', tokenSecret: 'my secret' });
+  const client = new Mux({ tokenId: 'my token id', tokenSecret: 'my secret' });
 
   class Serializable {
     toJSON() {
@@ -607,7 +607,7 @@ describe('retries', () => {
     };
 
     const client = new Mux({
-      tokenID: 'my token id',
+      tokenId: 'my token id',
       tokenSecret: 'my secret',
       timeout: 10,
       fetch: testFetch,
@@ -642,7 +642,7 @@ describe('retries', () => {
     };
 
     const client = new Mux({
-      tokenID: 'my token id',
+      tokenId: 'my token id',
       tokenSecret: 'my secret',
       fetch: testFetch,
       maxRetries: 4,
@@ -671,7 +671,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
     const client = new Mux({
-      tokenID: 'my token id',
+      tokenId: 'my token id',
       tokenSecret: 'my secret',
       fetch: testFetch,
       maxRetries: 4,
@@ -705,7 +705,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
     const client = new Mux({
-      tokenID: 'my token id',
+      tokenId: 'my token id',
       tokenSecret: 'my secret',
       fetch: testFetch,
       maxRetries: 4,
@@ -739,7 +739,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
     const client = new Mux({
-      tokenID: 'my token id',
+      tokenId: 'my token id',
       tokenSecret: 'my secret',
       fetch: testFetch,
       maxRetries: 4,
@@ -774,7 +774,7 @@ describe('retries', () => {
     };
 
     const client = new Mux({
-      tokenID: 'my token id',
+      tokenId: 'my token id',
       tokenSecret: 'my secret',
       fetch: testFetch,
     });
@@ -808,7 +808,7 @@ describe('retries', () => {
     };
 
     const client = new Mux({
-      tokenID: 'my token id',
+      tokenId: 'my token id',
       tokenSecret: 'my secret',
       fetch: testFetch,
     });

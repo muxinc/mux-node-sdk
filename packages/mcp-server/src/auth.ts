@@ -12,7 +12,7 @@ export const parseClientAuthHeaders = (req: IncomingMessage, required?: boolean)
       case 'Basic':
         const rawValue = Buffer.from(value, 'base64').toString();
         return {
-          tokenID: rawValue.slice(0, rawValue.search(':')),
+          tokenId: rawValue.slice(0, rawValue.search(':')),
           tokenSecret: rawValue.slice(rawValue.search(':') + 1),
         };
       case 'Bearer':
@@ -26,7 +26,7 @@ export const parseClientAuthHeaders = (req: IncomingMessage, required?: boolean)
     throw new Error('Missing required Authorization header; see WWW-Authenticate header for details.');
   }
 
-  const tokenID =
+  const tokenId =
     Array.isArray(req.headers['x-mux-token-id']) ?
       req.headers['x-mux-token-id'][0]
     : req.headers['x-mux-token-id'];
@@ -38,7 +38,7 @@ export const parseClientAuthHeaders = (req: IncomingMessage, required?: boolean)
     Array.isArray(req.headers['x-mux-authorization-token']) ?
       req.headers['x-mux-authorization-token'][0]
     : req.headers['x-mux-authorization-token'];
-  return { tokenID, tokenSecret, authorizationToken };
+  return { tokenId, tokenSecret, authorizationToken };
 };
 
 export const getStainlessApiKey = (req: IncomingMessage, mcpOptions: McpOptions): string | undefined => {

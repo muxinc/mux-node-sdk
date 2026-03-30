@@ -145,7 +145,7 @@ const remoteStainlessHandler = async ({
   const codeModeEndpoint = readEnv('CODE_MODE_ENDPOINT_URL') ?? 'https://api.stainless.com/api/ai/code-tool';
 
   const localClientEnvs = {
-    MUX_TOKEN_ID: readEnv('MUX_TOKEN_ID') ?? client.tokenID ?? undefined,
+    MUX_TOKEN_ID: readEnv('MUX_TOKEN_ID') ?? client.tokenId ?? undefined,
     MUX_TOKEN_SECRET: readEnv('MUX_TOKEN_SECRET') ?? client.tokenSecret ?? undefined,
     MUX_WEBHOOK_SECRET: readEnv('MUX_WEBHOOK_SECRET') ?? client.webhookSecret ?? undefined,
     MUX_SIGNING_KEY: readEnv('MUX_SIGNING_KEY') ?? client.jwtSigningKey ?? undefined,
@@ -289,7 +289,7 @@ const localDenoHandler = async ({
       // reading from environment variables (including any upstreamClientEnvs).
       const opts = {
         ...(client.baseURL != null ? { baseURL: client.baseURL } : undefined),
-        ...(client.tokenID != null ? { tokenID: client.tokenID } : undefined),
+        ...(client.tokenId != null ? { tokenId: client.tokenId } : undefined),
         ...(client.tokenSecret != null ? { tokenSecret: client.tokenSecret } : undefined),
         ...(client.webhookSecret != null ? { webhookSecret: client.webhookSecret } : undefined),
         ...(client.jwtSigningKey != null ? { jwtSigningKey: client.jwtSigningKey } : undefined),

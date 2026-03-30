@@ -83,7 +83,7 @@ Authorization can be provided via the `Authorization` header using the Basic or 
 Additionally, authorization can be provided via the following headers:
 | Header | Equivalent client option | Security scheme |
 | --------------------------- | ------------------------ | ------------------ |
-| `x-mux-token-id` | `tokenID` | accessToken |
+| `x-mux-token-id` | `tokenId` | accessToken |
 | `x-mux-token-secret` | `tokenSecret` | accessToken |
 | `x-mux-authorization-token` | `authorizationToken` | authorizationToken |
 
