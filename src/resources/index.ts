@@ -2,6 +2,7 @@
 
 export * from './shared';
 export { Data } from './data/data';
+export { Robots } from './robots/robots';
 export { System } from './system/system';
 export { Video } from './video/video';
 export { Webhooks } from './webhooks';

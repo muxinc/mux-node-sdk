@@ -112,6 +112,7 @@ client.example.list(undefined, { headers: { ... } });
 - `client.video.playback.hls()`
 - `client.video.playback.storyboardMeta()`
 - `client.video.playback.storyboardVtt()`
+- `client.robots.jobs.list()`
 - `client.data.dimensions.listTraceElements()`
 - `client.data.dimensions.listValues()`
 - `client.data.monitoring.metrics.getBreakdown()`
