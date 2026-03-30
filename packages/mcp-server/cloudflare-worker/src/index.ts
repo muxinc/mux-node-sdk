@@ -19,7 +19,7 @@ const serverConfig: ServerConfig = {
   clientProperties: [
     {
       key: 'tokenId',
-      label: 'Token Id',
+      label: 'Token ID',
       description: '',
       required: false,
       default: null,
