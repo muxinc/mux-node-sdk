@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../core/resource';
+import * as JobsAPI from './jobs';
 import { APIPromise } from '../../../core/api-promise';
 import { RequestOptions } from '../../../internal/request-options';
 import { path } from '../../../internal/utils/path';
@@ -66,7 +67,7 @@ export interface ModerateJob {
   /**
    * Current job status.
    */
-  status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled';
+  status: JobsAPI.JobStatus;
 
   /**
    * Unix timestamp (seconds) when the job was last updated.
@@ -78,14 +79,14 @@ export interface ModerateJob {
   /**
    * Error details. Present when status is 'errored'.
    */
-  errors?: Array<ModerateJob.Error>;
+  errors?: Array<JobsAPI.JobError>;
 
   /**
    * Workflow results. Present when status is 'completed'.
    */
-  outputs?: ModerateJob.Outputs;
+  outputs?: ModerateJobOutputs;
 
-  parameters?: ModerateJob.Parameters;
+  parameters?: ModerateJobParameters;
 
   /**
    * Arbitrary string supplied at creation, returned as-is.
@@ -99,110 +100,6 @@ export interface ModerateJob {
 }
 
 export namespace ModerateJob {
-  export interface Error {
-    /**
-     * Human-readable error message.
-     */
-    message: string;
-
-    /**
-     * Error category identifier.
-     */
-    type: string;
-  }
-
-  /**
-   * Workflow results. Present when status is 'completed'.
-   */
-  export interface Outputs {
-    /**
-     * True if any category's max score exceeds its configured threshold.
-     */
-    exceeds_threshold: boolean;
-
-    /**
-     * Highest scores across all thumbnails for each category.
-     */
-    max_scores: Outputs.MaxScores;
-
-    /**
-     * Per-thumbnail moderation scores.
-     */
-    thumbnail_scores: Array<Outputs.ThumbnailScore>;
-  }
-
-  export namespace Outputs {
-    /**
-     * Highest scores across all thumbnails for each category.
-     */
-    export interface MaxScores {
-      sexual: number;
-
-      violence: number;
-    }
-
-    export interface ThumbnailScore {
-      /**
-       * Sexual content score from 0.0 to 1.0.
-       */
-      sexual: number;
-
-      /**
-       * Violence content score from 0.0 to 1.0.
-       */
-      violence: number;
-    }
-  }
-
-  export interface Parameters {
-    /**
-     * The Mux asset ID of the video to moderate.
-     */
-    asset_id: string;
-
-    /**
-     * Language code for transcript analysis on audio-only assets. Defaults to "en".
-     */
-    language_code?: string;
-
-    /**
-     * Maximum number of thumbnails to sample. When set, samples are distributed evenly
-     * across the video with the first and last frames pinned.
-     */
-    max_samples?: number;
-
-    /**
-     * Interval in seconds between sampled thumbnails. Minimum 5.
-     */
-    sampling_interval?: number;
-
-    /**
-     * Score thresholds that determine whether content is flagged. Defaults to {sexual:
-     * 0.7, violence: 0.8}.
-     */
-    thresholds?: Parameters.Thresholds;
-  }
-
-  export namespace Parameters {
-    /**
-     * Score thresholds that determine whether content is flagged. Defaults to {sexual:
-     * 0.7, violence: 0.8}.
-     */
-    export interface Thresholds {
-      /**
-       * Score threshold for sexual content. Content scoring above this value triggers
-       * exceeds_threshold.
-       */
-      sexual?: number;
-
-      /**
-       * Score threshold for violent content. Content scoring above this value triggers
-       * exceeds_threshold.
-       */
-      violence?: number;
-    }
-  }
-
   /**
    * Related Mux resources linked to this job.
    */
@@ -276,8 +173,100 @@ export namespace ModerateJob {
   }
 }
 
+/**
+ * Workflow results. Present when status is 'completed'.
+ */
+export interface ModerateJobOutputs {
+  /**
+   * True if any category's max score exceeds its configured threshold.
+   */
+  exceeds_threshold: boolean;
+
+  /**
+   * Highest scores across all thumbnails for each category.
+   */
+  max_scores: ModerateJobOutputs.MaxScores;
+
+  /**
+   * Per-thumbnail moderation scores.
+   */
+  thumbnail_scores: Array<ModerateJobOutputs.ThumbnailScore>;
+}
+
+export namespace ModerateJobOutputs {
+  /**
+   * Highest scores across all thumbnails for each category.
+   */
+  export interface MaxScores {
+    sexual: number;
+
+    violence: number;
+  }
+
+  export interface ThumbnailScore {
+    /**
+     * Sexual content score from 0.0 to 1.0.
+     */
+    sexual: number;
+
+    /**
+     * Violence content score from 0.0 to 1.0.
+     */
+    violence: number;
+  }
+}
+
+export interface ModerateJobParameters {
+  /**
+   * The Mux asset ID of the video to moderate.
+   */
+  asset_id: string;
+
+  /**
+   * Language code for transcript analysis on audio-only assets. Defaults to "en".
+   */
+  language_code?: string;
+
+  /**
+   * Maximum number of thumbnails to sample. When set, samples are distributed evenly
+   * across the video with the first and last frames pinned.
+   */
+  max_samples?: number;
+
+  /**
+   * Interval in seconds between sampled thumbnails. Minimum 5.
+   */
+  sampling_interval?: number;
+
+  /**
+   * Score thresholds that determine whether content is flagged. Defaults to {sexual:
+   * 0.7, violence: 0.8}.
+   */
+  thresholds?: ModerateJobParameters.Thresholds;
+}
+
+export namespace ModerateJobParameters {
+  /**
+   * Score thresholds that determine whether content is flagged. Defaults to {sexual:
+   * 0.7, violence: 0.8}.
+   */
+  export interface Thresholds {
+    /**
+     * Score threshold for sexual content. Content scoring above this value triggers
+     * exceeds_threshold.
+     */
+    sexual?: number;
+
+    /**
+     * Score threshold for violent content. Content scoring above this value triggers
+     * exceeds_threshold.
+     */
+    violence?: number;
+  }
+}
+
 export interface ModerateCreateParams {
-  parameters: ModerateCreateParams.Parameters;
+  parameters: ModerateJobParameters;
 
   /**
    * Arbitrary string stored with the job and returned in responses. Useful for
@@ -286,57 +275,11 @@ export interface ModerateCreateParams {
   passthrough?: string;
 }
 
-export namespace ModerateCreateParams {
-  export interface Parameters {
-    /**
-     * The Mux asset ID of the video to moderate.
-     */
-    asset_id: string;
-
-    /**
-     * Language code for transcript analysis on audio-only assets. Defaults to "en".
-     */
-    language_code?: string;
-
-    /**
-     * Maximum number of thumbnails to sample. When set, samples are distributed evenly
-     * across the video with the first and last frames pinned.
-     */
-    max_samples?: number;
-
-    /**
-     * Interval in seconds between sampled thumbnails. Minimum 5.
-     */
-    sampling_interval?: number;
-
-    /**
-     * Score thresholds that determine whether content is flagged. Defaults to {sexual:
-     * 0.7, violence: 0.8}.
-     */
-    thresholds?: Parameters.Thresholds;
-  }
-
-  export namespace Parameters {
-    /**
-     * Score thresholds that determine whether content is flagged. Defaults to {sexual:
-     * 0.7, violence: 0.8}.
-     */
-    export interface Thresholds {
-      /**
-       * Score threshold for sexual content. Content scoring above this value triggers
-       * exceeds_threshold.
-       */
-      sexual?: number;
-
-      /**
-       * Score threshold for violent content. Content scoring above this value triggers
-       * exceeds_threshold.
-       */
-      violence?: number;
-    }
-  }
-}
-
 export declare namespace Moderate {
-  export { type ModerateJob as ModerateJob, type ModerateCreateParams as ModerateCreateParams };
+  export {
+    type ModerateJob as ModerateJob,
+    type ModerateJobOutputs as ModerateJobOutputs,
+    type ModerateJobParameters as ModerateJobParameters,
+    type ModerateCreateParams as ModerateCreateParams,
+  };
 }

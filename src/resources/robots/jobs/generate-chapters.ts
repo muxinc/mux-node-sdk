@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../core/resource';
+import * as JobsAPI from './jobs';
 import { APIPromise } from '../../../core/api-promise';
 import { RequestOptions } from '../../../internal/request-options';
 import { path } from '../../../internal/utils/path';
@@ -65,7 +66,7 @@ export interface GenerateChaptersJob {
   /**
    * Current job status.
    */
-  status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled';
+  status: JobsAPI.JobStatus;
 
   /**
    * Unix timestamp (seconds) when the job was last updated.
@@ -77,14 +78,14 @@ export interface GenerateChaptersJob {
   /**
    * Error details. Present when status is 'errored'.
    */
-  errors?: Array<GenerateChaptersJob.Error>;
+  errors?: Array<JobsAPI.JobError>;
 
   /**
    * Workflow results. Present when status is 'completed'.
    */
-  outputs?: GenerateChaptersJob.Outputs;
+  outputs?: GenerateChaptersJobOutputs;
 
-  parameters?: GenerateChaptersJob.Parameters;
+  parameters?: GenerateChaptersJobParameters;
 
   /**
    * Arbitrary string supplied at creation, returned as-is.
@@ -98,92 +99,6 @@ export interface GenerateChaptersJob {
 }
 
 export namespace GenerateChaptersJob {
-  export interface Error {
-    /**
-     * Human-readable error message.
-     */
-    message: string;
-
-    /**
-     * Error category identifier.
-     */
-    type: string;
-  }
-
-  /**
-   * Workflow results. Present when status is 'completed'.
-   */
-  export interface Outputs {
-    /**
-     * Generated chapters, ordered by start time.
-     */
-    chapters: Array<Outputs.Chapter>;
-  }
-
-  export namespace Outputs {
-    export interface Chapter {
-      /**
-       * Chapter start time in seconds. The first chapter always starts at 0.
-       */
-      start_time: number;
-
-      /**
-       * Concise chapter title.
-       */
-      title: string;
-    }
-  }
-
-  export interface Parameters {
-    /**
-     * The Mux asset ID of the video to generate chapters for.
-     */
-    asset_id: string;
-
-    /**
-     * BCP 47 language code of the caption track to analyze. Defaults to "en".
-     */
-    from_language_code?: string;
-
-    /**
-     * Override specific sections of the chapter generation prompt.
-     */
-    prompt_overrides?: Parameters.PromptOverrides;
-
-    /**
-     * BCP 47 language code for the output chapter titles. Auto-detected from the
-     * transcript if omitted.
-     */
-    to_language_code?: string;
-  }
-
-  export namespace Parameters {
-    /**
-     * Override specific sections of the chapter generation prompt.
-     */
-    export interface PromptOverrides {
-      /**
-       * Override the chapter density and timing constraints.
-       */
-      chapter_guidelines?: string;
-
-      /**
-       * Override the JSON output format instructions.
-       */
-      output_format?: string;
-
-      /**
-       * Override the core task instruction for chapter generation.
-       */
-      task?: string;
-
-      /**
-       * Override the chapter title style requirements.
-       */
-      title_guidelines?: string;
-    }
-  }
-
   /**
    * Related Mux resources linked to this job.
    */
@@ -257,8 +172,82 @@ export namespace GenerateChaptersJob {
   }
 }
 
+/**
+ * Workflow results. Present when status is 'completed'.
+ */
+export interface GenerateChaptersJobOutputs {
+  /**
+   * Generated chapters, ordered by start time.
+   */
+  chapters: Array<GenerateChaptersJobOutputs.Chapter>;
+}
+
+export namespace GenerateChaptersJobOutputs {
+  export interface Chapter {
+    /**
+     * Chapter start time in seconds. The first chapter always starts at 0.
+     */
+    start_time: number;
+
+    /**
+     * Concise chapter title.
+     */
+    title: string;
+  }
+}
+
+export interface GenerateChaptersJobParameters {
+  /**
+   * The Mux asset ID of the video to generate chapters for.
+   */
+  asset_id: string;
+
+  /**
+   * BCP 47 language code of the caption track to analyze. Defaults to "en".
+   */
+  from_language_code?: string;
+
+  /**
+   * Override specific sections of the chapter generation prompt.
+   */
+  prompt_overrides?: GenerateChaptersJobParameters.PromptOverrides;
+
+  /**
+   * BCP 47 language code for the output chapter titles. Auto-detected from the
+   * transcript if omitted.
+   */
+  to_language_code?: string;
+}
+
+export namespace GenerateChaptersJobParameters {
+  /**
+   * Override specific sections of the chapter generation prompt.
+   */
+  export interface PromptOverrides {
+    /**
+     * Override the chapter density and timing constraints.
+     */
+    chapter_guidelines?: string;
+
+    /**
+     * Override the JSON output format instructions.
+     */
+    output_format?: string;
+
+    /**
+     * Override the core task instruction for chapter generation.
+     */
+    task?: string;
+
+    /**
+     * Override the chapter title style requirements.
+     */
+    title_guidelines?: string;
+  }
+}
+
 export interface GenerateChapterCreateParams {
-  parameters: GenerateChapterCreateParams.Parameters;
+  parameters: GenerateChaptersJobParameters;
 
   /**
    * Arbitrary string stored with the job and returned in responses. Useful for
@@ -267,61 +256,11 @@ export interface GenerateChapterCreateParams {
   passthrough?: string;
 }
 
-export namespace GenerateChapterCreateParams {
-  export interface Parameters {
-    /**
-     * The Mux asset ID of the video to generate chapters for.
-     */
-    asset_id: string;
-
-    /**
-     * BCP 47 language code of the caption track to analyze. Defaults to "en".
-     */
-    from_language_code?: string;
-
-    /**
-     * Override specific sections of the chapter generation prompt.
-     */
-    prompt_overrides?: Parameters.PromptOverrides;
-
-    /**
-     * BCP 47 language code for the output chapter titles. Auto-detected from the
-     * transcript if omitted.
-     */
-    to_language_code?: string;
-  }
-
-  export namespace Parameters {
-    /**
-     * Override specific sections of the chapter generation prompt.
-     */
-    export interface PromptOverrides {
-      /**
-       * Override the chapter density and timing constraints.
-       */
-      chapter_guidelines?: string;
-
-      /**
-       * Override the JSON output format instructions.
-       */
-      output_format?: string;
-
-      /**
-       * Override the core task instruction for chapter generation.
-       */
-      task?: string;
-
-      /**
-       * Override the chapter title style requirements.
-       */
-      title_guidelines?: string;
-    }
-  }
-}
-
 export declare namespace GenerateChapters {
   export {
     type GenerateChaptersJob as GenerateChaptersJob,
+    type GenerateChaptersJobOutputs as GenerateChaptersJobOutputs,
+    type GenerateChaptersJobParameters as GenerateChaptersJobParameters,
     type GenerateChapterCreateParams as GenerateChapterCreateParams,
   };
 }

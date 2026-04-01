@@ -6,18 +6,49 @@ import {
   AskQuestionCreateParams,
   AskQuestions,
   AskQuestionsJob,
+  AskQuestionsJobOutputs,
   AskQuestionsJobParameters,
 } from './ask-questions';
 import * as FindKeyMomentsAPI from './find-key-moments';
-import { FindKeyMomentCreateParams, FindKeyMoments, FindKeyMomentsJob } from './find-key-moments';
+import {
+  FindKeyMomentCreateParams,
+  FindKeyMoments,
+  FindKeyMomentsJob,
+  FindKeyMomentsJobOutputs,
+  FindKeyMomentsJobParameters,
+} from './find-key-moments';
 import * as GenerateChaptersAPI from './generate-chapters';
-import { GenerateChapterCreateParams, GenerateChapters, GenerateChaptersJob } from './generate-chapters';
+import {
+  GenerateChapterCreateParams,
+  GenerateChapters,
+  GenerateChaptersJob,
+  GenerateChaptersJobOutputs,
+  GenerateChaptersJobParameters,
+} from './generate-chapters';
 import * as ModerateAPI from './moderate';
-import { Moderate, ModerateCreateParams, ModerateJob } from './moderate';
+import {
+  Moderate,
+  ModerateCreateParams,
+  ModerateJob,
+  ModerateJobOutputs,
+  ModerateJobParameters,
+} from './moderate';
 import * as SummarizeAPI from './summarize';
-import { Summarize, SummarizeCreateParams, SummarizeJob } from './summarize';
+import {
+  Summarize,
+  SummarizeCreateParams,
+  SummarizeJob,
+  SummarizeJobOutputs,
+  SummarizeJobParameters,
+} from './summarize';
 import * as TranslateCaptionsAPI from './translate-captions';
-import { TranslateCaptionCreateParams, TranslateCaptions, TranslateCaptionsJob } from './translate-captions';
+import {
+  TranslateCaptionCreateParams,
+  TranslateCaptions,
+  TranslateCaptionsJob,
+  TranslateCaptionsJobOutputs,
+  TranslateCaptionsJobParameters,
+} from './translate-captions';
 import { APIPromise } from '../../../core/api-promise';
 import { BasePage, type BasePageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
@@ -102,6 +133,23 @@ export class Jobs extends APIResource {
 
 export type JobSummariesBasePage = BasePage<JobSummary>;
 
+export interface JobError {
+  /**
+   * Human-readable error message.
+   */
+  message: string;
+
+  /**
+   * Error category identifier.
+   */
+  type: string;
+}
+
+/**
+ * Current job status.
+ */
+export type JobStatus = 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled';
+
 export interface JobSummary {
   /**
    * Unique job identifier.
@@ -121,7 +169,7 @@ export interface JobSummary {
   /**
    * Current job status.
    */
-  status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled';
+  status: JobStatus;
 
   /**
    * Unix timestamp (seconds) when the job was last updated.
@@ -169,7 +217,7 @@ export interface JobListParams extends BasePageParams {
   /**
    * Filter by job status
    */
-  status?: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled';
+  status?: JobStatus;
 
   /**
    * Filter by workflow name
@@ -192,6 +240,8 @@ Jobs.TranslateCaptions = TranslateCaptions;
 
 export declare namespace Jobs {
   export {
+    type JobError as JobError,
+    type JobStatus as JobStatus,
     type JobSummary as JobSummary,
     type JobCancelResponse as JobCancelResponse,
     type JobSummariesBasePage as JobSummariesBasePage,
@@ -201,6 +251,7 @@ export declare namespace Jobs {
   export {
     AskQuestions as AskQuestions,
     type AskQuestionsJob as AskQuestionsJob,
+    type AskQuestionsJobOutputs as AskQuestionsJobOutputs,
     type AskQuestionsJobParameters as AskQuestionsJobParameters,
     type AskQuestionCreateParams as AskQuestionCreateParams,
   };
@@ -208,30 +259,40 @@ export declare namespace Jobs {
   export {
     GenerateChapters as GenerateChapters,
     type GenerateChaptersJob as GenerateChaptersJob,
+    type GenerateChaptersJobOutputs as GenerateChaptersJobOutputs,
+    type GenerateChaptersJobParameters as GenerateChaptersJobParameters,
     type GenerateChapterCreateParams as GenerateChapterCreateParams,
   };
 
   export {
     FindKeyMoments as FindKeyMoments,
     type FindKeyMomentsJob as FindKeyMomentsJob,
+    type FindKeyMomentsJobOutputs as FindKeyMomentsJobOutputs,
+    type FindKeyMomentsJobParameters as FindKeyMomentsJobParameters,
     type FindKeyMomentCreateParams as FindKeyMomentCreateParams,
   };
 
   export {
     Moderate as Moderate,
     type ModerateJob as ModerateJob,
+    type ModerateJobOutputs as ModerateJobOutputs,
+    type ModerateJobParameters as ModerateJobParameters,
     type ModerateCreateParams as ModerateCreateParams,
   };
 
   export {
     Summarize as Summarize,
     type SummarizeJob as SummarizeJob,
+    type SummarizeJobOutputs as SummarizeJobOutputs,
+    type SummarizeJobParameters as SummarizeJobParameters,
     type SummarizeCreateParams as SummarizeCreateParams,
   };
 
   export {
     TranslateCaptions as TranslateCaptions,
     type TranslateCaptionsJob as TranslateCaptionsJob,
+    type TranslateCaptionsJobOutputs as TranslateCaptionsJobOutputs,
+    type TranslateCaptionsJobParameters as TranslateCaptionsJobParameters,
     type TranslateCaptionCreateParams as TranslateCaptionCreateParams,
   };
 }

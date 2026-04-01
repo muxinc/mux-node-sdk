@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../core/resource';
+import * as JobsAPI from './jobs';
 import { APIPromise } from '../../../core/api-promise';
 import { RequestOptions } from '../../../internal/request-options';
 import { path } from '../../../internal/utils/path';
@@ -70,7 +71,7 @@ export interface TranslateCaptionsJob {
   /**
    * Current job status.
    */
-  status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled';
+  status: JobsAPI.JobStatus;
 
   /**
    * Unix timestamp (seconds) when the job was last updated.
@@ -82,14 +83,14 @@ export interface TranslateCaptionsJob {
   /**
    * Error details. Present when status is 'errored'.
    */
-  errors?: Array<TranslateCaptionsJob.Error>;
+  errors?: Array<JobsAPI.JobError>;
 
   /**
    * Workflow results. Present when status is 'completed'.
    */
-  outputs?: TranslateCaptionsJob.Outputs;
+  outputs?: TranslateCaptionsJobOutputs;
 
-  parameters?: TranslateCaptionsJob.Parameters;
+  parameters?: TranslateCaptionsJobParameters;
 
   /**
    * Arbitrary string supplied at creation, returned as-is.
@@ -103,58 +104,6 @@ export interface TranslateCaptionsJob {
 }
 
 export namespace TranslateCaptionsJob {
-  export interface Error {
-    /**
-     * Human-readable error message.
-     */
-    message: string;
-
-    /**
-     * Error category identifier.
-     */
-    type: string;
-  }
-
-  /**
-   * Workflow results. Present when status is 'completed'.
-   */
-  export interface Outputs {
-    /**
-     * Temporary pre-signed URL to download the translated VTT file. Present when
-     * upload_to_mux is true.
-     */
-    temporary_vtt_url?: string;
-
-    /**
-     * Mux text track ID of the uploaded translated captions. Present when
-     * upload_to_mux is true.
-     */
-    uploaded_track_id?: string;
-  }
-
-  export interface Parameters {
-    /**
-     * The Mux asset ID of the video whose captions will be translated.
-     */
-    asset_id: string;
-
-    /**
-     * ISO 639-1 source language code (e.g. "en", "fr").
-     */
-    from_language_code: string;
-
-    /**
-     * ISO 639-1 target language code (e.g. "es", "ja").
-     */
-    to_language_code: string;
-
-    /**
-     * Whether to upload the translated VTT and attach it as a text track on the Mux
-     * asset. Defaults to true.
-     */
-    upload_to_mux?: boolean;
-  }
-
   /**
    * Related Mux resources linked to this job.
    */
@@ -228,8 +177,48 @@ export namespace TranslateCaptionsJob {
   }
 }
 
+/**
+ * Workflow results. Present when status is 'completed'.
+ */
+export interface TranslateCaptionsJobOutputs {
+  /**
+   * Temporary pre-signed URL to download the translated VTT file. Present when
+   * upload_to_mux is true.
+   */
+  temporary_vtt_url?: string;
+
+  /**
+   * Mux text track ID of the uploaded translated captions. Present when
+   * upload_to_mux is true.
+   */
+  uploaded_track_id?: string;
+}
+
+export interface TranslateCaptionsJobParameters {
+  /**
+   * The Mux asset ID of the video whose captions will be translated.
+   */
+  asset_id: string;
+
+  /**
+   * ISO 639-1 source language code (e.g. "en", "fr").
+   */
+  from_language_code: string;
+
+  /**
+   * ISO 639-1 target language code (e.g. "es", "ja").
+   */
+  to_language_code: string;
+
+  /**
+   * Whether to upload the translated VTT and attach it as a text track on the Mux
+   * asset. Defaults to true.
+   */
+  upload_to_mux?: boolean;
+}
+
 export interface TranslateCaptionCreateParams {
-  parameters: TranslateCaptionCreateParams.Parameters;
+  parameters: TranslateCaptionsJobParameters;
 
   /**
    * Arbitrary string stored with the job and returned in responses. Useful for
@@ -238,34 +227,11 @@ export interface TranslateCaptionCreateParams {
   passthrough?: string;
 }
 
-export namespace TranslateCaptionCreateParams {
-  export interface Parameters {
-    /**
-     * The Mux asset ID of the video whose captions will be translated.
-     */
-    asset_id: string;
-
-    /**
-     * ISO 639-1 source language code (e.g. "en", "fr").
-     */
-    from_language_code: string;
-
-    /**
-     * ISO 639-1 target language code (e.g. "es", "ja").
-     */
-    to_language_code: string;
-
-    /**
-     * Whether to upload the translated VTT and attach it as a text track on the Mux
-     * asset. Defaults to true.
-     */
-    upload_to_mux?: boolean;
-  }
-}
-
 export declare namespace TranslateCaptions {
   export {
     type TranslateCaptionsJob as TranslateCaptionsJob,
+    type TranslateCaptionsJobOutputs as TranslateCaptionsJobOutputs,
+    type TranslateCaptionsJobParameters as TranslateCaptionsJobParameters,
     type TranslateCaptionCreateParams as TranslateCaptionCreateParams,
   };
 }

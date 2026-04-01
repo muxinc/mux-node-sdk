@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../core/resource';
+import * as JobsAPI from './jobs';
 import { APIPromise } from '../../../core/api-promise';
 import { RequestOptions } from '../../../internal/request-options';
 import { path } from '../../../internal/utils/path';
@@ -72,7 +73,7 @@ export interface AskQuestionsJob {
   /**
    * Current job status.
    */
-  status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled';
+  status: JobsAPI.JobStatus;
 
   /**
    * Unix timestamp (seconds) when the job was last updated.
@@ -84,12 +85,12 @@ export interface AskQuestionsJob {
   /**
    * Error details. Present when status is 'errored'.
    */
-  errors?: Array<AskQuestionsJob.Error>;
+  errors?: Array<JobsAPI.JobError>;
 
   /**
    * Workflow results. Present when status is 'completed'.
    */
-  outputs?: AskQuestionsJob.Outputs;
+  outputs?: AskQuestionsJobOutputs;
 
   parameters?: AskQuestionsJobParameters;
 
@@ -105,61 +106,6 @@ export interface AskQuestionsJob {
 }
 
 export namespace AskQuestionsJob {
-  export interface Error {
-    /**
-     * Human-readable error message.
-     */
-    message: string;
-
-    /**
-     * Error category identifier.
-     */
-    type: string;
-  }
-
-  /**
-   * Workflow results. Present when status is 'completed'.
-   */
-  export interface Outputs {
-    /**
-     * One answer per question, in the same order as the input questions.
-     */
-    answers: Array<Outputs.Answer>;
-  }
-
-  export namespace Outputs {
-    export interface Answer {
-      /**
-       * The answer, constrained to one of the provided answer_options. Null when the
-       * question was skipped.
-       */
-      answer: string | null;
-
-      /**
-       * Confidence score from 0.0 to 1.0. Values above 0.9 indicate clear, unambiguous
-       * evidence; 0.7-0.9 strong evidence with minor ambiguity; 0.5-0.7 moderate
-       * evidence; below 0.5 weak or uncertain evidence. Always 0 when skipped.
-       */
-      confidence: number;
-
-      /**
-       * The original question that was asked.
-       */
-      question: string;
-
-      /**
-       * Explanation citing specific visual or audio evidence from the video, or why the
-       * question was skipped.
-       */
-      reasoning: string;
-
-      /**
-       * Whether the question was skipped due to irrelevance to the video content.
-       */
-      skipped: boolean;
-    }
-  }
-
   /**
    * Related Mux resources linked to this job.
    */
@@ -233,6 +179,49 @@ export namespace AskQuestionsJob {
   }
 }
 
+/**
+ * Workflow results. Present when status is 'completed'.
+ */
+export interface AskQuestionsJobOutputs {
+  /**
+   * One answer per question, in the same order as the input questions.
+   */
+  answers: Array<AskQuestionsJobOutputs.Answer>;
+}
+
+export namespace AskQuestionsJobOutputs {
+  export interface Answer {
+    /**
+     * The answer, constrained to one of the provided answer_options. Null when the
+     * question was skipped.
+     */
+    answer: string | null;
+
+    /**
+     * Confidence score from 0.0 to 1.0. Values above 0.9 indicate clear, unambiguous
+     * evidence; 0.7-0.9 strong evidence with minor ambiguity; 0.5-0.7 moderate
+     * evidence; below 0.5 weak or uncertain evidence. Always 0 when skipped.
+     */
+    confidence: number;
+
+    /**
+     * The original question that was asked.
+     */
+    question: string;
+
+    /**
+     * Explanation citing specific visual or audio evidence from the video, or why the
+     * question was skipped.
+     */
+    reasoning: string;
+
+    /**
+     * Whether the question was skipped due to irrelevance to the video content.
+     */
+    skipped: boolean;
+  }
+}
+
 export interface AskQuestionsJobParameters {
   /**
    * The Mux asset ID of the video to analyze.
@@ -275,6 +264,7 @@ export interface AskQuestionCreateParams {
 export declare namespace AskQuestions {
   export {
     type AskQuestionsJob as AskQuestionsJob,
+    type AskQuestionsJobOutputs as AskQuestionsJobOutputs,
     type AskQuestionsJobParameters as AskQuestionsJobParameters,
     type AskQuestionCreateParams as AskQuestionCreateParams,
   };

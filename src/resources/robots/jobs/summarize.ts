@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../core/resource';
+import * as JobsAPI from './jobs';
 import { APIPromise } from '../../../core/api-promise';
 import { RequestOptions } from '../../../internal/request-options';
 import { path } from '../../../internal/utils/path';
@@ -66,7 +67,7 @@ export interface SummarizeJob {
   /**
    * Current job status.
    */
-  status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled';
+  status: JobsAPI.JobStatus;
 
   /**
    * Unix timestamp (seconds) when the job was last updated.
@@ -78,14 +79,14 @@ export interface SummarizeJob {
   /**
    * Error details. Present when status is 'errored'.
    */
-  errors?: Array<SummarizeJob.Error>;
+  errors?: Array<JobsAPI.JobError>;
 
   /**
    * Workflow results. Present when status is 'completed'.
    */
-  outputs?: SummarizeJob.Outputs;
+  outputs?: SummarizeJobOutputs;
 
-  parameters?: SummarizeJob.Parameters;
+  parameters?: SummarizeJobParameters;
 
   /**
    * Arbitrary string supplied at creation, returned as-is.
@@ -99,104 +100,6 @@ export interface SummarizeJob {
 }
 
 export namespace SummarizeJob {
-  export interface Error {
-    /**
-     * Human-readable error message.
-     */
-    message: string;
-
-    /**
-     * Error category identifier.
-     */
-    type: string;
-  }
-
-  /**
-   * Workflow results. Present when status is 'completed'.
-   */
-  export interface Outputs {
-    /**
-     * Generated description of the video content (typically 2-4 sentences).
-     */
-    description: string;
-
-    /**
-     * Generated keyword tags for the video.
-     */
-    tags: Array<string>;
-
-    /**
-     * Generated title capturing the essence of the video.
-     */
-    title: string;
-  }
-
-  export interface Parameters {
-    /**
-     * The Mux asset ID of the video to summarize.
-     */
-    asset_id: string;
-
-    /**
-     * Desired description length in characters.
-     */
-    description_length?: number;
-
-    /**
-     * Override specific sections of the summarization prompt.
-     */
-    prompt_overrides?: Parameters.PromptOverrides;
-
-    /**
-     * Desired number of tags to generate. Defaults to 10.
-     */
-    tag_count?: number;
-
-    /**
-     * Desired title length in characters.
-     */
-    title_length?: number;
-
-    /**
-     * Tone for the generated summary. "neutral" for straightforward analysis,
-     * "playful" for witty and conversational, "professional" for executive-level
-     * reporting.
-     */
-    tone?: 'neutral' | 'playful' | 'professional';
-  }
-
-  export namespace Parameters {
-    /**
-     * Override specific sections of the summarization prompt.
-     */
-    export interface PromptOverrides {
-      /**
-       * Override the description generation requirements.
-       */
-      description?: string;
-
-      /**
-       * Override the keyword/tag extraction requirements.
-       */
-      keywords?: string;
-
-      /**
-       * Override the quality standards for analysis.
-       */
-      quality_guidelines?: string;
-
-      /**
-       * Override the core task instruction for summarization.
-       */
-      task?: string;
-
-      /**
-       * Override the title generation requirements.
-       */
-      title?: string;
-    }
-  }
-
   /**
    * Related Mux resources linked to this job.
    */
@@ -270,8 +173,94 @@ export namespace SummarizeJob {
   }
 }
 
+/**
+ * Workflow results. Present when status is 'completed'.
+ */
+export interface SummarizeJobOutputs {
+  /**
+   * Generated description of the video content (typically 2-4 sentences).
+   */
+  description: string;
+
+  /**
+   * Generated keyword tags for the video.
+   */
+  tags: Array<string>;
+
+  /**
+   * Generated title capturing the essence of the video.
+   */
+  title: string;
+}
+
+export interface SummarizeJobParameters {
+  /**
+   * The Mux asset ID of the video to summarize.
+   */
+  asset_id: string;
+
+  /**
+   * Desired description length in characters.
+   */
+  description_length?: number;
+
+  /**
+   * Override specific sections of the summarization prompt.
+   */
+  prompt_overrides?: SummarizeJobParameters.PromptOverrides;
+
+  /**
+   * Desired number of tags to generate. Defaults to 10.
+   */
+  tag_count?: number;
+
+  /**
+   * Desired title length in characters.
+   */
+  title_length?: number;
+
+  /**
+   * Tone for the generated summary. "neutral" for straightforward analysis,
+   * "playful" for witty and conversational, "professional" for executive-level
+   * reporting.
+   */
+  tone?: 'neutral' | 'playful' | 'professional';
+}
+
+export namespace SummarizeJobParameters {
+  /**
+   * Override specific sections of the summarization prompt.
+   */
+  export interface PromptOverrides {
+    /**
+     * Override the description generation requirements.
+     */
+    description?: string;
+
+    /**
+     * Override the keyword/tag extraction requirements.
+     */
+    keywords?: string;
+
+    /**
+     * Override the quality standards for analysis.
+     */
+    quality_guidelines?: string;
+
+    /**
+     * Override the core task instruction for summarization.
+     */
+    task?: string;
+
+    /**
+     * Override the title generation requirements.
+     */
+    title?: string;
+  }
+}
+
 export interface SummarizeCreateParams {
-  parameters: SummarizeCreateParams.Parameters;
+  parameters: SummarizeJobParameters;
 
   /**
    * Arbitrary string stored with the job and returned in responses. Useful for
@@ -280,74 +269,11 @@ export interface SummarizeCreateParams {
   passthrough?: string;
 }
 
-export namespace SummarizeCreateParams {
-  export interface Parameters {
-    /**
-     * The Mux asset ID of the video to summarize.
-     */
-    asset_id: string;
-
-    /**
-     * Desired description length in characters.
-     */
-    description_length?: number;
-
-    /**
-     * Override specific sections of the summarization prompt.
-     */
-    prompt_overrides?: Parameters.PromptOverrides;
-
-    /**
-     * Desired number of tags to generate. Defaults to 10.
-     */
-    tag_count?: number;
-
-    /**
-     * Desired title length in characters.
-     */
-    title_length?: number;
-
-    /**
-     * Tone for the generated summary. "neutral" for straightforward analysis,
-     * "playful" for witty and conversational, "professional" for executive-level
-     * reporting.
-     */
-    tone?: 'neutral' | 'playful' | 'professional';
-  }
-
-  export namespace Parameters {
-    /**
-     * Override specific sections of the summarization prompt.
-     */
-    export interface PromptOverrides {
-      /**
-       * Override the description generation requirements.
-       */
-      description?: string;
-
-      /**
-       * Override the keyword/tag extraction requirements.
-       */
-      keywords?: string;
-
-      /**
-       * Override the quality standards for analysis.
-       */
-      quality_guidelines?: string;
-
-      /**
-       * Override the core task instruction for summarization.
-       */
-      task?: string;
-
-      /**
-       * Override the title generation requirements.
-       */
-      title?: string;
-    }
-  }
-}
-
 export declare namespace Summarize {
-  export { type SummarizeJob as SummarizeJob, type SummarizeCreateParams as SummarizeCreateParams };
+  export {
+    type SummarizeJob as SummarizeJob,
+    type SummarizeJobOutputs as SummarizeJobOutputs,
+    type SummarizeJobParameters as SummarizeJobParameters,
+    type SummarizeCreateParams as SummarizeCreateParams,
+  };
 }

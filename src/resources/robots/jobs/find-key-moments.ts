@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../core/resource';
+import * as JobsAPI from './jobs';
 import { APIPromise } from '../../../core/api-promise';
 import { RequestOptions } from '../../../internal/request-options';
 import { path } from '../../../internal/utils/path';
@@ -65,7 +66,7 @@ export interface FindKeyMomentsJob {
   /**
    * Current job status.
    */
-  status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled';
+  status: JobsAPI.JobStatus;
 
   /**
    * Unix timestamp (seconds) when the job was last updated.
@@ -77,14 +78,14 @@ export interface FindKeyMomentsJob {
   /**
    * Error details. Present when status is 'errored'.
    */
-  errors?: Array<FindKeyMomentsJob.Error>;
+  errors?: Array<JobsAPI.JobError>;
 
   /**
    * Workflow results. Present when status is 'completed'.
    */
-  outputs?: FindKeyMomentsJob.Outputs;
+  outputs?: FindKeyMomentsJobOutputs;
 
-  parameters?: FindKeyMomentsJob.Parameters;
+  parameters?: FindKeyMomentsJobParameters;
 
   /**
    * Arbitrary string supplied at creation, returned as-is.
@@ -98,153 +99,6 @@ export interface FindKeyMomentsJob {
 }
 
 export namespace FindKeyMomentsJob {
-  export interface Error {
-    /**
-     * Human-readable error message.
-     */
-    message: string;
-
-    /**
-     * Error category identifier.
-     */
-    type: string;
-  }
-
-  /**
-   * Workflow results. Present when status is 'completed'.
-   */
-  export interface Outputs {
-    /**
-     * Extracted key moments, ordered by position in the video.
-     */
-    moments: Array<Outputs.Moment>;
-  }
-
-  export namespace Outputs {
-    export interface Moment {
-      /**
-       * One-sentence summary of what is being said during the moment.
-       */
-      audible_narrative: string;
-
-      /**
-       * Contiguous transcript segments that comprise this moment.
-       */
-      cues: Array<Moment.Cue>;
-
-      /**
-       * Moment end time in milliseconds.
-       */
-      end_ms: number;
-
-      /**
-       * Multi-word descriptive phrases (2-5 words each) capturing key audible concepts.
-       */
-      notable_audible_concepts: Array<string>;
-
-      /**
-       * Weighted quality score from 0.0 to 1.0 based on hook strength, clarity,
-       * emotional intensity, novelty, and soundbite quality.
-       */
-      overall_score: number;
-
-      /**
-       * Moment start time in milliseconds.
-       */
-      start_ms: number;
-
-      /**
-       * Short catchy title for the moment (3-8 words).
-       */
-      title: string;
-
-      /**
-       * Scored visual concepts extracted from sampled frames. Present for video assets
-       * only.
-       */
-      notable_visual_concepts?: Array<Moment.NotableVisualConcept>;
-
-      /**
-       * One-sentence summary of what is visually happening. Present for video assets
-       * only.
-       */
-      visual_narrative?: string;
-    }
-
-    export namespace Moment {
-      export interface Cue {
-        /**
-         * Cue end time in milliseconds.
-         */
-        end_ms: number;
-
-        /**
-         * Cue start time in milliseconds.
-         */
-        start_ms: number;
-
-        /**
-         * Transcript text for this cue.
-         */
-        text: string;
-      }
-
-      export interface NotableVisualConcept {
-        /**
-         * Multi-word visual concept (2-5 words).
-         */
-        concept: string;
-
-        /**
-         * Brief explanation of the relevance score.
-         */
-        rationale: string;
-
-        /**
-         * Relevance score from 0.0 to 1.0 measuring how closely the visual concept relates
-         * to the audible narrative.
-         */
-        score: number;
-      }
-    }
-  }
-
-  export interface Parameters {
-    /**
-     * The Mux asset ID of the video to analyze.
-     */
-    asset_id: string;
-
-    /**
-     * Maximum number of key moments to extract. Defaults to 5.
-     */
-    max_moments?: number;
-
-    /**
-     * Preferred highlight duration range in milliseconds. When provided, the model
-     * will aim to select moments within this range.
-     */
-    target_duration_ms?: Parameters.TargetDurationMs;
-  }
-
-  export namespace Parameters {
-    /**
-     * Preferred highlight duration range in milliseconds. When provided, the model
-     * will aim to select moments within this range.
-     */
-    export interface TargetDurationMs {
-      /**
-       * Preferred maximum highlight duration in milliseconds.
-       */
-      max: number;
-
-      /**
-       * Preferred minimum highlight duration in milliseconds.
-       */
-      min: number;
-    }
-  }
-
   /**
    * Related Mux resources linked to this job.
    */
@@ -318,8 +172,143 @@ export namespace FindKeyMomentsJob {
   }
 }
 
+/**
+ * Workflow results. Present when status is 'completed'.
+ */
+export interface FindKeyMomentsJobOutputs {
+  /**
+   * Extracted key moments, ordered by position in the video.
+   */
+  moments: Array<FindKeyMomentsJobOutputs.Moment>;
+}
+
+export namespace FindKeyMomentsJobOutputs {
+  export interface Moment {
+    /**
+     * One-sentence summary of what is being said during the moment.
+     */
+    audible_narrative: string;
+
+    /**
+     * Contiguous transcript segments that comprise this moment.
+     */
+    cues: Array<Moment.Cue>;
+
+    /**
+     * Moment end time in milliseconds.
+     */
+    end_ms: number;
+
+    /**
+     * Multi-word descriptive phrases (2-5 words each) capturing key audible concepts.
+     */
+    notable_audible_concepts: Array<string>;
+
+    /**
+     * Weighted quality score from 0.0 to 1.0 based on hook strength, clarity,
+     * emotional intensity, novelty, and soundbite quality.
+     */
+    overall_score: number;
+
+    /**
+     * Moment start time in milliseconds.
+     */
+    start_ms: number;
+
+    /**
+     * Short catchy title for the moment (3-8 words).
+     */
+    title: string;
+
+    /**
+     * Scored visual concepts extracted from sampled frames. Present for video assets
+     * only.
+     */
+    notable_visual_concepts?: Array<Moment.NotableVisualConcept>;
+
+    /**
+     * One-sentence summary of what is visually happening. Present for video assets
+     * only.
+     */
+    visual_narrative?: string;
+  }
+
+  export namespace Moment {
+    export interface Cue {
+      /**
+       * Cue end time in milliseconds.
+       */
+      end_ms: number;
+
+      /**
+       * Cue start time in milliseconds.
+       */
+      start_ms: number;
+
+      /**
+       * Transcript text for this cue.
+       */
+      text: string;
+    }
+
+    export interface NotableVisualConcept {
+      /**
+       * Multi-word visual concept (2-5 words).
+       */
+      concept: string;
+
+      /**
+       * Brief explanation of the relevance score.
+       */
+      rationale: string;
+
+      /**
+       * Relevance score from 0.0 to 1.0 measuring how closely the visual concept relates
+       * to the audible narrative.
+       */
+      score: number;
+    }
+  }
+}
+
+export interface FindKeyMomentsJobParameters {
+  /**
+   * The Mux asset ID of the video to analyze.
+   */
+  asset_id: string;
+
+  /**
+   * Maximum number of key moments to extract. Defaults to 5.
+   */
+  max_moments?: number;
+
+  /**
+   * Preferred highlight duration range in milliseconds. When provided, the model
+   * will aim to select moments within this range.
+   */
+  target_duration_ms?: FindKeyMomentsJobParameters.TargetDurationMs;
+}
+
+export namespace FindKeyMomentsJobParameters {
+  /**
+   * Preferred highlight duration range in milliseconds. When provided, the model
+   * will aim to select moments within this range.
+   */
+  export interface TargetDurationMs {
+    /**
+     * Preferred maximum highlight duration in milliseconds.
+     */
+    max: number;
+
+    /**
+     * Preferred minimum highlight duration in milliseconds.
+     */
+    min: number;
+  }
+}
+
 export interface FindKeyMomentCreateParams {
-  parameters: FindKeyMomentCreateParams.Parameters;
+  parameters: FindKeyMomentsJobParameters;
 
   /**
    * Arbitrary string stored with the job and returned in responses. Useful for
@@ -328,47 +317,11 @@ export interface FindKeyMomentCreateParams {
   passthrough?: string;
 }
 
-export namespace FindKeyMomentCreateParams {
-  export interface Parameters {
-    /**
-     * The Mux asset ID of the video to analyze.
-     */
-    asset_id: string;
-
-    /**
-     * Maximum number of key moments to extract. Defaults to 5.
-     */
-    max_moments?: number;
-
-    /**
-     * Preferred highlight duration range in milliseconds. When provided, the model
-     * will aim to select moments within this range.
-     */
-    target_duration_ms?: Parameters.TargetDurationMs;
-  }
-
-  export namespace Parameters {
-    /**
-     * Preferred highlight duration range in milliseconds. When provided, the model
-     * will aim to select moments within this range.
-     */
-    export interface TargetDurationMs {
-      /**
-       * Preferred maximum highlight duration in milliseconds.
-       */
-      max: number;
-
-      /**
-       * Preferred minimum highlight duration in milliseconds.
-       */
-      min: number;
-    }
-  }
-}
-
 export declare namespace FindKeyMoments {
   export {
     type FindKeyMomentsJob as FindKeyMomentsJob,
+    type FindKeyMomentsJobOutputs as FindKeyMomentsJobOutputs,
+    type FindKeyMomentsJobParameters as FindKeyMomentsJobParameters,
     type FindKeyMomentCreateParams as FindKeyMomentCreateParams,
   };
 }

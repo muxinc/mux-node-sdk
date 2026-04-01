@@ -2,6 +2,8 @@
 
 export {
   Jobs,
+  type JobError,
+  type JobStatus,
   type JobSummary,
   type JobCancelResponse,
   type JobListParams,
