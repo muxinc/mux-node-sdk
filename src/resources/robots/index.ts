@@ -8,4 +8,4 @@ export {
   type JobListResponsesBasePage,
 } from './jobs/index';
 export { Robots } from './robots';
-export { Workflows, type WorkflowListResponse } from './workflows';
+export { Workflows } from './workflows';

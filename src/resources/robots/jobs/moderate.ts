@@ -94,11 +94,6 @@ export interface ModerateCreateResponse {
    * Related Mux resources linked to this job.
    */
   resources?: ModerateCreateResponse.Resources;
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  usage?: ModerateCreateResponse.Usage;
 }
 
 export namespace ModerateCreateResponse {
@@ -159,9 +154,9 @@ export namespace ModerateCreateResponse {
 
   export interface Parameters {
     /**
-     * All asset identifiers associated with this job.
+     * The Mux asset ID of the video to moderate.
      */
-    asset_ids: Array<string>;
+    asset_id: string;
 
     /**
      * Language code for transcript analysis on audio-only assets. Defaults to "en".
@@ -277,36 +272,6 @@ export namespace ModerateCreateResponse {
       }
     }
   }
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  export interface Usage {
-    /**
-     * Input tokens served from cache, reducing cost.
-     */
-    cached_input_tokens?: number;
-
-    /**
-     * Number of tokens in the input prompt (text + image).
-     */
-    input_tokens?: number;
-
-    /**
-     * Number of tokens generated in the output.
-     */
-    output_tokens?: number;
-
-    /**
-     * Tokens used for chain-of-thought reasoning, if applicable.
-     */
-    reasoning_tokens?: number;
-
-    /**
-     * Total tokens consumed (input + output).
-     */
-    total_tokens?: number;
-  }
 }
 
 export interface ModerateRetrieveResponse {
@@ -353,11 +318,6 @@ export interface ModerateRetrieveResponse {
    * Related Mux resources linked to this job.
    */
   resources?: ModerateRetrieveResponse.Resources;
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  usage?: ModerateRetrieveResponse.Usage;
 }
 
 export namespace ModerateRetrieveResponse {
@@ -418,9 +378,9 @@ export namespace ModerateRetrieveResponse {
 
   export interface Parameters {
     /**
-     * All asset identifiers associated with this job.
+     * The Mux asset ID of the video to moderate.
      */
-    asset_ids: Array<string>;
+    asset_id: string;
 
     /**
      * Language code for transcript analysis on audio-only assets. Defaults to "en".
@@ -535,36 +495,6 @@ export namespace ModerateRetrieveResponse {
         title?: string;
       }
     }
-  }
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  export interface Usage {
-    /**
-     * Input tokens served from cache, reducing cost.
-     */
-    cached_input_tokens?: number;
-
-    /**
-     * Number of tokens in the input prompt (text + image).
-     */
-    input_tokens?: number;
-
-    /**
-     * Number of tokens generated in the output.
-     */
-    output_tokens?: number;
-
-    /**
-     * Tokens used for chain-of-thought reasoning, if applicable.
-     */
-    reasoning_tokens?: number;
-
-    /**
-     * Total tokens consumed (input + output).
-     */
-    total_tokens?: number;
   }
 }
 

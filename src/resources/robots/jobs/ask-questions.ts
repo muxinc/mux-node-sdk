@@ -102,11 +102,6 @@ export interface AskQuestionCreateResponse {
    * Related Mux resources linked to this job.
    */
   resources?: AskQuestionCreateResponse.Resources;
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  usage?: AskQuestionCreateResponse.Usage;
 }
 
 export namespace AskQuestionCreateResponse {
@@ -135,14 +130,15 @@ export namespace AskQuestionCreateResponse {
   export namespace Outputs {
     export interface Answer {
       /**
-       * The answer, constrained to one of the provided answer_options.
+       * The answer, constrained to one of the provided answer_options. Null when the
+       * question was skipped.
        */
-      answer: string;
+      answer: string | null;
 
       /**
        * Confidence score from 0.0 to 1.0. Values above 0.9 indicate clear, unambiguous
        * evidence; 0.7-0.9 strong evidence with minor ambiguity; 0.5-0.7 moderate
-       * evidence; below 0.5 weak or uncertain evidence.
+       * evidence; below 0.5 weak or uncertain evidence. Always 0 when skipped.
        */
       confidence: number;
 
@@ -152,17 +148,23 @@ export namespace AskQuestionCreateResponse {
       question: string;
 
       /**
-       * Explanation citing specific visual or audio evidence from the video.
+       * Explanation citing specific visual or audio evidence from the video, or why the
+       * question was skipped.
        */
       reasoning: string;
+
+      /**
+       * Whether the question was skipped due to irrelevance to the video content.
+       */
+      skipped: boolean;
     }
   }
 
   export interface Parameters {
     /**
-     * All asset identifiers associated with this job.
+     * The Mux asset ID of the video to analyze.
      */
-    asset_ids: Array<string>;
+    asset_id: string;
 
     /**
      * One or more questions to ask about the video. All questions are evaluated in a
@@ -257,36 +259,6 @@ export namespace AskQuestionCreateResponse {
         title?: string;
       }
     }
-  }
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  export interface Usage {
-    /**
-     * Input tokens served from cache, reducing cost.
-     */
-    cached_input_tokens?: number;
-
-    /**
-     * Number of tokens in the input prompt (text + image).
-     */
-    input_tokens?: number;
-
-    /**
-     * Number of tokens generated in the output.
-     */
-    output_tokens?: number;
-
-    /**
-     * Tokens used for chain-of-thought reasoning, if applicable.
-     */
-    reasoning_tokens?: number;
-
-    /**
-     * Total tokens consumed (input + output).
-     */
-    total_tokens?: number;
   }
 }
 
@@ -334,11 +306,6 @@ export interface AskQuestionRetrieveResponse {
    * Related Mux resources linked to this job.
    */
   resources?: AskQuestionRetrieveResponse.Resources;
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  usage?: AskQuestionRetrieveResponse.Usage;
 }
 
 export namespace AskQuestionRetrieveResponse {
@@ -367,14 +334,15 @@ export namespace AskQuestionRetrieveResponse {
   export namespace Outputs {
     export interface Answer {
       /**
-       * The answer, constrained to one of the provided answer_options.
+       * The answer, constrained to one of the provided answer_options. Null when the
+       * question was skipped.
        */
-      answer: string;
+      answer: string | null;
 
       /**
        * Confidence score from 0.0 to 1.0. Values above 0.9 indicate clear, unambiguous
        * evidence; 0.7-0.9 strong evidence with minor ambiguity; 0.5-0.7 moderate
-       * evidence; below 0.5 weak or uncertain evidence.
+       * evidence; below 0.5 weak or uncertain evidence. Always 0 when skipped.
        */
       confidence: number;
 
@@ -384,17 +352,23 @@ export namespace AskQuestionRetrieveResponse {
       question: string;
 
       /**
-       * Explanation citing specific visual or audio evidence from the video.
+       * Explanation citing specific visual or audio evidence from the video, or why the
+       * question was skipped.
        */
       reasoning: string;
+
+      /**
+       * Whether the question was skipped due to irrelevance to the video content.
+       */
+      skipped: boolean;
     }
   }
 
   export interface Parameters {
     /**
-     * All asset identifiers associated with this job.
+     * The Mux asset ID of the video to analyze.
      */
-    asset_ids: Array<string>;
+    asset_id: string;
 
     /**
      * One or more questions to ask about the video. All questions are evaluated in a
@@ -489,36 +463,6 @@ export namespace AskQuestionRetrieveResponse {
         title?: string;
       }
     }
-  }
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  export interface Usage {
-    /**
-     * Input tokens served from cache, reducing cost.
-     */
-    cached_input_tokens?: number;
-
-    /**
-     * Number of tokens in the input prompt (text + image).
-     */
-    input_tokens?: number;
-
-    /**
-     * Number of tokens generated in the output.
-     */
-    output_tokens?: number;
-
-    /**
-     * Tokens used for chain-of-thought reasoning, if applicable.
-     */
-    reasoning_tokens?: number;
-
-    /**
-     * Total tokens consumed (input + output).
-     */
-    total_tokens?: number;
   }
 }
 

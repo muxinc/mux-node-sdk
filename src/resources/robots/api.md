@@ -86,11 +86,3 @@ Methods:
 - <code title="get /robots/v1/jobs/translate-captions/{JOB_ID}">client.robots.jobs.translateCaptions.<a href="./src/resources/robots/jobs/translate-captions.ts">retrieve</a>(jobID) -> TranslateCaptionRetrieveResponse</code>
 
 ## Workflows
-
-Types:
-
-- <code><a href="./src/resources/robots/workflows.ts">WorkflowListResponse</a></code>
-
-Methods:
-
-- <code title="get /robots/v1/workflows">client.robots.workflows.<a href="./src/resources/robots/workflows.ts">list</a>() -> WorkflowListResponse</code>

@@ -95,11 +95,6 @@ export interface SummarizeCreateResponse {
    * Related Mux resources linked to this job.
    */
   resources?: SummarizeCreateResponse.Resources;
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  usage?: SummarizeCreateResponse.Usage;
 }
 
 export namespace SummarizeCreateResponse {
@@ -137,9 +132,9 @@ export namespace SummarizeCreateResponse {
 
   export interface Parameters {
     /**
-     * All asset identifiers associated with this job.
+     * The Mux asset ID of the video to summarize.
      */
-    asset_ids: Array<string>;
+    asset_id: string;
 
     /**
      * Desired description length in characters.
@@ -271,36 +266,6 @@ export namespace SummarizeCreateResponse {
         title?: string;
       }
     }
-  }
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  export interface Usage {
-    /**
-     * Input tokens served from cache, reducing cost.
-     */
-    cached_input_tokens?: number;
-
-    /**
-     * Number of tokens in the input prompt (text + image).
-     */
-    input_tokens?: number;
-
-    /**
-     * Number of tokens generated in the output.
-     */
-    output_tokens?: number;
-
-    /**
-     * Tokens used for chain-of-thought reasoning, if applicable.
-     */
-    reasoning_tokens?: number;
-
-    /**
-     * Total tokens consumed (input + output).
-     */
-    total_tokens?: number;
   }
 }
 
@@ -348,11 +313,6 @@ export interface SummarizeRetrieveResponse {
    * Related Mux resources linked to this job.
    */
   resources?: SummarizeRetrieveResponse.Resources;
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  usage?: SummarizeRetrieveResponse.Usage;
 }
 
 export namespace SummarizeRetrieveResponse {
@@ -390,9 +350,9 @@ export namespace SummarizeRetrieveResponse {
 
   export interface Parameters {
     /**
-     * All asset identifiers associated with this job.
+     * The Mux asset ID of the video to summarize.
      */
-    asset_ids: Array<string>;
+    asset_id: string;
 
     /**
      * Desired description length in characters.
@@ -524,36 +484,6 @@ export namespace SummarizeRetrieveResponse {
         title?: string;
       }
     }
-  }
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  export interface Usage {
-    /**
-     * Input tokens served from cache, reducing cost.
-     */
-    cached_input_tokens?: number;
-
-    /**
-     * Number of tokens in the input prompt (text + image).
-     */
-    input_tokens?: number;
-
-    /**
-     * Number of tokens generated in the output.
-     */
-    output_tokens?: number;
-
-    /**
-     * Tokens used for chain-of-thought reasoning, if applicable.
-     */
-    reasoning_tokens?: number;
-
-    /**
-     * Total tokens consumed (input + output).
-     */
-    total_tokens?: number;
   }
 }
 

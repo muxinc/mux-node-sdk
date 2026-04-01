@@ -2,7 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as WorkflowsAPI from './workflows';
-import { WorkflowListResponse, Workflows } from './workflows';
+import { Workflows } from './workflows';
 import * as JobsAPI from './jobs/jobs';
 import {
   JobCancelResponse,
@@ -29,5 +29,5 @@ export declare namespace Robots {
     type JobListParams as JobListParams,
   };
 
-  export { Workflows as Workflows, type WorkflowListResponse as WorkflowListResponse };
+  export { Workflows as Workflows };
 }

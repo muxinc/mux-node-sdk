@@ -527,12 +527,6 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/robots/v1/jobs/translate-captions/{JOB_ID}',
   },
   {
-    clientCallName: 'client.robots.workflows.list',
-    fullyQualifiedName: 'robots.workflows.list',
-    httpMethod: 'get',
-    httpPath: '/robots/v1/workflows',
-  },
-  {
     clientCallName: 'client.data.dimensions.list',
     fullyQualifiedName: 'data.dimensions.list',
     httpMethod: 'get',

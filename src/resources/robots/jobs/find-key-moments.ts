@@ -95,11 +95,6 @@ export interface FindKeyMomentCreateResponse {
    * Related Mux resources linked to this job.
    */
   resources?: FindKeyMomentCreateResponse.Resources;
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  usage?: FindKeyMomentCreateResponse.Usage;
 }
 
 export namespace FindKeyMomentCreateResponse {
@@ -216,9 +211,9 @@ export namespace FindKeyMomentCreateResponse {
 
   export interface Parameters {
     /**
-     * All asset identifiers associated with this job.
+     * The Mux asset ID of the video to analyze.
      */
-    asset_ids: Array<string>;
+    asset_id: string;
 
     /**
      * Maximum number of key moments to extract. Defaults to 5.
@@ -321,36 +316,6 @@ export namespace FindKeyMomentCreateResponse {
       }
     }
   }
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  export interface Usage {
-    /**
-     * Input tokens served from cache, reducing cost.
-     */
-    cached_input_tokens?: number;
-
-    /**
-     * Number of tokens in the input prompt (text + image).
-     */
-    input_tokens?: number;
-
-    /**
-     * Number of tokens generated in the output.
-     */
-    output_tokens?: number;
-
-    /**
-     * Tokens used for chain-of-thought reasoning, if applicable.
-     */
-    reasoning_tokens?: number;
-
-    /**
-     * Total tokens consumed (input + output).
-     */
-    total_tokens?: number;
-  }
 }
 
 export interface FindKeyMomentRetrieveResponse {
@@ -397,11 +362,6 @@ export interface FindKeyMomentRetrieveResponse {
    * Related Mux resources linked to this job.
    */
   resources?: FindKeyMomentRetrieveResponse.Resources;
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  usage?: FindKeyMomentRetrieveResponse.Usage;
 }
 
 export namespace FindKeyMomentRetrieveResponse {
@@ -518,9 +478,9 @@ export namespace FindKeyMomentRetrieveResponse {
 
   export interface Parameters {
     /**
-     * All asset identifiers associated with this job.
+     * The Mux asset ID of the video to analyze.
      */
-    asset_ids: Array<string>;
+    asset_id: string;
 
     /**
      * Maximum number of key moments to extract. Defaults to 5.
@@ -622,36 +582,6 @@ export namespace FindKeyMomentRetrieveResponse {
         title?: string;
       }
     }
-  }
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  export interface Usage {
-    /**
-     * Input tokens served from cache, reducing cost.
-     */
-    cached_input_tokens?: number;
-
-    /**
-     * Number of tokens in the input prompt (text + image).
-     */
-    input_tokens?: number;
-
-    /**
-     * Number of tokens generated in the output.
-     */
-    output_tokens?: number;
-
-    /**
-     * Tokens used for chain-of-thought reasoning, if applicable.
-     */
-    reasoning_tokens?: number;
-
-    /**
-     * Total tokens consumed (input + output).
-     */
-    total_tokens?: number;
   }
 }
 

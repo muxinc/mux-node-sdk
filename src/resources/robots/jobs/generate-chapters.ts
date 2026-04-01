@@ -98,11 +98,6 @@ export interface GenerateChapterCreateResponse {
    * Related Mux resources linked to this job.
    */
   resources?: GenerateChapterCreateResponse.Resources;
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  usage?: GenerateChapterCreateResponse.Usage;
 }
 
 export namespace GenerateChapterCreateResponse {
@@ -144,9 +139,9 @@ export namespace GenerateChapterCreateResponse {
 
   export interface Parameters {
     /**
-     * All asset identifiers associated with this job.
+     * The Mux asset ID of the video to generate chapters for.
      */
-    asset_ids: Array<string>;
+    asset_id: string;
 
     /**
      * BCP 47 language code of the caption track to analyze. Defaults to "en".
@@ -262,36 +257,6 @@ export namespace GenerateChapterCreateResponse {
         title?: string;
       }
     }
-  }
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  export interface Usage {
-    /**
-     * Input tokens served from cache, reducing cost.
-     */
-    cached_input_tokens?: number;
-
-    /**
-     * Number of tokens in the input prompt (text + image).
-     */
-    input_tokens?: number;
-
-    /**
-     * Number of tokens generated in the output.
-     */
-    output_tokens?: number;
-
-    /**
-     * Tokens used for chain-of-thought reasoning, if applicable.
-     */
-    reasoning_tokens?: number;
-
-    /**
-     * Total tokens consumed (input + output).
-     */
-    total_tokens?: number;
   }
 }
 
@@ -339,11 +304,6 @@ export interface GenerateChapterRetrieveResponse {
    * Related Mux resources linked to this job.
    */
   resources?: GenerateChapterRetrieveResponse.Resources;
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  usage?: GenerateChapterRetrieveResponse.Usage;
 }
 
 export namespace GenerateChapterRetrieveResponse {
@@ -385,9 +345,9 @@ export namespace GenerateChapterRetrieveResponse {
 
   export interface Parameters {
     /**
-     * All asset identifiers associated with this job.
+     * The Mux asset ID of the video to generate chapters for.
      */
-    asset_ids: Array<string>;
+    asset_id: string;
 
     /**
      * BCP 47 language code of the caption track to analyze. Defaults to "en".
@@ -503,36 +463,6 @@ export namespace GenerateChapterRetrieveResponse {
         title?: string;
       }
     }
-  }
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  export interface Usage {
-    /**
-     * Input tokens served from cache, reducing cost.
-     */
-    cached_input_tokens?: number;
-
-    /**
-     * Number of tokens in the input prompt (text + image).
-     */
-    input_tokens?: number;
-
-    /**
-     * Number of tokens generated in the output.
-     */
-    output_tokens?: number;
-
-    /**
-     * Tokens used for chain-of-thought reasoning, if applicable.
-     */
-    reasoning_tokens?: number;
-
-    /**
-     * Total tokens consumed (input + output).
-     */
-    total_tokens?: number;
   }
 }
 

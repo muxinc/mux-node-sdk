@@ -190,7 +190,6 @@ const fuse = new Fuse(
     'client.robots.jobs.summarize.retrieve',
     'client.robots.jobs.translateCaptions.create',
     'client.robots.jobs.translateCaptions.retrieve',
-    'client.robots.workflows.list',
     'client.data.dimensions.list',
     'client.data.dimensions.listTraceElements',
     'client.data.dimensions.listValues',

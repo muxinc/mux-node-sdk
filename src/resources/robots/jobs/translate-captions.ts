@@ -103,11 +103,6 @@ export interface TranslateCaptionCreateResponse {
    * Related Mux resources linked to this job.
    */
   resources?: TranslateCaptionCreateResponse.Resources;
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  usage?: TranslateCaptionCreateResponse.Usage;
 }
 
 export namespace TranslateCaptionCreateResponse {
@@ -142,9 +137,9 @@ export namespace TranslateCaptionCreateResponse {
 
   export interface Parameters {
     /**
-     * All asset identifiers associated with this job.
+     * The Mux asset ID of the video whose captions will be translated.
      */
-    asset_ids: Array<string>;
+    asset_id: string;
 
     /**
      * ISO 639-1 source language code (e.g. "en", "fr").
@@ -233,36 +228,6 @@ export namespace TranslateCaptionCreateResponse {
         title?: string;
       }
     }
-  }
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  export interface Usage {
-    /**
-     * Input tokens served from cache, reducing cost.
-     */
-    cached_input_tokens?: number;
-
-    /**
-     * Number of tokens in the input prompt (text + image).
-     */
-    input_tokens?: number;
-
-    /**
-     * Number of tokens generated in the output.
-     */
-    output_tokens?: number;
-
-    /**
-     * Tokens used for chain-of-thought reasoning, if applicable.
-     */
-    reasoning_tokens?: number;
-
-    /**
-     * Total tokens consumed (input + output).
-     */
-    total_tokens?: number;
   }
 }
 
@@ -310,11 +275,6 @@ export interface TranslateCaptionRetrieveResponse {
    * Related Mux resources linked to this job.
    */
   resources?: TranslateCaptionRetrieveResponse.Resources;
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  usage?: TranslateCaptionRetrieveResponse.Usage;
 }
 
 export namespace TranslateCaptionRetrieveResponse {
@@ -349,9 +309,9 @@ export namespace TranslateCaptionRetrieveResponse {
 
   export interface Parameters {
     /**
-     * All asset identifiers associated with this job.
+     * The Mux asset ID of the video whose captions will be translated.
      */
-    asset_ids: Array<string>;
+    asset_id: string;
 
     /**
      * ISO 639-1 source language code (e.g. "en", "fr").
@@ -440,36 +400,6 @@ export namespace TranslateCaptionRetrieveResponse {
         title?: string;
       }
     }
-  }
-
-  /**
-   * Token usage breakdown. Present when status is 'completed'.
-   */
-  export interface Usage {
-    /**
-     * Input tokens served from cache, reducing cost.
-     */
-    cached_input_tokens?: number;
-
-    /**
-     * Number of tokens in the input prompt (text + image).
-     */
-    input_tokens?: number;
-
-    /**
-     * Number of tokens generated in the output.
-     */
-    output_tokens?: number;
-
-    /**
-     * Tokens used for chain-of-thought reasoning, if applicable.
-     */
-    reasoning_tokens?: number;
-
-    /**
-     * Total tokens consumed (input + output).
-     */
-    total_tokens?: number;
   }
 }
 
