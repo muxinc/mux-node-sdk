@@ -5292,9 +5292,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     stainlessPath: '(resource) robots.jobs > (method) cancel',
     qualified: 'client.robots.jobs.cancel',
     params: ['JOB_ID: string;'],
-    response: 'object',
+    response: '{  }',
     markdown:
-      "## cancel\n\n`client.robots.jobs.cancel(JOB_ID: string): object`\n\n**post** `/robots/v1/jobs/{JOB_ID}/cancel`\n\nCancels a job that is currently pending or processing.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `object`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst response = await client.robots.jobs.cancel('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');\n\nconsole.log(response);\n```",
+      "## cancel\n\n`client.robots.jobs.cancel(JOB_ID: string): {  }`\n\n**post** `/robots/v1/jobs/{JOB_ID}/cancel`\n\nCancels a job that is currently pending or processing.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{  }`\n\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst response = await client.robots.jobs.cancel('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');\n\nconsole.log(response);\n```",
     perLanguage: {
       cli: {
         method: 'jobs cancel',

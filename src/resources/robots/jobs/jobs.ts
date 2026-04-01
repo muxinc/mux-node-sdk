@@ -206,7 +206,7 @@ export namespace JobSummary {
   }
 }
 
-export type JobCancelResponse = unknown;
+export interface JobCancelResponse {}
 
 export interface JobListParams extends BasePageParams {
   /**
