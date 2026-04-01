@@ -14,7 +14,7 @@ export class AskQuestions extends APIResource {
    *
    * @example
    * ```ts
-   * const askQuestion =
+   * const askQuestionsJob =
    *   await client.robots.jobs.askQuestions.create({
    *     parameters: {
    *       asset_id: 'mux_asset_123abc',
@@ -27,13 +27,13 @@ export class AskQuestions extends APIResource {
    *   });
    * ```
    */
-  create(body: AskQuestionCreateParams, options?: RequestOptions): APIPromise<AskQuestionCreateResponse> {
+  create(body: AskQuestionCreateParams, options?: RequestOptions): APIPromise<AskQuestionsJob> {
     return (
       this._client.post('/robots/v1/jobs/ask-questions', {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as APIPromise<{ data: AskQuestionCreateResponse }>
+      }) as APIPromise<{ data: AskQuestionsJob }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -42,23 +42,23 @@ export class AskQuestions extends APIResource {
    *
    * @example
    * ```ts
-   * const askQuestion =
+   * const askQuestionsJob =
    *   await client.robots.jobs.askQuestions.retrieve(
    *     'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',
    *   );
    * ```
    */
-  retrieve(jobID: string, options?: RequestOptions): APIPromise<AskQuestionRetrieveResponse> {
+  retrieve(jobID: string, options?: RequestOptions): APIPromise<AskQuestionsJob> {
     return (
       this._client.get(path`/robots/v1/jobs/ask-questions/${jobID}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as APIPromise<{ data: AskQuestionRetrieveResponse }>
+      }) as APIPromise<{ data: AskQuestionsJob }>
     )._thenUnwrap((obj) => obj.data);
   }
 }
 
-export interface AskQuestionCreateResponse {
+export interface AskQuestionsJob {
   /**
    * Unique job identifier.
    */
@@ -84,14 +84,14 @@ export interface AskQuestionCreateResponse {
   /**
    * Error details. Present when status is 'errored'.
    */
-  errors?: Array<AskQuestionCreateResponse.Error>;
+  errors?: Array<AskQuestionsJob.Error>;
 
   /**
    * Workflow results. Present when status is 'completed'.
    */
-  outputs?: AskQuestionCreateResponse.Outputs;
+  outputs?: AskQuestionsJob.Outputs;
 
-  parameters?: AskQuestionCreateResponse.Parameters;
+  parameters?: AskQuestionsJobParameters;
 
   /**
    * Arbitrary string supplied at creation, returned as-is.
@@ -101,10 +101,10 @@ export interface AskQuestionCreateResponse {
   /**
    * Related Mux resources linked to this job.
    */
-  resources?: AskQuestionCreateResponse.Resources;
+  resources?: AskQuestionsJob.Resources;
 }
 
-export namespace AskQuestionCreateResponse {
+export namespace AskQuestionsJob {
   export interface Error {
     /**
      * Human-readable error message.
@@ -157,35 +157,6 @@ export namespace AskQuestionCreateResponse {
        * Whether the question was skipped due to irrelevance to the video content.
        */
       skipped: boolean;
-    }
-  }
-
-  export interface Parameters {
-    /**
-     * The Mux asset ID of the video to analyze.
-     */
-    asset_id: string;
-
-    /**
-     * One or more questions to ask about the video. All questions are evaluated in a
-     * single AI call for efficiency.
-     */
-    questions: Array<Parameters.Question>;
-
-    /**
-     * Allowed answer values the AI must choose from. Defaults to ["yes", "no"] if not
-     * provided. Can be customized to any set of options, e.g. ["high", "medium",
-     * "low"].
-     */
-    answer_options?: Array<string>;
-  }
-
-  export namespace Parameters {
-    export interface Question {
-      /**
-       * The question to ask about the video content.
-       */
-      question: string;
     }
   }
 
@@ -262,212 +233,37 @@ export namespace AskQuestionCreateResponse {
   }
 }
 
-export interface AskQuestionRetrieveResponse {
+export interface AskQuestionsJobParameters {
   /**
-   * Unique job identifier.
+   * The Mux asset ID of the video to analyze.
    */
-  id: string;
-
-  /**
-   * Unix timestamp (seconds) when the job was created.
-   */
-  created_at: number;
+  asset_id: string;
 
   /**
-   * Current job status.
+   * One or more questions to ask about the video. All questions are evaluated in a
+   * single AI call for efficiency.
    */
-  status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled';
+  questions: Array<AskQuestionsJobParameters.Question>;
 
   /**
-   * Unix timestamp (seconds) when the job was last updated.
+   * Allowed answer values the AI must choose from. Defaults to ["yes", "no"] if not
+   * provided. Can be customized to any set of options, e.g. ["high", "medium",
+   * "low"].
    */
-  updated_at: number;
-
-  workflow: 'ask-questions';
-
-  /**
-   * Error details. Present when status is 'errored'.
-   */
-  errors?: Array<AskQuestionRetrieveResponse.Error>;
-
-  /**
-   * Workflow results. Present when status is 'completed'.
-   */
-  outputs?: AskQuestionRetrieveResponse.Outputs;
-
-  parameters?: AskQuestionRetrieveResponse.Parameters;
-
-  /**
-   * Arbitrary string supplied at creation, returned as-is.
-   */
-  passthrough?: string;
-
-  /**
-   * Related Mux resources linked to this job.
-   */
-  resources?: AskQuestionRetrieveResponse.Resources;
+  answer_options?: Array<string>;
 }
 
-export namespace AskQuestionRetrieveResponse {
-  export interface Error {
+export namespace AskQuestionsJobParameters {
+  export interface Question {
     /**
-     * Human-readable error message.
+     * The question to ask about the video content.
      */
-    message: string;
-
-    /**
-     * Error category identifier.
-     */
-    type: string;
-  }
-
-  /**
-   * Workflow results. Present when status is 'completed'.
-   */
-  export interface Outputs {
-    /**
-     * One answer per question, in the same order as the input questions.
-     */
-    answers: Array<Outputs.Answer>;
-  }
-
-  export namespace Outputs {
-    export interface Answer {
-      /**
-       * The answer, constrained to one of the provided answer_options. Null when the
-       * question was skipped.
-       */
-      answer: string | null;
-
-      /**
-       * Confidence score from 0.0 to 1.0. Values above 0.9 indicate clear, unambiguous
-       * evidence; 0.7-0.9 strong evidence with minor ambiguity; 0.5-0.7 moderate
-       * evidence; below 0.5 weak or uncertain evidence. Always 0 when skipped.
-       */
-      confidence: number;
-
-      /**
-       * The original question that was asked.
-       */
-      question: string;
-
-      /**
-       * Explanation citing specific visual or audio evidence from the video, or why the
-       * question was skipped.
-       */
-      reasoning: string;
-
-      /**
-       * Whether the question was skipped due to irrelevance to the video content.
-       */
-      skipped: boolean;
-    }
-  }
-
-  export interface Parameters {
-    /**
-     * The Mux asset ID of the video to analyze.
-     */
-    asset_id: string;
-
-    /**
-     * One or more questions to ask about the video. All questions are evaluated in a
-     * single AI call for efficiency.
-     */
-    questions: Array<Parameters.Question>;
-
-    /**
-     * Allowed answer values the AI must choose from. Defaults to ["yes", "no"] if not
-     * provided. Can be customized to any set of options, e.g. ["high", "medium",
-     * "low"].
-     */
-    answer_options?: Array<string>;
-  }
-
-  export namespace Parameters {
-    export interface Question {
-      /**
-       * The question to ask about the video content.
-       */
-      question: string;
-    }
-  }
-
-  /**
-   * Related Mux resources linked to this job.
-   */
-  export interface Resources {
-    /**
-     * Mux assets associated with this job.
-     */
-    assets: Array<Resources.Asset>;
-  }
-
-  export namespace Resources {
-    export interface Asset {
-      /**
-       * Mux asset ID.
-       */
-      id: string;
-
-      /**
-       * Hypermedia links for the asset.
-       */
-      _links: Asset._Links;
-
-      /**
-       * Mux asset metadata, if available.
-       */
-      meta?: Asset.Meta;
-
-      /**
-       * Passthrough string from the Mux asset.
-       */
-      passthrough?: string;
-    }
-
-    export namespace Asset {
-      /**
-       * Hypermedia links for the asset.
-       */
-      export interface _Links {
-        self: _Links.Self;
-      }
-
-      export namespace _Links {
-        export interface Self {
-          /**
-           * URL to the Mux asset resource.
-           */
-          href: string;
-        }
-      }
-
-      /**
-       * Mux asset metadata, if available.
-       */
-      export interface Meta {
-        /**
-         * Creator identifier from Mux metadata.
-         */
-        creator_id?: string;
-
-        /**
-         * External identifier from Mux metadata.
-         */
-        external_id?: string;
-
-        /**
-         * Asset title from Mux metadata.
-         */
-        title?: string;
-      }
-    }
+    question: string;
   }
 }
 
 export interface AskQuestionCreateParams {
-  parameters: AskQuestionCreateParams.Parameters;
+  parameters: AskQuestionsJobParameters;
 
   /**
    * Arbitrary string stored with the job and returned in responses. Useful for
@@ -476,41 +272,10 @@ export interface AskQuestionCreateParams {
   passthrough?: string;
 }
 
-export namespace AskQuestionCreateParams {
-  export interface Parameters {
-    /**
-     * The Mux asset ID of the video to analyze.
-     */
-    asset_id: string;
-
-    /**
-     * One or more questions to ask about the video. All questions are evaluated in a
-     * single AI call for efficiency.
-     */
-    questions: Array<Parameters.Question>;
-
-    /**
-     * Allowed answer values the AI must choose from. Defaults to ["yes", "no"] if not
-     * provided. Can be customized to any set of options, e.g. ["high", "medium",
-     * "low"].
-     */
-    answer_options?: Array<string>;
-  }
-
-  export namespace Parameters {
-    export interface Question {
-      /**
-       * The question to ask about the video content.
-       */
-      question: string;
-    }
-  }
-}
-
 export declare namespace AskQuestions {
   export {
-    type AskQuestionCreateResponse as AskQuestionCreateResponse,
-    type AskQuestionRetrieveResponse as AskQuestionRetrieveResponse,
+    type AskQuestionsJob as AskQuestionsJob,
+    type AskQuestionsJobParameters as AskQuestionsJobParameters,
     type AskQuestionCreateParams as AskQuestionCreateParams,
   };
 }

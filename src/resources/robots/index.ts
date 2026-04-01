@@ -2,10 +2,9 @@
 
 export {
   Jobs,
-  type JobListResponse,
+  type JobSummary,
   type JobCancelResponse,
   type JobListParams,
-  type JobListResponsesBasePage,
+  type JobSummariesBasePage,
 } from './jobs/index';
 export { Robots } from './robots';
-export { Workflows } from './workflows';

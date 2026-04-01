@@ -2,44 +2,27 @@
 
 export {
   AskQuestions,
-  type AskQuestionCreateResponse,
-  type AskQuestionRetrieveResponse,
+  type AskQuestionsJob,
+  type AskQuestionsJobParameters,
   type AskQuestionCreateParams,
 } from './ask-questions';
-export {
-  FindKeyMoments,
-  type FindKeyMomentCreateResponse,
-  type FindKeyMomentRetrieveResponse,
-  type FindKeyMomentCreateParams,
-} from './find-key-moments';
+export { FindKeyMoments, type FindKeyMomentsJob, type FindKeyMomentCreateParams } from './find-key-moments';
 export {
   GenerateChapters,
-  type GenerateChapterCreateResponse,
-  type GenerateChapterRetrieveResponse,
+  type GenerateChaptersJob,
   type GenerateChapterCreateParams,
 } from './generate-chapters';
 export {
   Jobs,
-  type JobListResponse,
+  type JobSummary,
   type JobCancelResponse,
   type JobListParams,
-  type JobListResponsesBasePage,
+  type JobSummariesBasePage,
 } from './jobs';
-export {
-  Moderate,
-  type ModerateCreateResponse,
-  type ModerateRetrieveResponse,
-  type ModerateCreateParams,
-} from './moderate';
-export {
-  Summarize,
-  type SummarizeCreateResponse,
-  type SummarizeRetrieveResponse,
-  type SummarizeCreateParams,
-} from './summarize';
+export { Moderate, type ModerateJob, type ModerateCreateParams } from './moderate';
+export { Summarize, type SummarizeJob, type SummarizeCreateParams } from './summarize';
 export {
   TranslateCaptions,
-  type TranslateCaptionCreateResponse,
-  type TranslateCaptionRetrieveResponse,
+  type TranslateCaptionsJob,
   type TranslateCaptionCreateParams,
 } from './translate-captions';

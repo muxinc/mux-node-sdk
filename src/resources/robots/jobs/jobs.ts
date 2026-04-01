@@ -4,40 +4,20 @@ import { APIResource } from '../../../core/resource';
 import * as AskQuestionsAPI from './ask-questions';
 import {
   AskQuestionCreateParams,
-  AskQuestionCreateResponse,
-  AskQuestionRetrieveResponse,
   AskQuestions,
+  AskQuestionsJob,
+  AskQuestionsJobParameters,
 } from './ask-questions';
 import * as FindKeyMomentsAPI from './find-key-moments';
-import {
-  FindKeyMomentCreateParams,
-  FindKeyMomentCreateResponse,
-  FindKeyMomentRetrieveResponse,
-  FindKeyMoments,
-} from './find-key-moments';
+import { FindKeyMomentCreateParams, FindKeyMoments, FindKeyMomentsJob } from './find-key-moments';
 import * as GenerateChaptersAPI from './generate-chapters';
-import {
-  GenerateChapterCreateParams,
-  GenerateChapterCreateResponse,
-  GenerateChapterRetrieveResponse,
-  GenerateChapters,
-} from './generate-chapters';
+import { GenerateChapterCreateParams, GenerateChapters, GenerateChaptersJob } from './generate-chapters';
 import * as ModerateAPI from './moderate';
-import { Moderate, ModerateCreateParams, ModerateCreateResponse, ModerateRetrieveResponse } from './moderate';
+import { Moderate, ModerateCreateParams, ModerateJob } from './moderate';
 import * as SummarizeAPI from './summarize';
-import {
-  Summarize,
-  SummarizeCreateParams,
-  SummarizeCreateResponse,
-  SummarizeRetrieveResponse,
-} from './summarize';
+import { Summarize, SummarizeCreateParams, SummarizeJob } from './summarize';
 import * as TranslateCaptionsAPI from './translate-captions';
-import {
-  TranslateCaptionCreateParams,
-  TranslateCaptionCreateResponse,
-  TranslateCaptionRetrieveResponse,
-  TranslateCaptions,
-} from './translate-captions';
+import { TranslateCaptionCreateParams, TranslateCaptions, TranslateCaptionsJob } from './translate-captions';
 import { APIPromise } from '../../../core/api-promise';
 import { BasePage, type BasePageParams, PagePromise } from '../../../core/pagination';
 import { buildHeaders } from '../../../internal/headers';
@@ -66,7 +46,7 @@ export class Jobs extends APIResource {
    * @example
    * ```ts
    * // Automatically fetches more pages as needed.
-   * for await (const jobListResponse of client.robots.jobs.list()) {
+   * for await (const jobSummary of client.robots.jobs.list()) {
    *   // ...
    * }
    * ```
@@ -74,8 +54,8 @@ export class Jobs extends APIResource {
   list(
     query: JobListParams | null | undefined = {},
     options?: RequestOptions,
-  ): PagePromise<JobListResponsesBasePage, JobListResponse> {
-    return this._client.getAPIList('/robots/v1/jobs', BasePage<JobListResponse>, {
+  ): PagePromise<JobSummariesBasePage, JobSummary> {
+    return this._client.getAPIList('/robots/v1/jobs', BasePage<JobSummary>, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -120,9 +100,9 @@ export class Jobs extends APIResource {
   }
 }
 
-export type JobListResponsesBasePage = BasePage<JobListResponse>;
+export type JobSummariesBasePage = BasePage<JobSummary>;
 
-export interface JobListResponse {
+export interface JobSummary {
   /**
    * Unique job identifier.
    */
@@ -131,7 +111,7 @@ export interface JobListResponse {
   /**
    * Hypermedia links for this job.
    */
-  _links: JobListResponse._Links;
+  _links: JobSummary._Links;
 
   /**
    * Unix timestamp (seconds) when the job was created.
@@ -160,7 +140,7 @@ export interface JobListResponse {
     | 'find-key-moments';
 }
 
-export namespace JobListResponse {
+export namespace JobSummary {
   /**
    * Hypermedia links for this job.
    */
@@ -212,51 +192,46 @@ Jobs.TranslateCaptions = TranslateCaptions;
 
 export declare namespace Jobs {
   export {
-    type JobListResponse as JobListResponse,
+    type JobSummary as JobSummary,
     type JobCancelResponse as JobCancelResponse,
-    type JobListResponsesBasePage as JobListResponsesBasePage,
+    type JobSummariesBasePage as JobSummariesBasePage,
     type JobListParams as JobListParams,
   };
 
   export {
     AskQuestions as AskQuestions,
-    type AskQuestionCreateResponse as AskQuestionCreateResponse,
-    type AskQuestionRetrieveResponse as AskQuestionRetrieveResponse,
+    type AskQuestionsJob as AskQuestionsJob,
+    type AskQuestionsJobParameters as AskQuestionsJobParameters,
     type AskQuestionCreateParams as AskQuestionCreateParams,
   };
 
   export {
     GenerateChapters as GenerateChapters,
-    type GenerateChapterCreateResponse as GenerateChapterCreateResponse,
-    type GenerateChapterRetrieveResponse as GenerateChapterRetrieveResponse,
+    type GenerateChaptersJob as GenerateChaptersJob,
     type GenerateChapterCreateParams as GenerateChapterCreateParams,
   };
 
   export {
     FindKeyMoments as FindKeyMoments,
-    type FindKeyMomentCreateResponse as FindKeyMomentCreateResponse,
-    type FindKeyMomentRetrieveResponse as FindKeyMomentRetrieveResponse,
+    type FindKeyMomentsJob as FindKeyMomentsJob,
     type FindKeyMomentCreateParams as FindKeyMomentCreateParams,
   };
 
   export {
     Moderate as Moderate,
-    type ModerateCreateResponse as ModerateCreateResponse,
-    type ModerateRetrieveResponse as ModerateRetrieveResponse,
+    type ModerateJob as ModerateJob,
     type ModerateCreateParams as ModerateCreateParams,
   };
 
   export {
     Summarize as Summarize,
-    type SummarizeCreateResponse as SummarizeCreateResponse,
-    type SummarizeRetrieveResponse as SummarizeRetrieveResponse,
+    type SummarizeJob as SummarizeJob,
     type SummarizeCreateParams as SummarizeCreateParams,
   };
 
   export {
     TranslateCaptions as TranslateCaptions,
-    type TranslateCaptionCreateResponse as TranslateCaptionCreateResponse,
-    type TranslateCaptionRetrieveResponse as TranslateCaptionRetrieveResponse,
+    type TranslateCaptionsJob as TranslateCaptionsJob,
     type TranslateCaptionCreateParams as TranslateCaptionCreateParams,
   };
 }
