@@ -87,6 +87,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --input '{}'",
       },
+      csharp: {
+        method: 'Video.Assets.Create',
+        example:
+          'AssetCreateParams parameters = new()\n{\n    Inputs =\n    [\n        new()\n        {\n            ClosedCaptions = true,\n            EndTime = 0,\n            GeneratedSubtitles =\n            [\n                new()\n                {\n                    LanguageCode = LanguageCode.En,\n                    Name = "name",\n                    Passthrough = "passthrough",\n                },\n            ],\n            LanguageCode = "language_code",\n            Name = "name",\n            OverlaySettings = new()\n            {\n                Height = "height",\n                HorizontalAlign = HorizontalAlign.Left,\n                HorizontalMargin = "horizontal_margin",\n                Opacity = "opacity",\n                VerticalAlign = VerticalAlign.Top,\n                VerticalMargin = "vertical_margin",\n                Width = "width",\n            },\n            Passthrough = "passthrough",\n            StartTime = 0,\n            TextType = TextType.Subtitles,\n            Type = Type.Video,\n            Url = "https://muxed.s3.amazonaws.com/leds.mp4",\n        },\n    ],\n};\n\nvar asset = await client.Video.Assets.Create(parameters);\n\nConsole.WriteLine(asset);',
+      },
       go: {
         method: 'client.Video.Assets.New',
         example:
@@ -110,6 +115,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.create',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.create({\n  inputs: [{ url: 'https://muxed.s3.amazonaws.com/leds.mp4' }],\n  playback_policies: ['public'],\n  video_quality: 'basic',\n});\n\nconsole.log(asset.id);",
+      },
+      php: {
+        method: 'video->assets->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$asset = $client->video->assets->create(\n  inputs: [\n    [\n      'closedCaptions' => true,\n      'endTime' => 0,\n      'generatedSubtitles' => [\n        [\n          'languageCode' => 'en',\n          'name' => 'name',\n          'passthrough' => 'passthrough',\n        ],\n      ],\n      'languageCode' => 'language_code',\n      'name' => 'name',\n      'overlaySettings' => [\n        'height' => 'height',\n        'horizontalAlign' => 'left',\n        'horizontalMargin' => 'horizontal_margin',\n        'opacity' => 'opacity',\n        'verticalAlign' => 'top',\n        'verticalMargin' => 'vertical_margin',\n        'width' => 'width',\n      ],\n      'passthrough' => 'passthrough',\n      'startTime' => 0,\n      'textType' => 'subtitles',\n      'type' => 'video',\n      'url' => 'https://muxed.s3.amazonaws.com/leds.mp4',\n    ],\n  ],\n  advancedPlaybackPolicies: [\n    [\n      'drmConfigurationID' => 'drm_configuration_id',\n      'policy' => PlaybackPolicy::PUBLIC,\n    ],\n  ],\n  copyOverlays: true,\n  encodingTier: 'smart',\n  input: [\n    [\n      'closedCaptions' => true,\n      'endTime' => 0,\n      'generatedSubtitles' => [\n        [\n          'languageCode' => 'en',\n          'name' => 'name',\n          'passthrough' => 'passthrough',\n        ],\n      ],\n      'languageCode' => 'language_code',\n      'name' => 'name',\n      'overlaySettings' => [\n        'height' => 'height',\n        'horizontalAlign' => 'left',\n        'horizontalMargin' => 'horizontal_margin',\n        'opacity' => 'opacity',\n        'verticalAlign' => 'top',\n        'verticalMargin' => 'vertical_margin',\n        'width' => 'width',\n      ],\n      'passthrough' => 'passthrough',\n      'startTime' => 0,\n      'textType' => 'subtitles',\n      'type' => 'video',\n      'url' => 'url',\n    ],\n  ],\n  masterAccess: 'none',\n  maxResolutionTier: '1080p',\n  meta: [\n    'creatorID' => 'creator_id',\n    'externalID' => 'external_id',\n    'title' => 'title',\n  ],\n  mp4Support: 'none',\n  normalizeAudio: true,\n  passthrough: 'passthrough',\n  perTitleEncode: true,\n  playbackPolicies: [PlaybackPolicy::PUBLIC],\n  playbackPolicy: [PlaybackPolicy::PUBLIC],\n  staticRenditions: [\n    ['resolution' => 'highest', 'passthrough' => 'passthrough']\n  ],\n  test: true,\n  videoQuality: 'basic',\n);\n\nvar_dump($asset);",
       },
       python: {
         method: 'video.assets.create',
@@ -152,6 +162,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'assets list',
         example: "mux-cli video:assets list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Video.Assets.List',
+        example:
+          'AssetListParams parameters = new();\n\nvar page = await client.Video.Assets.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Video.Assets.List',
         example:
@@ -174,6 +189,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const asset of client.video.assets.list()) {\n  console.log(asset.id);\n}",
+      },
+      php: {
+        method: 'video->assets->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->assets->list(\n  cursor: 'cursor',\n  limit: 0,\n  liveStreamID: 'live_stream_id',\n  page: 0,\n  uploadID: 'upload_id',\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'video.assets.list',
@@ -212,6 +232,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID",
       },
+      csharp: {
+        method: 'Video.Assets.Retrieve',
+        example:
+          'AssetRetrieveParams parameters = new() { AssetID = "ASSET_ID" };\n\nvar asset = await client.Video.Assets.Retrieve(parameters);\n\nConsole.WriteLine(asset);',
+      },
       go: {
         method: 'client.Video.Assets.Get',
         example:
@@ -235,6 +260,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.retrieve('ASSET_ID');\n\nconsole.log(asset.id);",
+      },
+      php: {
+        method: 'video->assets->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$asset = $client->video->assets->retrieve('ASSET_ID');\n\nvar_dump($asset);",
       },
       python: {
         method: 'video.assets.retrieve',
@@ -270,6 +300,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID",
       },
+      csharp: {
+        method: 'Video.Assets.Delete',
+        example:
+          'AssetDeleteParams parameters = new() { AssetID = "ASSET_ID" };\n\nawait client.Video.Assets.Delete(parameters);',
+      },
       go: {
         method: 'client.Video.Assets.Delete',
         example:
@@ -293,6 +328,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.delete('ASSET_ID');",
+      },
+      php: {
+        method: 'video->assets->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->assets->delete('ASSET_ID');\n\nvar_dump($result);",
       },
       python: {
         method: 'video.assets.delete',
@@ -335,6 +375,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets update \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID",
       },
+      csharp: {
+        method: 'Video.Assets.Update',
+        example:
+          'AssetUpdateParams parameters = new() { AssetID = "ASSET_ID" };\n\nvar asset = await client.Video.Assets.Update(parameters);\n\nConsole.WriteLine(asset);',
+      },
       go: {
         method: 'client.Video.Assets.Update',
         example:
@@ -358,6 +403,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.update',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.update('ASSET_ID', { passthrough: 'Example' });\n\nconsole.log(asset.id);",
+      },
+      php: {
+        method: 'video->assets->update',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$asset = $client->video->assets->update(\n  'ASSET_ID',\n  meta: [\n    'creatorID' => 'creator_id',\n    'externalID' => 'external_id',\n    'title' => 'title',\n  ],\n  passthrough: 'Example',\n);\n\nvar_dump($asset);",
       },
       python: {
         method: 'video.assets.update',
@@ -394,6 +444,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets retrieve-playback-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --playback-id PLAYBACK_ID",
       },
+      csharp: {
+        method: 'Video.Assets.RetrievePlaybackID',
+        example:
+          'AssetRetrievePlaybackIDParams parameters = new()\n{\n    AssetID = "ASSET_ID",\n    PlaybackID = "PLAYBACK_ID",\n};\n\nvar playbackID = await client.Video.Assets.RetrievePlaybackID(parameters);\n\nConsole.WriteLine(playbackID);',
+      },
       go: {
         method: 'client.Video.Assets.GetPlaybackID',
         example:
@@ -417,6 +472,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.retrievePlaybackId',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackId = await client.video.assets.retrievePlaybackId('ASSET_ID', 'PLAYBACK_ID');\n\nconsole.log(playbackId.id);",
+      },
+      php: {
+        method: 'video->assets->retrievePlaybackID',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackID = $client->video->assets->retrievePlaybackID(\n  'PLAYBACK_ID', assetID: 'ASSET_ID'\n);\n\nvar_dump($playbackID);",
       },
       python: {
         method: 'video.assets.retrieve_playback_id',
@@ -453,6 +513,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets create-playback-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID",
       },
+      csharp: {
+        method: 'Video.Assets.CreatePlaybackID',
+        example:
+          'AssetCreatePlaybackIDParams parameters = new() { AssetID = "ASSET_ID" };\n\nvar playbackID = await client.Video.Assets.CreatePlaybackID(parameters);\n\nConsole.WriteLine(playbackID);',
+      },
       go: {
         method: 'client.Video.Assets.NewPlaybackID',
         example:
@@ -476,6 +541,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.createPlaybackId',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackId = await client.video.assets.createPlaybackId('ASSET_ID', { policy: 'public' });\n\nconsole.log(playbackId.id);",
+      },
+      php: {
+        method: 'video->assets->createPlaybackID',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackID = $client->video->assets->createPlaybackID(\n  'ASSET_ID',\n  drmConfigurationID: 'drm_configuration_id',\n  policy: PlaybackPolicy::PUBLIC,\n);\n\nvar_dump($playbackID);",
       },
       python: {
         method: 'video.assets.create_playback_id',
@@ -512,6 +582,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets delete-playback-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --playback-id PLAYBACK_ID",
       },
+      csharp: {
+        method: 'Video.Assets.DeletePlaybackID',
+        example:
+          'AssetDeletePlaybackIDParams parameters = new()\n{\n    AssetID = "ASSET_ID",\n    PlaybackID = "PLAYBACK_ID",\n};\n\nawait client.Video.Assets.DeletePlaybackID(parameters);',
+      },
       go: {
         method: 'client.Video.Assets.DeletePlaybackID',
         example:
@@ -535,6 +610,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.deletePlaybackId',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.deletePlaybackId('ASSET_ID', 'PLAYBACK_ID');",
+      },
+      php: {
+        method: 'video->assets->deletePlaybackID',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->assets->deletePlaybackID(\n  'PLAYBACK_ID', assetID: 'ASSET_ID'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'video.assets.delete_playback_id',
@@ -582,6 +662,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets create-track \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --language-code en-US \\\n  --type text \\\n  --url https://example.com/myVideo_en.srt",
       },
+      csharp: {
+        method: 'Video.Assets.CreateTrack',
+        example:
+          'AssetCreateTrackParams parameters = new()\n{\n    AssetID = "ASSET_ID",\n    LanguageCode = "en-US",\n    Type = Type.Text,\n    Url = "https://example.com/myVideo_en.srt",\n};\n\nvar track = await client.Video.Assets.CreateTrack(parameters);\n\nConsole.WriteLine(track);',
+      },
       go: {
         method: 'client.Video.Assets.NewTrack',
         example:
@@ -605,6 +690,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.createTrack',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst track = await client.video.assets.createTrack('ASSET_ID', {\n  language_code: 'en-US',\n  type: 'text',\n  url: 'https://example.com/myVideo_en.srt',\n  closed_captions: true,\n  name: 'English',\n  passthrough: 'English',\n  text_type: 'subtitles',\n});\n\nconsole.log(track.id);",
+      },
+      php: {
+        method: 'video->assets->createTrack',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$track = $client->video->assets->createTrack(\n  'ASSET_ID',\n  languageCode: 'en-US',\n  type: 'text',\n  url: 'https://example.com/myVideo_en.srt',\n  closedCaptions: true,\n  name: 'English',\n  passthrough: 'English',\n  textType: 'subtitles',\n);\n\nvar_dump($track);",
       },
       python: {
         method: 'video.assets.create_track',
@@ -641,6 +731,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets delete-track \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --track-id TRACK_ID",
       },
+      csharp: {
+        method: 'Video.Assets.DeleteTrack',
+        example:
+          'AssetDeleteTrackParams parameters = new()\n{\n    AssetID = "ASSET_ID",\n    TrackID = "TRACK_ID",\n};\n\nawait client.Video.Assets.DeleteTrack(parameters);',
+      },
       go: {
         method: 'client.Video.Assets.DeleteTrack',
         example:
@@ -664,6 +759,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.deleteTrack',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.deleteTrack('ASSET_ID', 'TRACK_ID');",
+      },
+      php: {
+        method: 'video->assets->deleteTrack',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->assets->deleteTrack('TRACK_ID', assetID: 'ASSET_ID');\n\nvar_dump($result);",
       },
       python: {
         method: 'video.assets.delete_track',
@@ -706,6 +806,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets generate-subtitles \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --track-id TRACK_ID \\\n  --generated-subtitle '{}'",
       },
+      csharp: {
+        method: 'Video.Assets.GenerateSubtitles',
+        example:
+          'AssetGenerateSubtitlesParams parameters = new()\n{\n    AssetID = "ASSET_ID",\n    TrackID = "TRACK_ID",\n    GeneratedSubtitles =\n    [\n        new()\n        {\n            LanguageCode = LanguageCode.En,\n            Name = "English (generated)",\n            Passthrough = "English (generated)",\n        },\n    ],\n};\n\nvar tracks = await client.Video.Assets.GenerateSubtitles(parameters);\n\nConsole.WriteLine(tracks);',
+      },
       go: {
         method: 'client.Video.Assets.GenerateSubtitles',
         example:
@@ -729,6 +834,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.generateSubtitles',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst tracks = await client.video.assets.generateSubtitles('ASSET_ID', 'TRACK_ID', {\n  generated_subtitles: [\n    {\n      language_code: 'en',\n      name: 'English (generated)',\n      passthrough: 'English (generated)',\n    },\n  ],\n});\n\nconsole.log(tracks);",
+      },
+      php: {
+        method: 'video->assets->generateSubtitles',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$tracks = $client->video->assets->generateSubtitles(\n  'TRACK_ID',\n  assetID: 'ASSET_ID',\n  generatedSubtitles: [\n    [\n      'languageCode' => 'en',\n      'name' => 'English (generated)',\n      'passthrough' => 'English (generated)',\n    ],\n  ],\n);\n\nvar_dump($tracks);",
       },
       python: {
         method: 'video.assets.generate_subtitles',
@@ -767,6 +877,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets retrieve-input-info \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID",
       },
+      csharp: {
+        method: 'Video.Assets.RetrieveInputInfo',
+        example:
+          'AssetRetrieveInputInfoParams parameters = new() { AssetID = "ASSET_ID" };\n\nvar inputInfos = await client.Video.Assets.RetrieveInputInfo(parameters);\n\nConsole.WriteLine(inputInfos);',
+      },
       go: {
         method: 'client.Video.Assets.GetInputInfo',
         example:
@@ -790,6 +905,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.retrieveInputInfo',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst inputInfos = await client.video.assets.retrieveInputInfo('ASSET_ID');\n\nconsole.log(inputInfos);",
+      },
+      php: {
+        method: 'video->assets->retrieveInputInfo',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$inputInfos = $client->video->assets->retrieveInputInfo('ASSET_ID');\n\nvar_dump($inputInfos);",
       },
       python: {
         method: 'video.assets.retrieve_input_info',
@@ -831,6 +951,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets update-mp4-support \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --mp4-support capped-1080p",
       },
+      csharp: {
+        method: 'Video.Assets.UpdateMp4Support',
+        example:
+          'AssetUpdateMp4SupportParams parameters = new()\n{\n    AssetID = "ASSET_ID",\n    Mp4Support = Mp4Support.Capped1080p,\n};\n\nvar asset = await client.Video.Assets.UpdateMp4Support(parameters);\n\nConsole.WriteLine(asset);',
+      },
       go: {
         method: 'client.Video.Assets.UpdateMP4Support',
         example:
@@ -854,6 +979,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.updateMP4Support',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.updateMP4Support('ASSET_ID', {\n  mp4_support: 'capped-1080p',\n});\n\nconsole.log(asset.id);",
+      },
+      php: {
+        method: 'video->assets->updateMP4Support',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$asset = $client->video->assets->updateMP4Support(\n  'ASSET_ID', mp4Support: 'capped-1080p'\n);\n\nvar_dump($asset);",
       },
       python: {
         method: 'video.assets.update_mp4_support',
@@ -892,6 +1022,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets update-master-access \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --master-access temporary",
       },
+      csharp: {
+        method: 'Video.Assets.UpdateMasterAccess',
+        example:
+          'AssetUpdateMasterAccessParams parameters = new()\n{\n    AssetID = "ASSET_ID",\n    MasterAccess = MasterAccess.Temporary,\n};\n\nvar asset = await client.Video.Assets.UpdateMasterAccess(parameters);\n\nConsole.WriteLine(asset);',
+      },
       go: {
         method: 'client.Video.Assets.UpdateMasterAccess',
         example:
@@ -915,6 +1050,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.updateMasterAccess',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.updateMasterAccess('ASSET_ID', {\n  master_access: 'temporary',\n});\n\nconsole.log(asset.id);",
+      },
+      php: {
+        method: 'video->assets->updateMasterAccess',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$asset = $client->video->assets->updateMasterAccess(\n  'ASSET_ID', masterAccess: 'temporary'\n);\n\nvar_dump($asset);",
       },
       python: {
         method: 'video.assets.update_master_access',
@@ -956,6 +1096,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets create-static-rendition \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --resolution highest",
       },
+      csharp: {
+        method: 'Video.Assets.CreateStaticRendition',
+        example:
+          'AssetCreateStaticRenditionParams parameters = new()\n{\n    AssetID = "ASSET_ID",\n    Resolution = Resolution.Highest,\n};\n\nvar response = await client.Video.Assets.CreateStaticRendition(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Assets.NewStaticRendition',
         example:
@@ -979,6 +1124,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.createStaticRendition',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.assets.createStaticRendition('ASSET_ID', {\n  resolution: 'highest',\n});\n\nconsole.log(response.id);",
+      },
+      php: {
+        method: 'video->assets->createStaticRendition',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->assets->createStaticRendition(\n  'ASSET_ID', resolution: 'highest', passthrough: 'passthrough'\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.assets.create_static_rendition',
@@ -1014,6 +1164,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets delete-static-rendition \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --static-rendition-id STATIC_RENDITION_ID",
       },
+      csharp: {
+        method: 'Video.Assets.DeleteStaticRendition',
+        example:
+          'AssetDeleteStaticRenditionParams parameters = new()\n{\n    AssetID = "ASSET_ID",\n    StaticRenditionID = "STATIC_RENDITION_ID",\n};\n\nawait client.Video.Assets.DeleteStaticRendition(parameters);',
+      },
       go: {
         method: 'client.Video.Assets.DeleteStaticRendition',
         example:
@@ -1037,6 +1192,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.deleteStaticRendition',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.deleteStaticRendition('ASSET_ID', 'STATIC_RENDITION_ID');",
+      },
+      php: {
+        method: 'video->assets->deleteStaticRendition',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->assets->deleteStaticRendition(\n  'STATIC_RENDITION_ID', assetID: 'ASSET_ID'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'video.assets.delete_static_rendition',
@@ -1081,6 +1241,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:delivery-usage list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Video.DeliveryUsage.List',
+        example:
+          'DeliveryUsageListParams parameters = new();\n\nvar page = await client.Video.DeliveryUsage.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Video.DeliveryUsage.List',
         example:
@@ -1104,6 +1269,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.deliveryUsage.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const deliveryReport of client.video.deliveryUsage.list()) {\n  console.log(deliveryReport.asset_id);\n}",
+      },
+      php: {
+        method: 'video->deliveryUsage->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->deliveryUsage->list(\n  assetID: 'asset_id',\n  limit: 0,\n  liveStreamID: 'live_stream_id',\n  page: 0,\n  timeframe: ['string'],\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'video.delivery_usage.list',
@@ -1161,6 +1331,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Video.LiveStreams.Create',
+        example:
+          'LiveStreamCreateParams parameters = new();\n\nvar liveStream = await client.Video.LiveStreams.Create(parameters);\n\nConsole.WriteLine(liveStream);',
+      },
       go: {
         method: 'client.Video.LiveStreams.New',
         example:
@@ -1184,6 +1359,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.create',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.create({\n  new_asset_settings: { playback_policies: ['public'] },\n  playback_policies: ['public'],\n});\n\nconsole.log(liveStream.id);",
+      },
+      php: {
+        method: 'video->liveStreams->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$liveStream = $client->video->liveStreams->create(\n  advancedPlaybackPolicies: [\n    [\n      'drmConfigurationID' => 'drm_configuration_id',\n      'policy' => PlaybackPolicy::PUBLIC,\n    ],\n  ],\n  audioOnly: true,\n  embeddedSubtitles: [\n    [\n      'languageChannel' => 'cc1',\n      'languageCode' => 'language_code',\n      'name' => 'name',\n      'passthrough' => 'passthrough',\n    ],\n  ],\n  generatedSubtitles: [\n    [\n      'languageCode' => 'en',\n      'name' => 'name',\n      'passthrough' => 'passthrough',\n      'transcriptionVocabularyIDs' => ['string'],\n    ],\n  ],\n  latencyMode: 'low',\n  lowLatency: true,\n  maxContinuousDuration: 60,\n  meta: ['title' => 'title'],\n  newAssetSettings: [\n    'advancedPlaybackPolicies' => [\n      [\n        'drmConfigurationID' => 'drm_configuration_id',\n        'policy' => PlaybackPolicy::PUBLIC,\n      ],\n    ],\n    'copyOverlays' => true,\n    'encodingTier' => 'smart',\n    'input' => [\n      [\n        'closedCaptions' => true,\n        'endTime' => 0,\n        'generatedSubtitles' => [\n          [\n            'languageCode' => 'en',\n            'name' => 'name',\n            'passthrough' => 'passthrough',\n          ],\n        ],\n        'languageCode' => 'language_code',\n        'name' => 'name',\n        'overlaySettings' => [\n          'height' => 'height',\n          'horizontalAlign' => 'left',\n          'horizontalMargin' => 'horizontal_margin',\n          'opacity' => 'opacity',\n          'verticalAlign' => 'top',\n          'verticalMargin' => 'vertical_margin',\n          'width' => 'width',\n        ],\n        'passthrough' => 'passthrough',\n        'startTime' => 0,\n        'textType' => 'subtitles',\n        'type' => 'video',\n        'url' => 'url',\n      ],\n    ],\n    'inputs' => [\n      [\n        'closedCaptions' => true,\n        'endTime' => 0,\n        'generatedSubtitles' => [\n          [\n            'languageCode' => 'en',\n            'name' => 'name',\n            'passthrough' => 'passthrough',\n          ],\n        ],\n        'languageCode' => 'language_code',\n        'name' => 'name',\n        'overlaySettings' => [\n          'height' => 'height',\n          'horizontalAlign' => 'left',\n          'horizontalMargin' => 'horizontal_margin',\n          'opacity' => 'opacity',\n          'verticalAlign' => 'top',\n          'verticalMargin' => 'vertical_margin',\n          'width' => 'width',\n        ],\n        'passthrough' => 'passthrough',\n        'startTime' => 0,\n        'textType' => 'subtitles',\n        'type' => 'video',\n        'url' => 'url',\n      ],\n    ],\n    'masterAccess' => 'none',\n    'maxResolutionTier' => '1080p',\n    'meta' => [\n      'creatorID' => 'creator_id',\n      'externalID' => 'external_id',\n      'title' => 'title',\n    ],\n    'mp4Support' => 'none',\n    'normalizeAudio' => true,\n    'passthrough' => 'passthrough',\n    'perTitleEncode' => true,\n    'playbackPolicies' => [PlaybackPolicy::PUBLIC],\n    'playbackPolicy' => [PlaybackPolicy::PUBLIC],\n    'staticRenditions' => [\n      ['resolution' => 'highest', 'passthrough' => 'passthrough']\n    ],\n    'test' => true,\n    'videoQuality' => 'basic',\n  ],\n  passthrough: 'passthrough',\n  playbackPolicies: [PlaybackPolicy::PUBLIC],\n  playbackPolicy: [PlaybackPolicy::PUBLIC],\n  reconnectSlateURL: 'reconnect_slate_url',\n  reconnectWindow: 0,\n  reducedLatency: true,\n  simulcastTargets: [\n    [\n      'url' => 'url',\n      'passthrough' => 'passthrough',\n      'streamKey' => 'stream_key',\n    ],\n  ],\n  test: true,\n  useSlateForStandardLatency: true,\n);\n\nvar_dump($liveStream);",
       },
       python: {
         method: 'video.live_streams.create',
@@ -1226,6 +1406,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Video.LiveStreams.List',
+        example:
+          'LiveStreamListParams parameters = new();\n\nvar page = await client.Video.LiveStreams.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Video.LiveStreams.List',
         example:
@@ -1248,6 +1433,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const liveStream of client.video.liveStreams.list()) {\n  console.log(liveStream.id);\n}",
+      },
+      php: {
+        method: 'video->liveStreams->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->liveStreams->list(\n  limit: 0, page: 0, status: 'active', streamKey: 'stream_key'\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'video.live_streams.list',
@@ -1286,6 +1476,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.Retrieve',
+        example:
+          'LiveStreamRetrieveParams parameters = new() { LiveStreamID = "LIVE_STREAM_ID" };\n\nvar liveStream = await client.Video.LiveStreams.Retrieve(parameters);\n\nConsole.WriteLine(liveStream);',
+      },
       go: {
         method: 'client.Video.LiveStreams.Get',
         example:
@@ -1309,6 +1504,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.retrieve('LIVE_STREAM_ID');\n\nconsole.log(liveStream.id);",
+      },
+      php: {
+        method: 'video->liveStreams->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$liveStream = $client->video->liveStreams->retrieve('LIVE_STREAM_ID');\n\nvar_dump($liveStream);",
       },
       python: {
         method: 'video.live_streams.retrieve',
@@ -1345,6 +1545,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.Delete',
+        example:
+          'LiveStreamDeleteParams parameters = new() { LiveStreamID = "LIVE_STREAM_ID" };\n\nawait client.Video.LiveStreams.Delete(parameters);',
+      },
       go: {
         method: 'client.Video.LiveStreams.Delete',
         example:
@@ -1368,6 +1573,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.delete('LIVE_STREAM_ID');",
+      },
+      php: {
+        method: 'video->liveStreams->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->delete('LIVE_STREAM_ID');\n\nvar_dump($result);",
       },
       python: {
         method: 'video.live_streams.delete',
@@ -1416,6 +1626,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams update \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.Update',
+        example:
+          'LiveStreamUpdateParams parameters = new() { LiveStreamID = "LIVE_STREAM_ID" };\n\nvar liveStream = await client.Video.LiveStreams.Update(parameters);\n\nConsole.WriteLine(liveStream);',
+      },
       go: {
         method: 'client.Video.LiveStreams.Update',
         example:
@@ -1439,6 +1654,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.update',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.update('LIVE_STREAM_ID', {\n  latency_mode: 'standard',\n  max_continuous_duration: 1200,\n  reconnect_window: 30,\n});\n\nconsole.log(liveStream.id);",
+      },
+      php: {
+        method: 'video->liveStreams->update',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$liveStream = $client->video->liveStreams->update(\n  'LIVE_STREAM_ID',\n  latencyMode: 'standard',\n  maxContinuousDuration: 1200,\n  meta: ['title' => 'title'],\n  newAssetSettings: [\n    'masterAccess' => 'temporary',\n    'meta' => [\n      'creatorID' => 'creator_id',\n      'externalID' => 'external_id',\n      'title' => 'title',\n    ],\n    'mp4Support' => 'none',\n    'videoQuality' => 'plus',\n  ],\n  passthrough: 'passthrough',\n  reconnectSlateURL: 'reconnect_slate_url',\n  reconnectWindow: 30,\n  useSlateForStandardLatency: true,\n);\n\nvar_dump($liveStream);",
       },
       python: {
         method: 'video.live_streams.update',
@@ -1480,6 +1700,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams create-playback-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.CreatePlaybackID',
+        example:
+          'LiveStreamCreatePlaybackIDParams parameters = new()\n{\n    LiveStreamID = "LIVE_STREAM_ID"\n};\n\nvar playbackID = await client.Video.LiveStreams.CreatePlaybackID(parameters);\n\nConsole.WriteLine(playbackID);',
+      },
       go: {
         method: 'client.Video.LiveStreams.NewPlaybackID',
         example:
@@ -1503,6 +1728,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.createPlaybackId',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackId = await client.video.liveStreams.createPlaybackId('LIVE_STREAM_ID', {\n  policy: 'signed',\n});\n\nconsole.log(playbackId.id);",
+      },
+      php: {
+        method: 'video->liveStreams->createPlaybackID',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackID = $client->video->liveStreams->createPlaybackID(\n  'LIVE_STREAM_ID',\n  drmConfigurationID: 'drm_configuration_id',\n  policy: PlaybackPolicy::SIGNED,\n);\n\nvar_dump($playbackID);",
       },
       python: {
         method: 'video.live_streams.create_playback_id',
@@ -1540,6 +1770,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams retrieve-playback-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID \\\n  --playback-id PLAYBACK_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.RetrievePlaybackID',
+        example:
+          'LiveStreamRetrievePlaybackIDParams parameters = new()\n{\n    LiveStreamID = "LIVE_STREAM_ID",\n    PlaybackID = "PLAYBACK_ID",\n};\n\nvar playbackID = await client.Video.LiveStreams.RetrievePlaybackID(parameters);\n\nConsole.WriteLine(playbackID);',
+      },
       go: {
         method: 'client.Video.LiveStreams.GetPlaybackID',
         example:
@@ -1563,6 +1798,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.retrievePlaybackId',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackId = await client.video.liveStreams.retrievePlaybackId(\n  'LIVE_STREAM_ID',\n  'PLAYBACK_ID',\n);\n\nconsole.log(playbackId.id);",
+      },
+      php: {
+        method: 'video->liveStreams->retrievePlaybackID',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackID = $client->video->liveStreams->retrievePlaybackID(\n  'PLAYBACK_ID', liveStreamID: 'LIVE_STREAM_ID'\n);\n\nvar_dump($playbackID);",
       },
       python: {
         method: 'video.live_streams.retrieve_playback_id',
@@ -1599,6 +1839,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams delete-playback-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID \\\n  --playback-id PLAYBACK_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.DeletePlaybackID',
+        example:
+          'LiveStreamDeletePlaybackIDParams parameters = new()\n{\n    LiveStreamID = "LIVE_STREAM_ID",\n    PlaybackID = "PLAYBACK_ID",\n};\n\nawait client.Video.LiveStreams.DeletePlaybackID(parameters);',
+      },
       go: {
         method: 'client.Video.LiveStreams.DeletePlaybackID',
         example:
@@ -1622,6 +1867,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.deletePlaybackId',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.deletePlaybackId('LIVE_STREAM_ID', 'PLAYBACK_ID');",
+      },
+      php: {
+        method: 'video->liveStreams->deletePlaybackID',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->deletePlaybackID(\n  'PLAYBACK_ID', liveStreamID: 'LIVE_STREAM_ID'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'video.live_streams.delete_playback_id',
@@ -1660,6 +1910,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams reset-stream-key \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.ResetStreamKey',
+        example:
+          'LiveStreamResetStreamKeyParams parameters = new()\n{\n    LiveStreamID = "LIVE_STREAM_ID"\n};\n\nvar liveStream = await client.Video.LiveStreams.ResetStreamKey(parameters);\n\nConsole.WriteLine(liveStream);',
+      },
       go: {
         method: 'client.Video.LiveStreams.ResetStreamKey',
         example:
@@ -1683,6 +1938,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.resetStreamKey',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.resetStreamKey('LIVE_STREAM_ID');\n\nconsole.log(liveStream.id);",
+      },
+      php: {
+        method: 'video->liveStreams->resetStreamKey',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$liveStream = $client->video->liveStreams->resetStreamKey('LIVE_STREAM_ID');\n\nvar_dump($liveStream);",
       },
       python: {
         method: 'video.live_streams.reset_stream_key',
@@ -1719,6 +1979,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams complete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.Complete',
+        example:
+          'LiveStreamCompleteParams parameters = new() { LiveStreamID = "LIVE_STREAM_ID" };\n\nawait client.Video.LiveStreams.Complete(parameters);',
+      },
       go: {
         method: 'client.Video.LiveStreams.Complete',
         example:
@@ -1742,6 +2007,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.complete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.complete('LIVE_STREAM_ID');",
+      },
+      php: {
+        method: 'video->liveStreams->complete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->complete('LIVE_STREAM_ID');\n\nvar_dump($result);",
       },
       python: {
         method: 'video.live_streams.complete',
@@ -1778,6 +2048,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams disable \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.Disable',
+        example:
+          'LiveStreamDisableParams parameters = new() { LiveStreamID = "LIVE_STREAM_ID" };\n\nawait client.Video.LiveStreams.Disable(parameters);',
+      },
       go: {
         method: 'client.Video.LiveStreams.Disable',
         example:
@@ -1801,6 +2076,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.disable',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.disable('LIVE_STREAM_ID');",
+      },
+      php: {
+        method: 'video->liveStreams->disable',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->disable('LIVE_STREAM_ID');\n\nvar_dump($result);",
       },
       python: {
         method: 'video.live_streams.disable',
@@ -1836,6 +2116,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams enable \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.Enable',
+        example:
+          'LiveStreamEnableParams parameters = new() { LiveStreamID = "LIVE_STREAM_ID" };\n\nawait client.Video.LiveStreams.Enable(parameters);',
+      },
       go: {
         method: 'client.Video.LiveStreams.Enable',
         example:
@@ -1859,6 +2144,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.enable',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.enable('LIVE_STREAM_ID');",
+      },
+      php: {
+        method: 'video->liveStreams->enable',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->enable('LIVE_STREAM_ID');\n\nvar_dump($result);",
       },
       python: {
         method: 'video.live_streams.enable',
@@ -1900,6 +2190,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams update-embedded-subtitles \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.UpdateEmbeddedSubtitles',
+        example:
+          'LiveStreamUpdateEmbeddedSubtitlesParams parameters = new()\n{\n    LiveStreamID = "LIVE_STREAM_ID"\n};\n\nvar liveStream = await client.Video.LiveStreams.UpdateEmbeddedSubtitles(parameters);\n\nConsole.WriteLine(liveStream);',
+      },
       go: {
         method: 'client.Video.LiveStreams.UpdateEmbeddedSubtitles',
         example:
@@ -1923,6 +2218,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.updateEmbeddedSubtitles',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.updateEmbeddedSubtitles('LIVE_STREAM_ID', {\n  embedded_subtitles: [{ passthrough: 'Example' }],\n});\n\nconsole.log(liveStream.id);",
+      },
+      php: {
+        method: 'video->liveStreams->updateEmbeddedSubtitles',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$liveStream = $client->video->liveStreams->updateEmbeddedSubtitles(\n  'LIVE_STREAM_ID',\n  embeddedSubtitles: [\n    [\n      'languageChannel' => 'cc1',\n      'languageCode' => 'language_code',\n      'name' => 'name',\n      'passthrough' => 'Example',\n    ],\n  ],\n);\n\nvar_dump($liveStream);",
       },
       python: {
         method: 'video.live_streams.update_embedded_subtitles',
@@ -1964,6 +2264,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams update-generated-subtitles \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.UpdateGeneratedSubtitles',
+        example:
+          'LiveStreamUpdateGeneratedSubtitlesParams parameters = new()\n{\n    LiveStreamID = "LIVE_STREAM_ID"\n};\n\nvar liveStream = await client.Video.LiveStreams.UpdateGeneratedSubtitles(parameters);\n\nConsole.WriteLine(liveStream);',
+      },
       go: {
         method: 'client.Video.LiveStreams.UpdateGeneratedSubtitles',
         example:
@@ -1987,6 +2292,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.updateGeneratedSubtitles',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.updateGeneratedSubtitles('LIVE_STREAM_ID', {\n  generated_subtitles: [\n    {\n      name: 'English CC (ASR)',\n      language_code: 'en',\n      passthrough: 'Example',\n    },\n  ],\n});\n\nconsole.log(liveStream.id);",
+      },
+      php: {
+        method: 'video->liveStreams->updateGeneratedSubtitles',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$liveStream = $client->video->liveStreams->updateGeneratedSubtitles(\n  'LIVE_STREAM_ID',\n  generatedSubtitles: [\n    [\n      'languageCode' => 'en',\n      'name' => 'English CC (ASR)',\n      'passthrough' => 'Example',\n      'transcriptionVocabularyIDs' => ['string'],\n    ],\n  ],\n);\n\nvar_dump($liveStream);",
       },
       python: {
         method: 'video.live_streams.update_generated_subtitles',
@@ -2025,6 +2335,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams create-simulcast-target \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID \\\n  --url rtmp://live.example.com/app",
       },
+      csharp: {
+        method: 'Video.LiveStreams.CreateSimulcastTarget',
+        example:
+          'LiveStreamCreateSimulcastTargetParams parameters = new()\n{\n    LiveStreamID = "LIVE_STREAM_ID",\n    Url = "rtmp://live.example.com/app",\n};\n\nvar simulcastTarget = await client.Video.LiveStreams.CreateSimulcastTarget(parameters);\n\nConsole.WriteLine(simulcastTarget);',
+      },
       go: {
         method: 'client.Video.LiveStreams.NewSimulcastTarget',
         example:
@@ -2048,6 +2363,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.createSimulcastTarget',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst simulcastTarget = await client.video.liveStreams.createSimulcastTarget('LIVE_STREAM_ID', {\n  url: 'rtmp://live.example.com/app',\n  passthrough: 'Example',\n  stream_key: 'abcdefgh',\n});\n\nconsole.log(simulcastTarget.id);",
+      },
+      php: {
+        method: 'video->liveStreams->createSimulcastTarget',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$simulcastTarget = $client->video->liveStreams->createSimulcastTarget(\n  'LIVE_STREAM_ID',\n  url: 'rtmp://live.example.com/app',\n  passthrough: 'Example',\n  streamKey: 'abcdefgh',\n);\n\nvar_dump($simulcastTarget);",
       },
       python: {
         method: 'video.live_streams.create_simulcast_target',
@@ -2084,6 +2404,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams delete-simulcast-target \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID \\\n  --simulcast-target-id SIMULCAST_TARGET_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.DeleteSimulcastTarget',
+        example:
+          'LiveStreamDeleteSimulcastTargetParams parameters = new()\n{\n    LiveStreamID = "LIVE_STREAM_ID",\n    SimulcastTargetID = "SIMULCAST_TARGET_ID",\n};\n\nawait client.Video.LiveStreams.DeleteSimulcastTarget(parameters);',
+      },
       go: {
         method: 'client.Video.LiveStreams.DeleteSimulcastTarget',
         example:
@@ -2107,6 +2432,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.deleteSimulcastTarget',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.deleteSimulcastTarget('LIVE_STREAM_ID', 'SIMULCAST_TARGET_ID');",
+      },
+      php: {
+        method: 'video->liveStreams->deleteSimulcastTarget',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->deleteSimulcastTarget(\n  'SIMULCAST_TARGET_ID', liveStreamID: 'LIVE_STREAM_ID'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'video.live_streams.delete_simulcast_target',
@@ -2145,6 +2475,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams retrieve-simulcast-target \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID \\\n  --simulcast-target-id SIMULCAST_TARGET_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.RetrieveSimulcastTarget',
+        example:
+          'LiveStreamRetrieveSimulcastTargetParams parameters = new()\n{\n    LiveStreamID = "LIVE_STREAM_ID",\n    SimulcastTargetID = "SIMULCAST_TARGET_ID",\n};\n\nvar simulcastTarget = await client.Video.LiveStreams.RetrieveSimulcastTarget(parameters);\n\nConsole.WriteLine(simulcastTarget);',
+      },
       go: {
         method: 'client.Video.LiveStreams.GetSimulcastTarget',
         example:
@@ -2168,6 +2503,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.retrieveSimulcastTarget',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst simulcastTarget = await client.video.liveStreams.retrieveSimulcastTarget(\n  'LIVE_STREAM_ID',\n  'SIMULCAST_TARGET_ID',\n);\n\nconsole.log(simulcastTarget.id);",
+      },
+      php: {
+        method: 'video->liveStreams->retrieveSimulcastTarget',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$simulcastTarget = $client->video->liveStreams->retrieveSimulcastTarget(\n  'SIMULCAST_TARGET_ID', liveStreamID: 'LIVE_STREAM_ID'\n);\n\nvar_dump($simulcastTarget);",
       },
       python: {
         method: 'video.live_streams.retrieve_simulcast_target',
@@ -2209,6 +2549,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams update-new-asset-settings-static-renditions \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID \\\n  --static-rendition '{resolution: audio-only}' \\\n  --static-rendition '{resolution: highest}'",
       },
+      csharp: {
+        method: 'Video.LiveStreams.UpdateNewAssetSettingsStaticRenditions',
+        example:
+          'LiveStreamUpdateNewAssetSettingsStaticRenditionsParams parameters = new()\n{\n    LiveStreamID = "LIVE_STREAM_ID",\n    StaticRenditions =\n    [\n        new()\n        {\n            Resolution = Resolution.AudioOnly,\n            Passthrough = "passthrough",\n        },\n        new()\n        {\n            Resolution = Resolution.Highest,\n            Passthrough = "passthrough",\n        },\n    ],\n};\n\nvar liveStream = await client.Video.LiveStreams.UpdateNewAssetSettingsStaticRenditions(parameters);\n\nConsole.WriteLine(liveStream);',
+      },
       go: {
         method: 'client.Video.LiveStreams.UpdateNewAssetSettingsStaticRenditions',
         example:
@@ -2232,6 +2577,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.updateNewAssetSettingsStaticRenditions',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.updateNewAssetSettingsStaticRenditions(\n  'LIVE_STREAM_ID',\n  { static_renditions: [{ resolution: 'audio-only' }, { resolution: 'highest' }] },\n);\n\nconsole.log(liveStream.id);",
+      },
+      php: {
+        method: 'video->liveStreams->updateNewAssetSettingsStaticRenditions',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$liveStream = $client\n  ->video\n  ->liveStreams\n  ->updateNewAssetSettingsStaticRenditions(\n  'LIVE_STREAM_ID',\n  staticRenditions: [\n    ['resolution' => 'audio-only', 'passthrough' => 'passthrough'],\n    ['resolution' => 'highest', 'passthrough' => 'passthrough'],\n  ],\n);\n\nvar_dump($liveStream);",
       },
       python: {
         method: 'video.live_streams.update_new_asset_settings_static_renditions',
@@ -2268,6 +2618,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams delete-new-asset-settings-static-renditions \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.DeleteNewAssetSettingsStaticRenditions',
+        example:
+          'LiveStreamDeleteNewAssetSettingsStaticRenditionsParams parameters = new()\n{\n    LiveStreamID = "LIVE_STREAM_ID"\n};\n\nawait client.Video.LiveStreams.DeleteNewAssetSettingsStaticRenditions(parameters);',
+      },
       go: {
         method: 'client.Video.LiveStreams.DeleteNewAssetSettingsStaticRenditions',
         example:
@@ -2291,6 +2646,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.deleteNewAssetSettingsStaticRenditions',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.deleteNewAssetSettingsStaticRenditions('LIVE_STREAM_ID');",
+      },
+      php: {
+        method: 'video->liveStreams->deleteNewAssetSettingsStaticRenditions',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->deleteNewAssetSettingsStaticRenditions(\n  'LIVE_STREAM_ID'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'video.live_streams.delete_new_asset_settings_static_renditions',
@@ -2328,6 +2688,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback-ids retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID",
       },
+      csharp: {
+        method: 'Video.PlaybackIds.Retrieve',
+        example:
+          'PlaybackIDRetrieveParams parameters = new() { PlaybackID = "PLAYBACK_ID" };\n\nvar playbackID = await client.Video.PlaybackIds.Retrieve(parameters);\n\nConsole.WriteLine(playbackID);',
+      },
       go: {
         method: 'client.Video.PlaybackIDs.Get',
         example:
@@ -2351,6 +2716,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playbackIds.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackId = await client.video.playbackIds.retrieve('PLAYBACK_ID');\n\nconsole.log(playbackId.id);",
+      },
+      php: {
+        method: 'video->playbackIDs->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackID = $client->video->playbackIDs->retrieve('PLAYBACK_ID');\n\nvar_dump($playbackID);",
       },
       python: {
         method: 'video.playback_ids.retrieve',
@@ -2391,6 +2761,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback-restrictions create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --referrer \"{allowed_domains: ['*.example.com']}\" \\\n  --user-agent '{}'",
       },
+      csharp: {
+        method: 'Video.PlaybackRestrictions.Create',
+        example:
+          'PlaybackRestrictionCreateParams parameters = new()\n{\n    Referrer = new()\n    {\n        AllowedDomains =\n        [\n            "*.example.com"\n        ],\n        AllowNoReferrer = true,\n    },\n    UserAgent = new()\n    {\n        AllowHighRiskUserAgent = false,\n        AllowNoUserAgent = false,\n    },\n};\n\nvar playbackRestriction = await client.Video.PlaybackRestrictions.Create(parameters);\n\nConsole.WriteLine(playbackRestriction);',
+      },
       go: {
         method: 'client.Video.PlaybackRestrictions.New',
         example:
@@ -2414,6 +2789,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playbackRestrictions.create',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackRestriction = await client.video.playbackRestrictions.create({\n  referrer: { allowed_domains: ['*.example.com'], allow_no_referrer: true },\n  user_agent: { allow_no_user_agent: false, allow_high_risk_user_agent: false },\n});\n\nconsole.log(playbackRestriction.id);",
+      },
+      php: {
+        method: 'video->playbackRestrictions->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackRestriction = $client->video->playbackRestrictions->create(\n  referrer: ['allowedDomains' => ['*.example.com'], 'allowNoReferrer' => true],\n  userAgent: ['allowHighRiskUserAgent' => false, 'allowNoUserAgent' => false],\n);\n\nvar_dump($playbackRestriction);",
       },
       python: {
         method: 'video.playback_restrictions.create',
@@ -2451,6 +2831,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback-restrictions list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Video.PlaybackRestrictions.List',
+        example:
+          'PlaybackRestrictionListParams parameters = new();\n\nvar page = await client.Video.PlaybackRestrictions.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Video.PlaybackRestrictions.List',
         example:
@@ -2474,6 +2859,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playbackRestrictions.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const playbackRestriction of client.video.playbackRestrictions.list()) {\n  console.log(playbackRestriction.id);\n}",
+      },
+      php: {
+        method: 'video->playbackRestrictions->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->playbackRestrictions->list(limit: 0, page: 0);\n\nvar_dump($page);",
       },
       python: {
         method: 'video.playback_restrictions.list',
@@ -2509,6 +2899,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback-restrictions delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-restriction-id PLAYBACK_RESTRICTION_ID",
       },
+      csharp: {
+        method: 'Video.PlaybackRestrictions.Delete',
+        example:
+          'PlaybackRestrictionDeleteParams parameters = new()\n{\n    PlaybackRestrictionID = "PLAYBACK_RESTRICTION_ID"\n};\n\nawait client.Video.PlaybackRestrictions.Delete(parameters);',
+      },
       go: {
         method: 'client.Video.PlaybackRestrictions.Delete',
         example:
@@ -2532,6 +2927,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playbackRestrictions.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.playbackRestrictions.delete('PLAYBACK_RESTRICTION_ID');",
+      },
+      php: {
+        method: 'video->playbackRestrictions->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->playbackRestrictions->delete(\n  'PLAYBACK_RESTRICTION_ID'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'video.playback_restrictions.delete',
@@ -2569,6 +2969,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback-restrictions retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-restriction-id PLAYBACK_RESTRICTION_ID",
       },
+      csharp: {
+        method: 'Video.PlaybackRestrictions.Retrieve',
+        example:
+          'PlaybackRestrictionRetrieveParams parameters = new()\n{\n    PlaybackRestrictionID = "PLAYBACK_RESTRICTION_ID"\n};\n\nvar playbackRestriction = await client.Video.PlaybackRestrictions.Retrieve(parameters);\n\nConsole.WriteLine(playbackRestriction);',
+      },
       go: {
         method: 'client.Video.PlaybackRestrictions.Get',
         example:
@@ -2592,6 +2997,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playbackRestrictions.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackRestriction = await client.video.playbackRestrictions.retrieve(\n  'PLAYBACK_RESTRICTION_ID',\n);\n\nconsole.log(playbackRestriction.id);",
+      },
+      php: {
+        method: 'video->playbackRestrictions->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackRestriction = $client->video->playbackRestrictions->retrieve(\n  'PLAYBACK_RESTRICTION_ID'\n);\n\nvar_dump($playbackRestriction);",
       },
       python: {
         method: 'video.playback_restrictions.retrieve',
@@ -2634,6 +3044,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback-restrictions update-referrer \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-restriction-id PLAYBACK_RESTRICTION_ID \\\n  --allowed-domain \"'*.example.com'\"",
       },
+      csharp: {
+        method: 'Video.PlaybackRestrictions.UpdateReferrer',
+        example:
+          'PlaybackRestrictionUpdateReferrerParams parameters = new()\n{\n    PlaybackRestrictionID = "PLAYBACK_RESTRICTION_ID",\n    AllowedDomains =\n    [\n        "*.example.com"\n    ],\n};\n\nvar playbackRestriction = await client.Video.PlaybackRestrictions.UpdateReferrer(parameters);\n\nConsole.WriteLine(playbackRestriction);',
+      },
       go: {
         method: 'client.Video.PlaybackRestrictions.UpdateReferrer',
         example:
@@ -2657,6 +3072,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playbackRestrictions.updateReferrer',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackRestriction = await client.video.playbackRestrictions.updateReferrer(\n  'PLAYBACK_RESTRICTION_ID',\n  { allowed_domains: ['*.example.com'], allow_no_referrer: true },\n);\n\nconsole.log(playbackRestriction.id);",
+      },
+      php: {
+        method: 'video->playbackRestrictions->updateReferrer',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackRestriction = $client->video->playbackRestrictions->updateReferrer(\n  'PLAYBACK_RESTRICTION_ID',\n  allowedDomains: ['*.example.com'],\n  allowNoReferrer: true,\n);\n\nvar_dump($playbackRestriction);",
       },
       python: {
         method: 'video.playback_restrictions.update_referrer',
@@ -2699,6 +3119,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback-restrictions update-user-agent \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-restriction-id PLAYBACK_RESTRICTION_ID \\\n  --allow-high-risk-user-agent=false \\\n  --allow-no-user-agent=false",
       },
+      csharp: {
+        method: 'Video.PlaybackRestrictions.UpdateUserAgent',
+        example:
+          'PlaybackRestrictionUpdateUserAgentParams parameters = new()\n{\n    PlaybackRestrictionID = "PLAYBACK_RESTRICTION_ID",\n    AllowHighRiskUserAgent = false,\n    AllowNoUserAgent = false,\n};\n\nvar playbackRestriction = await client.Video.PlaybackRestrictions.UpdateUserAgent(parameters);\n\nConsole.WriteLine(playbackRestriction);',
+      },
       go: {
         method: 'client.Video.PlaybackRestrictions.UpdateUserAgent',
         example:
@@ -2722,6 +3147,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playbackRestrictions.updateUserAgent',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackRestriction = await client.video.playbackRestrictions.updateUserAgent(\n  'PLAYBACK_RESTRICTION_ID',\n  { allow_high_risk_user_agent: false, allow_no_user_agent: false },\n);\n\nconsole.log(playbackRestriction.id);",
+      },
+      php: {
+        method: 'video->playbackRestrictions->updateUserAgent',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackRestriction = $client->video->playbackRestrictions->updateUserAgent(\n  'PLAYBACK_RESTRICTION_ID',\n  allowHighRiskUserAgent: false,\n  allowNoUserAgent: false,\n);\n\nvar_dump($playbackRestriction);",
       },
       python: {
         method: 'video.playback_restrictions.update_user_agent',
@@ -2760,6 +3190,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:transcription-vocabularies retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --transcription-vocabulary-id TRANSCRIPTION_VOCABULARY_ID",
       },
+      csharp: {
+        method: 'Video.TranscriptionVocabularies.Retrieve',
+        example:
+          'TranscriptionVocabularyRetrieveParams parameters = new()\n{\n    TranscriptionVocabularyID = "TRANSCRIPTION_VOCABULARY_ID"\n};\n\nvar transcriptionVocabulary = await client.Video.TranscriptionVocabularies.Retrieve(parameters);\n\nConsole.WriteLine(transcriptionVocabulary);',
+      },
       go: {
         method: 'client.Video.TranscriptionVocabularies.Get',
         example:
@@ -2783,6 +3218,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.transcriptionVocabularies.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst transcriptionVocabulary = await client.video.transcriptionVocabularies.retrieve(\n  'TRANSCRIPTION_VOCABULARY_ID',\n);\n\nconsole.log(transcriptionVocabulary.id);",
+      },
+      php: {
+        method: 'video->transcriptionVocabularies->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$transcriptionVocabulary = $client->video->transcriptionVocabularies->retrieve(\n  'TRANSCRIPTION_VOCABULARY_ID'\n);\n\nvar_dump($transcriptionVocabulary);",
       },
       python: {
         method: 'video.transcription_vocabularies.retrieve',
@@ -2820,6 +3260,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:transcription-vocabularies create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --phrase Mux \\\n  --phrase 'Live Stream' \\\n  --phrase 'Playback ID' \\\n  --phrase 'video encoding'",
       },
+      csharp: {
+        method: 'Video.TranscriptionVocabularies.Create',
+        example:
+          'TranscriptionVocabularyCreateParams parameters = new()\n{\n    Phrases =\n    [\n        "Mux", "Live Stream", "Playback ID", "video encoding"\n    ],\n};\n\nvar transcriptionVocabulary = await client.Video.TranscriptionVocabularies.Create(parameters);\n\nConsole.WriteLine(transcriptionVocabulary);',
+      },
       go: {
         method: 'client.Video.TranscriptionVocabularies.New',
         example:
@@ -2843,6 +3288,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.transcriptionVocabularies.create',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst transcriptionVocabulary = await client.video.transcriptionVocabularies.create({\n  phrases: ['Mux', 'Live Stream', 'Playback ID', 'video encoding'],\n  name: 'Mux API Vocabulary',\n});\n\nconsole.log(transcriptionVocabulary.id);",
+      },
+      php: {
+        method: 'video->transcriptionVocabularies->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$transcriptionVocabulary = $client->video->transcriptionVocabularies->create(\n  phrases: ['Mux', 'Live Stream', 'Playback ID', 'video encoding'],\n  name: 'Mux API Vocabulary',\n  passthrough: 'passthrough',\n);\n\nvar_dump($transcriptionVocabulary);",
       },
       python: {
         method: 'video.transcription_vocabularies.create',
@@ -2879,6 +3329,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:transcription-vocabularies delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --transcription-vocabulary-id TRANSCRIPTION_VOCABULARY_ID",
       },
+      csharp: {
+        method: 'Video.TranscriptionVocabularies.Delete',
+        example:
+          'TranscriptionVocabularyDeleteParams parameters = new()\n{\n    TranscriptionVocabularyID = "TRANSCRIPTION_VOCABULARY_ID"\n};\n\nawait client.Video.TranscriptionVocabularies.Delete(parameters);',
+      },
       go: {
         method: 'client.Video.TranscriptionVocabularies.Delete',
         example:
@@ -2902,6 +3357,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.transcriptionVocabularies.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.transcriptionVocabularies.delete('TRANSCRIPTION_VOCABULARY_ID');",
+      },
+      php: {
+        method: 'video->transcriptionVocabularies->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->transcriptionVocabularies->delete(\n  'TRANSCRIPTION_VOCABULARY_ID'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'video.transcription_vocabularies.delete',
@@ -2945,6 +3405,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:transcription-vocabularies update \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --transcription-vocabulary-id TRANSCRIPTION_VOCABULARY_ID \\\n  --phrase Mux \\\n  --phrase 'Live Stream' \\\n  --phrase RTMP \\\n  --phrase 'Stream Key'",
       },
+      csharp: {
+        method: 'Video.TranscriptionVocabularies.Update',
+        example:
+          'TranscriptionVocabularyUpdateParams parameters = new()\n{\n    TranscriptionVocabularyID = "TRANSCRIPTION_VOCABULARY_ID",\n    Phrases =\n    [\n        "Mux", "Live Stream", "RTMP", "Stream Key"\n    ],\n};\n\nvar transcriptionVocabulary = await client.Video.TranscriptionVocabularies.Update(parameters);\n\nConsole.WriteLine(transcriptionVocabulary);',
+      },
       go: {
         method: 'client.Video.TranscriptionVocabularies.Update',
         example:
@@ -2968,6 +3433,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.transcriptionVocabularies.update',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst transcriptionVocabulary = await client.video.transcriptionVocabularies.update(\n  'TRANSCRIPTION_VOCABULARY_ID',\n  { phrases: ['Mux', 'Live Stream', 'RTMP', 'Stream Key'], name: 'Mux API Vocabulary - Updated' },\n);\n\nconsole.log(transcriptionVocabulary.id);",
+      },
+      php: {
+        method: 'video->transcriptionVocabularies->update',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$transcriptionVocabulary = $client->video->transcriptionVocabularies->update(\n  'TRANSCRIPTION_VOCABULARY_ID',\n  phrases: ['Mux', 'Live Stream', 'RTMP', 'Stream Key'],\n  name: 'Mux API Vocabulary - Updated',\n  passthrough: 'passthrough',\n);\n\nvar_dump($transcriptionVocabulary);",
       },
       python: {
         method: 'video.transcription_vocabularies.update',
@@ -3005,6 +3475,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:transcription-vocabularies list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Video.TranscriptionVocabularies.List',
+        example:
+          'TranscriptionVocabularyListParams parameters = new();\n\nvar page = await client.Video.TranscriptionVocabularies.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Video.TranscriptionVocabularies.List',
         example:
@@ -3028,6 +3503,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.transcriptionVocabularies.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const transcriptionVocabulary of client.video.transcriptionVocabularies.list()) {\n  console.log(transcriptionVocabulary.id);\n}",
+      },
+      php: {
+        method: 'video->transcriptionVocabularies->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->transcriptionVocabularies->list(limit: 10, page: 0);\n\nvar_dump($page);",
       },
       python: {
         method: 'video.transcription_vocabularies.list',
@@ -3071,6 +3551,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:uploads create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --cors-origin https://example.com/",
       },
+      csharp: {
+        method: 'Video.Uploads.Create',
+        example:
+          'UploadCreateParams parameters = new() { CorsOrigin = "https://example.com/" };\n\nvar upload = await client.Video.Uploads.Create(parameters);\n\nConsole.WriteLine(upload);',
+      },
       go: {
         method: 'client.Video.Uploads.New',
         example:
@@ -3094,6 +3579,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.uploads.create',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst upload = await client.video.uploads.create({\n  cors_origin: 'https://example.com/',\n  new_asset_settings: { playback_policies: ['public'] },\n});\n\nconsole.log(upload.id);",
+      },
+      php: {
+        method: 'video->uploads->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$upload = $client->video->uploads->create(\n  corsOrigin: 'https://example.com/',\n  newAssetSettings: [\n    'advancedPlaybackPolicies' => [\n      [\n        'drmConfigurationID' => 'drm_configuration_id',\n        'policy' => PlaybackPolicy::PUBLIC,\n      ],\n    ],\n    'copyOverlays' => true,\n    'encodingTier' => 'smart',\n    'input' => [\n      [\n        'closedCaptions' => true,\n        'endTime' => 0,\n        'generatedSubtitles' => [\n          [\n            'languageCode' => 'en',\n            'name' => 'name',\n            'passthrough' => 'passthrough',\n          ],\n        ],\n        'languageCode' => 'language_code',\n        'name' => 'name',\n        'overlaySettings' => [\n          'height' => 'height',\n          'horizontalAlign' => 'left',\n          'horizontalMargin' => 'horizontal_margin',\n          'opacity' => 'opacity',\n          'verticalAlign' => 'top',\n          'verticalMargin' => 'vertical_margin',\n          'width' => 'width',\n        ],\n        'passthrough' => 'passthrough',\n        'startTime' => 0,\n        'textType' => 'subtitles',\n        'type' => 'video',\n        'url' => 'url',\n      ],\n    ],\n    'inputs' => [\n      [\n        'closedCaptions' => true,\n        'endTime' => 0,\n        'generatedSubtitles' => [\n          [\n            'languageCode' => 'en',\n            'name' => 'name',\n            'passthrough' => 'passthrough',\n          ],\n        ],\n        'languageCode' => 'language_code',\n        'name' => 'name',\n        'overlaySettings' => [\n          'height' => 'height',\n          'horizontalAlign' => 'left',\n          'horizontalMargin' => 'horizontal_margin',\n          'opacity' => 'opacity',\n          'verticalAlign' => 'top',\n          'verticalMargin' => 'vertical_margin',\n          'width' => 'width',\n        ],\n        'passthrough' => 'passthrough',\n        'startTime' => 0,\n        'textType' => 'subtitles',\n        'type' => 'video',\n        'url' => 'url',\n      ],\n    ],\n    'masterAccess' => 'none',\n    'maxResolutionTier' => '1080p',\n    'meta' => [\n      'creatorID' => 'creator_id',\n      'externalID' => 'external_id',\n      'title' => 'title',\n    ],\n    'mp4Support' => 'none',\n    'normalizeAudio' => true,\n    'passthrough' => 'passthrough',\n    'perTitleEncode' => true,\n    'playbackPolicies' => [PlaybackPolicy::PUBLIC],\n    'playbackPolicy' => [PlaybackPolicy::PUBLIC],\n    'staticRenditions' => [\n      ['resolution' => 'highest', 'passthrough' => 'passthrough']\n    ],\n    'test' => true,\n    'videoQuality' => 'basic',\n  ],\n  test: true,\n  timeout: 60,\n);\n\nvar_dump($upload);",
       },
       python: {
         method: 'video.uploads.create',
@@ -3131,6 +3621,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:uploads retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --upload-id abcd1234",
       },
+      csharp: {
+        method: 'Video.Uploads.Retrieve',
+        example:
+          'UploadRetrieveParams parameters = new() { UploadID = "abcd1234" };\n\nvar upload = await client.Video.Uploads.Retrieve(parameters);\n\nConsole.WriteLine(upload);',
+      },
       go: {
         method: 'client.Video.Uploads.Get',
         example:
@@ -3154,6 +3649,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.uploads.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst upload = await client.video.uploads.retrieve('abcd1234');\n\nconsole.log(upload.id);",
+      },
+      php: {
+        method: 'video->uploads->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$upload = $client->video->uploads->retrieve('abcd1234');\n\nvar_dump($upload);",
       },
       python: {
         method: 'video.uploads.retrieve',
@@ -3192,6 +3692,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:uploads cancel \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --upload-id abcd1234",
       },
+      csharp: {
+        method: 'Video.Uploads.Cancel',
+        example:
+          'UploadCancelParams parameters = new() { UploadID = "abcd1234" };\n\nvar upload = await client.Video.Uploads.Cancel(parameters);\n\nConsole.WriteLine(upload);',
+      },
       go: {
         method: 'client.Video.Uploads.Cancel',
         example:
@@ -3215,6 +3720,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.uploads.cancel',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst upload = await client.video.uploads.cancel('abcd1234');\n\nconsole.log(upload.id);",
+      },
+      php: {
+        method: 'video->uploads->cancel',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$upload = $client->video->uploads->cancel('abcd1234');\n\nvar_dump($upload);",
       },
       python: {
         method: 'video.uploads.cancel',
@@ -3251,6 +3761,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'uploads list',
         example: "mux-cli video:uploads list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Video.Uploads.List',
+        example:
+          'UploadListParams parameters = new();\n\nvar page = await client.Video.Uploads.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Video.Uploads.List',
         example:
@@ -3273,6 +3788,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.uploads.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const upload of client.video.uploads.list()) {\n  console.log(upload.id);\n}",
+      },
+      php: {
+        method: 'video->uploads->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->uploads->list(limit: 0, page: 0);\n\nvar_dump($page);",
       },
       python: {
         method: 'video.uploads.list',
@@ -3320,6 +3840,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:web-inputs create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag \\\n  --url https://example.com/hello.html",
       },
+      csharp: {
+        method: 'Video.WebInputs.Create',
+        example:
+          'WebInputCreateParams parameters = new()\n{\n    LiveStreamID = "ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag",\n    Url = "https://example.com/hello.html",\n};\n\nvar webInput = await client.Video.WebInputs.Create(parameters);\n\nConsole.WriteLine(webInput);',
+      },
       go: {
         method: 'client.Video.WebInputs.New',
         example:
@@ -3343,6 +3868,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.webInputs.create',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst webInput = await client.video.webInputs.create({\n  live_stream_id: 'ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag',\n  url: 'https://example.com/hello.html',\n});\n\nconsole.log(webInput.id);",
+      },
+      php: {
+        method: 'video->webInputs->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$webInput = $client->video->webInputs->create(\n  liveStreamID: 'ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag',\n  url: 'https://example.com/hello.html',\n  id: 'id',\n  autoLaunch: true,\n  createdAt: 'created_at',\n  passthrough: 'passthrough',\n  resolution: '1920x1080',\n  status: 'idle',\n  timeout: 0,\n);\n\nvar_dump($webInput);",
       },
       python: {
         method: 'video.web_inputs.create',
@@ -3380,6 +3910,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:web-inputs list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Video.WebInputs.List',
+        example:
+          'WebInputListParams parameters = new();\n\nvar page = await client.Video.WebInputs.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Video.WebInputs.List',
         example:
@@ -3402,6 +3937,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.webInputs.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const webInputListResponse of client.video.webInputs.list()) {\n  console.log(webInputListResponse.id);\n}",
+      },
+      php: {
+        method: 'video->webInputs->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->webInputs->list(limit: 0, page: 0);\n\nvar_dump($page);",
       },
       python: {
         method: 'video.web_inputs.list',
@@ -3439,6 +3979,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:web-inputs retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --web-input-id abcd1234",
       },
+      csharp: {
+        method: 'Video.WebInputs.Retrieve',
+        example:
+          'WebInputRetrieveParams parameters = new() { WebInputID = "abcd1234" };\n\nvar webInput = await client.Video.WebInputs.Retrieve(parameters);\n\nConsole.WriteLine(webInput);',
+      },
       go: {
         method: 'client.Video.WebInputs.Get',
         example:
@@ -3462,6 +4007,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.webInputs.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst webInput = await client.video.webInputs.retrieve('abcd1234');\n\nconsole.log(webInput.id);",
+      },
+      php: {
+        method: 'video->webInputs->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$webInput = $client->video->webInputs->retrieve('abcd1234');\n\nvar_dump($webInput);",
       },
       python: {
         method: 'video.web_inputs.retrieve',
@@ -3497,6 +4047,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:web-inputs delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --web-input-id abcd1234",
       },
+      csharp: {
+        method: 'Video.WebInputs.Delete',
+        example:
+          'WebInputDeleteParams parameters = new() { WebInputID = "abcd1234" };\n\nawait client.Video.WebInputs.Delete(parameters);',
+      },
       go: {
         method: 'client.Video.WebInputs.Delete',
         example:
@@ -3520,6 +4075,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.webInputs.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.webInputs.delete('abcd1234');",
+      },
+      php: {
+        method: 'video->webInputs->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->webInputs->delete('abcd1234');\n\nvar_dump($result);",
       },
       python: {
         method: 'video.web_inputs.delete',
@@ -3557,6 +4117,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:web-inputs launch \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --web-input-id abcd1234",
       },
+      csharp: {
+        method: 'Video.WebInputs.Launch',
+        example:
+          'WebInputLaunchParams parameters = new() { WebInputID = "abcd1234" };\n\nvar response = await client.Video.WebInputs.Launch(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.WebInputs.Launch',
         example:
@@ -3580,6 +4145,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.webInputs.launch',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.webInputs.launch('abcd1234');\n\nconsole.log(response);",
+      },
+      php: {
+        method: 'video->webInputs->launch',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->webInputs->launch('abcd1234');\n\nvar_dump($response);",
       },
       python: {
         method: 'video.web_inputs.launch',
@@ -3617,6 +4187,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:web-inputs shutdown \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --web-input-id abcd1234",
       },
+      csharp: {
+        method: 'Video.WebInputs.Shutdown',
+        example:
+          'WebInputShutdownParams parameters = new() { WebInputID = "abcd1234" };\n\nvar response = await client.Video.WebInputs.Shutdown(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.WebInputs.Shutdown',
         example:
@@ -3640,6 +4215,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.webInputs.shutdown',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.webInputs.shutdown('abcd1234');\n\nconsole.log(response);",
+      },
+      php: {
+        method: 'video->webInputs->shutdown',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->webInputs->shutdown('abcd1234');\n\nvar_dump($response);",
       },
       python: {
         method: 'video.web_inputs.shutdown',
@@ -3677,6 +4257,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:web-inputs reload \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --web-input-id abcd1234",
       },
+      csharp: {
+        method: 'Video.WebInputs.Reload',
+        example:
+          'WebInputReloadParams parameters = new() { WebInputID = "abcd1234" };\n\nvar response = await client.Video.WebInputs.Reload(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.WebInputs.Reload',
         example:
@@ -3700,6 +4285,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.webInputs.reload',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.webInputs.reload('abcd1234');\n\nconsole.log(response);",
+      },
+      php: {
+        method: 'video->webInputs->reload',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->webInputs->reload('abcd1234');\n\nvar_dump($response);",
       },
       python: {
         method: 'video.web_inputs.reload',
@@ -3738,6 +4328,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:web-inputs update-url \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --web-input-id abcd1234 \\\n  --url https://example.com/hello-there.html",
       },
+      csharp: {
+        method: 'Video.WebInputs.UpdateUrl',
+        example:
+          'WebInputUpdateUrlParams parameters = new()\n{\n    WebInputID = "abcd1234",\n    Url = "https://example.com/hello-there.html",\n};\n\nvar response = await client.Video.WebInputs.UpdateUrl(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.WebInputs.UpdateURL',
         example:
@@ -3761,6 +4356,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.webInputs.updateURL',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.webInputs.updateURL('abcd1234', {\n  url: 'https://example.com/hello-there.html',\n});\n\nconsole.log(response.id);",
+      },
+      php: {
+        method: 'video->webInputs->updateURL',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->webInputs->updateURL(\n  'abcd1234', url: 'https://example.com/hello-there.html'\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.web_inputs.update_url',
@@ -3797,6 +4397,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:drm-configurations list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Video.DrmConfigurations.List',
+        example:
+          'DrmConfigurationListParams parameters = new();\n\nvar page = await client.Video.DrmConfigurations.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Video.DRMConfigurations.List',
         example:
@@ -3820,6 +4425,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.drmConfigurations.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const drmConfiguration of client.video.drmConfigurations.list()) {\n  console.log(drmConfiguration.id);\n}",
+      },
+      php: {
+        method: 'video->drmConfigurations->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->drmConfigurations->list(limit: 0, page: 0);\n\nvar_dump($page);",
       },
       python: {
         method: 'video.drm_configurations.list',
@@ -3856,6 +4466,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:drm-configurations retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --drm-configuration-id DRM_CONFIGURATION_ID",
       },
+      csharp: {
+        method: 'Video.DrmConfigurations.Retrieve',
+        example:
+          'DrmConfigurationRetrieveParams parameters = new()\n{\n    DrmConfigurationID = "DRM_CONFIGURATION_ID"\n};\n\nvar drmConfiguration = await client.Video.DrmConfigurations.Retrieve(parameters);\n\nConsole.WriteLine(drmConfiguration);',
+      },
       go: {
         method: 'client.Video.DRMConfigurations.Get',
         example:
@@ -3879,6 +4494,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.drmConfigurations.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst drmConfiguration = await client.video.drmConfigurations.retrieve('DRM_CONFIGURATION_ID');\n\nconsole.log(drmConfiguration.id);",
+      },
+      php: {
+        method: 'video->drmConfigurations->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$drmConfiguration = $client->video->drmConfigurations->retrieve(\n  'DRM_CONFIGURATION_ID'\n);\n\nvar_dump($drmConfiguration);",
       },
       python: {
         method: 'video.drm_configurations.retrieve',
@@ -3929,6 +4549,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback thumbnail \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID \\\n  --extension jpg",
       },
+      csharp: {
+        method: 'Video.Playback.Thumbnail',
+        example:
+          'PlaybackThumbnailParams parameters = new()\n{\n    PlaybackID = "PLAYBACK_ID",\n    Extension = Extension.Jpg,\n};\n\nvar response = await client.Video.Playback.Thumbnail(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Playback.Thumbnail',
         example:
@@ -3952,6 +4577,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.thumbnail',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.thumbnail('PLAYBACK_ID', 'jpg');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
+      },
+      php: {
+        method: 'video->playback->thumbnail',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->thumbnail(\n  'jpg',\n  playbackID: 'PLAYBACK_ID',\n  fitMode: 'preserve',\n  flipH: true,\n  flipV: true,\n  height: 0,\n  latest: true,\n  programTime: 0,\n  rotate: 90,\n  time: 0,\n  token: 'TOKEN',\n  width: 0,\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.playback.thumbnail',
@@ -3998,6 +4628,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback animated \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID \\\n  --extension gif",
       },
+      csharp: {
+        method: 'Video.Playback.Animated',
+        example:
+          'PlaybackAnimatedParams parameters = new()\n{\n    PlaybackID = "PLAYBACK_ID",\n    Extension = Extension.Gif,\n};\n\nvar response = await client.Video.Playback.Animated(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Playback.Animated',
         example:
@@ -4021,6 +4656,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.animated',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.animated('PLAYBACK_ID', 'gif');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
+      },
+      php: {
+        method: 'video->playback->animated',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->animated(\n  'gif',\n  playbackID: 'PLAYBACK_ID',\n  end: 0,\n  fps: 0,\n  height: 0,\n  start: 0,\n  token: 'TOKEN',\n  width: 0,\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.playback.animated',
@@ -4066,6 +4706,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback storyboard \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID \\\n  --extension jpg",
       },
+      csharp: {
+        method: 'Video.Playback.Storyboard',
+        example:
+          'PlaybackStoryboardParams parameters = new()\n{\n    PlaybackID = "PLAYBACK_ID",\n    Extension = Extension.Jpg,\n};\n\nvar response = await client.Video.Playback.Storyboard(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Playback.Storyboard',
         example:
@@ -4089,6 +4734,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.storyboard',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.storyboard('PLAYBACK_ID', 'jpg');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
+      },
+      php: {
+        method: 'video->playback->storyboard',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->storyboard(\n  'jpg',\n  playbackID: 'PLAYBACK_ID',\n  assetEndTime: 0,\n  assetStartTime: 0,\n  programEndTime: 0,\n  programStartTime: 0,\n  token: 'TOKEN',\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.playback.storyboard',
@@ -4133,6 +4783,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback storyboard-vtt \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID",
       },
+      csharp: {
+        method: 'Video.Playback.StoryboardVtt',
+        example:
+          'PlaybackStoryboardVttParams parameters = new() { PlaybackID = "PLAYBACK_ID" };\n\nvar response = await client.Video.Playback.StoryboardVtt(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Playback.StoryboardVtt',
         example:
@@ -4156,6 +4811,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.storyboardVtt',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.storyboardVtt('PLAYBACK_ID');\n\nconsole.log(response);",
+      },
+      php: {
+        method: 'video->playback->storyboardVtt',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->storyboardVtt(\n  'PLAYBACK_ID',\n  assetEndTime: 0,\n  assetStartTime: 0,\n  programEndTime: 0,\n  programStartTime: 0,\n  token: 'TOKEN',\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.playback.storyboard_vtt',
@@ -4201,6 +4861,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback storyboard-meta \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID",
       },
+      csharp: {
+        method: 'Video.Playback.StoryboardMeta',
+        example:
+          'PlaybackStoryboardMetaParams parameters = new() { PlaybackID = "PLAYBACK_ID" };\n\nvar response = await client.Video.Playback.StoryboardMeta(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Playback.StoryboardMeta',
         example:
@@ -4224,6 +4889,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.storyboardMeta',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.storyboardMeta('PLAYBACK_ID');\n\nconsole.log(response);",
+      },
+      php: {
+        method: 'video->playback->storyboardMeta',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->storyboardMeta(\n  'PLAYBACK_ID',\n  assetEndTime: 0,\n  assetStartTime: 0,\n  format: 'jpg',\n  programEndTime: 0,\n  programStartTime: 0,\n  token: 'TOKEN',\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.playback.storyboard_meta',
@@ -4275,6 +4945,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback hls \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID",
       },
+      csharp: {
+        method: 'Video.Playback.Hls',
+        example:
+          'PlaybackHlsParams parameters = new() { PlaybackID = "PLAYBACK_ID" };\n\nvar response = await client.Video.Playback.Hls(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Playback.Hls',
         example:
@@ -4297,6 +4972,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.hls',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.hls('PLAYBACK_ID');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
+      },
+      php: {
+        method: 'video->playback->hls',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->hls(\n  'PLAYBACK_ID',\n  assetEndTime: 0,\n  assetStartTime: 0,\n  defaultSubtitlesLang: 'default_subtitles_lang',\n  excludePdt: true,\n  maxResolution: '270p',\n  minResolution: '270p',\n  programEndTime: 0,\n  programStartTime: 0,\n  redundantStreams: true,\n  renditionOrder: 'desc',\n  rokuTrickPlay: true,\n  token: 'TOKEN',\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.playback.hls',
@@ -4338,6 +5018,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback static-rendition \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID \\\n  --filename capped-1080p.mp4",
       },
+      csharp: {
+        method: 'Video.Playback.StaticRendition',
+        example:
+          'PlaybackStaticRenditionParams parameters = new()\n{\n    PlaybackID = "PLAYBACK_ID",\n    Filename = Filename.Capped1080pMp4,\n};\n\nvar response = await client.Video.Playback.StaticRendition(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Playback.StaticRendition',
         example:
@@ -4361,6 +5046,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.staticRendition',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.staticRendition('PLAYBACK_ID', 'capped-1080p.mp4');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
+      },
+      php: {
+        method: 'video->playback->staticRendition',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->staticRendition(\n  'capped-1080p.mp4', playbackID: 'PLAYBACK_ID', token: 'TOKEN'\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.playback.static_rendition',
@@ -4397,6 +5087,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback track \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID \\\n  --track-id TRACK_ID",
       },
+      csharp: {
+        method: 'Video.Playback.Track',
+        example:
+          'PlaybackTrackParams parameters = new()\n{\n    PlaybackID = "PLAYBACK_ID",\n    TrackID = "TRACK_ID",\n};\n\nvar response = await client.Video.Playback.Track(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Playback.Track',
         example:
@@ -4420,6 +5115,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.track',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.track('PLAYBACK_ID', 'TRACK_ID');\n\nconsole.log(response);",
+      },
+      php: {
+        method: 'video->playback->track',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->track(\n  'TRACK_ID', playbackID: 'PLAYBACK_ID', token: 'TOKEN'\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.playback.track',
@@ -4457,6 +5157,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback transcript \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID \\\n  --track-id TRACK_ID",
       },
+      csharp: {
+        method: 'Video.Playback.Transcript',
+        example:
+          'PlaybackTranscriptParams parameters = new()\n{\n    PlaybackID = "PLAYBACK_ID",\n    TrackID = "TRACK_ID",\n};\n\nvar response = await client.Video.Playback.Transcript(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Playback.Transcript',
         example:
@@ -4480,6 +5185,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.transcript',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.transcript('PLAYBACK_ID', 'TRACK_ID');\n\nconsole.log(response);",
+      },
+      php: {
+        method: 'video->playback->transcript',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->transcript(\n  'TRACK_ID', playbackID: 'PLAYBACK_ID', token: 'TOKEN'\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.playback.transcript',
@@ -4523,6 +5233,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'jobs list',
         example: "mux-cli robots:jobs list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Robots.Jobs.List',
+        example:
+          'JobListParams parameters = new();\n\nvar page = await client.Robots.Jobs.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Robots.Jobs.List',
         example:
@@ -4545,6 +5260,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const jobSummary of client.robots.jobs.list()) {\n  console.log(jobSummary.id);\n}",
+      },
+      php: {
+        method: 'robots->jobs->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->robots->jobs->list(\n  assetID: 'x',\n  limit: 1,\n  page: 1,\n  status: JobStatus::PENDING,\n  workflow: 'summarize',\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'robots.jobs.list',
@@ -4581,6 +5301,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots:jobs cancel \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
       },
+      csharp: {
+        method: 'Robots.Jobs.Cancel',
+        example:
+          'JobCancelParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nvar response = await client.Robots.Jobs.Cancel(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Robots.Jobs.Cancel',
         example:
@@ -4604,6 +5329,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.cancel',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.robots.jobs.cancel('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');\n\nconsole.log(response);",
+      },
+      php: {
+        method: 'robots->jobs->cancel',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->robots->jobs->cancel(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'robots.jobs.cancel',
@@ -4639,6 +5369,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots:jobs delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
       },
+      csharp: {
+        method: 'Robots.Jobs.Delete',
+        example:
+          'JobDeleteParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nawait client.Robots.Jobs.Delete(parameters);',
+      },
       go: {
         method: 'client.Robots.Jobs.Delete',
         example:
@@ -4662,6 +5397,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.robots.jobs.delete('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');",
+      },
+      php: {
+        method: 'robots->jobs->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->robots->jobs->delete(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'robots.jobs.delete',
@@ -4702,6 +5442,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots:jobs:ask-questions create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --parameters '{asset_id: mux_asset_123abc, questions: [{question: Is there a person speaking on camera?}]}'",
       },
+      csharp: {
+        method: 'Robots.Jobs.AskQuestions.Create',
+        example:
+          'AskQuestionCreateParams parameters = new()\n{\n    Parameters = new()\n    {\n        AssetID = "mux_asset_123abc",\n        Questions =\n        [\n            new("Is there a person speaking on camera?")\n        ],\n        AnswerOptions =\n        [\n            "yes", "no"\n        ],\n    },\n};\n\nvar askQuestionsJob = await client.Robots.Jobs.AskQuestions.Create(parameters);\n\nConsole.WriteLine(askQuestionsJob);',
+      },
       go: {
         method: 'client.Robots.Jobs.AskQuestions.New',
         example:
@@ -4725,6 +5470,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.askQuestions.create',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst askQuestionsJob = await client.robots.jobs.askQuestions.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    questions: [{ question: 'Is there a person speaking on camera?' }],\n  },\n});\n\nconsole.log(askQuestionsJob.id);",
+      },
+      php: {
+        method: 'robots->jobs->askQuestions->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$askQuestionsJob = $client->robots->jobs->askQuestions->create(\n  parameters: [\n    'assetID' => 'mux_asset_123abc',\n    'questions' => [['question' => 'Is there a person speaking on camera?']],\n    'answerOptions' => ['yes', 'no'],\n  ],\n  passthrough: 'passthrough',\n);\n\nvar_dump($askQuestionsJob);",
       },
       python: {
         method: 'robots.jobs.ask_questions.create',
@@ -4762,6 +5512,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots:jobs:ask-questions retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
       },
+      csharp: {
+        method: 'Robots.Jobs.AskQuestions.Retrieve',
+        example:
+          'AskQuestionRetrieveParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nvar askQuestionsJob = await client.Robots.Jobs.AskQuestions.Retrieve(parameters);\n\nConsole.WriteLine(askQuestionsJob);',
+      },
       go: {
         method: 'client.Robots.Jobs.AskQuestions.Get',
         example:
@@ -4785,6 +5540,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.askQuestions.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst askQuestionsJob = await client.robots.jobs.askQuestions.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(askQuestionsJob.id);",
+      },
+      php: {
+        method: 'robots->jobs->askQuestions->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$askQuestionsJob = $client->robots->jobs->askQuestions->retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($askQuestionsJob);",
       },
       python: {
         method: 'robots.jobs.ask_questions.retrieve',
@@ -4825,6 +5585,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots:jobs:generate-chapters create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --parameters '{asset_id: mux_asset_123abc}'",
       },
+      csharp: {
+        method: 'Robots.Jobs.GenerateChapters.Create',
+        example:
+          'GenerateChapterCreateParams parameters = new()\n{\n    Parameters = new()\n    {\n        AssetID = "mux_asset_123abc",\n        FromLanguageCode = "en",\n        PromptOverrides = new()\n        {\n            ChapterGuidelines = "x",\n            OutputFormat = "x",\n            Task = "x",\n            TitleGuidelines = "x",\n        },\n        ToLanguageCode = "x",\n    },\n};\n\nvar generateChaptersJob = await client.Robots.Jobs.GenerateChapters.Create(parameters);\n\nConsole.WriteLine(generateChaptersJob);',
+      },
       go: {
         method: 'client.Robots.Jobs.GenerateChapters.New',
         example:
@@ -4848,6 +5613,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.generateChapters.create',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst generateChaptersJob = await client.robots.jobs.generateChapters.create({\n  parameters: { asset_id: 'mux_asset_123abc' },\n});\n\nconsole.log(generateChaptersJob.id);",
+      },
+      php: {
+        method: 'robots->jobs->generateChapters->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$generateChaptersJob = $client->robots->jobs->generateChapters->create(\n  parameters: [\n    'assetID' => 'mux_asset_123abc',\n    'fromLanguageCode' => 'en',\n    'promptOverrides' => [\n      'chapterGuidelines' => 'x',\n      'outputFormat' => 'x',\n      'task' => 'x',\n      'titleGuidelines' => 'x',\n    ],\n    'toLanguageCode' => 'x',\n  ],\n  passthrough: 'passthrough',\n);\n\nvar_dump($generateChaptersJob);",
       },
       python: {
         method: 'robots.jobs.generate_chapters.create',
@@ -4885,6 +5655,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots:jobs:generate-chapters retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
       },
+      csharp: {
+        method: 'Robots.Jobs.GenerateChapters.Retrieve',
+        example:
+          'GenerateChapterRetrieveParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nvar generateChaptersJob = await client.Robots.Jobs.GenerateChapters.Retrieve(parameters);\n\nConsole.WriteLine(generateChaptersJob);',
+      },
       go: {
         method: 'client.Robots.Jobs.GenerateChapters.Get',
         example:
@@ -4908,6 +5683,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.generateChapters.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst generateChaptersJob = await client.robots.jobs.generateChapters.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(generateChaptersJob.id);",
+      },
+      php: {
+        method: 'robots->jobs->generateChapters->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$generateChaptersJob = $client->robots->jobs->generateChapters->retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($generateChaptersJob);",
       },
       python: {
         method: 'robots.jobs.generate_chapters.retrieve',
@@ -4948,6 +5728,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots:jobs:find-key-moments create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --parameters '{asset_id: mux_asset_123abc}'",
       },
+      csharp: {
+        method: 'Robots.Jobs.FindKeyMoments.Create',
+        example:
+          'FindKeyMomentCreateParams parameters = new()\n{\n    Parameters = new()\n    {\n        AssetID = "mux_asset_123abc",\n        MaxMoments = 5,\n        TargetDurationMs = new()\n        {\n            Max = 45000,\n            Min = 15000,\n        },\n    },\n};\n\nvar findKeyMomentsJob = await client.Robots.Jobs.FindKeyMoments.Create(parameters);\n\nConsole.WriteLine(findKeyMomentsJob);',
+      },
       go: {
         method: 'client.Robots.Jobs.FindKeyMoments.New',
         example:
@@ -4971,6 +5756,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.findKeyMoments.create',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst findKeyMomentsJob = await client.robots.jobs.findKeyMoments.create({\n  parameters: { asset_id: 'mux_asset_123abc' },\n});\n\nconsole.log(findKeyMomentsJob.id);",
+      },
+      php: {
+        method: 'robots->jobs->findKeyMoments->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$findKeyMomentsJob = $client->robots->jobs->findKeyMoments->create(\n  parameters: [\n    'assetID' => 'mux_asset_123abc',\n    'maxMoments' => 5,\n    'targetDurationMs' => ['max' => 45000, 'min' => 15000],\n  ],\n  passthrough: 'passthrough',\n);\n\nvar_dump($findKeyMomentsJob);",
       },
       python: {
         method: 'robots.jobs.find_key_moments.create',
@@ -5008,6 +5798,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots:jobs:find-key-moments retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
       },
+      csharp: {
+        method: 'Robots.Jobs.FindKeyMoments.Retrieve',
+        example:
+          'FindKeyMomentRetrieveParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nvar findKeyMomentsJob = await client.Robots.Jobs.FindKeyMoments.Retrieve(parameters);\n\nConsole.WriteLine(findKeyMomentsJob);',
+      },
       go: {
         method: 'client.Robots.Jobs.FindKeyMoments.Get',
         example:
@@ -5031,6 +5826,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.findKeyMoments.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst findKeyMomentsJob = await client.robots.jobs.findKeyMoments.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(findKeyMomentsJob.id);",
+      },
+      php: {
+        method: 'robots->jobs->findKeyMoments->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$findKeyMomentsJob = $client->robots->jobs->findKeyMoments->retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($findKeyMomentsJob);",
       },
       python: {
         method: 'robots.jobs.find_key_moments.retrieve',
@@ -5071,6 +5871,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots:jobs:moderate create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --parameters '{asset_id: mux_asset_123abc}'",
       },
+      csharp: {
+        method: 'Robots.Jobs.Moderate.Create',
+        example:
+          'ModerateCreateParams parameters = new()\n{\n    Parameters = new()\n    {\n        AssetID = "mux_asset_123abc",\n        LanguageCode = "x",\n        MaxSamples = 1,\n        SamplingInterval = 5,\n        Thresholds = new()\n        {\n            Sexual = 0.7,\n            Violence = 0.8,\n        },\n    },\n};\n\nvar moderateJob = await client.Robots.Jobs.Moderate.Create(parameters);\n\nConsole.WriteLine(moderateJob);',
+      },
       go: {
         method: 'client.Robots.Jobs.Moderate.New',
         example:
@@ -5094,6 +5899,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.moderate.create',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst moderateJob = await client.robots.jobs.moderate.create({\n  parameters: { asset_id: 'mux_asset_123abc' },\n});\n\nconsole.log(moderateJob.id);",
+      },
+      php: {
+        method: 'robots->jobs->moderate->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$moderateJob = $client->robots->jobs->moderate->create(\n  parameters: [\n    'assetID' => 'mux_asset_123abc',\n    'languageCode' => 'x',\n    'maxSamples' => 1,\n    'samplingInterval' => 5,\n    'thresholds' => ['sexual' => 0.7, 'violence' => 0.8],\n  ],\n  passthrough: 'passthrough',\n);\n\nvar_dump($moderateJob);",
       },
       python: {
         method: 'robots.jobs.moderate.create',
@@ -5131,6 +5941,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots:jobs:moderate retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
       },
+      csharp: {
+        method: 'Robots.Jobs.Moderate.Retrieve',
+        example:
+          'ModerateRetrieveParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nvar moderateJob = await client.Robots.Jobs.Moderate.Retrieve(parameters);\n\nConsole.WriteLine(moderateJob);',
+      },
       go: {
         method: 'client.Robots.Jobs.Moderate.Get',
         example:
@@ -5154,6 +5969,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.moderate.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst moderateJob = await client.robots.jobs.moderate.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(moderateJob.id);",
+      },
+      php: {
+        method: 'robots->jobs->moderate->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$moderateJob = $client->robots->jobs->moderate->retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($moderateJob);",
       },
       python: {
         method: 'robots.jobs.moderate.retrieve',
@@ -5195,6 +6015,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots:jobs:summarize create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --parameters '{asset_id: mux_asset_123abc}'",
       },
+      csharp: {
+        method: 'Robots.Jobs.Summarize.Create',
+        example:
+          'SummarizeCreateParams parameters = new()\n{\n    Parameters = new()\n    {\n        AssetID = "mux_asset_123abc",\n        DescriptionLength = 1,\n        PromptOverrides = new()\n        {\n            Description = "x",\n            Keywords = "x",\n            QualityGuidelines = "x",\n            Task = "x",\n            Title = "x",\n        },\n        TagCount = 10,\n        TitleLength = 1,\n        Tone = Tone.Neutral,\n    },\n};\n\nvar summarizeJob = await client.Robots.Jobs.Summarize.Create(parameters);\n\nConsole.WriteLine(summarizeJob);',
+      },
       go: {
         method: 'client.Robots.Jobs.Summarize.New',
         example:
@@ -5218,6 +6043,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.summarize.create',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst summarizeJob = await client.robots.jobs.summarize.create({\n  parameters: { asset_id: 'mux_asset_123abc' },\n});\n\nconsole.log(summarizeJob.id);",
+      },
+      php: {
+        method: 'robots->jobs->summarize->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$summarizeJob = $client->robots->jobs->summarize->create(\n  parameters: [\n    'assetID' => 'mux_asset_123abc',\n    'descriptionLength' => 1,\n    'promptOverrides' => [\n      'description' => 'x',\n      'keywords' => 'x',\n      'qualityGuidelines' => 'x',\n      'task' => 'x',\n      'title' => 'x',\n    ],\n    'tagCount' => 10,\n    'titleLength' => 1,\n    'tone' => 'neutral',\n  ],\n  passthrough: 'passthrough',\n);\n\nvar_dump($summarizeJob);",
       },
       python: {
         method: 'robots.jobs.summarize.create',
@@ -5255,6 +6085,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots:jobs:summarize retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
       },
+      csharp: {
+        method: 'Robots.Jobs.Summarize.Retrieve',
+        example:
+          'SummarizeRetrieveParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nvar summarizeJob = await client.Robots.Jobs.Summarize.Retrieve(parameters);\n\nConsole.WriteLine(summarizeJob);',
+      },
       go: {
         method: 'client.Robots.Jobs.Summarize.Get',
         example:
@@ -5278,6 +6113,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.summarize.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst summarizeJob = await client.robots.jobs.summarize.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(summarizeJob.id);",
+      },
+      php: {
+        method: 'robots->jobs->summarize->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$summarizeJob = $client->robots->jobs->summarize->retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($summarizeJob);",
       },
       python: {
         method: 'robots.jobs.summarize.retrieve',
@@ -5319,6 +6159,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots:jobs:translate-captions create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --parameters '{asset_id: mux_asset_123abc, from_language_code: en, to_language_code: es}'",
       },
+      csharp: {
+        method: 'Robots.Jobs.TranslateCaptions.Create',
+        example:
+          'TranslateCaptionCreateParams parameters = new()\n{\n    Parameters = new()\n    {\n        AssetID = "mux_asset_123abc",\n        FromLanguageCode = "en",\n        ToLanguageCode = "es",\n        UploadToMux = true,\n    },\n};\n\nvar translateCaptionsJob = await client.Robots.Jobs.TranslateCaptions.Create(parameters);\n\nConsole.WriteLine(translateCaptionsJob);',
+      },
       go: {
         method: 'client.Robots.Jobs.TranslateCaptions.New',
         example:
@@ -5342,6 +6187,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.translateCaptions.create',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst translateCaptionsJob = await client.robots.jobs.translateCaptions.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    from_language_code: 'en',\n    to_language_code: 'es',\n  },\n});\n\nconsole.log(translateCaptionsJob.id);",
+      },
+      php: {
+        method: 'robots->jobs->translateCaptions->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$translateCaptionsJob = $client->robots->jobs->translateCaptions->create(\n  parameters: [\n    'assetID' => 'mux_asset_123abc',\n    'fromLanguageCode' => 'en',\n    'toLanguageCode' => 'es',\n    'uploadToMux' => true,\n  ],\n  passthrough: 'passthrough',\n);\n\nvar_dump($translateCaptionsJob);",
       },
       python: {
         method: 'robots.jobs.translate_captions.create',
@@ -5379,6 +6229,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots:jobs:translate-captions retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
       },
+      csharp: {
+        method: 'Robots.Jobs.TranslateCaptions.Retrieve',
+        example:
+          'TranslateCaptionRetrieveParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nvar translateCaptionsJob = await client.Robots.Jobs.TranslateCaptions.Retrieve(parameters);\n\nConsole.WriteLine(translateCaptionsJob);',
+      },
       go: {
         method: 'client.Robots.Jobs.TranslateCaptions.Get',
         example:
@@ -5402,6 +6257,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robots.jobs.translateCaptions.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst translateCaptionsJob = await client.robots.jobs.translateCaptions.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(translateCaptionsJob.id);",
+      },
+      php: {
+        method: 'robots->jobs->translateCaptions->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$translateCaptionsJob = $client->robots->jobs->translateCaptions->retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($translateCaptionsJob);",
       },
       python: {
         method: 'robots.jobs.translate_captions.retrieve',
@@ -5438,6 +6298,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:dimensions list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.Dimensions.List',
+        example:
+          'DimensionListParams parameters = new();\n\nvar dimensionsResponse = await client.Data.Dimensions.List(parameters);\n\nConsole.WriteLine(dimensionsResponse);',
+      },
       go: {
         method: 'client.Data.Dimensions.List',
         example:
@@ -5460,6 +6325,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.dimensions.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst dimensionsResponse = await client.data.dimensions.list();\n\nconsole.log(dimensionsResponse.data);",
+      },
+      php: {
+        method: 'data->dimensions->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$dimensionsResponse = $client->data->dimensions->list();\n\nvar_dump($dimensionsResponse);",
       },
       python: {
         method: 'data.dimensions.list',
@@ -5504,6 +6374,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:dimensions list-values \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --dimension-id abcd1234",
       },
+      csharp: {
+        method: 'Data.Dimensions.ListValues',
+        example:
+          'DimensionListValuesParams parameters = new() { DimensionID = "abcd1234" };\n\nvar page = await client.Data.Dimensions.ListValues(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Data.Dimensions.ListValues',
         example:
@@ -5527,6 +6402,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.dimensions.listValues',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const dimensionValue of client.data.dimensions.listValues('abcd1234')) {\n  console.log(dimensionValue.total_count);\n}",
+      },
+      php: {
+        method: 'data->dimensions->listValues',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->dimensions->listValues(\n  'abcd1234',\n  filters: ['string'],\n  limit: 0,\n  metricFilters: ['string'],\n  page: 0,\n  timeframe: ['string'],\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'data.dimensions.list_values',
@@ -5573,6 +6453,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:dimensions list-trace-elements \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --dimension-id abcd1234",
       },
+      csharp: {
+        method: 'Data.Dimensions.ListTraceElements',
+        example:
+          'DimensionListTraceElementsParams parameters = new()\n{\n    DimensionID = "abcd1234"\n};\n\nvar page = await client.Data.Dimensions.ListTraceElements(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Data.Dimensions.ListTraceElements',
         example:
@@ -5596,6 +6481,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.dimensions.listTraceElements',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const dimensionValue of client.data.dimensions.listTraceElements('abcd1234')) {\n  console.log(dimensionValue.total_count);\n}",
+      },
+      php: {
+        method: 'data->dimensions->listTraceElements',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->dimensions->listTraceElements(\n  'abcd1234',\n  filters: ['string'],\n  limit: 0,\n  metricFilters: ['string'],\n  orderBy: 'negative_impact',\n  orderDirection: 'asc',\n  page: 0,\n  timeframe: ['string'],\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'data.dimensions.list_trace_elements',
@@ -5632,6 +6522,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:monitoring list-dimensions \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.Monitoring.ListDimensions',
+        example:
+          'MonitoringListDimensionsParams parameters = new();\n\nvar response = await client.Data.Monitoring.ListDimensions(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Data.Monitoring.ListDimensions',
         example:
@@ -5655,6 +6550,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.monitoring.listDimensions',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.listDimensions();\n\nconsole.log(response.data);",
+      },
+      php: {
+        method: 'data->monitoring->listDimensions',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->data->monitoring->listDimensions();\n\nvar_dump($response);",
       },
       python: {
         method: 'data.monitoring.list_dimensions',
@@ -5691,6 +6591,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:monitoring:metrics list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.Monitoring.Metrics.List',
+        example:
+          'MetricListParams parameters = new();\n\nvar metrics = await client.Data.Monitoring.Metrics.List(parameters);\n\nConsole.WriteLine(metrics);',
+      },
       go: {
         method: 'client.Data.Monitoring.Metrics.List',
         example:
@@ -5714,6 +6619,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.monitoring.metrics.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst metrics = await client.data.monitoring.metrics.list();\n\nconsole.log(metrics.data);",
+      },
+      php: {
+        method: 'data->monitoring->metrics->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$metrics = $client->data->monitoring->metrics->list();\n\nvar_dump($metrics);",
       },
       python: {
         method: 'data.monitoring.metrics.list',
@@ -5759,6 +6669,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:monitoring:metrics get-breakdown \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --monitoring-metric-id current-concurrent-viewers",
       },
+      csharp: {
+        method: 'Data.Monitoring.Metrics.GetBreakdown',
+        example:
+          'MetricGetBreakdownParams parameters = new()\n{\n    MonitoringMetricID = MonitoringMetricID.CurrentConcurrentViewers\n};\n\nvar response = await client.Data.Monitoring.Metrics.GetBreakdown(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Data.Monitoring.Metrics.GetBreakdown',
         example:
@@ -5782,6 +6697,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.monitoring.metrics.getBreakdown',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.metrics.getBreakdown('current-concurrent-viewers');\n\nconsole.log(response.data);",
+      },
+      php: {
+        method: 'data->monitoring->metrics->getBreakdown',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->data->monitoring->metrics->getBreakdown(\n  'current-concurrent-viewers',\n  dimension: 'asn',\n  filters: ['string'],\n  orderBy: 'negative_impact',\n  orderDirection: 'asc',\n  timestamp: 0,\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'data.monitoring.metrics.get_breakdown',
@@ -5820,6 +6740,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:monitoring:metrics get-timeseries \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --monitoring-metric-id current-concurrent-viewers",
       },
+      csharp: {
+        method: 'Data.Monitoring.Metrics.GetTimeseries',
+        example:
+          'MetricGetTimeseriesParams parameters = new()\n{\n    MonitoringMetricID = MonitoringMetricID.CurrentConcurrentViewers\n};\n\nvar response = await client.Data.Monitoring.Metrics.GetTimeseries(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Data.Monitoring.Metrics.GetTimeseries',
         example:
@@ -5843,6 +6768,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.monitoring.metrics.getTimeseries',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.metrics.getTimeseries('current-concurrent-viewers');\n\nconsole.log(response.data);",
+      },
+      php: {
+        method: 'data->monitoring->metrics->getTimeseries',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->data->monitoring->metrics->getTimeseries(\n  'current-concurrent-viewers', filters: ['string'], timestamp: 0\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'data.monitoring.metrics.get_timeseries',
@@ -5889,6 +6819,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:monitoring:metrics get-breakdown-timeseries \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --monitoring-metric-id current-concurrent-viewers",
       },
+      csharp: {
+        method: 'Data.Monitoring.Metrics.GetBreakdownTimeseries',
+        example:
+          'MetricGetBreakdownTimeseriesParams parameters = new()\n{\n    MonitoringMetricID = MonitoringMetricID.CurrentConcurrentViewers\n};\n\nvar response = await client.Data.Monitoring.Metrics.GetBreakdownTimeseries(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Data.Monitoring.Metrics.GetBreakdownTimeseries',
         example:
@@ -5912,6 +6847,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.monitoring.metrics.getBreakdownTimeseries',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.metrics.getBreakdownTimeseries(\n  'current-concurrent-viewers',\n);\n\nconsole.log(response.data);",
+      },
+      php: {
+        method: 'data->monitoring->metrics->getBreakdownTimeseries',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->data->monitoring->metrics->getBreakdownTimeseries(\n  'current-concurrent-viewers',\n  dimension: 'asn',\n  filters: ['string'],\n  limit: 0,\n  orderBy: 'negative_impact',\n  orderDirection: 'asc',\n  timeframe: ['string'],\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'data.monitoring.metrics.get_breakdown_timeseries',
@@ -5949,6 +6889,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:monitoring:metrics get-histogram-timeseries \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --monitoring-histogram-metric-id video-startup-time",
       },
+      csharp: {
+        method: 'Data.Monitoring.Metrics.GetHistogramTimeseries',
+        example:
+          'MetricGetHistogramTimeseriesParams parameters = new()\n{\n    MonitoringHistogramMetricID = MonitoringHistogramMetricID.VideoStartupTime\n};\n\nvar response = await client.Data.Monitoring.Metrics.GetHistogramTimeseries(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Data.Monitoring.Metrics.GetHistogramTimeseries',
         example:
@@ -5972,6 +6917,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.monitoring.metrics.getHistogramTimeseries',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.metrics.getHistogramTimeseries('video-startup-time');\n\nconsole.log(response.data);",
+      },
+      php: {
+        method: 'data->monitoring->metrics->getHistogramTimeseries',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->data->monitoring->metrics->getHistogramTimeseries(\n  'video-startup-time', filters: ['string']\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'data.monitoring.metrics.get_histogram_timeseries',
@@ -6008,6 +6958,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'errors list',
         example: "mux-cli data:errors list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.Errors.List',
+        example:
+          'ErrorListParams parameters = new();\n\nvar errorsResponse = await client.Data.Errors.List(parameters);\n\nConsole.WriteLine(errorsResponse);',
+      },
       go: {
         method: 'client.Data.Errors.List',
         example:
@@ -6030,6 +6985,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.errors.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst errorsResponse = await client.data.errors.list();\n\nconsole.log(errorsResponse.data);",
+      },
+      php: {
+        method: 'data->errors->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$errorsResponse = $client->data->errors->list(\n  filters: ['string'], metricFilters: ['string'], timeframe: ['string']\n);\n\nvar_dump($errorsResponse);",
       },
       python: {
         method: 'data.errors.list',
@@ -6066,6 +7026,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:exports list-video-views \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.Exports.ListVideoViews',
+        example:
+          'ExportListVideoViewsParams parameters = new();\n\nvar videoViewExportsResponse = await client.Data.Exports.ListVideoViews(parameters);\n\nConsole.WriteLine(videoViewExportsResponse);',
+      },
       go: {
         method: 'client.Data.Exports.ListVideoViews',
         example:
@@ -6088,6 +7053,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.exports.listVideoViews',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst videoViewExportsResponse = await client.data.exports.listVideoViews();\n\nconsole.log(videoViewExportsResponse.data);",
+      },
+      php: {
+        method: 'data->exports->listVideoViews',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$videoViewExportsResponse = $client->data->exports->listVideoViews();\n\nvar_dump($videoViewExportsResponse);",
       },
       python: {
         method: 'data.exports.list_video_views',
@@ -6131,6 +7101,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:filters list-values \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --filter-id abcd1234",
       },
+      csharp: {
+        method: 'Data.Filters.ListValues',
+        example:
+          'FilterListValuesParams parameters = new() { FilterID = "abcd1234" };\n\nvar page = await client.Data.Filters.ListValues(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Data.Filters.ListValues',
         example:
@@ -6154,6 +7129,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.filters.listValues',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const filterValue of client.data.filters.listValues('abcd1234')) {\n  console.log(filterValue.total_count);\n}",
+      },
+      php: {
+        method: 'data->filters->listValues',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->filters->listValues(\n  'abcd1234', filters: ['string'], limit: 0, page: 0, timeframe: ['string']\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'data.filters.list_values',
@@ -6191,6 +7171,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:incidents retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --incident-id abcd1234",
       },
+      csharp: {
+        method: 'Data.Incidents.Retrieve',
+        example:
+          'IncidentRetrieveParams parameters = new() { IncidentID = "abcd1234" };\n\nvar incidentResponse = await client.Data.Incidents.Retrieve(parameters);\n\nConsole.WriteLine(incidentResponse);',
+      },
       go: {
         method: 'client.Data.Incidents.Get',
         example:
@@ -6214,6 +7199,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.incidents.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst incidentResponse = await client.data.incidents.retrieve('abcd1234');\n\nconsole.log(incidentResponse.data);",
+      },
+      php: {
+        method: 'data->incidents->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$incidentResponse = $client->data->incidents->retrieve('abcd1234');\n\nvar_dump($incidentResponse);",
       },
       python: {
         method: 'data.incidents.retrieve',
@@ -6257,6 +7247,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:incidents list-related \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --incident-id abcd1234",
       },
+      csharp: {
+        method: 'Data.Incidents.ListRelated',
+        example:
+          'IncidentListRelatedParams parameters = new() { IncidentID = "abcd1234" };\n\nvar page = await client.Data.Incidents.ListRelated(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Data.Incidents.ListRelated',
         example:
@@ -6280,6 +7275,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.incidents.listRelated',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const incident of client.data.incidents.listRelated('abcd1234')) {\n  console.log(incident.id);\n}",
+      },
+      php: {
+        method: 'data->incidents->listRelated',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->incidents->listRelated(\n  'abcd1234',\n  limit: 0,\n  orderBy: 'negative_impact',\n  orderDirection: 'asc',\n  page: 0,\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'data.incidents.list_related',
@@ -6324,6 +7324,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:incidents list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.Incidents.List',
+        example:
+          'IncidentListParams parameters = new();\n\nvar page = await client.Data.Incidents.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Data.Incidents.List',
         example:
@@ -6346,6 +7351,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.incidents.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const incident of client.data.incidents.list()) {\n  console.log(incident.id);\n}",
+      },
+      php: {
+        method: 'data->incidents->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->incidents->list(\n  limit: 0,\n  orderBy: 'negative_impact',\n  orderDirection: 'asc',\n  page: 0,\n  severity: 'warning',\n  status: 'open',\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'data.incidents.list',
@@ -6388,6 +7398,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'metrics list',
         example: "mux-cli data:metrics list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.Metrics.List',
+        example:
+          'MetricListParams parameters = new();\n\nvar allMetricValuesResponse = await client.Data.Metrics.List(parameters);\n\nConsole.WriteLine(allMetricValuesResponse);',
+      },
       go: {
         method: 'client.Data.Metrics.List',
         example:
@@ -6411,6 +7426,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.metrics.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst allMetricValuesResponse = await client.data.metrics.list();\n\nconsole.log(allMetricValuesResponse.data);",
+      },
+      php: {
+        method: 'data->metrics->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$allMetricValuesResponse = $client->data->metrics->list(\n  dimension: 'asn',\n  filters: ['string'],\n  metricFilters: ['string'],\n  timeframe: ['string'],\n  value: 'value',\n);\n\nvar_dump($allMetricValuesResponse);",
       },
       python: {
         method: 'data.metrics.list',
@@ -6459,6 +7479,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:metrics list-breakdown-values \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --metric-id video_startup_time",
       },
+      csharp: {
+        method: 'Data.Metrics.ListBreakdownValues',
+        example:
+          'MetricListBreakdownValuesParams parameters = new()\n{\n    MetricID = MetricID.VideoStartupTime\n};\n\nvar page = await client.Data.Metrics.ListBreakdownValues(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Data.Metrics.ListBreakdownValues',
         example:
@@ -6482,6 +7507,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.metrics.listBreakdownValues',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const breakdownValue of client.data.metrics.listBreakdownValues('video_startup_time')) {\n  console.log(breakdownValue.field);\n}",
+      },
+      php: {
+        method: 'data->metrics->listBreakdownValues',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->metrics->listBreakdownValues(\n  'video_startup_time',\n  filters: ['string'],\n  groupBy: 'asn',\n  limit: 0,\n  measurement: '95th',\n  metricFilters: ['string'],\n  orderBy: 'negative_impact',\n  orderDirection: 'asc',\n  page: 0,\n  timeframe: ['string'],\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'data.metrics.list_breakdown_values',
@@ -6526,6 +7556,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:metrics get-overall-values \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --metric-id video_startup_time",
       },
+      csharp: {
+        method: 'Data.Metrics.GetOverallValues',
+        example:
+          'MetricGetOverallValuesParams parameters = new()\n{\n    MetricID = MetricID.VideoStartupTime\n};\n\nvar overallValuesResponse = await client.Data.Metrics.GetOverallValues(parameters);\n\nConsole.WriteLine(overallValuesResponse);',
+      },
       go: {
         method: 'client.Data.Metrics.GetOverallValues',
         example:
@@ -6549,6 +7584,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.metrics.getOverallValues',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst overallValuesResponse = await client.data.metrics.getOverallValues('video_startup_time');\n\nconsole.log(overallValuesResponse.data);",
+      },
+      php: {
+        method: 'data->metrics->getOverallValues',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$overallValuesResponse = $client->data->metrics->getOverallValues(\n  'video_startup_time',\n  filters: ['string'],\n  measurement: '95th',\n  metricFilters: ['string'],\n  timeframe: ['string'],\n);\n\nvar_dump($overallValuesResponse);",
       },
       python: {
         method: 'data.metrics.get_overall_values',
@@ -6594,6 +7634,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:metrics get-insights \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --metric-id video_startup_time",
       },
+      csharp: {
+        method: 'Data.Metrics.GetInsights',
+        example:
+          'MetricGetInsightsParams parameters = new()\n{\n    MetricID = MetricID.VideoStartupTime\n};\n\nvar insightsResponse = await client.Data.Metrics.GetInsights(parameters);\n\nConsole.WriteLine(insightsResponse);',
+      },
       go: {
         method: 'client.Data.Metrics.GetInsights',
         example:
@@ -6617,6 +7662,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.metrics.getInsights',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst insightsResponse = await client.data.metrics.getInsights('video_startup_time');\n\nconsole.log(insightsResponse.data);",
+      },
+      php: {
+        method: 'data->metrics->getInsights',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$insightsResponse = $client->data->metrics->getInsights(\n  'video_startup_time',\n  filters: ['string'],\n  measurement: '95th',\n  metricFilters: ['string'],\n  orderDirection: 'asc',\n  timeframe: ['string'],\n);\n\nvar_dump($insightsResponse);",
       },
       python: {
         method: 'data.metrics.get_insights',
@@ -6663,6 +7713,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:metrics get-timeseries \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --metric-id video_startup_time",
       },
+      csharp: {
+        method: 'Data.Metrics.GetTimeseries',
+        example:
+          'MetricGetTimeseriesParams parameters = new()\n{\n    MetricID = MetricID.VideoStartupTime\n};\n\nvar metricTimeseriesDataResponse = await client.Data.Metrics.GetTimeseries(parameters);\n\nConsole.WriteLine(metricTimeseriesDataResponse);',
+      },
       go: {
         method: 'client.Data.Metrics.GetTimeseries',
         example:
@@ -6686,6 +7741,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.metrics.getTimeseries',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst metricTimeseriesDataResponse = await client.data.metrics.getTimeseries('video_startup_time');\n\nconsole.log(metricTimeseriesDataResponse.data);",
+      },
+      php: {
+        method: 'data->metrics->getTimeseries',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$metricTimeseriesDataResponse = $client->data->metrics->getTimeseries(\n  'video_startup_time',\n  filters: ['string'],\n  groupBy: 'minute',\n  measurement: '95th',\n  metricFilters: ['string'],\n  orderDirection: 'asc',\n  timeframe: ['string'],\n);\n\nvar_dump($metricTimeseriesDataResponse);",
       },
       python: {
         method: 'data.metrics.get_timeseries',
@@ -6731,6 +7791,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:real-time retrieve-breakdown \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --realtime-metric-id current-concurrent-viewers",
       },
+      csharp: {
+        method: 'Data.RealTime.RetrieveBreakdown',
+        example:
+          'RealTimeRetrieveBreakdownParams parameters = new()\n{\n    RealtimeMetricID = RealtimeMetricID.CurrentConcurrentViewers\n};\n\nvar realTimeBreakdownResponse = await client.Data.RealTime.RetrieveBreakdown(parameters);\n\nConsole.WriteLine(realTimeBreakdownResponse);',
+      },
       go: {
         method: 'client.Data.RealTime.GetBreakdown',
         example:
@@ -6754,6 +7819,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.realTime.retrieveBreakdown',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeBreakdownResponse = await client.data.realTime.retrieveBreakdown(\n  'current-concurrent-viewers',\n);\n\nconsole.log(realTimeBreakdownResponse.data);",
+      },
+      php: {
+        method: 'data->realTime->retrieveBreakdown',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$realTimeBreakdownResponse = $client->data->realTime->retrieveBreakdown(\n  'current-concurrent-viewers',\n  dimension: 'asn',\n  filters: ['string'],\n  orderBy: 'negative_impact',\n  orderDirection: 'asc',\n  timestamp: 0,\n);\n\nvar_dump($realTimeBreakdownResponse);",
       },
       python: {
         method: 'data.real_time.retrieve_breakdown',
@@ -6792,6 +7862,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:real-time retrieve-timeseries \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --realtime-metric-id current-concurrent-viewers",
       },
+      csharp: {
+        method: 'Data.RealTime.RetrieveTimeseries',
+        example:
+          'RealTimeRetrieveTimeseriesParams parameters = new()\n{\n    RealtimeMetricID = RealtimeMetricID.CurrentConcurrentViewers\n};\n\nvar realTimeTimeseriesResponse = await client.Data.RealTime.RetrieveTimeseries(parameters);\n\nConsole.WriteLine(realTimeTimeseriesResponse);',
+      },
       go: {
         method: 'client.Data.RealTime.GetTimeseries',
         example:
@@ -6815,6 +7890,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.realTime.retrieveTimeseries',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeTimeseriesResponse = await client.data.realTime.retrieveTimeseries(\n  'current-concurrent-viewers',\n);\n\nconsole.log(realTimeTimeseriesResponse.data);",
+      },
+      php: {
+        method: 'data->realTime->retrieveTimeseries',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$realTimeTimeseriesResponse = $client->data->realTime->retrieveTimeseries(\n  'current-concurrent-viewers', filters: ['string'], timestamp: 0\n);\n\nvar_dump($realTimeTimeseriesResponse);",
       },
       python: {
         method: 'data.real_time.retrieve_timeseries',
@@ -6852,6 +7932,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:real-time list-metrics \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.RealTime.ListMetrics',
+        example:
+          'RealTimeListMetricsParams parameters = new();\n\nvar realTimeMetricsResponse = await client.Data.RealTime.ListMetrics(parameters);\n\nConsole.WriteLine(realTimeMetricsResponse);',
+      },
       go: {
         method: 'client.Data.RealTime.ListMetrics',
         example:
@@ -6875,6 +7960,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.realTime.listMetrics',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeMetricsResponse = await client.data.realTime.listMetrics();\n\nconsole.log(realTimeMetricsResponse.data);",
+      },
+      php: {
+        method: 'data->realTime->listMetrics',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$realTimeMetricsResponse = $client->data->realTime->listMetrics();\n\nvar_dump($realTimeMetricsResponse);",
       },
       python: {
         method: 'data.real_time.list_metrics',
@@ -6913,6 +8003,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:real-time retrieve-histogram-timeseries \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --realtime-histogram-metric-id video-startup-time",
       },
+      csharp: {
+        method: 'Data.RealTime.RetrieveHistogramTimeseries',
+        example:
+          'RealTimeRetrieveHistogramTimeseriesParams parameters = new()\n{\n    RealtimeHistogramMetricID = RealtimeHistogramMetricID.VideoStartupTime\n};\n\nvar realTimeHistogramTimeseriesResponse = await client.Data.RealTime.RetrieveHistogramTimeseries(parameters);\n\nConsole.WriteLine(realTimeHistogramTimeseriesResponse);',
+      },
       go: {
         method: 'client.Data.RealTime.GetHistogramTimeseries',
         example:
@@ -6936,6 +8031,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.realTime.retrieveHistogramTimeseries',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeHistogramTimeseriesResponse = await client.data.realTime.retrieveHistogramTimeseries(\n  'video-startup-time',\n);\n\nconsole.log(realTimeHistogramTimeseriesResponse.data);",
+      },
+      php: {
+        method: 'data->realTime->retrieveHistogramTimeseries',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$realTimeHistogramTimeseriesResponse = $client\n  ->data\n  ->realTime\n  ->retrieveHistogramTimeseries('video-startup-time', filters: ['string']);\n\nvar_dump($realTimeHistogramTimeseriesResponse);",
       },
       python: {
         method: 'data.real_time.retrieve_histogram_timeseries',
@@ -6973,6 +8073,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:real-time list-dimensions \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.RealTime.ListDimensions',
+        example:
+          'RealTimeListDimensionsParams parameters = new();\n\nvar realTimeDimensionsResponse = await client.Data.RealTime.ListDimensions(parameters);\n\nConsole.WriteLine(realTimeDimensionsResponse);',
+      },
       go: {
         method: 'client.Data.RealTime.ListDimensions',
         example:
@@ -6996,6 +8101,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.realTime.listDimensions',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeDimensionsResponse = await client.data.realTime.listDimensions();\n\nconsole.log(realTimeDimensionsResponse.data);",
+      },
+      php: {
+        method: 'data->realTime->listDimensions',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$realTimeDimensionsResponse = $client->data->realTime->listDimensions();\n\nvar_dump($realTimeDimensionsResponse);",
       },
       python: {
         method: 'data.real_time.list_dimensions',
@@ -7043,6 +8153,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:video-views list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.VideoViews.List',
+        example:
+          'VideoViewListParams parameters = new();\n\nvar page = await client.Data.VideoViews.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Data.VideoViews.List',
         example:
@@ -7065,6 +8180,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.videoViews.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const abridgedVideoView of client.data.videoViews.list()) {\n  console.log(abridgedVideoView.id);\n}",
+      },
+      php: {
+        method: 'data->videoViews->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->videoViews->list(\n  errorID: 0,\n  filters: ['string'],\n  limit: 0,\n  metricFilters: ['string'],\n  orderDirection: 'asc',\n  page: 0,\n  timeframe: ['string'],\n  viewerID: 'viewer_id',\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'data.video_views.list',
@@ -7101,6 +8221,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:video-views retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --video-view-id abcd1234",
       },
+      csharp: {
+        method: 'Data.VideoViews.Retrieve',
+        example:
+          'VideoViewRetrieveParams parameters = new() { VideoViewID = "abcd1234" };\n\nvar videoViewResponse = await client.Data.VideoViews.Retrieve(parameters);\n\nConsole.WriteLine(videoViewResponse);',
+      },
       go: {
         method: 'client.Data.VideoViews.Get',
         example:
@@ -7124,6 +8249,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.videoViews.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst videoViewResponse = await client.data.videoViews.retrieve('abcd1234');\n\nconsole.log(videoViewResponse.data);",
+      },
+      php: {
+        method: 'data->videoViews->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$videoViewResponse = $client->data->videoViews->retrieve('abcd1234');\n\nvar_dump($videoViewResponse);",
       },
       python: {
         method: 'data.video_views.retrieve',
@@ -7165,6 +8295,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:annotations list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.Annotations.List',
+        example:
+          'AnnotationListParams parameters = new();\n\nvar page = await client.Data.Annotations.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Data.Annotations.List',
         example:
@@ -7187,6 +8322,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.annotations.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const annotation of client.data.annotations.list()) {\n  console.log(annotation.id);\n}",
+      },
+      php: {
+        method: 'data->annotations->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->annotations->list(\n  limit: 0, orderDirection: 'asc', page: 0, timeframe: ['string']\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'data.annotations.list',
@@ -7223,6 +8363,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:annotations retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --annotation-id 182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
       },
+      csharp: {
+        method: 'Data.Annotations.Retrieve',
+        example:
+          'AnnotationRetrieveParams parameters = new()\n{\n    AnnotationID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n};\n\nvar annotation = await client.Data.Annotations.Retrieve(parameters);\n\nConsole.WriteLine(annotation);',
+      },
       go: {
         method: 'client.Data.Annotations.Get',
         example:
@@ -7246,6 +8391,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.annotations.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst annotation = await client.data.annotations.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(annotation.id);",
+      },
+      php: {
+        method: 'data->annotations->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$annotation = $client->data->annotations->retrieve(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'\n);\n\nvar_dump($annotation);",
       },
       python: {
         method: 'data.annotations.retrieve',
@@ -7282,6 +8432,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:annotations create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --date 1745438400 \\\n  --note 'This is a note'",
       },
+      csharp: {
+        method: 'Data.Annotations.Create',
+        example:
+          'AnnotationCreateParams parameters = new()\n{\n    Date = 1745438400,\n    Note = "This is a note",\n};\n\nvar annotation = await client.Data.Annotations.Create(parameters);\n\nConsole.WriteLine(annotation);',
+      },
       go: {
         method: 'client.Data.Annotations.New',
         example:
@@ -7305,6 +8460,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.annotations.create',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst annotation = await client.data.annotations.create({\n  date: 1745438400,\n  note: 'This is a note',\n  sub_property_id: '123456',\n});\n\nconsole.log(annotation.id);",
+      },
+      php: {
+        method: 'data->annotations->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$annotation = $client->data->annotations->create(\n  date: 1745438400, note: 'This is a note', subPropertyID: '123456'\n);\n\nvar_dump($annotation);",
       },
       python: {
         method: 'data.annotations.create',
@@ -7340,6 +8500,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:annotations delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --annotation-id 182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
       },
+      csharp: {
+        method: 'Data.Annotations.Delete',
+        example:
+          'AnnotationDeleteParams parameters = new()\n{\n    AnnotationID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n};\n\nawait client.Data.Annotations.Delete(parameters);',
+      },
       go: {
         method: 'client.Data.Annotations.Delete',
         example:
@@ -7363,6 +8528,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.annotations.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.data.annotations.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');",
+      },
+      php: {
+        method: 'data->annotations->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->data->annotations->delete(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'data.annotations.delete',
@@ -7399,6 +8569,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:annotations update \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --annotation-id 182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e \\\n  --date 1745438400 \\\n  --note 'This is a note'",
       },
+      csharp: {
+        method: 'Data.Annotations.Update',
+        example:
+          'AnnotationUpdateParams parameters = new()\n{\n    AnnotationID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    Date = 1745438400,\n    Note = "This is a note",\n};\n\nvar annotation = await client.Data.Annotations.Update(parameters);\n\nConsole.WriteLine(annotation);',
+      },
       go: {
         method: 'client.Data.Annotations.Update',
         example:
@@ -7422,6 +8597,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.annotations.update',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst annotation = await client.data.annotations.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  date: 1745438400,\n  note: 'This is a note',\n  sub_property_id: '123456',\n});\n\nconsole.log(annotation.id);",
+      },
+      php: {
+        method: 'data->annotations->update',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$annotation = $client->data->annotations->update(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  date: 1745438400,\n  note: 'This is a note',\n  subPropertyID: '123456',\n);\n\nvar_dump($annotation);",
       },
       python: {
         method: 'data.annotations.update',
@@ -7458,6 +8638,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli system:signing-keys create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'System.SigningKeys.Create',
+        example:
+          'SigningKeyCreateParams parameters = new();\n\nvar signingKey = await client.System.SigningKeys.Create(parameters);\n\nConsole.WriteLine(signingKey);',
+      },
       go: {
         method: 'client.System.SigningKeys.New',
         example:
@@ -7481,6 +8666,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.system.signingKeys.create',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst signingKey = await client.system.signingKeys.create();\n\nconsole.log(signingKey.id);",
+      },
+      php: {
+        method: 'system->signingKeys->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$signingKey = $client->system->signingKeys->create();\n\nvar_dump($signingKey);",
       },
       python: {
         method: 'system.signing_keys.create',
@@ -7517,6 +8707,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli system:signing-keys list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'System.SigningKeys.List',
+        example:
+          'SigningKeyListParams parameters = new();\n\nvar page = await client.System.SigningKeys.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.System.SigningKeys.List',
         example:
@@ -7540,6 +8735,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.system.signingKeys.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const signingKey of client.system.signingKeys.list()) {\n  console.log(signingKey.id);\n}",
+      },
+      php: {
+        method: 'system->signingKeys->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->system->signingKeys->list(limit: 0, page: 0);\n\nvar_dump($page);",
       },
       python: {
         method: 'system.signing_keys.list',
@@ -7577,6 +8777,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli system:signing-keys retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --signing-key-id SIGNING_KEY_ID",
       },
+      csharp: {
+        method: 'System.SigningKeys.Retrieve',
+        example:
+          'SigningKeyRetrieveParams parameters = new() { SigningKeyID = "SIGNING_KEY_ID" };\n\nvar signingKey = await client.System.SigningKeys.Retrieve(parameters);\n\nConsole.WriteLine(signingKey);',
+      },
       go: {
         method: 'client.System.SigningKeys.Get',
         example:
@@ -7600,6 +8805,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.system.signingKeys.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst signingKey = await client.system.signingKeys.retrieve('SIGNING_KEY_ID');\n\nconsole.log(signingKey.id);",
+      },
+      php: {
+        method: 'system->signingKeys->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$signingKey = $client->system->signingKeys->retrieve('SIGNING_KEY_ID');\n\nvar_dump($signingKey);",
       },
       python: {
         method: 'system.signing_keys.retrieve',
@@ -7636,6 +8846,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli system:signing-keys delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --signing-key-id SIGNING_KEY_ID",
       },
+      csharp: {
+        method: 'System.SigningKeys.Delete',
+        example:
+          'SigningKeyDeleteParams parameters = new() { SigningKeyID = "SIGNING_KEY_ID" };\n\nawait client.System.SigningKeys.Delete(parameters);',
+      },
       go: {
         method: 'client.System.SigningKeys.Delete',
         example:
@@ -7659,6 +8874,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.system.signingKeys.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.system.signingKeys.delete('SIGNING_KEY_ID');",
+      },
+      php: {
+        method: 'system->signingKeys->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->system->signingKeys->delete('SIGNING_KEY_ID');\n\nvar_dump($result);",
       },
       python: {
         method: 'system.signing_keys.delete',
@@ -7696,6 +8916,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli system:utilities whoami \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'System.Utilities.Whoami',
+        example:
+          'UtilityWhoamiParams parameters = new();\n\nvar response = await client.System.Utilities.Whoami(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.System.Utilities.Whoami',
         example:
@@ -7718,6 +8943,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.system.utilities.whoami',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.system.utilities.whoami();\n\nconsole.log(response.environment_id);",
+      },
+      php: {
+        method: 'system->utilities->whoami',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->system->utilities->whoami();\n\nvar_dump($response);",
       },
       python: {
         method: 'system.utilities.whoami',
@@ -7748,6 +8978,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       cli: {
         example: "mux-cli webhooks unwrap \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        example: 'WebhookUnwrapParams parameters = new();\n\nawait client.Webhooks.Unwrap(parameters);',
+      },
       go: {
         method: 'client.Webhooks.Unwrap',
         example:
@@ -7757,6 +8990,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.webhooks.unwrap',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.webhooks.unwrap();",
+      },
+      php: {
+        method: 'webhooks->unwrap',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->webhooks->unwrap();\n\nvar_dump($result);",
       },
       python: {
         method: 'webhooks.unwrap',
@@ -7814,9 +9052,19 @@ const EMBEDDED_READMES: { language: string; content: string }[] = [
       '# Mux Kotlin API Library\n\n\n[![Maven Central](https://img.shields.io/maven-central/v/com.mux.api/mux-kotlin)](https://central.sonatype.com/artifact/com.mux.api/mux-kotlin/0.0.1)\n[![javadoc](https://javadoc.io/badge2/com.mux.api/mux-kotlin/0.0.1/javadoc.svg)](https://javadoc.io/doc/com.mux.api/mux-kotlin/0.0.1)\n\n\nThe Mux Kotlin SDK provides convenient access to the [Mux REST API](https://docs.mux.com)   from applications written in Kotlin.\n\nThe Mux Kotlin SDK is similar to the Mux Java SDK but with minor differences that       make it more ergonomic for use in Kotlin, such as nullable values instead of `Optional`,       `Sequence` instead of `Stream`, and suspend functions instead of `CompletableFuture`.\n\n\n\n## MCP Server\n\nUse the Mux MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40mux%2Fmcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBtdXgvbWNwIl0sImVudiI6eyJNVVhfVE9LRU5fSUQiOiJteSB0b2tlbiBpZCIsIk1VWF9UT0tFTl9TRUNSRVQiOiJteSBzZWNyZXQiLCJNVVhfV0VCSE9PS19TRUNSRVQiOiJNeSBXZWJob29rIFNlY3JldCIsIk1VWF9TSUdOSU5HX0tFWSI6Ik15IEp3dCBTaWduaW5nIEtleSIsIk1VWF9QUklWQVRFX0tFWSI6Ik15IEp3dCBQcml2YXRlIEtleSIsIk1VWF9BVVRIT1JJWkFUSU9OX1RPS0VOIjoibXkgYXV0aG9yaXphdGlvbiB0b2tlbiJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40mux%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40mux%2Fmcp%22%5D%2C%22env%22%3A%7B%22MUX_TOKEN_ID%22%3A%22my%20token%20id%22%2C%22MUX_TOKEN_SECRET%22%3A%22my%20secret%22%2C%22MUX_WEBHOOK_SECRET%22%3A%22My%20Webhook%20Secret%22%2C%22MUX_SIGNING_KEY%22%3A%22My%20Jwt%20Signing%20Key%22%2C%22MUX_PRIVATE_KEY%22%3A%22My%20Jwt%20Private%20Key%22%2C%22MUX_AUTHORIZATION_TOKEN%22%3A%22my%20authorization%20token%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\nThe REST API documentation can be found on [docs.mux.com](https://docs.mux.com). KDocs are available on [javadoc.io](https://javadoc.io/doc/com.mux.api/mux-kotlin/0.0.1).\n\n## Installation\n\n### Gradle\n\n~~~kotlin\nimplementation("com.mux.api:mux-kotlin:0.0.1")\n~~~\n\n### Maven\n\n~~~xml\n<dependency>\n  <groupId>com.mux.api</groupId>\n  <artifactId>mux-kotlin</artifactId>\n  <version>0.0.1</version>\n</dependency>\n~~~\n\n## Requirements\n\nThis library requires Java 8 or later.\n\n## Usage\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.video.assets.Asset\nimport com.mux.api.models.video.assets.AssetCreateParams\nimport com.mux.api.models.video.assets.AssetOptions\n\n// Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n// Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\nval client: MuxClient = MuxOkHttpClient.fromEnv()\n\nval params: AssetOptions = AssetOptions.builder()\n    .addInput(AssetOptions.Input.builder().build())\n    .build()\nval asset: Asset = client.video().assets().create(params)\n```\n\n## Client configuration\n\nConfigure the client using system properties or environment variables:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\n\n// Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n// Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\nval client: MuxClient = MuxOkHttpClient.fromEnv()\n```\n\nOr manually:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    .tokenId("my token id")\n    .tokenSecret("my secret")\n    .build()\n```\n\nOr using a combination of the two approaches:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    // Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n    // Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\n    .fromEnv()\n    .tokenId("my token id")\n    .build()\n```\n\nSee this table for the available options:\n\n| Setter               | System property          | Environment variable      | Required | Default value           |\n| -------------------- | ------------------------ | ------------------------- | -------- | ----------------------- |\n| `tokenId`            | `mux.tokenId`            | `MUX_TOKEN_ID`            | false    | -                       |\n| `tokenSecret`        | `mux.tokenSecret`        | `MUX_TOKEN_SECRET`        | false    | -                       |\n| `webhookSecret`      | `mux.webhookSecret`      | `MUX_WEBHOOK_SECRET`      | false    | -                       |\n| `jwtSigningKey`      | `mux.signingKey`         | `MUX_SIGNING_KEY`         | false    | -                       |\n| `jwtPrivateKey`      | `mux.privateKey`         | `MUX_PRIVATE_KEY`         | false    | -                       |\n| `authorizationToken` | `mux.authorizationToken` | `MUX_AUTHORIZATION_TOKEN` | false    | -                       |\n| `baseUrl`            | `mux.baseUrl`            | `MUX_BASE_URL`            | true     | `"https://api.mux.com"` |\n\nSystem properties take precedence over environment variables.\n\n> [!TIP]\n> Don\'t create more than one client in the same application. Each client has a connection pool and\n> thread pools, which are more efficient to share between requests.\n\n### Modifying configuration\n\nTo temporarily use a modified client configuration, while reusing the same connection and thread       pools, call `withOptions()` on any client or service:\n\n```kotlin\nimport com.mux.api.client.MuxClient\n\nval clientWithOptions: MuxClient = client.withOptions {\n    it.baseUrl("https://example.com")\n    it.maxRetries(42)\n}\n```\n\nThe `withOptions()` method does not affect the original client or service.\n\n## Requests and responses\n\nTo send a request to the Mux API, build an instance of some `Params` class and pass it to the     corresponding client method. When the response is received, it will be deserialized into an instance of     a Kotlin class.\n\nFor example, `client.video().assets().create(...)` should be called with an instance of `AssetCreateParams`, and it     will return an instance of `Asset`.\n\n## Immutability\n\nEach class in the SDK has an associated   [builder](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)   or factory method for constructing it.\n\nEach class is [immutable](https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html)   once constructed. If the class has an associated builder, then it has a `toBuilder()` method, which can   be used to convert it back to a builder for making a modified copy.\n\nBecause each class is immutable, builder modification will _never_ affect already built class instances.\n\n## Asynchronous execution\n\nThe default client is synchronous. To switch to asynchronous execution, call the `async()` method:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.video.assets.Asset\nimport com.mux.api.models.video.assets.AssetCreateParams\nimport com.mux.api.models.video.assets.AssetOptions\n\n// Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n// Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\nval client: MuxClient = MuxOkHttpClient.fromEnv()\n\nval params: AssetOptions = AssetOptions.builder()\n    .addInput(AssetOptions.Input.builder().build())\n    .build()\nval asset: Asset = client.async().video().assets().create(params)\n```\n\nOr create an asynchronous client from the beginning:\n\n```kotlin\nimport com.mux.api.client.MuxClientAsync\nimport com.mux.api.client.okhttp.MuxOkHttpClientAsync\nimport com.mux.api.models.video.assets.Asset\nimport com.mux.api.models.video.assets.AssetCreateParams\nimport com.mux.api.models.video.assets.AssetOptions\n\n// Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n// Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\nval client: MuxClientAsync = MuxOkHttpClientAsync.fromEnv()\n\nval params: AssetOptions = AssetOptions.builder()\n    .addInput(AssetOptions.Input.builder().build())\n    .build()\nval asset: Asset = client.video().assets().create(params)\n```\n\nThe asynchronous client supports the same options as the synchronous one, except most methods are [suspending](https://kotlinlang.org/docs/coroutines-guide.html).\n\n\n\n\n\n## Binary responses\n\nThe SDK defines methods that return binary responses, which are used for API responses that shouldn\'t     necessarily be parsed, like non-JSON data.\n\nThese methods return [`HttpResponse`](mux-kotlin-core/src/main/kotlin/com/mux/api/core/http/HttpResponse.kt):\n\n```kotlin\nimport com.mux.api.core.http.HttpResponse\nimport com.mux.api.models.video.playback.PlaybackAnimatedParams\n\nval params: PlaybackAnimatedParams = PlaybackAnimatedParams.builder()\n    .playbackId("PLAYBACK_ID")\n    .extension(PlaybackAnimatedParams.Extension.GIF)\n    .build()\nval response: HttpResponse = client.video().playback().animated(params)\n```\n\nTo save the response content to a file, use the     [`Files.copy(...)`](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#copy-java.io.InputStream-java.nio.file.Path-java.nio.file.CopyOption...-)     method:\n\n```kotlin\nimport java.nio.file.Files\nimport java.nio.file.Paths\nimport java.nio.file.StandardCopyOption\n\nclient.video().playback().animated(params).use {\n    Files.copy(\n        it.body(),\n        Paths.get(path),\n        StandardCopyOption.REPLACE_EXISTING\n    )\n}\n```\n\nOr transfer the response content to any     [`OutputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html):\n\n```kotlin\nimport java.nio.file.Files\nimport java.nio.file.Paths\n\nclient.video().playback().animated(params).use {\n    it.body().transferTo(Files.newOutputStream(Paths.get(path)))\n}\n```\n\n## Raw responses\n\nThe SDK defines methods that deserialize responses into instances of Kotlin classes.       However, these methods don\'t provide access to the response headers, status code, or the raw response       body.\n\nTo access this data, prefix any HTTP method call on a client or service with `withRawResponse()`:\n\n```kotlin\nimport com.mux.api.core.http.Headers\nimport com.mux.api.core.http.HttpResponseFor\nimport com.mux.api.models.video.assets.Asset\nimport com.mux.api.models.video.assets.AssetCreateParams\nimport com.mux.api.models.video.assets.AssetOptions\n\nval params: AssetOptions = AssetOptions.builder()\n    .addInput(AssetOptions.Input.builder().build())\n    .build()\nval asset: HttpResponseFor<Asset> = client.video().assets().withRawResponse().create(params)\n\nval statusCode: Int = asset.statusCode()\nval headers: Headers = asset.headers()\n```\n\nYou can still deserialize the response into an instance of a Kotlin class if needed:\n\n```kotlin\nimport com.mux.api.models.video.assets.Asset\n\nval parsedAsset: Asset = asset.parse()\n```\n\n## Error handling\n\nThe SDK throws custom unchecked exception types:\n\n- [`MuxServiceException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/MuxServiceException.kt): Base class for HTTP errors. See this table for which exception       subclass is thrown for each HTTP status code:\n\n  | Status | Exception                                          |\n  | ------ | -------------------------------------------------- |\n  | 400    | [`BadRequestException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/BadRequestException.kt)           |\n  | 401    | [`UnauthorizedException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/UnauthorizedException.kt)         |\n  | 403    | [`PermissionDeniedException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/PermissionDeniedException.kt)     |\n  | 404    | [`NotFoundException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/NotFoundException.kt)             |\n  | 422    | [`UnprocessableEntityException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/UnprocessableEntityException.kt)  |\n  | 429    | [`RateLimitException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/RateLimitException.kt)            |\n  | 5xx    | [`InternalServerException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/InternalServerException.kt)       |\n  | others | [`UnexpectedStatusCodeException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/UnexpectedStatusCodeException.kt) |\n\n- [`MuxIoException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/MuxIoException.kt): I/O networking errors.\n\n- [`MuxRetryableException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/MuxRetryableException.kt): Generic error indicating a failure that could be retried by the client.\n\n- [`MuxInvalidDataException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/MuxInvalidDataException.kt): Failure to interpret successfully parsed data. For example,       when accessing a property that\'s supposed to be required, but the API unexpectedly omitted it from the       response.\n\n- [`MuxException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/MuxException.kt): Base class for all exceptions. Most errors will result in one of the       previously mentioned ones, but completely generic errors may be thrown using the base class.\n\n## Pagination\n\nThe SDK defines methods that return a paginated lists of results. It provides convenient ways to access     the results either one page at a time or item-by-item across all pages.\n\n### Auto-pagination\n\nTo iterate through all results across all pages, use the `autoPager()` method, which automatically     fetches more pages as needed.\n\nWhen using the synchronous client, the method returns a [`Sequence`](https://kotlinlang.org/docs/sequences.html)\n\n```kotlin\nimport com.mux.api.models.video.deliveryusage.DeliveryUsageListPage\n\nval page: DeliveryUsageListPage = client.video().deliveryUsage().list()\npage.autoPager()\n    .take(50)\n    .forEach { deliveryUsage -> println(deliveryUsage) }\n```\n\nWhen using the asynchronous client, the method returns a [`Flow`](https://kotlinlang.org/docs/flow.html):\n\n```kotlin\nimport com.mux.api.models.video.deliveryusage.DeliveryUsageListPageAsync\n\nval page: DeliveryUsageListPageAsync = client.async().video().deliveryUsage().list()\npage.autoPager()\n    .take(50)\n    .forEach { deliveryUsage -> println(deliveryUsage) }\n```\n\n### Manual pagination\n\nTo access individual page items and manually request the next page, use the `items()`,\n`hasNextPage()`, and `nextPage()` methods:\n\n```kotlin\nimport com.mux.api.models.video.deliveryusage.DeliveryReport\nimport com.mux.api.models.video.deliveryusage.DeliveryUsageListPage\n\nval page: DeliveryUsageListPage = client.video().deliveryUsage().list()\nwhile (true) {\n    for (deliveryUsage in page.items()) {\n        println(deliveryUsage)\n    }\n\n    if (!page.hasNextPage()) {\n        break\n    }\n\n    page = page.nextPage()\n}\n```\n\n## Logging\n\nThe SDK uses the standard   [OkHttp logging interceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor).\n\nEnable logging by setting the `MUX_LOG` environment variable to   `info`:\n\n```sh\nexport MUX_LOG=info\n```\n\nOr to `debug` for more verbose logging:\n\n```sh\nexport MUX_LOG=debug\n```\n\n## ProGuard and R8\n\nAlthough the SDK uses reflection, it is still usable with     [ProGuard](https://github.com/Guardsquare/proguard) and     [R8](https://developer.android.com/topic/performance/app-optimization/enable-app-optimization) because     `mux-kotlin-core` is published with a     [configuration file](mux-kotlin-core/src/main/resources/META-INF/proguard/mux-kotlin-core.pro) containing     [keep rules](https://www.guardsquare.com/manual/configuration/usage).\n\nProGuard and R8 should automatically detect and use the published rules, but you can also manually copy     the keep rules if necessary.\n\n\n\n\n\n## Jackson\n\nThe SDK depends on [Jackson](https://github.com/FasterXML/jackson) for JSON     serialization/deserialization. It is compatible with version 2.13.4 or higher,     but depends on version 2.18.2 by default.\n\nThe SDK throws an exception if it detects an incompatible Jackson version at runtime (e.g. if the     default version was overridden in your Maven or Gradle config).\n\nIf the SDK threw an exception, but you\'re _certain_ the version is compatible, then disable the version     check using the `checkJacksonVersionCompatibility` on [`MuxOkHttpClient`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClient.kt) or     [`MuxOkHttpClientAsync`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClientAsync.kt).\n\n> [!CAUTION]\n> We make no guarantee that the SDK works correctly when the Jackson version check is disabled.\n\nAlso note that there are bugs in older Jackson versions that can affect the SDK. We don\'t work around all     Jackson bugs ([example](https://github.com/FasterXML/jackson-databind/issues/3240)) and expect users to     upgrade Jackson for those instead.\n\n## Network options\n\n### Retries\n\nThe SDK automatically retries 2 times by default, with a short exponential backoff between requests.\n\nOnly the following error types are retried:\n- Connection errors (for example, due to a network connectivity problem)\n- 408 Request Timeout\n- 409 Conflict\n- 429 Rate Limit\n- 5xx Internal\n\nThe API may also explicitly instruct the SDK to retry or not retry a request.\n\nTo set a custom number of retries, configure the client using the `maxRetries` method:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    .fromEnv()\n    .maxRetries(4)\n    .build()\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default.\n\nTo set a custom timeout, configure the method call using the `timeout` method:\n\n```kotlin\nimport com.mux.api.models.video.assets.Asset\n\nval asset: Asset = client.video().assets().retrieve(RequestOptions.builder().timeout(Duration.ofSeconds(30)).build())\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport java.time.Duration\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    .fromEnv()\n    .timeout(Duration.ofSeconds(30))\n    .build()\n```\n\n### Proxies\n\nTo route requests through a proxy, configure the client using the `proxy` method:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport java.net.InetSocketAddress\nimport java.net.Proxy\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    .fromEnv()\n    .proxy(Proxy(\n      Proxy.Type.HTTP, InetSocketAddress(\n        "https://example.com", 8080\n      )\n    ))\n    .build()\n```\n\n### Connection pooling\n\nTo customize the underlying OkHttp connection pool, configure the client using the   `maxIdleConnections` and `keepAliveDuration` methods:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport java.time.Duration\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    .fromEnv()\n    // If `maxIdleConnections` is set, then `keepAliveDuration` must be set, and vice versa.\n    .maxIdleConnections(10)\n    .keepAliveDuration(Duration.ofMinutes(2))\n    .build()\n```\n\nIf both options are unset, OkHttp\'s default connection pool settings are used.\n\n### HTTPS\n\n> [!NOTE]\n> Most applications should not call these methods, and instead use the system defaults. The defaults include\n> special optimizations that can be lost if the implementations are modified.\n\nTo configure how HTTPS connections are secured, configure the client using the `sslSocketFactory`,   `trustManager`, and `hostnameVerifier` methods:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    .fromEnv()\n    // If `sslSocketFactory` is set, then `trustManager` must be set, and vice versa.\n    .sslSocketFactory(yourSSLSocketFactory)\n    .trustManager(yourTrustManager)\n    .hostnameVerifier(yourHostnameVerifier)\n    .build()\n```\n\n\n\n### Custom HTTP client\n\nThe SDK consists of three artifacts:\n- `mux-kotlin-core`\n  - Contains core SDK logic\n  - Does not depend on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`MuxClient`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClient.kt), [`MuxClientAsync`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientAsync.kt),             [`MuxClientImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientImpl.kt), and [`MuxClientAsyncImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientAsyncImpl.kt), all of which can             work with any HTTP client\n- `mux-kotlin-client-okhttp`\n  - Depends on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`MuxOkHttpClient`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClient.kt) and [`MuxOkHttpClientAsync`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClientAsync.kt), which             provide a way to construct [`MuxClientImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientImpl.kt) and             [`MuxClientAsyncImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientAsyncImpl.kt), respectively, using OkHttp\n- `mux-kotlin`\n  - Depends on and exposes the APIs of both `mux-kotlin-core` and `mux-kotlin-client-okhttp`\n  - Does not have its own logic\n\nThis structure allows replacing the SDK\'s default HTTP client without pulling in unnecessary dependencies.\n\n#### Customized [`OkHttpClient`](https://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.html)\n\n> [!TIP]\n> Try the available [network options](#network-options) before replacing the default client.\n\nTo use a customized `OkHttpClient`:\n\n1. Replace your [`mux-kotlin` dependency](#installation) with `mux-kotlin-core`\n2. Copy `mux-kotlin-client-okhttp`\'s [`OkHttpClient`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/OkHttpClient.kt) class into your code and        customize it\n3. Construct [`MuxClientImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientImpl.kt) or [`MuxClientAsyncImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientAsyncImpl.kt), similarly to        [`MuxOkHttpClient`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClient.kt) or [`MuxOkHttpClientAsync`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClientAsync.kt), using your        customized client\n\n### Completely custom HTTP client\n\nTo use a completely custom HTTP client:\n\n1. Replace your [`mux-kotlin` dependency](#installation) with `mux-kotlin-core`\n2. Write a class that implements the [`HttpClient`](mux-kotlin-core/src/main/kotlin/com/mux/api/core/http/HttpClient.kt) interface\n3. Construct [`MuxClientImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientImpl.kt) or [`MuxClientAsyncImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientAsyncImpl.kt), similarly to        [`MuxOkHttpClient`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClient.kt) or [`MuxOkHttpClientAsync`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClientAsync.kt), using your new        client class\n\n## Undocumented API functionality\n\nThe SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.\n\n### Parameters\n\nTo set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQueryParam`, or       `putAdditionalBodyProperty` methods on any `Params` class:\n\n```kotlin\nimport com.mux.api.core.JsonValue\nimport com.mux.api.models.video.assets.AssetCreateParams\n\nval params: AssetCreateParams = AssetCreateParams.builder()\n    .putAdditionalHeader("Secret-Header", "42")\n    .putAdditionalQueryParam("secret_query_param", "42")\n    .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))\n    .build()\n```\n\nThese can be accessed on the built object later using the `_additionalHeaders()`,       `_additionalQueryParams()`, and `_additionalBodyProperties()` methods.\n\nTo set a documented parameter or property to an undocumented or not yet supported _value_, pass a       [`JsonValue`](mux-kotlin-core/src/main/kotlin/com/mux/api/core/Values.kt) object to its setter:\n\n```kotlin\nimport com.mux.api.models.video.assets.AssetCreateParams\nimport com.mux.api.models.video.assets.AssetOptions\n\nval params: AssetCreateParams = AssetCreateParams.builder()\n    .assetOptions(AssetOptions.builder()\n        .addInput(AssetOptions.Input.builder().build())\n        .build())\n    .build()\n```\n\nThe most straightforward way to create a [`JsonValue`](mux-kotlin-core/src/main/kotlin/com/mux/api/core/Values.kt) is using its       `from(...)` method:\n\n```kotlin\nimport com.mux.api.core.JsonValue\n\n// Create primitive JSON values\nval nullValue: JsonValue = JsonValue.from(null)\nval booleanValue: JsonValue = JsonValue.from(true)\nval numberValue: JsonValue = JsonValue.from(42)\nval stringValue: JsonValue = JsonValue.from("Hello World!")\n\n// Create a JSON array value equivalent to `["Hello", "World"]`\nval arrayValue: JsonValue = JsonValue.from(listOf(\n  "Hello", "World"\n))\n\n// Create a JSON object value equivalent to `{ "a": 1, "b": 2 }`\nval objectValue: JsonValue = JsonValue.from(mapOf(\n  "a" to 1, "b" to 2\n))\n\n// Create an arbitrarily nested JSON equivalent to:\n// {\n//   "a": [1, 2],\n//   "b": [3, 4]\n// }\nval complexValue: JsonValue = JsonValue.from(mapOf(\n  "a" to listOf(\n    1, 2\n  ), "b" to listOf(\n    3, 4\n  )\n))\n```\n\nNormally a `Builder` class\'s `build` method will throw         [`IllegalStateException`](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html)         if any required parameter or property is unset.\n\nTo forcibly omit a required parameter or property, pass [`JsonMissing`](mux-kotlin-core/src/main/kotlin/com/mux/api/core/Values.kt):\n\n```kotlin\nimport com.mux.api.core.JsonMissing\nimport com.mux.api.models.video.assets.AssetCreateParams\nimport com.mux.api.models.video.assets.AssetRetrieveParams\n\nval params: AssetCreateParams = AssetRetrieveParams.builder()\n    .assetId(JsonMissing.of())\n    .build()\n```\n\n### Response properties\n\nTo access undocumented response properties, call the `_additionalProperties()` method:\n\n```kotlin\nimport com.mux.api.core.JsonBoolean\nimport com.mux.api.core.JsonNull\nimport com.mux.api.core.JsonNumber\nimport com.mux.api.core.JsonValue\n\nval additionalProperties: Map<String, JsonValue> = client.video().assets().create(params)._additionalProperties()\nval secretPropertyValue: JsonValue = additionalProperties.get("secretProperty")\n\nval result = when (secretPropertyValue) {\n    is JsonNull -> "It\'s null!"\n    is JsonBoolean -> "It\'s a boolean!"\n    is JsonNumber -> "It\'s a number!"\n    // Other types include `JsonMissing`, `JsonString`, `JsonArray`, and `JsonObject`\n    else -> "It\'s something else!"\n}\n```\n\nTo access a property\'s raw JSON value, which may be undocumented, call its `_` prefixed method:\n\n```kotlin\nimport com.mux.api.core.JsonField\n\nval field: JsonField<Any> = client.video().assets().create(params)._field()\n\nif (field.isMissing()) {\n  // The property is absent from the JSON response\n} else if (field.isNull()) {\n  // The property was set to literal null\n} else {\n  // Check if value was provided as a string\n  // Other methods include `asNumber()`, `asBoolean()`, etc.\n  val jsonString: String? = field.asString();\n\n  // Try to deserialize into a custom type\n  val myObject: MyClass = field.asUnknown()!!.convert(MyClass::class.java)\n}\n```\n\n### Response validation\n\nIn rare cases, the API may return a response that doesn\'t match the expected type. For example, the SDK     may expect a property to contain a `String`, but the API could return something else.\n\nBy default, the SDK will not throw an exception in this case. It will throw     [`MuxInvalidDataException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/MuxInvalidDataException.kt) only if you directly access the property.\n\nIf you would prefer to check that the response is completely well-typed upfront, then either call     `validate()`:\n\n```kotlin\nimport com.mux.api.models.video.assets.Asset\n\nval asset: Asset = client.video().assets().create(params).validate()\n```\n\nOr configure the method call to validate the response using the `responseValidation` method:\n\n```kotlin\nimport com.mux.api.models.video.assets.Asset\n\nval asset: Asset = client.video().assets().create(\n  params, RequestOptions.builder().responseValidation(true).build()\n)\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    .fromEnv()\n    .responseValidation(true)\n    .build()\n```\n\n## FAQ\n\n### Why don\'t you use plain `enum` classes?\n\nKotlin `enum` classes are not trivially   [forwards compatible](https://www.stainless.com/blog/making-java-enums-forwards-compatible). Using them in   the SDK could cause runtime exceptions if the API is updated to respond with a new enum value.\n\n### Why do you represent fields using `JsonField<T>` instead of just plain `T`?\n\nUsing `JsonField<T>` enables a few features:\n\n- Allowing usage of [undocumented API functionality](#undocumented-api-functionality)\n- Lazily [validating the API response against the expected shape](#response-validation)\n- Representing absent vs explicitly null values\n\n### Why don\'t you use [`data` classes](https://kotlinlang.org/docs/data-classes.html)?\n\nIt is not [backwards compatible to add new fields to a data class](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api)   and we don\'t want to introduce a breaking change every time we add a field to a class.\n\n### Why don\'t you use checked exceptions?\n\nChecked exceptions are widely considered a mistake in the Java programming language. In fact, they were   omitted from Kotlin for this reason.\n\nChecked exceptions:\n\n- Are verbose to handle\n- Encourage error handling at the wrong level of abstraction, where nothing can be done about the error\n- Are tedious to propagate due to the [function coloring problem](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function)\n- Don\'t play well with lambdas (also due to the function coloring problem)\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/mux-kotlin/issues) with questions, bugs, or suggestions.\n',
   },
   {
+    language: 'csharp',
+    content:
+      '# Mux C# API Library\n\nThe Mux C# SDK provides convenient access to the [Mux REST API](https://docs.mux.com) from applications written in   C#.\n\n## Installation\n\n```bash\ngit clone git@github.com:stainless-sdks/mux-csharp.git\ndotnet add reference mux-csharp/src/Mux\n```\n\n## Requirements\n\nThis library requires .NET Standard 2.0 or later.\n\n## Usage\n\nSee the [`examples`](examples) directory for complete and runnable examples.\n\n```csharp\nMuxClient client = new();\n\nAssetCreateParams parameters = new()\n{\n    Inputs =\n    [\n        new()\n        {\n            Url = "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4",\n        },\n    ],\n    PlaybackPolicies =\n    [\n        PlaybackPolicy.Public\n    ],\n};\n\nvar asset = await client.Video.Assets.Create(parameters);\n\nConsole.WriteLine(asset);\n```',
+  },
+  {
     language: 'cli',
     content:
       "# Mux CLI\n\nThe official CLI for the [Mux REST API](https://docs.mux.com).\n\n## Installation\n\n### Installing with Go\n\nTo test or install the CLI locally, you need [Go](https://go.dev/doc/install) version 1.22 or later installed.\n\n~~~sh\ngo install 'github.com/stainless-sdks/mux-cli/cmd/mux-cli@latest'\n~~~\n\nOnce you have run `go install`, the binary is placed in your Go bin directory:\n\n- **Default location**: `$HOME/go/bin` (or `$GOPATH/bin` if GOPATH is set)\n- **Check your path**: Run `go env GOPATH` to see the base directory\n\nIf commands aren't found after installation, add the Go bin directory to your PATH:\n\n~~~sh\n# Add to your shell profile (.zshrc, .bashrc, etc.)\nexport PATH=\"$PATH:$(go env GOPATH)/bin\"\n~~~\n\n### Running Locally\n\nAfter cloning the git repository for this project, you can use the\n`scripts/run` script to run the tool locally:\n\n~~~sh\n./scripts/run args...\n~~~\n\n## Usage\n\nThe CLI follows a resource-based command structure:\n\n~~~sh\nmux-cli [resource] <command> [flags...]\n~~~\n\n~~~sh\nmux-cli video:assets create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --input '{}' \\\n  --playback-policy public\n~~~\n\nFor details about specific commands, use the `--help` flag.\n\n### Environment variables\n\n| Environment variable      | Required | Default value |\n| ------------------------- | -------- | ------------- |\n| `MUX_TOKEN_ID`            | no       | `null`        |\n| `MUX_TOKEN_SECRET`        | no       | `null`        |\n| `MUX_WEBHOOK_SECRET`      | no       | `null`        |\n| `MUX_SIGNING_KEY`         | no       | `null`        |\n| `MUX_PRIVATE_KEY`         | no       | `null`        |\n| `MUX_AUTHORIZATION_TOKEN` | no       | `null`        |\n\n### Global flags\n\n- `--token-id` (can also be set with `MUX_TOKEN_ID` env var)\n- `--token-secret` (can also be set with `MUX_TOKEN_SECRET` env var)\n- `--webhook-secret` (can also be set with `MUX_WEBHOOK_SECRET` env var)\n- `--jwt-signing-key` (can also be set with `MUX_SIGNING_KEY` env var)\n- `--jwt-private-key` (can also be set with `MUX_PRIVATE_KEY` env var)\n- `--authorization-token` (can also be set with `MUX_AUTHORIZATION_TOKEN` env var)\n- `--help` - Show command line usage\n- `--debug` - Enable debug logging (includes HTTP request/response details)\n- `--version`, `-v` - Show the CLI version\n- `--base-url` - Use a custom API backend URL\n- `--format` - Change the output format (`auto`, `explore`, `json`, `jsonl`, `pretty`, `raw`, `yaml`)\n- `--format-error` - Change the output format for errors (`auto`, `explore`, `json`, `jsonl`, `pretty`, `raw`, `yaml`)\n- `--transform` - Transform the data output using [GJSON syntax](https://github.com/tidwall/gjson/blob/master/SYNTAX.md)\n- `--transform-error` - Transform the error output using [GJSON syntax](https://github.com/tidwall/gjson/blob/master/SYNTAX.md)\n\n### Passing files as arguments\n\nTo pass files to your API, you can use the `@myfile.ext` syntax:\n\n~~~bash\nmux-cli <command> --arg @abe.jpg\n~~~\n\nFiles can also be passed inside JSON or YAML blobs:\n\n~~~bash\nmux-cli <command> --arg '{image: \"@abe.jpg\"}'\n# Equivalent:\nmux-cli <command> <<YAML\narg:\n  image: \"@abe.jpg\"\nYAML\n~~~\n\nIf you need to pass a string literal that begins with an `@` sign, you can\nescape the `@` sign to avoid accidentally passing a file.\n\n~~~bash\nmux-cli <command> --username '\\@abe'\n~~~\n\n#### Explicit encoding\n\nFor JSON endpoints, the CLI tool does filetype sniffing to determine whether the\nfile contents should be sent as a string literal (for plain text files) or as a\nbase64-encoded string literal (for binary files). If you need to explicitly send\nthe file as either plain text or base64-encoded data, you can use\n`@file://myfile.txt` (for string encoding) or `@data://myfile.dat` (for\nbase64-encoding). Note that absolute paths will begin with `@file://` or\n`@data://`, followed by a third `/` (for example, `@file:///tmp/file.txt`).\n\n~~~bash\nmux-cli <command> --arg @data://file.txt\n~~~\n",
+  },
+  {
+    language: 'php',
+    content:
+      '# Mux PHP API Library\n\nThe Mux PHP library provides convenient access to the Mux REST API from any PHP 8.1.0+ application.\n\n## Installation\n\nTo use this package, install via Composer by adding the following to your application\'s `composer.json`:\n\n```json\n{\n  "repositories": [\n    {\n      "type": "vcs",\n      "url": "git@github.com:stainless-sdks/mux-php.git"\n    }\n  ],\n  "require": {\n    "mux/mux": "dev-main"\n  }\n}\n```\n\n## Usage\n\n```php\n<?php\n\n$client = new Client(\n  tokenId: getenv(\'MUX_TOKEN_ID\') ?: \'my token id\',\n  tokenSecret: getenv(\'MUX_TOKEN_SECRET\') ?: \'my secret\',\n);\n\n$asset = $client->video->assets->create(\n  inputs: [\n    [\'url\' => \'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4\']\n  ],\n  playbackPolicies: [PlaybackPolicy::PUBLIC],\n);\n\nvar_dump($asset->id);\n```',
   },
 ];
 
