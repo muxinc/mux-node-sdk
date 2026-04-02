@@ -135,12 +135,12 @@ export type JobSummariesBasePage = BasePage<JobSummary>;
 
 export interface JobError {
   /**
-   * Human-readable error message.
+   * Human-readable public error message.
    */
   message: string;
 
   /**
-   * Error category identifier.
+   * Stable public error category identifier.
    */
   type: string;
 }
