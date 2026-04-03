@@ -107,7 +107,6 @@ client.example.list(undefined, { headers: { ... } });
 - `client.video.playbackRestrictions.list()`
 - `client.video.transcriptionVocabularies.list()`
 - `client.video.uploads.list()`
-- `client.video.webInputs.list()`
 - `client.video.drmConfigurations.list()`
 - `client.video.playback.hls()`
 - `client.video.playback.storyboardMeta()`

@@ -126,29 +126,6 @@ Methods:
 - <code title="get /video/v1/uploads">client.video.uploads.<a href="./src/resources/video/uploads.ts">list</a>({ ...params }) -> UploadsBasePage</code>
 - <code title="put /video/v1/uploads/{UPLOAD_ID}/cancel">client.video.uploads.<a href="./src/resources/video/uploads.ts">cancel</a>(uploadID) -> Upload</code>
 
-## WebInputs
-
-Types:
-
-- <code><a href="./src/resources/video/web-inputs.ts">WebInputCreateResponse</a></code>
-- <code><a href="./src/resources/video/web-inputs.ts">WebInputRetrieveResponse</a></code>
-- <code><a href="./src/resources/video/web-inputs.ts">WebInputListResponse</a></code>
-- <code><a href="./src/resources/video/web-inputs.ts">WebInputLaunchResponse</a></code>
-- <code><a href="./src/resources/video/web-inputs.ts">WebInputReloadResponse</a></code>
-- <code><a href="./src/resources/video/web-inputs.ts">WebInputShutdownResponse</a></code>
-- <code><a href="./src/resources/video/web-inputs.ts">WebInputUpdateURLResponse</a></code>
-
-Methods:
-
-- <code title="post /video/v1/web-inputs">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">create</a>({ ...params }) -> WebInputCreateResponse</code>
-- <code title="get /video/v1/web-inputs/{WEB_INPUT_ID}">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">retrieve</a>(webInputID) -> WebInputRetrieveResponse</code>
-- <code title="get /video/v1/web-inputs">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">list</a>({ ...params }) -> WebInputListResponsesBasePage</code>
-- <code title="delete /video/v1/web-inputs/{WEB_INPUT_ID}">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">delete</a>(webInputID) -> void</code>
-- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/launch">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">launch</a>(webInputID) -> WebInputLaunchResponse</code>
-- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/reload">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">reload</a>(webInputID) -> WebInputReloadResponse</code>
-- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/shutdown">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">shutdown</a>(webInputID) -> WebInputShutdownResponse</code>
-- <code title="put /video/v1/web-inputs/{WEB_INPUT_ID}/url">client.video.webInputs.<a href="./src/resources/video/web-inputs.ts">updateURL</a>(webInputID, { ...params }) -> WebInputUpdateURLResponse</code>
-
 ## DRMConfigurations
 
 Types:

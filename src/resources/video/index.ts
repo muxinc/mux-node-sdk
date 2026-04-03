@@ -100,17 +100,3 @@ export {
   type UploadsBasePage,
 } from './uploads';
 export { Video } from './video';
-export {
-  WebInputs,
-  type WebInputCreateResponse,
-  type WebInputRetrieveResponse,
-  type WebInputListResponse,
-  type WebInputLaunchResponse,
-  type WebInputReloadResponse,
-  type WebInputShutdownResponse,
-  type WebInputUpdateURLResponse,
-  type WebInputCreateParams,
-  type WebInputListParams,
-  type WebInputUpdateURLParams,
-  type WebInputListResponsesBasePage,
-} from './web-inputs';

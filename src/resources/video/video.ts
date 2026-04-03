@@ -109,21 +109,6 @@ import {
   Uploads,
   UploadsBasePage,
 } from './uploads';
-import * as WebInputsAPI from './web-inputs';
-import {
-  WebInputCreateParams,
-  WebInputCreateResponse,
-  WebInputLaunchResponse,
-  WebInputListParams,
-  WebInputListResponse,
-  WebInputListResponsesBasePage,
-  WebInputReloadResponse,
-  WebInputRetrieveResponse,
-  WebInputShutdownResponse,
-  WebInputUpdateURLParams,
-  WebInputUpdateURLResponse,
-  WebInputs,
-} from './web-inputs';
 
 export class Video extends APIResource {
   assets: AssetsAPI.Assets = new AssetsAPI.Assets(this._client);
@@ -135,7 +120,6 @@ export class Video extends APIResource {
   transcriptionVocabularies: TranscriptionVocabulariesAPI.TranscriptionVocabularies =
     new TranscriptionVocabulariesAPI.TranscriptionVocabularies(this._client);
   uploads: UploadsAPI.Uploads = new UploadsAPI.Uploads(this._client);
-  webInputs: WebInputsAPI.WebInputs = new WebInputsAPI.WebInputs(this._client);
   drmConfigurations: DRMConfigurationsAPI.DRMConfigurations = new DRMConfigurationsAPI.DRMConfigurations(
     this._client,
   );
@@ -149,7 +133,6 @@ Video.PlaybackIDs = PlaybackIDs;
 Video.PlaybackRestrictions = PlaybackRestrictions;
 Video.TranscriptionVocabularies = TranscriptionVocabularies;
 Video.Uploads = Uploads;
-Video.WebInputs = WebInputs;
 Video.DRMConfigurations = DRMConfigurations;
 Video.Playback = Playback;
 
@@ -236,21 +219,6 @@ export declare namespace Video {
     type UploadsBasePage as UploadsBasePage,
     type UploadCreateParams as UploadCreateParams,
     type UploadListParams as UploadListParams,
-  };
-
-  export {
-    WebInputs as WebInputs,
-    type WebInputCreateResponse as WebInputCreateResponse,
-    type WebInputRetrieveResponse as WebInputRetrieveResponse,
-    type WebInputListResponse as WebInputListResponse,
-    type WebInputLaunchResponse as WebInputLaunchResponse,
-    type WebInputReloadResponse as WebInputReloadResponse,
-    type WebInputShutdownResponse as WebInputShutdownResponse,
-    type WebInputUpdateURLResponse as WebInputUpdateURLResponse,
-    type WebInputListResponsesBasePage as WebInputListResponsesBasePage,
-    type WebInputCreateParams as WebInputCreateParams,
-    type WebInputListParams as WebInputListParams,
-    type WebInputUpdateURLParams as WebInputUpdateURLParams,
   };
 
   export {
