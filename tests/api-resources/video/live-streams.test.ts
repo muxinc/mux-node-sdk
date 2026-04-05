@@ -133,8 +133,8 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('deletePlaybackID: only required params', async () => {
-    const responsePromise = client.video.liveStreams.deletePlaybackID('PLAYBACK_ID', {
+  test('deletePlaybackId: only required params', async () => {
+    const responsePromise = client.video.liveStreams.deletePlaybackId('PLAYBACK_ID', {
       LIVE_STREAM_ID: 'LIVE_STREAM_ID',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -146,8 +146,8 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('deletePlaybackID: required and optional params', async () => {
-    const response = await client.video.liveStreams.deletePlaybackID('PLAYBACK_ID', {
+  test('deletePlaybackId: required and optional params', async () => {
+    const response = await client.video.liveStreams.deletePlaybackId('PLAYBACK_ID', {
       LIVE_STREAM_ID: 'LIVE_STREAM_ID',
     });
   });

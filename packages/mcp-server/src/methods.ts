@@ -59,8 +59,8 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/video/v1/assets/{ASSET_ID}/tracks',
   },
   {
-    clientCallName: 'client.video.assets.deletePlaybackID',
-    fullyQualifiedName: 'video.assets.deletePlaybackID',
+    clientCallName: 'client.video.assets.deletePlaybackId',
+    fullyQualifiedName: 'video.assets.deletePlaybackId',
     httpMethod: 'delete',
     httpPath: '/video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}',
   },
@@ -167,8 +167,8 @@ export const sdkMethods: SdkMethod[] = [
     httpPath: '/video/v1/live-streams/{LIVE_STREAM_ID}/new-asset-settings/static-renditions',
   },
   {
-    clientCallName: 'client.video.liveStreams.deletePlaybackID',
-    fullyQualifiedName: 'video.liveStreams.deletePlaybackID',
+    clientCallName: 'client.video.liveStreams.deletePlaybackId',
+    fullyQualifiedName: 'video.liveStreams.deletePlaybackId',
     httpMethod: 'delete',
     httpPath: '/video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}',
   },

@@ -250,15 +250,15 @@ export class LiveStreams extends APIResource {
    *
    * @example
    * ```ts
-   * await client.video.liveStreams.deletePlaybackID(
+   * await client.video.liveStreams.deletePlaybackId(
    *   'PLAYBACK_ID',
    *   { LIVE_STREAM_ID: 'LIVE_STREAM_ID' },
    * );
    * ```
    */
-  deletePlaybackID(
+  deletePlaybackId(
     playbackID: string,
-    params: LiveStreamDeletePlaybackIDParams,
+    params: LiveStreamdeletePlaybackIdParams,
     options?: RequestOptions,
   ): APIPromise<void> {
     const { LIVE_STREAM_ID } = params;
@@ -1308,7 +1308,7 @@ export interface LiveStreamCreateSimulcastTargetParams {
   stream_key?: string;
 }
 
-export interface LiveStreamDeletePlaybackIDParams {
+export interface LiveStreamdeletePlaybackIdParams {
   /**
    * The live stream ID
    */
@@ -1439,7 +1439,7 @@ export declare namespace LiveStreams {
     type LiveStreamListParams as LiveStreamListParams,
     type LiveStreamCreatePlaybackIDParams as LiveStreamCreatePlaybackIDParams,
     type LiveStreamCreateSimulcastTargetParams as LiveStreamCreateSimulcastTargetParams,
-    type LiveStreamDeletePlaybackIDParams as LiveStreamDeletePlaybackIDParams,
+    type LiveStreamdeletePlaybackIdParams as LiveStreamdeletePlaybackIdParams,
     type LiveStreamDeleteSimulcastTargetParams as LiveStreamDeleteSimulcastTargetParams,
     type LiveStreamRetrievePlaybackIDParams as LiveStreamRetrievePlaybackIDParams,
     type LiveStreamRetrieveSimulcastTargetParams as LiveStreamRetrieveSimulcastTargetParams,

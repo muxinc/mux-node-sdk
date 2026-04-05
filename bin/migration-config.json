@@ -5,7 +5,7 @@
   "methods": [
     {
       "base": "video.assets",
-      "name": "deletePlaybackID",
+      "name": "deletePlaybackId",
       "params": [
         {
           "type": "param",
@@ -174,7 +174,7 @@
     },
     {
       "base": "video.liveStreams",
-      "name": "deletePlaybackID",
+      "name": "deletePlaybackId",
       "params": [
         {
           "type": "param",

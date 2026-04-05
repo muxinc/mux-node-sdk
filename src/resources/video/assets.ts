@@ -208,14 +208,14 @@ export class Assets extends APIResource {
    *
    * @example
    * ```ts
-   * await client.video.assets.deletePlaybackID('PLAYBACK_ID', {
+   * await client.video.assets.deletePlaybackId('PLAYBACK_ID', {
    *   ASSET_ID: 'ASSET_ID',
    * });
    * ```
    */
-  deletePlaybackID(
+  deletePlaybackId(
     playbackID: string,
-    params: AssetDeletePlaybackIDParams,
+    params: AssetdeletePlaybackIdParams,
     options?: RequestOptions,
   ): APIPromise<void> {
     const { ASSET_ID } = params;
@@ -2857,7 +2857,7 @@ export interface AssetCreateTrackParams {
   text_type?: 'subtitles';
 }
 
-export interface AssetDeletePlaybackIDParams {
+export interface AssetdeletePlaybackIdParams {
   /**
    * The asset ID.
    */
@@ -2990,7 +2990,7 @@ export declare namespace Assets {
     type AssetCreatePlaybackIDParams as AssetCreatePlaybackIDParams,
     type AssetCreateStaticRenditionParams as AssetCreateStaticRenditionParams,
     type AssetCreateTrackParams as AssetCreateTrackParams,
-    type AssetDeletePlaybackIDParams as AssetDeletePlaybackIDParams,
+    type AssetdeletePlaybackIdParams as AssetdeletePlaybackIdParams,
     type AssetDeleteStaticRenditionParams as AssetDeleteStaticRenditionParams,
     type AssetDeleteTrackParams as AssetDeleteTrackParams,
     type AssetGenerateSubtitlesParams as AssetGenerateSubtitlesParams,

@@ -572,25 +572,25 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     description:
       "Deletes a playback ID, rendering it nonfunctional for viewing an asset's video content. Please note that deleting the playback ID removes access to the underlying asset; a viewer who started playback before the playback ID was deleted may be able to watch the entire video for a limited duration.",
     stainlessPath: '(resource) video.assets > (method) delete_playback_id',
-    qualified: 'client.video.assets.deletePlaybackID',
+    qualified: 'client.video.assets.deletePlaybackId',
     params: ['ASSET_ID: string;', 'PLAYBACK_ID: string;'],
     markdown:
-      "## delete_playback_id\n\n`client.video.assets.deletePlaybackID(ASSET_ID: string, PLAYBACK_ID: string): void`\n\n**delete** `/video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}`\n\nDeletes a playback ID, rendering it nonfunctional for viewing an asset's video content. Please note that deleting the playback ID removes access to the underlying asset; a viewer who started playback before the playback ID was deleted may be able to watch the entire video for a limited duration.\n\n### Parameters\n\n- `ASSET_ID: string`\n\n- `PLAYBACK_ID: string`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nawait client.video.assets.deletePlaybackID('PLAYBACK_ID', { ASSET_ID: 'ASSET_ID' })\n```",
+      "## delete_playback_id\n\n`client.video.assets.deletePlaybackId(ASSET_ID: string, PLAYBACK_ID: string): void`\n\n**delete** `/video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}`\n\nDeletes a playback ID, rendering it nonfunctional for viewing an asset's video content. Please note that deleting the playback ID removes access to the underlying asset; a viewer who started playback before the playback ID was deleted may be able to watch the entire video for a limited duration.\n\n### Parameters\n\n- `ASSET_ID: string`\n\n- `PLAYBACK_ID: string`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nawait client.video.assets.deletePlaybackId('PLAYBACK_ID', { ASSET_ID: 'ASSET_ID' })\n```",
     perLanguage: {
       cli: {
         method: 'assets delete_playback_id',
         example:
-          "mux-cli video:assets delete-playback-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --playback-id PLAYBACK_ID",
+          "mux-cli video:assets delete-playabck-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --playback-id PLAYBACK_ID",
       },
       csharp: {
-        method: 'Video.Assets.DeletePlaybackID',
+        method: 'Video.Assets.deletePlaybackId',
         example:
-          'AssetDeletePlaybackIDParams parameters = new()\n{\n    AssetID = "ASSET_ID",\n    PlaybackID = "PLAYBACK_ID",\n};\n\nawait client.Video.Assets.DeletePlaybackID(parameters);',
+          'AssetdeletePlaybackIdParams parameters = new()\n{\n    AssetID = "ASSET_ID",\n    PlaybackID = "PLAYBACK_ID",\n};\n\nawait client.Video.Assets.deletePlaybackId(parameters);',
       },
       go: {
-        method: 'client.Video.Assets.DeletePlaybackID',
+        method: 'client.Video.Assets.deletePlaybackId',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/video"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\terr := client.Video.Assets.DeletePlaybackID(\n\t\tcontext.TODO(),\n\t\t"PLAYBACK_ID",\n\t\tvideo.AssetDeletePlaybackIDParams{\n\t\t\tAssetID: "ASSET_ID",\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/video"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\terr := client.Video.Assets.deletePlaybackId(\n\t\tcontext.TODO(),\n\t\t"PLAYBACK_ID",\n\t\tvideo.AssetdeletePlaybackIdParams{\n\t\t\tAssetID: "ASSET_ID",\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       http: {
         example:
@@ -599,12 +599,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       java: {
         method: 'video().assets().deletePlaybackId',
         example:
-          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.AssetDeletePlaybackIdParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AssetDeletePlaybackIdParams params = AssetDeletePlaybackIdParams.builder()\n            .assetId("ASSET_ID")\n            .playbackId("PLAYBACK_ID")\n            .build();\n        client.video().assets().deletePlaybackId(params);\n    }\n}',
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.AssetdeletePlaybackIdParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AssetdeletePlaybackIdParams params = AssetdeletePlaybackIdParams.builder()\n            .assetId("ASSET_ID")\n            .playbackId("PLAYBACK_ID")\n            .build();\n        client.video().assets().deletePlaybackId(params);\n    }\n}',
       },
       kotlin: {
         method: 'video().assets().deletePlaybackId',
         example:
-          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.video.assets.AssetDeletePlaybackIdParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val params: AssetDeletePlaybackIdParams = AssetDeletePlaybackIdParams.builder()\n        .assetId("ASSET_ID")\n        .playbackId("PLAYBACK_ID")\n        .build()\n    client.video().assets().deletePlaybackId(params)\n}',
+          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.video.assets.AssetdeletePlaybackIdParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val params: AssetdeletePlaybackIdParams = AssetdeletePlaybackIdParams.builder()\n        .assetId("ASSET_ID")\n        .playbackId("PLAYBACK_ID")\n        .build()\n    client.video().assets().deletePlaybackId(params)\n}',
       },
       node: {
         method: 'client.video.assets.deletePlaybackId',
@@ -612,24 +612,24 @@ const EMBEDDED_METHODS: MethodEntry[] = [
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.deletePlaybackId('ASSET_ID', 'PLAYBACK_ID');",
       },
       php: {
-        method: 'video->assets->deletePlaybackID',
+        method: 'video->assets->deletePlaybackId',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->assets->deletePlaybackID(\n  'PLAYBACK_ID', assetID: 'ASSET_ID'\n);\n\nvar_dump($result);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->assets->deletePlaybackId(\n  'PLAYBACK_ID', assetID: 'ASSET_ID'\n);\n\nvar_dump($result);",
       },
       python: {
-        method: 'video.assets.delete_playback_id',
+        method: 'video.assets.delete_playabck_id',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.assets.delete_playback_id(\n    playback_id="PLAYBACK_ID",\n    asset_id="ASSET_ID",\n)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.assets.delete_playabck_id(\n    playback_id="PLAYBACK_ID",\n    asset_id="ASSET_ID",\n)',
       },
       ruby: {
-        method: 'video.assets.delete_playback_id',
+        method: 'video.assets.delete_playabck_id',
         example:
-          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.assets.delete_playback_id("PLAYBACK_ID", asset_id: "ASSET_ID")\n\nputs(result)',
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.assets.delete_playabck_id("PLAYBACK_ID", asset_id: "ASSET_ID")\n\nputs(result)',
       },
       typescript: {
-        method: 'client.video.assets.deletePlaybackID',
+        method: 'client.video.assets.deletePlaybackId',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.deletePlaybackID('PLAYBACK_ID', { ASSET_ID: 'ASSET_ID' });",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.deletePlaybackId('PLAYBACK_ID', { ASSET_ID: 'ASSET_ID' });",
       },
     },
   },
@@ -1829,25 +1829,25 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     description:
       'Deletes the playback ID for the live stream. This will not disable ingest (as the live stream still exists). New attempts to play back the live stream will fail immediately. However, current viewers will be able to continue watching the stream for some period of time.',
     stainlessPath: '(resource) video.live_streams > (method) delete_playback_id',
-    qualified: 'client.video.liveStreams.deletePlaybackID',
+    qualified: 'client.video.liveStreams.deletePlaybackId',
     params: ['LIVE_STREAM_ID: string;', 'PLAYBACK_ID: string;'],
     markdown:
-      "## delete_playback_id\n\n`client.video.liveStreams.deletePlaybackID(LIVE_STREAM_ID: string, PLAYBACK_ID: string): void`\n\n**delete** `/video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}`\n\nDeletes the playback ID for the live stream. This will not disable ingest (as the live stream still exists). New attempts to play back the live stream will fail immediately. However, current viewers will be able to continue watching the stream for some period of time.\n\n### Parameters\n\n- `LIVE_STREAM_ID: string`\n\n- `PLAYBACK_ID: string`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nawait client.video.liveStreams.deletePlaybackID('PLAYBACK_ID', { LIVE_STREAM_ID: 'LIVE_STREAM_ID' })\n```",
+      "## delete_playback_id\n\n`client.video.liveStreams.deletePlaybackId(LIVE_STREAM_ID: string, PLAYBACK_ID: string): void`\n\n**delete** `/video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}`\n\nDeletes the playback ID for the live stream. This will not disable ingest (as the live stream still exists). New attempts to play back the live stream will fail immediately. However, current viewers will be able to continue watching the stream for some period of time.\n\n### Parameters\n\n- `LIVE_STREAM_ID: string`\n\n- `PLAYBACK_ID: string`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nawait client.video.liveStreams.deletePlaybackId('PLAYBACK_ID', { LIVE_STREAM_ID: 'LIVE_STREAM_ID' })\n```",
     perLanguage: {
       cli: {
         method: 'live_streams delete_playback_id',
         example:
-          "mux-cli video:live-streams delete-playback-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID \\\n  --playback-id PLAYBACK_ID",
+          "mux-cli video:live-streams delete-playabck-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID \\\n  --playback-id PLAYBACK_ID",
       },
       csharp: {
-        method: 'Video.LiveStreams.DeletePlaybackID',
+        method: 'Video.LiveStreams.deletePlaybackId',
         example:
-          'LiveStreamDeletePlaybackIDParams parameters = new()\n{\n    LiveStreamID = "LIVE_STREAM_ID",\n    PlaybackID = "PLAYBACK_ID",\n};\n\nawait client.Video.LiveStreams.DeletePlaybackID(parameters);',
+          'LiveStreamdeletePlaybackIdParams parameters = new()\n{\n    LiveStreamID = "LIVE_STREAM_ID",\n    PlaybackID = "PLAYBACK_ID",\n};\n\nawait client.Video.LiveStreams.deletePlaybackId(parameters);',
       },
       go: {
-        method: 'client.Video.LiveStreams.DeletePlaybackID',
+        method: 'client.Video.LiveStreams.deletePlaybackId',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/video"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\terr := client.Video.LiveStreams.DeletePlaybackID(\n\t\tcontext.TODO(),\n\t\t"PLAYBACK_ID",\n\t\tvideo.LiveStreamDeletePlaybackIDParams{\n\t\t\tLiveStreamID: "LIVE_STREAM_ID",\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/video"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\terr := client.Video.LiveStreams.deletePlaybackId(\n\t\tcontext.TODO(),\n\t\t"PLAYBACK_ID",\n\t\tvideo.LiveStreamdeletePlaybackIdParams{\n\t\t\tLiveStreamID: "LIVE_STREAM_ID",\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       http: {
         example:
@@ -1856,12 +1856,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       java: {
         method: 'video().liveStreams().deletePlaybackId',
         example:
-          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStreamDeletePlaybackIdParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        LiveStreamDeletePlaybackIdParams params = LiveStreamDeletePlaybackIdParams.builder()\n            .liveStreamId("LIVE_STREAM_ID")\n            .playbackId("PLAYBACK_ID")\n            .build();\n        client.video().liveStreams().deletePlaybackId(params);\n    }\n}',
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStreamdeletePlaybackIdParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        LiveStreamdeletePlaybackIdParams params = LiveStreamdeletePlaybackIdParams.builder()\n            .liveStreamId("LIVE_STREAM_ID")\n            .playbackId("PLAYBACK_ID")\n            .build();\n        client.video().liveStreams().deletePlaybackId(params);\n    }\n}',
       },
       kotlin: {
         method: 'video().liveStreams().deletePlaybackId',
         example:
-          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.video.livestreams.LiveStreamDeletePlaybackIdParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val params: LiveStreamDeletePlaybackIdParams = LiveStreamDeletePlaybackIdParams.builder()\n        .liveStreamId("LIVE_STREAM_ID")\n        .playbackId("PLAYBACK_ID")\n        .build()\n    client.video().liveStreams().deletePlaybackId(params)\n}',
+          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.video.livestreams.LiveStreamdeletePlaybackIdParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val params: LiveStreamdeletePlaybackIdParams = LiveStreamdeletePlaybackIdParams.builder()\n        .liveStreamId("LIVE_STREAM_ID")\n        .playbackId("PLAYBACK_ID")\n        .build()\n    client.video().liveStreams().deletePlaybackId(params)\n}',
       },
       node: {
         method: 'client.video.liveStreams.deletePlaybackId',
@@ -1869,24 +1869,24 @@ const EMBEDDED_METHODS: MethodEntry[] = [
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.deletePlaybackId('LIVE_STREAM_ID', 'PLAYBACK_ID');",
       },
       php: {
-        method: 'video->liveStreams->deletePlaybackID',
+        method: 'video->liveStreams->deletePlaybackId',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->deletePlaybackID(\n  'PLAYBACK_ID', liveStreamID: 'LIVE_STREAM_ID'\n);\n\nvar_dump($result);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->deletePlaybackId(\n  'PLAYBACK_ID', liveStreamID: 'LIVE_STREAM_ID'\n);\n\nvar_dump($result);",
       },
       python: {
-        method: 'video.live_streams.delete_playback_id',
+        method: 'video.live_streams.delete_playabck_id',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.delete_playback_id(\n    playback_id="PLAYBACK_ID",\n    live_stream_id="LIVE_STREAM_ID",\n)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.delete_playabck_id(\n    playback_id="PLAYBACK_ID",\n    live_stream_id="LIVE_STREAM_ID",\n)',
       },
       ruby: {
-        method: 'video.live_streams.delete_playback_id',
+        method: 'video.live_streams.delete_playabck_id',
         example:
-          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.live_streams.delete_playback_id("PLAYBACK_ID", live_stream_id: "LIVE_STREAM_ID")\n\nputs(result)',
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.live_streams.delete_playabck_id("PLAYBACK_ID", live_stream_id: "LIVE_STREAM_ID")\n\nputs(result)',
       },
       typescript: {
-        method: 'client.video.liveStreams.deletePlaybackID',
+        method: 'client.video.liveStreams.deletePlaybackId',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.deletePlaybackID('PLAYBACK_ID', {\n  LIVE_STREAM_ID: 'LIVE_STREAM_ID',\n});",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.deletePlaybackId('PLAYBACK_ID', {\n  LIVE_STREAM_ID: 'LIVE_STREAM_ID',\n});",
       },
     },
   },

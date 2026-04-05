@@ -54,12 +54,12 @@ client.parents.children.retrieve('c_456', { parent_id: 'p_123' });
 
 This affects the following methods:
 
-- `client.video.assets.deletePlaybackID()`
+- `client.video.assets.deletePlaybackId()`
 - `client.video.assets.deleteStaticRendition()`
 - `client.video.assets.deleteTrack()`
 - `client.video.assets.generateSubtitles()`
 - `client.video.assets.retrievePlaybackID()`
-- `client.video.liveStreams.deletePlaybackID()`
+- `client.video.liveStreams.deletePlaybackId()`
 - `client.video.liveStreams.deleteSimulcastTarget()`
 - `client.video.liveStreams.retrievePlaybackID()`
 - `client.video.liveStreams.retrieveSimulcastTarget()`
