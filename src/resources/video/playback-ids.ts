@@ -9,29 +9,29 @@ import { path } from '../../internal/utils/path';
 /**
  * Operations related to the manipulation of playback IDs, through which users are able to stream videos and live streams from Mux.
  */
-export class PlaybackIDs extends APIResource {
+export class PlaybackIds extends APIResource {
   /**
    * Retrieves the Identifier of the Asset or Live Stream associated with the
    * Playback ID.
    *
    * @example
    * ```ts
-   * const playbackID = await client.video.playbackIDs.retrieve(
+   * const playbackIds = await client.video.playbackIds.retrieve(
    *   'PLAYBACK_ID',
    * );
    * ```
    */
-  retrieve(playbackID: string, options?: RequestOptions): APIPromise<PlaybackIDRetrieveResponse> {
+  retrieve(playbackId: string, options?: RequestOptions): APIPromise<PlaybackIdsRetrieveResponse> {
     return (
-      this._client.get(path`/video/v1/playback-ids/${playbackID}`, {
+      this._client.get(path`/video/v1/playback-ids/${playbackId}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as APIPromise<{ data: PlaybackIDRetrieveResponse }>
+      }) as APIPromise<{ data: PlaybackIdsRetrieveResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 }
 
-export interface PlaybackIDRetrieveResponse {
+export interface PlaybackIdsRetrieveResponse {
   /**
    * The Playback ID used to retrieve the corresponding asset or the live stream ID
    */
@@ -40,7 +40,7 @@ export interface PlaybackIDRetrieveResponse {
   /**
    * Describes the Asset or LiveStream object associated with the playback ID.
    */
-  object: PlaybackIDRetrieveResponse.Object;
+  object: PlaybackIdsRetrieveResponse.Object;
 
   /**
    * - `public` playback IDs are accessible by constructing an HLS URL like
@@ -57,7 +57,7 @@ export interface PlaybackIDRetrieveResponse {
   policy: Shared.PlaybackPolicy;
 }
 
-export namespace PlaybackIDRetrieveResponse {
+export namespace PlaybackIdsRetrieveResponse {
   /**
    * Describes the Asset or LiveStream object associated with the playback ID.
    */
@@ -74,6 +74,6 @@ export namespace PlaybackIDRetrieveResponse {
   }
 }
 
-export declare namespace PlaybackIDs {
-  export { type PlaybackIDRetrieveResponse as PlaybackIDRetrieveResponse };
+export declare namespace PlaybackIds {
+  export { type PlaybackIdsRetrieveResponse as PlaybackIdsRetrieveResponse };
 }

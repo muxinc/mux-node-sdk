@@ -14,8 +14,8 @@ export class Playback extends APIResource {
    * @example
    * ```ts
    * const response = await client.video.playback.animated(
+   *   'PLAYBACK_ID',
    *   'gif',
-   *   { PLAYBACK_ID: 'PLAYBACK_ID' },
    * );
    *
    * const content = await response.blob();
@@ -23,12 +23,12 @@ export class Playback extends APIResource {
    * ```
    */
   animated(
+    playbackId: string,
     extension: 'gif' | 'webp',
-    params: PlaybackAnimatedParams,
+    query: PlaybackAnimatedParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<Response> {
-    const { PLAYBACK_ID, ...query } = params;
-    return this._client.get(path`/${PLAYBACK_ID}/animated.${extension}`, {
+    return this._client.get(path`/${playbackId}/animated.${extension}`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
@@ -53,11 +53,11 @@ export class Playback extends APIResource {
    * ```
    */
   hls(
-    playbackID: string,
+    playbackId: string,
     query: PlaybackHlsParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<Response> {
-    return this._client.get(path`/${playbackID}.m3u8`, {
+    return this._client.get(path`/${playbackId}.m3u8`, {
       query,
       defaultBaseURL: 'https://stream.mux.com',
       ...options,
@@ -75,8 +75,8 @@ export class Playback extends APIResource {
    * ```ts
    * const response =
    *   await client.video.playback.staticRendition(
+   *     'PLAYBACK_ID',
    *     'capped-1080p.mp4',
-   *     { PLAYBACK_ID: 'PLAYBACK_ID' },
    *   );
    *
    * const content = await response.blob();
@@ -84,12 +84,12 @@ export class Playback extends APIResource {
    * ```
    */
   staticRendition(
+    playbackId: string,
     filename: 'capped-1080p.mp4' | 'audio.m4a' | 'low.mp4' | 'medium.mp4' | 'high.mp4',
-    params: PlaybackStaticRenditionParams,
+    query: PlaybackStaticRenditionParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<Response> {
-    const { PLAYBACK_ID, ...query } = params;
-    return this._client.get(path`/${PLAYBACK_ID}/${filename}`, {
+    return this._client.get(path`/${playbackId}/${filename}`, {
       query,
       defaultBaseURL: 'https://stream.mux.com',
       ...options,
@@ -105,8 +105,8 @@ export class Playback extends APIResource {
    * @example
    * ```ts
    * const response = await client.video.playback.storyboard(
+   *   'PLAYBACK_ID',
    *   'jpg',
-   *   { PLAYBACK_ID: 'PLAYBACK_ID' },
    * );
    *
    * const content = await response.blob();
@@ -114,12 +114,12 @@ export class Playback extends APIResource {
    * ```
    */
   storyboard(
+    playbackId: string,
     extension: 'jpg' | 'png' | 'webp',
-    params: PlaybackStoryboardParams,
+    query: PlaybackStoryboardParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<Response> {
-    const { PLAYBACK_ID, ...query } = params;
-    return this._client.get(path`/${PLAYBACK_ID}/storyboard.${extension}`, {
+    return this._client.get(path`/${playbackId}/storyboard.${extension}`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
@@ -141,11 +141,11 @@ export class Playback extends APIResource {
    * ```
    */
   storyboardMeta(
-    playbackID: string,
+    playbackId: string,
     query: PlaybackStoryboardMetaParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<string> {
-    return this._client.get(path`/${playbackID}/storyboard.json`, {
+    return this._client.get(path`/${playbackId}/storyboard.json`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
@@ -165,11 +165,11 @@ export class Playback extends APIResource {
    * ```
    */
   storyboardVtt(
-    playbackID: string,
+    playbackId: string,
     query: PlaybackStoryboardVttParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<string> {
-    return this._client.get(path`/${playbackID}/storyboard.vtt`, {
+    return this._client.get(path`/${playbackId}/storyboard.vtt`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
@@ -184,8 +184,8 @@ export class Playback extends APIResource {
    * @example
    * ```ts
    * const response = await client.video.playback.thumbnail(
+   *   'PLAYBACK_ID',
    *   'jpg',
-   *   { PLAYBACK_ID: 'PLAYBACK_ID' },
    * );
    *
    * const content = await response.blob();
@@ -193,12 +193,12 @@ export class Playback extends APIResource {
    * ```
    */
   thumbnail(
+    playbackId: string,
     extension: 'jpg' | 'png' | 'webp',
-    params: PlaybackThumbnailParams,
+    query: PlaybackThumbnailParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<Response> {
-    const { PLAYBACK_ID, ...query } = params;
-    return this._client.get(path`/${PLAYBACK_ID}/thumbnail.${extension}`, {
+    return this._client.get(path`/${playbackId}/thumbnail.${extension}`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
@@ -213,14 +213,18 @@ export class Playback extends APIResource {
    * @example
    * ```ts
    * const response = await client.video.playback.track(
+   *   'PLAYBACK_ID',
    *   'TRACK_ID',
-   *   { PLAYBACK_ID: 'PLAYBACK_ID' },
    * );
    * ```
    */
-  track(trackID: string, params: PlaybackTrackParams, options?: RequestOptions): APIPromise<string> {
-    const { PLAYBACK_ID, ...query } = params;
-    return this._client.get(path`/${PLAYBACK_ID}/text/${trackID}.vtt`, {
+  track(
+    playbackId: string,
+    trackId: string,
+    query: PlaybackTrackParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get(path`/${playbackId}/text/${trackId}.vtt`, {
       query,
       defaultBaseURL: 'https://stream.mux.com',
       ...options,
@@ -237,18 +241,18 @@ export class Playback extends APIResource {
    * @example
    * ```ts
    * const response = await client.video.playback.transcript(
+   *   'PLAYBACK_ID',
    *   'TRACK_ID',
-   *   { PLAYBACK_ID: 'PLAYBACK_ID' },
    * );
    * ```
    */
   transcript(
-    trackID: string,
-    params: PlaybackTranscriptParams,
+    playbackId: string,
+    trackId: string,
+    query: PlaybackTranscriptParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<string> {
-    const { PLAYBACK_ID, ...query } = params;
-    return this._client.get(path`/${PLAYBACK_ID}/text/${trackID}.txt`, {
+    return this._client.get(path`/${playbackId}/text/${trackId}.txt`, {
       query,
       defaultBaseURL: 'https://stream.mux.com',
       ...options,
@@ -267,46 +271,39 @@ export type PlaybackTranscriptResponse = string;
 
 export interface PlaybackAnimatedParams {
   /**
-   * Path param: The asset or live stream's playback ID.
-   */
-  PLAYBACK_ID: string;
-
-  /**
-   * Query param: The time (in seconds) of the video timeline where the GIF ends.
-   * Defaults to 5 seconds after the start. Maximum total duration of GIF is limited
-   * to 10 seconds; minimum total duration of GIF is 250ms.
+   * The time (in seconds) of the video timeline where the GIF ends. Defaults to 5
+   * seconds after the start. Maximum total duration of GIF is limited to 10 seconds;
+   * minimum total duration of GIF is 250ms.
    */
   end?: number;
 
   /**
-   * Query param: The frame rate of the generated GIF. Defaults to 15 fps. Max 30
-   * fps.
+   * The frame rate of the generated GIF. Defaults to 15 fps. Max 30 fps.
    */
   fps?: number;
 
   /**
-   * Query param: The height in pixels of the animated GIF. The default height is
-   * determined by preserving aspect ratio with the width provided. Maximum height is
-   * 640px.
+   * The height in pixels of the animated GIF. The default height is determined by
+   * preserving aspect ratio with the width provided. Maximum height is 640px.
    */
   height?: number;
 
   /**
-   * Query param: The time (in seconds) of the video timeline where the animated GIF
-   * should begin. Defaults to 0.
+   * The time (in seconds) of the video timeline where the animated GIF should begin.
+   * Defaults to 0.
    */
   start?: number;
 
   /**
-   * Query param: Signed token (JWT) for
+   * Signed token (JWT) for
    * [secure video playback](https://docs.mux.com/guides/secure-video-playback).
    */
   TOKEN?: string;
 
   /**
-   * Query param: The width in pixels of the animated GIF. Default is 320px, or if
-   * height is provided, the width is determined by preserving aspect ratio with the
-   * height. Max width is 640px.
+   * The width in pixels of the animated GIF. Default is 320px, or if height is
+   * provided, the width is determined by preserving aspect ratio with the height.
+   * Max width is 640px.
    */
   width?: number;
 }
@@ -395,12 +392,7 @@ export interface PlaybackHlsParams {
 
 export interface PlaybackStaticRenditionParams {
   /**
-   * Path param: The asset or live stream's playback ID.
-   */
-  PLAYBACK_ID: string;
-
-  /**
-   * Query param: Signed token (JWT) for
+   * Signed token (JWT) for
    * [secure video playback](https://docs.mux.com/guides/secure-video-playback).
    */
   TOKEN?: string;
@@ -408,26 +400,19 @@ export interface PlaybackStaticRenditionParams {
 
 export interface PlaybackStoryboardParams {
   /**
-   * Path param: The asset or live stream's playback ID.
-   */
-  PLAYBACK_ID: string;
-
-  /**
-   * Query param: Set the relative end time of the asset (in seconds) when using the
+   * Set the relative end time of the asset (in seconds) when using the
    * [instant clipping feature](https://docs.mux.com/guides/create-instant-clips).
    */
   asset_end_time?: number;
 
   /**
-   * Query param: Set the relative start time of the asset (in seconds) when using
-   * the
+   * Set the relative start time of the asset (in seconds) when using the
    * [instant clipping feature](https://docs.mux.com/guides/create-instant-clips).
    */
   asset_start_time?: number;
 
   /**
-   * Query param: Set the end time of the asset created from a live stream when using
-   * the
+   * Set the end time of the asset created from a live stream when using the
    * [instant clipping feature](https://docs.mux.com/guides/create-instant-clips).
    * The timestamp should be provided as an epoch integer, and is compared to the
    * program date time (PDT) generated by a live stream.
@@ -435,8 +420,7 @@ export interface PlaybackStoryboardParams {
   program_end_time?: number;
 
   /**
-   * Query param: Set the start time of the asset created from a live stream when
-   * using the
+   * Set the start time of the asset created from a live stream when using the
    * [instant clipping feature](https://docs.mux.com/guides/create-instant-clips).
    * The timestamp should be provided as an epoch integer, and is compared to the
    * program date time (PDT) generated by a live stream.
@@ -444,7 +428,7 @@ export interface PlaybackStoryboardParams {
   program_start_time?: number;
 
   /**
-   * Query param: Signed token (JWT) for
+   * Signed token (JWT) for
    * [secure video playback](https://docs.mux.com/guides/secure-video-playback).
    */
   TOKEN?: string;
@@ -530,44 +514,37 @@ export interface PlaybackStoryboardVttParams {
 
 export interface PlaybackThumbnailParams {
   /**
-   * Path param: The asset or live stream's playback ID.
-   */
-  PLAYBACK_ID: string;
-
-  /**
-   * Query param: How to fit a thumbnail within the specified width + height.
+   * How to fit a thumbnail within the specified width + height.
    */
   fit_mode?: 'preserve' | 'stretch' | 'crop' | 'smartcrop' | 'pad';
 
   /**
-   * Query param: Flip the image left-right after performing all other
-   * transformations.
+   * Flip the image left-right after performing all other transformations.
    */
   flip_h?: boolean;
 
   /**
-   * Query param: Flip the image top-bottom after performing all other
-   * transformations.
+   * Flip the image top-bottom after performing all other transformations.
    */
   flip_v?: boolean;
 
   /**
-   * Query param: The height of the thumbnail (in pixels). Defaults to the height of
-   * the original video.
+   * The height of the thumbnail (in pixels). Defaults to the height of the original
+   * video.
    */
   height?: number;
 
   /**
-   * Query param: When set to `true`, pulls the latest thumbnail from the playback ID
-   * of an ongoing live stream. Can only be used with live streams. Can be used to
-   * build moderation and classification workflows,
+   * When set to `true`, pulls the latest thumbnail from the playback ID of an
+   * ongoing live stream. Can only be used with live streams. Can be used to build
+   * moderation and classification workflows,
    * [see documentation for more details](https://mux.com/docs/guides/get-images-from-a-video#getting-the-latest-thumbnail-from-a-live-stream).
    */
   latest?: boolean;
 
   /**
-   * Query param: Set the time of the thumbnail for an asset created from a live
-   * stream when using the
+   * Set the time of the thumbnail for an asset created from a live stream when using
+   * the
    * [instant clipping feature](https://docs.mux.com/guides/create-instant-clips).
    * The timestamp should be provided as an epoch integer, and is compared to the
    * program date time (PDT) generated by a live stream.
@@ -575,37 +552,32 @@ export interface PlaybackThumbnailParams {
   program_time?: number;
 
   /**
-   * Query param: Rotate the image clockwise by the given number of degrees.
+   * Rotate the image clockwise by the given number of degrees.
    */
   rotate?: 90 | 180 | 270;
 
   /**
-   * Query param: The time (in seconds) of the video timeline where the image should
-   * be pulled. Defaults to the middle of the original video.
+   * The time (in seconds) of the video timeline where the image should be pulled.
+   * Defaults to the middle of the original video.
    */
   time?: number;
 
   /**
-   * Query param: Signed token (JWT) for
+   * Signed token (JWT) for
    * [secure video playback](https://docs.mux.com/guides/secure-video-playback).
    */
   TOKEN?: string;
 
   /**
-   * Query param: The width of the thumbnail (in pixels). Defaults to the width of
-   * the original video.
+   * The width of the thumbnail (in pixels). Defaults to the width of the original
+   * video.
    */
   width?: number;
 }
 
 export interface PlaybackTrackParams {
   /**
-   * Path param: The asset or live stream's playback ID.
-   */
-  PLAYBACK_ID: string;
-
-  /**
-   * Query param: Signed token (JWT) for
+   * Signed token (JWT) for
    * [secure video playback](https://docs.mux.com/guides/secure-video-playback).
    */
   TOKEN?: string;
@@ -613,12 +585,7 @@ export interface PlaybackTrackParams {
 
 export interface PlaybackTranscriptParams {
   /**
-   * Path param: The asset or live stream's playback ID.
-   */
-  PLAYBACK_ID: string;
-
-  /**
-   * Query param: Signed token (JWT) for
+   * Signed token (JWT) for
    * [secure video playback](https://docs.mux.com/guides/secure-video-playback).
    */
   TOKEN?: string;

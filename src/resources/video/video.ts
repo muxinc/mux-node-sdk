@@ -5,23 +5,19 @@ import * as AssetsAPI from './assets';
 import {
   Asset,
   AssetCreateParams,
-  AssetCreatePlaybackIDParams,
+  AssetCreatePlaybackIdParams,
   AssetCreateStaticRenditionParams,
   AssetCreateStaticRenditionResponse,
   AssetCreateTrackParams,
-  AssetDeleteStaticRenditionParams,
-  AssetDeleteTrackParams,
   AssetGenerateSubtitlesParams,
   AssetGenerateSubtitlesResponse,
   AssetListParams,
   AssetOptions,
   AssetResponse,
   AssetRetrieveInputInfoResponse,
-  AssetRetrievePlaybackIDParams,
   AssetUpdateMP4SupportParams,
   AssetUpdateMasterAccessParams,
   AssetUpdateParams,
-  AssetdeletePlaybackIdParams,
   Assets,
   AssetsCursorPage,
   InputInfo,
@@ -45,17 +41,13 @@ import * as LiveStreamsAPI from './live-streams';
 import {
   LiveStream,
   LiveStreamCreateParams,
-  LiveStreamCreatePlaybackIDParams,
+  LiveStreamCreatePlaybackIdParams,
   LiveStreamCreateSimulcastTargetParams,
-  LiveStreamDeleteSimulcastTargetParams,
   LiveStreamListParams,
-  LiveStreamRetrievePlaybackIDParams,
-  LiveStreamRetrieveSimulcastTargetParams,
   LiveStreamUpdateEmbeddedSubtitlesParams,
   LiveStreamUpdateGeneratedSubtitlesParams,
   LiveStreamUpdateNewAssetSettingsStaticRenditionsParams,
   LiveStreamUpdateParams,
-  LiveStreamdeletePlaybackIdParams,
   LiveStreams,
   LiveStreamsBasePage,
   SimulcastTarget,
@@ -77,8 +69,8 @@ import {
   PlaybackTranscriptParams,
   PlaybackTranscriptResponse,
 } from './playback';
-import * as PlaybackIDsAPI from './playback-ids';
-import { PlaybackIDRetrieveResponse, PlaybackIDs } from './playback-ids';
+import * as PlaybackIdsAPI from './playback-ids';
+import { PlaybackIds, PlaybackIdsRetrieveResponse } from './playback-ids';
 import * as PlaybackRestrictionsAPI from './playback-restrictions';
 import {
   PlaybackRestriction,
@@ -114,7 +106,7 @@ export class Video extends APIResource {
   assets: AssetsAPI.Assets = new AssetsAPI.Assets(this._client);
   deliveryUsage: DeliveryUsageAPI.DeliveryUsage = new DeliveryUsageAPI.DeliveryUsage(this._client);
   liveStreams: LiveStreamsAPI.LiveStreams = new LiveStreamsAPI.LiveStreams(this._client);
-  playbackIDs: PlaybackIDsAPI.PlaybackIDs = new PlaybackIDsAPI.PlaybackIDs(this._client);
+  playbackIds: PlaybackIdsAPI.PlaybackIds = new PlaybackIdsAPI.PlaybackIds(this._client);
   playbackRestrictions: PlaybackRestrictionsAPI.PlaybackRestrictions =
     new PlaybackRestrictionsAPI.PlaybackRestrictions(this._client);
   transcriptionVocabularies: TranscriptionVocabulariesAPI.TranscriptionVocabularies =
@@ -129,7 +121,7 @@ export class Video extends APIResource {
 Video.Assets = Assets;
 Video.DeliveryUsage = DeliveryUsage;
 Video.LiveStreams = LiveStreams;
-Video.PlaybackIDs = PlaybackIDs;
+Video.PlaybackIds = PlaybackIds;
 Video.PlaybackRestrictions = PlaybackRestrictions;
 Video.TranscriptionVocabularies = TranscriptionVocabularies;
 Video.Uploads = Uploads;
@@ -151,14 +143,10 @@ export declare namespace Video {
     type AssetCreateParams as AssetCreateParams,
     type AssetUpdateParams as AssetUpdateParams,
     type AssetListParams as AssetListParams,
-    type AssetCreatePlaybackIDParams as AssetCreatePlaybackIDParams,
+    type AssetCreatePlaybackIdParams as AssetCreatePlaybackIdParams,
     type AssetCreateStaticRenditionParams as AssetCreateStaticRenditionParams,
     type AssetCreateTrackParams as AssetCreateTrackParams,
-    type AssetdeletePlaybackIdParams as AssetdeletePlaybackIdParams,
-    type AssetDeleteStaticRenditionParams as AssetDeleteStaticRenditionParams,
-    type AssetDeleteTrackParams as AssetDeleteTrackParams,
     type AssetGenerateSubtitlesParams as AssetGenerateSubtitlesParams,
-    type AssetRetrievePlaybackIDParams as AssetRetrievePlaybackIDParams,
     type AssetUpdateMasterAccessParams as AssetUpdateMasterAccessParams,
     type AssetUpdateMP4SupportParams as AssetUpdateMP4SupportParams,
   };
@@ -178,18 +166,14 @@ export declare namespace Video {
     type LiveStreamCreateParams as LiveStreamCreateParams,
     type LiveStreamUpdateParams as LiveStreamUpdateParams,
     type LiveStreamListParams as LiveStreamListParams,
-    type LiveStreamCreatePlaybackIDParams as LiveStreamCreatePlaybackIDParams,
+    type LiveStreamCreatePlaybackIdParams as LiveStreamCreatePlaybackIdParams,
     type LiveStreamCreateSimulcastTargetParams as LiveStreamCreateSimulcastTargetParams,
-    type LiveStreamdeletePlaybackIdParams as LiveStreamdeletePlaybackIdParams,
-    type LiveStreamDeleteSimulcastTargetParams as LiveStreamDeleteSimulcastTargetParams,
-    type LiveStreamRetrievePlaybackIDParams as LiveStreamRetrievePlaybackIDParams,
-    type LiveStreamRetrieveSimulcastTargetParams as LiveStreamRetrieveSimulcastTargetParams,
     type LiveStreamUpdateEmbeddedSubtitlesParams as LiveStreamUpdateEmbeddedSubtitlesParams,
     type LiveStreamUpdateGeneratedSubtitlesParams as LiveStreamUpdateGeneratedSubtitlesParams,
     type LiveStreamUpdateNewAssetSettingsStaticRenditionsParams as LiveStreamUpdateNewAssetSettingsStaticRenditionsParams,
   };
 
-  export { PlaybackIDs as PlaybackIDs, type PlaybackIDRetrieveResponse as PlaybackIDRetrieveResponse };
+  export { PlaybackIds as PlaybackIds, type PlaybackIdsRetrieveResponse as PlaybackIdsRetrieveResponse };
 
   export {
     PlaybackRestrictions as PlaybackRestrictions,

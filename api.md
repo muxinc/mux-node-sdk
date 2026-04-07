@@ -2,7 +2,7 @@
 
 Types:
 
-- <code><a href="./src/resources/shared.ts">PlaybackID</a></code>
+- <code><a href="./src/resources/shared.ts">PlaybackId</a></code>
 - <code><a href="./src/resources/shared.ts">PlaybackPolicy</a></code>
 
 # [Video](src/resources/video/api.md)

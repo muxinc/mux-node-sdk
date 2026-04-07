@@ -13,14 +13,10 @@ export {
   type AssetCreateParams,
   type AssetUpdateParams,
   type AssetListParams,
-  type AssetCreatePlaybackIDParams,
+  type AssetCreatePlaybackIdParams,
   type AssetCreateStaticRenditionParams,
   type AssetCreateTrackParams,
-  type AssetdeletePlaybackIdParams,
-  type AssetDeleteStaticRenditionParams,
-  type AssetDeleteTrackParams,
   type AssetGenerateSubtitlesParams,
-  type AssetRetrievePlaybackIDParams,
   type AssetUpdateMasterAccessParams,
   type AssetUpdateMP4SupportParams,
   type AssetsCursorPage,
@@ -44,12 +40,8 @@ export {
   type LiveStreamCreateParams,
   type LiveStreamUpdateParams,
   type LiveStreamListParams,
-  type LiveStreamCreatePlaybackIDParams,
+  type LiveStreamCreatePlaybackIdParams,
   type LiveStreamCreateSimulcastTargetParams,
-  type LiveStreamdeletePlaybackIdParams,
-  type LiveStreamDeleteSimulcastTargetParams,
-  type LiveStreamRetrievePlaybackIDParams,
-  type LiveStreamRetrieveSimulcastTargetParams,
   type LiveStreamUpdateEmbeddedSubtitlesParams,
   type LiveStreamUpdateGeneratedSubtitlesParams,
   type LiveStreamUpdateNewAssetSettingsStaticRenditionsParams,
@@ -71,7 +63,7 @@ export {
   type PlaybackTrackParams,
   type PlaybackTranscriptParams,
 } from './playback';
-export { PlaybackIDs, type PlaybackIDRetrieveResponse } from './playback-ids';
+export { PlaybackIds, type PlaybackIdsRetrieveResponse } from './playback-ids';
 export {
   PlaybackRestrictions,
   type PlaybackRestriction,

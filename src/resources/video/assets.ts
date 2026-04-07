@@ -51,9 +51,9 @@ export class Assets extends APIResource {
    * );
    * ```
    */
-  retrieve(assetID: string, options?: RequestOptions): APIPromise<Asset> {
+  retrieve(assetId: string, options?: RequestOptions): APIPromise<Asset> {
     return (
-      this._client.get(path`/video/v1/assets/${assetID}`, {
+      this._client.get(path`/video/v1/assets/${assetId}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
       }) as APIPromise<{ data: Asset }>
@@ -71,9 +71,9 @@ export class Assets extends APIResource {
    * });
    * ```
    */
-  update(assetID: string, body: AssetUpdateParams, options?: RequestOptions): APIPromise<Asset> {
+  update(assetId: string, body: AssetUpdateParams, options?: RequestOptions): APIPromise<Asset> {
     return (
-      this._client.patch(path`/video/v1/assets/${assetID}`, {
+      this._client.patch(path`/video/v1/assets/${assetId}`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
@@ -111,8 +111,8 @@ export class Assets extends APIResource {
    * await client.video.assets.delete('ASSET_ID');
    * ```
    */
-  delete(assetID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/video/v1/assets/${assetID}`, {
+  delete(assetId: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/video/v1/assets/${assetId}`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -124,23 +124,23 @@ export class Assets extends APIResource {
    *
    * @example
    * ```ts
-   * const playbackID =
-   *   await client.video.assets.createPlaybackID('ASSET_ID', {
+   * const playbackId =
+   *   await client.video.assets.createPlaybackId('ASSET_ID', {
    *     policy: 'public',
    *   });
    * ```
    */
-  createPlaybackID(
-    assetID: string,
-    body: AssetCreatePlaybackIDParams,
+  createPlaybackId(
+    assetId: string,
+    body: AssetCreatePlaybackIdParams,
     options?: RequestOptions,
-  ): APIPromise<Shared.PlaybackID> {
+  ): APIPromise<Shared.PlaybackId> {
     return (
-      this._client.post(path`/video/v1/assets/${assetID}/playback-ids`, {
+      this._client.post(path`/video/v1/assets/${assetId}/playback-ids`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as APIPromise<{ data: Shared.PlaybackID }>
+      }) as APIPromise<{ data: Shared.PlaybackId }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -157,12 +157,12 @@ export class Assets extends APIResource {
    * ```
    */
   createStaticRendition(
-    assetID: string,
+    assetId: string,
     body: AssetCreateStaticRenditionParams,
     options?: RequestOptions,
   ): APIPromise<AssetCreateStaticRenditionResponse> {
     return (
-      this._client.post(path`/video/v1/assets/${assetID}/static-renditions`, {
+      this._client.post(path`/video/v1/assets/${assetId}/static-renditions`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
@@ -190,9 +190,9 @@ export class Assets extends APIResource {
    * );
    * ```
    */
-  createTrack(assetID: string, body: AssetCreateTrackParams, options?: RequestOptions): APIPromise<Track> {
+  createTrack(assetId: string, body: AssetCreateTrackParams, options?: RequestOptions): APIPromise<Track> {
     return (
-      this._client.post(path`/video/v1/assets/${assetID}/tracks`, {
+      this._client.post(path`/video/v1/assets/${assetId}/tracks`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
@@ -208,18 +208,14 @@ export class Assets extends APIResource {
    *
    * @example
    * ```ts
-   * await client.video.assets.deletePlaybackId('PLAYBACK_ID', {
-   *   ASSET_ID: 'ASSET_ID',
-   * });
+   * await client.video.assets.deletePlaybackId(
+   *   'ASSET_ID',
+   *   'PLAYBACK_ID',
+   * );
    * ```
    */
-  deletePlaybackId(
-    playbackID: string,
-    params: AssetdeletePlaybackIdParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { ASSET_ID } = params;
-    return this._client.delete(path`/video/v1/assets/${ASSET_ID}/playback-ids/${playbackID}`, {
+  deletePlaybackId(assetId: string, playbackId: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -232,18 +228,17 @@ export class Assets extends APIResource {
    * @example
    * ```ts
    * await client.video.assets.deleteStaticRendition(
+   *   'ASSET_ID',
    *   'STATIC_RENDITION_ID',
-   *   { ASSET_ID: 'ASSET_ID' },
    * );
    * ```
    */
   deleteStaticRendition(
-    staticRenditionID: string,
-    params: AssetDeleteStaticRenditionParams,
+    assetId: string,
+    staticRenditionId: string,
     options?: RequestOptions,
   ): APIPromise<void> {
-    const { ASSET_ID } = params;
-    return this._client.delete(path`/video/v1/assets/${ASSET_ID}/static-renditions/${staticRenditionID}`, {
+    return this._client.delete(path`/video/v1/assets/${assetId}/static-renditions/${staticRenditionId}`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -256,14 +251,14 @@ export class Assets extends APIResource {
    *
    * @example
    * ```ts
-   * await client.video.assets.deleteTrack('TRACK_ID', {
-   *   ASSET_ID: 'ASSET_ID',
-   * });
+   * await client.video.assets.deleteTrack(
+   *   'ASSET_ID',
+   *   'TRACK_ID',
+   * );
    * ```
    */
-  deleteTrack(trackID: string, params: AssetDeleteTrackParams, options?: RequestOptions): APIPromise<void> {
-    const { ASSET_ID } = params;
-    return this._client.delete(path`/video/v1/assets/${ASSET_ID}/tracks/${trackID}`, {
+  deleteTrack(assetId: string, trackId: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/video/v1/assets/${assetId}/tracks/${trackId}`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -277,9 +272,9 @@ export class Assets extends APIResource {
    * @example
    * ```ts
    * const tracks = await client.video.assets.generateSubtitles(
+   *   'ASSET_ID',
    *   'TRACK_ID',
    *   {
-   *     ASSET_ID: 'ASSET_ID',
    *     generated_subtitles: [
    *       {
    *         language_code: 'en',
@@ -292,13 +287,13 @@ export class Assets extends APIResource {
    * ```
    */
   generateSubtitles(
-    trackID: string,
-    params: AssetGenerateSubtitlesParams,
+    assetId: string,
+    trackId: string,
+    body: AssetGenerateSubtitlesParams,
     options?: RequestOptions,
   ): APIPromise<AssetGenerateSubtitlesResponse> {
-    const { ASSET_ID, ...body } = params;
     return (
-      this._client.post(path`/video/v1/assets/${ASSET_ID}/tracks/${trackID}/generate-subtitles`, {
+      this._client.post(path`/video/v1/assets/${assetId}/tracks/${trackId}/generate-subtitles`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
@@ -316,9 +311,9 @@ export class Assets extends APIResource {
    *   await client.video.assets.retrieveInputInfo('ASSET_ID');
    * ```
    */
-  retrieveInputInfo(assetID: string, options?: RequestOptions): APIPromise<AssetRetrieveInputInfoResponse> {
+  retrieveInputInfo(assetId: string, options?: RequestOptions): APIPromise<AssetRetrieveInputInfoResponse> {
     return (
-      this._client.get(path`/video/v1/assets/${assetID}/input-info`, {
+      this._client.get(path`/video/v1/assets/${assetId}/input-info`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
       }) as APIPromise<{ data: AssetRetrieveInputInfoResponse }>
@@ -330,24 +325,23 @@ export class Assets extends APIResource {
    *
    * @example
    * ```ts
-   * const playbackID =
-   *   await client.video.assets.retrievePlaybackID(
+   * const playbackId =
+   *   await client.video.assets.retrievePlaybackId(
+   *     'ASSET_ID',
    *     'PLAYBACK_ID',
-   *     { ASSET_ID: 'ASSET_ID' },
    *   );
    * ```
    */
-  retrievePlaybackID(
-    playbackID: string,
-    params: AssetRetrievePlaybackIDParams,
+  retrievePlaybackId(
+    assetId: string,
+    playbackId: string,
     options?: RequestOptions,
-  ): APIPromise<Shared.PlaybackID> {
-    const { ASSET_ID } = params;
+  ): APIPromise<Shared.PlaybackId> {
     return (
-      this._client.get(path`/video/v1/assets/${ASSET_ID}/playback-ids/${playbackID}`, {
+      this._client.get(path`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as APIPromise<{ data: Shared.PlaybackID }>
+      }) as APIPromise<{ data: Shared.PlaybackId }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -367,12 +361,12 @@ export class Assets extends APIResource {
    * ```
    */
   updateMasterAccess(
-    assetID: string,
+    assetId: string,
     body: AssetUpdateMasterAccessParams,
     options?: RequestOptions,
   ): APIPromise<Asset> {
     return (
-      this._client.put(path`/video/v1/assets/${assetID}/master-access`, {
+      this._client.put(path`/video/v1/assets/${assetId}/master-access`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
@@ -392,12 +386,12 @@ export class Assets extends APIResource {
    * @deprecated
    */
   updateMP4Support(
-    assetID: string,
+    assetId: string,
     body: AssetUpdateMP4SupportParams,
     options?: RequestOptions,
   ): APIPromise<Asset> {
     return (
-      this._client.put(path`/video/v1/assets/${assetID}/mp4-support`, {
+      this._client.put(path`/video/v1/assets/${assetId}/mp4-support`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
@@ -548,7 +542,7 @@ export interface Asset {
    * [Play your videos](https://docs.mux.com/guides/play-your-videos) for more
    * details.
    */
-  playback_ids?: Array<Shared.PlaybackID>;
+  playback_ids?: Array<Shared.PlaybackId>;
 
   /**
    * An array of individual live stream recording sessions. A recording session is
@@ -2767,7 +2761,7 @@ export interface AssetListParams extends CursorPageParams {
   upload_id?: string;
 }
 
-export interface AssetCreatePlaybackIDParams {
+export interface AssetCreatePlaybackIdParams {
   /**
    * The DRM configuration used by this playback ID. Must only be set when `policy`
    * is set to `drm`.
@@ -2857,36 +2851,10 @@ export interface AssetCreateTrackParams {
   text_type?: 'subtitles';
 }
 
-export interface AssetdeletePlaybackIdParams {
-  /**
-   * The asset ID.
-   */
-  ASSET_ID: string;
-}
-
-export interface AssetDeleteStaticRenditionParams {
-  /**
-   * The asset ID.
-   */
-  ASSET_ID: string;
-}
-
-export interface AssetDeleteTrackParams {
-  /**
-   * The asset ID.
-   */
-  ASSET_ID: string;
-}
-
 export interface AssetGenerateSubtitlesParams {
   /**
-   * Path param: The asset ID.
-   */
-  ASSET_ID: string;
-
-  /**
-   * Body param: Generate subtitle tracks using automatic speech recognition with
-   * this configuration.
+   * Generate subtitle tracks using automatic speech recognition with this
+   * configuration.
    */
   generated_subtitles: Array<AssetGenerateSubtitlesParams.GeneratedSubtitle>;
 }
@@ -2935,13 +2903,6 @@ export namespace AssetGenerateSubtitlesParams {
   }
 }
 
-export interface AssetRetrievePlaybackIDParams {
-  /**
-   * The asset ID.
-   */
-  ASSET_ID: string;
-}
-
 export interface AssetUpdateMasterAccessParams {
   /**
    * Add or remove access to the master version of the video.
@@ -2987,14 +2948,10 @@ export declare namespace Assets {
     type AssetCreateParams as AssetCreateParams,
     type AssetUpdateParams as AssetUpdateParams,
     type AssetListParams as AssetListParams,
-    type AssetCreatePlaybackIDParams as AssetCreatePlaybackIDParams,
+    type AssetCreatePlaybackIdParams as AssetCreatePlaybackIdParams,
     type AssetCreateStaticRenditionParams as AssetCreateStaticRenditionParams,
     type AssetCreateTrackParams as AssetCreateTrackParams,
-    type AssetdeletePlaybackIdParams as AssetdeletePlaybackIdParams,
-    type AssetDeleteStaticRenditionParams as AssetDeleteStaticRenditionParams,
-    type AssetDeleteTrackParams as AssetDeleteTrackParams,
     type AssetGenerateSubtitlesParams as AssetGenerateSubtitlesParams,
-    type AssetRetrievePlaybackIDParams as AssetRetrievePlaybackIDParams,
     type AssetUpdateMasterAccessParams as AssetUpdateMasterAccessParams,
     type AssetUpdateMP4SupportParams as AssetUpdateMP4SupportParams,
   };

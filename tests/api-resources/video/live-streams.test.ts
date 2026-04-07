@@ -90,8 +90,8 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createPlaybackID', async () => {
-    const responsePromise = client.video.liveStreams.createPlaybackID('LIVE_STREAM_ID', {});
+  test('createPlaybackId', async () => {
+    const responsePromise = client.video.liveStreams.createPlaybackId('LIVE_STREAM_ID', {});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -133,10 +133,8 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('deletePlaybackId: only required params', async () => {
-    const responsePromise = client.video.liveStreams.deletePlaybackId('PLAYBACK_ID', {
-      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
-    });
+  test('deletePlaybackId', async () => {
+    const responsePromise = client.video.liveStreams.deletePlaybackId('LIVE_STREAM_ID', 'PLAYBACK_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -146,16 +144,11 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('deletePlaybackId: required and optional params', async () => {
-    const response = await client.video.liveStreams.deletePlaybackId('PLAYBACK_ID', {
-      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
-    });
-  });
-
-  test('deleteSimulcastTarget: only required params', async () => {
-    const responsePromise = client.video.liveStreams.deleteSimulcastTarget('SIMULCAST_TARGET_ID', {
-      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
-    });
+  test('deleteSimulcastTarget', async () => {
+    const responsePromise = client.video.liveStreams.deleteSimulcastTarget(
+      'LIVE_STREAM_ID',
+      'SIMULCAST_TARGET_ID',
+    );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -163,12 +156,6 @@ describe('resource liveStreams', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('deleteSimulcastTarget: required and optional params', async () => {
-    const response = await client.video.liveStreams.deleteSimulcastTarget('SIMULCAST_TARGET_ID', {
-      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
-    });
   });
 
   test('disable', async () => {
@@ -204,10 +191,8 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrievePlaybackID: only required params', async () => {
-    const responsePromise = client.video.liveStreams.retrievePlaybackID('PLAYBACK_ID', {
-      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
-    });
+  test('retrievePlaybackId', async () => {
+    const responsePromise = client.video.liveStreams.retrievePlaybackId('LIVE_STREAM_ID', 'PLAYBACK_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -217,16 +202,11 @@ describe('resource liveStreams', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrievePlaybackID: required and optional params', async () => {
-    const response = await client.video.liveStreams.retrievePlaybackID('PLAYBACK_ID', {
-      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
-    });
-  });
-
-  test('retrieveSimulcastTarget: only required params', async () => {
-    const responsePromise = client.video.liveStreams.retrieveSimulcastTarget('SIMULCAST_TARGET_ID', {
-      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
-    });
+  test('retrieveSimulcastTarget', async () => {
+    const responsePromise = client.video.liveStreams.retrieveSimulcastTarget(
+      'LIVE_STREAM_ID',
+      'SIMULCAST_TARGET_ID',
+    );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -234,12 +214,6 @@ describe('resource liveStreams', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('retrieveSimulcastTarget: required and optional params', async () => {
-    const response = await client.video.liveStreams.retrieveSimulcastTarget('SIMULCAST_TARGET_ID', {
-      LIVE_STREAM_ID: 'LIVE_STREAM_ID',
-    });
   });
 
   test('updateEmbeddedSubtitles', async () => {

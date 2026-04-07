@@ -878,6 +878,6 @@ export declare namespace Mux {
 
   export { Webhooks as Webhooks };
 
-  export type PlaybackID = API.PlaybackID;
+  export type PlaybackId = API.PlaybackId;
   export type PlaybackPolicy = API.PlaybackPolicy;
 }

@@ -54,9 +54,9 @@ export class LiveStreams extends APIResource {
    * );
    * ```
    */
-  retrieve(liveStreamID: string, options?: RequestOptions): APIPromise<LiveStream> {
+  retrieve(liveStreamId: string, options?: RequestOptions): APIPromise<LiveStream> {
     return (
-      this._client.get(path`/video/v1/live-streams/${liveStreamID}`, {
+      this._client.get(path`/video/v1/live-streams/${liveStreamId}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
       }) as APIPromise<{ data: LiveStream }>
@@ -83,12 +83,12 @@ export class LiveStreams extends APIResource {
    * ```
    */
   update(
-    liveStreamID: string,
+    liveStreamId: string,
     body: LiveStreamUpdateParams,
     options?: RequestOptions,
   ): APIPromise<LiveStream> {
     return (
-      this._client.patch(path`/video/v1/live-streams/${liveStreamID}`, {
+      this._client.patch(path`/video/v1/live-streams/${liveStreamId}`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
@@ -128,8 +128,8 @@ export class LiveStreams extends APIResource {
    * await client.video.liveStreams.delete('LIVE_STREAM_ID');
    * ```
    */
-  delete(liveStreamID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/video/v1/live-streams/${liveStreamID}`, {
+  delete(liveStreamId: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/video/v1/live-streams/${liveStreamId}`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -152,8 +152,8 @@ export class LiveStreams extends APIResource {
    * await client.video.liveStreams.complete('LIVE_STREAM_ID');
    * ```
    */
-  complete(liveStreamID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/video/v1/live-streams/${liveStreamID}/complete`, {
+  complete(liveStreamId: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/video/v1/live-streams/${liveStreamId}/complete`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -166,24 +166,24 @@ export class LiveStreams extends APIResource {
    *
    * @example
    * ```ts
-   * const playbackID =
-   *   await client.video.liveStreams.createPlaybackID(
+   * const playbackId =
+   *   await client.video.liveStreams.createPlaybackId(
    *     'LIVE_STREAM_ID',
    *     { policy: 'signed' },
    *   );
    * ```
    */
-  createPlaybackID(
-    liveStreamID: string,
-    body: LiveStreamCreatePlaybackIDParams,
+  createPlaybackId(
+    liveStreamId: string,
+    body: LiveStreamCreatePlaybackIdParams,
     options?: RequestOptions,
-  ): APIPromise<Shared.PlaybackID> {
+  ): APIPromise<Shared.PlaybackId> {
     return (
-      this._client.post(path`/video/v1/live-streams/${liveStreamID}/playback-ids`, {
+      this._client.post(path`/video/v1/live-streams/${liveStreamId}/playback-ids`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as APIPromise<{ data: Shared.PlaybackID }>
+      }) as APIPromise<{ data: Shared.PlaybackId }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -206,12 +206,12 @@ export class LiveStreams extends APIResource {
    * ```
    */
   createSimulcastTarget(
-    liveStreamID: string,
+    liveStreamId: string,
     body: LiveStreamCreateSimulcastTargetParams,
     options?: RequestOptions,
   ): APIPromise<SimulcastTarget> {
     return (
-      this._client.post(path`/video/v1/live-streams/${liveStreamID}/simulcast-targets`, {
+      this._client.post(path`/video/v1/live-streams/${liveStreamId}/simulcast-targets`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
@@ -231,9 +231,9 @@ export class LiveStreams extends APIResource {
    * );
    * ```
    */
-  deleteNewAssetSettingsStaticRenditions(liveStreamID: string, options?: RequestOptions): APIPromise<void> {
+  deleteNewAssetSettingsStaticRenditions(liveStreamId: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(
-      path`/video/v1/live-streams/${liveStreamID}/new-asset-settings/static-renditions`,
+      path`/video/v1/live-streams/${liveStreamId}/new-asset-settings/static-renditions`,
       {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
@@ -251,18 +251,13 @@ export class LiveStreams extends APIResource {
    * @example
    * ```ts
    * await client.video.liveStreams.deletePlaybackId(
+   *   'LIVE_STREAM_ID',
    *   'PLAYBACK_ID',
-   *   { LIVE_STREAM_ID: 'LIVE_STREAM_ID' },
    * );
    * ```
    */
-  deletePlaybackId(
-    playbackID: string,
-    params: LiveStreamdeletePlaybackIdParams,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { LIVE_STREAM_ID } = params;
-    return this._client.delete(path`/video/v1/live-streams/${LIVE_STREAM_ID}/playback-ids/${playbackID}`, {
+  deletePlaybackId(liveStreamId: string, playbackId: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -277,19 +272,18 @@ export class LiveStreams extends APIResource {
    * @example
    * ```ts
    * await client.video.liveStreams.deleteSimulcastTarget(
+   *   'LIVE_STREAM_ID',
    *   'SIMULCAST_TARGET_ID',
-   *   { LIVE_STREAM_ID: 'LIVE_STREAM_ID' },
    * );
    * ```
    */
   deleteSimulcastTarget(
-    simulcastTargetID: string,
-    params: LiveStreamDeleteSimulcastTargetParams,
+    liveStreamId: string,
+    simulcastTargetId: string,
     options?: RequestOptions,
   ): APIPromise<void> {
-    const { LIVE_STREAM_ID } = params;
     return this._client.delete(
-      path`/video/v1/live-streams/${LIVE_STREAM_ID}/simulcast-targets/${simulcastTargetID}`,
+      path`/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`,
       {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
@@ -312,8 +306,8 @@ export class LiveStreams extends APIResource {
    * await client.video.liveStreams.disable('LIVE_STREAM_ID');
    * ```
    */
-  disable(liveStreamID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/video/v1/live-streams/${liveStreamID}/disable`, {
+  disable(liveStreamId: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/video/v1/live-streams/${liveStreamId}/disable`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -328,8 +322,8 @@ export class LiveStreams extends APIResource {
    * await client.video.liveStreams.enable('LIVE_STREAM_ID');
    * ```
    */
-  enable(liveStreamID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.put(path`/video/v1/live-streams/${liveStreamID}/enable`, {
+  enable(liveStreamId: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.put(path`/video/v1/live-streams/${liveStreamId}/enable`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -348,9 +342,9 @@ export class LiveStreams extends APIResource {
    *   );
    * ```
    */
-  resetStreamKey(liveStreamID: string, options?: RequestOptions): APIPromise<LiveStream> {
+  resetStreamKey(liveStreamId: string, options?: RequestOptions): APIPromise<LiveStream> {
     return (
-      this._client.post(path`/video/v1/live-streams/${liveStreamID}/reset-stream-key`, {
+      this._client.post(path`/video/v1/live-streams/${liveStreamId}/reset-stream-key`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
       }) as APIPromise<{ data: LiveStream }>
@@ -363,24 +357,23 @@ export class LiveStreams extends APIResource {
    *
    * @example
    * ```ts
-   * const playbackID =
-   *   await client.video.liveStreams.retrievePlaybackID(
+   * const playbackId =
+   *   await client.video.liveStreams.retrievePlaybackId(
+   *     'LIVE_STREAM_ID',
    *     'PLAYBACK_ID',
-   *     { LIVE_STREAM_ID: 'LIVE_STREAM_ID' },
    *   );
    * ```
    */
-  retrievePlaybackID(
-    playbackID: string,
-    params: LiveStreamRetrievePlaybackIDParams,
+  retrievePlaybackId(
+    liveStreamId: string,
+    playbackId: string,
     options?: RequestOptions,
-  ): APIPromise<Shared.PlaybackID> {
-    const { LIVE_STREAM_ID } = params;
+  ): APIPromise<Shared.PlaybackId> {
     return (
-      this._client.get(path`/video/v1/live-streams/${LIVE_STREAM_ID}/playback-ids/${playbackID}`, {
+      this._client.get(path`/video/v1/live-streams/${liveStreamId}/playback-ids/${playbackId}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as APIPromise<{ data: Shared.PlaybackID }>
+      }) as APIPromise<{ data: Shared.PlaybackId }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -394,22 +387,21 @@ export class LiveStreams extends APIResource {
    * ```ts
    * const simulcastTarget =
    *   await client.video.liveStreams.retrieveSimulcastTarget(
+   *     'LIVE_STREAM_ID',
    *     'SIMULCAST_TARGET_ID',
-   *     { LIVE_STREAM_ID: 'LIVE_STREAM_ID' },
    *   );
    * ```
    */
   retrieveSimulcastTarget(
-    simulcastTargetID: string,
-    params: LiveStreamRetrieveSimulcastTargetParams,
+    liveStreamId: string,
+    simulcastTargetId: string,
     options?: RequestOptions,
   ): APIPromise<SimulcastTarget> {
-    const { LIVE_STREAM_ID } = params;
     return (
-      this._client.get(
-        path`/video/v1/live-streams/${LIVE_STREAM_ID}/simulcast-targets/${simulcastTargetID}`,
-        { defaultBaseURL: 'https://api.mux.com', ...options },
-      ) as APIPromise<{ data: SimulcastTarget }>
+      this._client.get(path`/video/v1/live-streams/${liveStreamId}/simulcast-targets/${simulcastTargetId}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: SimulcastTarget }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -427,12 +419,12 @@ export class LiveStreams extends APIResource {
    * ```
    */
   updateEmbeddedSubtitles(
-    liveStreamID: string,
+    liveStreamId: string,
     body: LiveStreamUpdateEmbeddedSubtitlesParams,
     options?: RequestOptions,
   ): APIPromise<LiveStream> {
     return (
-      this._client.put(path`/video/v1/live-streams/${liveStreamID}/embedded-subtitles`, {
+      this._client.put(path`/video/v1/live-streams/${liveStreamId}/embedded-subtitles`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
@@ -463,12 +455,12 @@ export class LiveStreams extends APIResource {
    * ```
    */
   updateGeneratedSubtitles(
-    liveStreamID: string,
+    liveStreamId: string,
     body: LiveStreamUpdateGeneratedSubtitlesParams,
     options?: RequestOptions,
   ): APIPromise<LiveStream> {
     return (
-      this._client.put(path`/video/v1/live-streams/${liveStreamID}/generated-subtitles`, {
+      this._client.put(path`/video/v1/live-streams/${liveStreamId}/generated-subtitles`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
@@ -496,12 +488,12 @@ export class LiveStreams extends APIResource {
    * ```
    */
   updateNewAssetSettingsStaticRenditions(
-    liveStreamID: string,
+    liveStreamId: string,
     body: LiveStreamUpdateNewAssetSettingsStaticRenditionsParams,
     options?: RequestOptions,
   ): APIPromise<LiveStream> {
     return (
-      this._client.put(path`/video/v1/live-streams/${liveStreamID}/new-asset-settings/static-renditions`, {
+      this._client.put(path`/video/v1/live-streams/${liveStreamId}/new-asset-settings/static-renditions`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
@@ -617,7 +609,7 @@ export interface LiveStream {
    * [Play your videos](https://docs.mux.com/guides/play-your-videos) for more
    * details.
    */
-  playback_ids?: Array<Shared.PlaybackID>;
+  playback_ids?: Array<Shared.PlaybackId>;
 
   /**
    * An array of strings with the most recent Asset IDs that were created from this
@@ -1257,7 +1249,7 @@ export interface LiveStreamListParams extends BasePageParams {
   stream_key?: string;
 }
 
-export interface LiveStreamCreatePlaybackIDParams {
+export interface LiveStreamCreatePlaybackIdParams {
   /**
    * The DRM configuration used by this playback ID. Must only be set when `policy`
    * is set to `drm`.
@@ -1306,34 +1298,6 @@ export interface LiveStreamCreateSimulcastTargetParams {
    * destinations.
    */
   stream_key?: string;
-}
-
-export interface LiveStreamdeletePlaybackIdParams {
-  /**
-   * The live stream ID
-   */
-  LIVE_STREAM_ID: string;
-}
-
-export interface LiveStreamDeleteSimulcastTargetParams {
-  /**
-   * The live stream ID
-   */
-  LIVE_STREAM_ID: string;
-}
-
-export interface LiveStreamRetrievePlaybackIDParams {
-  /**
-   * The live stream ID
-   */
-  LIVE_STREAM_ID: string;
-}
-
-export interface LiveStreamRetrieveSimulcastTargetParams {
-  /**
-   * The live stream ID
-   */
-  LIVE_STREAM_ID: string;
 }
 
 export interface LiveStreamUpdateEmbeddedSubtitlesParams {
@@ -1437,12 +1401,8 @@ export declare namespace LiveStreams {
     type LiveStreamCreateParams as LiveStreamCreateParams,
     type LiveStreamUpdateParams as LiveStreamUpdateParams,
     type LiveStreamListParams as LiveStreamListParams,
-    type LiveStreamCreatePlaybackIDParams as LiveStreamCreatePlaybackIDParams,
+    type LiveStreamCreatePlaybackIdParams as LiveStreamCreatePlaybackIdParams,
     type LiveStreamCreateSimulcastTargetParams as LiveStreamCreateSimulcastTargetParams,
-    type LiveStreamdeletePlaybackIdParams as LiveStreamdeletePlaybackIdParams,
-    type LiveStreamDeleteSimulcastTargetParams as LiveStreamDeleteSimulcastTargetParams,
-    type LiveStreamRetrievePlaybackIDParams as LiveStreamRetrievePlaybackIDParams,
-    type LiveStreamRetrieveSimulcastTargetParams as LiveStreamRetrieveSimulcastTargetParams,
     type LiveStreamUpdateEmbeddedSubtitlesParams as LiveStreamUpdateEmbeddedSubtitlesParams,
     type LiveStreamUpdateGeneratedSubtitlesParams as LiveStreamUpdateGeneratedSubtitlesParams,
     type LiveStreamUpdateNewAssetSettingsStaticRenditionsParams as LiveStreamUpdateNewAssetSettingsStaticRenditionsParams,

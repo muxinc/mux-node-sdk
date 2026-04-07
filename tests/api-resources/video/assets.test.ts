@@ -162,8 +162,8 @@ describe('resource assets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createPlaybackID', async () => {
-    const responsePromise = client.video.assets.createPlaybackID('ASSET_ID', {});
+  test('createPlaybackId', async () => {
+    const responsePromise = client.video.assets.createPlaybackId('ASSET_ID', {});
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -218,8 +218,8 @@ describe('resource assets', () => {
     });
   });
 
-  test('deletePlaybackId: only required params', async () => {
-    const responsePromise = client.video.assets.deletePlaybackId('PLAYBACK_ID', { ASSET_ID: 'ASSET_ID' });
+  test('deletePlaybackId', async () => {
+    const responsePromise = client.video.assets.deletePlaybackId('ASSET_ID', 'PLAYBACK_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -229,14 +229,8 @@ describe('resource assets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('deletePlaybackId: required and optional params', async () => {
-    const response = await client.video.assets.deletePlaybackId('PLAYBACK_ID', { ASSET_ID: 'ASSET_ID' });
-  });
-
-  test('deleteStaticRendition: only required params', async () => {
-    const responsePromise = client.video.assets.deleteStaticRendition('STATIC_RENDITION_ID', {
-      ASSET_ID: 'ASSET_ID',
-    });
+  test('deleteStaticRendition', async () => {
+    const responsePromise = client.video.assets.deleteStaticRendition('ASSET_ID', 'STATIC_RENDITION_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -246,14 +240,8 @@ describe('resource assets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('deleteStaticRendition: required and optional params', async () => {
-    const response = await client.video.assets.deleteStaticRendition('STATIC_RENDITION_ID', {
-      ASSET_ID: 'ASSET_ID',
-    });
-  });
-
-  test('deleteTrack: only required params', async () => {
-    const responsePromise = client.video.assets.deleteTrack('TRACK_ID', { ASSET_ID: 'ASSET_ID' });
+  test('deleteTrack', async () => {
+    const responsePromise = client.video.assets.deleteTrack('ASSET_ID', 'TRACK_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -261,15 +249,10 @@ describe('resource assets', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('deleteTrack: required and optional params', async () => {
-    const response = await client.video.assets.deleteTrack('TRACK_ID', { ASSET_ID: 'ASSET_ID' });
   });
 
   test('generateSubtitles: only required params', async () => {
-    const responsePromise = client.video.assets.generateSubtitles('TRACK_ID', {
-      ASSET_ID: 'ASSET_ID',
+    const responsePromise = client.video.assets.generateSubtitles('ASSET_ID', 'TRACK_ID', {
       generated_subtitles: [{}],
     });
     const rawResponse = await responsePromise.asResponse();
@@ -282,8 +265,7 @@ describe('resource assets', () => {
   });
 
   test('generateSubtitles: required and optional params', async () => {
-    const response = await client.video.assets.generateSubtitles('TRACK_ID', {
-      ASSET_ID: 'ASSET_ID',
+    const response = await client.video.assets.generateSubtitles('ASSET_ID', 'TRACK_ID', {
       generated_subtitles: [
         {
           language_code: 'en',
@@ -305,8 +287,8 @@ describe('resource assets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrievePlaybackID: only required params', async () => {
-    const responsePromise = client.video.assets.retrievePlaybackID('PLAYBACK_ID', { ASSET_ID: 'ASSET_ID' });
+  test('retrievePlaybackId', async () => {
+    const responsePromise = client.video.assets.retrievePlaybackId('ASSET_ID', 'PLAYBACK_ID');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -314,10 +296,6 @@ describe('resource assets', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('retrievePlaybackID: required and optional params', async () => {
-    const response = await client.video.assets.retrievePlaybackID('PLAYBACK_ID', { ASSET_ID: 'ASSET_ID' });
   });
 
   test('updateMasterAccess: only required params', async () => {
