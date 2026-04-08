@@ -4883,7 +4883,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Robots.Jobs.AskQuestions.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/robots"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\taskQuestionsJob, err := client.Robots.Jobs.AskQuestions.New(context.TODO(), robots.JobAskQuestionNewParams{\n\t\tParameters: robots.AskQuestionsJobParameters{\n\t\t\tAssetId: "mux_asset_123abc",\n\t\t\tQuestions: []robots.AskQuestionsJobParametersQuestion{{\n\t\t\t\tQuestion: "Is there a person speaking on camera?",\n\t\t\t}},\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", askQuestionsJob.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/robots"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\taskQuestionsJob, err := client.Robots.Jobs.AskQuestions.New(context.TODO(), robots.JobAskQuestionNewParams{\n\t\tParameters: robots.AskQuestionsJobParameters{\n\t\t\tAssetId: "mux_asset_123abc",\n\t\t\tQuestions: []robots.AskQuestionsJobParametersQuestion{{\n\t\t\t\tQuestion: "Is there a person speaking on camera?",\n\t\t\t}},\n\t\t\tAnswerOptions: []string{"yes", "no"},\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", askQuestionsJob.ID)\n}\n',
       },
       http: {
         example:
@@ -4902,7 +4902,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       node: {
         method: 'client.robots.jobs.askQuestions.create',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst askQuestionsJob = await client.robots.jobs.askQuestions.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    questions: [{ question: 'Is there a person speaking on camera?' }],\n  },\n});\n\nconsole.log(askQuestionsJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst askQuestionsJob = await client.robots.jobs.askQuestions.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    questions: [{ question: 'Is there a person speaking on camera?' }],\n    answer_options: ['yes', 'no'],\n  },\n});\n\nconsole.log(askQuestionsJob.id);",
       },
       php: {
         method: 'robots->jobs->askQuestions->create',
@@ -4912,7 +4912,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       python: {
         method: 'robots.jobs.ask_questions.create',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nask_questions_job = client.robots.jobs.ask_questions.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "questions": [{\n            "question": "Is there a person speaking on camera?"\n        }],\n    },\n)\nprint(ask_questions_job.id)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nask_questions_job = client.robots.jobs.ask_questions.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "questions": [{\n            "question": "Is there a person speaking on camera?"\n        }],\n        "answer_options": ["yes", "no"],\n    },\n)\nprint(ask_questions_job.id)',
       },
       ruby: {
         method: 'robots.jobs.ask_questions.create',
@@ -4922,7 +4922,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       typescript: {
         method: 'client.robots.jobs.askQuestions.create',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst askQuestionsJob = await client.robots.jobs.askQuestions.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    questions: [{ question: 'Is there a person speaking on camera?' }],\n  },\n});\n\nconsole.log(askQuestionsJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst askQuestionsJob = await client.robots.jobs.askQuestions.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    questions: [{ question: 'Is there a person speaking on camera?' }],\n    answer_options: ['yes', 'no'],\n  },\n});\n\nconsole.log(askQuestionsJob.id);",
       },
     },
   },
@@ -5026,7 +5026,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Robots.Jobs.GenerateChapters.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/robots"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tgenerateChaptersJob, err := client.Robots.Jobs.GenerateChapters.New(context.TODO(), robots.JobGenerateChapterNewParams{\n\t\tParameters: robots.GenerateChaptersJobParameters{\n\t\t\tAssetId: "mux_asset_123abc",\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", generateChaptersJob.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/robots"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tgenerateChaptersJob, err := client.Robots.Jobs.GenerateChapters.New(context.TODO(), robots.JobGenerateChapterNewParams{\n\t\tParameters: robots.GenerateChaptersJobParameters{\n\t\t\tAssetId:          "mux_asset_123abc",\n\t\t\tFromLanguageCode: mux.String("en"),\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", generateChaptersJob.ID)\n}\n',
       },
       http: {
         example:
@@ -5045,7 +5045,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       node: {
         method: 'client.robots.jobs.generateChapters.create',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst generateChaptersJob = await client.robots.jobs.generateChapters.create({\n  parameters: { asset_id: 'mux_asset_123abc' },\n});\n\nconsole.log(generateChaptersJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst generateChaptersJob = await client.robots.jobs.generateChapters.create({\n  parameters: { asset_id: 'mux_asset_123abc', from_language_code: 'en' },\n});\n\nconsole.log(generateChaptersJob.id);",
       },
       php: {
         method: 'robots->jobs->generateChapters->create',
@@ -5055,7 +5055,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       python: {
         method: 'robots.jobs.generate_chapters.create',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ngenerate_chapters_job = client.robots.jobs.generate_chapters.create(\n    parameters={\n        "asset_id": "mux_asset_123abc"\n    },\n)\nprint(generate_chapters_job.id)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ngenerate_chapters_job = client.robots.jobs.generate_chapters.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "from_language_code": "en",\n    },\n)\nprint(generate_chapters_job.id)',
       },
       ruby: {
         method: 'robots.jobs.generate_chapters.create',
@@ -5065,7 +5065,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       typescript: {
         method: 'client.robots.jobs.generateChapters.create',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst generateChaptersJob = await client.robots.jobs.generateChapters.create({\n  parameters: { asset_id: 'mux_asset_123abc' },\n});\n\nconsole.log(generateChaptersJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst generateChaptersJob = await client.robots.jobs.generateChapters.create({\n  parameters: { asset_id: 'mux_asset_123abc', from_language_code: 'en' },\n});\n\nconsole.log(generateChaptersJob.id);",
       },
     },
   },
@@ -5169,7 +5169,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Robots.Jobs.FindKeyMoments.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/robots"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tfindKeyMomentsJob, err := client.Robots.Jobs.FindKeyMoments.New(context.TODO(), robots.JobFindKeyMomentNewParams{\n\t\tParameters: robots.FindKeyMomentsJobParameters{\n\t\t\tAssetId: "mux_asset_123abc",\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", findKeyMomentsJob.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/robots"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tfindKeyMomentsJob, err := client.Robots.Jobs.FindKeyMoments.New(context.TODO(), robots.JobFindKeyMomentNewParams{\n\t\tParameters: robots.FindKeyMomentsJobParameters{\n\t\t\tAssetId:    "mux_asset_123abc",\n\t\t\tMaxMoments: mux.Int(5),\n\t\t\tTargetDurationMs: robots.FindKeyMomentsJobParametersTargetDurationMs{\n\t\t\t\tMin: 15000,\n\t\t\t\tMax: 45000,\n\t\t\t},\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", findKeyMomentsJob.ID)\n}\n',
       },
       http: {
         example:
@@ -5188,7 +5188,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       node: {
         method: 'client.robots.jobs.findKeyMoments.create',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst findKeyMomentsJob = await client.robots.jobs.findKeyMoments.create({\n  parameters: { asset_id: 'mux_asset_123abc' },\n});\n\nconsole.log(findKeyMomentsJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst findKeyMomentsJob = await client.robots.jobs.findKeyMoments.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    max_moments: 5,\n    target_duration_ms: { min: 15000, max: 45000 },\n  },\n});\n\nconsole.log(findKeyMomentsJob.id);",
       },
       php: {
         method: 'robots->jobs->findKeyMoments->create',
@@ -5198,7 +5198,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       python: {
         method: 'robots.jobs.find_key_moments.create',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nfind_key_moments_job = client.robots.jobs.find_key_moments.create(\n    parameters={\n        "asset_id": "mux_asset_123abc"\n    },\n)\nprint(find_key_moments_job.id)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nfind_key_moments_job = client.robots.jobs.find_key_moments.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "max_moments": 5,\n        "target_duration_ms": {\n            "min": 15000,\n            "max": 45000,\n        },\n    },\n)\nprint(find_key_moments_job.id)',
       },
       ruby: {
         method: 'robots.jobs.find_key_moments.create',
@@ -5208,7 +5208,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       typescript: {
         method: 'client.robots.jobs.findKeyMoments.create',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst findKeyMomentsJob = await client.robots.jobs.findKeyMoments.create({\n  parameters: { asset_id: 'mux_asset_123abc' },\n});\n\nconsole.log(findKeyMomentsJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst findKeyMomentsJob = await client.robots.jobs.findKeyMoments.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    max_moments: 5,\n    target_duration_ms: { min: 15000, max: 45000 },\n  },\n});\n\nconsole.log(findKeyMomentsJob.id);",
       },
     },
   },
@@ -5312,7 +5312,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Robots.Jobs.Moderate.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/robots"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tmoderateJob, err := client.Robots.Jobs.Moderate.New(context.TODO(), robots.JobModerateNewParams{\n\t\tParameters: robots.ModerateJobParameters{\n\t\t\tAssetId: "mux_asset_123abc",\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", moderateJob.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/robots"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tmoderateJob, err := client.Robots.Jobs.Moderate.New(context.TODO(), robots.JobModerateNewParams{\n\t\tParameters: robots.ModerateJobParameters{\n\t\t\tAssetId: "mux_asset_123abc",\n\t\t\tThresholds: robots.ModerateJobParametersThresholds{\n\t\t\t\tSexual:   mux.Float(0.7),\n\t\t\t\tViolence: mux.Float(0.8),\n\t\t\t},\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", moderateJob.ID)\n}\n',
       },
       http: {
         example:
@@ -5331,7 +5331,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       node: {
         method: 'client.robots.jobs.moderate.create',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst moderateJob = await client.robots.jobs.moderate.create({\n  parameters: { asset_id: 'mux_asset_123abc' },\n});\n\nconsole.log(moderateJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst moderateJob = await client.robots.jobs.moderate.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    thresholds: { sexual: 0.7, violence: 0.8 },\n  },\n});\n\nconsole.log(moderateJob.id);",
       },
       php: {
         method: 'robots->jobs->moderate->create',
@@ -5341,7 +5341,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       python: {
         method: 'robots.jobs.moderate.create',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nmoderate_job = client.robots.jobs.moderate.create(\n    parameters={\n        "asset_id": "mux_asset_123abc"\n    },\n)\nprint(moderate_job.id)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nmoderate_job = client.robots.jobs.moderate.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "thresholds": {\n            "sexual": 0.7,\n            "violence": 0.8,\n        },\n    },\n)\nprint(moderate_job.id)',
       },
       ruby: {
         method: 'robots.jobs.moderate.create',
@@ -5351,7 +5351,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       typescript: {
         method: 'client.robots.jobs.moderate.create',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst moderateJob = await client.robots.jobs.moderate.create({\n  parameters: { asset_id: 'mux_asset_123abc' },\n});\n\nconsole.log(moderateJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst moderateJob = await client.robots.jobs.moderate.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    thresholds: { sexual: 0.7, violence: 0.8 },\n  },\n});\n\nconsole.log(moderateJob.id);",
       },
     },
   },
@@ -5456,7 +5456,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Robots.Jobs.Summarize.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/robots"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tsummarizeJob, err := client.Robots.Jobs.Summarize.New(context.TODO(), robots.JobSummarizeNewParams{\n\t\tParameters: robots.SummarizeJobParameters{\n\t\t\tAssetId: "mux_asset_123abc",\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", summarizeJob.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/robots"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tsummarizeJob, err := client.Robots.Jobs.Summarize.New(context.TODO(), robots.JobSummarizeNewParams{\n\t\tParameters: robots.SummarizeJobParameters{\n\t\t\tAssetId:  "mux_asset_123abc",\n\t\t\tTone:     robots.SummarizeJobParametersToneNeutral,\n\t\t\tTagCount: mux.Int(10),\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", summarizeJob.ID)\n}\n',
       },
       http: {
         example:
@@ -5475,7 +5475,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       node: {
         method: 'client.robots.jobs.summarize.create',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst summarizeJob = await client.robots.jobs.summarize.create({\n  parameters: { asset_id: 'mux_asset_123abc' },\n});\n\nconsole.log(summarizeJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst summarizeJob = await client.robots.jobs.summarize.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    tone: 'neutral',\n    tag_count: 10,\n  },\n});\n\nconsole.log(summarizeJob.id);",
       },
       php: {
         method: 'robots->jobs->summarize->create',
@@ -5485,7 +5485,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       python: {
         method: 'robots.jobs.summarize.create',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsummarize_job = client.robots.jobs.summarize.create(\n    parameters={\n        "asset_id": "mux_asset_123abc"\n    },\n)\nprint(summarize_job.id)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsummarize_job = client.robots.jobs.summarize.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "tone": "neutral",\n        "tag_count": 10,\n    },\n)\nprint(summarize_job.id)',
       },
       ruby: {
         method: 'robots.jobs.summarize.create',
@@ -5495,7 +5495,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       typescript: {
         method: 'client.robots.jobs.summarize.create',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst summarizeJob = await client.robots.jobs.summarize.create({\n  parameters: { asset_id: 'mux_asset_123abc' },\n});\n\nconsole.log(summarizeJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst summarizeJob = await client.robots.jobs.summarize.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    tone: 'neutral',\n    tag_count: 10,\n  },\n});\n\nconsole.log(summarizeJob.id);",
       },
     },
   },
@@ -5600,7 +5600,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       go: {
         method: 'client.Robots.Jobs.TranslateCaptions.New',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/robots"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\ttranslateCaptionsJob, err := client.Robots.Jobs.TranslateCaptions.New(context.TODO(), robots.JobTranslateCaptionNewParams{\n\t\tParameters: robots.TranslateCaptionsJobParameters{\n\t\t\tAssetId:          "mux_asset_123abc",\n\t\t\tFromLanguageCode: "en",\n\t\t\tToLanguageCode:   "es",\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", translateCaptionsJob.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n\t"github.com/stainless-sdks/mux-go/robots"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\ttranslateCaptionsJob, err := client.Robots.Jobs.TranslateCaptions.New(context.TODO(), robots.JobTranslateCaptionNewParams{\n\t\tParameters: robots.TranslateCaptionsJobParameters{\n\t\t\tAssetId:          "mux_asset_123abc",\n\t\t\tFromLanguageCode: "en",\n\t\t\tToLanguageCode:   "es",\n\t\t\tUploadToMux:      mux.Bool(true),\n\t\t},\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", translateCaptionsJob.ID)\n}\n',
       },
       http: {
         example:
@@ -5619,7 +5619,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       node: {
         method: 'client.robots.jobs.translateCaptions.create',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst translateCaptionsJob = await client.robots.jobs.translateCaptions.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    from_language_code: 'en',\n    to_language_code: 'es',\n  },\n});\n\nconsole.log(translateCaptionsJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst translateCaptionsJob = await client.robots.jobs.translateCaptions.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    from_language_code: 'en',\n    to_language_code: 'es',\n    upload_to_mux: true,\n  },\n});\n\nconsole.log(translateCaptionsJob.id);",
       },
       php: {
         method: 'robots->jobs->translateCaptions->create',
@@ -5629,7 +5629,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       python: {
         method: 'robots.jobs.translate_captions.create',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntranslate_captions_job = client.robots.jobs.translate_captions.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "from_language_code": "en",\n        "to_language_code": "es",\n    },\n)\nprint(translate_captions_job.id)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntranslate_captions_job = client.robots.jobs.translate_captions.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "from_language_code": "en",\n        "to_language_code": "es",\n        "upload_to_mux": True,\n    },\n)\nprint(translate_captions_job.id)',
       },
       ruby: {
         method: 'robots.jobs.translate_captions.create',
@@ -5639,7 +5639,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       typescript: {
         method: 'client.robots.jobs.translateCaptions.create',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst translateCaptionsJob = await client.robots.jobs.translateCaptions.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    from_language_code: 'en',\n    to_language_code: 'es',\n  },\n});\n\nconsole.log(translateCaptionsJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst translateCaptionsJob = await client.robots.jobs.translateCaptions.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    from_language_code: 'en',\n    to_language_code: 'es',\n    upload_to_mux: true,\n  },\n});\n\nconsole.log(translateCaptionsJob.id);",
       },
     },
   },

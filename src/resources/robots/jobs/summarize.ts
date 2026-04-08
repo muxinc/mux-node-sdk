@@ -18,7 +18,11 @@ export class Summarize extends APIResource {
    * ```ts
    * const summarizeJob =
    *   await client.robots.jobs.summarize.create({
-   *     parameters: { asset_id: 'mux_asset_123abc' },
+   *     parameters: {
+   *       asset_id: 'mux_asset_123abc',
+   *       tone: 'neutral',
+   *       tag_count: 10,
+   *     },
    *   });
    * ```
    */

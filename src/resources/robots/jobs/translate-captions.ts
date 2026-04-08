@@ -22,6 +22,7 @@ export class TranslateCaptions extends APIResource {
    *       asset_id: 'mux_asset_123abc',
    *       from_language_code: 'en',
    *       to_language_code: 'es',
+   *       upload_to_mux: true,
    *     },
    *   });
    * ```

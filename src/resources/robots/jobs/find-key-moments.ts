@@ -17,7 +17,11 @@ export class FindKeyMoments extends APIResource {
    * ```ts
    * const findKeyMomentsJob =
    *   await client.robots.jobs.findKeyMoments.create({
-   *     parameters: { asset_id: 'mux_asset_123abc' },
+   *     parameters: {
+   *       asset_id: 'mux_asset_123abc',
+   *       max_moments: 5,
+   *       target_duration_ms: { min: 15000, max: 45000 },
+   *     },
    *   });
    * ```
    */

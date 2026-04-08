@@ -24,6 +24,7 @@ export class AskQuestions extends APIResource {
    *           question: 'Is there a person speaking on camera?',
    *         },
    *       ],
+   *       answer_options: ['yes', 'no'],
    *     },
    *   });
    * ```

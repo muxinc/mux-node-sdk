@@ -18,7 +18,10 @@ export class Moderate extends APIResource {
    * ```ts
    * const moderateJob =
    *   await client.robots.jobs.moderate.create({
-   *     parameters: { asset_id: 'mux_asset_123abc' },
+   *     parameters: {
+   *       asset_id: 'mux_asset_123abc',
+   *       thresholds: { sexual: 0.7, violence: 0.8 },
+   *     },
    *   });
    * ```
    */

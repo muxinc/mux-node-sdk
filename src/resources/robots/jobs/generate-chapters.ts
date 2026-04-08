@@ -17,7 +17,10 @@ export class GenerateChapters extends APIResource {
    * ```ts
    * const generateChaptersJob =
    *   await client.robots.jobs.generateChapters.create({
-   *     parameters: { asset_id: 'mux_asset_123abc' },
+   *     parameters: {
+   *       asset_id: 'mux_asset_123abc',
+   *       from_language_code: 'en',
+   *     },
    *   });
    * ```
    */
