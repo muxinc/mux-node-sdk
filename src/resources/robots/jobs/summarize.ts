@@ -39,7 +39,7 @@ export class Summarize extends APIResource {
    * ```ts
    * const summarizeJob =
    *   await client.robots.jobs.summarize.retrieve(
-   *     'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',
+   *     'rjob_lK9w2kI5J1',
    *   );
    * ```
    */

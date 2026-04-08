@@ -37,7 +37,7 @@ describe('resource jobs', () => {
   });
 
   test('delete', async () => {
-    const responsePromise = client.robots.jobs.delete('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');
+    const responsePromise = client.robots.jobs.delete('rjob_lK9w2kI5J1');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -48,7 +48,7 @@ describe('resource jobs', () => {
   });
 
   test('cancel', async () => {
-    const responsePromise = client.robots.jobs.cancel('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');
+    const responsePromise = client.robots.jobs.cancel('rjob_lK9w2kI5J1');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

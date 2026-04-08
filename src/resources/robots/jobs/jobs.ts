@@ -98,9 +98,7 @@ export class Jobs extends APIResource {
    *
    * @example
    * ```ts
-   * await client.robots.jobs.delete(
-   *   'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',
-   * );
+   * await client.robots.jobs.delete('rjob_lK9w2kI5J1');
    * ```
    */
   delete(jobID: string, options?: RequestOptions): APIPromise<void> {
@@ -117,7 +115,7 @@ export class Jobs extends APIResource {
    * @example
    * ```ts
    * const jobSummary = await client.robots.jobs.cancel(
-   *   'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',
+   *   'rjob_lK9w2kI5J1',
    * );
    * ```
    */

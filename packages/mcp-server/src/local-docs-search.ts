@@ -4727,22 +4727,22 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     response:
       "{ id: string; _links: { self: { href: string; }; }; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; updated_at: number; workflow: string; }",
     markdown:
-      "## cancel\n\n`client.robots.jobs.cancel(JOB_ID: string): { id: string; _links: object; created_at: number; status: job_status; updated_at: number; workflow: string; }`\n\n**post** `/robots/v1/jobs/{JOB_ID}/cancel`\n\nCancels a job that is currently pending or processing.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{ id: string; _links: { self: { href: string; }; }; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; updated_at: number; workflow: string; }`\n\n  - `id: string`\n  - `_links: { self: { href: string; }; }`\n  - `created_at: number`\n  - `status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'`\n  - `updated_at: number`\n  - `workflow: string`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst jobSummary = await client.robots.jobs.cancel('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');\n\nconsole.log(jobSummary);\n```",
+      "## cancel\n\n`client.robots.jobs.cancel(JOB_ID: string): { id: string; _links: object; created_at: number; status: job_status; updated_at: number; workflow: string; }`\n\n**post** `/robots/v1/jobs/{JOB_ID}/cancel`\n\nCancels a job that is currently pending or processing.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{ id: string; _links: { self: { href: string; }; }; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; updated_at: number; workflow: string; }`\n\n  - `id: string`\n  - `_links: { self: { href: string; }; }`\n  - `created_at: number`\n  - `status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'`\n  - `updated_at: number`\n  - `workflow: string`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst jobSummary = await client.robots.jobs.cancel('rjob_lK9w2kI5J1');\n\nconsole.log(jobSummary);\n```",
     perLanguage: {
       cli: {
         method: 'jobs cancel',
         example:
-          "mux-cli robots:jobs cancel \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
+          "mux-cli robots:jobs cancel \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
       },
       csharp: {
         method: 'Robots.Jobs.Cancel',
         example:
-          'JobCancelParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nvar jobSummary = await client.Robots.Jobs.Cancel(parameters);\n\nConsole.WriteLine(jobSummary);',
+          'JobCancelParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nvar jobSummary = await client.Robots.Jobs.Cancel(parameters);\n\nConsole.WriteLine(jobSummary);',
       },
       go: {
         method: 'client.Robots.Jobs.Cancel',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tjobSummary, err := client.Robots.Jobs.Cancel(context.TODO(), "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", jobSummary.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tjobSummary, err := client.Robots.Jobs.Cancel(context.TODO(), "rjob_lK9w2kI5J1")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", jobSummary.ID)\n}\n',
       },
       http: {
         example:
@@ -4751,37 +4751,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       java: {
         method: 'robots().jobs().cancel',
         example:
-          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.JobCancelParams;\nimport com.mux.api.models.robots.jobs.JobSummary;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        JobSummary jobSummary = client.robots().jobs().cancel("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F");\n    }\n}',
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.JobCancelParams;\nimport com.mux.api.models.robots.jobs.JobSummary;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        JobSummary jobSummary = client.robots().jobs().cancel("rjob_lK9w2kI5J1");\n    }\n}',
       },
       kotlin: {
         method: 'robots().jobs().cancel',
         example:
-          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.JobCancelParams\nimport com.mux.api.models.robots.jobs.JobSummary\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val jobSummary: JobSummary = client.robots().jobs().cancel("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n}',
+          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.JobCancelParams\nimport com.mux.api.models.robots.jobs.JobSummary\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val jobSummary: JobSummary = client.robots().jobs().cancel("rjob_lK9w2kI5J1")\n}',
       },
       node: {
         method: 'client.robots.jobs.cancel',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst jobSummary = await client.robots.jobs.cancel('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');\n\nconsole.log(jobSummary.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst jobSummary = await client.robots.jobs.cancel('rjob_lK9w2kI5J1');\n\nconsole.log(jobSummary.id);",
       },
       php: {
         method: 'robots->jobs->cancel',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$jobSummary = $client->robots->jobs->cancel(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($jobSummary);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$jobSummary = $client->robots->jobs->cancel('rjob_lK9w2kI5J1');\n\nvar_dump($jobSummary);",
       },
       python: {
         method: 'robots.jobs.cancel',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\njob_summary = client.robots.jobs.cancel(\n    "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",\n)\nprint(job_summary.id)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\njob_summary = client.robots.jobs.cancel(\n    "rjob_lK9w2kI5J1",\n)\nprint(job_summary.id)',
       },
       ruby: {
         method: 'robots.jobs.cancel',
         example:
-          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\njob_summary = mux.robots.jobs.cancel("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\nputs(job_summary)',
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\njob_summary = mux.robots.jobs.cancel("rjob_lK9w2kI5J1")\n\nputs(job_summary)',
       },
       typescript: {
         method: 'client.robots.jobs.cancel',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst jobSummary = await client.robots.jobs.cancel('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');\n\nconsole.log(jobSummary.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst jobSummary = await client.robots.jobs.cancel('rjob_lK9w2kI5J1');\n\nconsole.log(jobSummary.id);",
       },
     },
   },
@@ -4795,22 +4795,22 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     qualified: 'client.robots.jobs.delete',
     params: ['JOB_ID: string;'],
     markdown:
-      "## delete\n\n`client.robots.jobs.delete(JOB_ID: string): void`\n\n**delete** `/robots/v1/jobs/{JOB_ID}`\n\nPermanently deletes a job and its associated data.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nawait client.robots.jobs.delete('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F')\n```",
+      "## delete\n\n`client.robots.jobs.delete(JOB_ID: string): void`\n\n**delete** `/robots/v1/jobs/{JOB_ID}`\n\nPermanently deletes a job and its associated data.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nawait client.robots.jobs.delete('rjob_lK9w2kI5J1')\n```",
     perLanguage: {
       cli: {
         method: 'jobs delete',
         example:
-          "mux-cli robots:jobs delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
+          "mux-cli robots:jobs delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
       },
       csharp: {
         method: 'Robots.Jobs.Delete',
         example:
-          'JobDeleteParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nawait client.Robots.Jobs.Delete(parameters);',
+          'JobDeleteParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nawait client.Robots.Jobs.Delete(parameters);',
       },
       go: {
         method: 'client.Robots.Jobs.Delete',
         example:
-          'package main\n\nimport (\n\t"context"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\terr := client.Robots.Jobs.Delete(context.TODO(), "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\terr := client.Robots.Jobs.Delete(context.TODO(), "rjob_lK9w2kI5J1")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
       },
       http: {
         example:
@@ -4819,37 +4819,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       java: {
         method: 'robots().jobs().delete',
         example:
-          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.JobDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.robots().jobs().delete("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F");\n    }\n}',
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.JobDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.robots().jobs().delete("rjob_lK9w2kI5J1");\n    }\n}',
       },
       kotlin: {
         method: 'robots().jobs().delete',
         example:
-          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.JobDeleteParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    client.robots().jobs().delete("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n}',
+          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.JobDeleteParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    client.robots().jobs().delete("rjob_lK9w2kI5J1")\n}',
       },
       node: {
         method: 'client.robots.jobs.delete',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.robots.jobs.delete('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.robots.jobs.delete('rjob_lK9w2kI5J1');",
       },
       php: {
         method: 'robots->jobs->delete',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->robots->jobs->delete(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($result);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->robots->jobs->delete('rjob_lK9w2kI5J1');\n\nvar_dump($result);",
       },
       python: {
         method: 'robots.jobs.delete',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.robots.jobs.delete(\n    "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",\n)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.robots.jobs.delete(\n    "rjob_lK9w2kI5J1",\n)',
       },
       ruby: {
         method: 'robots.jobs.delete',
         example:
-          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.robots.jobs.delete("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\nputs(result)',
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.robots.jobs.delete("rjob_lK9w2kI5J1")\n\nputs(result)',
       },
       typescript: {
         method: 'client.robots.jobs.delete',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.robots.jobs.delete('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.robots.jobs.delete('rjob_lK9w2kI5J1');",
       },
     },
   },
@@ -4938,22 +4938,22 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     response:
       "{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'ask-questions'; errors?: { message: string; type: string; }[]; outputs?: { answers: object[]; }; parameters?: { asset_id: string; questions: object[]; answer_options?: string[]; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }",
     markdown:
-      "## retrieve\n\n`client.robots.jobs.askQuestions.retrieve(JOB_ID: string): { id: string; created_at: number; status: job_status; units_consumed: number; updated_at: number; workflow: 'ask-questions'; errors?: job_error[]; outputs?: ask_questions_job_outputs; parameters?: ask_questions_job_parameters; passthrough?: string; resources?: object; }`\n\n**get** `/robots/v1/jobs/ask-questions/{JOB_ID}`\n\nRetrieves the current status and results of an 'ask-questions' job.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'ask-questions'; errors?: { message: string; type: string; }[]; outputs?: { answers: object[]; }; parameters?: { asset_id: string; questions: object[]; answer_options?: string[]; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }`\n\n  - `id: string`\n  - `created_at: number`\n  - `status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'`\n  - `units_consumed: number`\n  - `updated_at: number`\n  - `workflow: 'ask-questions'`\n  - `errors?: { message: string; type: string; }[]`\n  - `outputs?: { answers: { answer: string; confidence: number; question: string; reasoning: string; skipped: boolean; }[]; }`\n  - `parameters?: { asset_id: string; questions: { question: string; }[]; answer_options?: string[]; }`\n  - `passthrough?: string`\n  - `resources?: { assets: { id: string; _links: { self: { href: string; }; }; meta?: { creator_id?: string; external_id?: string; title?: string; }; passthrough?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst askQuestionsJob = await client.robots.jobs.askQuestions.retrieve('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');\n\nconsole.log(askQuestionsJob);\n```",
+      "## retrieve\n\n`client.robots.jobs.askQuestions.retrieve(JOB_ID: string): { id: string; created_at: number; status: job_status; units_consumed: number; updated_at: number; workflow: 'ask-questions'; errors?: job_error[]; outputs?: ask_questions_job_outputs; parameters?: ask_questions_job_parameters; passthrough?: string; resources?: object; }`\n\n**get** `/robots/v1/jobs/ask-questions/{JOB_ID}`\n\nRetrieves the current status and results of an 'ask-questions' job.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'ask-questions'; errors?: { message: string; type: string; }[]; outputs?: { answers: object[]; }; parameters?: { asset_id: string; questions: object[]; answer_options?: string[]; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }`\n\n  - `id: string`\n  - `created_at: number`\n  - `status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'`\n  - `units_consumed: number`\n  - `updated_at: number`\n  - `workflow: 'ask-questions'`\n  - `errors?: { message: string; type: string; }[]`\n  - `outputs?: { answers: { answer: string; confidence: number; question: string; reasoning: string; skipped: boolean; }[]; }`\n  - `parameters?: { asset_id: string; questions: { question: string; }[]; answer_options?: string[]; }`\n  - `passthrough?: string`\n  - `resources?: { assets: { id: string; _links: { self: { href: string; }; }; meta?: { creator_id?: string; external_id?: string; title?: string; }; passthrough?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst askQuestionsJob = await client.robots.jobs.askQuestions.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(askQuestionsJob);\n```",
     perLanguage: {
       cli: {
         method: 'ask-questions retrieve',
         example:
-          "mux-cli robots:jobs:ask-questions retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
+          "mux-cli robots:jobs:ask-questions retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
       },
       csharp: {
         method: 'Robots.Jobs.AskQuestions.Retrieve',
         example:
-          'AskQuestionRetrieveParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nvar askQuestionsJob = await client.Robots.Jobs.AskQuestions.Retrieve(parameters);\n\nConsole.WriteLine(askQuestionsJob);',
+          'AskQuestionRetrieveParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nvar askQuestionsJob = await client.Robots.Jobs.AskQuestions.Retrieve(parameters);\n\nConsole.WriteLine(askQuestionsJob);',
       },
       go: {
         method: 'client.Robots.Jobs.AskQuestions.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\taskQuestionsJob, err := client.Robots.Jobs.AskQuestions.Get(context.TODO(), "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", askQuestionsJob.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\taskQuestionsJob, err := client.Robots.Jobs.AskQuestions.Get(context.TODO(), "rjob_lK9w2kI5J1")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", askQuestionsJob.ID)\n}\n',
       },
       http: {
         example:
@@ -4962,37 +4962,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       java: {
         method: 'robots().jobs().askQuestions().retrieve',
         example:
-          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.askquestions.AskQuestionRetrieveParams;\nimport com.mux.api.models.robots.jobs.askquestions.AskQuestionsJob;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AskQuestionsJob askQuestionsJob = client.robots().jobs().askQuestions().retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F");\n    }\n}',
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.askquestions.AskQuestionRetrieveParams;\nimport com.mux.api.models.robots.jobs.askquestions.AskQuestionsJob;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AskQuestionsJob askQuestionsJob = client.robots().jobs().askQuestions().retrieve("rjob_lK9w2kI5J1");\n    }\n}',
       },
       kotlin: {
         method: 'robots().jobs().askQuestions().retrieve',
         example:
-          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.askquestions.AskQuestionRetrieveParams\nimport com.mux.api.models.robots.jobs.askquestions.AskQuestionsJob\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val askQuestionsJob: AskQuestionsJob = client.robots().jobs().askQuestions().retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n}',
+          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.askquestions.AskQuestionRetrieveParams\nimport com.mux.api.models.robots.jobs.askquestions.AskQuestionsJob\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val askQuestionsJob: AskQuestionsJob = client.robots().jobs().askQuestions().retrieve("rjob_lK9w2kI5J1")\n}',
       },
       node: {
         method: 'client.robots.jobs.askQuestions.retrieve',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst askQuestionsJob = await client.robots.jobs.askQuestions.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(askQuestionsJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst askQuestionsJob = await client.robots.jobs.askQuestions.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(askQuestionsJob.id);",
       },
       php: {
         method: 'robots->jobs->askQuestions->retrieve',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$askQuestionsJob = $client->robots->jobs->askQuestions->retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($askQuestionsJob);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$askQuestionsJob = $client->robots->jobs->askQuestions->retrieve(\n  'rjob_lK9w2kI5J1'\n);\n\nvar_dump($askQuestionsJob);",
       },
       python: {
         method: 'robots.jobs.ask_questions.retrieve',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nask_questions_job = client.robots.jobs.ask_questions.retrieve(\n    "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",\n)\nprint(ask_questions_job.id)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nask_questions_job = client.robots.jobs.ask_questions.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(ask_questions_job.id)',
       },
       ruby: {
         method: 'robots.jobs.ask_questions.retrieve',
         example:
-          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nask_questions_job = mux.robots.jobs.ask_questions.retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\nputs(ask_questions_job)',
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nask_questions_job = mux.robots.jobs.ask_questions.retrieve("rjob_lK9w2kI5J1")\n\nputs(ask_questions_job)',
       },
       typescript: {
         method: 'client.robots.jobs.askQuestions.retrieve',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst askQuestionsJob = await client.robots.jobs.askQuestions.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(askQuestionsJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst askQuestionsJob = await client.robots.jobs.askQuestions.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(askQuestionsJob.id);",
       },
     },
   },
@@ -5081,22 +5081,22 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     response:
       "{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'generate-chapters'; errors?: { message: string; type: string; }[]; outputs?: { chapters: object[]; }; parameters?: { asset_id: string; from_language_code?: string; prompt_overrides?: object; to_language_code?: string; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }",
     markdown:
-      "## retrieve\n\n`client.robots.jobs.generateChapters.retrieve(JOB_ID: string): { id: string; created_at: number; status: job_status; units_consumed: number; updated_at: number; workflow: 'generate-chapters'; errors?: job_error[]; outputs?: generate_chapters_job_outputs; parameters?: generate_chapters_job_parameters; passthrough?: string; resources?: object; }`\n\n**get** `/robots/v1/jobs/generate-chapters/{JOB_ID}`\n\nRetrieves the current status and results of a 'generate-chapters' job.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'generate-chapters'; errors?: { message: string; type: string; }[]; outputs?: { chapters: object[]; }; parameters?: { asset_id: string; from_language_code?: string; prompt_overrides?: object; to_language_code?: string; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }`\n\n  - `id: string`\n  - `created_at: number`\n  - `status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'`\n  - `units_consumed: number`\n  - `updated_at: number`\n  - `workflow: 'generate-chapters'`\n  - `errors?: { message: string; type: string; }[]`\n  - `outputs?: { chapters: { start_time: number; title: string; }[]; }`\n  - `parameters?: { asset_id: string; from_language_code?: string; prompt_overrides?: { chapter_guidelines?: string; output_format?: string; task?: string; title_guidelines?: string; }; to_language_code?: string; }`\n  - `passthrough?: string`\n  - `resources?: { assets: { id: string; _links: { self: { href: string; }; }; meta?: { creator_id?: string; external_id?: string; title?: string; }; passthrough?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst generateChaptersJob = await client.robots.jobs.generateChapters.retrieve('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');\n\nconsole.log(generateChaptersJob);\n```",
+      "## retrieve\n\n`client.robots.jobs.generateChapters.retrieve(JOB_ID: string): { id: string; created_at: number; status: job_status; units_consumed: number; updated_at: number; workflow: 'generate-chapters'; errors?: job_error[]; outputs?: generate_chapters_job_outputs; parameters?: generate_chapters_job_parameters; passthrough?: string; resources?: object; }`\n\n**get** `/robots/v1/jobs/generate-chapters/{JOB_ID}`\n\nRetrieves the current status and results of a 'generate-chapters' job.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'generate-chapters'; errors?: { message: string; type: string; }[]; outputs?: { chapters: object[]; }; parameters?: { asset_id: string; from_language_code?: string; prompt_overrides?: object; to_language_code?: string; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }`\n\n  - `id: string`\n  - `created_at: number`\n  - `status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'`\n  - `units_consumed: number`\n  - `updated_at: number`\n  - `workflow: 'generate-chapters'`\n  - `errors?: { message: string; type: string; }[]`\n  - `outputs?: { chapters: { start_time: number; title: string; }[]; }`\n  - `parameters?: { asset_id: string; from_language_code?: string; prompt_overrides?: { chapter_guidelines?: string; output_format?: string; task?: string; title_guidelines?: string; }; to_language_code?: string; }`\n  - `passthrough?: string`\n  - `resources?: { assets: { id: string; _links: { self: { href: string; }; }; meta?: { creator_id?: string; external_id?: string; title?: string; }; passthrough?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst generateChaptersJob = await client.robots.jobs.generateChapters.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(generateChaptersJob);\n```",
     perLanguage: {
       cli: {
         method: 'generate-chapters retrieve',
         example:
-          "mux-cli robots:jobs:generate-chapters retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
+          "mux-cli robots:jobs:generate-chapters retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
       },
       csharp: {
         method: 'Robots.Jobs.GenerateChapters.Retrieve',
         example:
-          'GenerateChapterRetrieveParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nvar generateChaptersJob = await client.Robots.Jobs.GenerateChapters.Retrieve(parameters);\n\nConsole.WriteLine(generateChaptersJob);',
+          'GenerateChapterRetrieveParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nvar generateChaptersJob = await client.Robots.Jobs.GenerateChapters.Retrieve(parameters);\n\nConsole.WriteLine(generateChaptersJob);',
       },
       go: {
         method: 'client.Robots.Jobs.GenerateChapters.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tgenerateChaptersJob, err := client.Robots.Jobs.GenerateChapters.Get(context.TODO(), "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", generateChaptersJob.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tgenerateChaptersJob, err := client.Robots.Jobs.GenerateChapters.Get(context.TODO(), "rjob_lK9w2kI5J1")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", generateChaptersJob.ID)\n}\n',
       },
       http: {
         example:
@@ -5105,37 +5105,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       java: {
         method: 'robots().jobs().generateChapters().retrieve',
         example:
-          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.generatechapters.GenerateChapterRetrieveParams;\nimport com.mux.api.models.robots.jobs.generatechapters.GenerateChaptersJob;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        GenerateChaptersJob generateChaptersJob = client.robots().jobs().generateChapters().retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F");\n    }\n}',
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.generatechapters.GenerateChapterRetrieveParams;\nimport com.mux.api.models.robots.jobs.generatechapters.GenerateChaptersJob;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        GenerateChaptersJob generateChaptersJob = client.robots().jobs().generateChapters().retrieve("rjob_lK9w2kI5J1");\n    }\n}',
       },
       kotlin: {
         method: 'robots().jobs().generateChapters().retrieve',
         example:
-          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.generatechapters.GenerateChapterRetrieveParams\nimport com.mux.api.models.robots.jobs.generatechapters.GenerateChaptersJob\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val generateChaptersJob: GenerateChaptersJob = client.robots().jobs().generateChapters().retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n}',
+          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.generatechapters.GenerateChapterRetrieveParams\nimport com.mux.api.models.robots.jobs.generatechapters.GenerateChaptersJob\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val generateChaptersJob: GenerateChaptersJob = client.robots().jobs().generateChapters().retrieve("rjob_lK9w2kI5J1")\n}',
       },
       node: {
         method: 'client.robots.jobs.generateChapters.retrieve',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst generateChaptersJob = await client.robots.jobs.generateChapters.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(generateChaptersJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst generateChaptersJob = await client.robots.jobs.generateChapters.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(generateChaptersJob.id);",
       },
       php: {
         method: 'robots->jobs->generateChapters->retrieve',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$generateChaptersJob = $client->robots->jobs->generateChapters->retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($generateChaptersJob);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$generateChaptersJob = $client->robots->jobs->generateChapters->retrieve(\n  'rjob_lK9w2kI5J1'\n);\n\nvar_dump($generateChaptersJob);",
       },
       python: {
         method: 'robots.jobs.generate_chapters.retrieve',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ngenerate_chapters_job = client.robots.jobs.generate_chapters.retrieve(\n    "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",\n)\nprint(generate_chapters_job.id)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ngenerate_chapters_job = client.robots.jobs.generate_chapters.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(generate_chapters_job.id)',
       },
       ruby: {
         method: 'robots.jobs.generate_chapters.retrieve',
         example:
-          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ngenerate_chapters_job = mux.robots.jobs.generate_chapters.retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\nputs(generate_chapters_job)',
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ngenerate_chapters_job = mux.robots.jobs.generate_chapters.retrieve("rjob_lK9w2kI5J1")\n\nputs(generate_chapters_job)',
       },
       typescript: {
         method: 'client.robots.jobs.generateChapters.retrieve',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst generateChaptersJob = await client.robots.jobs.generateChapters.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(generateChaptersJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst generateChaptersJob = await client.robots.jobs.generateChapters.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(generateChaptersJob.id);",
       },
     },
   },
@@ -5224,22 +5224,22 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     response:
       "{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'find-key-moments'; errors?: { message: string; type: string; }[]; outputs?: { moments: object[]; }; parameters?: { asset_id: string; max_moments?: number; target_duration_ms?: object; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }",
     markdown:
-      "## retrieve\n\n`client.robots.jobs.findKeyMoments.retrieve(JOB_ID: string): { id: string; created_at: number; status: job_status; units_consumed: number; updated_at: number; workflow: 'find-key-moments'; errors?: job_error[]; outputs?: find_key_moments_job_outputs; parameters?: find_key_moments_job_parameters; passthrough?: string; resources?: object; }`\n\n**get** `/robots/v1/jobs/find-key-moments/{JOB_ID}`\n\nRetrieves the current status and results of a 'find-key-moments' job.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'find-key-moments'; errors?: { message: string; type: string; }[]; outputs?: { moments: object[]; }; parameters?: { asset_id: string; max_moments?: number; target_duration_ms?: object; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }`\n\n  - `id: string`\n  - `created_at: number`\n  - `status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'`\n  - `units_consumed: number`\n  - `updated_at: number`\n  - `workflow: 'find-key-moments'`\n  - `errors?: { message: string; type: string; }[]`\n  - `outputs?: { moments: { audible_narrative: string; cues: { end_ms: number; start_ms: number; text: string; }[]; end_ms: number; notable_audible_concepts: string[]; overall_score: number; start_ms: number; title: string; notable_visual_concepts?: { concept: string; rationale: string; score: number; }[]; visual_narrative?: string; }[]; }`\n  - `parameters?: { asset_id: string; max_moments?: number; target_duration_ms?: { max: number; min: number; }; }`\n  - `passthrough?: string`\n  - `resources?: { assets: { id: string; _links: { self: { href: string; }; }; meta?: { creator_id?: string; external_id?: string; title?: string; }; passthrough?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst findKeyMomentsJob = await client.robots.jobs.findKeyMoments.retrieve('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');\n\nconsole.log(findKeyMomentsJob);\n```",
+      "## retrieve\n\n`client.robots.jobs.findKeyMoments.retrieve(JOB_ID: string): { id: string; created_at: number; status: job_status; units_consumed: number; updated_at: number; workflow: 'find-key-moments'; errors?: job_error[]; outputs?: find_key_moments_job_outputs; parameters?: find_key_moments_job_parameters; passthrough?: string; resources?: object; }`\n\n**get** `/robots/v1/jobs/find-key-moments/{JOB_ID}`\n\nRetrieves the current status and results of a 'find-key-moments' job.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'find-key-moments'; errors?: { message: string; type: string; }[]; outputs?: { moments: object[]; }; parameters?: { asset_id: string; max_moments?: number; target_duration_ms?: object; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }`\n\n  - `id: string`\n  - `created_at: number`\n  - `status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'`\n  - `units_consumed: number`\n  - `updated_at: number`\n  - `workflow: 'find-key-moments'`\n  - `errors?: { message: string; type: string; }[]`\n  - `outputs?: { moments: { audible_narrative: string; cues: { end_ms: number; start_ms: number; text: string; }[]; end_ms: number; notable_audible_concepts: string[]; overall_score: number; start_ms: number; title: string; notable_visual_concepts?: { concept: string; rationale: string; score: number; }[]; visual_narrative?: string; }[]; }`\n  - `parameters?: { asset_id: string; max_moments?: number; target_duration_ms?: { max: number; min: number; }; }`\n  - `passthrough?: string`\n  - `resources?: { assets: { id: string; _links: { self: { href: string; }; }; meta?: { creator_id?: string; external_id?: string; title?: string; }; passthrough?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst findKeyMomentsJob = await client.robots.jobs.findKeyMoments.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(findKeyMomentsJob);\n```",
     perLanguage: {
       cli: {
         method: 'find-key-moments retrieve',
         example:
-          "mux-cli robots:jobs:find-key-moments retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
+          "mux-cli robots:jobs:find-key-moments retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
       },
       csharp: {
         method: 'Robots.Jobs.FindKeyMoments.Retrieve',
         example:
-          'FindKeyMomentRetrieveParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nvar findKeyMomentsJob = await client.Robots.Jobs.FindKeyMoments.Retrieve(parameters);\n\nConsole.WriteLine(findKeyMomentsJob);',
+          'FindKeyMomentRetrieveParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nvar findKeyMomentsJob = await client.Robots.Jobs.FindKeyMoments.Retrieve(parameters);\n\nConsole.WriteLine(findKeyMomentsJob);',
       },
       go: {
         method: 'client.Robots.Jobs.FindKeyMoments.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tfindKeyMomentsJob, err := client.Robots.Jobs.FindKeyMoments.Get(context.TODO(), "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", findKeyMomentsJob.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tfindKeyMomentsJob, err := client.Robots.Jobs.FindKeyMoments.Get(context.TODO(), "rjob_lK9w2kI5J1")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", findKeyMomentsJob.ID)\n}\n',
       },
       http: {
         example:
@@ -5248,37 +5248,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       java: {
         method: 'robots().jobs().findKeyMoments().retrieve',
         example:
-          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.findkeymoments.FindKeyMomentRetrieveParams;\nimport com.mux.api.models.robots.jobs.findkeymoments.FindKeyMomentsJob;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        FindKeyMomentsJob findKeyMomentsJob = client.robots().jobs().findKeyMoments().retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F");\n    }\n}',
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.findkeymoments.FindKeyMomentRetrieveParams;\nimport com.mux.api.models.robots.jobs.findkeymoments.FindKeyMomentsJob;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        FindKeyMomentsJob findKeyMomentsJob = client.robots().jobs().findKeyMoments().retrieve("rjob_lK9w2kI5J1");\n    }\n}',
       },
       kotlin: {
         method: 'robots().jobs().findKeyMoments().retrieve',
         example:
-          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.findkeymoments.FindKeyMomentRetrieveParams\nimport com.mux.api.models.robots.jobs.findkeymoments.FindKeyMomentsJob\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val findKeyMomentsJob: FindKeyMomentsJob = client.robots().jobs().findKeyMoments().retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n}',
+          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.findkeymoments.FindKeyMomentRetrieveParams\nimport com.mux.api.models.robots.jobs.findkeymoments.FindKeyMomentsJob\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val findKeyMomentsJob: FindKeyMomentsJob = client.robots().jobs().findKeyMoments().retrieve("rjob_lK9w2kI5J1")\n}',
       },
       node: {
         method: 'client.robots.jobs.findKeyMoments.retrieve',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst findKeyMomentsJob = await client.robots.jobs.findKeyMoments.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(findKeyMomentsJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst findKeyMomentsJob = await client.robots.jobs.findKeyMoments.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(findKeyMomentsJob.id);",
       },
       php: {
         method: 'robots->jobs->findKeyMoments->retrieve',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$findKeyMomentsJob = $client->robots->jobs->findKeyMoments->retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($findKeyMomentsJob);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$findKeyMomentsJob = $client->robots->jobs->findKeyMoments->retrieve(\n  'rjob_lK9w2kI5J1'\n);\n\nvar_dump($findKeyMomentsJob);",
       },
       python: {
         method: 'robots.jobs.find_key_moments.retrieve',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nfind_key_moments_job = client.robots.jobs.find_key_moments.retrieve(\n    "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",\n)\nprint(find_key_moments_job.id)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nfind_key_moments_job = client.robots.jobs.find_key_moments.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(find_key_moments_job.id)',
       },
       ruby: {
         method: 'robots.jobs.find_key_moments.retrieve',
         example:
-          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nfind_key_moments_job = mux.robots.jobs.find_key_moments.retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\nputs(find_key_moments_job)',
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nfind_key_moments_job = mux.robots.jobs.find_key_moments.retrieve("rjob_lK9w2kI5J1")\n\nputs(find_key_moments_job)',
       },
       typescript: {
         method: 'client.robots.jobs.findKeyMoments.retrieve',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst findKeyMomentsJob = await client.robots.jobs.findKeyMoments.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(findKeyMomentsJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst findKeyMomentsJob = await client.robots.jobs.findKeyMoments.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(findKeyMomentsJob.id);",
       },
     },
   },
@@ -5367,22 +5367,22 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     response:
       "{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'moderate'; errors?: { message: string; type: string; }[]; outputs?: { exceeds_threshold: boolean; max_scores: object; thumbnail_scores: object[]; }; parameters?: { asset_id: string; language_code?: string; max_samples?: number; sampling_interval?: number; thresholds?: object; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }",
     markdown:
-      "## retrieve\n\n`client.robots.jobs.moderate.retrieve(JOB_ID: string): { id: string; created_at: number; status: job_status; units_consumed: number; updated_at: number; workflow: 'moderate'; errors?: job_error[]; outputs?: moderate_job_outputs; parameters?: moderate_job_parameters; passthrough?: string; resources?: object; }`\n\n**get** `/robots/v1/jobs/moderate/{JOB_ID}`\n\nRetrieves the current status and results of a 'moderate' job.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'moderate'; errors?: { message: string; type: string; }[]; outputs?: { exceeds_threshold: boolean; max_scores: object; thumbnail_scores: object[]; }; parameters?: { asset_id: string; language_code?: string; max_samples?: number; sampling_interval?: number; thresholds?: object; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }`\n\n  - `id: string`\n  - `created_at: number`\n  - `status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'`\n  - `units_consumed: number`\n  - `updated_at: number`\n  - `workflow: 'moderate'`\n  - `errors?: { message: string; type: string; }[]`\n  - `outputs?: { exceeds_threshold: boolean; max_scores: { sexual: number; violence: number; }; thumbnail_scores: { sexual: number; violence: number; time?: number; }[]; }`\n  - `parameters?: { asset_id: string; language_code?: string; max_samples?: number; sampling_interval?: number; thresholds?: { sexual?: number; violence?: number; }; }`\n  - `passthrough?: string`\n  - `resources?: { assets: { id: string; _links: { self: { href: string; }; }; meta?: { creator_id?: string; external_id?: string; title?: string; }; passthrough?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst moderateJob = await client.robots.jobs.moderate.retrieve('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');\n\nconsole.log(moderateJob);\n```",
+      "## retrieve\n\n`client.robots.jobs.moderate.retrieve(JOB_ID: string): { id: string; created_at: number; status: job_status; units_consumed: number; updated_at: number; workflow: 'moderate'; errors?: job_error[]; outputs?: moderate_job_outputs; parameters?: moderate_job_parameters; passthrough?: string; resources?: object; }`\n\n**get** `/robots/v1/jobs/moderate/{JOB_ID}`\n\nRetrieves the current status and results of a 'moderate' job.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'moderate'; errors?: { message: string; type: string; }[]; outputs?: { exceeds_threshold: boolean; max_scores: object; thumbnail_scores: object[]; }; parameters?: { asset_id: string; language_code?: string; max_samples?: number; sampling_interval?: number; thresholds?: object; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }`\n\n  - `id: string`\n  - `created_at: number`\n  - `status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'`\n  - `units_consumed: number`\n  - `updated_at: number`\n  - `workflow: 'moderate'`\n  - `errors?: { message: string; type: string; }[]`\n  - `outputs?: { exceeds_threshold: boolean; max_scores: { sexual: number; violence: number; }; thumbnail_scores: { sexual: number; violence: number; time?: number; }[]; }`\n  - `parameters?: { asset_id: string; language_code?: string; max_samples?: number; sampling_interval?: number; thresholds?: { sexual?: number; violence?: number; }; }`\n  - `passthrough?: string`\n  - `resources?: { assets: { id: string; _links: { self: { href: string; }; }; meta?: { creator_id?: string; external_id?: string; title?: string; }; passthrough?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst moderateJob = await client.robots.jobs.moderate.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(moderateJob);\n```",
     perLanguage: {
       cli: {
         method: 'moderate retrieve',
         example:
-          "mux-cli robots:jobs:moderate retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
+          "mux-cli robots:jobs:moderate retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
       },
       csharp: {
         method: 'Robots.Jobs.Moderate.Retrieve',
         example:
-          'ModerateRetrieveParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nvar moderateJob = await client.Robots.Jobs.Moderate.Retrieve(parameters);\n\nConsole.WriteLine(moderateJob);',
+          'ModerateRetrieveParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nvar moderateJob = await client.Robots.Jobs.Moderate.Retrieve(parameters);\n\nConsole.WriteLine(moderateJob);',
       },
       go: {
         method: 'client.Robots.Jobs.Moderate.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tmoderateJob, err := client.Robots.Jobs.Moderate.Get(context.TODO(), "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", moderateJob.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tmoderateJob, err := client.Robots.Jobs.Moderate.Get(context.TODO(), "rjob_lK9w2kI5J1")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", moderateJob.ID)\n}\n',
       },
       http: {
         example:
@@ -5391,37 +5391,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       java: {
         method: 'robots().jobs().moderate().retrieve',
         example:
-          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.moderate.ModerateJob;\nimport com.mux.api.models.robots.jobs.moderate.ModerateRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        ModerateJob moderateJob = client.robots().jobs().moderate().retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F");\n    }\n}',
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.moderate.ModerateJob;\nimport com.mux.api.models.robots.jobs.moderate.ModerateRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        ModerateJob moderateJob = client.robots().jobs().moderate().retrieve("rjob_lK9w2kI5J1");\n    }\n}',
       },
       kotlin: {
         method: 'robots().jobs().moderate().retrieve',
         example:
-          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.moderate.ModerateJob\nimport com.mux.api.models.robots.jobs.moderate.ModerateRetrieveParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val moderateJob: ModerateJob = client.robots().jobs().moderate().retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n}',
+          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.moderate.ModerateJob\nimport com.mux.api.models.robots.jobs.moderate.ModerateRetrieveParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val moderateJob: ModerateJob = client.robots().jobs().moderate().retrieve("rjob_lK9w2kI5J1")\n}',
       },
       node: {
         method: 'client.robots.jobs.moderate.retrieve',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst moderateJob = await client.robots.jobs.moderate.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(moderateJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst moderateJob = await client.robots.jobs.moderate.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(moderateJob.id);",
       },
       php: {
         method: 'robots->jobs->moderate->retrieve',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$moderateJob = $client->robots->jobs->moderate->retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($moderateJob);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$moderateJob = $client->robots->jobs->moderate->retrieve('rjob_lK9w2kI5J1');\n\nvar_dump($moderateJob);",
       },
       python: {
         method: 'robots.jobs.moderate.retrieve',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nmoderate_job = client.robots.jobs.moderate.retrieve(\n    "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",\n)\nprint(moderate_job.id)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nmoderate_job = client.robots.jobs.moderate.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(moderate_job.id)',
       },
       ruby: {
         method: 'robots.jobs.moderate.retrieve',
         example:
-          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nmoderate_job = mux.robots.jobs.moderate.retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\nputs(moderate_job)',
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nmoderate_job = mux.robots.jobs.moderate.retrieve("rjob_lK9w2kI5J1")\n\nputs(moderate_job)',
       },
       typescript: {
         method: 'client.robots.jobs.moderate.retrieve',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst moderateJob = await client.robots.jobs.moderate.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(moderateJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst moderateJob = await client.robots.jobs.moderate.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(moderateJob.id);",
       },
     },
   },
@@ -5511,22 +5511,22 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     response:
       "{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'summarize'; errors?: { message: string; type: string; }[]; outputs?: { description: string; tags: string[]; title: string; }; parameters?: { asset_id: string; description_length?: number; prompt_overrides?: object; tag_count?: number; title_length?: number; tone?: 'neutral' | 'playful' | 'professional'; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }",
     markdown:
-      "## retrieve\n\n`client.robots.jobs.summarize.retrieve(JOB_ID: string): { id: string; created_at: number; status: job_status; units_consumed: number; updated_at: number; workflow: 'summarize'; errors?: job_error[]; outputs?: summarize_job_outputs; parameters?: summarize_job_parameters; passthrough?: string; resources?: object; }`\n\n**get** `/robots/v1/jobs/summarize/{JOB_ID}`\n\nRetrieves the current status and results of a 'summarize' job.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'summarize'; errors?: { message: string; type: string; }[]; outputs?: { description: string; tags: string[]; title: string; }; parameters?: { asset_id: string; description_length?: number; prompt_overrides?: object; tag_count?: number; title_length?: number; tone?: 'neutral' | 'playful' | 'professional'; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }`\n\n  - `id: string`\n  - `created_at: number`\n  - `status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'`\n  - `units_consumed: number`\n  - `updated_at: number`\n  - `workflow: 'summarize'`\n  - `errors?: { message: string; type: string; }[]`\n  - `outputs?: { description: string; tags: string[]; title: string; }`\n  - `parameters?: { asset_id: string; description_length?: number; prompt_overrides?: { description?: string; keywords?: string; quality_guidelines?: string; task?: string; title?: string; }; tag_count?: number; title_length?: number; tone?: 'neutral' | 'playful' | 'professional'; }`\n  - `passthrough?: string`\n  - `resources?: { assets: { id: string; _links: { self: { href: string; }; }; meta?: { creator_id?: string; external_id?: string; title?: string; }; passthrough?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst summarizeJob = await client.robots.jobs.summarize.retrieve('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');\n\nconsole.log(summarizeJob);\n```",
+      "## retrieve\n\n`client.robots.jobs.summarize.retrieve(JOB_ID: string): { id: string; created_at: number; status: job_status; units_consumed: number; updated_at: number; workflow: 'summarize'; errors?: job_error[]; outputs?: summarize_job_outputs; parameters?: summarize_job_parameters; passthrough?: string; resources?: object; }`\n\n**get** `/robots/v1/jobs/summarize/{JOB_ID}`\n\nRetrieves the current status and results of a 'summarize' job.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'summarize'; errors?: { message: string; type: string; }[]; outputs?: { description: string; tags: string[]; title: string; }; parameters?: { asset_id: string; description_length?: number; prompt_overrides?: object; tag_count?: number; title_length?: number; tone?: 'neutral' | 'playful' | 'professional'; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }`\n\n  - `id: string`\n  - `created_at: number`\n  - `status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'`\n  - `units_consumed: number`\n  - `updated_at: number`\n  - `workflow: 'summarize'`\n  - `errors?: { message: string; type: string; }[]`\n  - `outputs?: { description: string; tags: string[]; title: string; }`\n  - `parameters?: { asset_id: string; description_length?: number; prompt_overrides?: { description?: string; keywords?: string; quality_guidelines?: string; task?: string; title?: string; }; tag_count?: number; title_length?: number; tone?: 'neutral' | 'playful' | 'professional'; }`\n  - `passthrough?: string`\n  - `resources?: { assets: { id: string; _links: { self: { href: string; }; }; meta?: { creator_id?: string; external_id?: string; title?: string; }; passthrough?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst summarizeJob = await client.robots.jobs.summarize.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(summarizeJob);\n```",
     perLanguage: {
       cli: {
         method: 'summarize retrieve',
         example:
-          "mux-cli robots:jobs:summarize retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
+          "mux-cli robots:jobs:summarize retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
       },
       csharp: {
         method: 'Robots.Jobs.Summarize.Retrieve',
         example:
-          'SummarizeRetrieveParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nvar summarizeJob = await client.Robots.Jobs.Summarize.Retrieve(parameters);\n\nConsole.WriteLine(summarizeJob);',
+          'SummarizeRetrieveParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nvar summarizeJob = await client.Robots.Jobs.Summarize.Retrieve(parameters);\n\nConsole.WriteLine(summarizeJob);',
       },
       go: {
         method: 'client.Robots.Jobs.Summarize.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tsummarizeJob, err := client.Robots.Jobs.Summarize.Get(context.TODO(), "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", summarizeJob.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\tsummarizeJob, err := client.Robots.Jobs.Summarize.Get(context.TODO(), "rjob_lK9w2kI5J1")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", summarizeJob.ID)\n}\n',
       },
       http: {
         example:
@@ -5535,37 +5535,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       java: {
         method: 'robots().jobs().summarize().retrieve',
         example:
-          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.summarize.SummarizeJob;\nimport com.mux.api.models.robots.jobs.summarize.SummarizeRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        SummarizeJob summarizeJob = client.robots().jobs().summarize().retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F");\n    }\n}',
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.summarize.SummarizeJob;\nimport com.mux.api.models.robots.jobs.summarize.SummarizeRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        SummarizeJob summarizeJob = client.robots().jobs().summarize().retrieve("rjob_lK9w2kI5J1");\n    }\n}',
       },
       kotlin: {
         method: 'robots().jobs().summarize().retrieve',
         example:
-          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.summarize.SummarizeJob\nimport com.mux.api.models.robots.jobs.summarize.SummarizeRetrieveParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val summarizeJob: SummarizeJob = client.robots().jobs().summarize().retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n}',
+          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.summarize.SummarizeJob\nimport com.mux.api.models.robots.jobs.summarize.SummarizeRetrieveParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val summarizeJob: SummarizeJob = client.robots().jobs().summarize().retrieve("rjob_lK9w2kI5J1")\n}',
       },
       node: {
         method: 'client.robots.jobs.summarize.retrieve',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst summarizeJob = await client.robots.jobs.summarize.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(summarizeJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst summarizeJob = await client.robots.jobs.summarize.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(summarizeJob.id);",
       },
       php: {
         method: 'robots->jobs->summarize->retrieve',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$summarizeJob = $client->robots->jobs->summarize->retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($summarizeJob);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$summarizeJob = $client->robots->jobs->summarize->retrieve('rjob_lK9w2kI5J1');\n\nvar_dump($summarizeJob);",
       },
       python: {
         method: 'robots.jobs.summarize.retrieve',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsummarize_job = client.robots.jobs.summarize.retrieve(\n    "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",\n)\nprint(summarize_job.id)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsummarize_job = client.robots.jobs.summarize.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(summarize_job.id)',
       },
       ruby: {
         method: 'robots.jobs.summarize.retrieve',
         example:
-          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nsummarize_job = mux.robots.jobs.summarize.retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\nputs(summarize_job)',
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nsummarize_job = mux.robots.jobs.summarize.retrieve("rjob_lK9w2kI5J1")\n\nputs(summarize_job)',
       },
       typescript: {
         method: 'client.robots.jobs.summarize.retrieve',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst summarizeJob = await client.robots.jobs.summarize.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(summarizeJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst summarizeJob = await client.robots.jobs.summarize.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(summarizeJob.id);",
       },
     },
   },
@@ -5655,22 +5655,22 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     response:
       "{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'translate-captions'; errors?: { message: string; type: string; }[]; outputs?: { temporary_vtt_url?: string; uploaded_track_id?: string; }; parameters?: { asset_id: string; from_language_code: string; to_language_code: string; upload_to_mux?: boolean; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }",
     markdown:
-      "## retrieve\n\n`client.robots.jobs.translateCaptions.retrieve(JOB_ID: string): { id: string; created_at: number; status: job_status; units_consumed: number; updated_at: number; workflow: 'translate-captions'; errors?: job_error[]; outputs?: translate_captions_job_outputs; parameters?: translate_captions_job_parameters; passthrough?: string; resources?: object; }`\n\n**get** `/robots/v1/jobs/translate-captions/{JOB_ID}`\n\nRetrieves the current status and results of a 'translate-captions' job.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'translate-captions'; errors?: { message: string; type: string; }[]; outputs?: { temporary_vtt_url?: string; uploaded_track_id?: string; }; parameters?: { asset_id: string; from_language_code: string; to_language_code: string; upload_to_mux?: boolean; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }`\n\n  - `id: string`\n  - `created_at: number`\n  - `status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'`\n  - `units_consumed: number`\n  - `updated_at: number`\n  - `workflow: 'translate-captions'`\n  - `errors?: { message: string; type: string; }[]`\n  - `outputs?: { temporary_vtt_url?: string; uploaded_track_id?: string; }`\n  - `parameters?: { asset_id: string; from_language_code: string; to_language_code: string; upload_to_mux?: boolean; }`\n  - `passthrough?: string`\n  - `resources?: { assets: { id: string; _links: { self: { href: string; }; }; meta?: { creator_id?: string; external_id?: string; title?: string; }; passthrough?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst translateCaptionsJob = await client.robots.jobs.translateCaptions.retrieve('rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F');\n\nconsole.log(translateCaptionsJob);\n```",
+      "## retrieve\n\n`client.robots.jobs.translateCaptions.retrieve(JOB_ID: string): { id: string; created_at: number; status: job_status; units_consumed: number; updated_at: number; workflow: 'translate-captions'; errors?: job_error[]; outputs?: translate_captions_job_outputs; parameters?: translate_captions_job_parameters; passthrough?: string; resources?: object; }`\n\n**get** `/robots/v1/jobs/translate-captions/{JOB_ID}`\n\nRetrieves the current status and results of a 'translate-captions' job.\n\n### Parameters\n\n- `JOB_ID: string`\n\n### Returns\n\n- `{ id: string; created_at: number; status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'; units_consumed: number; updated_at: number; workflow: 'translate-captions'; errors?: { message: string; type: string; }[]; outputs?: { temporary_vtt_url?: string; uploaded_track_id?: string; }; parameters?: { asset_id: string; from_language_code: string; to_language_code: string; upload_to_mux?: boolean; }; passthrough?: string; resources?: { assets: { id: string; _links: object; meta?: object; passthrough?: string; }[]; }; }`\n\n  - `id: string`\n  - `created_at: number`\n  - `status: 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'`\n  - `units_consumed: number`\n  - `updated_at: number`\n  - `workflow: 'translate-captions'`\n  - `errors?: { message: string; type: string; }[]`\n  - `outputs?: { temporary_vtt_url?: string; uploaded_track_id?: string; }`\n  - `parameters?: { asset_id: string; from_language_code: string; to_language_code: string; upload_to_mux?: boolean; }`\n  - `passthrough?: string`\n  - `resources?: { assets: { id: string; _links: { self: { href: string; }; }; meta?: { creator_id?: string; external_id?: string; title?: string; }; passthrough?: string; }[]; }`\n\n### Example\n\n```typescript\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux();\n\nconst translateCaptionsJob = await client.robots.jobs.translateCaptions.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(translateCaptionsJob);\n```",
     perLanguage: {
       cli: {
         method: 'translate-captions retrieve',
         example:
-          "mux-cli robots:jobs:translate-captions retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",
+          "mux-cli robots:jobs:translate-captions retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
       },
       csharp: {
         method: 'Robots.Jobs.TranslateCaptions.Retrieve',
         example:
-          'TranslateCaptionRetrieveParams parameters = new()\n{\n    JobID = "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F"\n};\n\nvar translateCaptionsJob = await client.Robots.Jobs.TranslateCaptions.Retrieve(parameters);\n\nConsole.WriteLine(translateCaptionsJob);',
+          'TranslateCaptionRetrieveParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nvar translateCaptionsJob = await client.Robots.Jobs.TranslateCaptions.Retrieve(parameters);\n\nConsole.WriteLine(translateCaptionsJob);',
       },
       go: {
         method: 'client.Robots.Jobs.TranslateCaptions.Get',
         example:
-          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\ttranslateCaptionsJob, err := client.Robots.Jobs.TranslateCaptions.Get(context.TODO(), "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", translateCaptionsJob.ID)\n}\n',
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/stainless-sdks/mux-go"\n\t"github.com/stainless-sdks/mux-go/muxoption"\n)\n\nfunc main() {\n\tclient := mux.NewClient(\n\t\tmuxoption.WithTokenId("my token id"),\n\t\tmuxoption.WithTokenSecret("my secret"),\n\t)\n\ttranslateCaptionsJob, err := client.Robots.Jobs.TranslateCaptions.Get(context.TODO(), "rjob_lK9w2kI5J1")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", translateCaptionsJob.ID)\n}\n',
       },
       http: {
         example:
@@ -5679,37 +5679,37 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       java: {
         method: 'robots().jobs().translateCaptions().retrieve',
         example:
-          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.translatecaptions.TranslateCaptionRetrieveParams;\nimport com.mux.api.models.robots.jobs.translatecaptions.TranslateCaptionsJob;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        TranslateCaptionsJob translateCaptionsJob = client.robots().jobs().translateCaptions().retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F");\n    }\n}',
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robots.jobs.translatecaptions.TranslateCaptionRetrieveParams;\nimport com.mux.api.models.robots.jobs.translatecaptions.TranslateCaptionsJob;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        TranslateCaptionsJob translateCaptionsJob = client.robots().jobs().translateCaptions().retrieve("rjob_lK9w2kI5J1");\n    }\n}',
       },
       kotlin: {
         method: 'robots().jobs().translateCaptions().retrieve',
         example:
-          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.translatecaptions.TranslateCaptionRetrieveParams\nimport com.mux.api.models.robots.jobs.translatecaptions.TranslateCaptionsJob\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val translateCaptionsJob: TranslateCaptionsJob = client.robots().jobs().translateCaptions().retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n}',
+          'package com.mux.api.example\n\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.robots.jobs.translatecaptions.TranslateCaptionRetrieveParams\nimport com.mux.api.models.robots.jobs.translatecaptions.TranslateCaptionsJob\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val translateCaptionsJob: TranslateCaptionsJob = client.robots().jobs().translateCaptions().retrieve("rjob_lK9w2kI5J1")\n}',
       },
       node: {
         method: 'client.robots.jobs.translateCaptions.retrieve',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst translateCaptionsJob = await client.robots.jobs.translateCaptions.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(translateCaptionsJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst translateCaptionsJob = await client.robots.jobs.translateCaptions.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(translateCaptionsJob.id);",
       },
       php: {
         method: 'robots->jobs->translateCaptions->retrieve',
         example:
-          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$translateCaptionsJob = $client->robots->jobs->translateCaptions->retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F'\n);\n\nvar_dump($translateCaptionsJob);",
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$translateCaptionsJob = $client->robots->jobs->translateCaptions->retrieve(\n  'rjob_lK9w2kI5J1'\n);\n\nvar_dump($translateCaptionsJob);",
       },
       python: {
         method: 'robots.jobs.translate_captions.retrieve',
         example:
-          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntranslate_captions_job = client.robots.jobs.translate_captions.retrieve(\n    "rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F",\n)\nprint(translate_captions_job.id)',
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntranslate_captions_job = client.robots.jobs.translate_captions.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(translate_captions_job.id)',
       },
       ruby: {
         method: 'robots.jobs.translate_captions.retrieve',
         example:
-          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ntranslate_captions_job = mux.robots.jobs.translate_captions.retrieve("rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F")\n\nputs(translate_captions_job)',
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ntranslate_captions_job = mux.robots.jobs.translate_captions.retrieve("rjob_lK9w2kI5J1")\n\nputs(translate_captions_job)',
       },
       typescript: {
         method: 'client.robots.jobs.translateCaptions.retrieve',
         example:
-          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst translateCaptionsJob = await client.robots.jobs.translateCaptions.retrieve(\n  'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',\n);\n\nconsole.log(translateCaptionsJob.id);",
+          "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst translateCaptionsJob = await client.robots.jobs.translateCaptions.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(translateCaptionsJob.id);",
       },
     },
   },

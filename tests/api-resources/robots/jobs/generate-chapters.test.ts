@@ -40,9 +40,7 @@ describe('resource generateChapters', () => {
   });
 
   test('retrieve', async () => {
-    const responsePromise = client.robots.jobs.generateChapters.retrieve(
-      'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',
-    );
+    const responsePromise = client.robots.jobs.generateChapters.retrieve('rjob_lK9w2kI5J1');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
