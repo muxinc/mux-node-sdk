@@ -66,6 +66,8 @@ export interface GenerateChaptersJob {
    */
   created_at: number;
 
+  parameters: GenerateChaptersJobParameters;
+
   /**
    * Current job status.
    */
@@ -92,8 +94,6 @@ export interface GenerateChaptersJob {
    * Workflow results. Present when status is 'completed'.
    */
   outputs?: GenerateChaptersJobOutputs;
-
-  parameters?: GenerateChaptersJobParameters;
 
   /**
    * Arbitrary string supplied at creation, returned as-is.

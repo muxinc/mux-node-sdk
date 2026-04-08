@@ -67,6 +67,8 @@ export interface ModerateJob {
    */
   created_at: number;
 
+  parameters: ModerateJobParameters;
+
   /**
    * Current job status.
    */
@@ -93,8 +95,6 @@ export interface ModerateJob {
    * Workflow results. Present when status is 'completed'.
    */
   outputs?: ModerateJobOutputs;
-
-  parameters?: ModerateJobParameters;
 
   /**
    * Arbitrary string supplied at creation, returned as-is.

@@ -67,6 +67,8 @@ export interface FindKeyMomentsJob {
    */
   created_at: number;
 
+  parameters: FindKeyMomentsJobParameters;
+
   /**
    * Current job status.
    */
@@ -93,8 +95,6 @@ export interface FindKeyMomentsJob {
    * Workflow results. Present when status is 'completed'.
    */
   outputs?: FindKeyMomentsJobOutputs;
-
-  parameters?: FindKeyMomentsJobParameters;
 
   /**
    * Arbitrary string supplied at creation, returned as-is.

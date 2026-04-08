@@ -71,6 +71,8 @@ export interface AskQuestionsJob {
    */
   created_at: number;
 
+  parameters: AskQuestionsJobParameters;
+
   /**
    * Current job status.
    */
@@ -97,8 +99,6 @@ export interface AskQuestionsJob {
    * Workflow results. Present when status is 'completed'.
    */
   outputs?: AskQuestionsJobOutputs;
-
-  parameters?: AskQuestionsJobParameters;
 
   /**
    * Arbitrary string supplied at creation, returned as-is.

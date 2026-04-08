@@ -68,6 +68,8 @@ export interface SummarizeJob {
    */
   created_at: number;
 
+  parameters: SummarizeJobParameters;
+
   /**
    * Current job status.
    */
@@ -94,8 +96,6 @@ export interface SummarizeJob {
    * Workflow results. Present when status is 'completed'.
    */
   outputs?: SummarizeJobOutputs;
-
-  parameters?: SummarizeJobParameters;
 
   /**
    * Arbitrary string supplied at creation, returned as-is.

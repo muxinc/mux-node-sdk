@@ -69,6 +69,8 @@ export interface TranslateCaptionsJob {
    */
   created_at: number;
 
+  parameters: TranslateCaptionsJobParameters;
+
   /**
    * Current job status.
    */
@@ -95,8 +97,6 @@ export interface TranslateCaptionsJob {
    * Workflow results. Present when status is 'completed'.
    */
   outputs?: TranslateCaptionsJobOutputs;
-
-  parameters?: TranslateCaptionsJobParameters;
 
   /**
    * Arbitrary string supplied at creation, returned as-is.
