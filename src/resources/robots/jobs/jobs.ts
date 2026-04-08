@@ -116,17 +116,17 @@ export class Jobs extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.robots.jobs.cancel(
+   * const jobSummary = await client.robots.jobs.cancel(
    *   'rjob_E6fdcD7d-cDdf-baAa-b31A-1ae5A92d336F',
    * );
    * ```
    */
-  cancel(jobID: string, options?: RequestOptions): APIPromise<JobCancelResponse> {
+  cancel(jobID: string, options?: RequestOptions): APIPromise<JobSummary> {
     return (
       this._client.post(path`/robots/v1/jobs/${jobID}/cancel`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as APIPromise<{ data: JobCancelResponse }>
+      }) as APIPromise<{ data: JobSummary }>
     )._thenUnwrap((obj) => obj.data);
   }
 }
@@ -206,8 +206,6 @@ export namespace JobSummary {
   }
 }
 
-export interface JobCancelResponse {}
-
 export interface JobListParams extends BasePageParams {
   /**
    * Filter by Mux asset ID
@@ -243,7 +241,6 @@ export declare namespace Jobs {
     type JobError as JobError,
     type JobStatus as JobStatus,
     type JobSummary as JobSummary,
-    type JobCancelResponse as JobCancelResponse,
     type JobSummariesBasePage as JobSummariesBasePage,
     type JobListParams as JobListParams,
   };

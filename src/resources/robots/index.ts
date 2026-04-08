@@ -5,7 +5,6 @@ export {
   type JobError,
   type JobStatus,
   type JobSummary,
-  type JobCancelResponse,
   type JobListParams,
   type JobSummariesBasePage,
 } from './jobs/index';

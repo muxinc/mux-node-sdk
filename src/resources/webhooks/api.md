@@ -51,6 +51,36 @@ Types:
 - <code><a href="./src/resources/webhooks.ts">VideoLiveStreamSimulcastTargetDeletedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">VideoLiveStreamSimulcastTargetUpdatedWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">VideoDeliveryHighTrafficWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobAskQuestionsCancelledWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobAskQuestionsCompletedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobAskQuestionsErroredWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobAskQuestionsPendingWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobAskQuestionsProcessingWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobFindKeyMomentsCancelledWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobFindKeyMomentsCompletedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobFindKeyMomentsErroredWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobFindKeyMomentsPendingWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobFindKeyMomentsProcessingWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobGenerateChaptersCancelledWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobGenerateChaptersCompletedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobGenerateChaptersErroredWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobGenerateChaptersPendingWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobGenerateChaptersProcessingWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobModerateCancelledWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobModerateCompletedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobModerateErroredWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobModeratePendingWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobModerateProcessingWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobSummarizeCancelledWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobSummarizeCompletedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobSummarizeErroredWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobSummarizePendingWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobSummarizeProcessingWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobTranslateCaptionsCancelledWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobTranslateCaptionsCompletedWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobTranslateCaptionsErroredWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobTranslateCaptionsPendingWebhookEvent</a></code>
+- <code><a href="./src/resources/webhooks.ts">RobotsJobTranslateCaptionsProcessingWebhookEvent</a></code>
 - <code><a href="./src/resources/webhooks.ts">UnwrapWebhookEvent</a></code>
 
 Methods:

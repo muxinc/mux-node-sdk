@@ -70,6 +70,11 @@ export interface ModerateJob {
   status: JobsAPI.JobStatus;
 
   /**
+   * Number of Mux AI units consumed by this job.
+   */
+  units_consumed: number;
+
+  /**
    * Unix timestamp (seconds) when the job was last updated.
    */
   updated_at: number;
@@ -213,6 +218,12 @@ export namespace ModerateJobOutputs {
      * Violence content score from 0.0 to 1.0.
      */
     violence: number;
+
+    /**
+     * Time in seconds of the thumbnail within the video. Absent for transcript
+     * moderation.
+     */
+    time?: number;
   }
 }
 
@@ -223,7 +234,8 @@ export interface ModerateJobParameters {
   asset_id: string;
 
   /**
-   * Language code for transcript analysis on audio-only assets. Defaults to "en".
+   * BCP 47 language code for transcript analysis on audio-only assets. Defaults to
+   * "en".
    */
   language_code?: string;
 
@@ -234,7 +246,7 @@ export interface ModerateJobParameters {
   max_samples?: number;
 
   /**
-   * Interval in seconds between sampled thumbnails. Minimum 5.
+   * Interval, in seconds, between sampled thumbnails. Minimum 5 seconds.
    */
   sampling_interval?: number;
 

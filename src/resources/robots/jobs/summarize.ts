@@ -70,6 +70,11 @@ export interface SummarizeJob {
   status: JobsAPI.JobStatus;
 
   /**
+   * Number of Mux AI units consumed by this job.
+   */
+  units_consumed: number;
+
+  /**
    * Unix timestamp (seconds) when the job was last updated.
    */
   updated_at: number;
@@ -200,7 +205,7 @@ export interface SummarizeJobParameters {
   asset_id: string;
 
   /**
-   * Desired description length in characters.
+   * Maximum description length in words.
    */
   description_length?: number;
 
@@ -210,12 +215,12 @@ export interface SummarizeJobParameters {
   prompt_overrides?: SummarizeJobParameters.PromptOverrides;
 
   /**
-   * Desired number of tags to generate. Defaults to 10.
+   * Maximum number of tags to include in the generated output. Defaults to 10.
    */
   tag_count?: number;
 
   /**
-   * Desired title length in characters.
+   * Maximum title length in words.
    */
   title_length?: number;
 

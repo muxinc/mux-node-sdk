@@ -1042,6 +1042,126 @@ export namespace VideoDeliveryHighTrafficWebhookEvent {
   }
 }
 
+export interface RobotsJobAskQuestionsCancelledWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.ask_questions.cancelled';
+}
+
+export interface RobotsJobAskQuestionsCompletedWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.ask_questions.completed';
+}
+
+export interface RobotsJobAskQuestionsErroredWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.ask_questions.errored';
+}
+
+export interface RobotsJobAskQuestionsPendingWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.ask_questions.pending';
+}
+
+export interface RobotsJobAskQuestionsProcessingWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.ask_questions.processing';
+}
+
+export interface RobotsJobFindKeyMomentsCancelledWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.find_key_moments.cancelled';
+}
+
+export interface RobotsJobFindKeyMomentsCompletedWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.find_key_moments.completed';
+}
+
+export interface RobotsJobFindKeyMomentsErroredWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.find_key_moments.errored';
+}
+
+export interface RobotsJobFindKeyMomentsPendingWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.find_key_moments.pending';
+}
+
+export interface RobotsJobFindKeyMomentsProcessingWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.find_key_moments.processing';
+}
+
+export interface RobotsJobGenerateChaptersCancelledWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.generate_chapters.cancelled';
+}
+
+export interface RobotsJobGenerateChaptersCompletedWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.generate_chapters.completed';
+}
+
+export interface RobotsJobGenerateChaptersErroredWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.generate_chapters.errored';
+}
+
+export interface RobotsJobGenerateChaptersPendingWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.generate_chapters.pending';
+}
+
+export interface RobotsJobGenerateChaptersProcessingWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.generate_chapters.processing';
+}
+
+export interface RobotsJobModerateCancelledWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.moderate.cancelled';
+}
+
+export interface RobotsJobModerateCompletedWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.moderate.completed';
+}
+
+export interface RobotsJobModerateErroredWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.moderate.errored';
+}
+
+export interface RobotsJobModeratePendingWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.moderate.pending';
+}
+
+export interface RobotsJobModerateProcessingWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.moderate.processing';
+}
+
+export interface RobotsJobSummarizeCancelledWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.summarize.cancelled';
+}
+
+export interface RobotsJobSummarizeCompletedWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.summarize.completed';
+}
+
+export interface RobotsJobSummarizeErroredWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.summarize.errored';
+}
+
+export interface RobotsJobSummarizePendingWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.summarize.pending';
+}
+
+export interface RobotsJobSummarizeProcessingWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.summarize.processing';
+}
+
+export interface RobotsJobTranslateCaptionsCancelledWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.translate_captions.cancelled';
+}
+
+export interface RobotsJobTranslateCaptionsCompletedWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.translate_captions.completed';
+}
+
+export interface RobotsJobTranslateCaptionsErroredWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.translate_captions.errored';
+}
+
+export interface RobotsJobTranslateCaptionsPendingWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.translate_captions.pending';
+}
+
+export interface RobotsJobTranslateCaptionsProcessingWebhookEvent extends BaseWebhookEvent {
+  type: 'robots.job.translate_captions.processing';
+}
+
 export type UnwrapWebhookEvent =
   | VideoAssetCreatedWebhookEvent
   | VideoAssetReadyWebhookEvent
@@ -1090,7 +1210,37 @@ export type UnwrapWebhookEvent =
   | VideoLiveStreamSimulcastTargetErroredWebhookEvent
   | VideoLiveStreamSimulcastTargetDeletedWebhookEvent
   | VideoLiveStreamSimulcastTargetUpdatedWebhookEvent
-  | VideoDeliveryHighTrafficWebhookEvent;
+  | VideoDeliveryHighTrafficWebhookEvent
+  | RobotsJobAskQuestionsCancelledWebhookEvent
+  | RobotsJobAskQuestionsCompletedWebhookEvent
+  | RobotsJobAskQuestionsErroredWebhookEvent
+  | RobotsJobAskQuestionsPendingWebhookEvent
+  | RobotsJobAskQuestionsProcessingWebhookEvent
+  | RobotsJobFindKeyMomentsCancelledWebhookEvent
+  | RobotsJobFindKeyMomentsCompletedWebhookEvent
+  | RobotsJobFindKeyMomentsErroredWebhookEvent
+  | RobotsJobFindKeyMomentsPendingWebhookEvent
+  | RobotsJobFindKeyMomentsProcessingWebhookEvent
+  | RobotsJobGenerateChaptersCancelledWebhookEvent
+  | RobotsJobGenerateChaptersCompletedWebhookEvent
+  | RobotsJobGenerateChaptersErroredWebhookEvent
+  | RobotsJobGenerateChaptersPendingWebhookEvent
+  | RobotsJobGenerateChaptersProcessingWebhookEvent
+  | RobotsJobModerateCancelledWebhookEvent
+  | RobotsJobModerateCompletedWebhookEvent
+  | RobotsJobModerateErroredWebhookEvent
+  | RobotsJobModeratePendingWebhookEvent
+  | RobotsJobModerateProcessingWebhookEvent
+  | RobotsJobSummarizeCancelledWebhookEvent
+  | RobotsJobSummarizeCompletedWebhookEvent
+  | RobotsJobSummarizeErroredWebhookEvent
+  | RobotsJobSummarizePendingWebhookEvent
+  | RobotsJobSummarizeProcessingWebhookEvent
+  | RobotsJobTranslateCaptionsCancelledWebhookEvent
+  | RobotsJobTranslateCaptionsCompletedWebhookEvent
+  | RobotsJobTranslateCaptionsErroredWebhookEvent
+  | RobotsJobTranslateCaptionsPendingWebhookEvent
+  | RobotsJobTranslateCaptionsProcessingWebhookEvent;
 
 export declare namespace Webhooks {
   export {
@@ -1143,6 +1293,36 @@ export declare namespace Webhooks {
     type VideoLiveStreamSimulcastTargetDeletedWebhookEvent as VideoLiveStreamSimulcastTargetDeletedWebhookEvent,
     type VideoLiveStreamSimulcastTargetUpdatedWebhookEvent as VideoLiveStreamSimulcastTargetUpdatedWebhookEvent,
     type VideoDeliveryHighTrafficWebhookEvent as VideoDeliveryHighTrafficWebhookEvent,
+    type RobotsJobAskQuestionsCancelledWebhookEvent as RobotsJobAskQuestionsCancelledWebhookEvent,
+    type RobotsJobAskQuestionsCompletedWebhookEvent as RobotsJobAskQuestionsCompletedWebhookEvent,
+    type RobotsJobAskQuestionsErroredWebhookEvent as RobotsJobAskQuestionsErroredWebhookEvent,
+    type RobotsJobAskQuestionsPendingWebhookEvent as RobotsJobAskQuestionsPendingWebhookEvent,
+    type RobotsJobAskQuestionsProcessingWebhookEvent as RobotsJobAskQuestionsProcessingWebhookEvent,
+    type RobotsJobFindKeyMomentsCancelledWebhookEvent as RobotsJobFindKeyMomentsCancelledWebhookEvent,
+    type RobotsJobFindKeyMomentsCompletedWebhookEvent as RobotsJobFindKeyMomentsCompletedWebhookEvent,
+    type RobotsJobFindKeyMomentsErroredWebhookEvent as RobotsJobFindKeyMomentsErroredWebhookEvent,
+    type RobotsJobFindKeyMomentsPendingWebhookEvent as RobotsJobFindKeyMomentsPendingWebhookEvent,
+    type RobotsJobFindKeyMomentsProcessingWebhookEvent as RobotsJobFindKeyMomentsProcessingWebhookEvent,
+    type RobotsJobGenerateChaptersCancelledWebhookEvent as RobotsJobGenerateChaptersCancelledWebhookEvent,
+    type RobotsJobGenerateChaptersCompletedWebhookEvent as RobotsJobGenerateChaptersCompletedWebhookEvent,
+    type RobotsJobGenerateChaptersErroredWebhookEvent as RobotsJobGenerateChaptersErroredWebhookEvent,
+    type RobotsJobGenerateChaptersPendingWebhookEvent as RobotsJobGenerateChaptersPendingWebhookEvent,
+    type RobotsJobGenerateChaptersProcessingWebhookEvent as RobotsJobGenerateChaptersProcessingWebhookEvent,
+    type RobotsJobModerateCancelledWebhookEvent as RobotsJobModerateCancelledWebhookEvent,
+    type RobotsJobModerateCompletedWebhookEvent as RobotsJobModerateCompletedWebhookEvent,
+    type RobotsJobModerateErroredWebhookEvent as RobotsJobModerateErroredWebhookEvent,
+    type RobotsJobModeratePendingWebhookEvent as RobotsJobModeratePendingWebhookEvent,
+    type RobotsJobModerateProcessingWebhookEvent as RobotsJobModerateProcessingWebhookEvent,
+    type RobotsJobSummarizeCancelledWebhookEvent as RobotsJobSummarizeCancelledWebhookEvent,
+    type RobotsJobSummarizeCompletedWebhookEvent as RobotsJobSummarizeCompletedWebhookEvent,
+    type RobotsJobSummarizeErroredWebhookEvent as RobotsJobSummarizeErroredWebhookEvent,
+    type RobotsJobSummarizePendingWebhookEvent as RobotsJobSummarizePendingWebhookEvent,
+    type RobotsJobSummarizeProcessingWebhookEvent as RobotsJobSummarizeProcessingWebhookEvent,
+    type RobotsJobTranslateCaptionsCancelledWebhookEvent as RobotsJobTranslateCaptionsCancelledWebhookEvent,
+    type RobotsJobTranslateCaptionsCompletedWebhookEvent as RobotsJobTranslateCaptionsCompletedWebhookEvent,
+    type RobotsJobTranslateCaptionsErroredWebhookEvent as RobotsJobTranslateCaptionsErroredWebhookEvent,
+    type RobotsJobTranslateCaptionsPendingWebhookEvent as RobotsJobTranslateCaptionsPendingWebhookEvent,
+    type RobotsJobTranslateCaptionsProcessingWebhookEvent as RobotsJobTranslateCaptionsProcessingWebhookEvent,
     type UnwrapWebhookEvent as UnwrapWebhookEvent,
   };
 }

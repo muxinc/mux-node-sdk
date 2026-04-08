@@ -7,13 +7,12 @@ Types:
 - <code><a href="./src/resources/robots/jobs/jobs.ts">JobError</a></code>
 - <code><a href="./src/resources/robots/jobs/jobs.ts">JobStatus</a></code>
 - <code><a href="./src/resources/robots/jobs/jobs.ts">JobSummary</a></code>
-- <code><a href="./src/resources/robots/jobs/jobs.ts">JobCancelResponse</a></code>
 
 Methods:
 
 - <code title="get /robots/v1/jobs">client.robots.jobs.<a href="./src/resources/robots/jobs/jobs.ts">list</a>({ ...params }) -> JobSummariesBasePage</code>
 - <code title="delete /robots/v1/jobs/{JOB_ID}">client.robots.jobs.<a href="./src/resources/robots/jobs/jobs.ts">delete</a>(jobID) -> void</code>
-- <code title="post /robots/v1/jobs/{JOB_ID}/cancel">client.robots.jobs.<a href="./src/resources/robots/jobs/jobs.ts">cancel</a>(jobID) -> JobCancelResponse</code>
+- <code title="post /robots/v1/jobs/{JOB_ID}/cancel">client.robots.jobs.<a href="./src/resources/robots/jobs/jobs.ts">cancel</a>(jobID) -> JobSummary</code>
 
 ### AskQuestions
 

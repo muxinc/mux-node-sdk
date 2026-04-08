@@ -69,6 +69,11 @@ export interface GenerateChaptersJob {
   status: JobsAPI.JobStatus;
 
   /**
+   * Number of Mux AI units consumed by this job.
+   */
+  units_consumed: number;
+
+  /**
    * Unix timestamp (seconds) when the job was last updated.
    */
   updated_at: number;
@@ -203,7 +208,9 @@ export interface GenerateChaptersJobParameters {
   asset_id: string;
 
   /**
-   * BCP 47 language code of the caption track to analyze. Defaults to "en".
+   * BCP 47 language code of the caption track to analyze. The asset must have a
+   * ready subtitle track matching this code or the request will be rejected.
+   * Defaults to "en".
    */
   from_language_code?: string;
 

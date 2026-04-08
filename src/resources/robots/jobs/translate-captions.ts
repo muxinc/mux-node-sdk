@@ -74,6 +74,11 @@ export interface TranslateCaptionsJob {
   status: JobsAPI.JobStatus;
 
   /**
+   * Number of Mux AI units consumed by this job.
+   */
+  units_consumed: number;
+
+  /**
    * Unix timestamp (seconds) when the job was last updated.
    */
   updated_at: number;
@@ -201,12 +206,15 @@ export interface TranslateCaptionsJobParameters {
   asset_id: string;
 
   /**
-   * ISO 639-1 source language code (e.g. "en", "fr").
+   * BCP 47 language code of the source caption track to translate (e.g. "en", "fr").
+   * The asset must have a ready subtitle track matching this code or the request
+   * will be rejected.
    */
   from_language_code: string;
 
   /**
-   * ISO 639-1 target language code (e.g. "es", "ja").
+   * BCP 47 language code for the translated output (e.g. "es", "ja"). The asset must
+   * not already have a text track for this language.
    */
   to_language_code: string;
 

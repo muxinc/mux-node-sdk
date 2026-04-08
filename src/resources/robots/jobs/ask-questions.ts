@@ -76,6 +76,11 @@ export interface AskQuestionsJob {
   status: JobsAPI.JobStatus;
 
   /**
+   * Number of Mux AI units consumed by this job.
+   */
+  units_consumed: number;
+
+  /**
    * Unix timestamp (seconds) when the job was last updated.
    */
   updated_at: number;
