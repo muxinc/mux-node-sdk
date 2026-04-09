@@ -237,33 +237,41 @@ export interface ModerateJobParameters {
   asset_id: string;
 
   /**
-   * BCP 47 language code for transcript analysis on audio-only assets. Defaults to
-   * "en".
+   * BCP 47 language code for transcript analysis. Used only for audio-only assets;
+   * ignored for video assets with visual content. If omitted for audio-only assets,
+   * the first ready text track is used. Defaults to "en".
    */
   language_code?: string;
 
   /**
-   * Maximum number of thumbnails to sample. When set, samples are distributed evenly
-   * across the video with the first and last frames pinned.
+   * Maximum number of thumbnails to sample. Acts as a cap — if sampling_interval
+   * produces fewer samples than this limit, the interval is respected; otherwise
+   * samples are evenly distributed with first and last frames pinned.
    */
   max_samples?: number;
 
   /**
-   * Interval, in seconds, between sampled thumbnails. Minimum 5 seconds.
+   * Interval, in seconds, between sampled thumbnails. Minimum 5 seconds. When
+   * max_samples is also set, the actual sampling density is the more restrictive of
+   * the two constraints.
    */
   sampling_interval?: number;
 
   /**
-   * Score thresholds that determine whether content is flagged. Defaults to {sexual:
-   * 0.7, violence: 0.8}.
+   * Score thresholds that determine whether content is flagged. When combined with
+   * sampling_interval or max_samples, the exceeds_threshold flag reflects whether
+   * any category's highest observed score exceeds its configured threshold. Defaults
+   * to {sexual: 0.7, violence: 0.8}.
    */
   thresholds?: ModerateJobParameters.Thresholds;
 }
 
 export namespace ModerateJobParameters {
   /**
-   * Score thresholds that determine whether content is flagged. Defaults to {sexual:
-   * 0.7, violence: 0.8}.
+   * Score thresholds that determine whether content is flagged. When combined with
+   * sampling_interval or max_samples, the exceeds_threshold flag reflects whether
+   * any category's highest observed score exceeds its configured threshold. Defaults
+   * to {sexual: 0.7, violence: 0.8}.
    */
   export interface Thresholds {
     /**

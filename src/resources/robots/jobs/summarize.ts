@@ -214,6 +214,18 @@ export interface SummarizeJobParameters {
   description_length?: number;
 
   /**
+   * BCP 47 language code of the caption track to analyze (e.g. "en", "fr"). When
+   * omitted, the SDK uses the default track.
+   */
+  language_code?: string;
+
+  /**
+   * BCP 47 language code for the generated summary output (e.g. "en", "fr", "ja").
+   * Auto-detected from the transcript if omitted.
+   */
+  output_language_code?: string;
+
+  /**
    * Override specific sections of the summarization prompt.
    */
   prompt_overrides?: SummarizeJobParameters.PromptOverrides;

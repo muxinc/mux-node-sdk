@@ -26,14 +26,14 @@ describe('resource generateChapters', () => {
     const response = await client.robots.jobs.generateChapters.create({
       parameters: {
         asset_id: 'mux_asset_123abc',
-        from_language_code: 'en',
+        language_code: 'x',
+        output_language_code: 'x',
         prompt_overrides: {
           chapter_guidelines: 'x',
           output_format: 'x',
           task: 'x',
           title_guidelines: 'x',
         },
-        to_language_code: 'x',
       },
       passthrough: 'passthrough',
     });

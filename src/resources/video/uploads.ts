@@ -122,11 +122,6 @@ export interface Upload {
   timeout: number;
 
   /**
-   * The URL to upload the associated source media to.
-   */
-  url: string;
-
-  /**
    * Only set once the upload is in the `asset_created` state.
    */
   asset_id?: string;
@@ -143,6 +138,11 @@ export interface Upload {
    * created will be a `test` Asset.
    */
   test?: boolean;
+
+  /**
+   * The URL to upload the associated source media to.
+   */
+  url?: string;
 }
 
 export namespace Upload {

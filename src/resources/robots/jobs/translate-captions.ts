@@ -20,7 +20,7 @@ export class TranslateCaptions extends APIResource {
    *   await client.robots.jobs.translateCaptions.create({
    *     parameters: {
    *       asset_id: 'mux_asset_123abc',
-   *       from_language_code: 'en',
+   *       track_id: 'track_en_abc123',
    *       to_language_code: 'es',
    *       upload_to_mux: true,
    *     },
@@ -194,6 +194,11 @@ export interface TranslateCaptionsJobOutputs {
   temporary_vtt_url?: string;
 
   /**
+   * The Mux text track ID of the source caption track that was translated.
+   */
+  track_id?: string;
+
+  /**
    * Mux text track ID of the uploaded translated captions. Present when
    * upload_to_mux is true.
    */
@@ -207,17 +212,16 @@ export interface TranslateCaptionsJobParameters {
   asset_id: string;
 
   /**
-   * BCP 47 language code of the source caption track to translate (e.g. "en", "fr").
-   * The asset must have a ready subtitle track matching this code or the request
-   * will be rejected.
-   */
-  from_language_code: string;
-
-  /**
    * BCP 47 language code for the translated output (e.g. "es", "ja"). The asset must
    * not already have a text track for this language.
    */
   to_language_code: string;
+
+  /**
+   * The Mux text track ID of the source caption track to translate. The asset must
+   * have a ready text track matching this ID or the request will be rejected.
+   */
+  track_id: string;
 
   /**
    * Whether to upload the translated VTT and attach it as a text track on the Mux

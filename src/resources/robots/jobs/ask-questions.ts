@@ -246,6 +246,12 @@ export interface AskQuestionsJobParameters {
    * "low"].
    */
   answer_options?: Array<string>;
+
+  /**
+   * BCP 47 language code of the caption track to analyze (e.g. "en", "fr"). When
+   * omitted, the SDK uses the default track.
+   */
+  language_code?: string;
 }
 
 export namespace AskQuestionsJobParameters {

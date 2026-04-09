@@ -17,10 +17,7 @@ export class GenerateChapters extends APIResource {
    * ```ts
    * const generateChaptersJob =
    *   await client.robots.jobs.generateChapters.create({
-   *     parameters: {
-   *       asset_id: 'mux_asset_123abc',
-   *       from_language_code: 'en',
-   *     },
+   *     parameters: { asset_id: 'mux_asset_123abc' },
    *   });
    * ```
    */
@@ -211,22 +208,21 @@ export interface GenerateChaptersJobParameters {
   asset_id: string;
 
   /**
-   * BCP 47 language code of the caption track to analyze. The asset must have a
-   * ready subtitle track matching this code or the request will be rejected.
-   * Defaults to "en".
+   * BCP 47 language code of the caption track to analyze (e.g. "en", "fr"). When
+   * omitted, the SDK prefers English if available.
    */
-  from_language_code?: string;
-
-  /**
-   * Override specific sections of the chapter generation prompt.
-   */
-  prompt_overrides?: GenerateChaptersJobParameters.PromptOverrides;
+  language_code?: string;
 
   /**
    * BCP 47 language code for the output chapter titles. Auto-detected from the
    * transcript if omitted.
    */
-  to_language_code?: string;
+  output_language_code?: string;
+
+  /**
+   * Override specific sections of the chapter generation prompt.
+   */
+  prompt_overrides?: GenerateChaptersJobParameters.PromptOverrides;
 }
 
 export namespace GenerateChaptersJobParameters {

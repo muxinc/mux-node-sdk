@@ -27,6 +27,8 @@ describe('resource summarize', () => {
       parameters: {
         asset_id: 'mux_asset_123abc',
         description_length: 1,
+        language_code: 'x',
+        output_language_code: 'x',
         prompt_overrides: {
           description: 'x',
           keywords: 'x',

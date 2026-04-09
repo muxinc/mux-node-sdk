@@ -13,8 +13,8 @@ describe('resource translateCaptions', () => {
     const responsePromise = client.robots.jobs.translateCaptions.create({
       parameters: {
         asset_id: 'mux_asset_123abc',
-        from_language_code: 'en',
         to_language_code: 'es',
+        track_id: 'track_en_abc123',
       },
     });
     const rawResponse = await responsePromise.asResponse();
@@ -30,8 +30,8 @@ describe('resource translateCaptions', () => {
     const response = await client.robots.jobs.translateCaptions.create({
       parameters: {
         asset_id: 'mux_asset_123abc',
-        from_language_code: 'en',
         to_language_code: 'es',
+        track_id: 'track_en_abc123',
         upload_to_mux: true,
       },
       passthrough: 'passthrough',

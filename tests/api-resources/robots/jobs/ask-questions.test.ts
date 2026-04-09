@@ -31,6 +31,7 @@ describe('resource askQuestions', () => {
         asset_id: 'mux_asset_123abc',
         questions: [{ question: 'Is there a person speaking on camera?' }],
         answer_options: ['yes', 'no'],
+        language_code: 'x',
       },
       passthrough: 'passthrough',
     });
