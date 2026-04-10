@@ -141,6 +141,11 @@ export interface JobError {
    * Stable public error category identifier.
    */
   type: string;
+
+  /**
+   * Whether retrying this job may resolve the error.
+   */
+  retryable?: boolean;
 }
 
 /**

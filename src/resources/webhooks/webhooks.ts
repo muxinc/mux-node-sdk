@@ -22281,6 +22281,11 @@ export namespace RobotsJobAskQuestionsCancelledWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -22514,6 +22519,11 @@ export namespace RobotsJobAskQuestionsCompletedWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -22747,6 +22757,11 @@ export namespace RobotsJobAskQuestionsErroredWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -22980,6 +22995,11 @@ export namespace RobotsJobAskQuestionsPendingWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -23213,6 +23233,11 @@ export namespace RobotsJobAskQuestionsProcessingWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -23447,6 +23472,11 @@ export namespace RobotsJobFindKeyMomentsCancelledWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -23737,6 +23767,11 @@ export namespace RobotsJobFindKeyMomentsCompletedWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -24027,6 +24062,11 @@ export namespace RobotsJobFindKeyMomentsErroredWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -24317,6 +24357,11 @@ export namespace RobotsJobFindKeyMomentsPendingWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -24607,6 +24652,11 @@ export namespace RobotsJobFindKeyMomentsProcessingWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -24912,6 +24962,11 @@ export namespace RobotsJobGenerateChaptersCancelledWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -25142,6 +25197,11 @@ export namespace RobotsJobGenerateChaptersCompletedWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -25372,6 +25432,11 @@ export namespace RobotsJobGenerateChaptersErroredWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -25602,6 +25667,11 @@ export namespace RobotsJobGenerateChaptersPendingWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -25832,6 +25902,11 @@ export namespace RobotsJobGenerateChaptersProcessingWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -26069,6 +26144,11 @@ export namespace RobotsJobModerateCancelledWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -26331,6 +26411,11 @@ export namespace RobotsJobModerateCompletedWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -26593,6 +26678,11 @@ export namespace RobotsJobModerateErroredWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -26855,6 +26945,11 @@ export namespace RobotsJobModeratePendingWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -27117,6 +27212,11 @@ export namespace RobotsJobModerateProcessingWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -27399,6 +27499,11 @@ export namespace RobotsJobSummarizeCancelledWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -27652,6 +27757,11 @@ export namespace RobotsJobSummarizeCompletedWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -27905,6 +28015,11 @@ export namespace RobotsJobSummarizeErroredWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -28158,6 +28273,11 @@ export namespace RobotsJobSummarizePendingWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -28411,6 +28531,11 @@ export namespace RobotsJobSummarizeProcessingWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -28611,6 +28736,11 @@ export namespace RobotsJobTranslateCaptionsCancelledWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -28813,6 +28943,11 @@ export namespace RobotsJobTranslateCaptionsCompletedWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -29015,6 +29150,11 @@ export namespace RobotsJobTranslateCaptionsErroredWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -29217,6 +29357,11 @@ export namespace RobotsJobTranslateCaptionsPendingWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
@@ -29419,6 +29564,11 @@ export namespace RobotsJobTranslateCaptionsProcessingWebhookEvent {
        * Stable public error category identifier.
        */
       type: string;
+
+      /**
+       * Whether retrying this job may resolve the error.
+       */
+      retryable?: boolean;
     }
 
     /**
