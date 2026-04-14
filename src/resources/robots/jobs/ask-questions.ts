@@ -21,10 +21,11 @@ export class AskQuestions extends APIResource {
    *       asset_id: 'mux_asset_123abc',
    *       questions: [
    *         {
-   *           question: 'Is there a person speaking on camera?',
+   *           question:
+   *             'How many people are speaking on camera?',
+   *           answer_options: ['one', 'two', 'three or more'],
    *         },
    *       ],
-   *       answer_options: ['yes', 'no'],
    *     },
    *   });
    * ```
@@ -235,17 +236,10 @@ export interface AskQuestionsJobParameters {
   asset_id: string;
 
   /**
-   * One or more questions to ask about the video. All questions are evaluated in a
-   * single AI call for efficiency.
+   * One or more questions to ask about the video. Each question can specify its own
+   * answer_options.
    */
   questions: Array<AskQuestionsJobParameters.Question>;
-
-  /**
-   * Allowed answer values the AI must choose from. Defaults to ["yes", "no"] if not
-   * provided. Can be customized to any set of options, e.g. ["high", "medium",
-   * "low"].
-   */
-  answer_options?: Array<string>;
 
   /**
    * BCP 47 language code of the caption track to analyze (e.g. "en", "fr"). When
@@ -260,6 +254,11 @@ export namespace AskQuestionsJobParameters {
      * The question to ask about the video content.
      */
     question: string;
+
+    /**
+     * Allowed answer values for this question. Defaults to ["yes", "no"].
+     */
+    answer_options?: Array<string>;
   }
 }
 

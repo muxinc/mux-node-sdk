@@ -13,7 +13,7 @@ describe('resource askQuestions', () => {
     const responsePromise = client.robots.jobs.askQuestions.create({
       parameters: {
         asset_id: 'mux_asset_123abc',
-        questions: [{ question: 'Is there a person speaking on camera?' }],
+        questions: [{ question: 'How many people are speaking on camera?' }],
       },
     });
     const rawResponse = await responsePromise.asResponse();
@@ -29,8 +29,12 @@ describe('resource askQuestions', () => {
     const response = await client.robots.jobs.askQuestions.create({
       parameters: {
         asset_id: 'mux_asset_123abc',
-        questions: [{ question: 'Is there a person speaking on camera?' }],
-        answer_options: ['yes', 'no'],
+        questions: [
+          {
+            question: 'How many people are speaking on camera?',
+            answer_options: ['one', 'two', 'three or more'],
+          },
+        ],
         language_code: 'x',
       },
       passthrough: 'passthrough',

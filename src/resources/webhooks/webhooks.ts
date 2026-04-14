@@ -22243,17 +22243,10 @@ export namespace RobotsJobAskQuestionsCancelledWebhookEvent {
       asset_id: string;
 
       /**
-       * One or more questions to ask about the video. All questions are evaluated in a
-       * single AI call for efficiency.
+       * One or more questions to ask about the video. Each question can specify its own
+       * answer_options.
        */
       questions: Array<Parameters.Question>;
-
-      /**
-       * Allowed answer values the AI must choose from. Defaults to ["yes", "no"] if not
-       * provided. Can be customized to any set of options, e.g. ["high", "medium",
-       * "low"].
-       */
-      answer_options?: Array<string>;
 
       /**
        * BCP 47 language code of the caption track to analyze (e.g. "en", "fr"). When
@@ -22268,6 +22261,11 @@ export namespace RobotsJobAskQuestionsCancelledWebhookEvent {
          * The question to ask about the video content.
          */
         question: string;
+
+        /**
+         * Allowed answer values for this question. Defaults to ["yes", "no"].
+         */
+        answer_options?: Array<string>;
       }
     }
 
@@ -22481,17 +22479,10 @@ export namespace RobotsJobAskQuestionsCompletedWebhookEvent {
       asset_id: string;
 
       /**
-       * One or more questions to ask about the video. All questions are evaluated in a
-       * single AI call for efficiency.
+       * One or more questions to ask about the video. Each question can specify its own
+       * answer_options.
        */
       questions: Array<Parameters.Question>;
-
-      /**
-       * Allowed answer values the AI must choose from. Defaults to ["yes", "no"] if not
-       * provided. Can be customized to any set of options, e.g. ["high", "medium",
-       * "low"].
-       */
-      answer_options?: Array<string>;
 
       /**
        * BCP 47 language code of the caption track to analyze (e.g. "en", "fr"). When
@@ -22506,6 +22497,11 @@ export namespace RobotsJobAskQuestionsCompletedWebhookEvent {
          * The question to ask about the video content.
          */
         question: string;
+
+        /**
+         * Allowed answer values for this question. Defaults to ["yes", "no"].
+         */
+        answer_options?: Array<string>;
       }
     }
 
@@ -22719,17 +22715,10 @@ export namespace RobotsJobAskQuestionsErroredWebhookEvent {
       asset_id: string;
 
       /**
-       * One or more questions to ask about the video. All questions are evaluated in a
-       * single AI call for efficiency.
+       * One or more questions to ask about the video. Each question can specify its own
+       * answer_options.
        */
       questions: Array<Parameters.Question>;
-
-      /**
-       * Allowed answer values the AI must choose from. Defaults to ["yes", "no"] if not
-       * provided. Can be customized to any set of options, e.g. ["high", "medium",
-       * "low"].
-       */
-      answer_options?: Array<string>;
 
       /**
        * BCP 47 language code of the caption track to analyze (e.g. "en", "fr"). When
@@ -22744,6 +22733,11 @@ export namespace RobotsJobAskQuestionsErroredWebhookEvent {
          * The question to ask about the video content.
          */
         question: string;
+
+        /**
+         * Allowed answer values for this question. Defaults to ["yes", "no"].
+         */
+        answer_options?: Array<string>;
       }
     }
 
@@ -22957,17 +22951,10 @@ export namespace RobotsJobAskQuestionsPendingWebhookEvent {
       asset_id: string;
 
       /**
-       * One or more questions to ask about the video. All questions are evaluated in a
-       * single AI call for efficiency.
+       * One or more questions to ask about the video. Each question can specify its own
+       * answer_options.
        */
       questions: Array<Parameters.Question>;
-
-      /**
-       * Allowed answer values the AI must choose from. Defaults to ["yes", "no"] if not
-       * provided. Can be customized to any set of options, e.g. ["high", "medium",
-       * "low"].
-       */
-      answer_options?: Array<string>;
 
       /**
        * BCP 47 language code of the caption track to analyze (e.g. "en", "fr"). When
@@ -22982,6 +22969,11 @@ export namespace RobotsJobAskQuestionsPendingWebhookEvent {
          * The question to ask about the video content.
          */
         question: string;
+
+        /**
+         * Allowed answer values for this question. Defaults to ["yes", "no"].
+         */
+        answer_options?: Array<string>;
       }
     }
 
@@ -23195,17 +23187,10 @@ export namespace RobotsJobAskQuestionsProcessingWebhookEvent {
       asset_id: string;
 
       /**
-       * One or more questions to ask about the video. All questions are evaluated in a
-       * single AI call for efficiency.
+       * One or more questions to ask about the video. Each question can specify its own
+       * answer_options.
        */
       questions: Array<Parameters.Question>;
-
-      /**
-       * Allowed answer values the AI must choose from. Defaults to ["yes", "no"] if not
-       * provided. Can be customized to any set of options, e.g. ["high", "medium",
-       * "low"].
-       */
-      answer_options?: Array<string>;
 
       /**
        * BCP 47 language code of the caption track to analyze (e.g. "en", "fr"). When
@@ -23220,6 +23205,11 @@ export namespace RobotsJobAskQuestionsProcessingWebhookEvent {
          * The question to ask about the video content.
          */
         question: string;
+
+        /**
+         * Allowed answer values for this question. Defaults to ["yes", "no"].
+         */
+        answer_options?: Array<string>;
       }
     }
 
