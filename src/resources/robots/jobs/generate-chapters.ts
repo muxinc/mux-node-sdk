@@ -2,55 +2,8 @@
 
 import { APIResource } from '../../../core/resource';
 import * as JobsAPI from './jobs';
-import { APIPromise } from '../../../core/api-promise';
-import { RequestOptions } from '../../../internal/request-options';
-import { path } from '../../../internal/utils/path';
 
-/**
- * Generate chapters for a video.
- */
-export class GenerateChapters extends APIResource {
-  /**
-   * Creates a new job that uses AI to generate chapters for a Mux Video asset.
-   *
-   * @example
-   * ```ts
-   * const generateChaptersJob =
-   *   await client.robots.jobs.generateChapters.create({
-   *     parameters: { asset_id: 'mux_asset_123abc' },
-   *   });
-   * ```
-   */
-  create(body: GenerateChapterCreateParams, options?: RequestOptions): APIPromise<GenerateChaptersJob> {
-    return (
-      this._client.post('/robots/v1/jobs/generate-chapters', {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: GenerateChaptersJob }>
-    )._thenUnwrap((obj) => obj.data);
-  }
-
-  /**
-   * Retrieves the current status and results of a 'generate-chapters' job.
-   *
-   * @example
-   * ```ts
-   * const generateChaptersJob =
-   *   await client.robots.jobs.generateChapters.retrieve(
-   *     'rjob_lK9w2kI5J1',
-   *   );
-   * ```
-   */
-  retrieve(jobID: string, options?: RequestOptions): APIPromise<GenerateChaptersJob> {
-    return (
-      this._client.get(path`/robots/v1/jobs/generate-chapters/${jobID}`, {
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: GenerateChaptersJob }>
-    )._thenUnwrap((obj) => obj.data);
-  }
-}
+export class GenerateChapters extends APIResource {}
 
 export interface GenerateChaptersJob {
   /**
@@ -252,21 +205,10 @@ export namespace GenerateChaptersJobParameters {
   }
 }
 
-export interface GenerateChapterCreateParams {
-  parameters: GenerateChaptersJobParameters;
-
-  /**
-   * Arbitrary string stored with the job and returned in responses. Useful for
-   * correlating jobs with your own systems.
-   */
-  passthrough?: string;
-}
-
 export declare namespace GenerateChapters {
   export {
     type GenerateChaptersJob as GenerateChaptersJob,
     type GenerateChaptersJobOutputs as GenerateChaptersJobOutputs,
     type GenerateChaptersJobParameters as GenerateChaptersJobParameters,
-    type GenerateChapterCreateParams as GenerateChapterCreateParams,
   };
 }

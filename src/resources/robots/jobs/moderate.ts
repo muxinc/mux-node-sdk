@@ -2,59 +2,8 @@
 
 import { APIResource } from '../../../core/resource';
 import * as JobsAPI from './jobs';
-import { APIPromise } from '../../../core/api-promise';
-import { RequestOptions } from '../../../internal/request-options';
-import { path } from '../../../internal/utils/path';
 
-/**
- * Analyze a video for inappropriate content.
- */
-export class Moderate extends APIResource {
-  /**
-   * Creates a new job that uses AI to analyze a Mux Video asset for inappropriate
-   * content.
-   *
-   * @example
-   * ```ts
-   * const moderateJob =
-   *   await client.robots.jobs.moderate.create({
-   *     parameters: {
-   *       asset_id: 'mux_asset_123abc',
-   *       thresholds: { sexual: 0.7, violence: 0.8 },
-   *     },
-   *   });
-   * ```
-   */
-  create(body: ModerateCreateParams, options?: RequestOptions): APIPromise<ModerateJob> {
-    return (
-      this._client.post('/robots/v1/jobs/moderate', {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: ModerateJob }>
-    )._thenUnwrap((obj) => obj.data);
-  }
-
-  /**
-   * Retrieves the current status and results of a 'moderate' job.
-   *
-   * @example
-   * ```ts
-   * const moderateJob =
-   *   await client.robots.jobs.moderate.retrieve(
-   *     'rjob_lK9w2kI5J1',
-   *   );
-   * ```
-   */
-  retrieve(jobID: string, options?: RequestOptions): APIPromise<ModerateJob> {
-    return (
-      this._client.get(path`/robots/v1/jobs/moderate/${jobID}`, {
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: ModerateJob }>
-    )._thenUnwrap((obj) => obj.data);
-  }
-}
+export class Moderate extends APIResource {}
 
 export interface ModerateJob {
   /**
@@ -288,21 +237,10 @@ export namespace ModerateJobParameters {
   }
 }
 
-export interface ModerateCreateParams {
-  parameters: ModerateJobParameters;
-
-  /**
-   * Arbitrary string stored with the job and returned in responses. Useful for
-   * correlating jobs with your own systems.
-   */
-  passthrough?: string;
-}
-
 export declare namespace Moderate {
   export {
     type ModerateJob as ModerateJob,
     type ModerateJobOutputs as ModerateJobOutputs,
     type ModerateJobParameters as ModerateJobParameters,
-    type ModerateCreateParams as ModerateCreateParams,
   };
 }
