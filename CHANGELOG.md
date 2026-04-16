@@ -1,5 +1,15 @@
 # Changelog
 
+## 14.0.0 (2026-04-16)
+
+Full Changelog: [v12.2.0...v14.0.0](https://github.com/muxinc/mux-node-sdk/compare/v12.2.0...v14.0.0)
+
+### Chores
+
+* fix mcp naming ([5355ccc](https://github.com/muxinc/mux-node-sdk/commit/5355ccc411add5c9dd5cfd8e08f691ede9e75b0f))
+* publish typescript generator ([0ed5b1c](https://github.com/muxinc/mux-node-sdk/commit/0ed5b1c37f2f2c49d5dd0dbd4164ca67d0e6707e))
+* sync repo ([1784c78](https://github.com/muxinc/mux-node-sdk/commit/1784c78531f0afa3f52dad3d27dfea9883c7581a))
+
 ## 8.2.3 (2024-03-25)
 
 Full Changelog: [v8.2.2...v8.2.3](https://github.com/muxinc/mux-node-sdk/compare/v8.2.2...v8.2.3)
