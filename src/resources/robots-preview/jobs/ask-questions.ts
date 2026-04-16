@@ -2,8 +2,64 @@
 
 import { APIResource } from '../../../core/resource';
 import * as JobsAPI from './jobs';
+import { APIPromise } from '../../../core/api-promise';
+import { RequestOptions } from '../../../internal/request-options';
+import { path } from '../../../internal/utils/path';
 
-export class AskQuestions extends APIResource {}
+/**
+ * Ask questions about a video and get structured answers.
+ */
+export class AskQuestions extends APIResource {
+  /**
+   * Creates a new job that uses AI to answer questions about a Mux Video asset.
+   *
+   * @example
+   * ```ts
+   * const askQuestionsJob =
+   *   await client.robotsPreview.jobs.askQuestions.create({
+   *     parameters: {
+   *       asset_id: 'mux_asset_123abc',
+   *       questions: [
+   *         {
+   *           question:
+   *             'How many people are speaking on camera?',
+   *           answer_options: ['one', 'two', 'three or more'],
+   *         },
+   *       ],
+   *     },
+   *   });
+   * ```
+   */
+  create(body: AskQuestionCreateParams, options?: RequestOptions): APIPromise<AskQuestionsJob> {
+    return (
+      this._client.post('/robots/v0/jobs/ask-questions', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: AskQuestionsJob }>
+    )._thenUnwrap((obj) => obj.data);
+  }
+
+  /**
+   * Retrieves the current status and results of an 'ask-questions' job.
+   *
+   * @example
+   * ```ts
+   * const askQuestionsJob =
+   *   await client.robotsPreview.jobs.askQuestions.retrieve(
+   *     'rjob_lK9w2kI5J1',
+   *   );
+   * ```
+   */
+  retrieve(jobID: string, options?: RequestOptions): APIPromise<AskQuestionsJob> {
+    return (
+      this._client.get(path`/robots/v0/jobs/ask-questions/${jobID}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: AskQuestionsJob }>
+    )._thenUnwrap((obj) => obj.data);
+  }
+}
 
 export interface AskQuestionsJob {
   /**
@@ -206,10 +262,21 @@ export namespace AskQuestionsJobParameters {
   }
 }
 
+export interface AskQuestionCreateParams {
+  parameters: AskQuestionsJobParameters;
+
+  /**
+   * Arbitrary string stored with the job and returned in responses. Useful for
+   * correlating jobs with your own systems.
+   */
+  passthrough?: string;
+}
+
 export declare namespace AskQuestions {
   export {
     type AskQuestionsJob as AskQuestionsJob,
     type AskQuestionsJobOutputs as AskQuestionsJobOutputs,
     type AskQuestionsJobParameters as AskQuestionsJobParameters,
+    type AskQuestionCreateParams as AskQuestionCreateParams,
   };
 }

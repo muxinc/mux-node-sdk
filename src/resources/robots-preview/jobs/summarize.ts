@@ -2,8 +2,60 @@
 
 import { APIResource } from '../../../core/resource';
 import * as JobsAPI from './jobs';
+import { APIPromise } from '../../../core/api-promise';
+import { RequestOptions } from '../../../internal/request-options';
+import { path } from '../../../internal/utils/path';
 
-export class Summarize extends APIResource {}
+/**
+ * Generate a title, description, and tags for a video.
+ */
+export class Summarize extends APIResource {
+  /**
+   * Creates a new job that uses AI to generate a title, description, and tags for a
+   * Mux Video asset.
+   *
+   * @example
+   * ```ts
+   * const summarizeJob =
+   *   await client.robotsPreview.jobs.summarize.create({
+   *     parameters: {
+   *       asset_id: 'mux_asset_123abc',
+   *       tone: 'neutral',
+   *       tag_count: 10,
+   *     },
+   *   });
+   * ```
+   */
+  create(body: SummarizeCreateParams, options?: RequestOptions): APIPromise<SummarizeJob> {
+    return (
+      this._client.post('/robots/v0/jobs/summarize', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: SummarizeJob }>
+    )._thenUnwrap((obj) => obj.data);
+  }
+
+  /**
+   * Retrieves the current status and results of a 'summarize' job.
+   *
+   * @example
+   * ```ts
+   * const summarizeJob =
+   *   await client.robotsPreview.jobs.summarize.retrieve(
+   *     'rjob_lK9w2kI5J1',
+   *   );
+   * ```
+   */
+  retrieve(jobID: string, options?: RequestOptions): APIPromise<SummarizeJob> {
+    return (
+      this._client.get(path`/robots/v0/jobs/summarize/${jobID}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: SummarizeJob }>
+    )._thenUnwrap((obj) => obj.data);
+  }
+}
 
 export interface SummarizeJob {
   /**
@@ -228,10 +280,21 @@ export namespace SummarizeJobParameters {
   }
 }
 
+export interface SummarizeCreateParams {
+  parameters: SummarizeJobParameters;
+
+  /**
+   * Arbitrary string stored with the job and returned in responses. Useful for
+   * correlating jobs with your own systems.
+   */
+  passthrough?: string;
+}
+
 export declare namespace Summarize {
   export {
     type SummarizeJob as SummarizeJob,
     type SummarizeJobOutputs as SummarizeJobOutputs,
     type SummarizeJobParameters as SummarizeJobParameters,
+    type SummarizeCreateParams as SummarizeCreateParams,
   };
 }

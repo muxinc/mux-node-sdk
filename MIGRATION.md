@@ -117,6 +117,7 @@ client.example.list(undefined, { headers: { ... } });
 - `client.video.playback.thumbnail()`
 - `client.video.playback.track()`
 - `client.video.playback.transcript()`
+- `client.robotsPreview.jobs.list()`
 - `client.data.dimensions.listTraceElements()`
 - `client.data.dimensions.listValues()`
 - `client.data.monitoring.metrics.getBreakdown()`

@@ -2,19 +2,21 @@
 
 import { APIResource } from '../../core/resource';
 import * as JobsAPI from './jobs/jobs';
-import { JobError, JobStatus, JobSummary, Jobs } from './jobs/jobs';
+import { JobError, JobListParams, JobStatus, JobSummariesBasePage, JobSummary, Jobs } from './jobs/jobs';
 
-export class Robots extends APIResource {
+export class RobotsPreview extends APIResource {
   jobs: JobsAPI.Jobs = new JobsAPI.Jobs(this._client);
 }
 
-Robots.Jobs = Jobs;
+RobotsPreview.Jobs = Jobs;
 
-export declare namespace Robots {
+export declare namespace RobotsPreview {
   export {
     Jobs as Jobs,
     type JobError as JobError,
     type JobStatus as JobStatus,
     type JobSummary as JobSummary,
+    type JobSummariesBasePage as JobSummariesBasePage,
+    type JobListParams as JobListParams,
   };
 }

@@ -2,8 +2,61 @@
 
 import { APIResource } from '../../../core/resource';
 import * as JobsAPI from './jobs';
+import { APIPromise } from '../../../core/api-promise';
+import { RequestOptions } from '../../../internal/request-options';
+import { path } from '../../../internal/utils/path';
 
-export class TranslateCaptions extends APIResource {}
+/**
+ * Translate captions from one language to another.
+ */
+export class TranslateCaptions extends APIResource {
+  /**
+   * Creates a new job that translates captions on a Mux Video asset from one
+   * language to another.
+   *
+   * @example
+   * ```ts
+   * const translateCaptionsJob =
+   *   await client.robotsPreview.jobs.translateCaptions.create({
+   *     parameters: {
+   *       asset_id: 'mux_asset_123abc',
+   *       track_id: 'track_en_abc123',
+   *       to_language_code: 'es',
+   *       upload_to_mux: true,
+   *     },
+   *   });
+   * ```
+   */
+  create(body: TranslateCaptionCreateParams, options?: RequestOptions): APIPromise<TranslateCaptionsJob> {
+    return (
+      this._client.post('/robots/v0/jobs/translate-captions', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: TranslateCaptionsJob }>
+    )._thenUnwrap((obj) => obj.data);
+  }
+
+  /**
+   * Retrieves the current status and results of a 'translate-captions' job.
+   *
+   * @example
+   * ```ts
+   * const translateCaptionsJob =
+   *   await client.robotsPreview.jobs.translateCaptions.retrieve(
+   *     'rjob_lK9w2kI5J1',
+   *   );
+   * ```
+   */
+  retrieve(jobID: string, options?: RequestOptions): APIPromise<TranslateCaptionsJob> {
+    return (
+      this._client.get(path`/robots/v0/jobs/translate-captions/${jobID}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: TranslateCaptionsJob }>
+    )._thenUnwrap((obj) => obj.data);
+  }
+}
 
 export interface TranslateCaptionsJob {
   /**
@@ -177,10 +230,21 @@ export interface TranslateCaptionsJobParameters {
   upload_to_mux?: boolean;
 }
 
+export interface TranslateCaptionCreateParams {
+  parameters: TranslateCaptionsJobParameters;
+
+  /**
+   * Arbitrary string stored with the job and returned in responses. Useful for
+   * correlating jobs with your own systems.
+   */
+  passthrough?: string;
+}
+
 export declare namespace TranslateCaptions {
   export {
     type TranslateCaptionsJob as TranslateCaptionsJob,
     type TranslateCaptionsJobOutputs as TranslateCaptionsJobOutputs,
     type TranslateCaptionsJobParameters as TranslateCaptionsJobParameters,
+    type TranslateCaptionCreateParams as TranslateCaptionCreateParams,
   };
 }

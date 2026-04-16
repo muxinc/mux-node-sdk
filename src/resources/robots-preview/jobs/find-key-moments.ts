@@ -2,8 +2,59 @@
 
 import { APIResource } from '../../../core/resource';
 import * as JobsAPI from './jobs';
+import { APIPromise } from '../../../core/api-promise';
+import { RequestOptions } from '../../../internal/request-options';
+import { path } from '../../../internal/utils/path';
 
-export class FindKeyMoments extends APIResource {}
+/**
+ * Identify key moments in a video.
+ */
+export class FindKeyMoments extends APIResource {
+  /**
+   * Creates a new job that uses AI to identify key moments in a Mux Video asset.
+   *
+   * @example
+   * ```ts
+   * const findKeyMomentsJob =
+   *   await client.robotsPreview.jobs.findKeyMoments.create({
+   *     parameters: {
+   *       asset_id: 'mux_asset_123abc',
+   *       max_moments: 5,
+   *       target_duration_ms: { min: 15000, max: 45000 },
+   *     },
+   *   });
+   * ```
+   */
+  create(body: FindKeyMomentCreateParams, options?: RequestOptions): APIPromise<FindKeyMomentsJob> {
+    return (
+      this._client.post('/robots/v0/jobs/find-key-moments', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: FindKeyMomentsJob }>
+    )._thenUnwrap((obj) => obj.data);
+  }
+
+  /**
+   * Retrieves the current status and results of a 'find-key-moments' job.
+   *
+   * @example
+   * ```ts
+   * const findKeyMomentsJob =
+   *   await client.robotsPreview.jobs.findKeyMoments.retrieve(
+   *     'rjob_lK9w2kI5J1',
+   *   );
+   * ```
+   */
+  retrieve(jobID: string, options?: RequestOptions): APIPromise<FindKeyMomentsJob> {
+    return (
+      this._client.get(path`/robots/v0/jobs/find-key-moments/${jobID}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: FindKeyMomentsJob }>
+    )._thenUnwrap((obj) => obj.data);
+  }
+}
 
 export interface FindKeyMomentsJob {
   /**
@@ -265,10 +316,21 @@ export namespace FindKeyMomentsJobParameters {
   }
 }
 
+export interface FindKeyMomentCreateParams {
+  parameters: FindKeyMomentsJobParameters;
+
+  /**
+   * Arbitrary string stored with the job and returned in responses. Useful for
+   * correlating jobs with your own systems.
+   */
+  passthrough?: string;
+}
+
 export declare namespace FindKeyMoments {
   export {
     type FindKeyMomentsJob as FindKeyMomentsJob,
     type FindKeyMomentsJobOutputs as FindKeyMomentsJobOutputs,
     type FindKeyMomentsJobParameters as FindKeyMomentsJobParameters,
+    type FindKeyMomentCreateParams as FindKeyMomentCreateParams,
   };
 }
