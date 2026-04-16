@@ -111,6 +111,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nasset = client.video.assets.create(\n    inputs=[{\n        "url": "https://muxed.s3.amazonaws.com/leds.mp4"\n    }],\n    playback_policies=["public"],\n    video_quality="basic",\n)\nprint(asset.id)',
       },
+      ruby: {
+        method: 'video.assets.create',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nasset = mux.video.assets.create(inputs: [{}])\n\nputs(asset)',
+      },
       typescript: {
         method: 'client.video.assets.create',
         example:
@@ -166,6 +171,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.video.assets.list()\npage = page.data[0]\nprint(page.id)',
       },
+      ruby: {
+        method: 'video.assets.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.video.assets.list\n\nputs(page)',
+      },
       typescript: {
         method: 'client.video.assets.list',
         example:
@@ -217,6 +227,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nasset = client.video.assets.retrieve(\n    "ASSET_ID",\n)\nprint(asset.id)',
       },
+      ruby: {
+        method: 'video.assets.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nasset = mux.video.assets.retrieve("ASSET_ID")\n\nputs(asset)',
+      },
       typescript: {
         method: 'client.video.assets.retrieve',
         example:
@@ -264,6 +279,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.assets.delete',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.assets.delete(\n    "ASSET_ID",\n)',
+      },
+      ruby: {
+        method: 'video.assets.delete',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.assets.delete("ASSET_ID")\n\nputs(result)',
       },
       typescript: {
         method: 'client.video.assets.delete',
@@ -320,6 +340,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nasset = client.video.assets.update(\n    asset_id="ASSET_ID",\n    passthrough="Example",\n)\nprint(asset.id)',
       },
+      ruby: {
+        method: 'video.assets.update',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nasset = mux.video.assets.update("ASSET_ID")\n\nputs(asset)',
+      },
       typescript: {
         method: 'client.video.assets.update',
         example:
@@ -368,6 +393,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.assets.retrieve_playback_id',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_id = client.video.assets.retrieve_playback_id(\n    asset_id="ASSET_ID",\n    playback_id="PLAYBACK_ID",\n)\nprint(playback_id.id)',
+      },
+      ruby: {
+        method: 'video.assets.retrieve_playback_id',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nplayback_id = mux.video.assets.retrieve_playback_id("ASSET_ID", "PLAYBACK_ID")\n\nputs(playback_id)',
       },
       typescript: {
         method: 'client.video.assets.retrievePlaybackId',
@@ -418,6 +448,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_id = client.video.assets.create_playback_id(\n    asset_id="ASSET_ID",\n    policy="public",\n)\nprint(playback_id.id)',
       },
+      ruby: {
+        method: 'video.assets.create_playback_id',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nplayback_id = mux.video.assets.create_playback_id("ASSET_ID")\n\nputs(playback_id)',
+      },
       typescript: {
         method: 'client.video.assets.createPlaybackId',
         example:
@@ -466,6 +501,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.assets.delete_playback_id',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.assets.delete_playback_id(\n    asset_id="ASSET_ID",\n    playback_id="PLAYBACK_ID",\n)',
+      },
+      ruby: {
+        method: 'video.assets.delete_playback_id',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.assets.delete_playback_id("ASSET_ID", "PLAYBACK_ID")\n\nputs(result)',
       },
       typescript: {
         method: 'client.video.assets.deletePlaybackId',
@@ -527,6 +567,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntrack = client.video.assets.create_track(\n    asset_id="ASSET_ID",\n    language_code="en-US",\n    type="text",\n    url="https://example.com/myVideo_en.srt",\n    closed_captions=True,\n    name="English",\n    passthrough="English",\n    text_type="subtitles",\n)\nprint(track.id)',
       },
+      ruby: {
+        method: 'video.assets.create_track',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ntrack = mux.video.assets.create_track(\n  "ASSET_ID",\n  language_code: "en-US",\n  type: :text,\n  url: "https://example.com/myVideo_en.srt"\n)\n\nputs(track)',
+      },
       typescript: {
         method: 'client.video.assets.createTrack',
         example:
@@ -575,6 +620,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.assets.delete_track',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.assets.delete_track(\n    asset_id="ASSET_ID",\n    track_id="TRACK_ID",\n)',
+      },
+      ruby: {
+        method: 'video.assets.delete_track',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.assets.delete_track("ASSET_ID", "TRACK_ID")\n\nputs(result)',
       },
       typescript: {
         method: 'client.video.assets.deleteTrack',
@@ -631,6 +681,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntracks = client.video.assets.generate_subtitles(\n    asset_id="ASSET_ID",\n    track_id="TRACK_ID",\n    generated_subtitles=[{\n        "language_code": "en",\n        "name": "English (generated)",\n        "passthrough": "English (generated)",\n    }],\n)\nprint(tracks)',
       },
+      ruby: {
+        method: 'video.assets.generate_subtitles',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ntracks = mux.video.assets.generate_subtitles("ASSET_ID", "TRACK_ID", generated_subtitles: [{}])\n\nputs(tracks)',
+      },
       typescript: {
         method: 'client.video.assets.generateSubtitles',
         example:
@@ -681,6 +736,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.assets.retrieve_input_info',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ninput_infos = client.video.assets.retrieve_input_info(\n    "ASSET_ID",\n)\nprint(input_infos)',
+      },
+      ruby: {
+        method: 'video.assets.retrieve_input_info',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ninput_infos = mux.video.assets.retrieve_input_info("ASSET_ID")\n\nputs(input_infos)',
       },
       typescript: {
         method: 'client.video.assets.retrieveInputInfo',
@@ -736,6 +796,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nasset = client.video.assets.update_mp4_support(\n    asset_id="ASSET_ID",\n    mp4_support="capped-1080p",\n)\nprint(asset.id)',
       },
+      ruby: {
+        method: 'video.assets.update_mp4_support',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nasset = mux.video.assets.update_mp4_support("ASSET_ID", mp4_support: :"capped-1080p")\n\nputs(asset)',
+      },
       typescript: {
         method: 'client.video.assets.updateMP4Support',
         example:
@@ -786,6 +851,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.assets.update_master_access',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nasset = client.video.assets.update_master_access(\n    asset_id="ASSET_ID",\n    master_access="temporary",\n)\nprint(asset.id)',
+      },
+      ruby: {
+        method: 'video.assets.update_master_access',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nasset = mux.video.assets.update_master_access("ASSET_ID", master_access: :temporary)\n\nputs(asset)',
       },
       typescript: {
         method: 'client.video.assets.updateMasterAccess',
@@ -841,6 +911,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.assets.create_static_rendition(\n    asset_id="ASSET_ID",\n    resolution="highest",\n)\nprint(response.id)',
       },
+      ruby: {
+        method: 'video.assets.create_static_rendition',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.video.assets.create_static_rendition("ASSET_ID", resolution: :highest)\n\nputs(response)',
+      },
       typescript: {
         method: 'client.video.assets.createStaticRendition',
         example:
@@ -888,6 +963,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.assets.delete_static_rendition',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.assets.delete_static_rendition(\n    asset_id="ASSET_ID",\n    static_rendition_id="STATIC_RENDITION_ID",\n)',
+      },
+      ruby: {
+        method: 'video.assets.delete_static_rendition',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.assets.delete_static_rendition("ASSET_ID", "STATIC_RENDITION_ID")\n\nputs(result)',
       },
       typescript: {
         method: 'client.video.assets.deleteStaticRendition',
@@ -945,6 +1025,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.delivery_usage.list',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.video.delivery_usage.list()\npage = page.data[0]\nprint(page.asset_id)',
+      },
+      ruby: {
+        method: 'video.delivery_usage.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.video.delivery_usage.list\n\nputs(page)',
       },
       typescript: {
         method: 'client.video.deliveryUsage.list',
@@ -1016,6 +1101,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nlive_stream = client.video.live_streams.create(\n    new_asset_settings={\n        "playback_policies": ["public"]\n    },\n    playback_policies=["public"],\n)\nprint(live_stream.id)',
       },
+      ruby: {
+        method: 'video.live_streams.create',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nlive_stream = mux.video.live_streams.create\n\nputs(live_stream)',
+      },
       typescript: {
         method: 'client.video.liveStreams.create',
         example:
@@ -1070,6 +1160,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.video.live_streams.list()\npage = page.data[0]\nprint(page.id)',
       },
+      ruby: {
+        method: 'video.live_streams.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.video.live_streams.list\n\nputs(page)',
+      },
       typescript: {
         method: 'client.video.liveStreams.list',
         example:
@@ -1121,6 +1216,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nlive_stream = client.video.live_streams.retrieve(\n    "LIVE_STREAM_ID",\n)\nprint(live_stream.id)',
       },
+      ruby: {
+        method: 'video.live_streams.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nlive_stream = mux.video.live_streams.retrieve("LIVE_STREAM_ID")\n\nputs(live_stream)',
+      },
       typescript: {
         method: 'client.video.liveStreams.retrieve',
         example:
@@ -1169,6 +1269,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.live_streams.delete',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.delete(\n    "LIVE_STREAM_ID",\n)',
+      },
+      ruby: {
+        method: 'video.live_streams.delete',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.live_streams.delete("LIVE_STREAM_ID")\n\nputs(result)',
       },
       typescript: {
         method: 'client.video.liveStreams.delete',
@@ -1231,6 +1336,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nlive_stream = client.video.live_streams.update(\n    live_stream_id="LIVE_STREAM_ID",\n    latency_mode="standard",\n    max_continuous_duration=1200,\n    reconnect_window=30,\n)\nprint(live_stream.id)',
       },
+      ruby: {
+        method: 'video.live_streams.update',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nlive_stream = mux.video.live_streams.update("LIVE_STREAM_ID")\n\nputs(live_stream)',
+      },
       typescript: {
         method: 'client.video.liveStreams.update',
         example:
@@ -1285,6 +1395,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_id = client.video.live_streams.create_playback_id(\n    live_stream_id="LIVE_STREAM_ID",\n    policy="signed",\n)\nprint(playback_id.id)',
       },
+      ruby: {
+        method: 'video.live_streams.create_playback_id',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nplayback_id = mux.video.live_streams.create_playback_id("LIVE_STREAM_ID")\n\nputs(playback_id)',
+      },
       typescript: {
         method: 'client.video.liveStreams.createPlaybackId',
         example:
@@ -1335,6 +1450,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_id = client.video.live_streams.retrieve_playback_id(\n    live_stream_id="LIVE_STREAM_ID",\n    playback_id="PLAYBACK_ID",\n)\nprint(playback_id.id)',
       },
+      ruby: {
+        method: 'video.live_streams.retrieve_playback_id',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nplayback_id = mux.video.live_streams.retrieve_playback_id("LIVE_STREAM_ID", "PLAYBACK_ID")\n\nputs(playback_id)',
+      },
       typescript: {
         method: 'client.video.liveStreams.retrievePlaybackId',
         example:
@@ -1383,6 +1503,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.live_streams.delete_playback_id',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.delete_playback_id(\n    live_stream_id="LIVE_STREAM_ID",\n    playback_id="PLAYBACK_ID",\n)',
+      },
+      ruby: {
+        method: 'video.live_streams.delete_playback_id',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.live_streams.delete_playback_id("LIVE_STREAM_ID", "PLAYBACK_ID")\n\nputs(result)',
       },
       typescript: {
         method: 'client.video.liveStreams.deletePlaybackId',
@@ -1435,6 +1560,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nlive_stream = client.video.live_streams.reset_stream_key(\n    "LIVE_STREAM_ID",\n)\nprint(live_stream.id)',
       },
+      ruby: {
+        method: 'video.live_streams.reset_stream_key',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nlive_stream = mux.video.live_streams.reset_stream_key("LIVE_STREAM_ID")\n\nputs(live_stream)',
+      },
       typescript: {
         method: 'client.video.liveStreams.resetStreamKey',
         example:
@@ -1483,6 +1613,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.live_streams.complete',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.complete(\n    "LIVE_STREAM_ID",\n)',
+      },
+      ruby: {
+        method: 'video.live_streams.complete',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.live_streams.complete("LIVE_STREAM_ID")\n\nputs(result)',
       },
       typescript: {
         method: 'client.video.liveStreams.complete',
@@ -1533,6 +1668,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.disable(\n    "LIVE_STREAM_ID",\n)',
       },
+      ruby: {
+        method: 'video.live_streams.disable',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.live_streams.disable("LIVE_STREAM_ID")\n\nputs(result)',
+      },
       typescript: {
         method: 'client.video.liveStreams.disable',
         example:
@@ -1580,6 +1720,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.live_streams.enable',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.enable(\n    "LIVE_STREAM_ID",\n)',
+      },
+      ruby: {
+        method: 'video.live_streams.enable',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.live_streams.enable("LIVE_STREAM_ID")\n\nputs(result)',
       },
       typescript: {
         method: 'client.video.liveStreams.enable',
@@ -1635,6 +1780,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nlive_stream = client.video.live_streams.update_embedded_subtitles(\n    live_stream_id="LIVE_STREAM_ID",\n    embedded_subtitles=[{\n        "passthrough": "Example"\n    }],\n)\nprint(live_stream.id)',
       },
+      ruby: {
+        method: 'video.live_streams.update_embedded_subtitles',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nlive_stream = mux.video.live_streams.update_embedded_subtitles("LIVE_STREAM_ID")\n\nputs(live_stream)',
+      },
       typescript: {
         method: 'client.video.liveStreams.updateEmbeddedSubtitles',
         example:
@@ -1689,6 +1839,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nlive_stream = client.video.live_streams.update_generated_subtitles(\n    live_stream_id="LIVE_STREAM_ID",\n    generated_subtitles=[{\n        "name": "English CC (ASR)",\n        "language_code": "en",\n        "passthrough": "Example",\n    }],\n)\nprint(live_stream.id)',
       },
+      ruby: {
+        method: 'video.live_streams.update_generated_subtitles',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nlive_stream = mux.video.live_streams.update_generated_subtitles("LIVE_STREAM_ID")\n\nputs(live_stream)',
+      },
       typescript: {
         method: 'client.video.liveStreams.updateGeneratedSubtitles',
         example:
@@ -1740,6 +1895,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsimulcast_target = client.video.live_streams.create_simulcast_target(\n    live_stream_id="LIVE_STREAM_ID",\n    url="rtmp://live.example.com/app",\n    passthrough="Example",\n    stream_key="abcdefgh",\n)\nprint(simulcast_target.id)',
       },
+      ruby: {
+        method: 'video.live_streams.create_simulcast_target',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nsimulcast_target = mux.video.live_streams.create_simulcast_target("LIVE_STREAM_ID", url: "rtmp://live.example.com/app")\n\nputs(simulcast_target)',
+      },
       typescript: {
         method: 'client.video.liveStreams.createSimulcastTarget',
         example:
@@ -1788,6 +1948,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.live_streams.delete_simulcast_target',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.delete_simulcast_target(\n    live_stream_id="LIVE_STREAM_ID",\n    simulcast_target_id="SIMULCAST_TARGET_ID",\n)',
+      },
+      ruby: {
+        method: 'video.live_streams.delete_simulcast_target',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.live_streams.delete_simulcast_target("LIVE_STREAM_ID", "SIMULCAST_TARGET_ID")\n\nputs(result)',
       },
       typescript: {
         method: 'client.video.liveStreams.deleteSimulcastTarget',
@@ -1839,6 +2004,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.live_streams.retrieve_simulcast_target',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsimulcast_target = client.video.live_streams.retrieve_simulcast_target(\n    live_stream_id="LIVE_STREAM_ID",\n    simulcast_target_id="SIMULCAST_TARGET_ID",\n)\nprint(simulcast_target.id)',
+      },
+      ruby: {
+        method: 'video.live_streams.retrieve_simulcast_target',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nsimulcast_target = mux.video.live_streams.retrieve_simulcast_target("LIVE_STREAM_ID", "SIMULCAST_TARGET_ID")\n\nputs(simulcast_target)',
       },
       typescript: {
         method: 'client.video.liveStreams.retrieveSimulcastTarget',
@@ -1894,6 +2064,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nlive_stream = client.video.live_streams.update_new_asset_settings_static_renditions(\n    live_stream_id="LIVE_STREAM_ID",\n    static_renditions=[{\n        "resolution": "audio-only"\n    }, {\n        "resolution": "highest"\n    }],\n)\nprint(live_stream.id)',
       },
+      ruby: {
+        method: 'video.live_streams.update_new_asset_settings_static_renditions',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nlive_stream = mux.video.live_streams.update_new_asset_settings_static_renditions(\n  "LIVE_STREAM_ID",\n  static_renditions: [{resolution: :"audio-only"}, {resolution: :highest}]\n)\n\nputs(live_stream)',
+      },
       typescript: {
         method: 'client.video.liveStreams.updateNewAssetSettingsStaticRenditions',
         example:
@@ -1942,6 +2117,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.live_streams.delete_new_asset_settings_static_renditions',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.delete_new_asset_settings_static_renditions(\n    "LIVE_STREAM_ID",\n)',
+      },
+      ruby: {
+        method: 'video.live_streams.delete_new_asset_settings_static_renditions',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.live_streams.delete_new_asset_settings_static_renditions("LIVE_STREAM_ID")\n\nputs(result)',
       },
       typescript: {
         method: 'client.video.liveStreams.deleteNewAssetSettingsStaticRenditions',
@@ -1992,6 +2172,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.playback_ids.retrieve',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_ids = client.video.playback_ids.retrieve(\n    "PLAYBACK_ID",\n)\nprint(playback_ids.id)',
+      },
+      ruby: {
+        method: 'video.playback_ids.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nplayback_ids = mux.video.playback_ids.retrieve("PLAYBACK_ID")\n\nputs(playback_ids)',
       },
       typescript: {
         method: 'client.video.playbackIds.retrieve',
@@ -2046,6 +2231,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_restriction = client.video.playback_restrictions.create(\n    referrer={\n        "allowed_domains": ["*.example.com"],\n        "allow_no_referrer": True,\n    },\n    user_agent={\n        "allow_no_user_agent": False,\n        "allow_high_risk_user_agent": False,\n    },\n)\nprint(playback_restriction.id)',
       },
+      ruby: {
+        method: 'video.playback_restrictions.create',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nplayback_restriction = mux.video.playback_restrictions.create(referrer: {allowed_domains: ["*.example.com"]}, user_agent: {})\n\nputs(playback_restriction)',
+      },
       typescript: {
         method: 'client.video.playbackRestrictions.create',
         example:
@@ -2096,6 +2286,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.video.playback_restrictions.list()\npage = page.data[0]\nprint(page.id)',
       },
+      ruby: {
+        method: 'video.playback_restrictions.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.video.playback_restrictions.list\n\nputs(page)',
+      },
       typescript: {
         method: 'client.video.playbackRestrictions.list',
         example:
@@ -2143,6 +2338,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.playback_restrictions.delete',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.playback_restrictions.delete(\n    "PLAYBACK_RESTRICTION_ID",\n)',
+      },
+      ruby: {
+        method: 'video.playback_restrictions.delete',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.playback_restrictions.delete("PLAYBACK_RESTRICTION_ID")\n\nputs(result)',
       },
       typescript: {
         method: 'client.video.playbackRestrictions.delete',
@@ -2193,6 +2393,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.playback_restrictions.retrieve',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_restriction = client.video.playback_restrictions.retrieve(\n    "PLAYBACK_RESTRICTION_ID",\n)\nprint(playback_restriction.id)',
+      },
+      ruby: {
+        method: 'video.playback_restrictions.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nplayback_restriction = mux.video.playback_restrictions.retrieve("PLAYBACK_RESTRICTION_ID")\n\nputs(playback_restriction)',
       },
       typescript: {
         method: 'client.video.playbackRestrictions.retrieve',
@@ -2249,6 +2454,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_restriction = client.video.playback_restrictions.update_referrer(\n    playback_restriction_id="PLAYBACK_RESTRICTION_ID",\n    allowed_domains=["*.example.com"],\n    allow_no_referrer=True,\n)\nprint(playback_restriction.id)',
       },
+      ruby: {
+        method: 'video.playback_restrictions.update_referrer',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nplayback_restriction = mux.video.playback_restrictions.update_referrer(\n  "PLAYBACK_RESTRICTION_ID",\n  allowed_domains: ["*.example.com"]\n)\n\nputs(playback_restriction)',
+      },
       typescript: {
         method: 'client.video.playbackRestrictions.updateReferrer',
         example:
@@ -2304,6 +2514,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_restriction = client.video.playback_restrictions.update_user_agent(\n    playback_restriction_id="PLAYBACK_RESTRICTION_ID",\n    allow_high_risk_user_agent=False,\n    allow_no_user_agent=False,\n)\nprint(playback_restriction.id)',
       },
+      ruby: {
+        method: 'video.playback_restrictions.update_user_agent',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nplayback_restriction = mux.video.playback_restrictions.update_user_agent(\n  "PLAYBACK_RESTRICTION_ID",\n  allow_high_risk_user_agent: false,\n  allow_no_user_agent: false\n)\n\nputs(playback_restriction)',
+      },
       typescript: {
         method: 'client.video.playbackRestrictions.updateUserAgent',
         example:
@@ -2355,6 +2570,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntranscription_vocabulary = client.video.transcription_vocabularies.retrieve(\n    "TRANSCRIPTION_VOCABULARY_ID",\n)\nprint(transcription_vocabulary.id)',
       },
+      ruby: {
+        method: 'video.transcription_vocabularies.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ntranscription_vocabulary = mux.video.transcription_vocabularies.retrieve("TRANSCRIPTION_VOCABULARY_ID")\n\nputs(transcription_vocabulary)',
+      },
       typescript: {
         method: 'client.video.transcriptionVocabularies.retrieve',
         example:
@@ -2405,6 +2625,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntranscription_vocabulary = client.video.transcription_vocabularies.create(\n    phrases=["Mux", "Live Stream", "Playback ID", "video encoding"],\n    name="Mux API Vocabulary",\n)\nprint(transcription_vocabulary.id)',
       },
+      ruby: {
+        method: 'video.transcription_vocabularies.create',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ntranscription_vocabulary = mux.video.transcription_vocabularies.create(\n  phrases: ["Mux", "Live Stream", "Playback ID", "video encoding"]\n)\n\nputs(transcription_vocabulary)',
+      },
       typescript: {
         method: 'client.video.transcriptionVocabularies.create',
         example:
@@ -2453,6 +2678,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.transcription_vocabularies.delete',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.transcription_vocabularies.delete(\n    "TRANSCRIPTION_VOCABULARY_ID",\n)',
+      },
+      ruby: {
+        method: 'video.transcription_vocabularies.delete',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.video.transcription_vocabularies.delete("TRANSCRIPTION_VOCABULARY_ID")\n\nputs(result)',
       },
       typescript: {
         method: 'client.video.transcriptionVocabularies.delete',
@@ -2510,6 +2740,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntranscription_vocabulary = client.video.transcription_vocabularies.update(\n    transcription_vocabulary_id="TRANSCRIPTION_VOCABULARY_ID",\n    phrases=["Mux", "Live Stream", "RTMP", "Stream Key"],\n    name="Mux API Vocabulary - Updated",\n)\nprint(transcription_vocabulary.id)',
       },
+      ruby: {
+        method: 'video.transcription_vocabularies.update',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ntranscription_vocabulary = mux.video.transcription_vocabularies.update(\n  "TRANSCRIPTION_VOCABULARY_ID",\n  phrases: ["Mux", "Live Stream", "RTMP", "Stream Key"]\n)\n\nputs(transcription_vocabulary)',
+      },
       typescript: {
         method: 'client.video.transcriptionVocabularies.update',
         example:
@@ -2559,6 +2794,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.transcription_vocabularies.list',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.video.transcription_vocabularies.list()\npage = page.data[0]\nprint(page.id)',
+      },
+      ruby: {
+        method: 'video.transcription_vocabularies.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.video.transcription_vocabularies.list\n\nputs(page)',
       },
       typescript: {
         method: 'client.video.transcriptionVocabularies.list',
@@ -2616,6 +2856,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nupload = client.video.uploads.create(\n    cors_origin="https://example.com/",\n    new_asset_settings={\n        "playback_policies": ["public"]\n    },\n)\nprint(upload.id)',
       },
+      ruby: {
+        method: 'video.uploads.create',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nupload = mux.video.uploads.create(cors_origin: "https://example.com/")\n\nputs(upload)',
+      },
       typescript: {
         method: 'client.video.uploads.create',
         example:
@@ -2665,6 +2910,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.uploads.retrieve',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nupload = client.video.uploads.retrieve(\n    "abcd1234",\n)\nprint(upload.id)',
+      },
+      ruby: {
+        method: 'video.uploads.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nupload = mux.video.uploads.retrieve("abcd1234")\n\nputs(upload)',
       },
       typescript: {
         method: 'client.video.uploads.retrieve',
@@ -2717,6 +2967,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nupload = client.video.uploads.cancel(\n    "abcd1234",\n)\nprint(upload.id)',
       },
+      ruby: {
+        method: 'video.uploads.cancel',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nupload = mux.video.uploads.cancel("abcd1234")\n\nputs(upload)',
+      },
       typescript: {
         method: 'client.video.uploads.cancel',
         example:
@@ -2765,6 +3020,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.uploads.list',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.video.uploads.list()\npage = page.data[0]\nprint(page.id)',
+      },
+      ruby: {
+        method: 'video.uploads.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.video.uploads.list\n\nputs(page)',
       },
       typescript: {
         method: 'client.video.uploads.list',
@@ -2815,6 +3075,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.video.drm_configurations.list()\npage = page.data[0]\nprint(page.id)',
       },
+      ruby: {
+        method: 'video.drm_configurations.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.video.drm_configurations.list\n\nputs(page)',
+      },
       typescript: {
         method: 'client.video.drmConfigurations.list',
         example:
@@ -2863,6 +3128,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.drm_configurations.retrieve',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ndrm_configuration = client.video.drm_configurations.retrieve(\n    "DRM_CONFIGURATION_ID",\n)\nprint(drm_configuration.id)',
+      },
+      ruby: {
+        method: 'video.drm_configurations.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ndrm_configuration = mux.video.drm_configurations.retrieve("DRM_CONFIGURATION_ID")\n\nputs(drm_configuration)',
       },
       typescript: {
         method: 'client.video.drmConfigurations.retrieve',
@@ -2927,6 +3197,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.thumbnail(\n    playback_id="PLAYBACK_ID",\n    extension="jpg",\n)\nprint(response)\ncontent = response.read()\nprint(content)',
       },
+      ruby: {
+        method: 'video.playback.thumbnail',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.video.playback.thumbnail("PLAYBACK_ID", :jpg)\n\nputs(response)',
+      },
       typescript: {
         method: 'client.video.playback.thumbnail',
         example:
@@ -2986,6 +3261,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.animated(\n    playback_id="PLAYBACK_ID",\n    extension="gif",\n)\nprint(response)\ncontent = response.read()\nprint(content)',
       },
+      ruby: {
+        method: 'video.playback.animated',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.video.playback.animated("PLAYBACK_ID", :gif)\n\nputs(response)',
+      },
       typescript: {
         method: 'client.video.playback.animated',
         example:
@@ -3044,6 +3324,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.storyboard(\n    playback_id="PLAYBACK_ID",\n    extension="jpg",\n)\nprint(response)\ncontent = response.read()\nprint(content)',
       },
+      ruby: {
+        method: 'video.playback.storyboard',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.video.playback.storyboard("PLAYBACK_ID", :jpg)\n\nputs(response)',
+      },
       typescript: {
         method: 'client.video.playback.storyboard',
         example:
@@ -3100,6 +3385,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.playback.storyboard_vtt',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.storyboard_vtt(\n    playback_id="PLAYBACK_ID",\n)\nprint(response)',
+      },
+      ruby: {
+        method: 'video.playback.storyboard_vtt',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.video.playback.storyboard_vtt("PLAYBACK_ID")\n\nputs(response)',
       },
       typescript: {
         method: 'client.video.playback.storyboardVtt',
@@ -3158,6 +3448,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.playback.storyboard_meta',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.storyboard_meta(\n    playback_id="PLAYBACK_ID",\n)\nprint(response)',
+      },
+      ruby: {
+        method: 'video.playback.storyboard_meta',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.video.playback.storyboard_meta("PLAYBACK_ID")\n\nputs(response)',
       },
       typescript: {
         method: 'client.video.playback.storyboardMeta',
@@ -3222,6 +3517,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.hls(\n    playback_id="PLAYBACK_ID",\n)\nprint(response)\ncontent = response.read()\nprint(content)',
       },
+      ruby: {
+        method: 'video.playback.hls',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.video.playback.hls("PLAYBACK_ID")\n\nputs(response)',
+      },
       typescript: {
         method: 'client.video.playback.hls',
         example:
@@ -3276,6 +3576,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.static_rendition(\n    playback_id="PLAYBACK_ID",\n    filename="capped-1080p.mp4",\n)\nprint(response)\ncontent = response.read()\nprint(content)',
       },
+      ruby: {
+        method: 'video.playback.static_rendition',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.video.playback.static_rendition("PLAYBACK_ID", :"capped-1080p.mp4")\n\nputs(response)',
+      },
       typescript: {
         method: 'client.video.playback.staticRendition',
         example:
@@ -3324,6 +3629,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.playback.track',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.track(\n    playback_id="PLAYBACK_ID",\n    track_id="TRACK_ID",\n)\nprint(response)',
+      },
+      ruby: {
+        method: 'video.playback.track',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.video.playback.track("PLAYBACK_ID", "TRACK_ID")\n\nputs(response)',
       },
       typescript: {
         method: 'client.video.playback.track',
@@ -3374,6 +3684,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video.playback.transcript',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.transcript(\n    playback_id="PLAYBACK_ID",\n    track_id="TRACK_ID",\n)\nprint(response)',
+      },
+      ruby: {
+        method: 'video.playback.transcript',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.video.playback.transcript("PLAYBACK_ID", "TRACK_ID")\n\nputs(response)',
       },
       typescript: {
         method: 'client.video.playback.transcript',
@@ -3431,6 +3746,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.robots_preview.jobs.list()\npage = page.data[0]\nprint(page.id)',
       },
+      ruby: {
+        method: 'robots_preview.jobs.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.robots_preview.jobs.list\n\nputs(page)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.list',
         example:
@@ -3480,6 +3800,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'robots_preview.jobs.cancel',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\njob_summary = client.robots_preview.jobs.cancel(\n    "rjob_lK9w2kI5J1",\n)\nprint(job_summary.id)',
+      },
+      ruby: {
+        method: 'robots_preview.jobs.cancel',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\njob_summary = mux.robots_preview.jobs.cancel("rjob_lK9w2kI5J1")\n\nputs(job_summary)',
       },
       typescript: {
         method: 'client.robotsPreview.jobs.cancel',
@@ -3534,6 +3859,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nask_questions_job = client.robots_preview.jobs.ask_questions.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "questions": [{\n            "question": "How many people are speaking on camera?",\n            "answer_options": ["one", "two", "three or more"],\n        }],\n    },\n)\nprint(ask_questions_job.id)',
       },
+      ruby: {
+        method: 'robots_preview.jobs.ask_questions.create',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nask_questions_job = mux.robots_preview.jobs.ask_questions.create(\n  parameters: {asset_id: "mux_asset_123abc", questions: [{question: "How many people are speaking on camera?"}]}\n)\n\nputs(ask_questions_job)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.askQuestions.create',
         example:
@@ -3583,6 +3913,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'robots_preview.jobs.ask_questions.retrieve',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nask_questions_job = client.robots_preview.jobs.ask_questions.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(ask_questions_job.id)',
+      },
+      ruby: {
+        method: 'robots_preview.jobs.ask_questions.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nask_questions_job = mux.robots_preview.jobs.ask_questions.retrieve("rjob_lK9w2kI5J1")\n\nputs(ask_questions_job)',
       },
       typescript: {
         method: 'client.robotsPreview.jobs.askQuestions.retrieve',
@@ -3637,6 +3972,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ngenerate_chapters_job = client.robots_preview.jobs.generate_chapters.create(\n    parameters={\n        "asset_id": "mux_asset_123abc"\n    },\n)\nprint(generate_chapters_job.id)',
       },
+      ruby: {
+        method: 'robots_preview.jobs.generate_chapters.create',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ngenerate_chapters_job = mux.robots_preview.jobs.generate_chapters.create(parameters: {asset_id: "mux_asset_123abc"})\n\nputs(generate_chapters_job)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.generateChapters.create',
         example:
@@ -3686,6 +4026,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'robots_preview.jobs.generate_chapters.retrieve',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ngenerate_chapters_job = client.robots_preview.jobs.generate_chapters.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(generate_chapters_job.id)',
+      },
+      ruby: {
+        method: 'robots_preview.jobs.generate_chapters.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ngenerate_chapters_job = mux.robots_preview.jobs.generate_chapters.retrieve("rjob_lK9w2kI5J1")\n\nputs(generate_chapters_job)',
       },
       typescript: {
         method: 'client.robotsPreview.jobs.generateChapters.retrieve',
@@ -3740,6 +4085,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nfind_key_moments_job = client.robots_preview.jobs.find_key_moments.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "max_moments": 5,\n        "target_duration_ms": {\n            "min": 15000,\n            "max": 45000,\n        },\n    },\n)\nprint(find_key_moments_job.id)',
       },
+      ruby: {
+        method: 'robots_preview.jobs.find_key_moments.create',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nfind_key_moments_job = mux.robots_preview.jobs.find_key_moments.create(parameters: {asset_id: "mux_asset_123abc"})\n\nputs(find_key_moments_job)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.findKeyMoments.create',
         example:
@@ -3789,6 +4139,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'robots_preview.jobs.find_key_moments.retrieve',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nfind_key_moments_job = client.robots_preview.jobs.find_key_moments.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(find_key_moments_job.id)',
+      },
+      ruby: {
+        method: 'robots_preview.jobs.find_key_moments.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nfind_key_moments_job = mux.robots_preview.jobs.find_key_moments.retrieve("rjob_lK9w2kI5J1")\n\nputs(find_key_moments_job)',
       },
       typescript: {
         method: 'client.robotsPreview.jobs.findKeyMoments.retrieve',
@@ -3843,6 +4198,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nmoderate_job = client.robots_preview.jobs.moderate.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "thresholds": {\n            "sexual": 0.7,\n            "violence": 0.8,\n        },\n    },\n)\nprint(moderate_job.id)',
       },
+      ruby: {
+        method: 'robots_preview.jobs.moderate.create',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nmoderate_job = mux.robots_preview.jobs.moderate.create(parameters: {asset_id: "mux_asset_123abc"})\n\nputs(moderate_job)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.moderate.create',
         example:
@@ -3892,6 +4252,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'robots_preview.jobs.moderate.retrieve',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nmoderate_job = client.robots_preview.jobs.moderate.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(moderate_job.id)',
+      },
+      ruby: {
+        method: 'robots_preview.jobs.moderate.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nmoderate_job = mux.robots_preview.jobs.moderate.retrieve("rjob_lK9w2kI5J1")\n\nputs(moderate_job)',
       },
       typescript: {
         method: 'client.robotsPreview.jobs.moderate.retrieve',
@@ -3947,6 +4312,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsummarize_job = client.robots_preview.jobs.summarize.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "tone": "neutral",\n        "tag_count": 10,\n    },\n)\nprint(summarize_job.id)',
       },
+      ruby: {
+        method: 'robots_preview.jobs.summarize.create',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nsummarize_job = mux.robots_preview.jobs.summarize.create(parameters: {asset_id: "mux_asset_123abc"})\n\nputs(summarize_job)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.summarize.create',
         example:
@@ -3996,6 +4366,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'robots_preview.jobs.summarize.retrieve',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsummarize_job = client.robots_preview.jobs.summarize.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(summarize_job.id)',
+      },
+      ruby: {
+        method: 'robots_preview.jobs.summarize.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nsummarize_job = mux.robots_preview.jobs.summarize.retrieve("rjob_lK9w2kI5J1")\n\nputs(summarize_job)',
       },
       typescript: {
         method: 'client.robotsPreview.jobs.summarize.retrieve',
@@ -4051,6 +4426,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntranslate_captions_job = client.robots_preview.jobs.translate_captions.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "track_id": "track_en_abc123",\n        "to_language_code": "es",\n        "upload_to_mux": True,\n    },\n)\nprint(translate_captions_job.id)',
       },
+      ruby: {
+        method: 'robots_preview.jobs.translate_captions.create',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ntranslate_captions_job = mux.robots_preview.jobs.translate_captions.create(\n  parameters: {asset_id: "mux_asset_123abc", to_language_code: "es", track_id: "track_en_abc123"}\n)\n\nputs(translate_captions_job)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.translateCaptions.create',
         example:
@@ -4101,6 +4481,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntranslate_captions_job = client.robots_preview.jobs.translate_captions.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(translate_captions_job.id)',
       },
+      ruby: {
+        method: 'robots_preview.jobs.translate_captions.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ntranslate_captions_job = mux.robots_preview.jobs.translate_captions.retrieve("rjob_lK9w2kI5J1")\n\nputs(translate_captions_job)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.translateCaptions.retrieve',
         example:
@@ -4148,6 +4533,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'data.dimensions.list',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ndimensions_response = client.data.dimensions.list()\nprint(dimensions_response.data)',
+      },
+      ruby: {
+        method: 'data.dimensions.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ndimensions_response = mux.data.dimensions.list\n\nputs(dimensions_response)',
       },
       typescript: {
         method: 'client.data.dimensions.list',
@@ -4205,6 +4595,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'data.dimensions.list_values',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.dimensions.list_values(\n    dimension_id="abcd1234",\n)\npage = page.data[0]\nprint(page.total_count)',
+      },
+      ruby: {
+        method: 'data.dimensions.list_values',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.data.dimensions.list_values("abcd1234")\n\nputs(page)',
       },
       typescript: {
         method: 'client.data.dimensions.listValues',
@@ -4265,6 +4660,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.dimensions.list_trace_elements(\n    dimension_id="abcd1234",\n)\npage = page.data[0]\nprint(page.total_count)',
       },
+      ruby: {
+        method: 'data.dimensions.list_trace_elements',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.data.dimensions.list_trace_elements("abcd1234")\n\nputs(page)',
+      },
       typescript: {
         method: 'client.data.dimensions.listTraceElements',
         example:
@@ -4314,6 +4714,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.data.monitoring.list_dimensions()\nprint(response.data)',
       },
+      ruby: {
+        method: 'data.monitoring.list_dimensions',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.data.monitoring.list_dimensions\n\nputs(response)',
+      },
       typescript: {
         method: 'client.data.monitoring.listDimensions',
         example:
@@ -4362,6 +4767,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'data.monitoring.metrics.list',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nmetrics = client.data.monitoring.metrics.list()\nprint(metrics.data)',
+      },
+      ruby: {
+        method: 'data.monitoring.metrics.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nmetrics = mux.data.monitoring.metrics.list\n\nputs(metrics)',
       },
       typescript: {
         method: 'client.data.monitoring.metrics.list',
@@ -4421,6 +4831,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.data.monitoring.metrics.get_breakdown(\n    monitoring_metric_id="current-concurrent-viewers",\n)\nprint(response.data)',
       },
+      ruby: {
+        method: 'data.monitoring.metrics.get_breakdown',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.data.monitoring.metrics.get_breakdown(:"current-concurrent-viewers")\n\nputs(response)',
+      },
       typescript: {
         method: 'client.data.monitoring.metrics.getBreakdown',
         example:
@@ -4471,6 +4886,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'data.monitoring.metrics.get_timeseries',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.data.monitoring.metrics.get_timeseries(\n    monitoring_metric_id="current-concurrent-viewers",\n)\nprint(response.data)',
+      },
+      ruby: {
+        method: 'data.monitoring.metrics.get_timeseries',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.data.monitoring.metrics.get_timeseries(:"current-concurrent-viewers")\n\nputs(response)',
       },
       typescript: {
         method: 'client.data.monitoring.metrics.getTimeseries',
@@ -4531,6 +4951,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.data.monitoring.metrics.get_breakdown_timeseries(\n    monitoring_metric_id="current-concurrent-viewers",\n)\nprint(response.data)',
       },
+      ruby: {
+        method: 'data.monitoring.metrics.get_breakdown_timeseries',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.data.monitoring.metrics.get_breakdown_timeseries(:"current-concurrent-viewers")\n\nputs(response)',
+      },
       typescript: {
         method: 'client.data.monitoring.metrics.getBreakdownTimeseries',
         example:
@@ -4581,6 +5006,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.data.monitoring.metrics.get_histogram_timeseries(\n    monitoring_histogram_metric_id="video-startup-time",\n)\nprint(response.data)',
       },
+      ruby: {
+        method: 'data.monitoring.metrics.get_histogram_timeseries',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.data.monitoring.metrics.get_histogram_timeseries(:"video-startup-time")\n\nputs(response)',
+      },
       typescript: {
         method: 'client.data.monitoring.metrics.getHistogramTimeseries',
         example:
@@ -4630,6 +5060,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nerrors_response = client.data.errors.list()\nprint(errors_response.data)',
       },
+      ruby: {
+        method: 'data.errors.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nerrors_response = mux.data.errors.list\n\nputs(errors_response)',
+      },
       typescript: {
         method: 'client.data.errors.list',
         example:
@@ -4677,6 +5112,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'data.exports.list_video_views',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nvideo_view_exports_response = client.data.exports.list_video_views()\nprint(video_view_exports_response.data)',
+      },
+      ruby: {
+        method: 'data.exports.list_video_views',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nvideo_view_exports_response = mux.data.exports.list_video_views\n\nputs(video_view_exports_response)',
       },
       typescript: {
         method: 'client.data.exports.listVideoViews',
@@ -4734,6 +5174,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.filters.list_values(\n    filter_id="abcd1234",\n)\npage = page.data[0]\nprint(page.total_count)',
       },
+      ruby: {
+        method: 'data.filters.list_values',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.data.filters.list_values("abcd1234")\n\nputs(page)',
+      },
       typescript: {
         method: 'client.data.filters.listValues',
         example:
@@ -4783,6 +5228,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'data.incidents.retrieve',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nincident_response = client.data.incidents.retrieve(\n    "abcd1234",\n)\nprint(incident_response.data)',
+      },
+      ruby: {
+        method: 'data.incidents.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nincident_response = mux.data.incidents.retrieve("abcd1234")\n\nputs(incident_response)',
       },
       typescript: {
         method: 'client.data.incidents.retrieve',
@@ -4840,6 +5290,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.incidents.list_related(\n    incident_id="abcd1234",\n)\npage = page.data[0]\nprint(page.id)',
       },
+      ruby: {
+        method: 'data.incidents.list_related',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.data.incidents.list_related("abcd1234")\n\nputs(page)',
+      },
       typescript: {
         method: 'client.data.incidents.listRelated',
         example:
@@ -4896,6 +5351,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.incidents.list()\npage = page.data[0]\nprint(page.id)',
       },
+      ruby: {
+        method: 'data.incidents.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.data.incidents.list\n\nputs(page)',
+      },
       typescript: {
         method: 'client.data.incidents.list',
         example:
@@ -4951,6 +5411,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'data.metrics.list',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nall_metric_values_response = client.data.metrics.list()\nprint(all_metric_values_response.data)',
+      },
+      ruby: {
+        method: 'data.metrics.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nall_metric_values_response = mux.data.metrics.list\n\nputs(all_metric_values_response)',
       },
       typescript: {
         method: 'client.data.metrics.list',
@@ -5013,6 +5478,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.metrics.list_breakdown_values(\n    metric_id="video_startup_time",\n)\npage = page.data[0]\nprint(page.field)',
       },
+      ruby: {
+        method: 'data.metrics.list_breakdown_values',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.data.metrics.list_breakdown_values(:video_startup_time)\n\nputs(page)',
+      },
       typescript: {
         method: 'client.data.metrics.listBreakdownValues',
         example:
@@ -5069,6 +5539,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'data.metrics.get_overall_values',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\noverall_values_response = client.data.metrics.get_overall_values(\n    metric_id="video_startup_time",\n)\nprint(overall_values_response.data)',
+      },
+      ruby: {
+        method: 'data.metrics.get_overall_values',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\noverall_values_response = mux.data.metrics.get_overall_values(:video_startup_time)\n\nputs(overall_values_response)',
       },
       typescript: {
         method: 'client.data.metrics.getOverallValues',
@@ -5127,6 +5602,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'data.metrics.get_insights',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ninsights_response = client.data.metrics.get_insights(\n    metric_id="video_startup_time",\n)\nprint(insights_response.data)',
+      },
+      ruby: {
+        method: 'data.metrics.get_insights',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\ninsights_response = mux.data.metrics.get_insights(:video_startup_time)\n\nputs(insights_response)',
       },
       typescript: {
         method: 'client.data.metrics.getInsights',
@@ -5187,6 +5667,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nmetric_timeseries_data_response = client.data.metrics.get_timeseries(\n    metric_id="video_startup_time",\n)\nprint(metric_timeseries_data_response.data)',
       },
+      ruby: {
+        method: 'data.metrics.get_timeseries',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nmetric_timeseries_data_response = mux.data.metrics.get_timeseries(:video_startup_time)\n\nputs(metric_timeseries_data_response)',
+      },
       typescript: {
         method: 'client.data.metrics.getTimeseries',
         example:
@@ -5245,6 +5730,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nreal_time_breakdown_response = client.data.real_time.retrieve_breakdown(\n    realtime_metric_id="current-concurrent-viewers",\n)\nprint(real_time_breakdown_response.data)',
       },
+      ruby: {
+        method: 'data.real_time.retrieve_breakdown',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nreal_time_breakdown_response = mux.data.real_time.retrieve_breakdown(:"current-concurrent-viewers")\n\nputs(real_time_breakdown_response)',
+      },
       typescript: {
         method: 'client.data.realTime.retrieveBreakdown',
         example:
@@ -5296,6 +5786,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nreal_time_timeseries_response = client.data.real_time.retrieve_timeseries(\n    realtime_metric_id="current-concurrent-viewers",\n)\nprint(real_time_timeseries_response.data)',
       },
+      ruby: {
+        method: 'data.real_time.retrieve_timeseries',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nreal_time_timeseries_response = mux.data.real_time.retrieve_timeseries(:"current-concurrent-viewers")\n\nputs(real_time_timeseries_response)',
+      },
       typescript: {
         method: 'client.data.realTime.retrieveTimeseries',
         example:
@@ -5345,6 +5840,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'data.real_time.list_metrics',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nreal_time_metrics_response = client.data.real_time.list_metrics()\nprint(real_time_metrics_response.data)',
+      },
+      ruby: {
+        method: 'data.real_time.list_metrics',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nreal_time_metrics_response = mux.data.real_time.list_metrics\n\nputs(real_time_metrics_response)',
       },
       typescript: {
         method: 'client.data.realTime.listMetrics',
@@ -5397,6 +5897,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nreal_time_histogram_timeseries_response = client.data.real_time.retrieve_histogram_timeseries(\n    realtime_histogram_metric_id="video-startup-time",\n)\nprint(real_time_histogram_timeseries_response.data)',
       },
+      ruby: {
+        method: 'data.real_time.retrieve_histogram_timeseries',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nreal_time_histogram_timeseries_response = mux.data.real_time.retrieve_histogram_timeseries(:"video-startup-time")\n\nputs(real_time_histogram_timeseries_response)',
+      },
       typescript: {
         method: 'client.data.realTime.retrieveHistogramTimeseries',
         example:
@@ -5446,6 +5951,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'data.real_time.list_dimensions',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nreal_time_dimensions_response = client.data.real_time.list_dimensions()\nprint(real_time_dimensions_response.data)',
+      },
+      ruby: {
+        method: 'data.real_time.list_dimensions',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nreal_time_dimensions_response = mux.data.real_time.list_dimensions\n\nputs(real_time_dimensions_response)',
       },
       typescript: {
         method: 'client.data.realTime.listDimensions',
@@ -5506,6 +6016,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.video_views.list()\npage = page.data[0]\nprint(page.id)',
       },
+      ruby: {
+        method: 'data.video_views.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.data.video_views.list\n\nputs(page)',
+      },
       typescript: {
         method: 'client.data.videoViews.list',
         example:
@@ -5554,6 +6069,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'data.video_views.retrieve',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nvideo_view_response = client.data.video_views.retrieve(\n    "abcd1234",\n)\nprint(video_view_response.data)',
+      },
+      ruby: {
+        method: 'data.video_views.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nvideo_view_response = mux.data.video_views.retrieve("abcd1234")\n\nputs(video_view_response)',
       },
       typescript: {
         method: 'client.data.videoViews.retrieve',
@@ -5608,6 +6128,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.annotations.list()\npage = page.data[0]\nprint(page.id)',
       },
+      ruby: {
+        method: 'data.annotations.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.data.annotations.list\n\nputs(page)',
+      },
       typescript: {
         method: 'client.data.annotations.list',
         example:
@@ -5656,6 +6181,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'data.annotations.retrieve',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nannotation = client.data.annotations.retrieve(\n    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(annotation.id)',
+      },
+      ruby: {
+        method: 'data.annotations.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nannotation = mux.data.annotations.retrieve("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")\n\nputs(annotation)',
       },
       typescript: {
         method: 'client.data.annotations.retrieve',
@@ -5706,6 +6236,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nannotation = client.data.annotations.create(\n    date=1745438400,\n    note="This is a note",\n    sub_property_id="123456",\n)\nprint(annotation.id)',
       },
+      ruby: {
+        method: 'data.annotations.create',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nannotation = mux.data.annotations.create(date: 1745438400, note: "This is a note")\n\nputs(annotation)',
+      },
       typescript: {
         method: 'client.data.annotations.create',
         example:
@@ -5753,6 +6288,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'data.annotations.delete',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.data.annotations.delete(\n    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)',
+      },
+      ruby: {
+        method: 'data.annotations.delete',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.data.annotations.delete("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")\n\nputs(result)',
       },
       typescript: {
         method: 'client.data.annotations.delete',
@@ -5803,6 +6343,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nannotation = client.data.annotations.update(\n    annotation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    date=1745438400,\n    note="This is a note",\n    sub_property_id="123456",\n)\nprint(annotation.id)',
       },
+      ruby: {
+        method: 'data.annotations.update',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nannotation = mux.data.annotations.update(\n  "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n  date: 1745438400,\n  note: "This is a note"\n)\n\nputs(annotation)',
+      },
       typescript: {
         method: 'client.data.annotations.update',
         example:
@@ -5852,6 +6397,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsigning_key = client.system.signing_keys.create()\nprint(signing_key.id)',
       },
+      ruby: {
+        method: 'system_.signing_keys.create',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nsigning_key = mux.system_.signing_keys.create\n\nputs(signing_key)',
+      },
       typescript: {
         method: 'client.system.signingKeys.create',
         example:
@@ -5900,6 +6450,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'system.signing_keys.list',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.system.signing_keys.list()\npage = page.data[0]\nprint(page.id)',
+      },
+      ruby: {
+        method: 'system_.signing_keys.list',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.system_.signing_keys.list\n\nputs(page)',
       },
       typescript: {
         method: 'client.system.signingKeys.list',
@@ -5951,6 +6506,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsigning_key = client.system.signing_keys.retrieve(\n    "SIGNING_KEY_ID",\n)\nprint(signing_key.id)',
       },
+      ruby: {
+        method: 'system_.signing_keys.retrieve',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nsigning_key = mux.system_.signing_keys.retrieve("SIGNING_KEY_ID")\n\nputs(signing_key)',
+      },
       typescript: {
         method: 'client.system.signingKeys.retrieve',
         example:
@@ -5999,6 +6559,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'system.signing_keys.delete',
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.system.signing_keys.delete(\n    "SIGNING_KEY_ID",\n)',
+      },
+      ruby: {
+        method: 'system_.signing_keys.delete',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.system_.signing_keys.delete("SIGNING_KEY_ID")\n\nputs(result)',
       },
       typescript: {
         method: 'client.system.signingKeys.delete',
@@ -6049,6 +6614,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.system.utilities.whoami()\nprint(response.environment_id)',
       },
+      ruby: {
+        method: 'system_.utilities.whoami',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresponse = mux.system_.utilities.whoami\n\nputs(response)',
+      },
       typescript: {
         method: 'client.system.utilities.whoami',
         example:
@@ -6085,6 +6655,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.webhooks.unwrap()',
       },
+      ruby: {
+        method: 'webhooks.unwrap',
+        example:
+          'require "mux"\n\nmux = Mux::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.webhooks.unwrap\n\nputs(result)',
+      },
       typescript: {
         method: 'client.webhooks.unwrap',
         example:
@@ -6114,6 +6689,11 @@ const EMBEDDED_READMES: { language: string; content: string }[] = [
     language: 'typescript',
     content:
       "# Mux TypeScript API Library\n\n[![NPM version](https://img.shields.io/npm/v/@mux/mux-node.svg?label=npm%20(stable))](https://npmjs.org/package/@mux/mux-node) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@mux/mux-node)\n\nThis library provides convenient access to the Mux REST API from server-side TypeScript or JavaScript.\n\n\n\nThe REST API documentation can be found on [docs.mux.com](https://docs.mux.com). The full API of this library can be found in [api.md](api.md).\n\n\n\n## MCP Server\n\nUse the Mux MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40mux%2Fmcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBtdXgvbWNwIl0sImVudiI6eyJNVVhfVE9LRU5fSUQiOiJteSB0b2tlbiBpZCIsIk1VWF9UT0tFTl9TRUNSRVQiOiJteSBzZWNyZXQiLCJNVVhfV0VCSE9PS19TRUNSRVQiOiJNeSBXZWJob29rIFNlY3JldCIsIk1VWF9TSUdOSU5HX0tFWSI6Ik15IEp3dCBTaWduaW5nIEtleSIsIk1VWF9QUklWQVRFX0tFWSI6Ik15IEp3dCBQcml2YXRlIEtleSIsIk1VWF9BVVRIT1JJWkFUSU9OX1RPS0VOIjoibXkgYXV0aG9yaXphdGlvbiB0b2tlbiJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40mux%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40mux%2Fmcp%22%5D%2C%22env%22%3A%7B%22MUX_TOKEN_ID%22%3A%22my%20token%20id%22%2C%22MUX_TOKEN_SECRET%22%3A%22my%20secret%22%2C%22MUX_WEBHOOK_SECRET%22%3A%22My%20Webhook%20Secret%22%2C%22MUX_SIGNING_KEY%22%3A%22My%20Jwt%20Signing%20Key%22%2C%22MUX_PRIVATE_KEY%22%3A%22My%20Jwt%20Private%20Key%22%2C%22MUX_AUTHORIZATION_TOKEN%22%3A%22my%20authorization%20token%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n```sh\nnpm install @mux/mux-node\n```\n\n\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n<!-- prettier-ignore -->\n```js\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.create({\n  inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n  playback_policies: ['public'],\n});\n\nconsole.log(asset.id);\n```\n\n\n\n### Request & Response types\n\nThis library includes TypeScript definitions for all request params and response fields. You may import and use them like so:\n\n<!-- prettier-ignore -->\n```ts\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst params: Mux.Video.AssetCreateParams = {\n  inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n  playback_policies: ['public'],\n};\nconst asset: Mux.Video.Asset = await client.video.assets.create(params);\n```\n\nDocumentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.\n\n\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API,\nor if the API returns a non-success status code (i.e., 4xx or 5xx response),\na subclass of `APIError` will be thrown:\n\n<!-- prettier-ignore -->\n```ts\nconst liveStream = await client.video.liveStreams\n  .create({ playback_policies: ['public'] })\n  .catch(async (err) => {\n    if (err instanceof Mux.APIError) {\n      console.log(err.status); // 400\n      console.log(err.name); // BadRequestError\n      console.log(err.headers); // {server: 'nginx', ...}\n    } else {\n      throw err;\n    }\n  });\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors will all be retried by default.\n\nYou can use the `maxRetries` option to configure or disable this:\n\n<!-- prettier-ignore -->\n```js\n// Configure the default for all requests:\nconst client = new Mux({\n  maxRetries: 0, // default is 2\n});\n\n// Or, configure per-request:\nawait client.video.assets.retrieve('t02rm...', {\n  maxRetries: 5,\n});\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default. You can configure this with a `timeout` option:\n\n<!-- prettier-ignore -->\n```ts\n// Configure the default for all requests:\nconst client = new Mux({\n  timeout: 20 * 1000, // 20 seconds (default is 1 minute)\n});\n\n// Override per-request:\nawait client.video.assets.retrieve('t02rm...', {\n  timeout: 5 * 1000,\n});\n```\n\nOn timeout, an `APIConnectionTimeoutError` is thrown.\n\nNote that requests which time out will be [retried twice by default](#retries).\n\n## Auto-pagination\n\nList methods in the Mux API are paginated.\nYou can use the `for await … of` syntax to iterate through items across all pages:\n\n```ts\nasync function fetchAllDeliveryReports(params) {\n  const allDeliveryReports = [];\n  // Automatically fetches more pages as needed.\n  for await (const deliveryReport of client.video.deliveryUsage.list()) {\n    allDeliveryReports.push(deliveryReport);\n  }\n  return allDeliveryReports;\n}\n```\n\nAlternatively, you can request a single page at a time:\n\n```ts\nlet page = await client.video.deliveryUsage.list();\nfor (const deliveryReport of page.data) {\n  console.log(deliveryReport);\n}\n\n// Convenience methods are provided for manually paginating:\nwhile (page.hasNextPage()) {\n  page = await page.getNextPage();\n  // ...\n}\n```\n\n\n\n## Advanced Usage\n\n### Accessing raw Response data (e.g., headers)\n\nThe \"raw\" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.\nThis method returns as soon as the headers for a successful response are received and does not consume the response body, so you are free to write custom parsing or streaming logic.\n\nYou can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.\nUnlike `.asResponse()` this method consumes the body, returning once it is parsed.\n\n<!-- prettier-ignore -->\n```ts\nconst client = new Mux();\n\nconst response = await client.video.assets\n  .create({\n    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n    playback_policies: ['public'],\n  })\n  .asResponse();\nconsole.log(response.headers.get('X-My-Header'));\nconsole.log(response.statusText); // access the underlying Response object\n\nconst { data: asset, response: raw } = await client.video.assets\n  .create({\n    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n    playback_policies: ['public'],\n  })\n  .withResponse();\nconsole.log(raw.headers.get('X-My-Header'));\nconsole.log(asset.id);\n```\n\n### Logging\n\n> [!IMPORTANT]\n> All log messages are intended for debugging only. The format and content of log messages\n> may change between releases.\n\n#### Log levels\n\nThe log level can be configured in two ways:\n\n1. Via the `MUX_LOG` environment variable\n2. Using the `logLevel` client option (overrides the environment variable if set)\n\n```ts\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  logLevel: 'debug', // Show all log messages\n});\n```\n\nAvailable log levels, from most to least verbose:\n\n- `'debug'` - Show debug messages, info, warnings, and errors\n- `'info'` - Show info messages, warnings, and errors\n- `'warn'` - Show warnings and errors (default)\n- `'error'` - Show only errors\n- `'off'` - Disable all logging\n\nAt the `'debug'` level, all HTTP requests and responses are logged, including headers and bodies.\nSome authentication-related headers are redacted, but sensitive data in request and response bodies\nmay still be visible.\n\n#### Custom logger\n\nBy default, this library logs to `globalThis.console`. You can also provide a custom logger.\nMost logging libraries are supported, including [pino](https://www.npmjs.com/package/pino), [winston](https://www.npmjs.com/package/winston), [bunyan](https://www.npmjs.com/package/bunyan), [consola](https://www.npmjs.com/package/consola), [signale](https://www.npmjs.com/package/signale), and [@std/log](https://jsr.io/@std/log). If your logger doesn't work, please open an issue.\n\nWhen providing a custom logger, the `logLevel` option still controls which messages are emitted, messages\nbelow the configured level will not be sent to your logger.\n\n```ts\nimport Mux from '@mux/mux-node';\nimport pino from 'pino';\n\nconst logger = pino();\n\nconst client = new Mux({\n  logger: logger.child({ name: 'Mux' }),\n  logLevel: 'debug', // Send all messages to pino, allowing it to filter\n});\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.get`, `client.post`, and other HTTP verbs.\nOptions on the client, such as retries, will be respected when making these requests.\n\n```ts\nawait client.post('/some/path', {\n  body: { some_prop: 'foo' },\n  query: { some_query_arg: 'bar' },\n});\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use `// @ts-expect-error` on the undocumented\nparameter. This library doesn't validate at runtime that the request matches the type, so any extra values you\nsend will be sent as-is.\n\n```ts\nclient.video.assets.create({\n  // ...\n  // @ts-expect-error baz is not yet public\n  baz: 'undocumented option',\n});\n```\n\nFor requests with the `GET` verb, any extra params will be in the query, all other requests will send the\nextra param in the body.\n\nIf you want to explicitly send an extra argument, you can do so with the `query`, `body`, and `headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may access the response object with `// @ts-expect-error` on\nthe response object, or cast the response object to the requisite type. Like the request params, we do not\nvalidate or strip extra properties from the response from the API.\n\n### Customizing the fetch client\n\nBy default, this library expects a global `fetch` function is defined.\n\nIf you want to use a different `fetch` function, you can either polyfill the global:\n\n```ts\nimport fetch from 'my-fetch';\n\nglobalThis.fetch = fetch;\n```\n\nOr pass it to the client:\n\n```ts\nimport Mux from '@mux/mux-node';\nimport fetch from 'my-fetch';\n\nconst client = new Mux({ fetch });\n```\n\n### Fetch options\n\nIf you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)\n\n```ts\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  fetchOptions: {\n    // `RequestInit` options\n  },\n});\n```\n\n#### Configuring proxies\n\nTo modify proxy behavior, you can provide custom `fetchOptions` that add runtime-specific proxy\noptions to requests:\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg\" align=\"top\" width=\"18\" height=\"21\"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>\n\n```ts\nimport Mux from '@mux/mux-node';\nimport * as undici from 'undici';\n\nconst proxyAgent = new undici.ProxyAgent('http://localhost:8888');\nconst client = new Mux({\n  fetchOptions: {\n    dispatcher: proxyAgent,\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg\" align=\"top\" width=\"18\" height=\"21\"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>\n\n```ts\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  fetchOptions: {\n    proxy: 'http://localhost:8888',\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg\" align=\"top\" width=\"18\" height=\"21\"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>\n\n```ts\nimport Mux from 'npm:@mux/mux-node';\n\nconst httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });\nconst client = new Mux({\n  fetchOptions: {\n    client: httpClient,\n  },\n});\n```\n\n## Frequently Asked Questions\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/muxinc/mux-node-sdk/issues) with questions, bugs, or suggestions.\n\n## Requirements\n\nTypeScript >= 4.9 is supported.\n\nThe following runtimes are supported:\n\n- Web browsers (Up-to-date Chrome, Firefox, Safari, Edge, and more)\n- Node.js 20 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.\n- Deno v1.28.0 or higher.\n- Bun 1.0 or later.\n- Cloudflare Workers.\n- Vercel Edge Runtime.\n- Jest 28 or greater with the `\"node\"` environment (`\"jsdom\"` is not supported at this time).\n- Nitro v2.6 or greater.\n\nNote that React Native is not supported at this time.\n\nIf you are interested in other runtime environments, please open or upvote an issue on GitHub.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n",
+  },
+  {
+    language: 'ruby',
+    content:
+      '# Mux Ruby API library\n\nThe Mux Ruby library provides convenient access to the Mux REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/stainless-sdks/mux-ruby#Sorbet) for usage with Sorbet. The standard library\'s `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.\n\n\n\n\n\n## MCP Server\n\nUse the Mux MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40mux%2Fmcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBtdXgvbWNwIl0sImVudiI6eyJNVVhfVE9LRU5fSUQiOiJteSB0b2tlbiBpZCIsIk1VWF9UT0tFTl9TRUNSRVQiOiJteSBzZWNyZXQiLCJNVVhfV0VCSE9PS19TRUNSRVQiOiJNeSBXZWJob29rIFNlY3JldCIsIk1VWF9TSUdOSU5HX0tFWSI6Ik15IEp3dCBTaWduaW5nIEtleSIsIk1VWF9QUklWQVRFX0tFWSI6Ik15IEp3dCBQcml2YXRlIEtleSIsIk1VWF9BVVRIT1JJWkFUSU9OX1RPS0VOIjoibXkgYXV0aG9yaXphdGlvbiB0b2tlbiJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40mux%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40mux%2Fmcp%22%5D%2C%22env%22%3A%7B%22MUX_TOKEN_ID%22%3A%22my%20token%20id%22%2C%22MUX_TOKEN_SECRET%22%3A%22my%20secret%22%2C%22MUX_WEBHOOK_SECRET%22%3A%22My%20Webhook%20Secret%22%2C%22MUX_SIGNING_KEY%22%3A%22My%20Jwt%20Signing%20Key%22%2C%22MUX_PRIVATE_KEY%22%3A%22My%20Jwt%20Private%20Key%22%2C%22MUX_AUTHORIZATION_TOKEN%22%3A%22my%20authorization%20token%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Documentation\n\nDocumentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/mux).\n\nThe REST API documentation can be found on [docs.mux.com](https://docs.mux.com).\n\n## Installation\n\nTo use this gem, install via Bundler by adding the following to your application\'s `Gemfile`:\n\n```ruby\ngem "mux", "~> 0.0.1"\n```\n\n## Usage\n\n```ruby\nrequire "bundler/setup"\nrequire "mux"\n\nmux = Mux::Client.new(\n  token_id: ENV["MUX_TOKEN_ID"], # This is the default and can be omitted\n  token_secret: ENV["MUX_TOKEN_SECRET"] # This is the default and can be omitted\n)\n\nasset = mux.video.assets.create(\n  inputs: [{url: "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4"}],\n  playback_policies: ["public"]\n)\n\nputs(asset.id)\n```\n\n\n\n### Pagination\n\nList methods in the Mux API are paginated.\n\nThis library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:\n\n```ruby\npage = mux.video.delivery_usage.list\n\n# Fetch single item from page.\ndelivery_usage = page.data[0]\nputs(delivery_usage.asset_id)\n\n# Automatically fetches more pages as needed.\npage.auto_paging_each do |delivery_usage|\n  puts(delivery_usage.asset_id)\nend\n```\n\nAlternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.\n\n```ruby\nif page.next_page?\n  new_page = page.next_page\n  puts(new_page.data[0].asset_id)\nend\n```\n\n\n\n### Handling errors\n\nWhen the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `Mux::Errors::APIError` will be thrown:\n\n```ruby\nbegin\n  live_stream = mux.video.live_streams.create(playback_policies: ["public"])\nrescue Mux::Errors::APIConnectionError => e\n  puts("The server could not be reached")\n  puts(e.cause)  # an underlying Exception, likely raised within `net/http`\nrescue Mux::Errors::RateLimitError => e\n  puts("A 429 status code was received; we should back off a bit.")\nrescue Mux::Errors::APIStatusError => e\n  puts("Another non-200-range status code was received")\n  puts(e.status)\nend\n```\n\nError codes are as follows:\n\n| Cause            | Error Type                 |\n| ---------------- | -------------------------- |\n| HTTP 400         | `BadRequestError`          |\n| HTTP 401         | `AuthenticationError`      |\n| HTTP 403         | `PermissionDeniedError`    |\n| HTTP 404         | `NotFoundError`            |\n| HTTP 409         | `ConflictError`            |\n| HTTP 422         | `UnprocessableEntityError` |\n| HTTP 429         | `RateLimitError`           |\n| HTTP >= 500      | `InternalServerError`      |\n| Other HTTP error | `APIStatusError`           |\n| Timeout          | `APITimeoutError`          |\n| Network error    | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\n\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 Internal errors, and timeouts will all be retried by default.\n\nYou can use the `max_retries` option to configure or disable this:\n\n```ruby\n# Configure the default for all requests:\nmux = Mux::Client.new(\n  max_retries: 0 # default is 2\n)\n\n# Or, configure per-request:\nmux.video.assets.retrieve("t02rm...", request_options: {max_retries: 5})\n```\n\n### Timeouts\n\nBy default, requests will time out after 60 seconds. You can use the timeout option to configure or disable this:\n\n```ruby\n# Configure the default for all requests:\nmux = Mux::Client.new(\n  timeout: nil # default is 60\n)\n\n# Or, configure per-request:\nmux.video.assets.retrieve("t02rm...", request_options: {timeout: 5})\n```\n\nOn timeout, `Mux::Errors::APITimeoutError` is raised.\n\nNote that requests that time out are retried by default.\n\n## Advanced concepts\n\n### BaseModel\n\nAll parameter and response objects inherit from `Mux::Internal::Type::BaseModel`, which provides several conveniences, including:\n\n1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.\n\n2. Structural equivalence for equality; if two API calls return the same values, comparing the responses with == will return true.\n\n3. Both instances and the classes themselves can be pretty-printed.\n\n4. Helpers such as `#to_h`, `#deep_to_h`, `#to_json`, and `#to_yaml`.\n\n### Making custom or undocumented requests\n\n#### Undocumented properties\n\nYou can send undocumented parameters to any endpoint, and read undocumented response properties, like so:\n\nNote: the `extra_` parameters of the same name overrides the documented parameters.\n\n```ruby\nasset =\n  mux.video.assets.retrieve(\n    "t02rm...",\n    request_options: {\n      extra_query: {my_query_parameter: value},\n      extra_body: {my_body_parameter: value},\n      extra_headers: {"my-header": value}\n    }\n  )\n\nputs(asset[:my_undocumented_property])\n```\n\n#### Undocumented request params\n\nIf you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` under the `request_options:` parameter when making a request, as seen in the examples above.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints while retaining the benefit of auth, retries, and so on, you can make requests using `client.request`, like so:\n\n```ruby\nresponse = client.request(\n  method: :post,\n  path: \'/undocumented/endpoint\',\n  query: {"dog": "woof"},\n  headers: {"useful-header": "interesting-value"},\n  body: {"hello": "world"}\n)\n```\n\n### Concurrency & connection pooling\n\nThe `Mux::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.\n\nEach instance of `Mux::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.\n\nWhen all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.\n\nUnless otherwise specified, other classes in the SDK do not have locks protecting their underlying data structure.\n\n## Sorbet\n\nThis library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitions, and has no dependency on sorbet-runtime.\n\nYou can provide typesafe request parameters like so:\n\n```ruby\nmux.video.assets.create(\n  inputs: [\n    Mux::Video::AssetOptions::Input.new(\n      url: "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4"\n    )\n  ],\n  playback_policies: ["public"]\n)\n```\n\nOr, equivalently:\n\n```ruby\n# Hashes work, but are not typesafe:\nmux.video.assets.create(\n  inputs: [{url: "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4"}],\n  playback_policies: ["public"]\n)\n\n# You can also splat a full Params class:\nparams = Mux::Video::AssetCreateParams.new(\n  inputs: [\n    Mux::Video::AssetOptions::Input.new(\n      url: "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4"\n    )\n  ],\n  playback_policies: ["public"]\n)\nmux.video.assets.create(**params)\n```\n\n### Enums\n\nSince this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:\n\n```ruby\n# :none\nputs(Mux::Video::AssetOptions::MasterAccess::NONE)\n\n# Revealed type: `T.all(Mux::Video::AssetOptions::MasterAccess, Symbol)`\nT.reveal_type(Mux::Video::AssetOptions::MasterAccess::NONE)\n```\n\nEnum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:\n\n```ruby\n# Using the enum constants preserves the tagged type information:\nmux.video.assets.create(\n  master_access: Mux::Video::AssetOptions::MasterAccess::NONE,\n  # …\n)\n\n# Literal values are also permissible:\nmux.video.assets.create(\n  master_access: :none,\n  # …\n)\n```\n\n## Versioning\n\nThis package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions. As the library is in initial development and has a major version of `0`, APIs may change at any time.\n\nThis package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` type definitions to be non-breaking changes.\n\n## Requirements\n\nRuby 3.2.0 or higher.\n\n## Contributing\n\nSee [the contributing documentation](https://github.com/stainless-sdks/mux-ruby/tree/main/CONTRIBUTING.md).\n',
   },
   {
     language: 'java',
