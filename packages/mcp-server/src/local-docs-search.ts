@@ -86,6 +86,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/assets \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "inputs": [\n            {\n              "url": "https://muxed.s3.amazonaws.com/leds.mp4"\n            }\n          ]\n        }\'',
       },
+      java: {
+        method: 'video().assets().create',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.Asset;\nimport com.mux.api.models.video.assets.AssetCreateParams;\nimport com.mux.api.models.video.assets.AssetOptions;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AssetOptions params = AssetOptions.builder()\n            .addInput(AssetOptions.Input.builder().build())\n            .build();\n        Asset asset = client.video().assets().create(params);\n    }\n}',
+      },
       node: {
         method: 'client.video.assets.create',
         example:
@@ -131,6 +136,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example: 'curl https://api.mux.com/video/v1/assets \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().assets().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.AssetListPage;\nimport com.mux.api.models.video.assets.AssetListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AssetListPage page = client.video().assets().list();\n    }\n}',
+      },
       node: {
         method: 'client.video.assets.list',
         example:
@@ -172,6 +182,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/assets/$ASSET_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().assets().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.Asset;\nimport com.mux.api.models.video.assets.AssetRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        Asset asset = client.video().assets().retrieve("ASSET_ID");\n    }\n}',
+      },
       node: {
         method: 'client.video.assets.retrieve',
         example:
@@ -209,6 +224,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/assets/$ASSET_ID \\\n    -X DELETE \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().assets().delete',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.AssetDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.video().assets().delete("ASSET_ID");\n    }\n}',
       },
       node: {
         method: 'client.video.assets.delete',
@@ -255,6 +275,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "curl https://api.mux.com/video/v1/assets/$ASSET_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -u \"$MUX_TOKEN_ID:MUX_TOKEN_SECRET\" \\\n    -d '{}'",
       },
+      java: {
+        method: 'video().assets().update',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.Asset;\nimport com.mux.api.models.video.assets.AssetUpdateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        Asset asset = client.video().assets().update("ASSET_ID");\n    }\n}',
+      },
       node: {
         method: 'client.video.assets.update',
         example:
@@ -293,6 +318,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/assets/$ASSET_ID/playback-ids/$PLAYBACK_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().assets().retrievePlaybackId',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.PlaybackId;\nimport com.mux.api.models.video.assets.AssetretrievePlaybackIdParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        PlaybackId playbackId = client.video().assets().retrievePlaybackId(\n          "ASSET_ID", "PLAYBACK_ID"\n        );\n    }\n}',
       },
       node: {
         method: 'client.video.assets.retrievePlaybackId',
@@ -333,6 +363,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "curl https://api.mux.com/video/v1/assets/$ASSET_ID/playback-ids \\\n    -H 'Content-Type: application/json' \\\n    -u \"$MUX_TOKEN_ID:MUX_TOKEN_SECRET\" \\\n    -d '{}'",
       },
+      java: {
+        method: 'video().assets().createPlaybackId',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.PlaybackId;\nimport com.mux.api.models.video.assets.AssetCreatePlaybackIdParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        PlaybackId playbackId = client.video().assets().createPlaybackId("ASSET_ID");\n    }\n}',
+      },
       node: {
         method: 'client.video.assets.createPlaybackId',
         example:
@@ -371,6 +406,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/assets/$ASSET_ID/playback-ids/$PLAYBACK_ID \\\n    -X DELETE \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().assets().deletePlaybackId',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.AssetdeletePlaybackIdParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.video().assets().deletePlaybackId(\n          "ASSET_ID", "PLAYBACK_ID"\n        );\n    }\n}',
       },
       node: {
         method: 'client.video.assets.deletePlaybackId',
@@ -422,6 +462,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/assets/$ASSET_ID/tracks \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "language_code": "en-US",\n          "type": "text",\n          "url": "https://example.com/myVideo_en.srt"\n        }\'',
       },
+      java: {
+        method: 'video().assets().createTrack',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.AssetCreateTrackParams;\nimport com.mux.api.models.video.assets.Track;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AssetCreateTrackParams params = AssetCreateTrackParams.builder()\n            .assetId("ASSET_ID")\n            .languageCode("en-US")\n            .type(AssetCreateTrackParams.Type.TEXT)\n            .url("https://example.com/myVideo_en.srt")\n            .build();\n        Track track = client.video().assets().createTrack(params);\n    }\n}',
+      },
       node: {
         method: 'client.video.assets.createTrack',
         example:
@@ -460,6 +505,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/assets/$ASSET_ID/tracks/$TRACK_ID \\\n    -X DELETE \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().assets().deleteTrack',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.AssetDeleteTrackParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.video().assets().deleteTrack(\n          "ASSET_ID", "TRACK_ID"\n        );\n    }\n}',
       },
       node: {
         method: 'client.video.assets.deleteTrack',
@@ -506,6 +556,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/assets/$ASSET_ID/tracks/$TRACK_ID/generate-subtitles \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "generated_subtitles": [\n            {\n              "language_code": "en",\n              "name": "English (generated)",\n              "passthrough": "English (generated)"\n            }\n          ]\n        }\'',
       },
+      java: {
+        method: 'video().assets().generateSubtitles',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.AssetGenerateSubtitlesParams;\nimport com.mux.api.models.video.assets.Track;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AssetGenerateSubtitlesParams params = AssetGenerateSubtitlesParams.builder()\n            .assetId("ASSET_ID")\n            .trackId("TRACK_ID")\n            .addGeneratedSubtitle(AssetGenerateSubtitlesParams.GeneratedSubtitle.builder().build())\n            .build();\n        List<Track> tracks = client.video().assets().generateSubtitles(params);\n    }\n}',
+      },
       node: {
         method: 'client.video.assets.generateSubtitles',
         example:
@@ -546,6 +601,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/assets/$ASSET_ID/input-info \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().assets().retrieveInputInfo',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.AssetRetrieveInputInfoParams;\nimport com.mux.api.models.video.assets.InputInfo;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        List<InputInfo> inputInfos = client.video().assets().retrieveInputInfo("ASSET_ID");\n    }\n}',
       },
       node: {
         method: 'client.video.assets.retrieveInputInfo',
@@ -591,6 +651,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/assets/$ASSET_ID/mp4-support \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "mp4_support": "capped-1080p"\n        }\'',
       },
+      java: {
+        method: 'video().assets().updateMp4Support',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.Asset;\nimport com.mux.api.models.video.assets.AssetUpdateMp4SupportParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AssetUpdateMp4SupportParams params = AssetUpdateMp4SupportParams.builder()\n            .assetId("ASSET_ID")\n            .mp4Support(AssetUpdateMp4SupportParams.Mp4Support.CAPPED_1080P)\n            .build();\n        Asset asset = client.video().assets().updateMp4Support(params);\n    }\n}',
+      },
       node: {
         method: 'client.video.assets.updateMP4Support',
         example:
@@ -631,6 +696,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/assets/$ASSET_ID/master-access \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "master_access": "temporary"\n        }\'',
+      },
+      java: {
+        method: 'video().assets().updateMasterAccess',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.Asset;\nimport com.mux.api.models.video.assets.AssetUpdateMasterAccessParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AssetUpdateMasterAccessParams params = AssetUpdateMasterAccessParams.builder()\n            .assetId("ASSET_ID")\n            .masterAccess(AssetUpdateMasterAccessParams.MasterAccess.TEMPORARY)\n            .build();\n        Asset asset = client.video().assets().updateMasterAccess(params);\n    }\n}',
       },
       node: {
         method: 'client.video.assets.updateMasterAccess',
@@ -676,6 +746,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/assets/$ASSET_ID/static-renditions \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "resolution": "highest"\n        }\'',
       },
+      java: {
+        method: 'video().assets().createStaticRendition',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.AssetCreateStaticRenditionParams;\nimport com.mux.api.models.video.assets.AssetCreateStaticRenditionResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AssetCreateStaticRenditionParams params = AssetCreateStaticRenditionParams.builder()\n            .assetId("ASSET_ID")\n            .resolution(AssetCreateStaticRenditionParams.Resolution.HIGHEST)\n            .build();\n        AssetCreateStaticRenditionResponse response = client.video().assets().createStaticRendition(params);\n    }\n}',
+      },
       node: {
         method: 'client.video.assets.createStaticRendition',
         example:
@@ -713,6 +788,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/assets/$ASSET_ID/static-renditions/$STATIC_RENDITION_ID \\\n    -X DELETE \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().assets().deleteStaticRendition',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.AssetDeleteStaticRenditionParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.video().assets().deleteStaticRendition(\n          "ASSET_ID", "STATIC_RENDITION_ID"\n        );\n    }\n}',
       },
       node: {
         method: 'client.video.assets.deleteStaticRendition',
@@ -760,6 +840,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/delivery-usage \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().deliveryUsage().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.deliveryusage.DeliveryUsageListPage;\nimport com.mux.api.models.video.deliveryusage.DeliveryUsageListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        DeliveryUsageListPage page = client.video().deliveryUsage().list();\n    }\n}',
       },
       node: {
         method: 'client.video.deliveryUsage.list',
@@ -821,6 +906,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "curl https://api.mux.com/video/v1/live-streams \\\n    -H 'Content-Type: application/json' \\\n    -u \"$MUX_TOKEN_ID:MUX_TOKEN_SECRET\" \\\n    -d '{}'",
       },
+      java: {
+        method: 'video().liveStreams().create',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStream;\nimport com.mux.api.models.video.livestreams.LiveStreamCreateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        LiveStream liveStream = client.video().liveStreams().create();\n    }\n}',
+      },
       node: {
         method: 'client.video.liveStreams.create',
         example:
@@ -865,6 +955,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example: 'curl https://api.mux.com/video/v1/live-streams \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().liveStreams().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStreamListPage;\nimport com.mux.api.models.video.livestreams.LiveStreamListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        LiveStreamListPage page = client.video().liveStreams().list();\n    }\n}',
+      },
       node: {
         method: 'client.video.liveStreams.list',
         example:
@@ -906,6 +1001,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().liveStreams().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStream;\nimport com.mux.api.models.video.livestreams.LiveStreamRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        LiveStream liveStream = client.video().liveStreams().retrieve("LIVE_STREAM_ID");\n    }\n}',
+      },
       node: {
         method: 'client.video.liveStreams.retrieve',
         example:
@@ -944,6 +1044,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID \\\n    -X DELETE \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().liveStreams().delete',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStreamDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.video().liveStreams().delete("LIVE_STREAM_ID");\n    }\n}',
       },
       node: {
         method: 'client.video.liveStreams.delete',
@@ -996,6 +1101,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -u \"$MUX_TOKEN_ID:MUX_TOKEN_SECRET\" \\\n    -d '{}'",
       },
+      java: {
+        method: 'video().liveStreams().update',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStream;\nimport com.mux.api.models.video.livestreams.LiveStreamUpdateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        LiveStream liveStream = client.video().liveStreams().update("LIVE_STREAM_ID");\n    }\n}',
+      },
       node: {
         method: 'client.video.liveStreams.update',
         example:
@@ -1040,6 +1150,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/playback-ids \\\n    -H 'Content-Type: application/json' \\\n    -u \"$MUX_TOKEN_ID:MUX_TOKEN_SECRET\" \\\n    -d '{}'",
       },
+      java: {
+        method: 'video().liveStreams().createPlaybackId',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.PlaybackId;\nimport com.mux.api.models.video.livestreams.LiveStreamCreatePlaybackIdParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        PlaybackId playbackId = client.video().liveStreams().createPlaybackId("LIVE_STREAM_ID");\n    }\n}',
+      },
       node: {
         method: 'client.video.liveStreams.createPlaybackId',
         example:
@@ -1080,6 +1195,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/playback-ids/$PLAYBACK_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().liveStreams().retrievePlaybackId',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.PlaybackId;\nimport com.mux.api.models.video.livestreams.LiveStreamretrievePlaybackIdParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        PlaybackId playbackId = client.video().liveStreams().retrievePlaybackId(\n          "LIVE_STREAM_ID", "PLAYBACK_ID"\n        );\n    }\n}',
+      },
       node: {
         method: 'client.video.liveStreams.retrievePlaybackId',
         example:
@@ -1118,6 +1238,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/playback-ids/$PLAYBACK_ID \\\n    -X DELETE \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().liveStreams().deletePlaybackId',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStreamdeletePlaybackIdParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.video().liveStreams().deletePlaybackId(\n          "LIVE_STREAM_ID", "PLAYBACK_ID"\n        );\n    }\n}',
       },
       node: {
         method: 'client.video.liveStreams.deletePlaybackId',
@@ -1160,6 +1285,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/reset-stream-key \\\n    -X POST \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().liveStreams().resetStreamKey',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStream;\nimport com.mux.api.models.video.livestreams.LiveStreamResetStreamKeyParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        LiveStream liveStream = client.video().liveStreams().resetStreamKey("LIVE_STREAM_ID");\n    }\n}',
+      },
       node: {
         method: 'client.video.liveStreams.resetStreamKey',
         example:
@@ -1198,6 +1328,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/complete \\\n    -X PUT \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().liveStreams().complete',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStreamCompleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.video().liveStreams().complete("LIVE_STREAM_ID");\n    }\n}',
       },
       node: {
         method: 'client.video.liveStreams.complete',
@@ -1238,6 +1373,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/disable \\\n    -X PUT \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().liveStreams().disable',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStreamDisableParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.video().liveStreams().disable("LIVE_STREAM_ID");\n    }\n}',
+      },
       node: {
         method: 'client.video.liveStreams.disable',
         example:
@@ -1275,6 +1415,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/enable \\\n    -X PUT \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().liveStreams().enable',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStreamEnableParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.video().liveStreams().enable("LIVE_STREAM_ID");\n    }\n}',
       },
       node: {
         method: 'client.video.liveStreams.enable',
@@ -1320,6 +1465,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/embedded-subtitles \\\n    -X PUT \\\n    -H 'Content-Type: application/json' \\\n    -u \"$MUX_TOKEN_ID:MUX_TOKEN_SECRET\" \\\n    -d '{}'",
       },
+      java: {
+        method: 'video().liveStreams().updateEmbeddedSubtitles',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStream;\nimport com.mux.api.models.video.livestreams.LiveStreamUpdateEmbeddedSubtitlesParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        LiveStream liveStream = client.video().liveStreams().updateEmbeddedSubtitles("LIVE_STREAM_ID");\n    }\n}',
+      },
       node: {
         method: 'client.video.liveStreams.updateEmbeddedSubtitles',
         example:
@@ -1364,6 +1514,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/generated-subtitles \\\n    -X PUT \\\n    -H 'Content-Type: application/json' \\\n    -u \"$MUX_TOKEN_ID:MUX_TOKEN_SECRET\" \\\n    -d '{}'",
       },
+      java: {
+        method: 'video().liveStreams().updateGeneratedSubtitles',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStream;\nimport com.mux.api.models.video.livestreams.LiveStreamUpdateGeneratedSubtitlesParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        LiveStream liveStream = client.video().liveStreams().updateGeneratedSubtitles("LIVE_STREAM_ID");\n    }\n}',
+      },
       node: {
         method: 'client.video.liveStreams.updateGeneratedSubtitles',
         example:
@@ -1405,6 +1560,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/simulcast-targets \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "url": "rtmp://live.example.com/app"\n        }\'',
       },
+      java: {
+        method: 'video().liveStreams().createSimulcastTarget',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStreamCreateSimulcastTargetParams;\nimport com.mux.api.models.video.livestreams.SimulcastTarget;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        LiveStreamCreateSimulcastTargetParams params = LiveStreamCreateSimulcastTargetParams.builder()\n            .liveStreamId("LIVE_STREAM_ID")\n            .url("rtmp://live.example.com/app")\n            .build();\n        SimulcastTarget simulcastTarget = client.video().liveStreams().createSimulcastTarget(params);\n    }\n}',
+      },
       node: {
         method: 'client.video.liveStreams.createSimulcastTarget',
         example:
@@ -1443,6 +1603,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/simulcast-targets/$SIMULCAST_TARGET_ID \\\n    -X DELETE \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().liveStreams().deleteSimulcastTarget',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStreamDeleteSimulcastTargetParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.video().liveStreams().deleteSimulcastTarget(\n          "LIVE_STREAM_ID", "SIMULCAST_TARGET_ID"\n        );\n    }\n}',
       },
       node: {
         method: 'client.video.liveStreams.deleteSimulcastTarget',
@@ -1484,6 +1649,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/simulcast-targets/$SIMULCAST_TARGET_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().liveStreams().retrieveSimulcastTarget',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStreamRetrieveSimulcastTargetParams;\nimport com.mux.api.models.video.livestreams.SimulcastTarget;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        SimulcastTarget simulcastTarget = client.video().liveStreams().retrieveSimulcastTarget(\n          "LIVE_STREAM_ID", "SIMULCAST_TARGET_ID"\n        );\n    }\n}',
       },
       node: {
         method: 'client.video.liveStreams.retrieveSimulcastTarget',
@@ -1529,6 +1699,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/new-asset-settings/static-renditions \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "static_renditions": [\n            {\n              "resolution": "audio-only"\n            },\n            {\n              "resolution": "highest"\n            }\n          ]\n        }\'',
       },
+      java: {
+        method: 'video().liveStreams().updateNewAssetSettingsStaticRenditions',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStream;\nimport com.mux.api.models.video.livestreams.LiveStreamUpdateNewAssetSettingsStaticRenditionsParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        LiveStreamUpdateNewAssetSettingsStaticRenditionsParams params = LiveStreamUpdateNewAssetSettingsStaticRenditionsParams.builder()\n            .liveStreamId("LIVE_STREAM_ID")\n            .addStaticRendition(LiveStreamUpdateNewAssetSettingsStaticRenditionsParams.StaticRendition.builder()\n                .resolution(LiveStreamUpdateNewAssetSettingsStaticRenditionsParams.StaticRendition.Resolution.AUDIO_ONLY)\n                .build())\n            .addStaticRendition(LiveStreamUpdateNewAssetSettingsStaticRenditionsParams.StaticRendition.builder()\n                .resolution(LiveStreamUpdateNewAssetSettingsStaticRenditionsParams.StaticRendition.Resolution.HIGHEST)\n                .build())\n            .build();\n        LiveStream liveStream = client.video().liveStreams().updateNewAssetSettingsStaticRenditions(params);\n    }\n}',
+      },
       node: {
         method: 'client.video.liveStreams.updateNewAssetSettingsStaticRenditions',
         example:
@@ -1567,6 +1742,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/new-asset-settings/static-renditions \\\n    -X DELETE \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().liveStreams().deleteNewAssetSettingsStaticRenditions',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.livestreams.LiveStreamDeleteNewAssetSettingsStaticRenditionsParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.video().liveStreams().deleteNewAssetSettingsStaticRenditions("LIVE_STREAM_ID");\n    }\n}',
       },
       node: {
         method: 'client.video.liveStreams.deleteNewAssetSettingsStaticRenditions',
@@ -1607,6 +1787,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/playback-ids/$PLAYBACK_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().playbackIds().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.playbackids.PlaybackIdsRetrieveParams;\nimport com.mux.api.models.video.playbackids.PlaybackIdsRetrieveResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        PlaybackIdsRetrieveResponse playbackIds = client.video().playbackIds().retrieve("PLAYBACK_ID");\n    }\n}',
       },
       node: {
         method: 'client.video.playbackIds.retrieve',
@@ -1651,6 +1836,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/playback-restrictions \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "referrer": {\n            "allowed_domains": [\n              "*.example.com"\n            ],\n            "allow_no_referrer": true\n          },\n          "user_agent": {\n            "allow_high_risk_user_agent": false,\n            "allow_no_user_agent": false\n          }\n        }\'',
       },
+      java: {
+        method: 'video().playbackRestrictions().create',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.playbackrestrictions.PlaybackRestriction;\nimport com.mux.api.models.video.playbackrestrictions.PlaybackRestrictionCreateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        PlaybackRestrictionCreateParams params = PlaybackRestrictionCreateParams.builder()\n            .referrer(PlaybackRestrictionCreateParams.Referrer.builder()\n                .addAllowedDomain("*.example.com")\n                .build())\n            .userAgent(PlaybackRestrictionCreateParams.UserAgent.builder().build())\n            .build();\n        PlaybackRestriction playbackRestriction = client.video().playbackRestrictions().create(params);\n    }\n}',
+      },
       node: {
         method: 'client.video.playbackRestrictions.create',
         example:
@@ -1691,6 +1881,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/playback-restrictions \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().playbackRestrictions().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.playbackrestrictions.PlaybackRestrictionListPage;\nimport com.mux.api.models.video.playbackrestrictions.PlaybackRestrictionListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        PlaybackRestrictionListPage page = client.video().playbackRestrictions().list();\n    }\n}',
+      },
       node: {
         method: 'client.video.playbackRestrictions.list',
         example:
@@ -1728,6 +1923,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/playback-restrictions/$PLAYBACK_RESTRICTION_ID \\\n    -X DELETE \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().playbackRestrictions().delete',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.playbackrestrictions.PlaybackRestrictionDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.video().playbackRestrictions().delete("PLAYBACK_RESTRICTION_ID");\n    }\n}',
       },
       node: {
         method: 'client.video.playbackRestrictions.delete',
@@ -1768,6 +1968,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/playback-restrictions/$PLAYBACK_RESTRICTION_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().playbackRestrictions().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.playbackrestrictions.PlaybackRestriction;\nimport com.mux.api.models.video.playbackrestrictions.PlaybackRestrictionRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        PlaybackRestriction playbackRestriction = client.video().playbackRestrictions().retrieve("PLAYBACK_RESTRICTION_ID");\n    }\n}',
       },
       node: {
         method: 'client.video.playbackRestrictions.retrieve',
@@ -1814,6 +2019,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/playback-restrictions/$PLAYBACK_RESTRICTION_ID/referrer \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "allowed_domains": [\n            "*.example.com"\n          ]\n        }\'',
       },
+      java: {
+        method: 'video().playbackRestrictions().updateReferrer',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.playbackrestrictions.PlaybackRestriction;\nimport com.mux.api.models.video.playbackrestrictions.PlaybackRestrictionUpdateReferrerParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        PlaybackRestrictionUpdateReferrerParams params = PlaybackRestrictionUpdateReferrerParams.builder()\n            .playbackRestrictionId("PLAYBACK_RESTRICTION_ID")\n            .addAllowedDomain("*.example.com")\n            .build();\n        PlaybackRestriction playbackRestriction = client.video().playbackRestrictions().updateReferrer(params);\n    }\n}',
+      },
       node: {
         method: 'client.video.playbackRestrictions.updateReferrer',
         example:
@@ -1859,6 +2069,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/playback-restrictions/$PLAYBACK_RESTRICTION_ID/user_agent \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "allow_high_risk_user_agent": false,\n          "allow_no_user_agent": false\n        }\'',
       },
+      java: {
+        method: 'video().playbackRestrictions().updateUserAgent',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.playbackrestrictions.PlaybackRestriction;\nimport com.mux.api.models.video.playbackrestrictions.PlaybackRestrictionUpdateUserAgentParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        PlaybackRestrictionUpdateUserAgentParams params = PlaybackRestrictionUpdateUserAgentParams.builder()\n            .playbackRestrictionId("PLAYBACK_RESTRICTION_ID")\n            .allowHighRiskUserAgent(false)\n            .allowNoUserAgent(false)\n            .build();\n        PlaybackRestriction playbackRestriction = client.video().playbackRestrictions().updateUserAgent(params);\n    }\n}',
+      },
       node: {
         method: 'client.video.playbackRestrictions.updateUserAgent',
         example:
@@ -1900,6 +2115,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/transcription-vocabularies/$TRANSCRIPTION_VOCABULARY_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().transcriptionVocabularies().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.transcriptionvocabularies.TranscriptionVocabulary;\nimport com.mux.api.models.video.transcriptionvocabularies.TranscriptionVocabularyRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        TranscriptionVocabulary transcriptionVocabulary = client.video().transcriptionVocabularies().retrieve("TRANSCRIPTION_VOCABULARY_ID");\n    }\n}',
+      },
       node: {
         method: 'client.video.transcriptionVocabularies.retrieve',
         example:
@@ -1940,6 +2160,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/transcription-vocabularies \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "phrases": [\n            "Mux",\n            "Live Stream",\n            "Playback ID",\n            "video encoding"\n          ]\n        }\'',
       },
+      java: {
+        method: 'video().transcriptionVocabularies().create',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.transcriptionvocabularies.TranscriptionVocabulary;\nimport com.mux.api.models.video.transcriptionvocabularies.TranscriptionVocabularyCreateParams;\nimport java.util.List;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        TranscriptionVocabularyCreateParams params = TranscriptionVocabularyCreateParams.builder()\n            .phrases(List.of(\n              "Mux",\n              "Live Stream",\n              "Playback ID",\n              "video encoding"\n            ))\n            .build();\n        TranscriptionVocabulary transcriptionVocabulary = client.video().transcriptionVocabularies().create(params);\n    }\n}',
+      },
       node: {
         method: 'client.video.transcriptionVocabularies.create',
         example:
@@ -1978,6 +2203,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/transcription-vocabularies/$TRANSCRIPTION_VOCABULARY_ID \\\n    -X DELETE \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().transcriptionVocabularies().delete',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.transcriptionvocabularies.TranscriptionVocabularyDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.video().transcriptionVocabularies().delete("TRANSCRIPTION_VOCABULARY_ID");\n    }\n}',
       },
       node: {
         method: 'client.video.transcriptionVocabularies.delete',
@@ -2025,6 +2255,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/transcription-vocabularies/$TRANSCRIPTION_VOCABULARY_ID \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "phrases": [\n            "Mux",\n            "Live Stream",\n            "RTMP",\n            "Stream Key"\n          ]\n        }\'',
       },
+      java: {
+        method: 'video().transcriptionVocabularies().update',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.transcriptionvocabularies.TranscriptionVocabulary;\nimport com.mux.api.models.video.transcriptionvocabularies.TranscriptionVocabularyUpdateParams;\nimport java.util.List;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        TranscriptionVocabularyUpdateParams params = TranscriptionVocabularyUpdateParams.builder()\n            .transcriptionVocabularyId("TRANSCRIPTION_VOCABULARY_ID")\n            .phrases(List.of(\n              "Mux",\n              "Live Stream",\n              "RTMP",\n              "Stream Key"\n            ))\n            .build();\n        TranscriptionVocabulary transcriptionVocabulary = client.video().transcriptionVocabularies().update(params);\n    }\n}',
+      },
       node: {
         method: 'client.video.transcriptionVocabularies.update',
         example:
@@ -2064,6 +2299,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/transcription-vocabularies \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().transcriptionVocabularies().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.transcriptionvocabularies.TranscriptionVocabularyListPage;\nimport com.mux.api.models.video.transcriptionvocabularies.TranscriptionVocabularyListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        TranscriptionVocabularyListPage page = client.video().transcriptionVocabularies().list();\n    }\n}',
       },
       node: {
         method: 'client.video.transcriptionVocabularies.list',
@@ -2111,6 +2351,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/uploads \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "cors_origin": "https://example.com/"\n        }\'',
       },
+      java: {
+        method: 'video().uploads().create',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.uploads.Upload;\nimport com.mux.api.models.video.uploads.UploadCreateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        UploadCreateParams params = UploadCreateParams.builder()\n            .corsOrigin("https://example.com/")\n            .build();\n        Upload upload = client.video().uploads().create(params);\n    }\n}',
+      },
       node: {
         method: 'client.video.uploads.create',
         example:
@@ -2150,6 +2395,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/uploads/$UPLOAD_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().uploads().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.uploads.Upload;\nimport com.mux.api.models.video.uploads.UploadRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        Upload upload = client.video().uploads().retrieve("abcd1234");\n    }\n}',
       },
       node: {
         method: 'client.video.uploads.retrieve',
@@ -2192,6 +2442,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/uploads/$UPLOAD_ID/cancel \\\n    -X PUT \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().uploads().cancel',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.uploads.Upload;\nimport com.mux.api.models.video.uploads.UploadCancelParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        Upload upload = client.video().uploads().cancel("abcd1234");\n    }\n}',
+      },
       node: {
         method: 'client.video.uploads.cancel',
         example:
@@ -2230,6 +2485,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     perLanguage: {
       http: {
         example: 'curl https://api.mux.com/video/v1/uploads \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().uploads().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.uploads.UploadListPage;\nimport com.mux.api.models.video.uploads.UploadListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        UploadListPage page = client.video().uploads().list();\n    }\n}',
       },
       node: {
         method: 'client.video.uploads.list',
@@ -2270,6 +2530,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/video/v1/drm-configurations \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().drmConfigurations().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.drmconfigurations.DrmConfigurationListPage;\nimport com.mux.api.models.video.drmconfigurations.DrmConfigurationListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        DrmConfigurationListPage page = client.video().drmConfigurations().list();\n    }\n}',
+      },
       node: {
         method: 'client.video.drmConfigurations.list',
         example:
@@ -2308,6 +2573,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/video/v1/drm-configurations/$DRM_CONFIGURATION_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().drmConfigurations().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.drmconfigurations.DrmConfiguration;\nimport com.mux.api.models.video.drmconfigurations.DrmConfigurationRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        DrmConfiguration drmConfiguration = client.video().drmConfigurations().retrieve("DRM_CONFIGURATION_ID");\n    }\n}',
       },
       node: {
         method: 'client.video.drmConfigurations.retrieve',
@@ -2362,6 +2632,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://image.mux.com/$PLAYBACK_ID/thumbnail.$EXTENSION \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().playback().thumbnail',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.core.http.HttpResponse;\nimport com.mux.api.models.video.playback.PlaybackThumbnailParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        HttpResponse response = client.video().playback().thumbnail(\n          "PLAYBACK_ID", PlaybackThumbnailParams.Extension.JPG\n        );\n    }\n}',
+      },
       node: {
         method: 'client.video.playback.thumbnail',
         example:
@@ -2411,6 +2686,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://image.mux.com/$PLAYBACK_ID/animated.$EXTENSION \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().playback().animated',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.core.http.HttpResponse;\nimport com.mux.api.models.video.playback.PlaybackAnimatedParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        HttpResponse response = client.video().playback().animated(\n          "PLAYBACK_ID", PlaybackAnimatedParams.Extension.GIF\n        );\n    }\n}',
+      },
       node: {
         method: 'client.video.playback.animated',
         example:
@@ -2459,6 +2739,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://image.mux.com/$PLAYBACK_ID/storyboard.$EXTENSION \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().playback().storyboard',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.core.http.HttpResponse;\nimport com.mux.api.models.video.playback.PlaybackStoryboardParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        HttpResponse response = client.video().playback().storyboard(\n          "PLAYBACK_ID", PlaybackStoryboardParams.Extension.JPG\n        );\n    }\n}',
+      },
       node: {
         method: 'client.video.playback.storyboard',
         example:
@@ -2505,6 +2790,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://image.mux.com/$PLAYBACK_ID/storyboard.vtt \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().playback().storyboardVtt',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.playback.PlaybackStoryboardVttParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        String response = client.video().playback().storyboardVtt("PLAYBACK_ID");\n    }\n}',
       },
       node: {
         method: 'client.video.playback.storyboardVtt',
@@ -2553,6 +2843,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://image.mux.com/$PLAYBACK_ID/storyboard.json \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().playback().storyboardMeta',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.playback.PlaybackStoryboardMetaParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        String response = client.video().playback().storyboardMeta("PLAYBACK_ID");\n    }\n}',
       },
       node: {
         method: 'client.video.playback.storyboardMeta',
@@ -2607,6 +2902,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example: 'curl https://stream.mux.com/$PLAYBACK_ID.m3u8 \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().playback().hls',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.core.http.HttpResponse;\nimport com.mux.api.models.video.playback.PlaybackHlsParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        HttpResponse response = client.video().playback().hls("PLAYBACK_ID");\n    }\n}',
+      },
       node: {
         method: 'client.video.playback.hls',
         example:
@@ -2651,6 +2951,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://stream.mux.com/$PLAYBACK_ID/$FILENAME \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'video().playback().staticRendition',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.core.http.HttpResponse;\nimport com.mux.api.models.video.playback.PlaybackStaticRenditionParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        HttpResponse response = client.video().playback().staticRendition(\n          "PLAYBACK_ID", PlaybackStaticRenditionParams.Filename.CAPPED_1080P_MP4\n        );\n    }\n}',
+      },
       node: {
         method: 'client.video.playback.staticRendition',
         example:
@@ -2689,6 +2994,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://stream.mux.com/$PLAYBACK_ID/text/$TRACK_ID.vtt \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().playback().track',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.playback.PlaybackTrackParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        String response = client.video().playback().track(\n          "PLAYBACK_ID", "TRACK_ID"\n        );\n    }\n}',
       },
       node: {
         method: 'client.video.playback.track',
@@ -2729,6 +3039,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://stream.mux.com/$PLAYBACK_ID/text/$TRACK_ID.txt \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'video().playback().transcript',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.playback.PlaybackTranscriptParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        String response = client.video().playback().transcript(\n          "PLAYBACK_ID", "TRACK_ID"\n        );\n    }\n}',
       },
       node: {
         method: 'client.video.playback.transcript',
@@ -2776,6 +3091,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example: 'curl https://api.mux.com/robots/v0/jobs \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'robotsPreview().jobs().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robotspreview.jobs.JobListPage;\nimport com.mux.api.models.robotspreview.jobs.JobListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        JobListPage page = client.robotsPreview().jobs().list();\n    }\n}',
+      },
       node: {
         method: 'client.robotsPreview.jobs.list',
         example:
@@ -2815,6 +3135,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/robots/v0/jobs/$JOB_ID/cancel \\\n    -X POST \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'robotsPreview().jobs().cancel',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robotspreview.jobs.JobCancelParams;\nimport com.mux.api.models.robotspreview.jobs.JobSummary;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        JobSummary jobSummary = client.robotsPreview().jobs().cancel("rjob_lK9w2kI5J1");\n    }\n}',
       },
       node: {
         method: 'client.robotsPreview.jobs.cancel',
@@ -2859,6 +3184,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/robots/v0/jobs/ask-questions \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "parameters": {\n            "asset_id": "mux_asset_123abc",\n            "questions": [\n              {\n                "question": "How many people are speaking on camera?",\n                "answer_options": [\n                  "one",\n                  "two",\n                  "three or more"\n                ]\n              }\n            ]\n          }\n        }\'',
       },
+      java: {
+        method: 'robotsPreview().jobs().askQuestions().create',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robotspreview.jobs.askquestions.AskQuestionCreateParams;\nimport com.mux.api.models.robotspreview.jobs.askquestions.AskQuestionsJob;\nimport com.mux.api.models.robotspreview.jobs.askquestions.AskQuestionsJobParameters;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AskQuestionCreateParams params = AskQuestionCreateParams.builder()\n            .parameters(AskQuestionsJobParameters.builder()\n                .assetId("mux_asset_123abc")\n                .addQuestion(AskQuestionsJobParameters.Question.builder()\n                    .question("How many people are speaking on camera?")\n                    .build())\n                .build())\n            .build();\n        AskQuestionsJob askQuestionsJob = client.robotsPreview().jobs().askQuestions().create(params);\n    }\n}',
+      },
       node: {
         method: 'client.robotsPreview.jobs.askQuestions.create',
         example:
@@ -2898,6 +3228,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/robots/v0/jobs/ask-questions/$JOB_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'robotsPreview().jobs().askQuestions().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robotspreview.jobs.askquestions.AskQuestionRetrieveParams;\nimport com.mux.api.models.robotspreview.jobs.askquestions.AskQuestionsJob;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AskQuestionsJob askQuestionsJob = client.robotsPreview().jobs().askQuestions().retrieve("rjob_lK9w2kI5J1");\n    }\n}',
       },
       node: {
         method: 'client.robotsPreview.jobs.askQuestions.retrieve',
@@ -2942,6 +3277,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/robots/v0/jobs/generate-chapters \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "parameters": {\n            "asset_id": "mux_asset_123abc"\n          }\n        }\'',
       },
+      java: {
+        method: 'robotsPreview().jobs().generateChapters().create',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robotspreview.jobs.generatechapters.GenerateChapterCreateParams;\nimport com.mux.api.models.robotspreview.jobs.generatechapters.GenerateChaptersJob;\nimport com.mux.api.models.robotspreview.jobs.generatechapters.GenerateChaptersJobParameters;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        GenerateChapterCreateParams params = GenerateChapterCreateParams.builder()\n            .parameters(GenerateChaptersJobParameters.builder()\n                .assetId("mux_asset_123abc")\n                .build())\n            .build();\n        GenerateChaptersJob generateChaptersJob = client.robotsPreview().jobs().generateChapters().create(params);\n    }\n}',
+      },
       node: {
         method: 'client.robotsPreview.jobs.generateChapters.create',
         example:
@@ -2981,6 +3321,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/robots/v0/jobs/generate-chapters/$JOB_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'robotsPreview().jobs().generateChapters().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robotspreview.jobs.generatechapters.GenerateChapterRetrieveParams;\nimport com.mux.api.models.robotspreview.jobs.generatechapters.GenerateChaptersJob;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        GenerateChaptersJob generateChaptersJob = client.robotsPreview().jobs().generateChapters().retrieve("rjob_lK9w2kI5J1");\n    }\n}',
       },
       node: {
         method: 'client.robotsPreview.jobs.generateChapters.retrieve',
@@ -3025,6 +3370,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/robots/v0/jobs/find-key-moments \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "parameters": {\n            "asset_id": "mux_asset_123abc",\n            "max_moments": 5,\n            "target_duration_ms": {\n              "max": 45000,\n              "min": 15000\n            }\n          }\n        }\'',
       },
+      java: {
+        method: 'robotsPreview().jobs().findKeyMoments().create',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robotspreview.jobs.findkeymoments.FindKeyMomentCreateParams;\nimport com.mux.api.models.robotspreview.jobs.findkeymoments.FindKeyMomentsJob;\nimport com.mux.api.models.robotspreview.jobs.findkeymoments.FindKeyMomentsJobParameters;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        FindKeyMomentCreateParams params = FindKeyMomentCreateParams.builder()\n            .parameters(FindKeyMomentsJobParameters.builder()\n                .assetId("mux_asset_123abc")\n                .build())\n            .build();\n        FindKeyMomentsJob findKeyMomentsJob = client.robotsPreview().jobs().findKeyMoments().create(params);\n    }\n}',
+      },
       node: {
         method: 'client.robotsPreview.jobs.findKeyMoments.create',
         example:
@@ -3064,6 +3414,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/robots/v0/jobs/find-key-moments/$JOB_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'robotsPreview().jobs().findKeyMoments().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robotspreview.jobs.findkeymoments.FindKeyMomentRetrieveParams;\nimport com.mux.api.models.robotspreview.jobs.findkeymoments.FindKeyMomentsJob;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        FindKeyMomentsJob findKeyMomentsJob = client.robotsPreview().jobs().findKeyMoments().retrieve("rjob_lK9w2kI5J1");\n    }\n}',
       },
       node: {
         method: 'client.robotsPreview.jobs.findKeyMoments.retrieve',
@@ -3108,6 +3463,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/robots/v0/jobs/moderate \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "parameters": {\n            "asset_id": "mux_asset_123abc",\n            "thresholds": {\n              "sexual": 0.7,\n              "violence": 0.8\n            }\n          }\n        }\'',
       },
+      java: {
+        method: 'robotsPreview().jobs().moderate().create',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robotspreview.jobs.moderate.ModerateCreateParams;\nimport com.mux.api.models.robotspreview.jobs.moderate.ModerateJob;\nimport com.mux.api.models.robotspreview.jobs.moderate.ModerateJobParameters;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        ModerateCreateParams params = ModerateCreateParams.builder()\n            .parameters(ModerateJobParameters.builder()\n                .assetId("mux_asset_123abc")\n                .build())\n            .build();\n        ModerateJob moderateJob = client.robotsPreview().jobs().moderate().create(params);\n    }\n}',
+      },
       node: {
         method: 'client.robotsPreview.jobs.moderate.create',
         example:
@@ -3147,6 +3507,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/robots/v0/jobs/moderate/$JOB_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'robotsPreview().jobs().moderate().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robotspreview.jobs.moderate.ModerateJob;\nimport com.mux.api.models.robotspreview.jobs.moderate.ModerateRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        ModerateJob moderateJob = client.robotsPreview().jobs().moderate().retrieve("rjob_lK9w2kI5J1");\n    }\n}',
       },
       node: {
         method: 'client.robotsPreview.jobs.moderate.retrieve',
@@ -3192,6 +3557,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/robots/v0/jobs/summarize \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "parameters": {\n            "asset_id": "mux_asset_123abc",\n            "tag_count": 10,\n            "tone": "neutral"\n          }\n        }\'',
       },
+      java: {
+        method: 'robotsPreview().jobs().summarize().create',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robotspreview.jobs.summarize.SummarizeCreateParams;\nimport com.mux.api.models.robotspreview.jobs.summarize.SummarizeJob;\nimport com.mux.api.models.robotspreview.jobs.summarize.SummarizeJobParameters;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        SummarizeCreateParams params = SummarizeCreateParams.builder()\n            .parameters(SummarizeJobParameters.builder()\n                .assetId("mux_asset_123abc")\n                .build())\n            .build();\n        SummarizeJob summarizeJob = client.robotsPreview().jobs().summarize().create(params);\n    }\n}',
+      },
       node: {
         method: 'client.robotsPreview.jobs.summarize.create',
         example:
@@ -3231,6 +3601,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/robots/v0/jobs/summarize/$JOB_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'robotsPreview().jobs().summarize().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robotspreview.jobs.summarize.SummarizeJob;\nimport com.mux.api.models.robotspreview.jobs.summarize.SummarizeRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        SummarizeJob summarizeJob = client.robotsPreview().jobs().summarize().retrieve("rjob_lK9w2kI5J1");\n    }\n}',
       },
       node: {
         method: 'client.robotsPreview.jobs.summarize.retrieve',
@@ -3276,6 +3651,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/robots/v0/jobs/translate-captions \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "parameters": {\n            "asset_id": "mux_asset_123abc",\n            "to_language_code": "es",\n            "track_id": "track_en_abc123",\n            "upload_to_mux": true\n          }\n        }\'',
       },
+      java: {
+        method: 'robotsPreview().jobs().translateCaptions().create',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robotspreview.jobs.translatecaptions.TranslateCaptionCreateParams;\nimport com.mux.api.models.robotspreview.jobs.translatecaptions.TranslateCaptionsJob;\nimport com.mux.api.models.robotspreview.jobs.translatecaptions.TranslateCaptionsJobParameters;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        TranslateCaptionCreateParams params = TranslateCaptionCreateParams.builder()\n            .parameters(TranslateCaptionsJobParameters.builder()\n                .assetId("mux_asset_123abc")\n                .toLanguageCode("es")\n                .trackId("track_en_abc123")\n                .build())\n            .build();\n        TranslateCaptionsJob translateCaptionsJob = client.robotsPreview().jobs().translateCaptions().create(params);\n    }\n}',
+      },
       node: {
         method: 'client.robotsPreview.jobs.translateCaptions.create',
         example:
@@ -3316,6 +3696,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/robots/v0/jobs/translate-captions/$JOB_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'robotsPreview().jobs().translateCaptions().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.robotspreview.jobs.translatecaptions.TranslateCaptionRetrieveParams;\nimport com.mux.api.models.robotspreview.jobs.translatecaptions.TranslateCaptionsJob;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        TranslateCaptionsJob translateCaptionsJob = client.robotsPreview().jobs().translateCaptions().retrieve("rjob_lK9w2kI5J1");\n    }\n}',
+      },
       node: {
         method: 'client.robotsPreview.jobs.translateCaptions.retrieve',
         example:
@@ -3353,6 +3738,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     perLanguage: {
       http: {
         example: 'curl https://api.mux.com/data/v1/dimensions \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'data().dimensions().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.dimensions.DimensionListParams;\nimport com.mux.api.models.data.dimensions.DimensionsResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        DimensionsResponse dimensionsResponse = client.data().dimensions().list();\n    }\n}',
       },
       node: {
         method: 'client.data.dimensions.list',
@@ -3400,6 +3790,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/data/v1/dimensions/$DIMENSION_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'data().dimensions().listValues',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.dimensions.DimensionListValuesPage;\nimport com.mux.api.models.data.dimensions.DimensionListValuesParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        DimensionListValuesPage page = client.data().dimensions().listValues("abcd1234");\n    }\n}',
       },
       node: {
         method: 'client.data.dimensions.listValues',
@@ -3450,6 +3845,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/data/v1/dimensions/$DIMENSION_ID/elements \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().dimensions().listTraceElements',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.dimensions.DimensionListTraceElementsPage;\nimport com.mux.api.models.data.dimensions.DimensionListTraceElementsParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        DimensionListTraceElementsPage page = client.data().dimensions().listTraceElements("abcd1234");\n    }\n}',
+      },
       node: {
         method: 'client.data.dimensions.listTraceElements',
         example:
@@ -3489,6 +3889,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/data/v1/monitoring/dimensions \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().monitoring().listDimensions',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.monitoring.MonitoringListDimensionsParams;\nimport com.mux.api.models.data.monitoring.MonitoringListDimensionsResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        MonitoringListDimensionsResponse response = client.data().monitoring().listDimensions();\n    }\n}',
+      },
       node: {
         method: 'client.data.monitoring.listDimensions',
         example:
@@ -3527,6 +3932,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/data/v1/monitoring/metrics \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'data().monitoring().metrics().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.monitoring.metrics.MetricListParams;\nimport com.mux.api.models.data.monitoring.metrics.MetricListResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        MetricListResponse metrics = client.data().monitoring().metrics().list();\n    }\n}',
       },
       node: {
         method: 'client.data.monitoring.metrics.list',
@@ -3576,6 +3986,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/data/v1/monitoring/metrics/$MONITORING_METRIC_ID/breakdown \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().monitoring().metrics().getBreakdown',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.monitoring.metrics.MetricGetBreakdownParams;\nimport com.mux.api.models.data.monitoring.metrics.MetricGetBreakdownResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        MetricGetBreakdownResponse response = client.data().monitoring().metrics().getBreakdown(MetricGetBreakdownParams.MonitoringMetricId.CURRENT_CONCURRENT_VIEWERS);\n    }\n}',
+      },
       node: {
         method: 'client.data.monitoring.metrics.getBreakdown',
         example:
@@ -3616,6 +4031,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/data/v1/monitoring/metrics/$MONITORING_METRIC_ID/timeseries \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'data().monitoring().metrics().getTimeseries',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.monitoring.metrics.MetricGetTimeseriesParams;\nimport com.mux.api.models.data.monitoring.metrics.MetricGetTimeseriesResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        MetricGetTimeseriesResponse response = client.data().monitoring().metrics().getTimeseries(MetricGetTimeseriesParams.MonitoringMetricId.CURRENT_CONCURRENT_VIEWERS);\n    }\n}',
       },
       node: {
         method: 'client.data.monitoring.metrics.getTimeseries',
@@ -3666,6 +4086,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/data/v1/monitoring/metrics/$MONITORING_METRIC_ID/breakdown-timeseries \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().monitoring().metrics().getBreakdownTimeseries',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.monitoring.metrics.MetricGetBreakdownTimeseriesParams;\nimport com.mux.api.models.data.monitoring.metrics.MetricGetBreakdownTimeseriesResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        MetricGetBreakdownTimeseriesResponse response = client.data().monitoring().metrics().getBreakdownTimeseries(MetricGetBreakdownTimeseriesParams.MonitoringMetricId.CURRENT_CONCURRENT_VIEWERS);\n    }\n}',
+      },
       node: {
         method: 'client.data.monitoring.metrics.getBreakdownTimeseries',
         example:
@@ -3706,6 +4131,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/data/v1/monitoring/metrics/$MONITORING_HISTOGRAM_METRIC_ID/histogram-timeseries \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().monitoring().metrics().getHistogramTimeseries',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.monitoring.metrics.MetricGetHistogramTimeseriesParams;\nimport com.mux.api.models.data.monitoring.metrics.MetricGetHistogramTimeseriesResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        MetricGetHistogramTimeseriesResponse response = client.data().monitoring().metrics().getHistogramTimeseries(MetricGetHistogramTimeseriesParams.MonitoringHistogramMetricId.VIDEO_STARTUP_TIME);\n    }\n}',
+      },
       node: {
         method: 'client.data.monitoring.metrics.getHistogramTimeseries',
         example:
@@ -3745,6 +4175,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example: 'curl https://api.mux.com/data/v1/errors \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().errors().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.errors.ErrorListParams;\nimport com.mux.api.models.data.errors.ErrorsResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        ErrorsResponse errorsResponse = client.data().errors().list();\n    }\n}',
+      },
       node: {
         method: 'client.data.errors.list',
         example:
@@ -3782,6 +4217,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     perLanguage: {
       http: {
         example: 'curl https://api.mux.com/data/v1/exports/views \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'data().exports().listVideoViews',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.exports.ExportListVideoViewsParams;\nimport com.mux.api.models.data.exports.VideoViewExportsResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        VideoViewExportsResponse videoViewExportsResponse = client.data().exports().listVideoViews();\n    }\n}',
       },
       node: {
         method: 'client.data.exports.listVideoViews',
@@ -3829,6 +4269,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/data/v1/filters/$FILTER_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().filters().listValues',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.filters.FilterListValuesPage;\nimport com.mux.api.models.data.filters.FilterListValuesParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        FilterListValuesPage page = client.data().filters().listValues("abcd1234");\n    }\n}',
+      },
       node: {
         method: 'client.data.filters.listValues',
         example:
@@ -3868,6 +4313,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/data/v1/incidents/$INCIDENT_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'data().incidents().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.incidents.IncidentResponse;\nimport com.mux.api.models.data.incidents.IncidentRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        IncidentResponse incidentResponse = client.data().incidents().retrieve("abcd1234");\n    }\n}',
       },
       node: {
         method: 'client.data.incidents.retrieve',
@@ -3915,6 +4365,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/data/v1/incidents/$INCIDENT_ID/related \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().incidents().listRelated',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.incidents.IncidentListRelatedPage;\nimport com.mux.api.models.data.incidents.IncidentListRelatedParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        IncidentListRelatedPage page = client.data().incidents().listRelated("abcd1234");\n    }\n}',
+      },
       node: {
         method: 'client.data.incidents.listRelated',
         example:
@@ -3961,6 +4416,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example: 'curl https://api.mux.com/data/v1/incidents \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().incidents().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.incidents.IncidentListPage;\nimport com.mux.api.models.data.incidents.IncidentListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        IncidentListPage page = client.data().incidents().list();\n    }\n}',
+      },
       node: {
         method: 'client.data.incidents.list',
         example:
@@ -4006,6 +4466,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/data/v1/metrics/comparison \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'data().metrics().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.metrics.AllMetricValuesResponse;\nimport com.mux.api.models.data.metrics.MetricListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AllMetricValuesResponse allMetricValuesResponse = client.data().metrics().list();\n    }\n}',
       },
       node: {
         method: 'client.data.metrics.list',
@@ -4058,6 +4523,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/data/v1/metrics/$METRIC_ID/breakdown \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().metrics().listBreakdownValues',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.metrics.MetricListBreakdownValuesPage;\nimport com.mux.api.models.data.metrics.MetricListBreakdownValuesParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        MetricListBreakdownValuesPage page = client.data().metrics().listBreakdownValues(MetricListBreakdownValuesParams.MetricId.VIDEO_STARTUP_TIME);\n    }\n}',
+      },
       node: {
         method: 'client.data.metrics.listBreakdownValues',
         example:
@@ -4104,6 +4574,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/data/v1/metrics/$METRIC_ID/overall \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'data().metrics().getOverallValues',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.metrics.MetricGetOverallValuesParams;\nimport com.mux.api.models.data.metrics.OverallValuesResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        OverallValuesResponse overallValuesResponse = client.data().metrics().getOverallValues(MetricGetOverallValuesParams.MetricId.VIDEO_STARTUP_TIME);\n    }\n}',
       },
       node: {
         method: 'client.data.metrics.getOverallValues',
@@ -4152,6 +4627,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/data/v1/metrics/$METRIC_ID/insights \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'data().metrics().getInsights',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.metrics.InsightsResponse;\nimport com.mux.api.models.data.metrics.MetricGetInsightsParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        InsightsResponse insightsResponse = client.data().metrics().getInsights(MetricGetInsightsParams.MetricId.VIDEO_STARTUP_TIME);\n    }\n}',
       },
       node: {
         method: 'client.data.metrics.getInsights',
@@ -4202,6 +4682,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/data/v1/metrics/$METRIC_ID/timeseries \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().metrics().getTimeseries',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.metrics.MetricGetTimeseriesParams;\nimport com.mux.api.models.data.metrics.MetricTimeseriesDataResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        MetricTimeseriesDataResponse metricTimeseriesDataResponse = client.data().metrics().getTimeseries(MetricGetTimeseriesParams.MetricId.VIDEO_STARTUP_TIME);\n    }\n}',
+      },
       node: {
         method: 'client.data.metrics.getTimeseries',
         example:
@@ -4250,6 +4735,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/data/v1/realtime/metrics/$REALTIME_METRIC_ID/breakdown \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().realTime().retrieveBreakdown',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.realtime.RealTimeBreakdownResponse;\nimport com.mux.api.models.data.realtime.RealTimeRetrieveBreakdownParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        RealTimeBreakdownResponse realTimeBreakdownResponse = client.data().realTime().retrieveBreakdown(RealTimeRetrieveBreakdownParams.RealtimeMetricId.CURRENT_CONCURRENT_VIEWERS);\n    }\n}',
+      },
       node: {
         method: 'client.data.realTime.retrieveBreakdown',
         example:
@@ -4291,6 +4781,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/data/v1/realtime/metrics/$REALTIME_METRIC_ID/timeseries \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().realTime().retrieveTimeseries',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.realtime.RealTimeRetrieveTimeseriesParams;\nimport com.mux.api.models.data.realtime.RealTimeTimeseriesResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        RealTimeTimeseriesResponse realTimeTimeseriesResponse = client.data().realTime().retrieveTimeseries(RealTimeRetrieveTimeseriesParams.RealtimeMetricId.CURRENT_CONCURRENT_VIEWERS);\n    }\n}',
+      },
       node: {
         method: 'client.data.realTime.retrieveTimeseries',
         example:
@@ -4330,6 +4825,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/data/v1/realtime/metrics \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'data().realTime().listMetrics',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.realtime.RealTimeListMetricsParams;\nimport com.mux.api.models.data.realtime.RealTimeMetricsResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        RealTimeMetricsResponse realTimeMetricsResponse = client.data().realTime().listMetrics();\n    }\n}',
       },
       node: {
         method: 'client.data.realTime.listMetrics',
@@ -4372,6 +4872,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/data/v1/realtime/metrics/$REALTIME_HISTOGRAM_METRIC_ID/histogram-timeseries \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().realTime().retrieveHistogramTimeseries',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.realtime.RealTimeHistogramTimeseriesResponse;\nimport com.mux.api.models.data.realtime.RealTimeRetrieveHistogramTimeseriesParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        RealTimeHistogramTimeseriesResponse realTimeHistogramTimeseriesResponse = client.data().realTime().retrieveHistogramTimeseries(RealTimeRetrieveHistogramTimeseriesParams.RealtimeHistogramMetricId.VIDEO_STARTUP_TIME);\n    }\n}',
+      },
       node: {
         method: 'client.data.realTime.retrieveHistogramTimeseries',
         example:
@@ -4411,6 +4916,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/data/v1/realtime/dimensions \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'data().realTime().listDimensions',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.realtime.RealTimeDimensionsResponse;\nimport com.mux.api.models.data.realtime.RealTimeListDimensionsParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        RealTimeDimensionsResponse realTimeDimensionsResponse = client.data().realTime().listDimensions();\n    }\n}',
       },
       node: {
         method: 'client.data.realTime.listDimensions',
@@ -4461,6 +4971,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example: 'curl https://api.mux.com/data/v1/video-views \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().videoViews().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.videoviews.VideoViewListPage;\nimport com.mux.api.models.data.videoviews.VideoViewListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        VideoViewListPage page = client.data().videoViews().list();\n    }\n}',
+      },
       node: {
         method: 'client.data.videoViews.list',
         example:
@@ -4499,6 +5014,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/data/v1/video-views/$VIDEO_VIEW_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'data().videoViews().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.videoviews.VideoViewResponse;\nimport com.mux.api.models.data.videoviews.VideoViewRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        VideoViewResponse videoViewResponse = client.data().videoViews().retrieve("abcd1234");\n    }\n}',
       },
       node: {
         method: 'client.data.videoViews.retrieve',
@@ -4543,6 +5063,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example: 'curl https://api.mux.com/data/v1/annotations \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'data().annotations().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.annotations.AnnotationListPage;\nimport com.mux.api.models.data.annotations.AnnotationListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AnnotationListPage page = client.data().annotations().list();\n    }\n}',
+      },
       node: {
         method: 'client.data.annotations.list',
         example:
@@ -4581,6 +5106,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/data/v1/annotations/$ANNOTATION_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'data().annotations().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.annotations.Annotation;\nimport com.mux.api.models.data.annotations.AnnotationRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        Annotation annotation = client.data().annotations().retrieve("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e");\n    }\n}',
       },
       node: {
         method: 'client.data.annotations.retrieve',
@@ -4621,6 +5151,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/data/v1/annotations \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "date": 1745438400,\n          "note": "This is a note"\n        }\'',
       },
+      java: {
+        method: 'data().annotations().create',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.annotations.Annotation;\nimport com.mux.api.models.data.annotations.AnnotationCreateParams;\nimport com.mux.api.models.data.annotations.AnnotationInput;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AnnotationInput params = AnnotationInput.builder()\n            .date(1745438400L)\n            .note("This is a note")\n            .build();\n        Annotation annotation = client.data().annotations().create(params);\n    }\n}',
+      },
       node: {
         method: 'client.data.annotations.create',
         example:
@@ -4658,6 +5193,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/data/v1/annotations/$ANNOTATION_ID \\\n    -X DELETE \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'data().annotations().delete',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.annotations.AnnotationDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.data().annotations().delete("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e");\n    }\n}',
       },
       node: {
         method: 'client.data.annotations.delete',
@@ -4698,6 +5238,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/data/v1/annotations/$ANNOTATION_ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "date": 1745438400,\n          "note": "This is a note"\n        }\'',
       },
+      java: {
+        method: 'data().annotations().update',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.data.annotations.Annotation;\nimport com.mux.api.models.data.annotations.AnnotationInput;\nimport com.mux.api.models.data.annotations.AnnotationUpdateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        AnnotationUpdateParams params = AnnotationUpdateParams.builder()\n            .annotationId("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e")\n            .annotationInput(AnnotationInput.builder()\n                .date(1745438400L)\n                .note("This is a note")\n                .build())\n            .build();\n        Annotation annotation = client.data().annotations().update(params);\n    }\n}',
+      },
       node: {
         method: 'client.data.annotations.update',
         example:
@@ -4737,6 +5282,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/system/v1/signing-keys \\\n    -X POST \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'system().signingKeys().create',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.system.signingkeys.SigningKey;\nimport com.mux.api.models.system.signingkeys.SigningKeyCreateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        SigningKey signingKey = client.system().signingKeys().create();\n    }\n}',
+      },
       node: {
         method: 'client.system.signingKeys.create',
         example:
@@ -4775,6 +5325,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       http: {
         example:
           'curl https://api.mux.com/system/v1/signing-keys \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'system().signingKeys().list',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.system.signingkeys.SigningKeyListPage;\nimport com.mux.api.models.system.signingkeys.SigningKeyListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        SigningKeyListPage page = client.system().signingKeys().list();\n    }\n}',
       },
       node: {
         method: 'client.system.signingKeys.list',
@@ -4816,6 +5371,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/system/v1/signing-keys/$SIGNING_KEY_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'system().signingKeys().retrieve',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.system.signingkeys.SigningKey;\nimport com.mux.api.models.system.signingkeys.SigningKeyRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        SigningKey signingKey = client.system().signingKeys().retrieve("SIGNING_KEY_ID");\n    }\n}',
+      },
       node: {
         method: 'client.system.signingKeys.retrieve',
         example:
@@ -4855,6 +5415,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           'curl https://api.mux.com/system/v1/signing-keys/$SIGNING_KEY_ID \\\n    -X DELETE \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
       },
+      java: {
+        method: 'system().signingKeys().delete',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.system.signingkeys.SigningKeyDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.system().signingKeys().delete("SIGNING_KEY_ID");\n    }\n}',
+      },
       node: {
         method: 'client.system.signingKeys.delete',
         example:
@@ -4893,6 +5458,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     perLanguage: {
       http: {
         example: 'curl https://api.mux.com/system/v1/whoami \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      java: {
+        method: 'system().utilities().whoami',
+        example:
+          'package com.mux.api.example;\n\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.system.utilities.UtilityWhoamiParams;\nimport com.mux.api.models.system.utilities.UtilityWhoamiResponse;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        UtilityWhoamiResponse response = client.system().utilities().whoami();\n    }\n}',
       },
       node: {
         method: 'client.system.utilities.whoami',
@@ -4964,6 +5534,11 @@ const EMBEDDED_READMES: { language: string; content: string }[] = [
     language: 'typescript',
     content:
       "# Mux TypeScript API Library\n\n[![NPM version](https://img.shields.io/npm/v/@mux/mux-node.svg?label=npm%20(stable))](https://npmjs.org/package/@mux/mux-node) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@mux/mux-node)\n\nThis library provides convenient access to the Mux REST API from server-side TypeScript or JavaScript.\n\n\n\nThe REST API documentation can be found on [docs.mux.com](https://docs.mux.com). The full API of this library can be found in [api.md](api.md).\n\n\n\n## MCP Server\n\nUse the Mux MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40mux%2Fmcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBtdXgvbWNwIl0sImVudiI6eyJNVVhfVE9LRU5fSUQiOiJteSB0b2tlbiBpZCIsIk1VWF9UT0tFTl9TRUNSRVQiOiJteSBzZWNyZXQiLCJNVVhfV0VCSE9PS19TRUNSRVQiOiJNeSBXZWJob29rIFNlY3JldCIsIk1VWF9TSUdOSU5HX0tFWSI6Ik15IEp3dCBTaWduaW5nIEtleSIsIk1VWF9QUklWQVRFX0tFWSI6Ik15IEp3dCBQcml2YXRlIEtleSIsIk1VWF9BVVRIT1JJWkFUSU9OX1RPS0VOIjoibXkgYXV0aG9yaXphdGlvbiB0b2tlbiJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40mux%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40mux%2Fmcp%22%5D%2C%22env%22%3A%7B%22MUX_TOKEN_ID%22%3A%22my%20token%20id%22%2C%22MUX_TOKEN_SECRET%22%3A%22my%20secret%22%2C%22MUX_WEBHOOK_SECRET%22%3A%22My%20Webhook%20Secret%22%2C%22MUX_SIGNING_KEY%22%3A%22My%20Jwt%20Signing%20Key%22%2C%22MUX_PRIVATE_KEY%22%3A%22My%20Jwt%20Private%20Key%22%2C%22MUX_AUTHORIZATION_TOKEN%22%3A%22my%20authorization%20token%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n```sh\nnpm install @mux/mux-node\n```\n\n\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n<!-- prettier-ignore -->\n```js\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.create({\n  inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n  playback_policies: ['public'],\n});\n\nconsole.log(asset.id);\n```\n\n\n\n### Request & Response types\n\nThis library includes TypeScript definitions for all request params and response fields. You may import and use them like so:\n\n<!-- prettier-ignore -->\n```ts\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst params: Mux.Video.AssetCreateParams = {\n  inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n  playback_policies: ['public'],\n};\nconst asset: Mux.Video.Asset = await client.video.assets.create(params);\n```\n\nDocumentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.\n\n\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API,\nor if the API returns a non-success status code (i.e., 4xx or 5xx response),\na subclass of `APIError` will be thrown:\n\n<!-- prettier-ignore -->\n```ts\nconst liveStream = await client.video.liveStreams\n  .create({ playback_policies: ['public'] })\n  .catch(async (err) => {\n    if (err instanceof Mux.APIError) {\n      console.log(err.status); // 400\n      console.log(err.name); // BadRequestError\n      console.log(err.headers); // {server: 'nginx', ...}\n    } else {\n      throw err;\n    }\n  });\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors will all be retried by default.\n\nYou can use the `maxRetries` option to configure or disable this:\n\n<!-- prettier-ignore -->\n```js\n// Configure the default for all requests:\nconst client = new Mux({\n  maxRetries: 0, // default is 2\n});\n\n// Or, configure per-request:\nawait client.video.assets.retrieve('t02rm...', {\n  maxRetries: 5,\n});\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default. You can configure this with a `timeout` option:\n\n<!-- prettier-ignore -->\n```ts\n// Configure the default for all requests:\nconst client = new Mux({\n  timeout: 20 * 1000, // 20 seconds (default is 1 minute)\n});\n\n// Override per-request:\nawait client.video.assets.retrieve('t02rm...', {\n  timeout: 5 * 1000,\n});\n```\n\nOn timeout, an `APIConnectionTimeoutError` is thrown.\n\nNote that requests which time out will be [retried twice by default](#retries).\n\n## Auto-pagination\n\nList methods in the Mux API are paginated.\nYou can use the `for await … of` syntax to iterate through items across all pages:\n\n```ts\nasync function fetchAllDeliveryReports(params) {\n  const allDeliveryReports = [];\n  // Automatically fetches more pages as needed.\n  for await (const deliveryReport of client.video.deliveryUsage.list()) {\n    allDeliveryReports.push(deliveryReport);\n  }\n  return allDeliveryReports;\n}\n```\n\nAlternatively, you can request a single page at a time:\n\n```ts\nlet page = await client.video.deliveryUsage.list();\nfor (const deliveryReport of page.data) {\n  console.log(deliveryReport);\n}\n\n// Convenience methods are provided for manually paginating:\nwhile (page.hasNextPage()) {\n  page = await page.getNextPage();\n  // ...\n}\n```\n\n\n\n## Advanced Usage\n\n### Accessing raw Response data (e.g., headers)\n\nThe \"raw\" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.\nThis method returns as soon as the headers for a successful response are received and does not consume the response body, so you are free to write custom parsing or streaming logic.\n\nYou can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.\nUnlike `.asResponse()` this method consumes the body, returning once it is parsed.\n\n<!-- prettier-ignore -->\n```ts\nconst client = new Mux();\n\nconst response = await client.video.assets\n  .create({\n    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n    playback_policies: ['public'],\n  })\n  .asResponse();\nconsole.log(response.headers.get('X-My-Header'));\nconsole.log(response.statusText); // access the underlying Response object\n\nconst { data: asset, response: raw } = await client.video.assets\n  .create({\n    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n    playback_policies: ['public'],\n  })\n  .withResponse();\nconsole.log(raw.headers.get('X-My-Header'));\nconsole.log(asset.id);\n```\n\n### Logging\n\n> [!IMPORTANT]\n> All log messages are intended for debugging only. The format and content of log messages\n> may change between releases.\n\n#### Log levels\n\nThe log level can be configured in two ways:\n\n1. Via the `MUX_LOG` environment variable\n2. Using the `logLevel` client option (overrides the environment variable if set)\n\n```ts\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  logLevel: 'debug', // Show all log messages\n});\n```\n\nAvailable log levels, from most to least verbose:\n\n- `'debug'` - Show debug messages, info, warnings, and errors\n- `'info'` - Show info messages, warnings, and errors\n- `'warn'` - Show warnings and errors (default)\n- `'error'` - Show only errors\n- `'off'` - Disable all logging\n\nAt the `'debug'` level, all HTTP requests and responses are logged, including headers and bodies.\nSome authentication-related headers are redacted, but sensitive data in request and response bodies\nmay still be visible.\n\n#### Custom logger\n\nBy default, this library logs to `globalThis.console`. You can also provide a custom logger.\nMost logging libraries are supported, including [pino](https://www.npmjs.com/package/pino), [winston](https://www.npmjs.com/package/winston), [bunyan](https://www.npmjs.com/package/bunyan), [consola](https://www.npmjs.com/package/consola), [signale](https://www.npmjs.com/package/signale), and [@std/log](https://jsr.io/@std/log). If your logger doesn't work, please open an issue.\n\nWhen providing a custom logger, the `logLevel` option still controls which messages are emitted, messages\nbelow the configured level will not be sent to your logger.\n\n```ts\nimport Mux from '@mux/mux-node';\nimport pino from 'pino';\n\nconst logger = pino();\n\nconst client = new Mux({\n  logger: logger.child({ name: 'Mux' }),\n  logLevel: 'debug', // Send all messages to pino, allowing it to filter\n});\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.get`, `client.post`, and other HTTP verbs.\nOptions on the client, such as retries, will be respected when making these requests.\n\n```ts\nawait client.post('/some/path', {\n  body: { some_prop: 'foo' },\n  query: { some_query_arg: 'bar' },\n});\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use `// @ts-expect-error` on the undocumented\nparameter. This library doesn't validate at runtime that the request matches the type, so any extra values you\nsend will be sent as-is.\n\n```ts\nclient.video.assets.create({\n  // ...\n  // @ts-expect-error baz is not yet public\n  baz: 'undocumented option',\n});\n```\n\nFor requests with the `GET` verb, any extra params will be in the query, all other requests will send the\nextra param in the body.\n\nIf you want to explicitly send an extra argument, you can do so with the `query`, `body`, and `headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may access the response object with `// @ts-expect-error` on\nthe response object, or cast the response object to the requisite type. Like the request params, we do not\nvalidate or strip extra properties from the response from the API.\n\n### Customizing the fetch client\n\nBy default, this library expects a global `fetch` function is defined.\n\nIf you want to use a different `fetch` function, you can either polyfill the global:\n\n```ts\nimport fetch from 'my-fetch';\n\nglobalThis.fetch = fetch;\n```\n\nOr pass it to the client:\n\n```ts\nimport Mux from '@mux/mux-node';\nimport fetch from 'my-fetch';\n\nconst client = new Mux({ fetch });\n```\n\n### Fetch options\n\nIf you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)\n\n```ts\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  fetchOptions: {\n    // `RequestInit` options\n  },\n});\n```\n\n#### Configuring proxies\n\nTo modify proxy behavior, you can provide custom `fetchOptions` that add runtime-specific proxy\noptions to requests:\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg\" align=\"top\" width=\"18\" height=\"21\"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>\n\n```ts\nimport Mux from '@mux/mux-node';\nimport * as undici from 'undici';\n\nconst proxyAgent = new undici.ProxyAgent('http://localhost:8888');\nconst client = new Mux({\n  fetchOptions: {\n    dispatcher: proxyAgent,\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg\" align=\"top\" width=\"18\" height=\"21\"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>\n\n```ts\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  fetchOptions: {\n    proxy: 'http://localhost:8888',\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg\" align=\"top\" width=\"18\" height=\"21\"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>\n\n```ts\nimport Mux from 'npm:@mux/mux-node';\n\nconst httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });\nconst client = new Mux({\n  fetchOptions: {\n    client: httpClient,\n  },\n});\n```\n\n## Frequently Asked Questions\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/muxinc/mux-node-sdk/issues) with questions, bugs, or suggestions.\n\n## Requirements\n\nTypeScript >= 4.9 is supported.\n\nThe following runtimes are supported:\n\n- Web browsers (Up-to-date Chrome, Firefox, Safari, Edge, and more)\n- Node.js 20 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.\n- Deno v1.28.0 or higher.\n- Bun 1.0 or later.\n- Cloudflare Workers.\n- Vercel Edge Runtime.\n- Jest 28 or greater with the `\"node\"` environment (`\"jsdom\"` is not supported at this time).\n- Nitro v2.6 or greater.\n\nNote that React Native is not supported at this time.\n\nIf you are interested in other runtime environments, please open or upvote an issue on GitHub.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n",
+  },
+  {
+    language: 'java',
+    content:
+      '# Mux Java API Library\n\n\n[![Maven Central](https://img.shields.io/maven-central/v/com.mux.api/mux-java)](https://central.sonatype.com/artifact/com.mux.api/mux-java/0.0.1)\n[![javadoc](https://javadoc.io/badge2/com.mux.api/mux-java/0.0.1/javadoc.svg)](https://javadoc.io/doc/com.mux.api/mux-java/0.0.1)\n\n\nThe Mux Java SDK provides convenient access to the [Mux REST API](https://docs.mux.com)   from applications written in Java.\n\n\n\n\n\n## MCP Server\n\nUse the Mux MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40mux%2Fmcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBtdXgvbWNwIl0sImVudiI6eyJNVVhfVE9LRU5fSUQiOiJteSB0b2tlbiBpZCIsIk1VWF9UT0tFTl9TRUNSRVQiOiJteSBzZWNyZXQiLCJNVVhfV0VCSE9PS19TRUNSRVQiOiJNeSBXZWJob29rIFNlY3JldCIsIk1VWF9TSUdOSU5HX0tFWSI6Ik15IEp3dCBTaWduaW5nIEtleSIsIk1VWF9QUklWQVRFX0tFWSI6Ik15IEp3dCBQcml2YXRlIEtleSIsIk1VWF9BVVRIT1JJWkFUSU9OX1RPS0VOIjoibXkgYXV0aG9yaXphdGlvbiB0b2tlbiJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40mux%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40mux%2Fmcp%22%5D%2C%22env%22%3A%7B%22MUX_TOKEN_ID%22%3A%22my%20token%20id%22%2C%22MUX_TOKEN_SECRET%22%3A%22my%20secret%22%2C%22MUX_WEBHOOK_SECRET%22%3A%22My%20Webhook%20Secret%22%2C%22MUX_SIGNING_KEY%22%3A%22My%20Jwt%20Signing%20Key%22%2C%22MUX_PRIVATE_KEY%22%3A%22My%20Jwt%20Private%20Key%22%2C%22MUX_AUTHORIZATION_TOKEN%22%3A%22my%20authorization%20token%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\nThe REST API documentation can be found on [docs.mux.com](https://docs.mux.com). Javadocs are available on [javadoc.io](https://javadoc.io/doc/com.mux.api/mux-java/0.0.1).\n\n## Installation\n\n### Gradle\n\n~~~kotlin\nimplementation("com.mux.api:mux-java:0.0.1")\n~~~\n\n### Maven\n\n~~~xml\n<dependency>\n  <groupId>com.mux.api</groupId>\n  <artifactId>mux-java</artifactId>\n  <version>0.0.1</version>\n</dependency>\n~~~\n\n## Requirements\n\nThis library requires Java 8 or later.\n\n## Usage\n\n```java\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.Asset;\nimport com.mux.api.models.video.assets.AssetCreateParams;\nimport com.mux.api.models.video.assets.AssetOptions;\n\n// Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n// Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\nMuxClient client = MuxOkHttpClient.fromEnv();\n\nAssetOptions params = AssetOptions.builder()\n    .addInput(AssetOptions.Input.builder().build())\n    .build();\nAsset asset = client.video().assets().create(params);\n```\n\n## Client configuration\n\nConfigure the client using system properties or environment variables:\n\n```java\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\n\n// Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n// Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\nMuxClient client = MuxOkHttpClient.fromEnv();\n```\n\nOr manually:\n\n```java\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\n\nMuxClient client = MuxOkHttpClient.builder()\n    .tokenId("my token id")\n    .tokenSecret("my secret")\n    .build();\n```\n\nOr using a combination of the two approaches:\n\n```java\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\n\nMuxClient client = MuxOkHttpClient.builder()\n    // Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n    // Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\n    .fromEnv()\n    .tokenId("my token id")\n    .build();\n```\n\nSee this table for the available options:\n\n| Setter               | System property          | Environment variable      | Required | Default value           |\n| -------------------- | ------------------------ | ------------------------- | -------- | ----------------------- |\n| `tokenId`            | `mux.tokenId`            | `MUX_TOKEN_ID`            | false    | -                       |\n| `tokenSecret`        | `mux.tokenSecret`        | `MUX_TOKEN_SECRET`        | false    | -                       |\n| `webhookSecret`      | `mux.webhookSecret`      | `MUX_WEBHOOK_SECRET`      | false    | -                       |\n| `jwtSigningKey`      | `mux.signingKey`         | `MUX_SIGNING_KEY`         | false    | -                       |\n| `jwtPrivateKey`      | `mux.privateKey`         | `MUX_PRIVATE_KEY`         | false    | -                       |\n| `authorizationToken` | `mux.authorizationToken` | `MUX_AUTHORIZATION_TOKEN` | false    | -                       |\n| `baseUrl`            | `mux.baseUrl`            | `MUX_BASE_URL`            | true     | `"https://api.mux.com"` |\n\nSystem properties take precedence over environment variables.\n\n> [!TIP]\n> Don\'t create more than one client in the same application. Each client has a connection pool and\n> thread pools, which are more efficient to share between requests.\n\n### Modifying configuration\n\nTo temporarily use a modified client configuration, while reusing the same connection and thread       pools, call `withOptions()` on any client or service:\n\n```java\nimport com.mux.api.client.MuxClient;\n\nMuxClient clientWithOptions = client.withOptions(optionsBuilder -> {\n    optionsBuilder.baseUrl("https://example.com");\n    optionsBuilder.maxRetries(42);\n});\n```\n\nThe `withOptions()` method does not affect the original client or service.\n\n## Requests and responses\n\nTo send a request to the Mux API, build an instance of some `Params` class and pass it to the     corresponding client method. When the response is received, it will be deserialized into an instance of     a Java class.\n\nFor example, `client.video().assets().create(...)` should be called with an instance of `AssetCreateParams`, and it     will return an instance of `Asset`.\n\n## Immutability\n\nEach class in the SDK has an associated   [builder](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)   or factory method for constructing it.\n\nEach class is [immutable](https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html)   once constructed. If the class has an associated builder, then it has a `toBuilder()` method, which can   be used to convert it back to a builder for making a modified copy.\n\nBecause each class is immutable, builder modification will _never_ affect already built class instances.\n\n## Asynchronous execution\n\nThe default client is synchronous. To switch to asynchronous execution, call the `async()` method:\n\n```java\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport com.mux.api.models.video.assets.Asset;\nimport com.mux.api.models.video.assets.AssetCreateParams;\nimport com.mux.api.models.video.assets.AssetOptions;\nimport java.util.concurrent.CompletableFuture;\n\n// Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n// Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\nMuxClient client = MuxOkHttpClient.fromEnv();\n\nAssetOptions params = AssetOptions.builder()\n    .addInput(AssetOptions.Input.builder().build())\n    .build();\nCompletableFuture<Asset> asset = client.async().video().assets().create(params);\n```\n\nOr create an asynchronous client from the beginning:\n\n```java\nimport com.mux.api.client.MuxClientAsync;\nimport com.mux.api.client.okhttp.MuxOkHttpClientAsync;\nimport com.mux.api.models.video.assets.Asset;\nimport com.mux.api.models.video.assets.AssetCreateParams;\nimport com.mux.api.models.video.assets.AssetOptions;\nimport java.util.concurrent.CompletableFuture;\n\n// Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n// Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\nMuxClientAsync client = MuxOkHttpClientAsync.fromEnv();\n\nAssetOptions params = AssetOptions.builder()\n    .addInput(AssetOptions.Input.builder().build())\n    .build();\nCompletableFuture<Asset> asset = client.video().assets().create(params);\n```\n\nThe asynchronous client supports the same options as the synchronous one, except most methods return `CompletableFuture`s.\n\n\n\n\n\n## Binary responses\n\nThe SDK defines methods that return binary responses, which are used for API responses that shouldn\'t     necessarily be parsed, like non-JSON data.\n\nThese methods return [`HttpResponse`](mux-java-core/src/main/kotlin/com/mux/api/core/http/HttpResponse.kt):\n\n```java\nimport com.mux.api.core.http.HttpResponse;\nimport com.mux.api.models.video.playback.PlaybackAnimatedParams;\n\nHttpResponse response = client.video().playback().animated(\n  "PLAYBACK_ID", PlaybackAnimatedParams.Extension.GIF\n);\n```\n\nTo save the response content to a file, use the     [`Files.copy(...)`](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#copy-java.io.InputStream-java.nio.file.Path-java.nio.file.CopyOption...-)     method:\n\n```java\nimport com.mux.api.core.http.HttpResponse;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\nimport java.nio.file.StandardCopyOption;\n\ntry (HttpResponse response = client.video().playback().animated(params)) {\n    Files.copy(\n        response.body(),\n        Paths.get(path),\n        StandardCopyOption.REPLACE_EXISTING\n    );\n} catch (Exception e) {\n    System.out.println("Something went wrong!");\n    throw new RuntimeException(e);\n}\n```\n\nOr transfer the response content to any     [`OutputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html):\n\n```java\nimport com.mux.api.core.http.HttpResponse;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\ntry (HttpResponse response = client.video().playback().animated(params)) {\n    response.body().transferTo(Files.newOutputStream(Paths.get(path)));\n} catch (Exception e) {\n    System.out.println("Something went wrong!");\n    throw new RuntimeException(e);\n}\n```\n\n## Raw responses\n\nThe SDK defines methods that deserialize responses into instances of Java classes.       However, these methods don\'t provide access to the response headers, status code, or the raw response       body.\n\nTo access this data, prefix any HTTP method call on a client or service with `withRawResponse()`:\n\n```java\nimport com.mux.api.core.http.Headers;\nimport com.mux.api.core.http.HttpResponseFor;\nimport com.mux.api.models.video.assets.Asset;\nimport com.mux.api.models.video.assets.AssetCreateParams;\nimport com.mux.api.models.video.assets.AssetOptions;\n\nAssetOptions params = AssetOptions.builder()\n    .addInput(AssetOptions.Input.builder().build())\n    .build();\nHttpResponseFor<Asset> asset = client.video().assets().withRawResponse().create(params);\n\nint statusCode = asset.statusCode();\nHeaders headers = asset.headers();\n```\n\nYou can still deserialize the response into an instance of a Java class if needed:\n\n```java\nimport com.mux.api.models.video.assets.Asset;\n\nAsset parsedAsset = asset.parse();\n```\n\n## Error handling\n\nThe SDK throws custom unchecked exception types:\n\n- [`MuxServiceException`](mux-java-core/src/main/kotlin/com/mux/api/errors/MuxServiceException.kt): Base class for HTTP errors. See this table for which exception       subclass is thrown for each HTTP status code:\n\n  | Status | Exception                                          |\n  | ------ | -------------------------------------------------- |\n  | 400    | [`BadRequestException`](mux-java-core/src/main/kotlin/com/mux/api/errors/BadRequestException.kt)           |\n  | 401    | [`UnauthorizedException`](mux-java-core/src/main/kotlin/com/mux/api/errors/UnauthorizedException.kt)         |\n  | 403    | [`PermissionDeniedException`](mux-java-core/src/main/kotlin/com/mux/api/errors/PermissionDeniedException.kt)     |\n  | 404    | [`NotFoundException`](mux-java-core/src/main/kotlin/com/mux/api/errors/NotFoundException.kt)             |\n  | 422    | [`UnprocessableEntityException`](mux-java-core/src/main/kotlin/com/mux/api/errors/UnprocessableEntityException.kt)  |\n  | 429    | [`RateLimitException`](mux-java-core/src/main/kotlin/com/mux/api/errors/RateLimitException.kt)            |\n  | 5xx    | [`InternalServerException`](mux-java-core/src/main/kotlin/com/mux/api/errors/InternalServerException.kt)       |\n  | others | [`UnexpectedStatusCodeException`](mux-java-core/src/main/kotlin/com/mux/api/errors/UnexpectedStatusCodeException.kt) |\n\n- [`MuxIoException`](mux-java-core/src/main/kotlin/com/mux/api/errors/MuxIoException.kt): I/O networking errors.\n\n- [`MuxRetryableException`](mux-java-core/src/main/kotlin/com/mux/api/errors/MuxRetryableException.kt): Generic error indicating a failure that could be retried by the client.\n\n- [`MuxInvalidDataException`](mux-java-core/src/main/kotlin/com/mux/api/errors/MuxInvalidDataException.kt): Failure to interpret successfully parsed data. For example,       when accessing a property that\'s supposed to be required, but the API unexpectedly omitted it from the       response.\n\n- [`MuxException`](mux-java-core/src/main/kotlin/com/mux/api/errors/MuxException.kt): Base class for all exceptions. Most errors will result in one of the       previously mentioned ones, but completely generic errors may be thrown using the base class.\n\n## Pagination\n\nThe SDK defines methods that return a paginated lists of results. It provides convenient ways to access     the results either one page at a time or item-by-item across all pages.\n\n### Auto-pagination\n\nTo iterate through all results across all pages, use the `autoPager()` method, which automatically     fetches more pages as needed.\n\nWhen using the synchronous client, the method returns an [`Iterable`](https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)\n\n```java\nimport com.mux.api.models.video.deliveryusage.DeliveryReport;\nimport com.mux.api.models.video.deliveryusage.DeliveryUsageListPage;\n\nDeliveryUsageListPage page = client.video().deliveryUsage().list();\n\n// Process as an Iterable\nfor (DeliveryReport deliveryUsage : page.autoPager()) {\n    System.out.println(deliveryUsage);\n}\n\n// Process as a Stream\npage.autoPager()\n    .stream()\n    .limit(50)\n    .forEach(deliveryUsage -> System.out.println(deliveryUsage));\n```\n\nWhen using the asynchronous client, the method returns an [`AsyncStreamResponse`](mux-java-core/src/main/kotlin/com/mux/api/core/http/AsyncStreamResponse.kt):\n\n```java\nimport com.mux.api.core.http.AsyncStreamResponse;\nimport com.mux.api.models.video.deliveryusage.DeliveryReport;\nimport com.mux.api.models.video.deliveryusage.DeliveryUsageListPageAsync;\nimport java.util.Optional;\nimport java.util.concurrent.CompletableFuture;\n\nCompletableFuture<DeliveryUsageListPageAsync> pageFuture = client.async().video().deliveryUsage().list();\n\npageFuture.thenRun(page -> page.autoPager().subscribe(deliveryUsage -> {\n    System.out.println(deliveryUsage);\n}));\n\n// If you need to handle errors or completion of the stream\npageFuture.thenRun(page -> page.autoPager().subscribe(new AsyncStreamResponse.Handler<>() {\n    @Override\n    public void onNext(DeliveryReport deliveryUsage) {\n        System.out.println(deliveryUsage);\n    }\n\n    @Override\n    public void onComplete(Optional<Throwable> error) {\n        if (error.isPresent()) {\n            System.out.println("Something went wrong!");\n            throw new RuntimeException(error.get());\n        } else {\n            System.out.println("No more!");\n        }\n    }\n}));\n\n// Or use futures\npageFuture.thenRun(page -> page.autoPager()\n    .subscribe(deliveryUsage -> {\n        System.out.println(deliveryUsage);\n    })\n    .onCompleteFuture()\n    .whenComplete((unused, error) -> {\n        if (error != null) {\n            System.out.println("Something went wrong!");\n            throw new RuntimeException(error);\n        } else {\n            System.out.println("No more!");\n        }\n    }));\n```\n\n### Manual pagination\n\nTo access individual page items and manually request the next page, use the `items()`,\n`hasNextPage()`, and `nextPage()` methods:\n\n```java\nimport com.mux.api.models.video.deliveryusage.DeliveryReport;\nimport com.mux.api.models.video.deliveryusage.DeliveryUsageListPage;\n\nDeliveryUsageListPage page = client.video().deliveryUsage().list();\nwhile (true) {\n    for (DeliveryReport deliveryUsage : page.items()) {\n        System.out.println(deliveryUsage);\n    }\n\n    if (!page.hasNextPage()) {\n        break;\n    }\n\n    page = page.nextPage();\n}\n```\n\n## Logging\n\nThe SDK uses the standard   [OkHttp logging interceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor).\n\nEnable logging by setting the `MUX_LOG` environment variable to   `info`:\n\n```sh\nexport MUX_LOG=info\n```\n\nOr to `debug` for more verbose logging:\n\n```sh\nexport MUX_LOG=debug\n```\n\n## ProGuard and R8\n\nAlthough the SDK uses reflection, it is still usable with     [ProGuard](https://github.com/Guardsquare/proguard) and     [R8](https://developer.android.com/topic/performance/app-optimization/enable-app-optimization) because     `mux-java-core` is published with a     [configuration file](mux-java-core/src/main/resources/META-INF/proguard/mux-java-core.pro) containing     [keep rules](https://www.guardsquare.com/manual/configuration/usage).\n\nProGuard and R8 should automatically detect and use the published rules, but you can also manually copy     the keep rules if necessary.\n\n\n\n\n\n## Jackson\n\nThe SDK depends on [Jackson](https://github.com/FasterXML/jackson) for JSON     serialization/deserialization. It is compatible with version 2.13.4 or higher,     but depends on version 2.18.2 by default.\n\nThe SDK throws an exception if it detects an incompatible Jackson version at runtime (e.g. if the     default version was overridden in your Maven or Gradle config).\n\nIf the SDK threw an exception, but you\'re _certain_ the version is compatible, then disable the version     check using the `checkJacksonVersionCompatibility` on [`MuxOkHttpClient`](mux-java-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClient.kt) or     [`MuxOkHttpClientAsync`](mux-java-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClientAsync.kt).\n\n> [!CAUTION]\n> We make no guarantee that the SDK works correctly when the Jackson version check is disabled.\n\nAlso note that there are bugs in older Jackson versions that can affect the SDK. We don\'t work around all     Jackson bugs ([example](https://github.com/FasterXML/jackson-databind/issues/3240)) and expect users to     upgrade Jackson for those instead.\n\n## Network options\n\n### Retries\n\nThe SDK automatically retries 2 times by default, with a short exponential backoff between requests.\n\nOnly the following error types are retried:\n- Connection errors (for example, due to a network connectivity problem)\n- 408 Request Timeout\n- 409 Conflict\n- 429 Rate Limit\n- 5xx Internal\n\nThe API may also explicitly instruct the SDK to retry or not retry a request.\n\nTo set a custom number of retries, configure the client using the `maxRetries` method:\n\n```java\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\n\nMuxClient client = MuxOkHttpClient.builder()\n    .fromEnv()\n    .maxRetries(4)\n    .build();\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default.\n\nTo set a custom timeout, configure the method call using the `timeout` method:\n\n```java\nimport com.mux.api.models.video.assets.Asset;\n\nAsset asset = client.video().assets().retrieve(RequestOptions.builder().timeout(Duration.ofSeconds(30)).build());\n```\n\nOr configure the default for all method calls at the client level:\n\n```java\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport java.time.Duration;\n\nMuxClient client = MuxOkHttpClient.builder()\n    .fromEnv()\n    .timeout(Duration.ofSeconds(30))\n    .build();\n```\n\n### Proxies\n\nTo route requests through a proxy, configure the client using the `proxy` method:\n\n```java\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport java.net.InetSocketAddress;\nimport java.net.Proxy;\n\nMuxClient client = MuxOkHttpClient.builder()\n    .fromEnv()\n    .proxy(new Proxy(\n      Proxy.Type.HTTP, new InetSocketAddress(\n        "https://example.com", 8080\n      )\n    ))\n    .build();\n```\n\n### Connection pooling\n\nTo customize the underlying OkHttp connection pool, configure the client using the   `maxIdleConnections` and `keepAliveDuration` methods:\n\n```java\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\nimport java.time.Duration;\n\nMuxClient client = MuxOkHttpClient.builder()\n    .fromEnv()\n    // If `maxIdleConnections` is set, then `keepAliveDuration` must be set, and vice versa.\n    .maxIdleConnections(10)\n    .keepAliveDuration(Duration.ofMinutes(2))\n    .build();\n```\n\nIf both options are unset, OkHttp\'s default connection pool settings are used.\n\n### HTTPS\n\n> [!NOTE]\n> Most applications should not call these methods, and instead use the system defaults. The defaults include\n> special optimizations that can be lost if the implementations are modified.\n\nTo configure how HTTPS connections are secured, configure the client using the `sslSocketFactory`,   `trustManager`, and `hostnameVerifier` methods:\n\n```java\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\n\nMuxClient client = MuxOkHttpClient.builder()\n    .fromEnv()\n    // If `sslSocketFactory` is set, then `trustManager` must be set, and vice versa.\n    .sslSocketFactory(yourSSLSocketFactory)\n    .trustManager(yourTrustManager)\n    .hostnameVerifier(yourHostnameVerifier)\n    .build();\n```\n\n\n\n### Custom HTTP client\n\nThe SDK consists of three artifacts:\n- `mux-java-core`\n  - Contains core SDK logic\n  - Does not depend on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`MuxClient`](mux-java-core/src/main/kotlin/com/mux/api/client/MuxClient.kt), [`MuxClientAsync`](mux-java-core/src/main/kotlin/com/mux/api/client/MuxClientAsync.kt),             [`MuxClientImpl`](mux-java-core/src/main/kotlin/com/mux/api/client/MuxClientImpl.kt), and [`MuxClientAsyncImpl`](mux-java-core/src/main/kotlin/com/mux/api/client/MuxClientAsyncImpl.kt), all of which can             work with any HTTP client\n- `mux-java-client-okhttp`\n  - Depends on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`MuxOkHttpClient`](mux-java-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClient.kt) and [`MuxOkHttpClientAsync`](mux-java-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClientAsync.kt), which             provide a way to construct [`MuxClientImpl`](mux-java-core/src/main/kotlin/com/mux/api/client/MuxClientImpl.kt) and             [`MuxClientAsyncImpl`](mux-java-core/src/main/kotlin/com/mux/api/client/MuxClientAsyncImpl.kt), respectively, using OkHttp\n- `mux-java`\n  - Depends on and exposes the APIs of both `mux-java-core` and `mux-java-client-okhttp`\n  - Does not have its own logic\n\nThis structure allows replacing the SDK\'s default HTTP client without pulling in unnecessary dependencies.\n\n#### Customized [`OkHttpClient`](https://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.html)\n\n> [!TIP]\n> Try the available [network options](#network-options) before replacing the default client.\n\nTo use a customized `OkHttpClient`:\n\n1. Replace your [`mux-java` dependency](#installation) with `mux-java-core`\n2. Copy `mux-java-client-okhttp`\'s [`OkHttpClient`](mux-java-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/OkHttpClient.kt) class into your code and        customize it\n3. Construct [`MuxClientImpl`](mux-java-core/src/main/kotlin/com/mux/api/client/MuxClientImpl.kt) or [`MuxClientAsyncImpl`](mux-java-core/src/main/kotlin/com/mux/api/client/MuxClientAsyncImpl.kt), similarly to        [`MuxOkHttpClient`](mux-java-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClient.kt) or [`MuxOkHttpClientAsync`](mux-java-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClientAsync.kt), using your        customized client\n\n### Completely custom HTTP client\n\nTo use a completely custom HTTP client:\n\n1. Replace your [`mux-java` dependency](#installation) with `mux-java-core`\n2. Write a class that implements the [`HttpClient`](mux-java-core/src/main/kotlin/com/mux/api/core/http/HttpClient.kt) interface\n3. Construct [`MuxClientImpl`](mux-java-core/src/main/kotlin/com/mux/api/client/MuxClientImpl.kt) or [`MuxClientAsyncImpl`](mux-java-core/src/main/kotlin/com/mux/api/client/MuxClientAsyncImpl.kt), similarly to        [`MuxOkHttpClient`](mux-java-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClient.kt) or [`MuxOkHttpClientAsync`](mux-java-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClientAsync.kt), using your new        client class\n\n## Undocumented API functionality\n\nThe SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.\n\n### Parameters\n\nTo set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQueryParam`, or       `putAdditionalBodyProperty` methods on any `Params` class:\n\n```java\nimport com.mux.api.core.JsonValue;\nimport com.mux.api.models.video.assets.AssetCreateParams;\n\nAssetCreateParams params = AssetCreateParams.builder()\n    .putAdditionalHeader("Secret-Header", "42")\n    .putAdditionalQueryParam("secret_query_param", "42")\n    .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))\n    .build();\n```\n\nThese can be accessed on the built object later using the `_additionalHeaders()`,       `_additionalQueryParams()`, and `_additionalBodyProperties()` methods.\n\nTo set a documented parameter or property to an undocumented or not yet supported _value_, pass a       [`JsonValue`](mux-java-core/src/main/kotlin/com/mux/api/core/Values.kt) object to its setter:\n\n```java\nimport com.mux.api.models.video.assets.AssetCreateParams;\nimport com.mux.api.models.video.assets.AssetOptions;\n\nAssetCreateParams params = AssetCreateParams.builder()\n    .assetOptions(AssetOptions.builder()\n        .addInput(AssetOptions.Input.builder().build())\n        .build())\n    .build();\n```\n\nThe most straightforward way to create a [`JsonValue`](mux-java-core/src/main/kotlin/com/mux/api/core/Values.kt) is using its       `from(...)` method:\n\n```java\nimport com.mux.api.core.JsonValue;\nimport java.util.List;\nimport java.util.Map;\n\n// Create primitive JSON values\nJsonValue nullValue = JsonValue.from(null);\nJsonValue booleanValue = JsonValue.from(true);\nJsonValue numberValue = JsonValue.from(42);\nJsonValue stringValue = JsonValue.from("Hello World!");\n\n// Create a JSON array value equivalent to `["Hello", "World"]`\nJsonValue arrayValue = JsonValue.from(List.of(\n  "Hello", "World"\n));\n\n// Create a JSON object value equivalent to `{ "a": 1, "b": 2 }`\nJsonValue objectValue = JsonValue.from(Map.of(\n  "a", 1,\n  "b", 2\n));\n\n// Create an arbitrarily nested JSON equivalent to:\n// {\n//   "a": [1, 2],\n//   "b": [3, 4]\n// }\nJsonValue complexValue = JsonValue.from(Map.of(\n  "a", List.of(\n    1, 2\n  ),\n  "b", List.of(\n    3, 4\n  )\n));\n```\n\nNormally a `Builder` class\'s `build` method will throw         [`IllegalStateException`](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html)         if any required parameter or property is unset.\n\nTo forcibly omit a required parameter or property, pass [`JsonMissing`](mux-java-core/src/main/kotlin/com/mux/api/core/Values.kt):\n\n```java\nimport com.mux.api.core.JsonMissing;\nimport com.mux.api.models.video.assets.AssetCreateParams;\nimport com.mux.api.models.video.assets.AssetRetrieveParams;\n\nAssetCreateParams params = AssetRetrieveParams.builder()\n    .assetId(JsonMissing.of())\n    .build();\n```\n\n### Response properties\n\nTo access undocumented response properties, call the `_additionalProperties()` method:\n\n```java\nimport com.mux.api.core.JsonValue;\nimport java.util.Map;\n\nMap<String, JsonValue> additionalProperties = client.video().assets().create(params)._additionalProperties();\nJsonValue secretPropertyValue = additionalProperties.get("secretProperty");\n\nString result = secretPropertyValue.accept(new JsonValue.Visitor<>() {\n    @Override\n    public String visitNull() {\n        return "It\'s null!";\n    }\n\n    @Override\n    public String visitBoolean(boolean value) {\n        return "It\'s a boolean!";\n    }\n\n    @Override\n    public String visitNumber(Number value) {\n        return "It\'s a number!";\n    }\n\n    // Other methods include `visitMissing`, `visitString`, `visitArray`, and `visitObject`\n    // The default implementation of each unimplemented method delegates to `visitDefault`, which throws by default, but can also be overridden\n});\n```\n\nTo access a property\'s raw JSON value, which may be undocumented, call its `_` prefixed method:\n\n```java\nimport com.mux.api.core.JsonField;\nimport java.util.Optional;\n\nJsonField<Object> field = client.video().assets().create(params)._field();\n\nif (field.isMissing()) {\n  // The property is absent from the JSON response\n} else if (field.isNull()) {\n  // The property was set to literal null\n} else {\n  // Check if value was provided as a string\n  // Other methods include `asNumber()`, `asBoolean()`, etc.\n  Optional<String> jsonString = field.asString();\n\n  // Try to deserialize into a custom type\n  MyClass myObject = field.asUnknown().orElseThrow().convert(MyClass.class);\n}\n```\n\n### Response validation\n\nIn rare cases, the API may return a response that doesn\'t match the expected type. For example, the SDK     may expect a property to contain a `String`, but the API could return something else.\n\nBy default, the SDK will not throw an exception in this case. It will throw     [`MuxInvalidDataException`](mux-java-core/src/main/kotlin/com/mux/api/errors/MuxInvalidDataException.kt) only if you directly access the property.\n\nIf you would prefer to check that the response is completely well-typed upfront, then either call     `validate()`:\n\n```java\nimport com.mux.api.models.video.assets.Asset;\n\nAsset asset = client.video().assets().create(params).validate();\n```\n\nOr configure the method call to validate the response using the `responseValidation` method:\n\n```java\nimport com.mux.api.models.video.assets.Asset;\n\nAsset asset = client.video().assets().create(\n  params, RequestOptions.builder().responseValidation(true).build()\n);\n```\n\nOr configure the default for all method calls at the client level:\n\n```java\nimport com.mux.api.client.MuxClient;\nimport com.mux.api.client.okhttp.MuxOkHttpClient;\n\nMuxClient client = MuxOkHttpClient.builder()\n    .fromEnv()\n    .responseValidation(true)\n    .build();\n```\n\n## FAQ\n\n### Why don\'t you use plain `enum` classes?\n\nJava `enum` classes are not trivially   [forwards compatible](https://www.stainless.com/blog/making-java-enums-forwards-compatible). Using them in   the SDK could cause runtime exceptions if the API is updated to respond with a new enum value.\n\n### Why do you represent fields using `JsonField<T>` instead of just plain `T`?\n\nUsing `JsonField<T>` enables a few features:\n\n- Allowing usage of [undocumented API functionality](#undocumented-api-functionality)\n- Lazily [validating the API response against the expected shape](#response-validation)\n- Representing absent vs explicitly null values\n\n### Why don\'t you use [`data` classes](https://kotlinlang.org/docs/data-classes.html)?\n\nIt is not [backwards compatible to add new fields to a data class](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api)   and we don\'t want to introduce a breaking change every time we add a field to a class.\n\n### Why don\'t you use checked exceptions?\n\nChecked exceptions are widely considered a mistake in the Java programming language. In fact, they were   omitted from Kotlin for this reason.\n\nChecked exceptions:\n\n- Are verbose to handle\n- Encourage error handling at the wrong level of abstraction, where nothing can be done about the error\n- Are tedious to propagate due to the [function coloring problem](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function)\n- Don\'t play well with lambdas (also due to the function coloring problem)\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/mux-java/issues) with questions, bugs, or suggestions.\n',
   },
   {
     language: 'php',
