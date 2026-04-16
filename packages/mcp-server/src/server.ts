@@ -27,7 +27,7 @@ export const newMcpServer = async ({
 }) =>
   new McpServer(
     {
-      name: 'mux_mux_node_api',
+      name: 'mux',
       version: '12.2.0',
     },
     {
