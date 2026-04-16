@@ -1,6 +1,6 @@
 {
   "pkg": "@mux/mux-node",
-  "githubRepo": "https://github.com/stainless-sdks/mux-typescript",
+  "githubRepo": "https://github.com/muxinc/mux-node-sdk",
   "clientClass": "Mux",
   "methods": []
 }
