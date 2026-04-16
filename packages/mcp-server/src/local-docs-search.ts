@@ -91,6 +91,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.create({\n  inputs: [{ url: 'https://muxed.s3.amazonaws.com/leds.mp4' }],\n  playback_policies: ['public'],\n  video_quality: 'basic',\n});\n\nconsole.log(asset.id);",
       },
+      python: {
+        method: 'video.assets.create',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nasset = client.video.assets.create(\n    inputs=[{\n        "url": "https://muxed.s3.amazonaws.com/leds.mp4"\n    }],\n    playback_policies=["public"],\n    video_quality="basic",\n)\nprint(asset.id)',
+      },
       typescript: {
         method: 'client.video.assets.create',
         example:
@@ -126,6 +131,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const asset of client.video.assets.list()) {\n  console.log(asset.id);\n}",
       },
+      python: {
+        method: 'video.assets.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.video.assets.list()\npage = page.data[0]\nprint(page.id)',
+      },
       typescript: {
         method: 'client.video.assets.list',
         example:
@@ -157,6 +167,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.retrieve('ASSET_ID');\n\nconsole.log(asset.id);",
       },
+      python: {
+        method: 'video.assets.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nasset = client.video.assets.retrieve(\n    "ASSET_ID",\n)\nprint(asset.id)',
+      },
       typescript: {
         method: 'client.video.assets.retrieve',
         example:
@@ -184,6 +199,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.delete('ASSET_ID');",
+      },
+      python: {
+        method: 'video.assets.delete',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.assets.delete(\n    "ASSET_ID",\n)',
       },
       typescript: {
         method: 'client.video.assets.delete',
@@ -220,6 +240,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.update('ASSET_ID', { passthrough: 'Example' });\n\nconsole.log(asset.id);",
       },
+      python: {
+        method: 'video.assets.update',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nasset = client.video.assets.update(\n    asset_id="ASSET_ID",\n    passthrough="Example",\n)\nprint(asset.id)',
+      },
       typescript: {
         method: 'client.video.assets.update',
         example:
@@ -248,6 +273,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.retrievePlaybackId',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackId = await client.video.assets.retrievePlaybackId('ASSET_ID', 'PLAYBACK_ID');\n\nconsole.log(playbackId.id);",
+      },
+      python: {
+        method: 'video.assets.retrieve_playback_id',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_id = client.video.assets.retrieve_playback_id(\n    asset_id="ASSET_ID",\n    playback_id="PLAYBACK_ID",\n)\nprint(playback_id.id)',
       },
       typescript: {
         method: 'client.video.assets.retrievePlaybackId',
@@ -278,6 +308,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackId = await client.video.assets.createPlaybackId('ASSET_ID', { policy: 'public' });\n\nconsole.log(playbackId.id);",
       },
+      python: {
+        method: 'video.assets.create_playback_id',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_id = client.video.assets.create_playback_id(\n    asset_id="ASSET_ID",\n    policy="public",\n)\nprint(playback_id.id)',
+      },
       typescript: {
         method: 'client.video.assets.createPlaybackId',
         example:
@@ -306,6 +341,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.deletePlaybackId',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.deletePlaybackId('ASSET_ID', 'PLAYBACK_ID');",
+      },
+      python: {
+        method: 'video.assets.delete_playback_id',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.assets.delete_playback_id(\n    asset_id="ASSET_ID",\n    playback_id="PLAYBACK_ID",\n)',
       },
       typescript: {
         method: 'client.video.assets.deletePlaybackId',
@@ -347,6 +387,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst track = await client.video.assets.createTrack('ASSET_ID', {\n  language_code: 'en-US',\n  type: 'text',\n  url: 'https://example.com/myVideo_en.srt',\n  closed_captions: true,\n  name: 'English',\n  passthrough: 'English',\n  text_type: 'subtitles',\n});\n\nconsole.log(track.id);",
       },
+      python: {
+        method: 'video.assets.create_track',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntrack = client.video.assets.create_track(\n    asset_id="ASSET_ID",\n    language_code="en-US",\n    type="text",\n    url="https://example.com/myVideo_en.srt",\n    closed_captions=True,\n    name="English",\n    passthrough="English",\n    text_type="subtitles",\n)\nprint(track.id)',
+      },
       typescript: {
         method: 'client.video.assets.createTrack',
         example:
@@ -375,6 +420,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.deleteTrack',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.deleteTrack('ASSET_ID', 'TRACK_ID');",
+      },
+      python: {
+        method: 'video.assets.delete_track',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.assets.delete_track(\n    asset_id="ASSET_ID",\n    track_id="TRACK_ID",\n)',
       },
       typescript: {
         method: 'client.video.assets.deleteTrack',
@@ -411,6 +461,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst tracks = await client.video.assets.generateSubtitles('ASSET_ID', 'TRACK_ID', {\n  generated_subtitles: [\n    {\n      language_code: 'en',\n      name: 'English (generated)',\n      passthrough: 'English (generated)',\n    },\n  ],\n});\n\nconsole.log(tracks);",
       },
+      python: {
+        method: 'video.assets.generate_subtitles',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntracks = client.video.assets.generate_subtitles(\n    asset_id="ASSET_ID",\n    track_id="TRACK_ID",\n    generated_subtitles=[{\n        "language_code": "en",\n        "name": "English (generated)",\n        "passthrough": "English (generated)",\n    }],\n)\nprint(tracks)',
+      },
       typescript: {
         method: 'client.video.assets.generateSubtitles',
         example:
@@ -441,6 +496,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.retrieveInputInfo',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst inputInfos = await client.video.assets.retrieveInputInfo('ASSET_ID');\n\nconsole.log(inputInfos);",
+      },
+      python: {
+        method: 'video.assets.retrieve_input_info',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ninput_infos = client.video.assets.retrieve_input_info(\n    "ASSET_ID",\n)\nprint(input_infos)',
       },
       typescript: {
         method: 'client.video.assets.retrieveInputInfo',
@@ -476,6 +536,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.updateMP4Support('ASSET_ID', {\n  mp4_support: 'capped-1080p',\n});\n\nconsole.log(asset.id);",
       },
+      python: {
+        method: 'video.assets.update_mp4_support',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nasset = client.video.assets.update_mp4_support(\n    asset_id="ASSET_ID",\n    mp4_support="capped-1080p",\n)\nprint(asset.id)',
+      },
       typescript: {
         method: 'client.video.assets.updateMP4Support',
         example:
@@ -506,6 +571,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.updateMasterAccess',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.updateMasterAccess('ASSET_ID', {\n  master_access: 'temporary',\n});\n\nconsole.log(asset.id);",
+      },
+      python: {
+        method: 'video.assets.update_master_access',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nasset = client.video.assets.update_master_access(\n    asset_id="ASSET_ID",\n    master_access="temporary",\n)\nprint(asset.id)',
       },
       typescript: {
         method: 'client.video.assets.updateMasterAccess',
@@ -541,6 +611,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.assets.createStaticRendition('ASSET_ID', {\n  resolution: 'highest',\n});\n\nconsole.log(response.id);",
       },
+      python: {
+        method: 'video.assets.create_static_rendition',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.assets.create_static_rendition(\n    asset_id="ASSET_ID",\n    resolution="highest",\n)\nprint(response.id)',
+      },
       typescript: {
         method: 'client.video.assets.createStaticRendition',
         example:
@@ -568,6 +643,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.deleteStaticRendition',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.deleteStaticRendition('ASSET_ID', 'STATIC_RENDITION_ID');",
+      },
+      python: {
+        method: 'video.assets.delete_static_rendition',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.assets.delete_static_rendition(\n    asset_id="ASSET_ID",\n    static_rendition_id="STATIC_RENDITION_ID",\n)',
       },
       typescript: {
         method: 'client.video.assets.deleteStaticRendition',
@@ -605,6 +685,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.deliveryUsage.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const deliveryReport of client.video.deliveryUsage.list()) {\n  console.log(deliveryReport.asset_id);\n}",
+      },
+      python: {
+        method: 'video.delivery_usage.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.video.delivery_usage.list()\npage = page.data[0]\nprint(page.asset_id)',
       },
       typescript: {
         method: 'client.video.deliveryUsage.list',
@@ -656,6 +741,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.create({\n  new_asset_settings: { playback_policies: ['public'] },\n  playback_policies: ['public'],\n});\n\nconsole.log(liveStream.id);",
       },
+      python: {
+        method: 'video.live_streams.create',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nlive_stream = client.video.live_streams.create(\n    new_asset_settings={\n        "playback_policies": ["public"]\n    },\n    playback_policies=["public"],\n)\nprint(live_stream.id)',
+      },
       typescript: {
         method: 'client.video.liveStreams.create',
         example:
@@ -690,6 +780,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const liveStream of client.video.liveStreams.list()) {\n  console.log(liveStream.id);\n}",
       },
+      python: {
+        method: 'video.live_streams.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.video.live_streams.list()\npage = page.data[0]\nprint(page.id)',
+      },
       typescript: {
         method: 'client.video.liveStreams.list',
         example:
@@ -721,6 +816,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.retrieve('LIVE_STREAM_ID');\n\nconsole.log(liveStream.id);",
       },
+      python: {
+        method: 'video.live_streams.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nlive_stream = client.video.live_streams.retrieve(\n    "LIVE_STREAM_ID",\n)\nprint(live_stream.id)',
+      },
       typescript: {
         method: 'client.video.liveStreams.retrieve',
         example:
@@ -749,6 +849,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.delete('LIVE_STREAM_ID');",
+      },
+      python: {
+        method: 'video.live_streams.delete',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.delete(\n    "LIVE_STREAM_ID",\n)',
       },
       typescript: {
         method: 'client.video.liveStreams.delete',
@@ -791,6 +896,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.update('LIVE_STREAM_ID', {\n  latency_mode: 'standard',\n  max_continuous_duration: 1200,\n  reconnect_window: 30,\n});\n\nconsole.log(liveStream.id);",
       },
+      python: {
+        method: 'video.live_streams.update',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nlive_stream = client.video.live_streams.update(\n    live_stream_id="LIVE_STREAM_ID",\n    latency_mode="standard",\n    max_continuous_duration=1200,\n    reconnect_window=30,\n)\nprint(live_stream.id)',
+      },
       typescript: {
         method: 'client.video.liveStreams.update',
         example:
@@ -825,6 +935,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackId = await client.video.liveStreams.createPlaybackId('LIVE_STREAM_ID', {\n  policy: 'signed',\n});\n\nconsole.log(playbackId.id);",
       },
+      python: {
+        method: 'video.live_streams.create_playback_id',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_id = client.video.live_streams.create_playback_id(\n    live_stream_id="LIVE_STREAM_ID",\n    policy="signed",\n)\nprint(playback_id.id)',
+      },
       typescript: {
         method: 'client.video.liveStreams.createPlaybackId',
         example:
@@ -855,6 +970,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackId = await client.video.liveStreams.retrievePlaybackId(\n  'LIVE_STREAM_ID',\n  'PLAYBACK_ID',\n);\n\nconsole.log(playbackId.id);",
       },
+      python: {
+        method: 'video.live_streams.retrieve_playback_id',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_id = client.video.live_streams.retrieve_playback_id(\n    live_stream_id="LIVE_STREAM_ID",\n    playback_id="PLAYBACK_ID",\n)\nprint(playback_id.id)',
+      },
       typescript: {
         method: 'client.video.liveStreams.retrievePlaybackId',
         example:
@@ -883,6 +1003,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.deletePlaybackId',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.deletePlaybackId('LIVE_STREAM_ID', 'PLAYBACK_ID');",
+      },
+      python: {
+        method: 'video.live_streams.delete_playback_id',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.delete_playback_id(\n    live_stream_id="LIVE_STREAM_ID",\n    playback_id="PLAYBACK_ID",\n)',
       },
       typescript: {
         method: 'client.video.liveStreams.deletePlaybackId',
@@ -915,6 +1040,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.resetStreamKey('LIVE_STREAM_ID');\n\nconsole.log(liveStream.id);",
       },
+      python: {
+        method: 'video.live_streams.reset_stream_key',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nlive_stream = client.video.live_streams.reset_stream_key(\n    "LIVE_STREAM_ID",\n)\nprint(live_stream.id)',
+      },
       typescript: {
         method: 'client.video.liveStreams.resetStreamKey',
         example:
@@ -943,6 +1073,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.complete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.complete('LIVE_STREAM_ID');",
+      },
+      python: {
+        method: 'video.live_streams.complete',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.complete(\n    "LIVE_STREAM_ID",\n)',
       },
       typescript: {
         method: 'client.video.liveStreams.complete',
@@ -973,6 +1108,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.disable('LIVE_STREAM_ID');",
       },
+      python: {
+        method: 'video.live_streams.disable',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.disable(\n    "LIVE_STREAM_ID",\n)',
+      },
       typescript: {
         method: 'client.video.liveStreams.disable',
         example:
@@ -1000,6 +1140,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.enable',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.enable('LIVE_STREAM_ID');",
+      },
+      python: {
+        method: 'video.live_streams.enable',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.enable(\n    "LIVE_STREAM_ID",\n)',
       },
       typescript: {
         method: 'client.video.liveStreams.enable',
@@ -1035,6 +1180,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.updateEmbeddedSubtitles('LIVE_STREAM_ID', {\n  embedded_subtitles: [{ passthrough: 'Example' }],\n});\n\nconsole.log(liveStream.id);",
       },
+      python: {
+        method: 'video.live_streams.update_embedded_subtitles',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nlive_stream = client.video.live_streams.update_embedded_subtitles(\n    live_stream_id="LIVE_STREAM_ID",\n    embedded_subtitles=[{\n        "passthrough": "Example"\n    }],\n)\nprint(live_stream.id)',
+      },
       typescript: {
         method: 'client.video.liveStreams.updateEmbeddedSubtitles',
         example:
@@ -1069,6 +1219,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.updateGeneratedSubtitles('LIVE_STREAM_ID', {\n  generated_subtitles: [\n    {\n      name: 'English CC (ASR)',\n      language_code: 'en',\n      passthrough: 'Example',\n    },\n  ],\n});\n\nconsole.log(liveStream.id);",
       },
+      python: {
+        method: 'video.live_streams.update_generated_subtitles',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nlive_stream = client.video.live_streams.update_generated_subtitles(\n    live_stream_id="LIVE_STREAM_ID",\n    generated_subtitles=[{\n        "name": "English CC (ASR)",\n        "language_code": "en",\n        "passthrough": "Example",\n    }],\n)\nprint(live_stream.id)',
+      },
       typescript: {
         method: 'client.video.liveStreams.updateGeneratedSubtitles',
         example:
@@ -1100,6 +1255,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst simulcastTarget = await client.video.liveStreams.createSimulcastTarget('LIVE_STREAM_ID', {\n  url: 'rtmp://live.example.com/app',\n  passthrough: 'Example',\n  stream_key: 'abcdefgh',\n});\n\nconsole.log(simulcastTarget.id);",
       },
+      python: {
+        method: 'video.live_streams.create_simulcast_target',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsimulcast_target = client.video.live_streams.create_simulcast_target(\n    live_stream_id="LIVE_STREAM_ID",\n    url="rtmp://live.example.com/app",\n    passthrough="Example",\n    stream_key="abcdefgh",\n)\nprint(simulcast_target.id)',
+      },
       typescript: {
         method: 'client.video.liveStreams.createSimulcastTarget',
         example:
@@ -1128,6 +1288,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.deleteSimulcastTarget',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.deleteSimulcastTarget('LIVE_STREAM_ID', 'SIMULCAST_TARGET_ID');",
+      },
+      python: {
+        method: 'video.live_streams.delete_simulcast_target',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.delete_simulcast_target(\n    live_stream_id="LIVE_STREAM_ID",\n    simulcast_target_id="SIMULCAST_TARGET_ID",\n)',
       },
       typescript: {
         method: 'client.video.liveStreams.deleteSimulcastTarget',
@@ -1159,6 +1324,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.retrieveSimulcastTarget',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst simulcastTarget = await client.video.liveStreams.retrieveSimulcastTarget(\n  'LIVE_STREAM_ID',\n  'SIMULCAST_TARGET_ID',\n);\n\nconsole.log(simulcastTarget.id);",
+      },
+      python: {
+        method: 'video.live_streams.retrieve_simulcast_target',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsimulcast_target = client.video.live_streams.retrieve_simulcast_target(\n    live_stream_id="LIVE_STREAM_ID",\n    simulcast_target_id="SIMULCAST_TARGET_ID",\n)\nprint(simulcast_target.id)',
       },
       typescript: {
         method: 'client.video.liveStreams.retrieveSimulcastTarget',
@@ -1194,6 +1364,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.updateNewAssetSettingsStaticRenditions(\n  'LIVE_STREAM_ID',\n  { static_renditions: [{ resolution: 'audio-only' }, { resolution: 'highest' }] },\n);\n\nconsole.log(liveStream.id);",
       },
+      python: {
+        method: 'video.live_streams.update_new_asset_settings_static_renditions',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nlive_stream = client.video.live_streams.update_new_asset_settings_static_renditions(\n    live_stream_id="LIVE_STREAM_ID",\n    static_renditions=[{\n        "resolution": "audio-only"\n    }, {\n        "resolution": "highest"\n    }],\n)\nprint(live_stream.id)',
+      },
       typescript: {
         method: 'client.video.liveStreams.updateNewAssetSettingsStaticRenditions',
         example:
@@ -1222,6 +1397,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.deleteNewAssetSettingsStaticRenditions',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.deleteNewAssetSettingsStaticRenditions('LIVE_STREAM_ID');",
+      },
+      python: {
+        method: 'video.live_streams.delete_new_asset_settings_static_renditions',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.live_streams.delete_new_asset_settings_static_renditions(\n    "LIVE_STREAM_ID",\n)',
       },
       typescript: {
         method: 'client.video.liveStreams.deleteNewAssetSettingsStaticRenditions',
@@ -1252,6 +1432,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playbackIds.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackIds = await client.video.playbackIds.retrieve('PLAYBACK_ID');\n\nconsole.log(playbackIds.id);",
+      },
+      python: {
+        method: 'video.playback_ids.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_ids = client.video.playback_ids.retrieve(\n    "PLAYBACK_ID",\n)\nprint(playback_ids.id)',
       },
       typescript: {
         method: 'client.video.playbackIds.retrieve',
@@ -1286,6 +1471,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackRestriction = await client.video.playbackRestrictions.create({\n  referrer: { allowed_domains: ['*.example.com'], allow_no_referrer: true },\n  user_agent: { allow_no_user_agent: false, allow_high_risk_user_agent: false },\n});\n\nconsole.log(playbackRestriction.id);",
       },
+      python: {
+        method: 'video.playback_restrictions.create',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_restriction = client.video.playback_restrictions.create(\n    referrer={\n        "allowed_domains": ["*.example.com"],\n        "allow_no_referrer": True,\n    },\n    user_agent={\n        "allow_no_user_agent": False,\n        "allow_high_risk_user_agent": False,\n    },\n)\nprint(playback_restriction.id)',
+      },
       typescript: {
         method: 'client.video.playbackRestrictions.create',
         example:
@@ -1316,6 +1506,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const playbackRestriction of client.video.playbackRestrictions.list()) {\n  console.log(playbackRestriction.id);\n}",
       },
+      python: {
+        method: 'video.playback_restrictions.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.video.playback_restrictions.list()\npage = page.data[0]\nprint(page.id)',
+      },
       typescript: {
         method: 'client.video.playbackRestrictions.list',
         example:
@@ -1343,6 +1538,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playbackRestrictions.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.playbackRestrictions.delete('PLAYBACK_RESTRICTION_ID');",
+      },
+      python: {
+        method: 'video.playback_restrictions.delete',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.playback_restrictions.delete(\n    "PLAYBACK_RESTRICTION_ID",\n)',
       },
       typescript: {
         method: 'client.video.playbackRestrictions.delete',
@@ -1373,6 +1573,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playbackRestrictions.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackRestriction = await client.video.playbackRestrictions.retrieve(\n  'PLAYBACK_RESTRICTION_ID',\n);\n\nconsole.log(playbackRestriction.id);",
+      },
+      python: {
+        method: 'video.playback_restrictions.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_restriction = client.video.playback_restrictions.retrieve(\n    "PLAYBACK_RESTRICTION_ID",\n)\nprint(playback_restriction.id)',
       },
       typescript: {
         method: 'client.video.playbackRestrictions.retrieve',
@@ -1409,6 +1614,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackRestriction = await client.video.playbackRestrictions.updateReferrer(\n  'PLAYBACK_RESTRICTION_ID',\n  { allowed_domains: ['*.example.com'], allow_no_referrer: true },\n);\n\nconsole.log(playbackRestriction.id);",
       },
+      python: {
+        method: 'video.playback_restrictions.update_referrer',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_restriction = client.video.playback_restrictions.update_referrer(\n    playback_restriction_id="PLAYBACK_RESTRICTION_ID",\n    allowed_domains=["*.example.com"],\n    allow_no_referrer=True,\n)\nprint(playback_restriction.id)',
+      },
       typescript: {
         method: 'client.video.playbackRestrictions.updateReferrer',
         example:
@@ -1444,6 +1654,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackRestriction = await client.video.playbackRestrictions.updateUserAgent(\n  'PLAYBACK_RESTRICTION_ID',\n  { allow_high_risk_user_agent: false, allow_no_user_agent: false },\n);\n\nconsole.log(playbackRestriction.id);",
       },
+      python: {
+        method: 'video.playback_restrictions.update_user_agent',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nplayback_restriction = client.video.playback_restrictions.update_user_agent(\n    playback_restriction_id="PLAYBACK_RESTRICTION_ID",\n    allow_high_risk_user_agent=False,\n    allow_no_user_agent=False,\n)\nprint(playback_restriction.id)',
+      },
       typescript: {
         method: 'client.video.playbackRestrictions.updateUserAgent',
         example:
@@ -1475,6 +1690,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst transcriptionVocabulary = await client.video.transcriptionVocabularies.retrieve(\n  'TRANSCRIPTION_VOCABULARY_ID',\n);\n\nconsole.log(transcriptionVocabulary.id);",
       },
+      python: {
+        method: 'video.transcription_vocabularies.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntranscription_vocabulary = client.video.transcription_vocabularies.retrieve(\n    "TRANSCRIPTION_VOCABULARY_ID",\n)\nprint(transcription_vocabulary.id)',
+      },
       typescript: {
         method: 'client.video.transcriptionVocabularies.retrieve',
         example:
@@ -1505,6 +1725,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst transcriptionVocabulary = await client.video.transcriptionVocabularies.create({\n  phrases: ['Mux', 'Live Stream', 'Playback ID', 'video encoding'],\n  name: 'Mux API Vocabulary',\n});\n\nconsole.log(transcriptionVocabulary.id);",
       },
+      python: {
+        method: 'video.transcription_vocabularies.create',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntranscription_vocabulary = client.video.transcription_vocabularies.create(\n    phrases=["Mux", "Live Stream", "Playback ID", "video encoding"],\n    name="Mux API Vocabulary",\n)\nprint(transcription_vocabulary.id)',
+      },
       typescript: {
         method: 'client.video.transcriptionVocabularies.create',
         example:
@@ -1533,6 +1758,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.transcriptionVocabularies.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.transcriptionVocabularies.delete('TRANSCRIPTION_VOCABULARY_ID');",
+      },
+      python: {
+        method: 'video.transcription_vocabularies.delete',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.video.transcription_vocabularies.delete(\n    "TRANSCRIPTION_VOCABULARY_ID",\n)',
       },
       typescript: {
         method: 'client.video.transcriptionVocabularies.delete',
@@ -1570,6 +1800,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst transcriptionVocabulary = await client.video.transcriptionVocabularies.update(\n  'TRANSCRIPTION_VOCABULARY_ID',\n  { phrases: ['Mux', 'Live Stream', 'RTMP', 'Stream Key'], name: 'Mux API Vocabulary - Updated' },\n);\n\nconsole.log(transcriptionVocabulary.id);",
       },
+      python: {
+        method: 'video.transcription_vocabularies.update',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntranscription_vocabulary = client.video.transcription_vocabularies.update(\n    transcription_vocabulary_id="TRANSCRIPTION_VOCABULARY_ID",\n    phrases=["Mux", "Live Stream", "RTMP", "Stream Key"],\n    name="Mux API Vocabulary - Updated",\n)\nprint(transcription_vocabulary.id)',
+      },
       typescript: {
         method: 'client.video.transcriptionVocabularies.update',
         example:
@@ -1599,6 +1834,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.transcriptionVocabularies.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const transcriptionVocabulary of client.video.transcriptionVocabularies.list()) {\n  console.log(transcriptionVocabulary.id);\n}",
+      },
+      python: {
+        method: 'video.transcription_vocabularies.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.video.transcription_vocabularies.list()\npage = page.data[0]\nprint(page.id)',
       },
       typescript: {
         method: 'client.video.transcriptionVocabularies.list',
@@ -1636,6 +1876,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst upload = await client.video.uploads.create({\n  cors_origin: 'https://example.com/',\n  new_asset_settings: { playback_policies: ['public'] },\n});\n\nconsole.log(upload.id);",
       },
+      python: {
+        method: 'video.uploads.create',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nupload = client.video.uploads.create(\n    cors_origin="https://example.com/",\n    new_asset_settings={\n        "playback_policies": ["public"]\n    },\n)\nprint(upload.id)',
+      },
       typescript: {
         method: 'client.video.uploads.create',
         example:
@@ -1665,6 +1910,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.uploads.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst upload = await client.video.uploads.retrieve('abcd1234');\n\nconsole.log(upload.id);",
+      },
+      python: {
+        method: 'video.uploads.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nupload = client.video.uploads.retrieve(\n    "abcd1234",\n)\nprint(upload.id)',
       },
       typescript: {
         method: 'client.video.uploads.retrieve',
@@ -1697,6 +1947,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst upload = await client.video.uploads.cancel('abcd1234');\n\nconsole.log(upload.id);",
       },
+      python: {
+        method: 'video.uploads.cancel',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nupload = client.video.uploads.cancel(\n    "abcd1234",\n)\nprint(upload.id)',
+      },
       typescript: {
         method: 'client.video.uploads.cancel',
         example:
@@ -1725,6 +1980,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.uploads.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const upload of client.video.uploads.list()) {\n  console.log(upload.id);\n}",
+      },
+      python: {
+        method: 'video.uploads.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.video.uploads.list()\npage = page.data[0]\nprint(page.id)',
       },
       typescript: {
         method: 'client.video.uploads.list',
@@ -1755,6 +2015,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const drmConfiguration of client.video.drmConfigurations.list()) {\n  console.log(drmConfiguration.id);\n}",
       },
+      python: {
+        method: 'video.drm_configurations.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.video.drm_configurations.list()\npage = page.data[0]\nprint(page.id)',
+      },
       typescript: {
         method: 'client.video.drmConfigurations.list',
         example:
@@ -1783,6 +2048,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.drmConfigurations.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst drmConfiguration = await client.video.drmConfigurations.retrieve('DRM_CONFIGURATION_ID');\n\nconsole.log(drmConfiguration.id);",
+      },
+      python: {
+        method: 'video.drm_configurations.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ndrm_configuration = client.video.drm_configurations.retrieve(\n    "DRM_CONFIGURATION_ID",\n)\nprint(drm_configuration.id)',
       },
       typescript: {
         method: 'client.video.drmConfigurations.retrieve',
@@ -1827,6 +2097,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.thumbnail('PLAYBACK_ID', 'jpg');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
       },
+      python: {
+        method: 'video.playback.thumbnail',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.thumbnail(\n    playback_id="PLAYBACK_ID",\n    extension="jpg",\n)\nprint(response)\ncontent = response.read()\nprint(content)',
+      },
       typescript: {
         method: 'client.video.playback.thumbnail',
         example:
@@ -1866,6 +2141,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.animated('PLAYBACK_ID', 'gif');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
       },
+      python: {
+        method: 'video.playback.animated',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.animated(\n    playback_id="PLAYBACK_ID",\n    extension="gif",\n)\nprint(response)\ncontent = response.read()\nprint(content)',
+      },
       typescript: {
         method: 'client.video.playback.animated',
         example:
@@ -1904,6 +2184,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.storyboard('PLAYBACK_ID', 'jpg');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
       },
+      python: {
+        method: 'video.playback.storyboard',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.storyboard(\n    playback_id="PLAYBACK_ID",\n    extension="jpg",\n)\nprint(response)\ncontent = response.read()\nprint(content)',
+      },
       typescript: {
         method: 'client.video.playback.storyboard',
         example:
@@ -1940,6 +2225,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.storyboardVtt',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.storyboardVtt('PLAYBACK_ID');\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'video.playback.storyboard_vtt',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.storyboard_vtt(\n    playback_id="PLAYBACK_ID",\n)\nprint(response)',
       },
       typescript: {
         method: 'client.video.playback.storyboardVtt',
@@ -1978,6 +2268,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.storyboardMeta',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.storyboardMeta('PLAYBACK_ID');\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'video.playback.storyboard_meta',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.storyboard_meta(\n    playback_id="PLAYBACK_ID",\n)\nprint(response)',
       },
       typescript: {
         method: 'client.video.playback.storyboardMeta',
@@ -2022,6 +2317,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.hls('PLAYBACK_ID');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
       },
+      python: {
+        method: 'video.playback.hls',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.hls(\n    playback_id="PLAYBACK_ID",\n)\nprint(response)\ncontent = response.read()\nprint(content)',
+      },
       typescript: {
         method: 'client.video.playback.hls',
         example:
@@ -2056,6 +2356,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.staticRendition('PLAYBACK_ID', 'capped-1080p.mp4');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
       },
+      python: {
+        method: 'video.playback.static_rendition',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.static_rendition(\n    playback_id="PLAYBACK_ID",\n    filename="capped-1080p.mp4",\n)\nprint(response)\ncontent = response.read()\nprint(content)',
+      },
       typescript: {
         method: 'client.video.playback.staticRendition',
         example:
@@ -2084,6 +2389,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.track',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.track('PLAYBACK_ID', 'TRACK_ID');\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'video.playback.track',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.track(\n    playback_id="PLAYBACK_ID",\n    track_id="TRACK_ID",\n)\nprint(response)',
       },
       typescript: {
         method: 'client.video.playback.track',
@@ -2114,6 +2424,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.transcript',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.transcript('PLAYBACK_ID', 'TRACK_ID');\n\nconsole.log(response);",
+      },
+      python: {
+        method: 'video.playback.transcript',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.video.playback.transcript(\n    playback_id="PLAYBACK_ID",\n    track_id="TRACK_ID",\n)\nprint(response)',
       },
       typescript: {
         method: 'client.video.playback.transcript',
@@ -2151,6 +2466,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const jobSummary of client.robotsPreview.jobs.list()) {\n  console.log(jobSummary.id);\n}",
       },
+      python: {
+        method: 'robots_preview.jobs.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.robots_preview.jobs.list()\npage = page.data[0]\nprint(page.id)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.list',
         example:
@@ -2180,6 +2500,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robotsPreview.jobs.cancel',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst jobSummary = await client.robotsPreview.jobs.cancel('rjob_lK9w2kI5J1');\n\nconsole.log(jobSummary.id);",
+      },
+      python: {
+        method: 'robots_preview.jobs.cancel',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\njob_summary = client.robots_preview.jobs.cancel(\n    "rjob_lK9w2kI5J1",\n)\nprint(job_summary.id)',
       },
       typescript: {
         method: 'client.robotsPreview.jobs.cancel',
@@ -2214,6 +2539,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst askQuestionsJob = await client.robotsPreview.jobs.askQuestions.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    questions: [\n      {\n        question: 'How many people are speaking on camera?',\n        answer_options: ['one', 'two', 'three or more'],\n      },\n    ],\n  },\n});\n\nconsole.log(askQuestionsJob.id);",
       },
+      python: {
+        method: 'robots_preview.jobs.ask_questions.create',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nask_questions_job = client.robots_preview.jobs.ask_questions.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "questions": [{\n            "question": "How many people are speaking on camera?",\n            "answer_options": ["one", "two", "three or more"],\n        }],\n    },\n)\nprint(ask_questions_job.id)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.askQuestions.create',
         example:
@@ -2243,6 +2573,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robotsPreview.jobs.askQuestions.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst askQuestionsJob = await client.robotsPreview.jobs.askQuestions.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(askQuestionsJob.id);",
+      },
+      python: {
+        method: 'robots_preview.jobs.ask_questions.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nask_questions_job = client.robots_preview.jobs.ask_questions.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(ask_questions_job.id)',
       },
       typescript: {
         method: 'client.robotsPreview.jobs.askQuestions.retrieve',
@@ -2277,6 +2612,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst generateChaptersJob = await client.robotsPreview.jobs.generateChapters.create({\n  parameters: { asset_id: 'mux_asset_123abc' },\n});\n\nconsole.log(generateChaptersJob.id);",
       },
+      python: {
+        method: 'robots_preview.jobs.generate_chapters.create',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ngenerate_chapters_job = client.robots_preview.jobs.generate_chapters.create(\n    parameters={\n        "asset_id": "mux_asset_123abc"\n    },\n)\nprint(generate_chapters_job.id)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.generateChapters.create',
         example:
@@ -2306,6 +2646,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robotsPreview.jobs.generateChapters.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst generateChaptersJob = await client.robotsPreview.jobs.generateChapters.retrieve(\n  'rjob_lK9w2kI5J1',\n);\n\nconsole.log(generateChaptersJob.id);",
+      },
+      python: {
+        method: 'robots_preview.jobs.generate_chapters.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ngenerate_chapters_job = client.robots_preview.jobs.generate_chapters.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(generate_chapters_job.id)',
       },
       typescript: {
         method: 'client.robotsPreview.jobs.generateChapters.retrieve',
@@ -2340,6 +2685,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst findKeyMomentsJob = await client.robotsPreview.jobs.findKeyMoments.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    max_moments: 5,\n    target_duration_ms: { min: 15000, max: 45000 },\n  },\n});\n\nconsole.log(findKeyMomentsJob.id);",
       },
+      python: {
+        method: 'robots_preview.jobs.find_key_moments.create',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nfind_key_moments_job = client.robots_preview.jobs.find_key_moments.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "max_moments": 5,\n        "target_duration_ms": {\n            "min": 15000,\n            "max": 45000,\n        },\n    },\n)\nprint(find_key_moments_job.id)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.findKeyMoments.create',
         example:
@@ -2369,6 +2719,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robotsPreview.jobs.findKeyMoments.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst findKeyMomentsJob = await client.robotsPreview.jobs.findKeyMoments.retrieve(\n  'rjob_lK9w2kI5J1',\n);\n\nconsole.log(findKeyMomentsJob.id);",
+      },
+      python: {
+        method: 'robots_preview.jobs.find_key_moments.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nfind_key_moments_job = client.robots_preview.jobs.find_key_moments.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(find_key_moments_job.id)',
       },
       typescript: {
         method: 'client.robotsPreview.jobs.findKeyMoments.retrieve',
@@ -2403,6 +2758,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst moderateJob = await client.robotsPreview.jobs.moderate.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    thresholds: { sexual: 0.7, violence: 0.8 },\n  },\n});\n\nconsole.log(moderateJob.id);",
       },
+      python: {
+        method: 'robots_preview.jobs.moderate.create',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nmoderate_job = client.robots_preview.jobs.moderate.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "thresholds": {\n            "sexual": 0.7,\n            "violence": 0.8,\n        },\n    },\n)\nprint(moderate_job.id)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.moderate.create',
         example:
@@ -2432,6 +2792,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robotsPreview.jobs.moderate.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst moderateJob = await client.robotsPreview.jobs.moderate.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(moderateJob.id);",
+      },
+      python: {
+        method: 'robots_preview.jobs.moderate.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nmoderate_job = client.robots_preview.jobs.moderate.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(moderate_job.id)',
       },
       typescript: {
         method: 'client.robotsPreview.jobs.moderate.retrieve',
@@ -2467,6 +2832,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst summarizeJob = await client.robotsPreview.jobs.summarize.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    tone: 'neutral',\n    tag_count: 10,\n  },\n});\n\nconsole.log(summarizeJob.id);",
       },
+      python: {
+        method: 'robots_preview.jobs.summarize.create',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsummarize_job = client.robots_preview.jobs.summarize.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "tone": "neutral",\n        "tag_count": 10,\n    },\n)\nprint(summarize_job.id)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.summarize.create',
         example:
@@ -2496,6 +2866,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robotsPreview.jobs.summarize.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst summarizeJob = await client.robotsPreview.jobs.summarize.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(summarizeJob.id);",
+      },
+      python: {
+        method: 'robots_preview.jobs.summarize.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsummarize_job = client.robots_preview.jobs.summarize.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(summarize_job.id)',
       },
       typescript: {
         method: 'client.robotsPreview.jobs.summarize.retrieve',
@@ -2531,6 +2906,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst translateCaptionsJob = await client.robotsPreview.jobs.translateCaptions.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    track_id: 'track_en_abc123',\n    to_language_code: 'es',\n    upload_to_mux: true,\n  },\n});\n\nconsole.log(translateCaptionsJob.id);",
       },
+      python: {
+        method: 'robots_preview.jobs.translate_captions.create',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntranslate_captions_job = client.robots_preview.jobs.translate_captions.create(\n    parameters={\n        "asset_id": "mux_asset_123abc",\n        "track_id": "track_en_abc123",\n        "to_language_code": "es",\n        "upload_to_mux": True,\n    },\n)\nprint(translate_captions_job.id)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.translateCaptions.create',
         example:
@@ -2561,6 +2941,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst translateCaptionsJob = await client.robotsPreview.jobs.translateCaptions.retrieve(\n  'rjob_lK9w2kI5J1',\n);\n\nconsole.log(translateCaptionsJob.id);",
       },
+      python: {
+        method: 'robots_preview.jobs.translate_captions.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ntranslate_captions_job = client.robots_preview.jobs.translate_captions.retrieve(\n    "rjob_lK9w2kI5J1",\n)\nprint(translate_captions_job.id)',
+      },
       typescript: {
         method: 'client.robotsPreview.jobs.translateCaptions.retrieve',
         example:
@@ -2588,6 +2973,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.dimensions.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst dimensionsResponse = await client.data.dimensions.list();\n\nconsole.log(dimensionsResponse.data);",
+      },
+      python: {
+        method: 'data.dimensions.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ndimensions_response = client.data.dimensions.list()\nprint(dimensions_response.data)',
       },
       typescript: {
         method: 'client.data.dimensions.list',
@@ -2625,6 +3015,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.dimensions.listValues',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const dimensionValue of client.data.dimensions.listValues('abcd1234')) {\n  console.log(dimensionValue.total_count);\n}",
+      },
+      python: {
+        method: 'data.dimensions.list_values',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.dimensions.list_values(\n    dimension_id="abcd1234",\n)\npage = page.data[0]\nprint(page.total_count)',
       },
       typescript: {
         method: 'client.data.dimensions.listValues',
@@ -2665,6 +3060,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const dimensionValue of client.data.dimensions.listTraceElements('abcd1234')) {\n  console.log(dimensionValue.total_count);\n}",
       },
+      python: {
+        method: 'data.dimensions.list_trace_elements',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.dimensions.list_trace_elements(\n    dimension_id="abcd1234",\n)\npage = page.data[0]\nprint(page.total_count)',
+      },
       typescript: {
         method: 'client.data.dimensions.listTraceElements',
         example:
@@ -2694,6 +3094,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.listDimensions();\n\nconsole.log(response.data);",
       },
+      python: {
+        method: 'data.monitoring.list_dimensions',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.data.monitoring.list_dimensions()\nprint(response.data)',
+      },
       typescript: {
         method: 'client.data.monitoring.listDimensions',
         example:
@@ -2722,6 +3127,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.monitoring.metrics.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst metrics = await client.data.monitoring.metrics.list();\n\nconsole.log(metrics.data);",
+      },
+      python: {
+        method: 'data.monitoring.metrics.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nmetrics = client.data.monitoring.metrics.list()\nprint(metrics.data)',
       },
       typescript: {
         method: 'client.data.monitoring.metrics.list',
@@ -2761,6 +3171,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.metrics.getBreakdown('current-concurrent-viewers');\n\nconsole.log(response.data);",
       },
+      python: {
+        method: 'data.monitoring.metrics.get_breakdown',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.data.monitoring.metrics.get_breakdown(\n    monitoring_metric_id="current-concurrent-viewers",\n)\nprint(response.data)',
+      },
       typescript: {
         method: 'client.data.monitoring.metrics.getBreakdown',
         example:
@@ -2791,6 +3206,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.monitoring.metrics.getTimeseries',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.metrics.getTimeseries('current-concurrent-viewers');\n\nconsole.log(response.data);",
+      },
+      python: {
+        method: 'data.monitoring.metrics.get_timeseries',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.data.monitoring.metrics.get_timeseries(\n    monitoring_metric_id="current-concurrent-viewers",\n)\nprint(response.data)',
       },
       typescript: {
         method: 'client.data.monitoring.metrics.getTimeseries',
@@ -2831,6 +3251,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.metrics.getBreakdownTimeseries(\n  'current-concurrent-viewers',\n);\n\nconsole.log(response.data);",
       },
+      python: {
+        method: 'data.monitoring.metrics.get_breakdown_timeseries',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.data.monitoring.metrics.get_breakdown_timeseries(\n    monitoring_metric_id="current-concurrent-viewers",\n)\nprint(response.data)',
+      },
       typescript: {
         method: 'client.data.monitoring.metrics.getBreakdownTimeseries',
         example:
@@ -2861,6 +3286,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.metrics.getHistogramTimeseries('video-startup-time');\n\nconsole.log(response.data);",
       },
+      python: {
+        method: 'data.monitoring.metrics.get_histogram_timeseries',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.data.monitoring.metrics.get_histogram_timeseries(\n    monitoring_histogram_metric_id="video-startup-time",\n)\nprint(response.data)',
+      },
       typescript: {
         method: 'client.data.monitoring.metrics.getHistogramTimeseries',
         example:
@@ -2890,6 +3320,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst errorsResponse = await client.data.errors.list();\n\nconsole.log(errorsResponse.data);",
       },
+      python: {
+        method: 'data.errors.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nerrors_response = client.data.errors.list()\nprint(errors_response.data)',
+      },
       typescript: {
         method: 'client.data.errors.list',
         example:
@@ -2917,6 +3352,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.exports.listVideoViews',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst videoViewExportsResponse = await client.data.exports.listVideoViews();\n\nconsole.log(videoViewExportsResponse.data);",
+      },
+      python: {
+        method: 'data.exports.list_video_views',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nvideo_view_exports_response = client.data.exports.list_video_views()\nprint(video_view_exports_response.data)',
       },
       typescript: {
         method: 'client.data.exports.listVideoViews',
@@ -2954,6 +3394,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const filterValue of client.data.filters.listValues('abcd1234')) {\n  console.log(filterValue.total_count);\n}",
       },
+      python: {
+        method: 'data.filters.list_values',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.filters.list_values(\n    filter_id="abcd1234",\n)\npage = page.data[0]\nprint(page.total_count)',
+      },
       typescript: {
         method: 'client.data.filters.listValues',
         example:
@@ -2983,6 +3428,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.incidents.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst incidentResponse = await client.data.incidents.retrieve('abcd1234');\n\nconsole.log(incidentResponse.data);",
+      },
+      python: {
+        method: 'data.incidents.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nincident_response = client.data.incidents.retrieve(\n    "abcd1234",\n)\nprint(incident_response.data)',
       },
       typescript: {
         method: 'client.data.incidents.retrieve',
@@ -3020,6 +3470,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const incident of client.data.incidents.listRelated('abcd1234')) {\n  console.log(incident.id);\n}",
       },
+      python: {
+        method: 'data.incidents.list_related',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.incidents.list_related(\n    incident_id="abcd1234",\n)\npage = page.data[0]\nprint(page.id)',
+      },
       typescript: {
         method: 'client.data.incidents.listRelated',
         example:
@@ -3056,6 +3511,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const incident of client.data.incidents.list()) {\n  console.log(incident.id);\n}",
       },
+      python: {
+        method: 'data.incidents.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.incidents.list()\npage = page.data[0]\nprint(page.id)',
+      },
       typescript: {
         method: 'client.data.incidents.list',
         example:
@@ -3091,6 +3551,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.metrics.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst allMetricValuesResponse = await client.data.metrics.list();\n\nconsole.log(allMetricValuesResponse.data);",
+      },
+      python: {
+        method: 'data.metrics.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nall_metric_values_response = client.data.metrics.list()\nprint(all_metric_values_response.data)',
       },
       typescript: {
         method: 'client.data.metrics.list',
@@ -3133,6 +3598,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const breakdownValue of client.data.metrics.listBreakdownValues('video_startup_time')) {\n  console.log(breakdownValue.field);\n}",
       },
+      python: {
+        method: 'data.metrics.list_breakdown_values',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.metrics.list_breakdown_values(\n    metric_id="video_startup_time",\n)\npage = page.data[0]\nprint(page.field)',
+      },
       typescript: {
         method: 'client.data.metrics.listBreakdownValues',
         example:
@@ -3169,6 +3639,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.metrics.getOverallValues',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst overallValuesResponse = await client.data.metrics.getOverallValues('video_startup_time');\n\nconsole.log(overallValuesResponse.data);",
+      },
+      python: {
+        method: 'data.metrics.get_overall_values',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\noverall_values_response = client.data.metrics.get_overall_values(\n    metric_id="video_startup_time",\n)\nprint(overall_values_response.data)',
       },
       typescript: {
         method: 'client.data.metrics.getOverallValues',
@@ -3207,6 +3682,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.metrics.getInsights',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst insightsResponse = await client.data.metrics.getInsights('video_startup_time');\n\nconsole.log(insightsResponse.data);",
+      },
+      python: {
+        method: 'data.metrics.get_insights',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\ninsights_response = client.data.metrics.get_insights(\n    metric_id="video_startup_time",\n)\nprint(insights_response.data)',
       },
       typescript: {
         method: 'client.data.metrics.getInsights',
@@ -3247,6 +3727,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst metricTimeseriesDataResponse = await client.data.metrics.getTimeseries('video_startup_time');\n\nconsole.log(metricTimeseriesDataResponse.data);",
       },
+      python: {
+        method: 'data.metrics.get_timeseries',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nmetric_timeseries_data_response = client.data.metrics.get_timeseries(\n    metric_id="video_startup_time",\n)\nprint(metric_timeseries_data_response.data)',
+      },
       typescript: {
         method: 'client.data.metrics.getTimeseries',
         example:
@@ -3285,6 +3770,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeBreakdownResponse = await client.data.realTime.retrieveBreakdown(\n  'current-concurrent-viewers',\n);\n\nconsole.log(realTimeBreakdownResponse.data);",
       },
+      python: {
+        method: 'data.real_time.retrieve_breakdown',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nreal_time_breakdown_response = client.data.real_time.retrieve_breakdown(\n    realtime_metric_id="current-concurrent-viewers",\n)\nprint(real_time_breakdown_response.data)',
+      },
       typescript: {
         method: 'client.data.realTime.retrieveBreakdown',
         example:
@@ -3316,6 +3806,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeTimeseriesResponse = await client.data.realTime.retrieveTimeseries(\n  'current-concurrent-viewers',\n);\n\nconsole.log(realTimeTimeseriesResponse.data);",
       },
+      python: {
+        method: 'data.real_time.retrieve_timeseries',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nreal_time_timeseries_response = client.data.real_time.retrieve_timeseries(\n    realtime_metric_id="current-concurrent-viewers",\n)\nprint(real_time_timeseries_response.data)',
+      },
       typescript: {
         method: 'client.data.realTime.retrieveTimeseries',
         example:
@@ -3345,6 +3840,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.realTime.listMetrics',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeMetricsResponse = await client.data.realTime.listMetrics();\n\nconsole.log(realTimeMetricsResponse.data);",
+      },
+      python: {
+        method: 'data.real_time.list_metrics',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nreal_time_metrics_response = client.data.real_time.list_metrics()\nprint(real_time_metrics_response.data)',
       },
       typescript: {
         method: 'client.data.realTime.listMetrics',
@@ -3377,6 +3877,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeHistogramTimeseriesResponse = await client.data.realTime.retrieveHistogramTimeseries(\n  'video-startup-time',\n);\n\nconsole.log(realTimeHistogramTimeseriesResponse.data);",
       },
+      python: {
+        method: 'data.real_time.retrieve_histogram_timeseries',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nreal_time_histogram_timeseries_response = client.data.real_time.retrieve_histogram_timeseries(\n    realtime_histogram_metric_id="video-startup-time",\n)\nprint(real_time_histogram_timeseries_response.data)',
+      },
       typescript: {
         method: 'client.data.realTime.retrieveHistogramTimeseries',
         example:
@@ -3406,6 +3911,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.realTime.listDimensions',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeDimensionsResponse = await client.data.realTime.listDimensions();\n\nconsole.log(realTimeDimensionsResponse.data);",
+      },
+      python: {
+        method: 'data.real_time.list_dimensions',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nreal_time_dimensions_response = client.data.real_time.list_dimensions()\nprint(real_time_dimensions_response.data)',
       },
       typescript: {
         method: 'client.data.realTime.listDimensions',
@@ -3446,6 +3956,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const abridgedVideoView of client.data.videoViews.list()) {\n  console.log(abridgedVideoView.id);\n}",
       },
+      python: {
+        method: 'data.video_views.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.video_views.list()\npage = page.data[0]\nprint(page.id)',
+      },
       typescript: {
         method: 'client.data.videoViews.list',
         example:
@@ -3474,6 +3989,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.videoViews.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst videoViewResponse = await client.data.videoViews.retrieve('abcd1234');\n\nconsole.log(videoViewResponse.data);",
+      },
+      python: {
+        method: 'data.video_views.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nvideo_view_response = client.data.video_views.retrieve(\n    "abcd1234",\n)\nprint(video_view_response.data)',
       },
       typescript: {
         method: 'client.data.videoViews.retrieve',
@@ -3508,6 +4028,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const annotation of client.data.annotations.list()) {\n  console.log(annotation.id);\n}",
       },
+      python: {
+        method: 'data.annotations.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.data.annotations.list()\npage = page.data[0]\nprint(page.id)',
+      },
       typescript: {
         method: 'client.data.annotations.list',
         example:
@@ -3536,6 +4061,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.annotations.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst annotation = await client.data.annotations.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(annotation.id);",
+      },
+      python: {
+        method: 'data.annotations.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nannotation = client.data.annotations.retrieve(\n    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)\nprint(annotation.id)',
       },
       typescript: {
         method: 'client.data.annotations.retrieve',
@@ -3566,6 +4096,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst annotation = await client.data.annotations.create({\n  date: 1745438400,\n  note: 'This is a note',\n  sub_property_id: '123456',\n});\n\nconsole.log(annotation.id);",
       },
+      python: {
+        method: 'data.annotations.create',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nannotation = client.data.annotations.create(\n    date=1745438400,\n    note="This is a note",\n    sub_property_id="123456",\n)\nprint(annotation.id)',
+      },
       typescript: {
         method: 'client.data.annotations.create',
         example:
@@ -3593,6 +4128,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.annotations.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.data.annotations.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');",
+      },
+      python: {
+        method: 'data.annotations.delete',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.data.annotations.delete(\n    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n)',
       },
       typescript: {
         method: 'client.data.annotations.delete',
@@ -3623,6 +4163,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst annotation = await client.data.annotations.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  date: 1745438400,\n  note: 'This is a note',\n  sub_property_id: '123456',\n});\n\nconsole.log(annotation.id);",
       },
+      python: {
+        method: 'data.annotations.update',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nannotation = client.data.annotations.update(\n    annotation_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    date=1745438400,\n    note="This is a note",\n    sub_property_id="123456",\n)\nprint(annotation.id)',
+      },
       typescript: {
         method: 'client.data.annotations.update',
         example:
@@ -3652,6 +4197,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst signingKey = await client.system.signingKeys.create();\n\nconsole.log(signingKey.id);",
       },
+      python: {
+        method: 'system.signing_keys.create',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsigning_key = client.system.signing_keys.create()\nprint(signing_key.id)',
+      },
       typescript: {
         method: 'client.system.signingKeys.create',
         example:
@@ -3680,6 +4230,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.system.signingKeys.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const signingKey of client.system.signingKeys.list()) {\n  console.log(signingKey.id);\n}",
+      },
+      python: {
+        method: 'system.signing_keys.list',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.system.signing_keys.list()\npage = page.data[0]\nprint(page.id)',
       },
       typescript: {
         method: 'client.system.signingKeys.list',
@@ -3711,6 +4266,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst signingKey = await client.system.signingKeys.retrieve('SIGNING_KEY_ID');\n\nconsole.log(signingKey.id);",
       },
+      python: {
+        method: 'system.signing_keys.retrieve',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nsigning_key = client.system.signing_keys.retrieve(\n    "SIGNING_KEY_ID",\n)\nprint(signing_key.id)',
+      },
       typescript: {
         method: 'client.system.signingKeys.retrieve',
         example:
@@ -3739,6 +4299,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.system.signingKeys.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.system.signingKeys.delete('SIGNING_KEY_ID');",
+      },
+      python: {
+        method: 'system.signing_keys.delete',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.system.signing_keys.delete(\n    "SIGNING_KEY_ID",\n)',
       },
       typescript: {
         method: 'client.system.signingKeys.delete',
@@ -3769,6 +4334,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.system.utilities.whoami();\n\nconsole.log(response.environment_id);",
       },
+      python: {
+        method: 'system.utilities.whoami',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nresponse = client.system.utilities.whoami()\nprint(response.environment_id)',
+      },
       typescript: {
         method: 'client.system.utilities.whoami',
         example:
@@ -3790,6 +4360,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.webhooks.unwrap();",
       },
+      python: {
+        method: 'webhooks.unwrap',
+        example:
+          'import os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.webhooks.unwrap()',
+      },
       typescript: {
         method: 'client.webhooks.unwrap',
         example:
@@ -3804,6 +4379,11 @@ const EMBEDDED_READMES: { language: string; content: string }[] = [
     language: 'node',
     content:
       "# Mux Node API Library\n\n[![NPM version](https://img.shields.io/npm/v/@mux/mux-node.svg)](https://npmjs.org/package/@mux/mux-node) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@mux/mux-node)\n\nThis library provides convenient access to the Mux REST API from server-side TypeScript or JavaScript.\n\n\n\nThe REST API documentation can be found on [docs.mux.com](https://docs.mux.com). The full API of this library can be found in [api.md](api.md).\n\n\n\n## MCP Server\n\nUse the Mux MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40mux%2Fmcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBtdXgvbWNwIl0sImVudiI6eyJNVVhfVE9LRU5fSUQiOiJteSB0b2tlbiBpZCIsIk1VWF9UT0tFTl9TRUNSRVQiOiJteSBzZWNyZXQiLCJNVVhfV0VCSE9PS19TRUNSRVQiOiJNeSBXZWJob29rIFNlY3JldCIsIk1VWF9TSUdOSU5HX0tFWSI6Ik15IEp3dCBTaWduaW5nIEtleSIsIk1VWF9QUklWQVRFX0tFWSI6Ik15IEp3dCBQcml2YXRlIEtleSIsIk1VWF9BVVRIT1JJWkFUSU9OX1RPS0VOIjoibXkgYXV0aG9yaXphdGlvbiB0b2tlbiJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40mux%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40mux%2Fmcp%22%5D%2C%22env%22%3A%7B%22MUX_TOKEN_ID%22%3A%22my%20token%20id%22%2C%22MUX_TOKEN_SECRET%22%3A%22my%20secret%22%2C%22MUX_WEBHOOK_SECRET%22%3A%22My%20Webhook%20Secret%22%2C%22MUX_SIGNING_KEY%22%3A%22My%20Jwt%20Signing%20Key%22%2C%22MUX_PRIVATE_KEY%22%3A%22My%20Jwt%20Private%20Key%22%2C%22MUX_AUTHORIZATION_TOKEN%22%3A%22my%20authorization%20token%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n```sh\nnpm install git+ssh://git@github.com:stainless-sdks/mux-node.git\n```\n> [!NOTE]\n> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install @mux/mux-node`\n\n\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n<!-- prettier-ignore -->\n```js\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.create({\n  inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n  playback_policies: ['public'],\n});\n\nconsole.log(asset.id);\n```\n\n\n\n### Request & Response types\n\nThis library includes TypeScript definitions for all request params and response fields. You may import and use them like so:\n\n<!-- prettier-ignore -->\n```ts\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst params: Mux.Video.AssetCreateParams = {\n  inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n  playback_policies: ['public'],\n};\nconst asset: Mux.Video.Asset = await client.video.assets.create(params);\n```\n\nDocumentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.\n\n\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API,\nor if the API returns a non-success status code (i.e., 4xx or 5xx response),\na subclass of `APIError` will be thrown:\n\n<!-- prettier-ignore -->\n```ts\nconst liveStream = await client.video.liveStreams\n  .create({ playback_policies: ['public'] })\n  .catch(async (err) => {\n    if (err instanceof Mux.APIError) {\n      console.log(err.status); // 400\n      console.log(err.name); // BadRequestError\n      console.log(err.headers); // {server: 'nginx', ...}\n    } else {\n      throw err;\n    }\n  });\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors will all be retried by default.\n\nYou can use the `maxRetries` option to configure or disable this:\n\n<!-- prettier-ignore -->\n```js\n// Configure the default for all requests:\nconst client = new Mux({\n  maxRetries: 0, // default is 2\n});\n\n// Or, configure per-request:\nawait client.video.assets.retrieve('t02rm...', {\n  maxRetries: 5,\n});\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default. You can configure this with a `timeout` option:\n\n<!-- prettier-ignore -->\n```ts\n// Configure the default for all requests:\nconst client = new Mux({\n  timeout: 20 * 1000, // 20 seconds (default is 1 minute)\n});\n\n// Override per-request:\nawait client.video.assets.retrieve('t02rm...', {\n  timeout: 5 * 1000,\n});\n```\n\nOn timeout, an `APIConnectionTimeoutError` is thrown.\n\nNote that requests which time out will be [retried twice by default](#retries).\n\n## Auto-pagination\n\nList methods in the Mux API are paginated.\nYou can use the `for await … of` syntax to iterate through items across all pages:\n\n```ts\nasync function fetchAllDeliveryReports(params) {\n  const allDeliveryReports = [];\n  // Automatically fetches more pages as needed.\n  for await (const deliveryReport of client.video.deliveryUsage.list()) {\n    allDeliveryReports.push(deliveryReport);\n  }\n  return allDeliveryReports;\n}\n```\n\nAlternatively, you can request a single page at a time:\n\n```ts\nlet page = await client.video.deliveryUsage.list();\nfor (const deliveryReport of page.data) {\n  console.log(deliveryReport);\n}\n\n// Convenience methods are provided for manually paginating:\nwhile (page.hasNextPage()) {\n  page = await page.getNextPage();\n  // ...\n}\n```\n\n\n\n## Advanced Usage\n\n### Accessing raw Response data (e.g., headers)\n\nThe \"raw\" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.\n\nYou can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.\n\n<!-- prettier-ignore -->\n```ts\nconst client = new Mux();\n\nconst response = await client.video.assets\n  .create({\n    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n    playback_policies: ['public'],\n  })\n  .asResponse();\nconsole.log(response.headers.get('X-My-Header'));\nconsole.log(response.statusText); // access the underlying Response object\n\nconst { data: asset, response: raw } = await client.video.assets\n  .create({\n    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n    playback_policies: ['public'],\n  })\n  .withResponse();\nconsole.log(raw.headers.get('X-My-Header'));\nconsole.log(asset.id);\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.get`, `client.post`, and other HTTP verbs.\nOptions on the client, such as retries, will be respected when making these requests.\n\n```ts\nawait client.post('/some/path', {\n  body: { some_prop: 'foo' },\n  query: { some_query_arg: 'bar' },\n});\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use `// @ts-expect-error` on the undocumented\nparameter. This library doesn't validate at runtime that the request matches the type, so any extra values you\nsend will be sent as-is.\n\n```ts\nclient.foo.create({\n  foo: 'my_param',\n  bar: 12,\n  // @ts-expect-error baz is not yet public\n  baz: 'undocumented option',\n});\n```\n\nFor requests with the `GET` verb, any extra params will be in the query, all other requests will send the\nextra param in the body.\n\nIf you want to explicitly send an extra argument, you can do so with the `query`, `body`, and `headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may access the response object with `// @ts-expect-error` on\nthe response object, or cast the response object to the requisite type. Like the request params, we do not\nvalidate or strip extra properties from the response from the API.\n\n### Customizing the fetch client\n\nBy default, this library uses `node-fetch` in Node, and expects a global `fetch` function in other environments.\n\nIf you would prefer to use a global, web-standards-compliant `fetch` function even in a Node environment,\n(for example, if you are running Node with `--experimental-fetch` or using NextJS which polyfills with `undici`),\nadd the following import before your first import `from \"Mux\"`:\n\n```ts\n// Tell TypeScript and the package to use the global web fetch instead of node-fetch.\n// Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.\nimport '@mux/mux-node/shims/web';\nimport Mux from '@mux/mux-node';\n```\n\nTo do the inverse, add `import \"@mux/mux-node/shims/node\"` (which does import polyfills).\nThis can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/stainless-sdks/mux-node/tree/main/src/_shims#readme)).\n\n### Logging and middleware\n\nYou may also provide a custom `fetch` function when instantiating the client,\nwhich can be used to inspect or alter the `Request` or `Response` before/after each request:\n\n```ts\nimport { fetch } from 'undici'; // as one example\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {\n    console.log('About to make a request', url, init);\n    const response = await fetch(url, init);\n    console.log('Got response', response);\n    return response;\n  },\n});\n```\n\nNote that if given a `DEBUG=true` environment variable, this library will log all requests and responses automatically.\nThis is intended for debugging purposes only and may change in the future without notice.\n\n### Configuring an HTTP(S) Agent (e.g., for proxies)\n\nBy default, this library uses a stable agent for all http/https requests to reuse TCP connections, eliminating many TCP & TLS handshakes and shaving around 100ms off most requests.\n\nIf you would like to disable or customize this behavior, for example to use the API behind a proxy, you can pass an `httpAgent` which is used for all requests (be they http or https), for example:\n\n<!-- prettier-ignore -->\n```ts\nimport http from 'http';\nimport { HttpsProxyAgent } from 'https-proxy-agent';\n\n// Configure the default for all requests:\nconst client = new Mux({\n  httpAgent: new HttpsProxyAgent(process.env.PROXY_URL),\n});\n\n// Override per-request:\nawait client.video.assets.retrieve('t02rm...', {\n  httpAgent: new http.Agent({ keepAlive: false }),\n});\n```\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/mux-node/issues) with questions, bugs, or suggestions.\n\n## Requirements\n\nTypeScript >= 4.5 is supported.\n\nThe following runtimes are supported:\n\n- Web browsers (Up-to-date Chrome, Firefox, Safari, Edge, and more)\n- Node.js 18 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.\n- Deno v1.28.0 or higher.\n- Bun 1.0 or later.\n- Cloudflare Workers.\n- Vercel Edge Runtime.\n- Jest 28 or greater with the `\"node\"` environment (`\"jsdom\"` is not supported at this time).\n- Nitro v2.6 or greater.\n\nNote that React Native is not supported at this time.\n\nIf you are interested in other runtime environments, please open or upvote an issue on GitHub.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n",
+  },
+  {
+    language: 'python',
+    content:
+      '# Mux Python API library\n\n<!-- prettier-ignore -->\n[![PyPI version](https://img.shields.io/pypi/v/mux.svg?label=pypi%20(stable))](https://pypi.org/project/mux/)\n\nThe Mux Python library provides convenient access to the Mux REST API from any Python 3.9+\napplication. The library includes type definitions for all request params and response fields,\nand offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).\n\n\n\n\n\n## MCP Server\n\nUse the Mux MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40mux%2Fmcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBtdXgvbWNwIl0sImVudiI6eyJNVVhfVE9LRU5fSUQiOiJteSB0b2tlbiBpZCIsIk1VWF9UT0tFTl9TRUNSRVQiOiJteSBzZWNyZXQiLCJNVVhfV0VCSE9PS19TRUNSRVQiOiJNeSBXZWJob29rIFNlY3JldCIsIk1VWF9TSUdOSU5HX0tFWSI6Ik15IEp3dCBTaWduaW5nIEtleSIsIk1VWF9QUklWQVRFX0tFWSI6Ik15IEp3dCBQcml2YXRlIEtleSIsIk1VWF9BVVRIT1JJWkFUSU9OX1RPS0VOIjoibXkgYXV0aG9yaXphdGlvbiB0b2tlbiJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40mux%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40mux%2Fmcp%22%5D%2C%22env%22%3A%7B%22MUX_TOKEN_ID%22%3A%22my%20token%20id%22%2C%22MUX_TOKEN_SECRET%22%3A%22my%20secret%22%2C%22MUX_WEBHOOK_SECRET%22%3A%22My%20Webhook%20Secret%22%2C%22MUX_SIGNING_KEY%22%3A%22My%20Jwt%20Signing%20Key%22%2C%22MUX_PRIVATE_KEY%22%3A%22My%20Jwt%20Private%20Key%22%2C%22MUX_AUTHORIZATION_TOKEN%22%3A%22my%20authorization%20token%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Documentation\n\nThe REST API documentation can be found on [docs.mux.com](https://docs.mux.com). The full API of this library can be found in [api.md](api.md).\n\n## Installation\n\n```sh\n# install from this staging repo\npip install git+ssh://git@github.com/stainless-sdks/mux-python.git\n```\n> [!NOTE]\n> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install mux`\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n```python\nimport os\nfrom mux import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\n\nasset = client.video.assets.create(\n    inputs=[{\n        "url": "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4"\n    }],\n    playback_policies=["public"],\n)\nprint(asset.id)\n```\n\nWhile you can provide a `token_id` keyword argument,\nwe recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)\nto add `MUX_TOKEN_ID="my token id"` to your `.env` file\nso that your Token ID is not stored in source control.\n\n## Async usage\n\nSimply import `AsyncMux` instead of `Mux` and use `await` with each API call:\n\n```python\nimport os\nimport asyncio\nfrom mux import AsyncMux\n\nclient = AsyncMux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\n\nasync def main() -> None:\n  asset = await client.video.assets.create(\n      inputs=[{\n          "url": "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4"\n      }],\n      playback_policies=["public"],\n  )\n  print(asset.id)\n\nasyncio.run(main())\n```\n\nFunctionality between the synchronous and asynchronous clients is otherwise identical.\n\n### With aiohttp\n\nBy default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.\n\nYou can enable this by installing `aiohttp`:\n\n```sh\n# install from this staging repo\npip install \'mux[aiohttp] @ git+ssh://git@github.com/stainless-sdks/mux-python.git\'\n```\n\nThen you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:\n\n```python\nimport os\nimport asyncio\nfrom mux import DefaultAioHttpClient\nfrom mux import AsyncMux\n\nasync def main() -> None:\n  async with AsyncMux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n    http_client=DefaultAioHttpClient(),\n) as client:\n    asset = await client.video.assets.create(\n        inputs=[{\n            "url": "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4"\n        }],\n        playback_policies=["public"],\n    )\n    print(asset.id)\n\nasyncio.run(main())\n```\n\n\n\n## Using types\n\nNested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:\n\n- Serializing back into JSON, `model.to_json()`\n- Converting to a dictionary, `model.to_dict()`\n\nTyped requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.\n\n## Pagination\n\nList methods in the Mux API are paginated.\n\nThis library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:\n\n```python\nfrom mux import Mux\n\nclient = Mux()\n\nall_delivery_usages = []\n# Automatically fetches more pages as needed.\nfor delivery_usage in client.video.delivery_usage.list():\n    # Do something with delivery_usage here\n    all_delivery_usages.append(delivery_usage)\nprint(all_delivery_usages)\n```\n\nOr, asynchronously:\n\n```python\nimport asyncio\nfrom mux import AsyncMux\n\nclient = AsyncMux()\n\nasync def main() -> None:\n    all_delivery_usages = []\n    # Iterate through items across all pages, issuing requests as needed.\n    async for delivery_usage in client.video.delivery_usage.list():\n        all_delivery_usages.append(delivery_usage)\n    print(all_delivery_usages)\n\nasyncio.run(main())\n```\n\nAlternatively, you can use the `.has_next_page()`, `.next_page_info()`, or  `.get_next_page()` methods for more granular control working with pages:\n\n```python\nfirst_page = await client.video.delivery_usage.list()\nif first_page.has_next_page():\n    print(f"will fetch next page using these details: {first_page.next_page_info()}")\n    next_page = await first_page.get_next_page()\n    print(f"number of items we just fetched: {len(next_page.data)}")\n\n# Remove `await` for non-async usage.\n```\n\nOr just work directly with the returned data:\n\n```python\nfirst_page = await client.video.delivery_usage.list()\nfor delivery_usage in first_page.data:\n    print(delivery_usage.asset_id)\n\n# Remove `await` for non-async usage.\n```\n\n\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `mux.APIConnectionError` is raised.\n\nWhen the API returns a non-success status code (that is, 4xx or 5xx\nresponse), a subclass of `mux.APIStatusError` is raised, containing `status_code` and `response` properties.\n\nAll errors inherit from `mux.APIError`.\n\n```python\nimport mux\nfrom mux import Mux\n\nclient = Mux()\n\ntry:\n    client.video.live_streams.create(\n        playback_policies=["public"],\n    )\nexcept mux.APIConnectionError as e:\n    print("The server could not be reached")\n    print(e.__cause__) # an underlying Exception, likely raised within httpx.\nexcept mux.RateLimitError as e:\n    print("A 429 status code was received; we should back off a bit.")\nexcept mux.APIStatusError as e:\n    print("Another non-200-range status code was received")\n    print(e.status_code)\n    print(e.response)\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors are automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors are all retried by default.\n\nYou can use the `max_retries` option to configure or disable retry settings:\n\n```python\nfrom mux import Mux\n\n# Configure the default for all requests:\nclient = Mux(\n    # default is 2\n    max_retries=0,\n)\n\n# Or, configure per-request:\nclient.with_options(max_retries = 5).video.assets.retrieve(\n    "t02rm...",\n)\n```\n\n### Timeouts\n\nBy default requests time out after 1 minute. You can configure this with a `timeout` option,\nwhich accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:\n\n```python\nfrom mux import Mux\n\n# Configure the default for all requests:\nclient = Mux(\n    # 20 seconds (default is 1 minute)\n    timeout=20.0,\n)\n\n# More granular control:\nclient = Mux(\n    timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),\n)\n\n# Override per-request:\nclient.with_options(timeout = 5.0).video.assets.retrieve(\n    "t02rm...",\n)\n```\n\nOn timeout, an `APITimeoutError` is thrown.\n\nNote that requests that time out are [retried twice by default](#retries).\n\n\n\n## Advanced\n\n### Logging\n\nWe use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.\n\nYou can enable logging by setting the environment variable `MUX_LOG` to `info`.\n\n```shell\n$ export MUX_LOG=info\n```\n\nOr to `debug` for more verbose logging.\n\n### How to tell whether `None` means `null` or missing\n\nIn an API response, a field may be explicitly `null`, or missing entirely; in either case, its value is `None` in this library. You can differentiate the two cases with `.model_fields_set`:\n\n```py\nif response.my_field is None:\n  if \'my_field\' not in response.model_fields_set:\n    print(\'Got json like {}, without a "my_field" key present at all.\')\n  else:\n    print(\'Got json like {"my_field": null}.\')\n```\n\n### Accessing raw response data (e.g. headers)\n\nThe "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,\n\n```py\nfrom mux import Mux\n\nclient = Mux()\nresponse = client.video.assets.with_raw_response.create(\n    inputs=[{\n        "url": "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4"\n    }],\n    playback_policies=["public"],\n)\nprint(response.headers.get(\'X-My-Header\'))\n\nasset = response.parse()  # get the object that `video.assets.create()` would have returned\nprint(asset.id)\n```\n\nThese methods return an [`APIResponse`](https://github.com/stainless-sdks/mux-python/tree/main/src/mux/_response.py) object.\n\nThe async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/mux-python/tree/main/src/mux/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.\n\n#### `.with_streaming_response`\n\nThe above interface eagerly reads the full response body when you make the request, which may not always be what you want.\n\nTo stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.\n\n```python\nwith client.video.assets.with_streaming_response.create(\n    inputs=[{\n        "url": "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4"\n    }],\n    playback_policies=["public"],\n) as response :\n    print(response.headers.get(\'X-My-Header\'))\n\n    for line in response.iter_lines():\n      print(line)\n```\n\nThe context manager is required so that the response will reliably be closed.\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API.\n\nIf you need to access undocumented endpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can make requests using `client.get`, `client.post`, and other\nhttp verbs. Options on the client will be respected (such as retries) when making this request.\n\n```py\nimport httpx\n\nresponse = client.post(\n    "/foo",\n    cast_to=httpx.Response,\n    body={"my_param": True},\n)\n\nprint(response.headers.get("x-foo"))\n```\n\n#### Undocumented request params\n\nIf you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you can access the extra fields like `response.unknown_prop`. You\ncan also get all the extra fields on the Pydantic model as a dict with\n[`response.model_extra`](https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel.model_extra).\n\n### Configuring the HTTP client\n\nYou can directly override the [httpx client](https://www.python-httpx.org/api/#client) to customize it for your use case, including:\n\n- Support for [proxies](https://www.python-httpx.org/advanced/proxies/)\n- Custom [transports](https://www.python-httpx.org/advanced/transports/)\n- Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality\n\n```python\nimport httpx\nfrom mux import Mux, DefaultHttpxClient\n\nclient = Mux(\n    # Or use the `MUX_BASE_URL` env var\n    base_url="http://my.test.server.example.com:8083",\n    http_client=DefaultHttpxClient(proxy="http://my.test.proxy.example.com", transport=httpx.HTTPTransport(local_address="0.0.0.0")),\n)\n```\n\nYou can also customize the client on a per-request basis by using `with_options()`:\n\n```python\nclient.with_options(http_client=DefaultHttpxClient(...))\n```\n\n### Managing HTTP resources\n\nBy default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.\n\n```py\nfrom mux import Mux\n\nwith Mux() as client:\n  # make requests here\n  ...\n\n# HTTP client is now closed\n```\n\n## Versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/mux-python/issues) with questions, bugs, or suggestions.\n\n### Determining the installed version\n\nIf you\'ve upgraded to the latest version but aren\'t seeing any new features you were expecting then your python environment is likely still using an older version.\n\nYou can determine the version that is being used at runtime with:\n\n```py\nimport mux\nprint(mux.__version__)\n```\n\n## Requirements\n\nPython 3.9 or higher.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n',
   },
   {
     language: 'typescript',
