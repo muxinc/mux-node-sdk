@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Mux from '@mux/mux-node';
-import { Response } from 'node-fetch';
 
 const client = new Mux({
   tokenId: 'my token id',
@@ -114,13 +113,6 @@ describe('resource assets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.assets.retrieve('ASSET_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
   test('update', async () => {
     const responsePromise = client.video.assets.update('ASSET_ID', {});
     const rawResponse = await responsePromise.asResponse();
@@ -141,13 +133,6 @@ describe('resource assets', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.video.assets.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Mux.NotFoundError,
-    );
   });
 
   test('list: request options and params are passed correctly', async () => {
@@ -175,13 +160,6 @@ describe('resource assets', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.assets.delete('ASSET_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('createPlaybackId', async () => {
@@ -251,13 +229,6 @@ describe('resource assets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('deletePlaybackId: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.assets.deletePlaybackId('ASSET_ID', 'PLAYBACK_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
   test('deleteStaticRendition', async () => {
     const responsePromise = client.video.assets.deleteStaticRendition('ASSET_ID', 'STATIC_RENDITION_ID');
     const rawResponse = await responsePromise.asResponse();
@@ -269,15 +240,6 @@ describe('resource assets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('deleteStaticRendition: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.assets.deleteStaticRendition('ASSET_ID', 'STATIC_RENDITION_ID', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
   test('deleteTrack', async () => {
     const responsePromise = client.video.assets.deleteTrack('ASSET_ID', 'TRACK_ID');
     const rawResponse = await responsePromise.asResponse();
@@ -287,13 +249,6 @@ describe('resource assets', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('deleteTrack: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.assets.deleteTrack('ASSET_ID', 'TRACK_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('generateSubtitles: only required params', async () => {
@@ -332,13 +287,6 @@ describe('resource assets', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieveInputInfo: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.assets.retrieveInputInfo('ASSET_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
   test('retrievePlaybackId', async () => {
     const responsePromise = client.video.assets.retrievePlaybackId('ASSET_ID', 'PLAYBACK_ID');
     const rawResponse = await responsePromise.asResponse();
@@ -348,13 +296,6 @@ describe('resource assets', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('retrievePlaybackId: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.assets.retrievePlaybackId('ASSET_ID', 'PLAYBACK_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('updateMasterAccess: only required params', async () => {

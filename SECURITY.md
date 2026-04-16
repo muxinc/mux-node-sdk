@@ -20,7 +20,7 @@ or products provided by Mux, please follow the respective company's security rep
 
 ### Mux Terms and Policies
 
-Please contact devex@mux.com for any questions or concerns regarding the security of our services.
+Please contact security@mux.com for any questions or concerns regarding the security of our services.
 
 ---
 

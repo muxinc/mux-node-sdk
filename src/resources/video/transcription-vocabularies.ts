@@ -1,10 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { BasePage, type BasePageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { BasePage, type BasePageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
+/**
+ * Transcription Vocabularies allows you to provide collections of phrases like proper nouns, technical jargon, and uncommon words as part of captioning workflows. When using Auto-Generated Captions, Transcription Vocabularies increase the likelihood of correct speech recognition for these words and phrases.
+ */
 export class TranscriptionVocabularies extends APIResource {
   /**
    * Create a new Transcription Vocabulary.
@@ -25,14 +30,14 @@ export class TranscriptionVocabularies extends APIResource {
    */
   create(
     body: TranscriptionVocabularyCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TranscriptionVocabulary> {
+    options?: RequestOptions,
+  ): APIPromise<TranscriptionVocabulary> {
     return (
       this._client.post('/video/v1/transcription-vocabularies', {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: TranscriptionVocabulary }>
+      }) as APIPromise<{ data: TranscriptionVocabulary }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -50,15 +55,12 @@ export class TranscriptionVocabularies extends APIResource {
    *   );
    * ```
    */
-  retrieve(
-    transcriptionVocabularyId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TranscriptionVocabulary> {
+  retrieve(transcriptionVocabularyID: string, options?: RequestOptions): APIPromise<TranscriptionVocabulary> {
     return (
-      this._client.get(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
+      this._client.get(path`/video/v1/transcription-vocabularies/${transcriptionVocabularyID}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: TranscriptionVocabulary }>
+      }) as APIPromise<{ data: TranscriptionVocabulary }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -80,16 +82,16 @@ export class TranscriptionVocabularies extends APIResource {
    * ```
    */
   update(
-    transcriptionVocabularyId: string,
+    transcriptionVocabularyID: string,
     body: TranscriptionVocabularyUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<TranscriptionVocabulary> {
+    options?: RequestOptions,
+  ): APIPromise<TranscriptionVocabulary> {
     return (
-      this._client.put(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
+      this._client.put(path`/video/v1/transcription-vocabularies/${transcriptionVocabularyID}`, {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: TranscriptionVocabulary }>
+      }) as APIPromise<{ data: TranscriptionVocabulary }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -105,22 +107,12 @@ export class TranscriptionVocabularies extends APIResource {
    * ```
    */
   list(
-    query?: TranscriptionVocabularyListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<TranscriptionVocabulariesBasePage, TranscriptionVocabulary>;
-  list(
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<TranscriptionVocabulariesBasePage, TranscriptionVocabulary>;
-  list(
-    query: TranscriptionVocabularyListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<TranscriptionVocabulariesBasePage, TranscriptionVocabulary> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
+    query: TranscriptionVocabularyListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<TranscriptionVocabulariesBasePage, TranscriptionVocabulary> {
     return this._client.getAPIList(
       '/video/v1/transcription-vocabularies',
-      TranscriptionVocabulariesBasePage,
+      BasePage<TranscriptionVocabulary>,
       { query, defaultBaseURL: 'https://api.mux.com', ...options },
     );
   }
@@ -139,16 +131,16 @@ export class TranscriptionVocabularies extends APIResource {
    * );
    * ```
    */
-  delete(transcriptionVocabularyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/video/v1/transcription-vocabularies/${transcriptionVocabularyId}`, {
+  delete(transcriptionVocabularyID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/video/v1/transcription-vocabularies/${transcriptionVocabularyID}`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
-export class TranscriptionVocabulariesBasePage extends BasePage<TranscriptionVocabulary> {}
+export type TranscriptionVocabulariesBasePage = BasePage<TranscriptionVocabulary>;
 
 export interface TranscriptionVocabulary {
   /**
@@ -236,13 +228,11 @@ export interface TranscriptionVocabularyUpdateParams {
 
 export interface TranscriptionVocabularyListParams extends BasePageParams {}
 
-TranscriptionVocabularies.TranscriptionVocabulariesBasePage = TranscriptionVocabulariesBasePage;
-
 export declare namespace TranscriptionVocabularies {
   export {
     type TranscriptionVocabulary as TranscriptionVocabulary,
     type TranscriptionVocabularyResponse as TranscriptionVocabularyResponse,
-    TranscriptionVocabulariesBasePage as TranscriptionVocabulariesBasePage,
+    type TranscriptionVocabulariesBasePage as TranscriptionVocabulariesBasePage,
     type TranscriptionVocabularyCreateParams as TranscriptionVocabularyCreateParams,
     type TranscriptionVocabularyUpdateParams as TranscriptionVocabularyUpdateParams,
     type TranscriptionVocabularyListParams as TranscriptionVocabularyListParams,

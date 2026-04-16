@@ -1,22 +1,27 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { BasePage, type BasePageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { BasePage, type BasePageParams, PagePromise } from '../../core/pagination';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
+/**
+ * Signing keys are used to sign JSON Web Tokens (JWTs) for securing certain requests, such as secure playback URLs and access to real-time viewer counts in Mux Data. **One signing key can be used to sign multiple requests - you probably only need one active at a time.** However, you can create multiple signing keys to enable key rotation, creating a new key and deleting the old only after any existing signed requests have expired.
+ */
 export class SigningKeys extends APIResource {
   /**
    * Creates a new signing key pair. When creating a new signing key, the API will
    * generate a 2048-bit RSA key-pair and return the private key and a generated
    * key-id; the public key will be stored at Mux to validate signed tokens.
    */
-  create(options?: Core.RequestOptions): Core.APIPromise<SigningKey> {
+  create(options?: RequestOptions): APIPromise<SigningKey> {
     return (
       this._client.post('/system/v1/signing-keys', {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: SigningKey }>
+      }) as APIPromise<{ data: SigningKey }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -26,12 +31,12 @@ export class SigningKeys extends APIResource {
    * will return the corresponding signing key information. **The private key is not
    * returned in this response.**
    */
-  retrieve(signingKeyId: string, options?: Core.RequestOptions): Core.APIPromise<SigningKey> {
+  retrieve(signingKeyID: string, options?: RequestOptions): APIPromise<SigningKey> {
     return (
-      this._client.get(`/system/v1/signing-keys/${signingKeyId}`, {
+      this._client.get(path`/system/v1/signing-keys/${signingKeyID}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: SigningKey }>
+      }) as APIPromise<{ data: SigningKey }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -39,18 +44,10 @@ export class SigningKeys extends APIResource {
    * Returns a list of signing keys.
    */
   list(
-    query?: SigningKeyListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<SigningKeysBasePage, SigningKey>;
-  list(options?: Core.RequestOptions): Core.PagePromise<SigningKeysBasePage, SigningKey>;
-  list(
-    query: SigningKeyListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<SigningKeysBasePage, SigningKey> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/system/v1/signing-keys', SigningKeysBasePage, {
+    query: SigningKeyListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<SigningKeysBasePage, SigningKey> {
+    return this._client.getAPIList('/system/v1/signing-keys', BasePage<SigningKey>, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -61,16 +58,16 @@ export class SigningKeys extends APIResource {
    * Deletes an existing signing key. Use with caution, as this will invalidate any
    * existing signatures and no JWTs can be signed using the key again.
    */
-  delete(signingKeyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/system/v1/signing-keys/${signingKeyId}`, {
+  delete(signingKeyID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/system/v1/signing-keys/${signingKeyID}`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
-export class SigningKeysBasePage extends BasePage<SigningKey> {}
+export type SigningKeysBasePage = BasePage<SigningKey>;
 
 export interface SigningKey {
   /**
@@ -97,13 +94,11 @@ export interface SigningKeyResponse {
 
 export interface SigningKeyListParams extends BasePageParams {}
 
-SigningKeys.SigningKeysBasePage = SigningKeysBasePage;
-
 export declare namespace SigningKeys {
   export {
     type SigningKey as SigningKey,
     type SigningKeyResponse as SigningKeyResponse,
-    SigningKeysBasePage as SigningKeysBasePage,
+    type SigningKeysBasePage as SigningKeysBasePage,
     type SigningKeyListParams as SigningKeyListParams,
   };
 }

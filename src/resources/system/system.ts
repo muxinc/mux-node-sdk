@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
+import { APIResource } from '../../core/resource';
 import * as SigningKeysAPI from './signing-keys';
 import {
   SigningKey,
@@ -18,7 +18,6 @@ export class System extends APIResource {
 }
 
 System.SigningKeys = SigningKeys;
-System.SigningKeysBasePage = SigningKeysBasePage;
 System.Utilities = Utilities;
 
 export declare namespace System {
@@ -26,7 +25,7 @@ export declare namespace System {
     SigningKeys as SigningKeys,
     type SigningKey as SigningKey,
     type SigningKeyResponse as SigningKeyResponse,
-    SigningKeysBasePage as SigningKeysBasePage,
+    type SigningKeysBasePage as SigningKeysBasePage,
     type SigningKeyListParams as SigningKeyListParams,
   };
 

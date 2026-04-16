@@ -27,7 +27,7 @@ Claude Desktop requires using the `mcp-remote` package to connect to remote MCP 
 ```json
 {
   "mcpServers": {
-    "mux_mux_node_api": {
+    "mux": {
       "command": "npx",
       "args": ["-y", "mcp-remote@latest", "{{cloudflareWorkerUrl}}"]
     }
@@ -45,7 +45,7 @@ Claude Desktop requires using the `mcp-remote` package to connect to remote MCP 
 ```json
 {
   "mcpServers": {
-    "mux_mux_node_api": {
+    "mux": {
       "command": "npx",
       "args": ["-y", "mcp-remote@latest", "{{cloudflareWorkerUrl}}"]
     }
@@ -61,7 +61,7 @@ Claude Desktop requires using the `mcp-remote` package to connect to remote MCP 
 ```json
 {
   "mcpServers": {
-    "mux_mux_node_api": {
+    "mux": {
       "command": "npx",
       "args": ["-y", "mcp-remote@latest", "{{cloudflareWorkerUrl}}"]
     }

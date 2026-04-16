@@ -1,10 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { BasePage, type BasePageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { BasePage, type BasePageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
+/**
+ * An individual video view tracked by Mux Data. For the full list of properties for each view please refer to the table of data fields in the [Export raw video view data guide](https://docs.mux.com/guides/export-raw-video-view-data).
+ */
 export class VideoViews extends APIResource {
   /**
    * Returns the details of a video view.
@@ -15,8 +19,8 @@ export class VideoViews extends APIResource {
    *   await client.data.videoViews.retrieve('abcd1234');
    * ```
    */
-  retrieve(videoViewId: string, options?: Core.RequestOptions): Core.APIPromise<VideoViewResponse> {
-    return this._client.get(`/data/v1/video-views/${videoViewId}`, {
+  retrieve(videoViewID: string, options?: RequestOptions): APIPromise<VideoViewResponse> {
+    return this._client.get(path`/data/v1/video-views/${videoViewID}`, {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
     });
@@ -35,18 +39,10 @@ export class VideoViews extends APIResource {
    * ```
    */
   list(
-    query?: VideoViewListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<AbridgedVideoViewsBasePage, AbridgedVideoView>;
-  list(options?: Core.RequestOptions): Core.PagePromise<AbridgedVideoViewsBasePage, AbridgedVideoView>;
-  list(
-    query: VideoViewListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<AbridgedVideoViewsBasePage, AbridgedVideoView> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/data/v1/video-views', AbridgedVideoViewsBasePage, {
+    query: VideoViewListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<AbridgedVideoViewsBasePage, AbridgedVideoView> {
+    return this._client.getAPIList('/data/v1/video-views', BasePage<AbridgedVideoView>, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -54,7 +50,7 @@ export class VideoViews extends APIResource {
   }
 }
 
-export class AbridgedVideoViewsBasePage extends BasePage<AbridgedVideoView> {}
+export type AbridgedVideoViewsBasePage = BasePage<AbridgedVideoView>;
 
 export interface AbridgedVideoView {
   id: string;
@@ -567,13 +563,11 @@ export interface VideoViewListParams extends BasePageParams {
   viewer_id?: string;
 }
 
-VideoViews.AbridgedVideoViewsBasePage = AbridgedVideoViewsBasePage;
-
 export declare namespace VideoViews {
   export {
     type AbridgedVideoView as AbridgedVideoView,
     type VideoViewResponse as VideoViewResponse,
-    AbridgedVideoViewsBasePage as AbridgedVideoViewsBasePage,
+    type AbridgedVideoViewsBasePage as AbridgedVideoViewsBasePage,
     type VideoViewListParams as VideoViewListParams,
   };
 }

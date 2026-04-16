@@ -1,9 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
+/**
+ * The Mux Data Real-time API has been deprecated, please refer to the
+ * Mux Data `Monitoring` APIs which provide the same functionality.
+ * Mux Data Monitoring metrics are available to Mux Data customers on a Media plan.
+ */
 export class RealTime extends APIResource {
   /**
    * Lists available real-time dimensions. This API is now deprecated, please use the
@@ -11,7 +17,7 @@ export class RealTime extends APIResource {
    *
    * @deprecated
    */
-  listDimensions(options?: Core.RequestOptions): Core.APIPromise<RealTimeDimensionsResponse> {
+  listDimensions(options?: RequestOptions): APIPromise<RealTimeDimensionsResponse> {
     return this._client.get('/data/v1/realtime/dimensions', {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -24,7 +30,7 @@ export class RealTime extends APIResource {
    *
    * @deprecated
    */
-  listMetrics(options?: Core.RequestOptions): Core.APIPromise<RealTimeMetricsResponse> {
+  listMetrics(options?: RequestOptions): APIPromise<RealTimeMetricsResponse> {
     return this._client.get('/data/v1/realtime/metrics', {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -39,38 +45,16 @@ export class RealTime extends APIResource {
    * @deprecated
    */
   retrieveBreakdown(
-    realtimeMetricId:
+    realtimeMetricID:
       | 'current-concurrent-viewers'
       | 'current-rebuffering-percentage'
       | 'exits-before-video-start'
       | 'playback-failure-percentage'
       | 'current-average-bitrate',
-    query?: RealTimeRetrieveBreakdownParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RealTimeBreakdownResponse>;
-  retrieveBreakdown(
-    realtimeMetricId:
-      | 'current-concurrent-viewers'
-      | 'current-rebuffering-percentage'
-      | 'exits-before-video-start'
-      | 'playback-failure-percentage'
-      | 'current-average-bitrate',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RealTimeBreakdownResponse>;
-  retrieveBreakdown(
-    realtimeMetricId:
-      | 'current-concurrent-viewers'
-      | 'current-rebuffering-percentage'
-      | 'exits-before-video-start'
-      | 'playback-failure-percentage'
-      | 'current-average-bitrate',
-    query: RealTimeRetrieveBreakdownParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RealTimeBreakdownResponse> {
-    if (isRequestOptions(query)) {
-      return this.retrieveBreakdown(realtimeMetricId, {}, query);
-    }
-    return this._client.get(`/data/v1/realtime/metrics/${realtimeMetricId}/breakdown`, {
+    query: RealTimeRetrieveBreakdownParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RealTimeBreakdownResponse> {
+    return this._client.get(path`/data/v1/realtime/metrics/${realtimeMetricID}/breakdown`, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -84,27 +68,14 @@ export class RealTime extends APIResource {
    * @deprecated
    */
   retrieveHistogramTimeseries(
-    realtimeHistogramMetricId: 'video-startup-time',
-    query?: RealTimeRetrieveHistogramTimeseriesParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RealTimeHistogramTimeseriesResponse>;
-  retrieveHistogramTimeseries(
-    realtimeHistogramMetricId: 'video-startup-time',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RealTimeHistogramTimeseriesResponse>;
-  retrieveHistogramTimeseries(
-    realtimeHistogramMetricId: 'video-startup-time',
-    query: RealTimeRetrieveHistogramTimeseriesParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RealTimeHistogramTimeseriesResponse> {
-    if (isRequestOptions(query)) {
-      return this.retrieveHistogramTimeseries(realtimeHistogramMetricId, {}, query);
-    }
-    return this._client.get(`/data/v1/realtime/metrics/${realtimeHistogramMetricId}/histogram-timeseries`, {
-      query,
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-    });
+    realtimeHistogramMetricID: 'video-startup-time',
+    query: RealTimeRetrieveHistogramTimeseriesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RealTimeHistogramTimeseriesResponse> {
+    return this._client.get(
+      path`/data/v1/realtime/metrics/${realtimeHistogramMetricID}/histogram-timeseries`,
+      { query, defaultBaseURL: 'https://api.mux.com', ...options },
+    );
   }
 
   /**
@@ -115,38 +86,16 @@ export class RealTime extends APIResource {
    * @deprecated
    */
   retrieveTimeseries(
-    realtimeMetricId:
+    realtimeMetricID:
       | 'current-concurrent-viewers'
       | 'current-rebuffering-percentage'
       | 'exits-before-video-start'
       | 'playback-failure-percentage'
       | 'current-average-bitrate',
-    query?: RealTimeRetrieveTimeseriesParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RealTimeTimeseriesResponse>;
-  retrieveTimeseries(
-    realtimeMetricId:
-      | 'current-concurrent-viewers'
-      | 'current-rebuffering-percentage'
-      | 'exits-before-video-start'
-      | 'playback-failure-percentage'
-      | 'current-average-bitrate',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RealTimeTimeseriesResponse>;
-  retrieveTimeseries(
-    realtimeMetricId:
-      | 'current-concurrent-viewers'
-      | 'current-rebuffering-percentage'
-      | 'exits-before-video-start'
-      | 'playback-failure-percentage'
-      | 'current-average-bitrate',
-    query: RealTimeRetrieveTimeseriesParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<RealTimeTimeseriesResponse> {
-    if (isRequestOptions(query)) {
-      return this.retrieveTimeseries(realtimeMetricId, {}, query);
-    }
-    return this._client.get(`/data/v1/realtime/metrics/${realtimeMetricId}/timeseries`, {
+    query: RealTimeRetrieveTimeseriesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RealTimeTimeseriesResponse> {
+    return this._client.get(path`/data/v1/realtime/metrics/${realtimeMetricID}/timeseries`, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,

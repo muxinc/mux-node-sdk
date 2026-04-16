@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Mux from '@mux/mux-node';
-import { Response } from 'node-fetch';
 
 const client = new Mux({
   tokenId: 'my token id',
@@ -21,13 +20,6 @@ describe('resource dimensions', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.data.dimensions.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Mux.NotFoundError,
-    );
-  });
-
   test('listTraceElements', async () => {
     const responsePromise = client.data.dimensions.listTraceElements('abcd1234');
     const rawResponse = await responsePromise.asResponse();
@@ -37,13 +29,6 @@ describe('resource dimensions', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('listTraceElements: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.dimensions.listTraceElements('abcd1234', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('listTraceElements: request options and params are passed correctly', async () => {
@@ -74,13 +59,6 @@ describe('resource dimensions', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('listValues: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.dimensions.listValues('abcd1234', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('listValues: request options and params are passed correctly', async () => {

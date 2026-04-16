@@ -1,8 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * Exports allow you to download the daily CSV files that are generated from the video views that occurred in the previous day. Please contact [support](mailto:support@mux.com) for information about enabling exports for your organization.
+ */
 export class Exports extends APIResource {
   /**
    * Lists the available video view exports along with URLs to retrieve them.
@@ -13,7 +17,7 @@ export class Exports extends APIResource {
    *   await client.data.exports.listVideoViews();
    * ```
    */
-  listVideoViews(options?: Core.RequestOptions): Core.APIPromise<VideoViewExportsResponse> {
+  listVideoViews(options?: RequestOptions): APIPromise<VideoViewExportsResponse> {
     return this._client.get('/data/v1/exports/views', { defaultBaseURL: 'https://api.mux.com', ...options });
   }
 }

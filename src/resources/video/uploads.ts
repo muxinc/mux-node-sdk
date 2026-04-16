@@ -1,11 +1,17 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as AssetsAPI from './assets';
-import { BasePage, type BasePageParams } from '../../pagination';
+import { APIPromise } from '../../core/api-promise';
+import { BasePage, type BasePageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
+/**
+ * Direct upload allows you to push assets directly to Mux storage instead of needing to go through your own first. When you create a new direct upload, we'll give you back a signed URL for a Google Cloud Storage bucket. Their storage API is S3 compatible, so whatever tool you use to upload to either GCS or S3 should work, just remember you're probably uploading large video files and should [take advantage of things like resumable or multipart uploads](https://cloud.google.com/storage/docs/json_api/v1/how-tos/resumable-upload).
+ *
+ * Particularly for customers that deal with a lot of user-generated content, it's common to expect quite a few abandoned uploads. To keep those abandoned uploads from cluttering up your asset lists, we don't create an asset for you until the upload is complete. Once that asset is created, you can expect all of the normal asset-related webhooks.
+ */
 export class Uploads extends APIResource {
   /**
    * Creates a new direct upload, through which video content can be uploaded for
@@ -19,13 +25,13 @@ export class Uploads extends APIResource {
    * });
    * ```
    */
-  create(body: UploadCreateParams, options?: Core.RequestOptions): Core.APIPromise<Upload> {
+  create(body: UploadCreateParams, options?: RequestOptions): APIPromise<Upload> {
     return (
       this._client.post('/video/v1/uploads', {
         body,
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: Upload }>
+      }) as APIPromise<{ data: Upload }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -39,12 +45,12 @@ export class Uploads extends APIResource {
    * );
    * ```
    */
-  retrieve(uploadId: string, options?: Core.RequestOptions): Core.APIPromise<Upload> {
+  retrieve(uploadID: string, options?: RequestOptions): APIPromise<Upload> {
     return (
-      this._client.get(`/video/v1/uploads/${uploadId}`, {
+      this._client.get(path`/video/v1/uploads/${uploadID}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: Upload }>
+      }) as APIPromise<{ data: Upload }>
     )._thenUnwrap((obj) => obj.data);
   }
 
@@ -59,16 +65,11 @@ export class Uploads extends APIResource {
    * }
    * ```
    */
-  list(query?: UploadListParams, options?: Core.RequestOptions): Core.PagePromise<UploadsBasePage, Upload>;
-  list(options?: Core.RequestOptions): Core.PagePromise<UploadsBasePage, Upload>;
   list(
-    query: UploadListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<UploadsBasePage, Upload> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/video/v1/uploads', UploadsBasePage, {
+    query: UploadListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<UploadsBasePage, Upload> {
+    return this._client.getAPIList('/video/v1/uploads', BasePage<Upload>, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -87,17 +88,17 @@ export class Uploads extends APIResource {
    * );
    * ```
    */
-  cancel(uploadId: string, options?: Core.RequestOptions): Core.APIPromise<Upload> {
+  cancel(uploadID: string, options?: RequestOptions): APIPromise<Upload> {
     return (
-      this._client.put(`/video/v1/uploads/${uploadId}/cancel`, {
+      this._client.put(path`/video/v1/uploads/${uploadID}/cancel`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: Upload }>
+      }) as APIPromise<{ data: Upload }>
     )._thenUnwrap((obj) => obj.data);
   }
 }
 
-export class UploadsBasePage extends BasePage<Upload> {}
+export type UploadsBasePage = BasePage<Upload>;
 
 export interface Upload {
   /**
@@ -121,11 +122,6 @@ export interface Upload {
   timeout: number;
 
   /**
-   * The URL to upload the associated source media to.
-   */
-  url: string;
-
-  /**
    * Only set once the upload is in the `asset_created` state.
    */
   asset_id?: string;
@@ -142,6 +138,11 @@ export interface Upload {
    * created will be a `test` Asset.
    */
   test?: boolean;
+
+  /**
+   * The URL to upload the associated source media to.
+   */
+  url?: string;
 }
 
 export namespace Upload {
@@ -190,13 +191,11 @@ export interface UploadCreateParams {
 
 export interface UploadListParams extends BasePageParams {}
 
-Uploads.UploadsBasePage = UploadsBasePage;
-
 export declare namespace Uploads {
   export {
     type Upload as Upload,
     type UploadResponse as UploadResponse,
-    UploadsBasePage as UploadsBasePage,
+    type UploadsBasePage as UploadsBasePage,
     type UploadCreateParams as UploadCreateParams,
     type UploadListParams as UploadListParams,
   };

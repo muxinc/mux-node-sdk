@@ -1,4 +1,5 @@
 .prism.log
+.stdy.log
 node_modules
 yarn-error.log
 codegen.log
@@ -8,7 +9,7 @@ dist-deno
 /*.tgz
 .idea/
 .eslintcache
+.DS_Store
 dist-bundle
 *.mcpb
-.DS_Store
-.vercel
+oidc
