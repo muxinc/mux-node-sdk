@@ -91,6 +91,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.create({\n  inputs: [{ url: 'https://muxed.s3.amazonaws.com/leds.mp4' }],\n  playback_policies: ['public'],\n  video_quality: 'basic',\n});\n\nconsole.log(asset.id);",
       },
+      php: {
+        method: 'video->assets->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$asset = $client->video->assets->create(\n  inputs: [\n    [\n      'closedCaptions' => true,\n      'endTime' => 0,\n      'generatedSubtitles' => [\n        [\n          'languageCode' => 'en',\n          'name' => 'name',\n          'passthrough' => 'passthrough',\n        ],\n      ],\n      'languageCode' => 'language_code',\n      'name' => 'name',\n      'overlaySettings' => [\n        'height' => 'height',\n        'horizontalAlign' => 'left',\n        'horizontalMargin' => 'horizontal_margin',\n        'opacity' => 'opacity',\n        'verticalAlign' => 'top',\n        'verticalMargin' => 'vertical_margin',\n        'width' => 'width',\n      ],\n      'passthrough' => 'passthrough',\n      'startTime' => 0,\n      'textType' => 'subtitles',\n      'type' => 'video',\n      'url' => 'https://muxed.s3.amazonaws.com/leds.mp4',\n    ],\n  ],\n  advancedPlaybackPolicies: [\n    [\n      'drmConfigurationID' => 'drm_configuration_id',\n      'policy' => PlaybackPolicy::PUBLIC,\n    ],\n  ],\n  copyOverlays: true,\n  encodingTier: 'smart',\n  input: [\n    [\n      'closedCaptions' => true,\n      'endTime' => 0,\n      'generatedSubtitles' => [\n        [\n          'languageCode' => 'en',\n          'name' => 'name',\n          'passthrough' => 'passthrough',\n        ],\n      ],\n      'languageCode' => 'language_code',\n      'name' => 'name',\n      'overlaySettings' => [\n        'height' => 'height',\n        'horizontalAlign' => 'left',\n        'horizontalMargin' => 'horizontal_margin',\n        'opacity' => 'opacity',\n        'verticalAlign' => 'top',\n        'verticalMargin' => 'vertical_margin',\n        'width' => 'width',\n      ],\n      'passthrough' => 'passthrough',\n      'startTime' => 0,\n      'textType' => 'subtitles',\n      'type' => 'video',\n      'url' => 'url',\n    ],\n  ],\n  masterAccess: 'none',\n  maxResolutionTier: '1080p',\n  meta: [\n    'creatorID' => 'creator_id',\n    'externalID' => 'external_id',\n    'title' => 'title',\n  ],\n  mp4Support: 'none',\n  normalizeAudio: true,\n  passthrough: 'passthrough',\n  perTitleEncode: true,\n  playbackPolicies: [PlaybackPolicy::PUBLIC],\n  playbackPolicy: [PlaybackPolicy::PUBLIC],\n  staticRenditions: [\n    ['resolution' => 'highest', 'passthrough' => 'passthrough']\n  ],\n  test: true,\n  videoQuality: 'basic',\n);\n\nvar_dump($asset);",
+      },
       python: {
         method: 'video.assets.create',
         example:
@@ -131,6 +136,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const asset of client.video.assets.list()) {\n  console.log(asset.id);\n}",
       },
+      php: {
+        method: 'video->assets->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->assets->list(\n  cursor: 'cursor',\n  limit: 0,\n  liveStreamId: 'live_stream_id',\n  page: 0,\n  uploadID: 'upload_id',\n);\n\nvar_dump($page);",
+      },
       python: {
         method: 'video.assets.list',
         example:
@@ -167,6 +177,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.retrieve('ASSET_ID');\n\nconsole.log(asset.id);",
       },
+      php: {
+        method: 'video->assets->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$asset = $client->video->assets->retrieve('ASSET_ID');\n\nvar_dump($asset);",
+      },
       python: {
         method: 'video.assets.retrieve',
         example:
@@ -199,6 +214,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.delete('ASSET_ID');",
+      },
+      php: {
+        method: 'video->assets->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->assets->delete('ASSET_ID');\n\nvar_dump($result);",
       },
       python: {
         method: 'video.assets.delete',
@@ -240,6 +260,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.update('ASSET_ID', { passthrough: 'Example' });\n\nconsole.log(asset.id);",
       },
+      php: {
+        method: 'video->assets->update',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$asset = $client->video->assets->update(\n  'ASSET_ID',\n  meta: [\n    'creatorID' => 'creator_id',\n    'externalID' => 'external_id',\n    'title' => 'title',\n  ],\n  passthrough: 'Example',\n);\n\nvar_dump($asset);",
+      },
       python: {
         method: 'video.assets.update',
         example:
@@ -273,6 +298,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.retrievePlaybackId',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackId = await client.video.assets.retrievePlaybackId('ASSET_ID', 'PLAYBACK_ID');\n\nconsole.log(playbackId.id);",
+      },
+      php: {
+        method: 'video->assets->retrievePlaybackId',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackId = $client->video->assets->retrievePlaybackId(\n  'ASSET_ID', 'PLAYBACK_ID'\n);\n\nvar_dump($playbackId);",
       },
       python: {
         method: 'video.assets.retrieve_playback_id',
@@ -308,6 +338,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackId = await client.video.assets.createPlaybackId('ASSET_ID', { policy: 'public' });\n\nconsole.log(playbackId.id);",
       },
+      php: {
+        method: 'video->assets->createPlaybackId',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackId = $client->video->assets->createPlaybackId(\n  'ASSET_ID',\n  drmConfigurationID: 'drm_configuration_id',\n  policy: PlaybackPolicy::PUBLIC,\n);\n\nvar_dump($playbackId);",
+      },
       python: {
         method: 'video.assets.create_playback_id',
         example:
@@ -341,6 +376,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.deletePlaybackId',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.deletePlaybackId('ASSET_ID', 'PLAYBACK_ID');",
+      },
+      php: {
+        method: 'video->assets->deletePlaybackId',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->assets->deletePlaybackId('ASSET_ID', 'PLAYBACK_ID');\n\nvar_dump($result);",
       },
       python: {
         method: 'video.assets.delete_playback_id',
@@ -387,6 +427,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst track = await client.video.assets.createTrack('ASSET_ID', {\n  language_code: 'en-US',\n  type: 'text',\n  url: 'https://example.com/myVideo_en.srt',\n  closed_captions: true,\n  name: 'English',\n  passthrough: 'English',\n  text_type: 'subtitles',\n});\n\nconsole.log(track.id);",
       },
+      php: {
+        method: 'video->assets->createTrack',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$track = $client->video->assets->createTrack(\n  'ASSET_ID',\n  languageCode: 'en-US',\n  type: 'text',\n  url: 'https://example.com/myVideo_en.srt',\n  closedCaptions: true,\n  name: 'English',\n  passthrough: 'English',\n  textType: 'subtitles',\n);\n\nvar_dump($track);",
+      },
       python: {
         method: 'video.assets.create_track',
         example:
@@ -420,6 +465,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.deleteTrack',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.deleteTrack('ASSET_ID', 'TRACK_ID');",
+      },
+      php: {
+        method: 'video->assets->deleteTrack',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->assets->deleteTrack('ASSET_ID', 'TRACK_ID');\n\nvar_dump($result);",
       },
       python: {
         method: 'video.assets.delete_track',
@@ -461,6 +511,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst tracks = await client.video.assets.generateSubtitles('ASSET_ID', 'TRACK_ID', {\n  generated_subtitles: [\n    {\n      language_code: 'en',\n      name: 'English (generated)',\n      passthrough: 'English (generated)',\n    },\n  ],\n});\n\nconsole.log(tracks);",
       },
+      php: {
+        method: 'video->assets->generateSubtitles',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$tracks = $client->video->assets->generateSubtitles(\n  'ASSET_ID',\n  'TRACK_ID',\n  generatedSubtitles: [\n    [\n      'languageCode' => 'en',\n      'name' => 'English (generated)',\n      'passthrough' => 'English (generated)',\n    ],\n  ],\n);\n\nvar_dump($tracks);",
+      },
       python: {
         method: 'video.assets.generate_subtitles',
         example:
@@ -496,6 +551,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.retrieveInputInfo',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst inputInfos = await client.video.assets.retrieveInputInfo('ASSET_ID');\n\nconsole.log(inputInfos);",
+      },
+      php: {
+        method: 'video->assets->retrieveInputInfo',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$inputInfos = $client->video->assets->retrieveInputInfo('ASSET_ID');\n\nvar_dump($inputInfos);",
       },
       python: {
         method: 'video.assets.retrieve_input_info',
@@ -536,6 +596,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.updateMP4Support('ASSET_ID', {\n  mp4_support: 'capped-1080p',\n});\n\nconsole.log(asset.id);",
       },
+      php: {
+        method: 'video->assets->updateMP4Support',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$asset = $client->video->assets->updateMP4Support(\n  'ASSET_ID', mp4Support: 'capped-1080p'\n);\n\nvar_dump($asset);",
+      },
       python: {
         method: 'video.assets.update_mp4_support',
         example:
@@ -571,6 +636,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.updateMasterAccess',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.updateMasterAccess('ASSET_ID', {\n  master_access: 'temporary',\n});\n\nconsole.log(asset.id);",
+      },
+      php: {
+        method: 'video->assets->updateMasterAccess',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$asset = $client->video->assets->updateMasterAccess(\n  'ASSET_ID', masterAccess: 'temporary'\n);\n\nvar_dump($asset);",
       },
       python: {
         method: 'video.assets.update_master_access',
@@ -611,6 +681,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.assets.createStaticRendition('ASSET_ID', {\n  resolution: 'highest',\n});\n\nconsole.log(response.id);",
       },
+      php: {
+        method: 'video->assets->createStaticRendition',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->assets->createStaticRendition(\n  'ASSET_ID', resolution: 'highest', passthrough: 'passthrough'\n);\n\nvar_dump($response);",
+      },
       python: {
         method: 'video.assets.create_static_rendition',
         example:
@@ -643,6 +718,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.assets.deleteStaticRendition',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.assets.deleteStaticRendition('ASSET_ID', 'STATIC_RENDITION_ID');",
+      },
+      php: {
+        method: 'video->assets->deleteStaticRendition',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->assets->deleteStaticRendition(\n  'ASSET_ID', 'STATIC_RENDITION_ID'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'video.assets.delete_static_rendition',
@@ -685,6 +765,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.deliveryUsage.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const deliveryReport of client.video.deliveryUsage.list()) {\n  console.log(deliveryReport.asset_id);\n}",
+      },
+      php: {
+        method: 'video->deliveryUsage->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->deliveryUsage->list(\n  assetId: 'asset_id',\n  limit: 0,\n  liveStreamId: 'live_stream_id',\n  page: 0,\n  timeframe: ['string'],\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'video.delivery_usage.list',
@@ -741,6 +826,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.create({\n  new_asset_settings: { playback_policies: ['public'] },\n  playback_policies: ['public'],\n});\n\nconsole.log(liveStream.id);",
       },
+      php: {
+        method: 'video->liveStreams->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$liveStream = $client->video->liveStreams->create(\n  advancedPlaybackPolicies: [\n    [\n      'drmConfigurationID' => 'drm_configuration_id',\n      'policy' => PlaybackPolicy::PUBLIC,\n    ],\n  ],\n  audioOnly: true,\n  embeddedSubtitles: [\n    [\n      'languageChannel' => 'cc1',\n      'languageCode' => 'language_code',\n      'name' => 'name',\n      'passthrough' => 'passthrough',\n    ],\n  ],\n  generatedSubtitles: [\n    [\n      'languageCode' => 'en',\n      'name' => 'name',\n      'passthrough' => 'passthrough',\n      'transcriptionVocabularyIDs' => ['string'],\n    ],\n  ],\n  latencyMode: 'low',\n  lowLatency: true,\n  maxContinuousDuration: 60,\n  meta: ['title' => 'title'],\n  newAssetSettings: [\n    'advancedPlaybackPolicies' => [\n      [\n        'drmConfigurationID' => 'drm_configuration_id',\n        'policy' => PlaybackPolicy::PUBLIC,\n      ],\n    ],\n    'copyOverlays' => true,\n    'encodingTier' => 'smart',\n    'input' => [\n      [\n        'closedCaptions' => true,\n        'endTime' => 0,\n        'generatedSubtitles' => [\n          [\n            'languageCode' => 'en',\n            'name' => 'name',\n            'passthrough' => 'passthrough',\n          ],\n        ],\n        'languageCode' => 'language_code',\n        'name' => 'name',\n        'overlaySettings' => [\n          'height' => 'height',\n          'horizontalAlign' => 'left',\n          'horizontalMargin' => 'horizontal_margin',\n          'opacity' => 'opacity',\n          'verticalAlign' => 'top',\n          'verticalMargin' => 'vertical_margin',\n          'width' => 'width',\n        ],\n        'passthrough' => 'passthrough',\n        'startTime' => 0,\n        'textType' => 'subtitles',\n        'type' => 'video',\n        'url' => 'url',\n      ],\n    ],\n    'inputs' => [\n      [\n        'closedCaptions' => true,\n        'endTime' => 0,\n        'generatedSubtitles' => [\n          [\n            'languageCode' => 'en',\n            'name' => 'name',\n            'passthrough' => 'passthrough',\n          ],\n        ],\n        'languageCode' => 'language_code',\n        'name' => 'name',\n        'overlaySettings' => [\n          'height' => 'height',\n          'horizontalAlign' => 'left',\n          'horizontalMargin' => 'horizontal_margin',\n          'opacity' => 'opacity',\n          'verticalAlign' => 'top',\n          'verticalMargin' => 'vertical_margin',\n          'width' => 'width',\n        ],\n        'passthrough' => 'passthrough',\n        'startTime' => 0,\n        'textType' => 'subtitles',\n        'type' => 'video',\n        'url' => 'url',\n      ],\n    ],\n    'masterAccess' => 'none',\n    'maxResolutionTier' => '1080p',\n    'meta' => [\n      'creatorID' => 'creator_id',\n      'externalID' => 'external_id',\n      'title' => 'title',\n    ],\n    'mp4Support' => 'none',\n    'normalizeAudio' => true,\n    'passthrough' => 'passthrough',\n    'perTitleEncode' => true,\n    'playbackPolicies' => [PlaybackPolicy::PUBLIC],\n    'playbackPolicy' => [PlaybackPolicy::PUBLIC],\n    'staticRenditions' => [\n      ['resolution' => 'highest', 'passthrough' => 'passthrough']\n    ],\n    'test' => true,\n    'videoQuality' => 'basic',\n  ],\n  passthrough: 'passthrough',\n  playbackPolicies: [PlaybackPolicy::PUBLIC],\n  playbackPolicy: [PlaybackPolicy::PUBLIC],\n  reconnectSlateURL: 'reconnect_slate_url',\n  reconnectWindow: 0,\n  reducedLatency: true,\n  simulcastTargets: [\n    [\n      'url' => 'url',\n      'passthrough' => 'passthrough',\n      'streamKey' => 'stream_key',\n    ],\n  ],\n  test: true,\n  useSlateForStandardLatency: true,\n);\n\nvar_dump($liveStream);",
+      },
       python: {
         method: 'video.live_streams.create',
         example:
@@ -780,6 +870,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const liveStream of client.video.liveStreams.list()) {\n  console.log(liveStream.id);\n}",
       },
+      php: {
+        method: 'video->liveStreams->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->liveStreams->list(\n  limit: 0, page: 0, status: 'active', streamKey: 'stream_key'\n);\n\nvar_dump($page);",
+      },
       python: {
         method: 'video.live_streams.list',
         example:
@@ -816,6 +911,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.retrieve('LIVE_STREAM_ID');\n\nconsole.log(liveStream.id);",
       },
+      php: {
+        method: 'video->liveStreams->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$liveStream = $client->video->liveStreams->retrieve('LIVE_STREAM_ID');\n\nvar_dump($liveStream);",
+      },
       python: {
         method: 'video.live_streams.retrieve',
         example:
@@ -849,6 +949,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.delete('LIVE_STREAM_ID');",
+      },
+      php: {
+        method: 'video->liveStreams->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->delete('LIVE_STREAM_ID');\n\nvar_dump($result);",
       },
       python: {
         method: 'video.live_streams.delete',
@@ -896,6 +1001,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.update('LIVE_STREAM_ID', {\n  latency_mode: 'standard',\n  max_continuous_duration: 1200,\n  reconnect_window: 30,\n});\n\nconsole.log(liveStream.id);",
       },
+      php: {
+        method: 'video->liveStreams->update',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$liveStream = $client->video->liveStreams->update(\n  'LIVE_STREAM_ID',\n  latencyMode: 'standard',\n  maxContinuousDuration: 1200,\n  meta: ['title' => 'title'],\n  newAssetSettings: [\n    'masterAccess' => 'temporary',\n    'meta' => [\n      'creatorID' => 'creator_id',\n      'externalID' => 'external_id',\n      'title' => 'title',\n    ],\n    'mp4Support' => 'none',\n    'videoQuality' => 'plus',\n  ],\n  passthrough: 'passthrough',\n  reconnectSlateURL: 'reconnect_slate_url',\n  reconnectWindow: 30,\n  useSlateForStandardLatency: true,\n);\n\nvar_dump($liveStream);",
+      },
       python: {
         method: 'video.live_streams.update',
         example:
@@ -935,6 +1045,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackId = await client.video.liveStreams.createPlaybackId('LIVE_STREAM_ID', {\n  policy: 'signed',\n});\n\nconsole.log(playbackId.id);",
       },
+      php: {
+        method: 'video->liveStreams->createPlaybackId',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackId = $client->video->liveStreams->createPlaybackId(\n  'LIVE_STREAM_ID',\n  drmConfigurationID: 'drm_configuration_id',\n  policy: PlaybackPolicy::SIGNED,\n);\n\nvar_dump($playbackId);",
+      },
       python: {
         method: 'video.live_streams.create_playback_id',
         example:
@@ -970,6 +1085,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackId = await client.video.liveStreams.retrievePlaybackId(\n  'LIVE_STREAM_ID',\n  'PLAYBACK_ID',\n);\n\nconsole.log(playbackId.id);",
       },
+      php: {
+        method: 'video->liveStreams->retrievePlaybackId',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackId = $client->video->liveStreams->retrievePlaybackId(\n  'LIVE_STREAM_ID', 'PLAYBACK_ID'\n);\n\nvar_dump($playbackId);",
+      },
       python: {
         method: 'video.live_streams.retrieve_playback_id',
         example:
@@ -1003,6 +1123,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.deletePlaybackId',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.deletePlaybackId('LIVE_STREAM_ID', 'PLAYBACK_ID');",
+      },
+      php: {
+        method: 'video->liveStreams->deletePlaybackId',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->deletePlaybackId(\n  'LIVE_STREAM_ID', 'PLAYBACK_ID'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'video.live_streams.delete_playback_id',
@@ -1040,6 +1165,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.resetStreamKey('LIVE_STREAM_ID');\n\nconsole.log(liveStream.id);",
       },
+      php: {
+        method: 'video->liveStreams->resetStreamKey',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$liveStream = $client->video->liveStreams->resetStreamKey('LIVE_STREAM_ID');\n\nvar_dump($liveStream);",
+      },
       python: {
         method: 'video.live_streams.reset_stream_key',
         example:
@@ -1073,6 +1203,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.complete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.complete('LIVE_STREAM_ID');",
+      },
+      php: {
+        method: 'video->liveStreams->complete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->complete('LIVE_STREAM_ID');\n\nvar_dump($result);",
       },
       python: {
         method: 'video.live_streams.complete',
@@ -1108,6 +1243,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.disable('LIVE_STREAM_ID');",
       },
+      php: {
+        method: 'video->liveStreams->disable',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->disable('LIVE_STREAM_ID');\n\nvar_dump($result);",
+      },
       python: {
         method: 'video.live_streams.disable',
         example:
@@ -1140,6 +1280,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.enable',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.enable('LIVE_STREAM_ID');",
+      },
+      php: {
+        method: 'video->liveStreams->enable',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->enable('LIVE_STREAM_ID');\n\nvar_dump($result);",
       },
       python: {
         method: 'video.live_streams.enable',
@@ -1180,6 +1325,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.updateEmbeddedSubtitles('LIVE_STREAM_ID', {\n  embedded_subtitles: [{ passthrough: 'Example' }],\n});\n\nconsole.log(liveStream.id);",
       },
+      php: {
+        method: 'video->liveStreams->updateEmbeddedSubtitles',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$liveStream = $client->video->liveStreams->updateEmbeddedSubtitles(\n  'LIVE_STREAM_ID',\n  embeddedSubtitles: [\n    [\n      'languageChannel' => 'cc1',\n      'languageCode' => 'language_code',\n      'name' => 'name',\n      'passthrough' => 'Example',\n    ],\n  ],\n);\n\nvar_dump($liveStream);",
+      },
       python: {
         method: 'video.live_streams.update_embedded_subtitles',
         example:
@@ -1219,6 +1369,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.updateGeneratedSubtitles('LIVE_STREAM_ID', {\n  generated_subtitles: [\n    {\n      name: 'English CC (ASR)',\n      language_code: 'en',\n      passthrough: 'Example',\n    },\n  ],\n});\n\nconsole.log(liveStream.id);",
       },
+      php: {
+        method: 'video->liveStreams->updateGeneratedSubtitles',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$liveStream = $client->video->liveStreams->updateGeneratedSubtitles(\n  'LIVE_STREAM_ID',\n  generatedSubtitles: [\n    [\n      'languageCode' => 'en',\n      'name' => 'English CC (ASR)',\n      'passthrough' => 'Example',\n      'transcriptionVocabularyIDs' => ['string'],\n    ],\n  ],\n);\n\nvar_dump($liveStream);",
+      },
       python: {
         method: 'video.live_streams.update_generated_subtitles',
         example:
@@ -1255,6 +1410,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst simulcastTarget = await client.video.liveStreams.createSimulcastTarget('LIVE_STREAM_ID', {\n  url: 'rtmp://live.example.com/app',\n  passthrough: 'Example',\n  stream_key: 'abcdefgh',\n});\n\nconsole.log(simulcastTarget.id);",
       },
+      php: {
+        method: 'video->liveStreams->createSimulcastTarget',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$simulcastTarget = $client->video->liveStreams->createSimulcastTarget(\n  'LIVE_STREAM_ID',\n  url: 'rtmp://live.example.com/app',\n  passthrough: 'Example',\n  streamKey: 'abcdefgh',\n);\n\nvar_dump($simulcastTarget);",
+      },
       python: {
         method: 'video.live_streams.create_simulcast_target',
         example:
@@ -1288,6 +1448,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.deleteSimulcastTarget',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.deleteSimulcastTarget('LIVE_STREAM_ID', 'SIMULCAST_TARGET_ID');",
+      },
+      php: {
+        method: 'video->liveStreams->deleteSimulcastTarget',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->deleteSimulcastTarget(\n  'LIVE_STREAM_ID', 'SIMULCAST_TARGET_ID'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'video.live_streams.delete_simulcast_target',
@@ -1324,6 +1489,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.retrieveSimulcastTarget',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst simulcastTarget = await client.video.liveStreams.retrieveSimulcastTarget(\n  'LIVE_STREAM_ID',\n  'SIMULCAST_TARGET_ID',\n);\n\nconsole.log(simulcastTarget.id);",
+      },
+      php: {
+        method: 'video->liveStreams->retrieveSimulcastTarget',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$simulcastTarget = $client->video->liveStreams->retrieveSimulcastTarget(\n  'LIVE_STREAM_ID', 'SIMULCAST_TARGET_ID'\n);\n\nvar_dump($simulcastTarget);",
       },
       python: {
         method: 'video.live_streams.retrieve_simulcast_target',
@@ -1364,6 +1534,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst liveStream = await client.video.liveStreams.updateNewAssetSettingsStaticRenditions(\n  'LIVE_STREAM_ID',\n  { static_renditions: [{ resolution: 'audio-only' }, { resolution: 'highest' }] },\n);\n\nconsole.log(liveStream.id);",
       },
+      php: {
+        method: 'video->liveStreams->updateNewAssetSettingsStaticRenditions',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$liveStream = $client\n  ->video\n  ->liveStreams\n  ->updateNewAssetSettingsStaticRenditions(\n  'LIVE_STREAM_ID',\n  staticRenditions: [\n    ['resolution' => 'audio-only', 'passthrough' => 'passthrough'],\n    ['resolution' => 'highest', 'passthrough' => 'passthrough'],\n  ],\n);\n\nvar_dump($liveStream);",
+      },
       python: {
         method: 'video.live_streams.update_new_asset_settings_static_renditions',
         example:
@@ -1397,6 +1572,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.liveStreams.deleteNewAssetSettingsStaticRenditions',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.liveStreams.deleteNewAssetSettingsStaticRenditions('LIVE_STREAM_ID');",
+      },
+      php: {
+        method: 'video->liveStreams->deleteNewAssetSettingsStaticRenditions',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->liveStreams->deleteNewAssetSettingsStaticRenditions(\n  'LIVE_STREAM_ID'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'video.live_streams.delete_new_asset_settings_static_renditions',
@@ -1432,6 +1612,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playbackIds.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackIds = await client.video.playbackIds.retrieve('PLAYBACK_ID');\n\nconsole.log(playbackIds.id);",
+      },
+      php: {
+        method: 'video->playbackIds->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackIds = $client->video->playbackIds->retrieve('PLAYBACK_ID');\n\nvar_dump($playbackIds);",
       },
       python: {
         method: 'video.playback_ids.retrieve',
@@ -1471,6 +1656,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackRestriction = await client.video.playbackRestrictions.create({\n  referrer: { allowed_domains: ['*.example.com'], allow_no_referrer: true },\n  user_agent: { allow_no_user_agent: false, allow_high_risk_user_agent: false },\n});\n\nconsole.log(playbackRestriction.id);",
       },
+      php: {
+        method: 'video->playbackRestrictions->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackRestriction = $client->video->playbackRestrictions->create(\n  referrer: ['allowedDomains' => ['*.example.com'], 'allowNoReferrer' => true],\n  userAgent: ['allowHighRiskUserAgent' => false, 'allowNoUserAgent' => false],\n);\n\nvar_dump($playbackRestriction);",
+      },
       python: {
         method: 'video.playback_restrictions.create',
         example:
@@ -1506,6 +1696,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const playbackRestriction of client.video.playbackRestrictions.list()) {\n  console.log(playbackRestriction.id);\n}",
       },
+      php: {
+        method: 'video->playbackRestrictions->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->playbackRestrictions->list(limit: 0, page: 0);\n\nvar_dump($page);",
+      },
       python: {
         method: 'video.playback_restrictions.list',
         example:
@@ -1538,6 +1733,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playbackRestrictions.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.playbackRestrictions.delete('PLAYBACK_RESTRICTION_ID');",
+      },
+      php: {
+        method: 'video->playbackRestrictions->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->playbackRestrictions->delete(\n  'PLAYBACK_RESTRICTION_ID'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'video.playback_restrictions.delete',
@@ -1573,6 +1773,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playbackRestrictions.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackRestriction = await client.video.playbackRestrictions.retrieve(\n  'PLAYBACK_RESTRICTION_ID',\n);\n\nconsole.log(playbackRestriction.id);",
+      },
+      php: {
+        method: 'video->playbackRestrictions->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackRestriction = $client->video->playbackRestrictions->retrieve(\n  'PLAYBACK_RESTRICTION_ID'\n);\n\nvar_dump($playbackRestriction);",
       },
       python: {
         method: 'video.playback_restrictions.retrieve',
@@ -1614,6 +1819,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackRestriction = await client.video.playbackRestrictions.updateReferrer(\n  'PLAYBACK_RESTRICTION_ID',\n  { allowed_domains: ['*.example.com'], allow_no_referrer: true },\n);\n\nconsole.log(playbackRestriction.id);",
       },
+      php: {
+        method: 'video->playbackRestrictions->updateReferrer',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackRestriction = $client->video->playbackRestrictions->updateReferrer(\n  'PLAYBACK_RESTRICTION_ID',\n  allowedDomains: ['*.example.com'],\n  allowNoReferrer: true,\n);\n\nvar_dump($playbackRestriction);",
+      },
       python: {
         method: 'video.playback_restrictions.update_referrer',
         example:
@@ -1654,6 +1864,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst playbackRestriction = await client.video.playbackRestrictions.updateUserAgent(\n  'PLAYBACK_RESTRICTION_ID',\n  { allow_high_risk_user_agent: false, allow_no_user_agent: false },\n);\n\nconsole.log(playbackRestriction.id);",
       },
+      php: {
+        method: 'video->playbackRestrictions->updateUserAgent',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$playbackRestriction = $client->video->playbackRestrictions->updateUserAgent(\n  'PLAYBACK_RESTRICTION_ID',\n  allowHighRiskUserAgent: false,\n  allowNoUserAgent: false,\n);\n\nvar_dump($playbackRestriction);",
+      },
       python: {
         method: 'video.playback_restrictions.update_user_agent',
         example:
@@ -1690,6 +1905,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst transcriptionVocabulary = await client.video.transcriptionVocabularies.retrieve(\n  'TRANSCRIPTION_VOCABULARY_ID',\n);\n\nconsole.log(transcriptionVocabulary.id);",
       },
+      php: {
+        method: 'video->transcriptionVocabularies->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$transcriptionVocabulary = $client->video->transcriptionVocabularies->retrieve(\n  'TRANSCRIPTION_VOCABULARY_ID'\n);\n\nvar_dump($transcriptionVocabulary);",
+      },
       python: {
         method: 'video.transcription_vocabularies.retrieve',
         example:
@@ -1725,6 +1945,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst transcriptionVocabulary = await client.video.transcriptionVocabularies.create({\n  phrases: ['Mux', 'Live Stream', 'Playback ID', 'video encoding'],\n  name: 'Mux API Vocabulary',\n});\n\nconsole.log(transcriptionVocabulary.id);",
       },
+      php: {
+        method: 'video->transcriptionVocabularies->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$transcriptionVocabulary = $client->video->transcriptionVocabularies->create(\n  phrases: ['Mux', 'Live Stream', 'Playback ID', 'video encoding'],\n  name: 'Mux API Vocabulary',\n  passthrough: 'passthrough',\n);\n\nvar_dump($transcriptionVocabulary);",
+      },
       python: {
         method: 'video.transcription_vocabularies.create',
         example:
@@ -1758,6 +1983,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.transcriptionVocabularies.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.video.transcriptionVocabularies.delete('TRANSCRIPTION_VOCABULARY_ID');",
+      },
+      php: {
+        method: 'video->transcriptionVocabularies->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->video->transcriptionVocabularies->delete(\n  'TRANSCRIPTION_VOCABULARY_ID'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'video.transcription_vocabularies.delete',
@@ -1800,6 +2030,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst transcriptionVocabulary = await client.video.transcriptionVocabularies.update(\n  'TRANSCRIPTION_VOCABULARY_ID',\n  { phrases: ['Mux', 'Live Stream', 'RTMP', 'Stream Key'], name: 'Mux API Vocabulary - Updated' },\n);\n\nconsole.log(transcriptionVocabulary.id);",
       },
+      php: {
+        method: 'video->transcriptionVocabularies->update',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$transcriptionVocabulary = $client->video->transcriptionVocabularies->update(\n  'TRANSCRIPTION_VOCABULARY_ID',\n  phrases: ['Mux', 'Live Stream', 'RTMP', 'Stream Key'],\n  name: 'Mux API Vocabulary - Updated',\n  passthrough: 'passthrough',\n);\n\nvar_dump($transcriptionVocabulary);",
+      },
       python: {
         method: 'video.transcription_vocabularies.update',
         example:
@@ -1834,6 +2069,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.transcriptionVocabularies.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const transcriptionVocabulary of client.video.transcriptionVocabularies.list()) {\n  console.log(transcriptionVocabulary.id);\n}",
+      },
+      php: {
+        method: 'video->transcriptionVocabularies->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->transcriptionVocabularies->list(limit: 10, page: 0);\n\nvar_dump($page);",
       },
       python: {
         method: 'video.transcription_vocabularies.list',
@@ -1876,6 +2116,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst upload = await client.video.uploads.create({\n  cors_origin: 'https://example.com/',\n  new_asset_settings: { playback_policies: ['public'] },\n});\n\nconsole.log(upload.id);",
       },
+      php: {
+        method: 'video->uploads->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$upload = $client->video->uploads->create(\n  corsOrigin: 'https://example.com/',\n  newAssetSettings: [\n    'advancedPlaybackPolicies' => [\n      [\n        'drmConfigurationID' => 'drm_configuration_id',\n        'policy' => PlaybackPolicy::PUBLIC,\n      ],\n    ],\n    'copyOverlays' => true,\n    'encodingTier' => 'smart',\n    'input' => [\n      [\n        'closedCaptions' => true,\n        'endTime' => 0,\n        'generatedSubtitles' => [\n          [\n            'languageCode' => 'en',\n            'name' => 'name',\n            'passthrough' => 'passthrough',\n          ],\n        ],\n        'languageCode' => 'language_code',\n        'name' => 'name',\n        'overlaySettings' => [\n          'height' => 'height',\n          'horizontalAlign' => 'left',\n          'horizontalMargin' => 'horizontal_margin',\n          'opacity' => 'opacity',\n          'verticalAlign' => 'top',\n          'verticalMargin' => 'vertical_margin',\n          'width' => 'width',\n        ],\n        'passthrough' => 'passthrough',\n        'startTime' => 0,\n        'textType' => 'subtitles',\n        'type' => 'video',\n        'url' => 'url',\n      ],\n    ],\n    'inputs' => [\n      [\n        'closedCaptions' => true,\n        'endTime' => 0,\n        'generatedSubtitles' => [\n          [\n            'languageCode' => 'en',\n            'name' => 'name',\n            'passthrough' => 'passthrough',\n          ],\n        ],\n        'languageCode' => 'language_code',\n        'name' => 'name',\n        'overlaySettings' => [\n          'height' => 'height',\n          'horizontalAlign' => 'left',\n          'horizontalMargin' => 'horizontal_margin',\n          'opacity' => 'opacity',\n          'verticalAlign' => 'top',\n          'verticalMargin' => 'vertical_margin',\n          'width' => 'width',\n        ],\n        'passthrough' => 'passthrough',\n        'startTime' => 0,\n        'textType' => 'subtitles',\n        'type' => 'video',\n        'url' => 'url',\n      ],\n    ],\n    'masterAccess' => 'none',\n    'maxResolutionTier' => '1080p',\n    'meta' => [\n      'creatorID' => 'creator_id',\n      'externalID' => 'external_id',\n      'title' => 'title',\n    ],\n    'mp4Support' => 'none',\n    'normalizeAudio' => true,\n    'passthrough' => 'passthrough',\n    'perTitleEncode' => true,\n    'playbackPolicies' => [PlaybackPolicy::PUBLIC],\n    'playbackPolicy' => [PlaybackPolicy::PUBLIC],\n    'staticRenditions' => [\n      ['resolution' => 'highest', 'passthrough' => 'passthrough']\n    ],\n    'test' => true,\n    'videoQuality' => 'basic',\n  ],\n  test: true,\n  timeout: 60,\n);\n\nvar_dump($upload);",
+      },
       python: {
         method: 'video.uploads.create',
         example:
@@ -1910,6 +2155,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.uploads.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst upload = await client.video.uploads.retrieve('abcd1234');\n\nconsole.log(upload.id);",
+      },
+      php: {
+        method: 'video->uploads->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$upload = $client->video->uploads->retrieve('abcd1234');\n\nvar_dump($upload);",
       },
       python: {
         method: 'video.uploads.retrieve',
@@ -1947,6 +2197,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst upload = await client.video.uploads.cancel('abcd1234');\n\nconsole.log(upload.id);",
       },
+      php: {
+        method: 'video->uploads->cancel',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$upload = $client->video->uploads->cancel('abcd1234');\n\nvar_dump($upload);",
+      },
       python: {
         method: 'video.uploads.cancel',
         example:
@@ -1980,6 +2235,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.uploads.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const upload of client.video.uploads.list()) {\n  console.log(upload.id);\n}",
+      },
+      php: {
+        method: 'video->uploads->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->uploads->list(limit: 0, page: 0);\n\nvar_dump($page);",
       },
       python: {
         method: 'video.uploads.list',
@@ -2015,6 +2275,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const drmConfiguration of client.video.drmConfigurations.list()) {\n  console.log(drmConfiguration.id);\n}",
       },
+      php: {
+        method: 'video->drmConfigurations->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->video->drmConfigurations->list(limit: 0, page: 0);\n\nvar_dump($page);",
+      },
       python: {
         method: 'video.drm_configurations.list',
         example:
@@ -2048,6 +2313,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.drmConfigurations.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst drmConfiguration = await client.video.drmConfigurations.retrieve('DRM_CONFIGURATION_ID');\n\nconsole.log(drmConfiguration.id);",
+      },
+      php: {
+        method: 'video->drmConfigurations->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$drmConfiguration = $client->video->drmConfigurations->retrieve(\n  'DRM_CONFIGURATION_ID'\n);\n\nvar_dump($drmConfiguration);",
       },
       python: {
         method: 'video.drm_configurations.retrieve',
@@ -2097,6 +2367,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.thumbnail('PLAYBACK_ID', 'jpg');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
       },
+      php: {
+        method: 'video->playback->thumbnail',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->thumbnail(\n  'PLAYBACK_ID',\n  'jpg',\n  fitMode: 'preserve',\n  flipH: true,\n  flipV: true,\n  height: 0,\n  latest: true,\n  programTime: 0,\n  rotate: 90,\n  time: 0,\n  token: 'TOKEN',\n  width: 0,\n);\n\nvar_dump($response);",
+      },
       python: {
         method: 'video.playback.thumbnail',
         example:
@@ -2141,6 +2416,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.animated('PLAYBACK_ID', 'gif');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
       },
+      php: {
+        method: 'video->playback->animated',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->animated(\n  'PLAYBACK_ID',\n  'gif',\n  end: 0,\n  fps: 0,\n  height: 0,\n  start: 0,\n  token: 'TOKEN',\n  width: 0,\n);\n\nvar_dump($response);",
+      },
       python: {
         method: 'video.playback.animated',
         example:
@@ -2184,6 +2464,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.storyboard('PLAYBACK_ID', 'jpg');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
       },
+      php: {
+        method: 'video->playback->storyboard',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->storyboard(\n  'PLAYBACK_ID',\n  'jpg',\n  assetEndTime: 0,\n  assetStartTime: 0,\n  programEndTime: 0,\n  programStartTime: 0,\n  token: 'TOKEN',\n);\n\nvar_dump($response);",
+      },
       python: {
         method: 'video.playback.storyboard',
         example:
@@ -2225,6 +2510,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.storyboardVtt',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.storyboardVtt('PLAYBACK_ID');\n\nconsole.log(response);",
+      },
+      php: {
+        method: 'video->playback->storyboardVtt',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->storyboardVtt(\n  'PLAYBACK_ID',\n  assetEndTime: 0,\n  assetStartTime: 0,\n  programEndTime: 0,\n  programStartTime: 0,\n  token: 'TOKEN',\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.playback.storyboard_vtt',
@@ -2268,6 +2558,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.storyboardMeta',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.storyboardMeta('PLAYBACK_ID');\n\nconsole.log(response);",
+      },
+      php: {
+        method: 'video->playback->storyboardMeta',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->storyboardMeta(\n  'PLAYBACK_ID',\n  assetEndTime: 0,\n  assetStartTime: 0,\n  format: 'jpg',\n  programEndTime: 0,\n  programStartTime: 0,\n  token: 'TOKEN',\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.playback.storyboard_meta',
@@ -2317,6 +2612,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.hls('PLAYBACK_ID');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
       },
+      php: {
+        method: 'video->playback->hls',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->hls(\n  'PLAYBACK_ID',\n  assetEndTime: 0,\n  assetStartTime: 0,\n  defaultSubtitlesLang: 'default_subtitles_lang',\n  excludePdt: true,\n  maxResolution: '270p',\n  minResolution: '270p',\n  programEndTime: 0,\n  programStartTime: 0,\n  redundantStreams: true,\n  renditionOrder: 'desc',\n  rokuTrickPlay: true,\n  token: 'TOKEN',\n);\n\nvar_dump($response);",
+      },
       python: {
         method: 'video.playback.hls',
         example:
@@ -2356,6 +2656,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.staticRendition('PLAYBACK_ID', 'capped-1080p.mp4');\n\nconsole.log(response);\n\nconst content = await response.blob();\nconsole.log(content);",
       },
+      php: {
+        method: 'video->playback->staticRendition',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->staticRendition(\n  'PLAYBACK_ID', 'capped-1080p.mp4', token: 'TOKEN'\n);\n\nvar_dump($response);",
+      },
       python: {
         method: 'video.playback.static_rendition',
         example:
@@ -2389,6 +2694,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.track',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.track('PLAYBACK_ID', 'TRACK_ID');\n\nconsole.log(response);",
+      },
+      php: {
+        method: 'video->playback->track',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->track(\n  'PLAYBACK_ID', 'TRACK_ID', token: 'TOKEN'\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.playback.track',
@@ -2424,6 +2734,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.video.playback.transcript',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.video.playback.transcript('PLAYBACK_ID', 'TRACK_ID');\n\nconsole.log(response);",
+      },
+      php: {
+        method: 'video->playback->transcript',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->video->playback->transcript(\n  'PLAYBACK_ID', 'TRACK_ID', token: 'TOKEN'\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'video.playback.transcript',
@@ -2466,6 +2781,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const jobSummary of client.robotsPreview.jobs.list()) {\n  console.log(jobSummary.id);\n}",
       },
+      php: {
+        method: 'robotsPreview->jobs->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->robotsPreview->jobs->list(\n  assetId: 'x',\n  limit: 1,\n  page: 1,\n  status: JobStatus::PENDING,\n  workflow: 'summarize',\n);\n\nvar_dump($page);",
+      },
       python: {
         method: 'robots_preview.jobs.list',
         example:
@@ -2500,6 +2820,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robotsPreview.jobs.cancel',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst jobSummary = await client.robotsPreview.jobs.cancel('rjob_lK9w2kI5J1');\n\nconsole.log(jobSummary.id);",
+      },
+      php: {
+        method: 'robotsPreview->jobs->cancel',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$jobSummary = $client->robotsPreview->jobs->cancel('rjob_lK9w2kI5J1');\n\nvar_dump($jobSummary);",
       },
       python: {
         method: 'robots_preview.jobs.cancel',
@@ -2539,6 +2864,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst askQuestionsJob = await client.robotsPreview.jobs.askQuestions.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    questions: [\n      {\n        question: 'How many people are speaking on camera?',\n        answer_options: ['one', 'two', 'three or more'],\n      },\n    ],\n  },\n});\n\nconsole.log(askQuestionsJob.id);",
       },
+      php: {
+        method: 'robotsPreview->jobs->askQuestions->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$askQuestionsJob = $client->robotsPreview->jobs->askQuestions->create(\n  parameters: [\n    'assetId' => 'mux_asset_123abc',\n    'questions' => [\n      [\n        'question' => 'How many people are speaking on camera?',\n        'answerOptions' => ['one', 'two', 'three or more'],\n      ],\n    ],\n    'languageCode' => 'x',\n  ],\n  passthrough: 'passthrough',\n);\n\nvar_dump($askQuestionsJob);",
+      },
       python: {
         method: 'robots_preview.jobs.ask_questions.create',
         example:
@@ -2573,6 +2903,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robotsPreview.jobs.askQuestions.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst askQuestionsJob = await client.robotsPreview.jobs.askQuestions.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(askQuestionsJob.id);",
+      },
+      php: {
+        method: 'robotsPreview->jobs->askQuestions->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$askQuestionsJob = $client->robotsPreview->jobs->askQuestions->retrieve(\n  'rjob_lK9w2kI5J1'\n);\n\nvar_dump($askQuestionsJob);",
       },
       python: {
         method: 'robots_preview.jobs.ask_questions.retrieve',
@@ -2612,6 +2947,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst generateChaptersJob = await client.robotsPreview.jobs.generateChapters.create({\n  parameters: { asset_id: 'mux_asset_123abc' },\n});\n\nconsole.log(generateChaptersJob.id);",
       },
+      php: {
+        method: 'robotsPreview->jobs->generateChapters->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$generateChaptersJob = $client->robotsPreview->jobs->generateChapters->create(\n  parameters: [\n    'assetId' => 'mux_asset_123abc',\n    'languageCode' => 'x',\n    'outputLanguageCode' => 'x',\n    'promptOverrides' => [\n      'chapterGuidelines' => 'x',\n      'outputFormat' => 'x',\n      'task' => 'x',\n      'titleGuidelines' => 'x',\n    ],\n  ],\n  passthrough: 'passthrough',\n);\n\nvar_dump($generateChaptersJob);",
+      },
       python: {
         method: 'robots_preview.jobs.generate_chapters.create',
         example:
@@ -2646,6 +2986,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robotsPreview.jobs.generateChapters.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst generateChaptersJob = await client.robotsPreview.jobs.generateChapters.retrieve(\n  'rjob_lK9w2kI5J1',\n);\n\nconsole.log(generateChaptersJob.id);",
+      },
+      php: {
+        method: 'robotsPreview->jobs->generateChapters->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$generateChaptersJob = $client->robotsPreview->jobs->generateChapters->retrieve(\n  'rjob_lK9w2kI5J1'\n);\n\nvar_dump($generateChaptersJob);",
       },
       python: {
         method: 'robots_preview.jobs.generate_chapters.retrieve',
@@ -2685,6 +3030,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst findKeyMomentsJob = await client.robotsPreview.jobs.findKeyMoments.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    max_moments: 5,\n    target_duration_ms: { min: 15000, max: 45000 },\n  },\n});\n\nconsole.log(findKeyMomentsJob.id);",
       },
+      php: {
+        method: 'robotsPreview->jobs->findKeyMoments->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$findKeyMomentsJob = $client->robotsPreview->jobs->findKeyMoments->create(\n  parameters: [\n    'assetId' => 'mux_asset_123abc',\n    'maxMoments' => 5,\n    'targetDurationMs' => ['max' => 45000, 'min' => 15000],\n  ],\n  passthrough: 'passthrough',\n);\n\nvar_dump($findKeyMomentsJob);",
+      },
       python: {
         method: 'robots_preview.jobs.find_key_moments.create',
         example:
@@ -2719,6 +3069,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robotsPreview.jobs.findKeyMoments.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst findKeyMomentsJob = await client.robotsPreview.jobs.findKeyMoments.retrieve(\n  'rjob_lK9w2kI5J1',\n);\n\nconsole.log(findKeyMomentsJob.id);",
+      },
+      php: {
+        method: 'robotsPreview->jobs->findKeyMoments->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$findKeyMomentsJob = $client->robotsPreview->jobs->findKeyMoments->retrieve(\n  'rjob_lK9w2kI5J1'\n);\n\nvar_dump($findKeyMomentsJob);",
       },
       python: {
         method: 'robots_preview.jobs.find_key_moments.retrieve',
@@ -2758,6 +3113,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst moderateJob = await client.robotsPreview.jobs.moderate.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    thresholds: { sexual: 0.7, violence: 0.8 },\n  },\n});\n\nconsole.log(moderateJob.id);",
       },
+      php: {
+        method: 'robotsPreview->jobs->moderate->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$moderateJob = $client->robotsPreview->jobs->moderate->create(\n  parameters: [\n    'assetId' => 'mux_asset_123abc',\n    'languageCode' => 'x',\n    'maxSamples' => 1,\n    'samplingInterval' => 5,\n    'thresholds' => ['sexual' => 0.7, 'violence' => 0.8],\n  ],\n  passthrough: 'passthrough',\n);\n\nvar_dump($moderateJob);",
+      },
       python: {
         method: 'robots_preview.jobs.moderate.create',
         example:
@@ -2792,6 +3152,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robotsPreview.jobs.moderate.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst moderateJob = await client.robotsPreview.jobs.moderate.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(moderateJob.id);",
+      },
+      php: {
+        method: 'robotsPreview->jobs->moderate->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$moderateJob = $client->robotsPreview->jobs->moderate->retrieve(\n  'rjob_lK9w2kI5J1'\n);\n\nvar_dump($moderateJob);",
       },
       python: {
         method: 'robots_preview.jobs.moderate.retrieve',
@@ -2832,6 +3197,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst summarizeJob = await client.robotsPreview.jobs.summarize.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    tone: 'neutral',\n    tag_count: 10,\n  },\n});\n\nconsole.log(summarizeJob.id);",
       },
+      php: {
+        method: 'robotsPreview->jobs->summarize->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$summarizeJob = $client->robotsPreview->jobs->summarize->create(\n  parameters: [\n    'assetId' => 'mux_asset_123abc',\n    'descriptionLength' => 1,\n    'languageCode' => 'x',\n    'outputLanguageCode' => 'x',\n    'promptOverrides' => [\n      'description' => 'x',\n      'keywords' => 'x',\n      'qualityGuidelines' => 'x',\n      'task' => 'x',\n      'title' => 'x',\n    ],\n    'tagCount' => 10,\n    'titleLength' => 1,\n    'tone' => 'neutral',\n  ],\n  passthrough: 'passthrough',\n);\n\nvar_dump($summarizeJob);",
+      },
       python: {
         method: 'robots_preview.jobs.summarize.create',
         example:
@@ -2866,6 +3236,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.robotsPreview.jobs.summarize.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst summarizeJob = await client.robotsPreview.jobs.summarize.retrieve('rjob_lK9w2kI5J1');\n\nconsole.log(summarizeJob.id);",
+      },
+      php: {
+        method: 'robotsPreview->jobs->summarize->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$summarizeJob = $client->robotsPreview->jobs->summarize->retrieve(\n  'rjob_lK9w2kI5J1'\n);\n\nvar_dump($summarizeJob);",
       },
       python: {
         method: 'robots_preview.jobs.summarize.retrieve',
@@ -2906,6 +3281,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst translateCaptionsJob = await client.robotsPreview.jobs.translateCaptions.create({\n  parameters: {\n    asset_id: 'mux_asset_123abc',\n    track_id: 'track_en_abc123',\n    to_language_code: 'es',\n    upload_to_mux: true,\n  },\n});\n\nconsole.log(translateCaptionsJob.id);",
       },
+      php: {
+        method: 'robotsPreview->jobs->translateCaptions->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$translateCaptionsJob = $client->robotsPreview->jobs->translateCaptions->create(\n  parameters: [\n    'assetId' => 'mux_asset_123abc',\n    'toLanguageCode' => 'es',\n    'trackId' => 'track_en_abc123',\n    'uploadToMux' => true,\n  ],\n  passthrough: 'passthrough',\n);\n\nvar_dump($translateCaptionsJob);",
+      },
       python: {
         method: 'robots_preview.jobs.translate_captions.create',
         example:
@@ -2941,6 +3321,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst translateCaptionsJob = await client.robotsPreview.jobs.translateCaptions.retrieve(\n  'rjob_lK9w2kI5J1',\n);\n\nconsole.log(translateCaptionsJob.id);",
       },
+      php: {
+        method: 'robotsPreview->jobs->translateCaptions->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$translateCaptionsJob = $client\n  ->robotsPreview\n  ->jobs\n  ->translateCaptions\n  ->retrieve('rjob_lK9w2kI5J1');\n\nvar_dump($translateCaptionsJob);",
+      },
       python: {
         method: 'robots_preview.jobs.translate_captions.retrieve',
         example:
@@ -2973,6 +3358,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.dimensions.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst dimensionsResponse = await client.data.dimensions.list();\n\nconsole.log(dimensionsResponse.data);",
+      },
+      php: {
+        method: 'data->dimensions->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$dimensionsResponse = $client->data->dimensions->list();\n\nvar_dump($dimensionsResponse);",
       },
       python: {
         method: 'data.dimensions.list',
@@ -3015,6 +3405,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.dimensions.listValues',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const dimensionValue of client.data.dimensions.listValues('abcd1234')) {\n  console.log(dimensionValue.total_count);\n}",
+      },
+      php: {
+        method: 'data->dimensions->listValues',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->dimensions->listValues(\n  'abcd1234',\n  filters: ['string'],\n  limit: 0,\n  metricFilters: ['string'],\n  page: 0,\n  timeframe: ['string'],\n);\n\nvar_dump($page);",
       },
       python: {
         method: 'data.dimensions.list_values',
@@ -3060,6 +3455,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const dimensionValue of client.data.dimensions.listTraceElements('abcd1234')) {\n  console.log(dimensionValue.total_count);\n}",
       },
+      php: {
+        method: 'data->dimensions->listTraceElements',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->dimensions->listTraceElements(\n  'abcd1234',\n  filters: ['string'],\n  limit: 0,\n  metricFilters: ['string'],\n  orderBy: 'negative_impact',\n  orderDirection: 'asc',\n  page: 0,\n  timeframe: ['string'],\n);\n\nvar_dump($page);",
+      },
       python: {
         method: 'data.dimensions.list_trace_elements',
         example:
@@ -3094,6 +3494,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.listDimensions();\n\nconsole.log(response.data);",
       },
+      php: {
+        method: 'data->monitoring->listDimensions',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->data->monitoring->listDimensions();\n\nvar_dump($response);",
+      },
       python: {
         method: 'data.monitoring.list_dimensions',
         example:
@@ -3127,6 +3532,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.monitoring.metrics.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst metrics = await client.data.monitoring.metrics.list();\n\nconsole.log(metrics.data);",
+      },
+      php: {
+        method: 'data->monitoring->metrics->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$metrics = $client->data->monitoring->metrics->list();\n\nvar_dump($metrics);",
       },
       python: {
         method: 'data.monitoring.metrics.list',
@@ -3171,6 +3581,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.metrics.getBreakdown('current-concurrent-viewers');\n\nconsole.log(response.data);",
       },
+      php: {
+        method: 'data->monitoring->metrics->getBreakdown',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->data->monitoring->metrics->getBreakdown(\n  'current-concurrent-viewers',\n  dimension: 'asn',\n  filters: ['string'],\n  orderBy: 'negative_impact',\n  orderDirection: 'asc',\n  timestamp: 0,\n);\n\nvar_dump($response);",
+      },
       python: {
         method: 'data.monitoring.metrics.get_breakdown',
         example:
@@ -3206,6 +3621,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.monitoring.metrics.getTimeseries',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.metrics.getTimeseries('current-concurrent-viewers');\n\nconsole.log(response.data);",
+      },
+      php: {
+        method: 'data->monitoring->metrics->getTimeseries',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->data->monitoring->metrics->getTimeseries(\n  'current-concurrent-viewers', filters: ['string'], timestamp: 0\n);\n\nvar_dump($response);",
       },
       python: {
         method: 'data.monitoring.metrics.get_timeseries',
@@ -3251,6 +3671,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.metrics.getBreakdownTimeseries(\n  'current-concurrent-viewers',\n);\n\nconsole.log(response.data);",
       },
+      php: {
+        method: 'data->monitoring->metrics->getBreakdownTimeseries',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->data->monitoring->metrics->getBreakdownTimeseries(\n  'current-concurrent-viewers',\n  dimension: 'asn',\n  filters: ['string'],\n  limit: 0,\n  orderBy: 'negative_impact',\n  orderDirection: 'asc',\n  timeframe: ['string'],\n);\n\nvar_dump($response);",
+      },
       python: {
         method: 'data.monitoring.metrics.get_breakdown_timeseries',
         example:
@@ -3286,6 +3711,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.data.monitoring.metrics.getHistogramTimeseries('video-startup-time');\n\nconsole.log(response.data);",
       },
+      php: {
+        method: 'data->monitoring->metrics->getHistogramTimeseries',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->data->monitoring->metrics->getHistogramTimeseries(\n  'video-startup-time', filters: ['string']\n);\n\nvar_dump($response);",
+      },
       python: {
         method: 'data.monitoring.metrics.get_histogram_timeseries',
         example:
@@ -3320,6 +3750,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst errorsResponse = await client.data.errors.list();\n\nconsole.log(errorsResponse.data);",
       },
+      php: {
+        method: 'data->errors->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$errorsResponse = $client->data->errors->list(\n  filters: ['string'], metricFilters: ['string'], timeframe: ['string']\n);\n\nvar_dump($errorsResponse);",
+      },
       python: {
         method: 'data.errors.list',
         example:
@@ -3352,6 +3787,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.exports.listVideoViews',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst videoViewExportsResponse = await client.data.exports.listVideoViews();\n\nconsole.log(videoViewExportsResponse.data);",
+      },
+      php: {
+        method: 'data->exports->listVideoViews',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$videoViewExportsResponse = $client->data->exports->listVideoViews();\n\nvar_dump($videoViewExportsResponse);",
       },
       python: {
         method: 'data.exports.list_video_views',
@@ -3394,6 +3834,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const filterValue of client.data.filters.listValues('abcd1234')) {\n  console.log(filterValue.total_count);\n}",
       },
+      php: {
+        method: 'data->filters->listValues',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->filters->listValues(\n  'abcd1234', filters: ['string'], limit: 0, page: 0, timeframe: ['string']\n);\n\nvar_dump($page);",
+      },
       python: {
         method: 'data.filters.list_values',
         example:
@@ -3428,6 +3873,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.incidents.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst incidentResponse = await client.data.incidents.retrieve('abcd1234');\n\nconsole.log(incidentResponse.data);",
+      },
+      php: {
+        method: 'data->incidents->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$incidentResponse = $client->data->incidents->retrieve('abcd1234');\n\nvar_dump($incidentResponse);",
       },
       python: {
         method: 'data.incidents.retrieve',
@@ -3470,6 +3920,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const incident of client.data.incidents.listRelated('abcd1234')) {\n  console.log(incident.id);\n}",
       },
+      php: {
+        method: 'data->incidents->listRelated',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->incidents->listRelated(\n  'abcd1234',\n  limit: 0,\n  orderBy: 'negative_impact',\n  orderDirection: 'asc',\n  page: 0,\n);\n\nvar_dump($page);",
+      },
       python: {
         method: 'data.incidents.list_related',
         example:
@@ -3511,6 +3966,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const incident of client.data.incidents.list()) {\n  console.log(incident.id);\n}",
       },
+      php: {
+        method: 'data->incidents->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->incidents->list(\n  limit: 0,\n  orderBy: 'negative_impact',\n  orderDirection: 'asc',\n  page: 0,\n  severity: 'warning',\n  status: 'open',\n);\n\nvar_dump($page);",
+      },
       python: {
         method: 'data.incidents.list',
         example:
@@ -3551,6 +4011,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.metrics.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst allMetricValuesResponse = await client.data.metrics.list();\n\nconsole.log(allMetricValuesResponse.data);",
+      },
+      php: {
+        method: 'data->metrics->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$allMetricValuesResponse = $client->data->metrics->list(\n  dimension: 'asn',\n  filters: ['string'],\n  metricFilters: ['string'],\n  timeframe: ['string'],\n  value: 'value',\n);\n\nvar_dump($allMetricValuesResponse);",
       },
       python: {
         method: 'data.metrics.list',
@@ -3598,6 +4063,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const breakdownValue of client.data.metrics.listBreakdownValues('video_startup_time')) {\n  console.log(breakdownValue.field);\n}",
       },
+      php: {
+        method: 'data->metrics->listBreakdownValues',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->metrics->listBreakdownValues(\n  'video_startup_time',\n  filters: ['string'],\n  groupBy: 'asn',\n  limit: 0,\n  measurement: '95th',\n  metricFilters: ['string'],\n  orderBy: 'negative_impact',\n  orderDirection: 'asc',\n  page: 0,\n  timeframe: ['string'],\n);\n\nvar_dump($page);",
+      },
       python: {
         method: 'data.metrics.list_breakdown_values',
         example:
@@ -3639,6 +4109,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.metrics.getOverallValues',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst overallValuesResponse = await client.data.metrics.getOverallValues('video_startup_time');\n\nconsole.log(overallValuesResponse.data);",
+      },
+      php: {
+        method: 'data->metrics->getOverallValues',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$overallValuesResponse = $client->data->metrics->getOverallValues(\n  'video_startup_time',\n  filters: ['string'],\n  measurement: '95th',\n  metricFilters: ['string'],\n  timeframe: ['string'],\n);\n\nvar_dump($overallValuesResponse);",
       },
       python: {
         method: 'data.metrics.get_overall_values',
@@ -3682,6 +4157,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.metrics.getInsights',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst insightsResponse = await client.data.metrics.getInsights('video_startup_time');\n\nconsole.log(insightsResponse.data);",
+      },
+      php: {
+        method: 'data->metrics->getInsights',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$insightsResponse = $client->data->metrics->getInsights(\n  'video_startup_time',\n  filters: ['string'],\n  measurement: '95th',\n  metricFilters: ['string'],\n  orderDirection: 'asc',\n  timeframe: ['string'],\n);\n\nvar_dump($insightsResponse);",
       },
       python: {
         method: 'data.metrics.get_insights',
@@ -3727,6 +4207,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst metricTimeseriesDataResponse = await client.data.metrics.getTimeseries('video_startup_time');\n\nconsole.log(metricTimeseriesDataResponse.data);",
       },
+      php: {
+        method: 'data->metrics->getTimeseries',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$metricTimeseriesDataResponse = $client->data->metrics->getTimeseries(\n  'video_startup_time',\n  filters: ['string'],\n  groupBy: 'minute',\n  measurement: '95th',\n  metricFilters: ['string'],\n  orderDirection: 'asc',\n  timeframe: ['string'],\n);\n\nvar_dump($metricTimeseriesDataResponse);",
+      },
       python: {
         method: 'data.metrics.get_timeseries',
         example:
@@ -3770,6 +4255,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeBreakdownResponse = await client.data.realTime.retrieveBreakdown(\n  'current-concurrent-viewers',\n);\n\nconsole.log(realTimeBreakdownResponse.data);",
       },
+      php: {
+        method: 'data->realTime->retrieveBreakdown',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$realTimeBreakdownResponse = $client->data->realTime->retrieveBreakdown(\n  'current-concurrent-viewers',\n  dimension: 'asn',\n  filters: ['string'],\n  orderBy: 'negative_impact',\n  orderDirection: 'asc',\n  timestamp: 0,\n);\n\nvar_dump($realTimeBreakdownResponse);",
+      },
       python: {
         method: 'data.real_time.retrieve_breakdown',
         example:
@@ -3806,6 +4296,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeTimeseriesResponse = await client.data.realTime.retrieveTimeseries(\n  'current-concurrent-viewers',\n);\n\nconsole.log(realTimeTimeseriesResponse.data);",
       },
+      php: {
+        method: 'data->realTime->retrieveTimeseries',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$realTimeTimeseriesResponse = $client->data->realTime->retrieveTimeseries(\n  'current-concurrent-viewers', filters: ['string'], timestamp: 0\n);\n\nvar_dump($realTimeTimeseriesResponse);",
+      },
       python: {
         method: 'data.real_time.retrieve_timeseries',
         example:
@@ -3840,6 +4335,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.realTime.listMetrics',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeMetricsResponse = await client.data.realTime.listMetrics();\n\nconsole.log(realTimeMetricsResponse.data);",
+      },
+      php: {
+        method: 'data->realTime->listMetrics',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$realTimeMetricsResponse = $client->data->realTime->listMetrics();\n\nvar_dump($realTimeMetricsResponse);",
       },
       python: {
         method: 'data.real_time.list_metrics',
@@ -3877,6 +4377,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeHistogramTimeseriesResponse = await client.data.realTime.retrieveHistogramTimeseries(\n  'video-startup-time',\n);\n\nconsole.log(realTimeHistogramTimeseriesResponse.data);",
       },
+      php: {
+        method: 'data->realTime->retrieveHistogramTimeseries',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$realTimeHistogramTimeseriesResponse = $client\n  ->data\n  ->realTime\n  ->retrieveHistogramTimeseries('video-startup-time', filters: ['string']);\n\nvar_dump($realTimeHistogramTimeseriesResponse);",
+      },
       python: {
         method: 'data.real_time.retrieve_histogram_timeseries',
         example:
@@ -3911,6 +4416,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.realTime.listDimensions',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst realTimeDimensionsResponse = await client.data.realTime.listDimensions();\n\nconsole.log(realTimeDimensionsResponse.data);",
+      },
+      php: {
+        method: 'data->realTime->listDimensions',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$realTimeDimensionsResponse = $client->data->realTime->listDimensions();\n\nvar_dump($realTimeDimensionsResponse);",
       },
       python: {
         method: 'data.real_time.list_dimensions',
@@ -3956,6 +4466,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const abridgedVideoView of client.data.videoViews.list()) {\n  console.log(abridgedVideoView.id);\n}",
       },
+      php: {
+        method: 'data->videoViews->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->videoViews->list(\n  errorID: 0,\n  filters: ['string'],\n  limit: 0,\n  metricFilters: ['string'],\n  orderDirection: 'asc',\n  page: 0,\n  timeframe: ['string'],\n  viewerID: 'viewer_id',\n);\n\nvar_dump($page);",
+      },
       python: {
         method: 'data.video_views.list',
         example:
@@ -3989,6 +4504,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.videoViews.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst videoViewResponse = await client.data.videoViews.retrieve('abcd1234');\n\nconsole.log(videoViewResponse.data);",
+      },
+      php: {
+        method: 'data->videoViews->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$videoViewResponse = $client->data->videoViews->retrieve('abcd1234');\n\nvar_dump($videoViewResponse);",
       },
       python: {
         method: 'data.video_views.retrieve',
@@ -4028,6 +4548,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const annotation of client.data.annotations.list()) {\n  console.log(annotation.id);\n}",
       },
+      php: {
+        method: 'data->annotations->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->data->annotations->list(\n  limit: 0, orderDirection: 'asc', page: 0, timeframe: ['string']\n);\n\nvar_dump($page);",
+      },
       python: {
         method: 'data.annotations.list',
         example:
@@ -4061,6 +4586,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.annotations.retrieve',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst annotation = await client.data.annotations.retrieve('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');\n\nconsole.log(annotation.id);",
+      },
+      php: {
+        method: 'data->annotations->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$annotation = $client->data->annotations->retrieve(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'\n);\n\nvar_dump($annotation);",
       },
       python: {
         method: 'data.annotations.retrieve',
@@ -4096,6 +4626,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst annotation = await client.data.annotations.create({\n  date: 1745438400,\n  note: 'This is a note',\n  sub_property_id: '123456',\n});\n\nconsole.log(annotation.id);",
       },
+      php: {
+        method: 'data->annotations->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$annotation = $client->data->annotations->create(\n  date: 1745438400, note: 'This is a note', subPropertyID: '123456'\n);\n\nvar_dump($annotation);",
+      },
       python: {
         method: 'data.annotations.create',
         example:
@@ -4128,6 +4663,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.data.annotations.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.data.annotations.delete('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e');",
+      },
+      php: {
+        method: 'data->annotations->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->data->annotations->delete(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'\n);\n\nvar_dump($result);",
       },
       python: {
         method: 'data.annotations.delete',
@@ -4163,6 +4703,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst annotation = await client.data.annotations.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {\n  date: 1745438400,\n  note: 'This is a note',\n  sub_property_id: '123456',\n});\n\nconsole.log(annotation.id);",
       },
+      php: {
+        method: 'data->annotations->update',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$annotation = $client->data->annotations->update(\n  '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',\n  date: 1745438400,\n  note: 'This is a note',\n  subPropertyID: '123456',\n);\n\nvar_dump($annotation);",
+      },
       python: {
         method: 'data.annotations.update',
         example:
@@ -4197,6 +4742,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst signingKey = await client.system.signingKeys.create();\n\nconsole.log(signingKey.id);",
       },
+      php: {
+        method: 'system->signingKeys->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$signingKey = $client->system->signingKeys->create();\n\nvar_dump($signingKey);",
+      },
       python: {
         method: 'system.signing_keys.create',
         example:
@@ -4230,6 +4780,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.system.signingKeys.list',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const signingKey of client.system.signingKeys.list()) {\n  console.log(signingKey.id);\n}",
+      },
+      php: {
+        method: 'system->signingKeys->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->system->signingKeys->list(limit: 0, page: 0);\n\nvar_dump($page);",
       },
       python: {
         method: 'system.signing_keys.list',
@@ -4266,6 +4821,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst signingKey = await client.system.signingKeys.retrieve('SIGNING_KEY_ID');\n\nconsole.log(signingKey.id);",
       },
+      php: {
+        method: 'system->signingKeys->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$signingKey = $client->system->signingKeys->retrieve('SIGNING_KEY_ID');\n\nvar_dump($signingKey);",
+      },
       python: {
         method: 'system.signing_keys.retrieve',
         example:
@@ -4299,6 +4859,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.system.signingKeys.delete',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.system.signingKeys.delete('SIGNING_KEY_ID');",
+      },
+      php: {
+        method: 'system->signingKeys->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->system->signingKeys->delete('SIGNING_KEY_ID');\n\nvar_dump($result);",
       },
       python: {
         method: 'system.signing_keys.delete',
@@ -4334,6 +4899,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst response = await client.system.utilities.whoami();\n\nconsole.log(response.environment_id);",
       },
+      php: {
+        method: 'system->utilities->whoami',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$response = $client->system->utilities->whoami();\n\nvar_dump($response);",
+      },
       python: {
         method: 'system.utilities.whoami',
         example:
@@ -4359,6 +4929,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'client.webhooks.unwrap',
         example:
           "import Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.webhooks.unwrap();",
+      },
+      php: {
+        method: 'webhooks->unwrap',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->webhooks->unwrap();\n\nvar_dump($result);",
       },
       python: {
         method: 'webhooks.unwrap',
@@ -4389,6 +4964,11 @@ const EMBEDDED_READMES: { language: string; content: string }[] = [
     language: 'typescript',
     content:
       "# Mux TypeScript API Library\n\n[![NPM version](https://img.shields.io/npm/v/@mux/mux-node.svg?label=npm%20(stable))](https://npmjs.org/package/@mux/mux-node) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@mux/mux-node)\n\nThis library provides convenient access to the Mux REST API from server-side TypeScript or JavaScript.\n\n\n\nThe REST API documentation can be found on [docs.mux.com](https://docs.mux.com). The full API of this library can be found in [api.md](api.md).\n\n\n\n## MCP Server\n\nUse the Mux MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40mux%2Fmcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBtdXgvbWNwIl0sImVudiI6eyJNVVhfVE9LRU5fSUQiOiJteSB0b2tlbiBpZCIsIk1VWF9UT0tFTl9TRUNSRVQiOiJteSBzZWNyZXQiLCJNVVhfV0VCSE9PS19TRUNSRVQiOiJNeSBXZWJob29rIFNlY3JldCIsIk1VWF9TSUdOSU5HX0tFWSI6Ik15IEp3dCBTaWduaW5nIEtleSIsIk1VWF9QUklWQVRFX0tFWSI6Ik15IEp3dCBQcml2YXRlIEtleSIsIk1VWF9BVVRIT1JJWkFUSU9OX1RPS0VOIjoibXkgYXV0aG9yaXphdGlvbiB0b2tlbiJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40mux%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40mux%2Fmcp%22%5D%2C%22env%22%3A%7B%22MUX_TOKEN_ID%22%3A%22my%20token%20id%22%2C%22MUX_TOKEN_SECRET%22%3A%22my%20secret%22%2C%22MUX_WEBHOOK_SECRET%22%3A%22My%20Webhook%20Secret%22%2C%22MUX_SIGNING_KEY%22%3A%22My%20Jwt%20Signing%20Key%22%2C%22MUX_PRIVATE_KEY%22%3A%22My%20Jwt%20Private%20Key%22%2C%22MUX_AUTHORIZATION_TOKEN%22%3A%22my%20authorization%20token%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\n## Installation\n\n```sh\nnpm install @mux/mux-node\n```\n\n\n\n## Usage\n\nThe full API of this library can be found in [api.md](api.md).\n\n<!-- prettier-ignore -->\n```js\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst asset = await client.video.assets.create({\n  inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n  playback_policies: ['public'],\n});\n\nconsole.log(asset.id);\n```\n\n\n\n### Request & Response types\n\nThis library includes TypeScript definitions for all request params and response fields. You may import and use them like so:\n\n<!-- prettier-ignore -->\n```ts\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst params: Mux.Video.AssetCreateParams = {\n  inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n  playback_policies: ['public'],\n};\nconst asset: Mux.Video.Asset = await client.video.assets.create(params);\n```\n\nDocumentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.\n\n\n\n\n\n## Handling errors\n\nWhen the library is unable to connect to the API,\nor if the API returns a non-success status code (i.e., 4xx or 5xx response),\na subclass of `APIError` will be thrown:\n\n<!-- prettier-ignore -->\n```ts\nconst liveStream = await client.video.liveStreams\n  .create({ playback_policies: ['public'] })\n  .catch(async (err) => {\n    if (err instanceof Mux.APIError) {\n      console.log(err.status); // 400\n      console.log(err.name); // BadRequestError\n      console.log(err.headers); // {server: 'nginx', ...}\n    } else {\n      throw err;\n    }\n  });\n```\n\nError codes are as follows:\n\n| Status Code | Error Type                 |\n| ----------- | -------------------------- |\n| 400         | `BadRequestError`          |\n| 401         | `AuthenticationError`      |\n| 403         | `PermissionDeniedError`    |\n| 404         | `NotFoundError`            |\n| 422         | `UnprocessableEntityError` |\n| 429         | `RateLimitError`           |\n| >=500       | `InternalServerError`      |\n| N/A         | `APIConnectionError`       |\n\n### Retries\n\nCertain errors will be automatically retried 2 times by default, with a short exponential backoff.\nConnection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict,\n429 Rate Limit, and >=500 Internal errors will all be retried by default.\n\nYou can use the `maxRetries` option to configure or disable this:\n\n<!-- prettier-ignore -->\n```js\n// Configure the default for all requests:\nconst client = new Mux({\n  maxRetries: 0, // default is 2\n});\n\n// Or, configure per-request:\nawait client.video.assets.retrieve('t02rm...', {\n  maxRetries: 5,\n});\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default. You can configure this with a `timeout` option:\n\n<!-- prettier-ignore -->\n```ts\n// Configure the default for all requests:\nconst client = new Mux({\n  timeout: 20 * 1000, // 20 seconds (default is 1 minute)\n});\n\n// Override per-request:\nawait client.video.assets.retrieve('t02rm...', {\n  timeout: 5 * 1000,\n});\n```\n\nOn timeout, an `APIConnectionTimeoutError` is thrown.\n\nNote that requests which time out will be [retried twice by default](#retries).\n\n## Auto-pagination\n\nList methods in the Mux API are paginated.\nYou can use the `for await … of` syntax to iterate through items across all pages:\n\n```ts\nasync function fetchAllDeliveryReports(params) {\n  const allDeliveryReports = [];\n  // Automatically fetches more pages as needed.\n  for await (const deliveryReport of client.video.deliveryUsage.list()) {\n    allDeliveryReports.push(deliveryReport);\n  }\n  return allDeliveryReports;\n}\n```\n\nAlternatively, you can request a single page at a time:\n\n```ts\nlet page = await client.video.deliveryUsage.list();\nfor (const deliveryReport of page.data) {\n  console.log(deliveryReport);\n}\n\n// Convenience methods are provided for manually paginating:\nwhile (page.hasNextPage()) {\n  page = await page.getNextPage();\n  // ...\n}\n```\n\n\n\n## Advanced Usage\n\n### Accessing raw Response data (e.g., headers)\n\nThe \"raw\" `Response` returned by `fetch()` can be accessed through the `.asResponse()` method on the `APIPromise` type that all methods return.\nThis method returns as soon as the headers for a successful response are received and does not consume the response body, so you are free to write custom parsing or streaming logic.\n\nYou can also use the `.withResponse()` method to get the raw `Response` along with the parsed data.\nUnlike `.asResponse()` this method consumes the body, returning once it is parsed.\n\n<!-- prettier-ignore -->\n```ts\nconst client = new Mux();\n\nconst response = await client.video.assets\n  .create({\n    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n    playback_policies: ['public'],\n  })\n  .asResponse();\nconsole.log(response.headers.get('X-My-Header'));\nconsole.log(response.statusText); // access the underlying Response object\n\nconst { data: asset, response: raw } = await client.video.assets\n  .create({\n    inputs: [{ url: 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4' }],\n    playback_policies: ['public'],\n  })\n  .withResponse();\nconsole.log(raw.headers.get('X-My-Header'));\nconsole.log(asset.id);\n```\n\n### Logging\n\n> [!IMPORTANT]\n> All log messages are intended for debugging only. The format and content of log messages\n> may change between releases.\n\n#### Log levels\n\nThe log level can be configured in two ways:\n\n1. Via the `MUX_LOG` environment variable\n2. Using the `logLevel` client option (overrides the environment variable if set)\n\n```ts\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  logLevel: 'debug', // Show all log messages\n});\n```\n\nAvailable log levels, from most to least verbose:\n\n- `'debug'` - Show debug messages, info, warnings, and errors\n- `'info'` - Show info messages, warnings, and errors\n- `'warn'` - Show warnings and errors (default)\n- `'error'` - Show only errors\n- `'off'` - Disable all logging\n\nAt the `'debug'` level, all HTTP requests and responses are logged, including headers and bodies.\nSome authentication-related headers are redacted, but sensitive data in request and response bodies\nmay still be visible.\n\n#### Custom logger\n\nBy default, this library logs to `globalThis.console`. You can also provide a custom logger.\nMost logging libraries are supported, including [pino](https://www.npmjs.com/package/pino), [winston](https://www.npmjs.com/package/winston), [bunyan](https://www.npmjs.com/package/bunyan), [consola](https://www.npmjs.com/package/consola), [signale](https://www.npmjs.com/package/signale), and [@std/log](https://jsr.io/@std/log). If your logger doesn't work, please open an issue.\n\nWhen providing a custom logger, the `logLevel` option still controls which messages are emitted, messages\nbelow the configured level will not be sent to your logger.\n\n```ts\nimport Mux from '@mux/mux-node';\nimport pino from 'pino';\n\nconst logger = pino();\n\nconst client = new Mux({\n  logger: logger.child({ name: 'Mux' }),\n  logLevel: 'debug', // Send all messages to pino, allowing it to filter\n});\n```\n\n### Making custom/undocumented requests\n\nThis library is typed for convenient access to the documented API. If you need to access undocumented\nendpoints, params, or response properties, the library can still be used.\n\n#### Undocumented endpoints\n\nTo make requests to undocumented endpoints, you can use `client.get`, `client.post`, and other HTTP verbs.\nOptions on the client, such as retries, will be respected when making these requests.\n\n```ts\nawait client.post('/some/path', {\n  body: { some_prop: 'foo' },\n  query: { some_query_arg: 'bar' },\n});\n```\n\n#### Undocumented request params\n\nTo make requests using undocumented parameters, you may use `// @ts-expect-error` on the undocumented\nparameter. This library doesn't validate at runtime that the request matches the type, so any extra values you\nsend will be sent as-is.\n\n```ts\nclient.video.assets.create({\n  // ...\n  // @ts-expect-error baz is not yet public\n  baz: 'undocumented option',\n});\n```\n\nFor requests with the `GET` verb, any extra params will be in the query, all other requests will send the\nextra param in the body.\n\nIf you want to explicitly send an extra argument, you can do so with the `query`, `body`, and `headers` request\noptions.\n\n#### Undocumented response properties\n\nTo access undocumented response properties, you may access the response object with `// @ts-expect-error` on\nthe response object, or cast the response object to the requisite type. Like the request params, we do not\nvalidate or strip extra properties from the response from the API.\n\n### Customizing the fetch client\n\nBy default, this library expects a global `fetch` function is defined.\n\nIf you want to use a different `fetch` function, you can either polyfill the global:\n\n```ts\nimport fetch from 'my-fetch';\n\nglobalThis.fetch = fetch;\n```\n\nOr pass it to the client:\n\n```ts\nimport Mux from '@mux/mux-node';\nimport fetch from 'my-fetch';\n\nconst client = new Mux({ fetch });\n```\n\n### Fetch options\n\nIf you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)\n\n```ts\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  fetchOptions: {\n    // `RequestInit` options\n  },\n});\n```\n\n#### Configuring proxies\n\nTo modify proxy behavior, you can provide custom `fetchOptions` that add runtime-specific proxy\noptions to requests:\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg\" align=\"top\" width=\"18\" height=\"21\"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>\n\n```ts\nimport Mux from '@mux/mux-node';\nimport * as undici from 'undici';\n\nconst proxyAgent = new undici.ProxyAgent('http://localhost:8888');\nconst client = new Mux({\n  fetchOptions: {\n    dispatcher: proxyAgent,\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg\" align=\"top\" width=\"18\" height=\"21\"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>\n\n```ts\nimport Mux from '@mux/mux-node';\n\nconst client = new Mux({\n  fetchOptions: {\n    proxy: 'http://localhost:8888',\n  },\n});\n```\n\n<img src=\"https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg\" align=\"top\" width=\"18\" height=\"21\"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>\n\n```ts\nimport Mux from 'npm:@mux/mux-node';\n\nconst httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });\nconst client = new Mux({\n  fetchOptions: {\n    client: httpClient,\n  },\n});\n```\n\n## Frequently Asked Questions\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes that only affect static types, without breaking runtime behavior.\n2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n3. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/muxinc/mux-node-sdk/issues) with questions, bugs, or suggestions.\n\n## Requirements\n\nTypeScript >= 4.9 is supported.\n\nThe following runtimes are supported:\n\n- Web browsers (Up-to-date Chrome, Firefox, Safari, Edge, and more)\n- Node.js 20 LTS or later ([non-EOL](https://endoflife.date/nodejs)) versions.\n- Deno v1.28.0 or higher.\n- Bun 1.0 or later.\n- Cloudflare Workers.\n- Vercel Edge Runtime.\n- Jest 28 or greater with the `\"node\"` environment (`\"jsdom\"` is not supported at this time).\n- Nitro v2.6 or greater.\n\nNote that React Native is not supported at this time.\n\nIf you are interested in other runtime environments, please open or upvote an issue on GitHub.\n\n## Contributing\n\nSee [the contributing documentation](./CONTRIBUTING.md).\n",
+  },
+  {
+    language: 'php',
+    content:
+      '# Mux PHP API Library\n\nThe Mux PHP library provides convenient access to the Mux REST API from any PHP 8.1.0+ application.\n\n## Installation\n\nTo use this package, install via Composer by adding the following to your application\'s `composer.json`:\n\n```json\n{\n  "repositories": [\n    {\n      "type": "vcs",\n      "url": "git@github.com:stainless-sdks/mux-php.git"\n    }\n  ],\n  "require": {\n    "mux/mux": "dev-main"\n  }\n}\n```\n\n## Usage\n\n```php\n<?php\n\n$client = new Client(\n  tokenId: getenv(\'MUX_TOKEN_ID\') ?: \'my token id\',\n  tokenSecret: getenv(\'MUX_TOKEN_SECRET\') ?: \'my secret\',\n);\n\n$asset = $client->video->assets->create(\n  inputs: [\n    [\'url\' => \'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4\']\n  ],\n  playbackPolicies: [PlaybackPolicy::PUBLIC],\n);\n\nvar_dump($asset->id);\n```',
   },
 ];
 
