@@ -12,3 +12,4 @@ dist-deno
 .DS_Store
 dist-bundle
 *.mcpb
+oidc
