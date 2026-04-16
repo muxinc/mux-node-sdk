@@ -87,6 +87,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --input '{}'",
       },
+      csharp: {
+        method: 'Video.Assets.Create',
+        example:
+          'AssetCreateParams parameters = new()\n{\n    Inputs =\n    [\n        new()\n        {\n            ClosedCaptions = true,\n            EndTime = 0,\n            GeneratedSubtitles =\n            [\n                new()\n                {\n                    LanguageCode = LanguageCode.En,\n                    Name = "name",\n                    Passthrough = "passthrough",\n                },\n            ],\n            LanguageCode = "language_code",\n            Name = "name",\n            OverlaySettings = new()\n            {\n                Height = "height",\n                HorizontalAlign = HorizontalAlign.Left,\n                HorizontalMargin = "horizontal_margin",\n                Opacity = "opacity",\n                VerticalAlign = VerticalAlign.Top,\n                VerticalMargin = "vertical_margin",\n                Width = "width",\n            },\n            Passthrough = "passthrough",\n            StartTime = 0,\n            TextType = TextType.Subtitles,\n            Type = Type.Video,\n            Url = "https://muxed.s3.amazonaws.com/leds.mp4",\n        },\n    ],\n};\n\nvar asset = await client.Video.Assets.Create(parameters);\n\nConsole.WriteLine(asset);',
+      },
       go: {
         method: 'client.Video.Assets.New',
         example:
@@ -157,6 +162,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'assets list',
         example: "mux-cli video:assets list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Video.Assets.List',
+        example:
+          'AssetListParams parameters = new();\n\nvar page = await client.Video.Assets.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Video.Assets.List',
         example:
@@ -222,6 +232,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID",
       },
+      csharp: {
+        method: 'Video.Assets.Retrieve',
+        example:
+          'AssetRetrieveParams parameters = new() { AssetId = "ASSET_ID" };\n\nvar asset = await client.Video.Assets.Retrieve(parameters);\n\nConsole.WriteLine(asset);',
+      },
       go: {
         method: 'client.Video.Assets.Get',
         example:
@@ -284,6 +299,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'assets delete',
         example:
           "mux-cli video:assets delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID",
+      },
+      csharp: {
+        method: 'Video.Assets.Delete',
+        example:
+          'AssetDeleteParams parameters = new() { AssetId = "ASSET_ID" };\n\nawait client.Video.Assets.Delete(parameters);',
       },
       go: {
         method: 'client.Video.Assets.Delete',
@@ -355,6 +375,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets update \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID",
       },
+      csharp: {
+        method: 'Video.Assets.Update',
+        example:
+          'AssetUpdateParams parameters = new() { AssetId = "ASSET_ID" };\n\nvar asset = await client.Video.Assets.Update(parameters);\n\nConsole.WriteLine(asset);',
+      },
       go: {
         method: 'client.Video.Assets.Update',
         example:
@@ -418,6 +443,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'assets retrieve_playback_id',
         example:
           "mux-cli video:assets retrieve-playback-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --playback-id PLAYBACK_ID",
+      },
+      csharp: {
+        method: 'Video.Assets.retrievePlaybackId',
+        example:
+          'AssetretrievePlaybackIdParams parameters = new()\n{\n    AssetId = "ASSET_ID",\n    PlaybackId = "PLAYBACK_ID",\n};\n\nvar playbackId = await client.Video.Assets.retrievePlaybackId(parameters);\n\nConsole.WriteLine(playbackId);',
       },
       go: {
         method: 'client.Video.Assets.GetPlaybackId',
@@ -483,6 +513,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets create-playback-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID",
       },
+      csharp: {
+        method: 'Video.Assets.CreatePlaybackId',
+        example:
+          'AssetCreatePlaybackIdParams parameters = new() { AssetId = "ASSET_ID" };\n\nvar playbackId = await client.Video.Assets.CreatePlaybackId(parameters);\n\nConsole.WriteLine(playbackId);',
+      },
       go: {
         method: 'client.Video.Assets.NewPlaybackId',
         example:
@@ -546,6 +581,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'assets delete_playback_id',
         example:
           "mux-cli video:assets delete-playback-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --playback-id PLAYBACK_ID",
+      },
+      csharp: {
+        method: 'Video.Assets.deletePlaybackId',
+        example:
+          'AssetdeletePlaybackIdParams parameters = new()\n{\n    AssetId = "ASSET_ID",\n    PlaybackId = "PLAYBACK_ID",\n};\n\nawait client.Video.Assets.deletePlaybackId(parameters);',
       },
       go: {
         method: 'client.Video.Assets.deletePlaybackId',
@@ -622,6 +662,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets create-track \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --language-code en-US \\\n  --type text \\\n  --url https://example.com/myVideo_en.srt",
       },
+      csharp: {
+        method: 'Video.Assets.CreateTrack',
+        example:
+          'AssetCreateTrackParams parameters = new()\n{\n    AssetId = "ASSET_ID",\n    LanguageCode = "en-US",\n    Type = Type.Text,\n    Url = "https://example.com/myVideo_en.srt",\n};\n\nvar track = await client.Video.Assets.CreateTrack(parameters);\n\nConsole.WriteLine(track);',
+      },
       go: {
         method: 'client.Video.Assets.NewTrack',
         example:
@@ -685,6 +730,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'assets delete_track',
         example:
           "mux-cli video:assets delete-track \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --track-id TRACK_ID",
+      },
+      csharp: {
+        method: 'Video.Assets.DeleteTrack',
+        example:
+          'AssetDeleteTrackParams parameters = new()\n{\n    AssetId = "ASSET_ID",\n    TrackId = "TRACK_ID",\n};\n\nawait client.Video.Assets.DeleteTrack(parameters);',
       },
       go: {
         method: 'client.Video.Assets.DeleteTrack',
@@ -756,6 +806,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets generate-subtitles \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --track-id TRACK_ID \\\n  --generated-subtitle '{}'",
       },
+      csharp: {
+        method: 'Video.Assets.GenerateSubtitles',
+        example:
+          'AssetGenerateSubtitlesParams parameters = new()\n{\n    AssetId = "ASSET_ID",\n    TrackId = "TRACK_ID",\n    GeneratedSubtitles =\n    [\n        new()\n        {\n            LanguageCode = LanguageCode.En,\n            Name = "English (generated)",\n            Passthrough = "English (generated)",\n        },\n    ],\n};\n\nvar tracks = await client.Video.Assets.GenerateSubtitles(parameters);\n\nConsole.WriteLine(tracks);',
+      },
       go: {
         method: 'client.Video.Assets.GenerateSubtitles',
         example:
@@ -821,6 +876,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'assets retrieve_input_info',
         example:
           "mux-cli video:assets retrieve-input-info \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID",
+      },
+      csharp: {
+        method: 'Video.Assets.RetrieveInputInfo',
+        example:
+          'AssetRetrieveInputInfoParams parameters = new() { AssetId = "ASSET_ID" };\n\nvar inputInfos = await client.Video.Assets.RetrieveInputInfo(parameters);\n\nConsole.WriteLine(inputInfos);',
       },
       go: {
         method: 'client.Video.Assets.GetInputInfo',
@@ -891,6 +951,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets update-mp4-support \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --mp4-support capped-1080p",
       },
+      csharp: {
+        method: 'Video.Assets.UpdateMp4Support',
+        example:
+          'AssetUpdateMp4SupportParams parameters = new()\n{\n    AssetId = "ASSET_ID",\n    Mp4Support = Mp4Support.Capped1080p,\n};\n\nvar asset = await client.Video.Assets.UpdateMp4Support(parameters);\n\nConsole.WriteLine(asset);',
+      },
       go: {
         method: 'client.Video.Assets.UpdateMP4Support',
         example:
@@ -956,6 +1021,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'assets update_master_access',
         example:
           "mux-cli video:assets update-master-access \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --master-access temporary",
+      },
+      csharp: {
+        method: 'Video.Assets.UpdateMasterAccess',
+        example:
+          'AssetUpdateMasterAccessParams parameters = new()\n{\n    AssetId = "ASSET_ID",\n    MasterAccess = MasterAccess.Temporary,\n};\n\nvar asset = await client.Video.Assets.UpdateMasterAccess(parameters);\n\nConsole.WriteLine(asset);',
       },
       go: {
         method: 'client.Video.Assets.UpdateMasterAccess',
@@ -1026,6 +1096,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:assets create-static-rendition \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --resolution highest",
       },
+      csharp: {
+        method: 'Video.Assets.CreateStaticRendition',
+        example:
+          'AssetCreateStaticRenditionParams parameters = new()\n{\n    AssetId = "ASSET_ID",\n    Resolution = Resolution.Highest,\n};\n\nvar response = await client.Video.Assets.CreateStaticRendition(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Assets.NewStaticRendition',
         example:
@@ -1088,6 +1163,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'assets delete_static_rendition',
         example:
           "mux-cli video:assets delete-static-rendition \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --asset-id ASSET_ID \\\n  --static-rendition-id STATIC_RENDITION_ID",
+      },
+      csharp: {
+        method: 'Video.Assets.DeleteStaticRendition',
+        example:
+          'AssetDeleteStaticRenditionParams parameters = new()\n{\n    AssetId = "ASSET_ID",\n    StaticRenditionId = "STATIC_RENDITION_ID",\n};\n\nawait client.Video.Assets.DeleteStaticRendition(parameters);',
       },
       go: {
         method: 'client.Video.Assets.DeleteStaticRendition',
@@ -1160,6 +1240,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'delivery_usage list',
         example:
           "mux-cli video:delivery-usage list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
+      },
+      csharp: {
+        method: 'Video.DeliveryUsage.List',
+        example:
+          'DeliveryUsageListParams parameters = new();\n\nvar page = await client.Video.DeliveryUsage.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
       go: {
         method: 'client.Video.DeliveryUsage.List',
@@ -1246,6 +1331,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Video.LiveStreams.Create',
+        example:
+          'LiveStreamCreateParams parameters = new();\n\nvar liveStream = await client.Video.LiveStreams.Create(parameters);\n\nConsole.WriteLine(liveStream);',
+      },
       go: {
         method: 'client.Video.LiveStreams.New',
         example:
@@ -1316,6 +1406,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Video.LiveStreams.List',
+        example:
+          'LiveStreamListParams parameters = new();\n\nvar page = await client.Video.LiveStreams.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Video.LiveStreams.List',
         example:
@@ -1381,6 +1476,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.Retrieve',
+        example:
+          'LiveStreamRetrieveParams parameters = new() { LiveStreamId = "LIVE_STREAM_ID" };\n\nvar liveStream = await client.Video.LiveStreams.Retrieve(parameters);\n\nConsole.WriteLine(liveStream);',
+      },
       go: {
         method: 'client.Video.LiveStreams.Get',
         example:
@@ -1444,6 +1544,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'live_streams delete',
         example:
           "mux-cli video:live-streams delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
+      },
+      csharp: {
+        method: 'Video.LiveStreams.Delete',
+        example:
+          'LiveStreamDeleteParams parameters = new() { LiveStreamId = "LIVE_STREAM_ID" };\n\nawait client.Video.LiveStreams.Delete(parameters);',
       },
       go: {
         method: 'client.Video.LiveStreams.Delete',
@@ -1521,6 +1626,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams update \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.Update',
+        example:
+          'LiveStreamUpdateParams parameters = new() { LiveStreamId = "LIVE_STREAM_ID" };\n\nvar liveStream = await client.Video.LiveStreams.Update(parameters);\n\nConsole.WriteLine(liveStream);',
+      },
       go: {
         method: 'client.Video.LiveStreams.Update',
         example:
@@ -1590,6 +1700,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams create-playback-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.CreatePlaybackId',
+        example:
+          'LiveStreamCreatePlaybackIdParams parameters = new()\n{\n    LiveStreamId = "LIVE_STREAM_ID"\n};\n\nvar playbackId = await client.Video.LiveStreams.CreatePlaybackId(parameters);\n\nConsole.WriteLine(playbackId);',
+      },
       go: {
         method: 'client.Video.LiveStreams.NewPlaybackId',
         example:
@@ -1655,6 +1770,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams retrieve-playback-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID \\\n  --playback-id PLAYBACK_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.retrievePlaybackId',
+        example:
+          'LiveStreamretrievePlaybackIdParams parameters = new()\n{\n    LiveStreamId = "LIVE_STREAM_ID",\n    PlaybackId = "PLAYBACK_ID",\n};\n\nvar playbackId = await client.Video.LiveStreams.retrievePlaybackId(parameters);\n\nConsole.WriteLine(playbackId);',
+      },
       go: {
         method: 'client.Video.LiveStreams.GetPlaybackId',
         example:
@@ -1718,6 +1838,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'live_streams delete_playback_id',
         example:
           "mux-cli video:live-streams delete-playback-id \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID \\\n  --playback-id PLAYBACK_ID",
+      },
+      csharp: {
+        method: 'Video.LiveStreams.deletePlaybackId',
+        example:
+          'LiveStreamdeletePlaybackIdParams parameters = new()\n{\n    LiveStreamId = "LIVE_STREAM_ID",\n    PlaybackId = "PLAYBACK_ID",\n};\n\nawait client.Video.LiveStreams.deletePlaybackId(parameters);',
       },
       go: {
         method: 'client.Video.LiveStreams.deletePlaybackId',
@@ -1785,6 +1910,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams reset-stream-key \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.ResetStreamKey',
+        example:
+          'LiveStreamResetStreamKeyParams parameters = new()\n{\n    LiveStreamId = "LIVE_STREAM_ID"\n};\n\nvar liveStream = await client.Video.LiveStreams.ResetStreamKey(parameters);\n\nConsole.WriteLine(liveStream);',
+      },
       go: {
         method: 'client.Video.LiveStreams.ResetStreamKey',
         example:
@@ -1848,6 +1978,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'live_streams complete',
         example:
           "mux-cli video:live-streams complete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
+      },
+      csharp: {
+        method: 'Video.LiveStreams.Complete',
+        example:
+          'LiveStreamCompleteParams parameters = new() { LiveStreamId = "LIVE_STREAM_ID" };\n\nawait client.Video.LiveStreams.Complete(parameters);',
       },
       go: {
         method: 'client.Video.LiveStreams.Complete',
@@ -1913,6 +2048,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams disable \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.Disable',
+        example:
+          'LiveStreamDisableParams parameters = new() { LiveStreamId = "LIVE_STREAM_ID" };\n\nawait client.Video.LiveStreams.Disable(parameters);',
+      },
       go: {
         method: 'client.Video.LiveStreams.Disable',
         example:
@@ -1975,6 +2115,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'live_streams enable',
         example:
           "mux-cli video:live-streams enable \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
+      },
+      csharp: {
+        method: 'Video.LiveStreams.Enable',
+        example:
+          'LiveStreamEnableParams parameters = new() { LiveStreamId = "LIVE_STREAM_ID" };\n\nawait client.Video.LiveStreams.Enable(parameters);',
       },
       go: {
         method: 'client.Video.LiveStreams.Enable',
@@ -2045,6 +2190,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams update-embedded-subtitles \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.UpdateEmbeddedSubtitles',
+        example:
+          'LiveStreamUpdateEmbeddedSubtitlesParams parameters = new()\n{\n    LiveStreamId = "LIVE_STREAM_ID"\n};\n\nvar liveStream = await client.Video.LiveStreams.UpdateEmbeddedSubtitles(parameters);\n\nConsole.WriteLine(liveStream);',
+      },
       go: {
         method: 'client.Video.LiveStreams.UpdateEmbeddedSubtitles',
         example:
@@ -2114,6 +2264,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams update-generated-subtitles \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
       },
+      csharp: {
+        method: 'Video.LiveStreams.UpdateGeneratedSubtitles',
+        example:
+          'LiveStreamUpdateGeneratedSubtitlesParams parameters = new()\n{\n    LiveStreamId = "LIVE_STREAM_ID"\n};\n\nvar liveStream = await client.Video.LiveStreams.UpdateGeneratedSubtitles(parameters);\n\nConsole.WriteLine(liveStream);',
+      },
       go: {
         method: 'client.Video.LiveStreams.UpdateGeneratedSubtitles',
         example:
@@ -2180,6 +2335,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams create-simulcast-target \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID \\\n  --url rtmp://live.example.com/app",
       },
+      csharp: {
+        method: 'Video.LiveStreams.CreateSimulcastTarget',
+        example:
+          'LiveStreamCreateSimulcastTargetParams parameters = new()\n{\n    LiveStreamId = "LIVE_STREAM_ID",\n    Url = "rtmp://live.example.com/app",\n};\n\nvar simulcastTarget = await client.Video.LiveStreams.CreateSimulcastTarget(parameters);\n\nConsole.WriteLine(simulcastTarget);',
+      },
       go: {
         method: 'client.Video.LiveStreams.NewSimulcastTarget',
         example:
@@ -2243,6 +2403,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'live_streams delete_simulcast_target',
         example:
           "mux-cli video:live-streams delete-simulcast-target \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID \\\n  --simulcast-target-id SIMULCAST_TARGET_ID",
+      },
+      csharp: {
+        method: 'Video.LiveStreams.DeleteSimulcastTarget',
+        example:
+          'LiveStreamDeleteSimulcastTargetParams parameters = new()\n{\n    LiveStreamId = "LIVE_STREAM_ID",\n    simulcasttargetid = "SIMULCAST_TARGET_ID",\n};\n\nawait client.Video.LiveStreams.DeleteSimulcastTarget(parameters);',
       },
       go: {
         method: 'client.Video.LiveStreams.DeleteSimulcastTarget',
@@ -2309,6 +2474,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'live_streams retrieve_simulcast_target',
         example:
           "mux-cli video:live-streams retrieve-simulcast-target \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID \\\n  --simulcast-target-id SIMULCAST_TARGET_ID",
+      },
+      csharp: {
+        method: 'Video.LiveStreams.RetrieveSimulcastTarget',
+        example:
+          'LiveStreamRetrieveSimulcastTargetParams parameters = new()\n{\n    LiveStreamId = "LIVE_STREAM_ID",\n    simulcasttargetid = "SIMULCAST_TARGET_ID",\n};\n\nvar simulcastTarget = await client.Video.LiveStreams.RetrieveSimulcastTarget(parameters);\n\nConsole.WriteLine(simulcastTarget);',
       },
       go: {
         method: 'client.Video.LiveStreams.GetSimulcastTarget',
@@ -2379,6 +2549,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:live-streams update-new-asset-settings-static-renditions \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID \\\n  --static-rendition '{resolution: audio-only}' \\\n  --static-rendition '{resolution: highest}'",
       },
+      csharp: {
+        method: 'Video.LiveStreams.UpdateNewAssetSettingsStaticRenditions',
+        example:
+          'LiveStreamUpdateNewAssetSettingsStaticRenditionsParams parameters = new()\n{\n    LiveStreamId = "LIVE_STREAM_ID",\n    StaticRenditions =\n    [\n        new()\n        {\n            Resolution = Resolution.AudioOnly,\n            Passthrough = "passthrough",\n        },\n        new()\n        {\n            Resolution = Resolution.Highest,\n            Passthrough = "passthrough",\n        },\n    ],\n};\n\nvar liveStream = await client.Video.LiveStreams.UpdateNewAssetSettingsStaticRenditions(parameters);\n\nConsole.WriteLine(liveStream);',
+      },
       go: {
         method: 'client.Video.LiveStreams.UpdateNewAssetSettingsStaticRenditions',
         example:
@@ -2442,6 +2617,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'live_streams delete_new_asset_settings_static_renditions',
         example:
           "mux-cli video:live-streams delete-new-asset-settings-static-renditions \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --live-stream-id LIVE_STREAM_ID",
+      },
+      csharp: {
+        method: 'Video.LiveStreams.DeleteNewAssetSettingsStaticRenditions',
+        example:
+          'LiveStreamDeleteNewAssetSettingsStaticRenditionsParams parameters = new()\n{\n    LiveStreamId = "LIVE_STREAM_ID"\n};\n\nawait client.Video.LiveStreams.DeleteNewAssetSettingsStaticRenditions(parameters);',
       },
       go: {
         method: 'client.Video.LiveStreams.DeleteNewAssetSettingsStaticRenditions',
@@ -2507,6 +2687,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'playback_ids retrieve',
         example:
           "mux-cli video:playback-ids retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID",
+      },
+      csharp: {
+        method: 'Video.PlaybackIds.Retrieve',
+        example:
+          'PlaybackIdsRetrieveParams parameters = new() { PlaybackId = "PLAYBACK_ID" };\n\nvar playbackIds = await client.Video.PlaybackIds.Retrieve(parameters);\n\nConsole.WriteLine(playbackIds);',
       },
       go: {
         method: 'client.Video.PlaybackIds.Get',
@@ -2576,6 +2761,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback-restrictions create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --referrer \"{allowed_domains: ['*.example.com']}\" \\\n  --user-agent '{}'",
       },
+      csharp: {
+        method: 'Video.PlaybackRestrictions.Create',
+        example:
+          'PlaybackRestrictionCreateParams parameters = new()\n{\n    Referrer = new()\n    {\n        AllowedDomains =\n        [\n            "*.example.com"\n        ],\n        AllowNoReferrer = true,\n    },\n    UserAgent = new()\n    {\n        AllowHighRiskUserAgent = false,\n        AllowNoUserAgent = false,\n    },\n};\n\nvar playbackRestriction = await client.Video.PlaybackRestrictions.Create(parameters);\n\nConsole.WriteLine(playbackRestriction);',
+      },
       go: {
         method: 'client.Video.PlaybackRestrictions.New',
         example:
@@ -2641,6 +2831,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback-restrictions list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Video.PlaybackRestrictions.List',
+        example:
+          'PlaybackRestrictionListParams parameters = new();\n\nvar page = await client.Video.PlaybackRestrictions.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Video.PlaybackRestrictions.List',
         example:
@@ -2703,6 +2898,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'playback_restrictions delete',
         example:
           "mux-cli video:playback-restrictions delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-restriction-id PLAYBACK_RESTRICTION_ID",
+      },
+      csharp: {
+        method: 'Video.PlaybackRestrictions.Delete',
+        example:
+          'PlaybackRestrictionDeleteParams parameters = new()\n{\n    PlaybackRestrictionID = "PLAYBACK_RESTRICTION_ID"\n};\n\nawait client.Video.PlaybackRestrictions.Delete(parameters);',
       },
       go: {
         method: 'client.Video.PlaybackRestrictions.Delete',
@@ -2768,6 +2968,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'playback_restrictions retrieve',
         example:
           "mux-cli video:playback-restrictions retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-restriction-id PLAYBACK_RESTRICTION_ID",
+      },
+      csharp: {
+        method: 'Video.PlaybackRestrictions.Retrieve',
+        example:
+          'PlaybackRestrictionRetrieveParams parameters = new()\n{\n    PlaybackRestrictionID = "PLAYBACK_RESTRICTION_ID"\n};\n\nvar playbackRestriction = await client.Video.PlaybackRestrictions.Retrieve(parameters);\n\nConsole.WriteLine(playbackRestriction);',
       },
       go: {
         method: 'client.Video.PlaybackRestrictions.Get',
@@ -2839,6 +3044,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback-restrictions update-referrer \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-restriction-id PLAYBACK_RESTRICTION_ID \\\n  --allowed-domain \"'*.example.com'\"",
       },
+      csharp: {
+        method: 'Video.PlaybackRestrictions.UpdateReferrer',
+        example:
+          'PlaybackRestrictionUpdateReferrerParams parameters = new()\n{\n    PlaybackRestrictionID = "PLAYBACK_RESTRICTION_ID",\n    AllowedDomains =\n    [\n        "*.example.com"\n    ],\n};\n\nvar playbackRestriction = await client.Video.PlaybackRestrictions.UpdateReferrer(parameters);\n\nConsole.WriteLine(playbackRestriction);',
+      },
       go: {
         method: 'client.Video.PlaybackRestrictions.UpdateReferrer',
         example:
@@ -2909,6 +3119,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback-restrictions update-user-agent \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-restriction-id PLAYBACK_RESTRICTION_ID \\\n  --allow-high-risk-user-agent=false \\\n  --allow-no-user-agent=false",
       },
+      csharp: {
+        method: 'Video.PlaybackRestrictions.UpdateUserAgent',
+        example:
+          'PlaybackRestrictionUpdateUserAgentParams parameters = new()\n{\n    PlaybackRestrictionID = "PLAYBACK_RESTRICTION_ID",\n    AllowHighRiskUserAgent = false,\n    AllowNoUserAgent = false,\n};\n\nvar playbackRestriction = await client.Video.PlaybackRestrictions.UpdateUserAgent(parameters);\n\nConsole.WriteLine(playbackRestriction);',
+      },
       go: {
         method: 'client.Video.PlaybackRestrictions.UpdateUserAgent',
         example:
@@ -2975,6 +3190,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:transcription-vocabularies retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --transcription-vocabulary-id TRANSCRIPTION_VOCABULARY_ID",
       },
+      csharp: {
+        method: 'Video.TranscriptionVocabularies.Retrieve',
+        example:
+          'TranscriptionVocabularyRetrieveParams parameters = new()\n{\n    TranscriptionVocabularyID = "TRANSCRIPTION_VOCABULARY_ID"\n};\n\nvar transcriptionVocabulary = await client.Video.TranscriptionVocabularies.Retrieve(parameters);\n\nConsole.WriteLine(transcriptionVocabulary);',
+      },
       go: {
         method: 'client.Video.TranscriptionVocabularies.Get',
         example:
@@ -3040,6 +3260,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:transcription-vocabularies create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --phrase Mux \\\n  --phrase 'Live Stream' \\\n  --phrase 'Playback ID' \\\n  --phrase 'video encoding'",
       },
+      csharp: {
+        method: 'Video.TranscriptionVocabularies.Create',
+        example:
+          'TranscriptionVocabularyCreateParams parameters = new()\n{\n    Phrases =\n    [\n        "Mux", "Live Stream", "Playback ID", "video encoding"\n    ],\n};\n\nvar transcriptionVocabulary = await client.Video.TranscriptionVocabularies.Create(parameters);\n\nConsole.WriteLine(transcriptionVocabulary);',
+      },
       go: {
         method: 'client.Video.TranscriptionVocabularies.New',
         example:
@@ -3103,6 +3328,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'transcription_vocabularies delete',
         example:
           "mux-cli video:transcription-vocabularies delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --transcription-vocabulary-id TRANSCRIPTION_VOCABULARY_ID",
+      },
+      csharp: {
+        method: 'Video.TranscriptionVocabularies.Delete',
+        example:
+          'TranscriptionVocabularyDeleteParams parameters = new()\n{\n    TranscriptionVocabularyID = "TRANSCRIPTION_VOCABULARY_ID"\n};\n\nawait client.Video.TranscriptionVocabularies.Delete(parameters);',
       },
       go: {
         method: 'client.Video.TranscriptionVocabularies.Delete',
@@ -3175,6 +3405,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:transcription-vocabularies update \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --transcription-vocabulary-id TRANSCRIPTION_VOCABULARY_ID \\\n  --phrase Mux \\\n  --phrase 'Live Stream' \\\n  --phrase RTMP \\\n  --phrase 'Stream Key'",
       },
+      csharp: {
+        method: 'Video.TranscriptionVocabularies.Update',
+        example:
+          'TranscriptionVocabularyUpdateParams parameters = new()\n{\n    TranscriptionVocabularyID = "TRANSCRIPTION_VOCABULARY_ID",\n    Phrases =\n    [\n        "Mux", "Live Stream", "RTMP", "Stream Key"\n    ],\n};\n\nvar transcriptionVocabulary = await client.Video.TranscriptionVocabularies.Update(parameters);\n\nConsole.WriteLine(transcriptionVocabulary);',
+      },
       go: {
         method: 'client.Video.TranscriptionVocabularies.Update',
         example:
@@ -3239,6 +3474,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'transcription_vocabularies list',
         example:
           "mux-cli video:transcription-vocabularies list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
+      },
+      csharp: {
+        method: 'Video.TranscriptionVocabularies.List',
+        example:
+          'TranscriptionVocabularyListParams parameters = new();\n\nvar page = await client.Video.TranscriptionVocabularies.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
       go: {
         method: 'client.Video.TranscriptionVocabularies.List',
@@ -3311,6 +3551,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:uploads create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --cors-origin https://example.com/",
       },
+      csharp: {
+        method: 'Video.Uploads.Create',
+        example:
+          'UploadCreateParams parameters = new() { CorsOrigin = "https://example.com/" };\n\nvar upload = await client.Video.Uploads.Create(parameters);\n\nConsole.WriteLine(upload);',
+      },
       go: {
         method: 'client.Video.Uploads.New',
         example:
@@ -3375,6 +3620,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'uploads retrieve',
         example:
           "mux-cli video:uploads retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --upload-id abcd1234",
+      },
+      csharp: {
+        method: 'Video.Uploads.Retrieve',
+        example:
+          'UploadRetrieveParams parameters = new() { UploadID = "abcd1234" };\n\nvar upload = await client.Video.Uploads.Retrieve(parameters);\n\nConsole.WriteLine(upload);',
       },
       go: {
         method: 'client.Video.Uploads.Get',
@@ -3442,6 +3692,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:uploads cancel \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --upload-id abcd1234",
       },
+      csharp: {
+        method: 'Video.Uploads.Cancel',
+        example:
+          'UploadCancelParams parameters = new() { UploadID = "abcd1234" };\n\nvar upload = await client.Video.Uploads.Cancel(parameters);\n\nConsole.WriteLine(upload);',
+      },
       go: {
         method: 'client.Video.Uploads.Cancel',
         example:
@@ -3506,6 +3761,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'uploads list',
         example: "mux-cli video:uploads list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Video.Uploads.List',
+        example:
+          'UploadListParams parameters = new();\n\nvar page = await client.Video.Uploads.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Video.Uploads.List',
         example:
@@ -3568,6 +3828,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'drm_configurations list',
         example:
           "mux-cli video:drm-configurations list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
+      },
+      csharp: {
+        method: 'Video.DrmConfigurations.List',
+        example:
+          'DrmConfigurationListParams parameters = new();\n\nvar page = await client.Video.DrmConfigurations.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
       go: {
         method: 'client.Video.DRMConfigurations.List',
@@ -3632,6 +3897,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'drm_configurations retrieve',
         example:
           "mux-cli video:drm-configurations retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --drm-configuration-id DRM_CONFIGURATION_ID",
+      },
+      csharp: {
+        method: 'Video.DrmConfigurations.Retrieve',
+        example:
+          'DrmConfigurationRetrieveParams parameters = new()\n{\n    DrmConfigurationID = "DRM_CONFIGURATION_ID"\n};\n\nvar drmConfiguration = await client.Video.DrmConfigurations.Retrieve(parameters);\n\nConsole.WriteLine(drmConfiguration);',
       },
       go: {
         method: 'client.Video.DRMConfigurations.Get',
@@ -3711,6 +3981,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback thumbnail \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID \\\n  --extension jpg",
       },
+      csharp: {
+        method: 'Video.Playback.Thumbnail',
+        example:
+          'PlaybackThumbnailParams parameters = new()\n{\n    PlaybackId = "PLAYBACK_ID",\n    Extension = Extension.Jpg,\n};\n\nvar response = await client.Video.Playback.Thumbnail(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Playback.Thumbnail',
         example:
@@ -3785,6 +4060,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback animated \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID \\\n  --extension gif",
       },
+      csharp: {
+        method: 'Video.Playback.Animated',
+        example:
+          'PlaybackAnimatedParams parameters = new()\n{\n    PlaybackId = "PLAYBACK_ID",\n    Extension = Extension.Gif,\n};\n\nvar response = await client.Video.Playback.Animated(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Playback.Animated',
         example:
@@ -3858,6 +4138,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback storyboard \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID \\\n  --extension jpg",
       },
+      csharp: {
+        method: 'Video.Playback.Storyboard',
+        example:
+          'PlaybackStoryboardParams parameters = new()\n{\n    PlaybackId = "PLAYBACK_ID",\n    Extension = Extension.Jpg,\n};\n\nvar response = await client.Video.Playback.Storyboard(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Playback.Storyboard',
         example:
@@ -3929,6 +4214,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'playback storyboard_vtt',
         example:
           "mux-cli video:playback storyboard-vtt \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID",
+      },
+      csharp: {
+        method: 'Video.Playback.StoryboardVtt',
+        example:
+          'PlaybackStoryboardVttParams parameters = new() { PlaybackId = "PLAYBACK_ID" };\n\nvar response = await client.Video.Playback.StoryboardVtt(parameters);\n\nConsole.WriteLine(response);',
       },
       go: {
         method: 'client.Video.Playback.StoryboardVtt',
@@ -4002,6 +4292,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'playback storyboard_meta',
         example:
           "mux-cli video:playback storyboard-meta \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID",
+      },
+      csharp: {
+        method: 'Video.Playback.StoryboardMeta',
+        example:
+          'PlaybackStoryboardMetaParams parameters = new() { PlaybackId = "PLAYBACK_ID" };\n\nvar response = await client.Video.Playback.StoryboardMeta(parameters);\n\nConsole.WriteLine(response);',
       },
       go: {
         method: 'client.Video.Playback.StoryboardMeta',
@@ -4082,6 +4377,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback hls \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID",
       },
+      csharp: {
+        method: 'Video.Playback.Hls',
+        example:
+          'PlaybackHlsParams parameters = new() { PlaybackId = "PLAYBACK_ID" };\n\nvar response = await client.Video.Playback.Hls(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Playback.Hls',
         example:
@@ -4150,6 +4450,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli video:playback static-rendition \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID \\\n  --filename capped-1080p.mp4",
       },
+      csharp: {
+        method: 'Video.Playback.StaticRendition',
+        example:
+          'PlaybackStaticRenditionParams parameters = new()\n{\n    PlaybackId = "PLAYBACK_ID",\n    Filename = Filename.Capped1080pMp4,\n};\n\nvar response = await client.Video.Playback.StaticRendition(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Video.Playback.StaticRendition',
         example:
@@ -4213,6 +4518,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'playback track',
         example:
           "mux-cli video:playback track \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID \\\n  --track-id TRACK_ID",
+      },
+      csharp: {
+        method: 'Video.Playback.Track',
+        example:
+          'PlaybackTrackParams parameters = new()\n{\n    PlaybackId = "PLAYBACK_ID",\n    TrackId = "TRACK_ID",\n};\n\nvar response = await client.Video.Playback.Track(parameters);\n\nConsole.WriteLine(response);',
       },
       go: {
         method: 'client.Video.Playback.Track',
@@ -4278,6 +4588,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'playback transcript',
         example:
           "mux-cli video:playback transcript \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --playback-id PLAYBACK_ID \\\n  --track-id TRACK_ID",
+      },
+      csharp: {
+        method: 'Video.Playback.Transcript',
+        example:
+          'PlaybackTranscriptParams parameters = new()\n{\n    PlaybackId = "PLAYBACK_ID",\n    TrackId = "TRACK_ID",\n};\n\nvar response = await client.Video.Playback.Transcript(parameters);\n\nConsole.WriteLine(response);',
       },
       go: {
         method: 'client.Video.Playback.Transcript',
@@ -4351,6 +4666,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots-preview:jobs list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'RobotsPreview.Jobs.List',
+        example:
+          'JobListParams parameters = new();\n\nvar page = await client.RobotsPreview.Jobs.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.RobotsPreview.Jobs.List',
         example:
@@ -4414,6 +4734,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'jobs cancel',
         example:
           "mux-cli robots-preview:jobs cancel \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
+      },
+      csharp: {
+        method: 'RobotsPreview.Jobs.Cancel',
+        example:
+          'JobCancelParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nvar jobSummary = await client.RobotsPreview.Jobs.Cancel(parameters);\n\nConsole.WriteLine(jobSummary);',
       },
       go: {
         method: 'client.RobotsPreview.Jobs.Cancel',
@@ -4483,6 +4808,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots-preview:jobs:ask-questions create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --parameters '{asset_id: mux_asset_123abc, questions: [{question: How many people are speaking on camera?}]}'",
       },
+      csharp: {
+        method: 'RobotsPreview.Jobs.AskQuestions.Create',
+        example:
+          'AskQuestionCreateParams parameters = new()\n{\n    Parameters = new()\n    {\n        AssetId = "mux_asset_123abc",\n        Questions =\n        [\n            new()\n            {\n                Question = "How many people are speaking on camera?",\n                AnswerOptions =\n                [\n                    "one", "two", "three or more"\n                ],\n            },\n        ],\n        LanguageCode = "x",\n    },\n};\n\nvar askQuestionsJob = await client.RobotsPreview.Jobs.AskQuestions.Create(parameters);\n\nConsole.WriteLine(askQuestionsJob);',
+      },
       go: {
         method: 'client.RobotsPreview.Jobs.AskQuestions.New',
         example:
@@ -4547,6 +4877,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'ask-questions retrieve',
         example:
           "mux-cli robots-preview:jobs:ask-questions retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
+      },
+      csharp: {
+        method: 'RobotsPreview.Jobs.AskQuestions.Retrieve',
+        example:
+          'AskQuestionRetrieveParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nvar askQuestionsJob = await client.RobotsPreview.Jobs.AskQuestions.Retrieve(parameters);\n\nConsole.WriteLine(askQuestionsJob);',
       },
       go: {
         method: 'client.RobotsPreview.Jobs.AskQuestions.Get',
@@ -4616,6 +4951,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots-preview:jobs:generate-chapters create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --parameters '{asset_id: mux_asset_123abc}'",
       },
+      csharp: {
+        method: 'RobotsPreview.Jobs.GenerateChapters.Create',
+        example:
+          'GenerateChapterCreateParams parameters = new()\n{\n    Parameters = new()\n    {\n        AssetId = "mux_asset_123abc",\n        LanguageCode = "x",\n        OutputLanguageCode = "x",\n        PromptOverrides = new()\n        {\n            ChapterGuidelines = "x",\n            OutputFormat = "x",\n            Task = "x",\n            TitleGuidelines = "x",\n        },\n    },\n};\n\nvar generateChaptersJob = await client.RobotsPreview.Jobs.GenerateChapters.Create(parameters);\n\nConsole.WriteLine(generateChaptersJob);',
+      },
       go: {
         method: 'client.RobotsPreview.Jobs.GenerateChapters.New',
         example:
@@ -4680,6 +5020,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'generate-chapters retrieve',
         example:
           "mux-cli robots-preview:jobs:generate-chapters retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
+      },
+      csharp: {
+        method: 'RobotsPreview.Jobs.GenerateChapters.Retrieve',
+        example:
+          'GenerateChapterRetrieveParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nvar generateChaptersJob = await client.RobotsPreview.Jobs.GenerateChapters.Retrieve(parameters);\n\nConsole.WriteLine(generateChaptersJob);',
       },
       go: {
         method: 'client.RobotsPreview.Jobs.GenerateChapters.Get',
@@ -4749,6 +5094,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots-preview:jobs:find-key-moments create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --parameters '{asset_id: mux_asset_123abc}'",
       },
+      csharp: {
+        method: 'RobotsPreview.Jobs.FindKeyMoments.Create',
+        example:
+          'FindKeyMomentCreateParams parameters = new()\n{\n    Parameters = new()\n    {\n        AssetId = "mux_asset_123abc",\n        MaxMoments = 5,\n        TargetDurationMs = new()\n        {\n            Max = 45000,\n            Min = 15000,\n        },\n    },\n};\n\nvar findKeyMomentsJob = await client.RobotsPreview.Jobs.FindKeyMoments.Create(parameters);\n\nConsole.WriteLine(findKeyMomentsJob);',
+      },
       go: {
         method: 'client.RobotsPreview.Jobs.FindKeyMoments.New',
         example:
@@ -4813,6 +5163,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'find-key-moments retrieve',
         example:
           "mux-cli robots-preview:jobs:find-key-moments retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
+      },
+      csharp: {
+        method: 'RobotsPreview.Jobs.FindKeyMoments.Retrieve',
+        example:
+          'FindKeyMomentRetrieveParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nvar findKeyMomentsJob = await client.RobotsPreview.Jobs.FindKeyMoments.Retrieve(parameters);\n\nConsole.WriteLine(findKeyMomentsJob);',
       },
       go: {
         method: 'client.RobotsPreview.Jobs.FindKeyMoments.Get',
@@ -4882,6 +5237,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots-preview:jobs:moderate create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --parameters '{asset_id: mux_asset_123abc}'",
       },
+      csharp: {
+        method: 'RobotsPreview.Jobs.Moderate.Create',
+        example:
+          'ModerateCreateParams parameters = new()\n{\n    Parameters = new()\n    {\n        AssetId = "mux_asset_123abc",\n        LanguageCode = "x",\n        MaxSamples = 1,\n        SamplingInterval = 5,\n        Thresholds = new()\n        {\n            Sexual = 0.7,\n            Violence = 0.8,\n        },\n    },\n};\n\nvar moderateJob = await client.RobotsPreview.Jobs.Moderate.Create(parameters);\n\nConsole.WriteLine(moderateJob);',
+      },
       go: {
         method: 'client.RobotsPreview.Jobs.Moderate.New',
         example:
@@ -4946,6 +5306,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'moderate retrieve',
         example:
           "mux-cli robots-preview:jobs:moderate retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
+      },
+      csharp: {
+        method: 'RobotsPreview.Jobs.Moderate.Retrieve',
+        example:
+          'ModerateRetrieveParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nvar moderateJob = await client.RobotsPreview.Jobs.Moderate.Retrieve(parameters);\n\nConsole.WriteLine(moderateJob);',
       },
       go: {
         method: 'client.RobotsPreview.Jobs.Moderate.Get',
@@ -5016,6 +5381,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots-preview:jobs:summarize create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --parameters '{asset_id: mux_asset_123abc}'",
       },
+      csharp: {
+        method: 'RobotsPreview.Jobs.Summarize.Create',
+        example:
+          'SummarizeCreateParams parameters = new()\n{\n    Parameters = new()\n    {\n        AssetId = "mux_asset_123abc",\n        DescriptionLength = 1,\n        LanguageCode = "x",\n        OutputLanguageCode = "x",\n        PromptOverrides = new()\n        {\n            Description = "x",\n            Keywords = "x",\n            QualityGuidelines = "x",\n            Task = "x",\n            Title = "x",\n        },\n        TagCount = 10,\n        TitleLength = 1,\n        Tone = Tone.Neutral,\n    },\n};\n\nvar summarizeJob = await client.RobotsPreview.Jobs.Summarize.Create(parameters);\n\nConsole.WriteLine(summarizeJob);',
+      },
       go: {
         method: 'client.RobotsPreview.Jobs.Summarize.New',
         example:
@@ -5080,6 +5450,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'summarize retrieve',
         example:
           "mux-cli robots-preview:jobs:summarize retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
+      },
+      csharp: {
+        method: 'RobotsPreview.Jobs.Summarize.Retrieve',
+        example:
+          'SummarizeRetrieveParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nvar summarizeJob = await client.RobotsPreview.Jobs.Summarize.Retrieve(parameters);\n\nConsole.WriteLine(summarizeJob);',
       },
       go: {
         method: 'client.RobotsPreview.Jobs.Summarize.Get',
@@ -5150,6 +5525,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots-preview:jobs:translate-captions create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --parameters '{asset_id: mux_asset_123abc, to_language_code: es, track_id: track_en_abc123}'",
       },
+      csharp: {
+        method: 'RobotsPreview.Jobs.TranslateCaptions.Create',
+        example:
+          'TranslateCaptionCreateParams parameters = new()\n{\n    Parameters = new()\n    {\n        AssetId = "mux_asset_123abc",\n        ToLanguageCode = "es",\n        TrackId = "track_en_abc123",\n        UploadToMux = true,\n    },\n};\n\nvar translateCaptionsJob = await client.RobotsPreview.Jobs.TranslateCaptions.Create(parameters);\n\nConsole.WriteLine(translateCaptionsJob);',
+      },
       go: {
         method: 'client.RobotsPreview.Jobs.TranslateCaptions.New',
         example:
@@ -5215,6 +5595,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli robots-preview:jobs:translate-captions retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --job-id rjob_lK9w2kI5J1",
       },
+      csharp: {
+        method: 'RobotsPreview.Jobs.TranslateCaptions.Retrieve',
+        example:
+          'TranslateCaptionRetrieveParams parameters = new() { JobID = "rjob_lK9w2kI5J1" };\n\nvar translateCaptionsJob = await client.RobotsPreview.Jobs.TranslateCaptions.Retrieve(parameters);\n\nConsole.WriteLine(translateCaptionsJob);',
+      },
       go: {
         method: 'client.RobotsPreview.Jobs.TranslateCaptions.Get',
         example:
@@ -5278,6 +5663,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'dimensions list',
         example:
           "mux-cli data:dimensions list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
+      },
+      csharp: {
+        method: 'Data.Dimensions.List',
+        example:
+          'DimensionListParams parameters = new();\n\nvar dimensionsResponse = await client.Data.Dimensions.List(parameters);\n\nConsole.WriteLine(dimensionsResponse);',
       },
       go: {
         method: 'client.Data.Dimensions.List',
@@ -5349,6 +5739,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'dimensions list_values',
         example:
           "mux-cli data:dimensions list-values \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --dimension-id abcd1234",
+      },
+      csharp: {
+        method: 'Data.Dimensions.ListValues',
+        example:
+          'DimensionListValuesParams parameters = new() { DimensionID = "abcd1234" };\n\nvar page = await client.Data.Dimensions.ListValues(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
       go: {
         method: 'client.Data.Dimensions.ListValues',
@@ -5424,6 +5819,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:dimensions list-trace-elements \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --dimension-id abcd1234",
       },
+      csharp: {
+        method: 'Data.Dimensions.ListTraceElements',
+        example:
+          'DimensionListTraceElementsParams parameters = new()\n{\n    DimensionID = "abcd1234"\n};\n\nvar page = await client.Data.Dimensions.ListTraceElements(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Data.Dimensions.ListTraceElements',
         example:
@@ -5488,6 +5888,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:monitoring list-dimensions \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.Monitoring.ListDimensions',
+        example:
+          'MonitoringListDimensionsParams parameters = new();\n\nvar response = await client.Data.Monitoring.ListDimensions(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Data.Monitoring.ListDimensions',
         example:
@@ -5551,6 +5956,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'metrics list',
         example:
           "mux-cli data:monitoring:metrics list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
+      },
+      csharp: {
+        method: 'Data.Monitoring.Metrics.List',
+        example:
+          'MetricListParams parameters = new();\n\nvar metrics = await client.Data.Monitoring.Metrics.List(parameters);\n\nConsole.WriteLine(metrics);',
       },
       go: {
         method: 'client.Data.Monitoring.Metrics.List',
@@ -5625,6 +6035,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:monitoring:metrics get-breakdown \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --monitoring-metric-id current-concurrent-viewers",
       },
+      csharp: {
+        method: 'Data.Monitoring.Metrics.GetBreakdown',
+        example:
+          'MetricGetBreakdownParams parameters = new()\n{\n    MonitoringMetricID = MonitoringMetricID.CurrentConcurrentViewers\n};\n\nvar response = await client.Data.Monitoring.Metrics.GetBreakdown(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Data.Monitoring.Metrics.GetBreakdown',
         example:
@@ -5690,6 +6105,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'metrics get_timeseries',
         example:
           "mux-cli data:monitoring:metrics get-timeseries \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --monitoring-metric-id current-concurrent-viewers",
+      },
+      csharp: {
+        method: 'Data.Monitoring.Metrics.GetTimeseries',
+        example:
+          'MetricGetTimeseriesParams parameters = new()\n{\n    MonitoringMetricID = MonitoringMetricID.CurrentConcurrentViewers\n};\n\nvar response = await client.Data.Monitoring.Metrics.GetTimeseries(parameters);\n\nConsole.WriteLine(response);',
       },
       go: {
         method: 'client.Data.Monitoring.Metrics.GetTimeseries',
@@ -5765,6 +6185,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:monitoring:metrics get-breakdown-timeseries \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --monitoring-metric-id current-concurrent-viewers",
       },
+      csharp: {
+        method: 'Data.Monitoring.Metrics.GetBreakdownTimeseries',
+        example:
+          'MetricGetBreakdownTimeseriesParams parameters = new()\n{\n    MonitoringMetricID = MonitoringMetricID.CurrentConcurrentViewers\n};\n\nvar response = await client.Data.Monitoring.Metrics.GetBreakdownTimeseries(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Data.Monitoring.Metrics.GetBreakdownTimeseries',
         example:
@@ -5830,6 +6255,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:monitoring:metrics get-histogram-timeseries \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --monitoring-histogram-metric-id video-startup-time",
       },
+      csharp: {
+        method: 'Data.Monitoring.Metrics.GetHistogramTimeseries',
+        example:
+          'MetricGetHistogramTimeseriesParams parameters = new()\n{\n    MonitoringHistogramMetricID = MonitoringHistogramMetricID.VideoStartupTime\n};\n\nvar response = await client.Data.Monitoring.Metrics.GetHistogramTimeseries(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.Data.Monitoring.Metrics.GetHistogramTimeseries',
         example:
@@ -5894,6 +6324,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'errors list',
         example: "mux-cli data:errors list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.Errors.List',
+        example:
+          'ErrorListParams parameters = new();\n\nvar errorsResponse = await client.Data.Errors.List(parameters);\n\nConsole.WriteLine(errorsResponse);',
+      },
       go: {
         method: 'client.Data.Errors.List',
         example:
@@ -5956,6 +6391,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'exports list_video_views',
         example:
           "mux-cli data:exports list-video-views \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
+      },
+      csharp: {
+        method: 'Data.Exports.ListVideoViews',
+        example:
+          'ExportListVideoViewsParams parameters = new();\n\nvar videoViewExportsResponse = await client.Data.Exports.ListVideoViews(parameters);\n\nConsole.WriteLine(videoViewExportsResponse);',
       },
       go: {
         method: 'client.Data.Exports.ListVideoViews',
@@ -6027,6 +6467,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:filters list-values \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --filter-id abcd1234",
       },
+      csharp: {
+        method: 'Data.Filters.ListValues',
+        example:
+          'FilterListValuesParams parameters = new() { FilterID = "abcd1234" };\n\nvar page = await client.Data.Filters.ListValues(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Data.Filters.ListValues',
         example:
@@ -6091,6 +6536,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'incidents retrieve',
         example:
           "mux-cli data:incidents retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --incident-id abcd1234",
+      },
+      csharp: {
+        method: 'Data.Incidents.Retrieve',
+        example:
+          'IncidentRetrieveParams parameters = new() { IncidentID = "abcd1234" };\n\nvar incidentResponse = await client.Data.Incidents.Retrieve(parameters);\n\nConsole.WriteLine(incidentResponse);',
       },
       go: {
         method: 'client.Data.Incidents.Get',
@@ -6162,6 +6612,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'incidents list_related',
         example:
           "mux-cli data:incidents list-related \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --incident-id abcd1234",
+      },
+      csharp: {
+        method: 'Data.Incidents.ListRelated',
+        example:
+          'IncidentListRelatedParams parameters = new() { IncidentID = "abcd1234" };\n\nvar page = await client.Data.Incidents.ListRelated(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
       go: {
         method: 'client.Data.Incidents.ListRelated',
@@ -6235,6 +6690,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:incidents list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.Incidents.List',
+        example:
+          'IncidentListParams parameters = new();\n\nvar page = await client.Data.Incidents.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Data.Incidents.List',
         example:
@@ -6303,6 +6763,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       cli: {
         method: 'metrics list',
         example: "mux-cli data:metrics list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
+      },
+      csharp: {
+        method: 'Data.Metrics.List',
+        example:
+          'MetricListParams parameters = new();\n\nvar allMetricValuesResponse = await client.Data.Metrics.List(parameters);\n\nConsole.WriteLine(allMetricValuesResponse);',
       },
       go: {
         method: 'client.Data.Metrics.List',
@@ -6380,6 +6845,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:metrics list-breakdown-values \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --metric-id video_startup_time",
       },
+      csharp: {
+        method: 'Data.Metrics.ListBreakdownValues',
+        example:
+          'MetricListBreakdownValuesParams parameters = new()\n{\n    MetricID = MetricID.VideoStartupTime\n};\n\nvar page = await client.Data.Metrics.ListBreakdownValues(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Data.Metrics.ListBreakdownValues',
         example:
@@ -6451,6 +6921,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'metrics get_overall_values',
         example:
           "mux-cli data:metrics get-overall-values \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --metric-id video_startup_time",
+      },
+      csharp: {
+        method: 'Data.Metrics.GetOverallValues',
+        example:
+          'MetricGetOverallValuesParams parameters = new()\n{\n    MetricID = MetricID.VideoStartupTime\n};\n\nvar overallValuesResponse = await client.Data.Metrics.GetOverallValues(parameters);\n\nConsole.WriteLine(overallValuesResponse);',
       },
       go: {
         method: 'client.Data.Metrics.GetOverallValues',
@@ -6524,6 +6999,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'metrics get_insights',
         example:
           "mux-cli data:metrics get-insights \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --metric-id video_startup_time",
+      },
+      csharp: {
+        method: 'Data.Metrics.GetInsights',
+        example:
+          'MetricGetInsightsParams parameters = new()\n{\n    MetricID = MetricID.VideoStartupTime\n};\n\nvar insightsResponse = await client.Data.Metrics.GetInsights(parameters);\n\nConsole.WriteLine(insightsResponse);',
       },
       go: {
         method: 'client.Data.Metrics.GetInsights',
@@ -6599,6 +7079,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:metrics get-timeseries \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --metric-id video_startup_time",
       },
+      csharp: {
+        method: 'Data.Metrics.GetTimeseries',
+        example:
+          'MetricGetTimeseriesParams parameters = new()\n{\n    MetricID = MetricID.VideoStartupTime\n};\n\nvar metricTimeseriesDataResponse = await client.Data.Metrics.GetTimeseries(parameters);\n\nConsole.WriteLine(metricTimeseriesDataResponse);',
+      },
       go: {
         method: 'client.Data.Metrics.GetTimeseries',
         example:
@@ -6672,6 +7157,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:real-time retrieve-breakdown \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --realtime-metric-id current-concurrent-viewers",
       },
+      csharp: {
+        method: 'Data.RealTime.RetrieveBreakdown',
+        example:
+          'RealTimeRetrieveBreakdownParams parameters = new()\n{\n    RealtimeMetricID = RealtimeMetricID.CurrentConcurrentViewers\n};\n\nvar realTimeBreakdownResponse = await client.Data.RealTime.RetrieveBreakdown(parameters);\n\nConsole.WriteLine(realTimeBreakdownResponse);',
+      },
       go: {
         method: 'client.Data.RealTime.GetBreakdown',
         example:
@@ -6738,6 +7228,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:real-time retrieve-timeseries \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --realtime-metric-id current-concurrent-viewers",
       },
+      csharp: {
+        method: 'Data.RealTime.RetrieveTimeseries',
+        example:
+          'RealTimeRetrieveTimeseriesParams parameters = new()\n{\n    RealtimeMetricID = RealtimeMetricID.CurrentConcurrentViewers\n};\n\nvar realTimeTimeseriesResponse = await client.Data.RealTime.RetrieveTimeseries(parameters);\n\nConsole.WriteLine(realTimeTimeseriesResponse);',
+      },
       go: {
         method: 'client.Data.RealTime.GetTimeseries',
         example:
@@ -6802,6 +7297,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'real_time list_metrics',
         example:
           "mux-cli data:real-time list-metrics \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
+      },
+      csharp: {
+        method: 'Data.RealTime.ListMetrics',
+        example:
+          'RealTimeListMetricsParams parameters = new();\n\nvar realTimeMetricsResponse = await client.Data.RealTime.ListMetrics(parameters);\n\nConsole.WriteLine(realTimeMetricsResponse);',
       },
       go: {
         method: 'client.Data.RealTime.ListMetrics',
@@ -6869,6 +7369,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:real-time retrieve-histogram-timeseries \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --realtime-histogram-metric-id video-startup-time",
       },
+      csharp: {
+        method: 'Data.RealTime.RetrieveHistogramTimeseries',
+        example:
+          'RealTimeRetrieveHistogramTimeseriesParams parameters = new()\n{\n    RealtimeHistogramMetricID = RealtimeHistogramMetricID.VideoStartupTime\n};\n\nvar realTimeHistogramTimeseriesResponse = await client.Data.RealTime.RetrieveHistogramTimeseries(parameters);\n\nConsole.WriteLine(realTimeHistogramTimeseriesResponse);',
+      },
       go: {
         method: 'client.Data.RealTime.GetHistogramTimeseries',
         example:
@@ -6933,6 +7438,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'real_time list_dimensions',
         example:
           "mux-cli data:real-time list-dimensions \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
+      },
+      csharp: {
+        method: 'Data.RealTime.ListDimensions',
+        example:
+          'RealTimeListDimensionsParams parameters = new();\n\nvar realTimeDimensionsResponse = await client.Data.RealTime.ListDimensions(parameters);\n\nConsole.WriteLine(realTimeDimensionsResponse);',
       },
       go: {
         method: 'client.Data.RealTime.ListDimensions',
@@ -7009,6 +7519,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:video-views list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.VideoViews.List',
+        example:
+          'VideoViewListParams parameters = new();\n\nvar page = await client.Data.VideoViews.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Data.VideoViews.List',
         example:
@@ -7071,6 +7586,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'video_views retrieve',
         example:
           "mux-cli data:video-views retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --video-view-id abcd1234",
+      },
+      csharp: {
+        method: 'Data.VideoViews.Retrieve',
+        example:
+          'VideoViewRetrieveParams parameters = new() { VideoViewID = "abcd1234" };\n\nvar videoViewResponse = await client.Data.VideoViews.Retrieve(parameters);\n\nConsole.WriteLine(videoViewResponse);',
       },
       go: {
         method: 'client.Data.VideoViews.Get',
@@ -7141,6 +7661,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:annotations list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'Data.Annotations.List',
+        example:
+          'AnnotationListParams parameters = new();\n\nvar page = await client.Data.Annotations.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
       go: {
         method: 'client.Data.Annotations.List',
         example:
@@ -7203,6 +7728,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'annotations retrieve',
         example:
           "mux-cli data:annotations retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --annotation-id 182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+      },
+      csharp: {
+        method: 'Data.Annotations.Retrieve',
+        example:
+          'AnnotationRetrieveParams parameters = new()\n{\n    AnnotationID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n};\n\nvar annotation = await client.Data.Annotations.Retrieve(parameters);\n\nConsole.WriteLine(annotation);',
       },
       go: {
         method: 'client.Data.Annotations.Get',
@@ -7268,6 +7798,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:annotations create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --date 1745438400 \\\n  --note 'This is a note'",
       },
+      csharp: {
+        method: 'Data.Annotations.Create',
+        example:
+          'AnnotationCreateParams parameters = new()\n{\n    Date = 1745438400,\n    Note = "This is a note",\n};\n\nvar annotation = await client.Data.Annotations.Create(parameters);\n\nConsole.WriteLine(annotation);',
+      },
       go: {
         method: 'client.Data.Annotations.New',
         example:
@@ -7330,6 +7865,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'annotations delete',
         example:
           "mux-cli data:annotations delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --annotation-id 182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+      },
+      csharp: {
+        method: 'Data.Annotations.Delete',
+        example:
+          'AnnotationDeleteParams parameters = new()\n{\n    AnnotationID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"\n};\n\nawait client.Data.Annotations.Delete(parameters);',
       },
       go: {
         method: 'client.Data.Annotations.Delete',
@@ -7395,6 +7935,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli data:annotations update \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --annotation-id 182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e \\\n  --date 1745438400 \\\n  --note 'This is a note'",
       },
+      csharp: {
+        method: 'Data.Annotations.Update',
+        example:
+          'AnnotationUpdateParams parameters = new()\n{\n    AnnotationID = "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",\n    Date = 1745438400,\n    Note = "This is a note",\n};\n\nvar annotation = await client.Data.Annotations.Update(parameters);\n\nConsole.WriteLine(annotation);',
+      },
       go: {
         method: 'client.Data.Annotations.Update',
         example:
@@ -7459,6 +8004,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli system:signing-keys create \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'System.SigningKeys.Create',
+        example:
+          'SigningKeyCreateParams parameters = new();\n\nvar signingKey = await client.System.SigningKeys.Create(parameters);\n\nConsole.WriteLine(signingKey);',
+      },
       go: {
         method: 'client.System.SigningKeys.New',
         example:
@@ -7522,6 +8072,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'signing_keys list',
         example:
           "mux-cli system:signing-keys list \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
+      },
+      csharp: {
+        method: 'System.SigningKeys.List',
+        example:
+          'SigningKeyListParams parameters = new();\n\nvar page = await client.System.SigningKeys.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
       },
       go: {
         method: 'client.System.SigningKeys.List',
@@ -7588,6 +8143,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli system:signing-keys retrieve \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --signing-key-id SIGNING_KEY_ID",
       },
+      csharp: {
+        method: 'System.SigningKeys.Retrieve',
+        example:
+          'SigningKeyRetrieveParams parameters = new() { SigningKeyID = "SIGNING_KEY_ID" };\n\nvar signingKey = await client.System.SigningKeys.Retrieve(parameters);\n\nConsole.WriteLine(signingKey);',
+      },
       go: {
         method: 'client.System.SigningKeys.Get',
         example:
@@ -7651,6 +8211,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         method: 'signing_keys delete',
         example:
           "mux-cli system:signing-keys delete \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret' \\\n  --signing-key-id SIGNING_KEY_ID",
+      },
+      csharp: {
+        method: 'System.SigningKeys.Delete',
+        example:
+          'SigningKeyDeleteParams parameters = new() { SigningKeyID = "SIGNING_KEY_ID" };\n\nawait client.System.SigningKeys.Delete(parameters);',
       },
       go: {
         method: 'client.System.SigningKeys.Delete',
@@ -7717,6 +8282,11 @@ const EMBEDDED_METHODS: MethodEntry[] = [
         example:
           "mux-cli system:utilities whoami \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
       },
+      csharp: {
+        method: 'System.Utilities.Whoami',
+        example:
+          'UtilityWhoamiParams parameters = new();\n\nvar response = await client.System.Utilities.Whoami(parameters);\n\nConsole.WriteLine(response);',
+      },
       go: {
         method: 'client.System.Utilities.Whoami',
         example:
@@ -7773,6 +8343,9 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     perLanguage: {
       cli: {
         example: "mux-cli webhooks unwrap \\\n  --token-id 'my token id' \\\n  --token-secret 'my secret'",
+      },
+      csharp: {
+        example: 'WebhookUnwrapParams parameters = new();\n\nawait client.Webhooks.Unwrap(parameters);',
       },
       go: {
         method: 'client.Webhooks.Unwrap',
@@ -7843,6 +8416,11 @@ const EMBEDDED_READMES: { language: string; content: string }[] = [
     language: 'kotlin',
     content:
       '# Mux Kotlin API Library\n\n\n[![Maven Central](https://img.shields.io/maven-central/v/com.mux.api/mux-kotlin)](https://central.sonatype.com/artifact/com.mux.api/mux-kotlin/0.0.1)\n[![javadoc](https://javadoc.io/badge2/com.mux.api/mux-kotlin/0.0.1/javadoc.svg)](https://javadoc.io/doc/com.mux.api/mux-kotlin/0.0.1)\n\n\nThe Mux Kotlin SDK provides convenient access to the [Mux REST API](https://docs.mux.com)   from applications written in Kotlin.\n\nThe Mux Kotlin SDK is similar to the Mux Java SDK but with minor differences that       make it more ergonomic for use in Kotlin, such as nullable values instead of `Optional`,       `Sequence` instead of `Stream`, and suspend functions instead of `CompletableFuture`.\n\n\n\n## MCP Server\n\nUse the Mux MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.\n\n[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=%40mux%2Fmcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBtdXgvbWNwIl0sImVudiI6eyJNVVhfVE9LRU5fSUQiOiJteSB0b2tlbiBpZCIsIk1VWF9UT0tFTl9TRUNSRVQiOiJteSBzZWNyZXQiLCJNVVhfV0VCSE9PS19TRUNSRVQiOiJNeSBXZWJob29rIFNlY3JldCIsIk1VWF9TSUdOSU5HX0tFWSI6Ik15IEp3dCBTaWduaW5nIEtleSIsIk1VWF9QUklWQVRFX0tFWSI6Ik15IEp3dCBQcml2YXRlIEtleSIsIk1VWF9BVVRIT1JJWkFUSU9OX1RPS0VOIjoibXkgYXV0aG9yaXphdGlvbiB0b2tlbiJ9fQ)\n[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22%40mux%2Fmcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40mux%2Fmcp%22%5D%2C%22env%22%3A%7B%22MUX_TOKEN_ID%22%3A%22my%20token%20id%22%2C%22MUX_TOKEN_SECRET%22%3A%22my%20secret%22%2C%22MUX_WEBHOOK_SECRET%22%3A%22My%20Webhook%20Secret%22%2C%22MUX_SIGNING_KEY%22%3A%22My%20Jwt%20Signing%20Key%22%2C%22MUX_PRIVATE_KEY%22%3A%22My%20Jwt%20Private%20Key%22%2C%22MUX_AUTHORIZATION_TOKEN%22%3A%22my%20authorization%20token%22%7D%7D)\n\n> Note: You may need to set environment variables in your MCP client.\n\nThe REST API documentation can be found on [docs.mux.com](https://docs.mux.com). KDocs are available on [javadoc.io](https://javadoc.io/doc/com.mux.api/mux-kotlin/0.0.1).\n\n## Installation\n\n### Gradle\n\n~~~kotlin\nimplementation("com.mux.api:mux-kotlin:0.0.1")\n~~~\n\n### Maven\n\n~~~xml\n<dependency>\n  <groupId>com.mux.api</groupId>\n  <artifactId>mux-kotlin</artifactId>\n  <version>0.0.1</version>\n</dependency>\n~~~\n\n## Requirements\n\nThis library requires Java 8 or later.\n\n## Usage\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.video.assets.Asset\nimport com.mux.api.models.video.assets.AssetCreateParams\nimport com.mux.api.models.video.assets.AssetOptions\n\n// Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n// Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\nval client: MuxClient = MuxOkHttpClient.fromEnv()\n\nval params: AssetOptions = AssetOptions.builder()\n    .addInput(AssetOptions.Input.builder().build())\n    .build()\nval asset: Asset = client.video().assets().create(params)\n```\n\n## Client configuration\n\nConfigure the client using system properties or environment variables:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\n\n// Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n// Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\nval client: MuxClient = MuxOkHttpClient.fromEnv()\n```\n\nOr manually:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    .tokenId("my token id")\n    .tokenSecret("my secret")\n    .build()\n```\n\nOr using a combination of the two approaches:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    // Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n    // Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\n    .fromEnv()\n    .tokenId("my token id")\n    .build()\n```\n\nSee this table for the available options:\n\n| Setter               | System property          | Environment variable      | Required | Default value           |\n| -------------------- | ------------------------ | ------------------------- | -------- | ----------------------- |\n| `tokenId`            | `mux.tokenId`            | `MUX_TOKEN_ID`            | false    | -                       |\n| `tokenSecret`        | `mux.tokenSecret`        | `MUX_TOKEN_SECRET`        | false    | -                       |\n| `webhookSecret`      | `mux.webhookSecret`      | `MUX_WEBHOOK_SECRET`      | false    | -                       |\n| `jwtSigningKey`      | `mux.signingKey`         | `MUX_SIGNING_KEY`         | false    | -                       |\n| `jwtPrivateKey`      | `mux.privateKey`         | `MUX_PRIVATE_KEY`         | false    | -                       |\n| `authorizationToken` | `mux.authorizationToken` | `MUX_AUTHORIZATION_TOKEN` | false    | -                       |\n| `baseUrl`            | `mux.baseUrl`            | `MUX_BASE_URL`            | true     | `"https://api.mux.com"` |\n\nSystem properties take precedence over environment variables.\n\n> [!TIP]\n> Don\'t create more than one client in the same application. Each client has a connection pool and\n> thread pools, which are more efficient to share between requests.\n\n### Modifying configuration\n\nTo temporarily use a modified client configuration, while reusing the same connection and thread       pools, call `withOptions()` on any client or service:\n\n```kotlin\nimport com.mux.api.client.MuxClient\n\nval clientWithOptions: MuxClient = client.withOptions {\n    it.baseUrl("https://example.com")\n    it.maxRetries(42)\n}\n```\n\nThe `withOptions()` method does not affect the original client or service.\n\n## Requests and responses\n\nTo send a request to the Mux API, build an instance of some `Params` class and pass it to the     corresponding client method. When the response is received, it will be deserialized into an instance of     a Kotlin class.\n\nFor example, `client.video().assets().create(...)` should be called with an instance of `AssetCreateParams`, and it     will return an instance of `Asset`.\n\n## Immutability\n\nEach class in the SDK has an associated   [builder](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)   or factory method for constructing it.\n\nEach class is [immutable](https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html)   once constructed. If the class has an associated builder, then it has a `toBuilder()` method, which can   be used to convert it back to a builder for making a modified copy.\n\nBecause each class is immutable, builder modification will _never_ affect already built class instances.\n\n## Asynchronous execution\n\nThe default client is synchronous. To switch to asynchronous execution, call the `async()` method:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport com.mux.api.models.video.assets.Asset\nimport com.mux.api.models.video.assets.AssetCreateParams\nimport com.mux.api.models.video.assets.AssetOptions\n\n// Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n// Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\nval client: MuxClient = MuxOkHttpClient.fromEnv()\n\nval params: AssetOptions = AssetOptions.builder()\n    .addInput(AssetOptions.Input.builder().build())\n    .build()\nval asset: Asset = client.async().video().assets().create(params)\n```\n\nOr create an asynchronous client from the beginning:\n\n```kotlin\nimport com.mux.api.client.MuxClientAsync\nimport com.mux.api.client.okhttp.MuxOkHttpClientAsync\nimport com.mux.api.models.video.assets.Asset\nimport com.mux.api.models.video.assets.AssetCreateParams\nimport com.mux.api.models.video.assets.AssetOptions\n\n// Configures using the `mux.tokenId`, `mux.tokenSecret`, `mux.webhookSecret`, `mux.signingKey`, `mux.privateKey`, `mux.authorizationToken` and `mux.baseUrl` system properties\n// Or configures using the `MUX_TOKEN_ID`, `MUX_TOKEN_SECRET`, `MUX_WEBHOOK_SECRET`, `MUX_SIGNING_KEY`, `MUX_PRIVATE_KEY`, `MUX_AUTHORIZATION_TOKEN` and `MUX_BASE_URL` environment variables\nval client: MuxClientAsync = MuxOkHttpClientAsync.fromEnv()\n\nval params: AssetOptions = AssetOptions.builder()\n    .addInput(AssetOptions.Input.builder().build())\n    .build()\nval asset: Asset = client.video().assets().create(params)\n```\n\nThe asynchronous client supports the same options as the synchronous one, except most methods are [suspending](https://kotlinlang.org/docs/coroutines-guide.html).\n\n\n\n\n\n## Binary responses\n\nThe SDK defines methods that return binary responses, which are used for API responses that shouldn\'t     necessarily be parsed, like non-JSON data.\n\nThese methods return [`HttpResponse`](mux-kotlin-core/src/main/kotlin/com/mux/api/core/http/HttpResponse.kt):\n\n```kotlin\nimport com.mux.api.core.http.HttpResponse\nimport com.mux.api.models.video.playback.PlaybackAnimatedParams\n\nval response: HttpResponse = client.video().playback().animated(\n  "PLAYBACK_ID", PlaybackAnimatedParams.Extension.GIF\n)\n```\n\nTo save the response content to a file, use the     [`Files.copy(...)`](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#copy-java.io.InputStream-java.nio.file.Path-java.nio.file.CopyOption...-)     method:\n\n```kotlin\nimport java.nio.file.Files\nimport java.nio.file.Paths\nimport java.nio.file.StandardCopyOption\n\nclient.video().playback().animated(params).use {\n    Files.copy(\n        it.body(),\n        Paths.get(path),\n        StandardCopyOption.REPLACE_EXISTING\n    )\n}\n```\n\nOr transfer the response content to any     [`OutputStream`](https://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html):\n\n```kotlin\nimport java.nio.file.Files\nimport java.nio.file.Paths\n\nclient.video().playback().animated(params).use {\n    it.body().transferTo(Files.newOutputStream(Paths.get(path)))\n}\n```\n\n## Raw responses\n\nThe SDK defines methods that deserialize responses into instances of Kotlin classes.       However, these methods don\'t provide access to the response headers, status code, or the raw response       body.\n\nTo access this data, prefix any HTTP method call on a client or service with `withRawResponse()`:\n\n```kotlin\nimport com.mux.api.core.http.Headers\nimport com.mux.api.core.http.HttpResponseFor\nimport com.mux.api.models.video.assets.Asset\nimport com.mux.api.models.video.assets.AssetCreateParams\nimport com.mux.api.models.video.assets.AssetOptions\n\nval params: AssetOptions = AssetOptions.builder()\n    .addInput(AssetOptions.Input.builder().build())\n    .build()\nval asset: HttpResponseFor<Asset> = client.video().assets().withRawResponse().create(params)\n\nval statusCode: Int = asset.statusCode()\nval headers: Headers = asset.headers()\n```\n\nYou can still deserialize the response into an instance of a Kotlin class if needed:\n\n```kotlin\nimport com.mux.api.models.video.assets.Asset\n\nval parsedAsset: Asset = asset.parse()\n```\n\n## Error handling\n\nThe SDK throws custom unchecked exception types:\n\n- [`MuxServiceException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/MuxServiceException.kt): Base class for HTTP errors. See this table for which exception       subclass is thrown for each HTTP status code:\n\n  | Status | Exception                                          |\n  | ------ | -------------------------------------------------- |\n  | 400    | [`BadRequestException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/BadRequestException.kt)           |\n  | 401    | [`UnauthorizedException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/UnauthorizedException.kt)         |\n  | 403    | [`PermissionDeniedException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/PermissionDeniedException.kt)     |\n  | 404    | [`NotFoundException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/NotFoundException.kt)             |\n  | 422    | [`UnprocessableEntityException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/UnprocessableEntityException.kt)  |\n  | 429    | [`RateLimitException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/RateLimitException.kt)            |\n  | 5xx    | [`InternalServerException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/InternalServerException.kt)       |\n  | others | [`UnexpectedStatusCodeException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/UnexpectedStatusCodeException.kt) |\n\n- [`MuxIoException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/MuxIoException.kt): I/O networking errors.\n\n- [`MuxRetryableException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/MuxRetryableException.kt): Generic error indicating a failure that could be retried by the client.\n\n- [`MuxInvalidDataException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/MuxInvalidDataException.kt): Failure to interpret successfully parsed data. For example,       when accessing a property that\'s supposed to be required, but the API unexpectedly omitted it from the       response.\n\n- [`MuxException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/MuxException.kt): Base class for all exceptions. Most errors will result in one of the       previously mentioned ones, but completely generic errors may be thrown using the base class.\n\n## Pagination\n\nThe SDK defines methods that return a paginated lists of results. It provides convenient ways to access     the results either one page at a time or item-by-item across all pages.\n\n### Auto-pagination\n\nTo iterate through all results across all pages, use the `autoPager()` method, which automatically     fetches more pages as needed.\n\nWhen using the synchronous client, the method returns a [`Sequence`](https://kotlinlang.org/docs/sequences.html)\n\n```kotlin\nimport com.mux.api.models.video.deliveryusage.DeliveryUsageListPage\n\nval page: DeliveryUsageListPage = client.video().deliveryUsage().list()\npage.autoPager()\n    .take(50)\n    .forEach { deliveryUsage -> println(deliveryUsage) }\n```\n\nWhen using the asynchronous client, the method returns a [`Flow`](https://kotlinlang.org/docs/flow.html):\n\n```kotlin\nimport com.mux.api.models.video.deliveryusage.DeliveryUsageListPageAsync\n\nval page: DeliveryUsageListPageAsync = client.async().video().deliveryUsage().list()\npage.autoPager()\n    .take(50)\n    .forEach { deliveryUsage -> println(deliveryUsage) }\n```\n\n### Manual pagination\n\nTo access individual page items and manually request the next page, use the `items()`,\n`hasNextPage()`, and `nextPage()` methods:\n\n```kotlin\nimport com.mux.api.models.video.deliveryusage.DeliveryReport\nimport com.mux.api.models.video.deliveryusage.DeliveryUsageListPage\n\nval page: DeliveryUsageListPage = client.video().deliveryUsage().list()\nwhile (true) {\n    for (deliveryUsage in page.items()) {\n        println(deliveryUsage)\n    }\n\n    if (!page.hasNextPage()) {\n        break\n    }\n\n    page = page.nextPage()\n}\n```\n\n## Logging\n\nThe SDK uses the standard   [OkHttp logging interceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor).\n\nEnable logging by setting the `MUX_LOG` environment variable to   `info`:\n\n```sh\nexport MUX_LOG=info\n```\n\nOr to `debug` for more verbose logging:\n\n```sh\nexport MUX_LOG=debug\n```\n\n## ProGuard and R8\n\nAlthough the SDK uses reflection, it is still usable with     [ProGuard](https://github.com/Guardsquare/proguard) and     [R8](https://developer.android.com/topic/performance/app-optimization/enable-app-optimization) because     `mux-kotlin-core` is published with a     [configuration file](mux-kotlin-core/src/main/resources/META-INF/proguard/mux-kotlin-core.pro) containing     [keep rules](https://www.guardsquare.com/manual/configuration/usage).\n\nProGuard and R8 should automatically detect and use the published rules, but you can also manually copy     the keep rules if necessary.\n\n\n\n\n\n## Jackson\n\nThe SDK depends on [Jackson](https://github.com/FasterXML/jackson) for JSON     serialization/deserialization. It is compatible with version 2.13.4 or higher,     but depends on version 2.18.2 by default.\n\nThe SDK throws an exception if it detects an incompatible Jackson version at runtime (e.g. if the     default version was overridden in your Maven or Gradle config).\n\nIf the SDK threw an exception, but you\'re _certain_ the version is compatible, then disable the version     check using the `checkJacksonVersionCompatibility` on [`MuxOkHttpClient`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClient.kt) or     [`MuxOkHttpClientAsync`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClientAsync.kt).\n\n> [!CAUTION]\n> We make no guarantee that the SDK works correctly when the Jackson version check is disabled.\n\nAlso note that there are bugs in older Jackson versions that can affect the SDK. We don\'t work around all     Jackson bugs ([example](https://github.com/FasterXML/jackson-databind/issues/3240)) and expect users to     upgrade Jackson for those instead.\n\n## Network options\n\n### Retries\n\nThe SDK automatically retries 2 times by default, with a short exponential backoff between requests.\n\nOnly the following error types are retried:\n- Connection errors (for example, due to a network connectivity problem)\n- 408 Request Timeout\n- 409 Conflict\n- 429 Rate Limit\n- 5xx Internal\n\nThe API may also explicitly instruct the SDK to retry or not retry a request.\n\nTo set a custom number of retries, configure the client using the `maxRetries` method:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    .fromEnv()\n    .maxRetries(4)\n    .build()\n```\n\n### Timeouts\n\nRequests time out after 1 minute by default.\n\nTo set a custom timeout, configure the method call using the `timeout` method:\n\n```kotlin\nimport com.mux.api.models.video.assets.Asset\n\nval asset: Asset = client.video().assets().retrieve(RequestOptions.builder().timeout(Duration.ofSeconds(30)).build())\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport java.time.Duration\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    .fromEnv()\n    .timeout(Duration.ofSeconds(30))\n    .build()\n```\n\n### Proxies\n\nTo route requests through a proxy, configure the client using the `proxy` method:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport java.net.InetSocketAddress\nimport java.net.Proxy\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    .fromEnv()\n    .proxy(Proxy(\n      Proxy.Type.HTTP, InetSocketAddress(\n        "https://example.com", 8080\n      )\n    ))\n    .build()\n```\n\n### Connection pooling\n\nTo customize the underlying OkHttp connection pool, configure the client using the   `maxIdleConnections` and `keepAliveDuration` methods:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\nimport java.time.Duration\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    .fromEnv()\n    // If `maxIdleConnections` is set, then `keepAliveDuration` must be set, and vice versa.\n    .maxIdleConnections(10)\n    .keepAliveDuration(Duration.ofMinutes(2))\n    .build()\n```\n\nIf both options are unset, OkHttp\'s default connection pool settings are used.\n\n### HTTPS\n\n> [!NOTE]\n> Most applications should not call these methods, and instead use the system defaults. The defaults include\n> special optimizations that can be lost if the implementations are modified.\n\nTo configure how HTTPS connections are secured, configure the client using the `sslSocketFactory`,   `trustManager`, and `hostnameVerifier` methods:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    .fromEnv()\n    // If `sslSocketFactory` is set, then `trustManager` must be set, and vice versa.\n    .sslSocketFactory(yourSSLSocketFactory)\n    .trustManager(yourTrustManager)\n    .hostnameVerifier(yourHostnameVerifier)\n    .build()\n```\n\n\n\n### Custom HTTP client\n\nThe SDK consists of three artifacts:\n- `mux-kotlin-core`\n  - Contains core SDK logic\n  - Does not depend on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`MuxClient`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClient.kt), [`MuxClientAsync`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientAsync.kt),             [`MuxClientImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientImpl.kt), and [`MuxClientAsyncImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientAsyncImpl.kt), all of which can             work with any HTTP client\n- `mux-kotlin-client-okhttp`\n  - Depends on [OkHttp](https://square.github.io/okhttp)\n  - Exposes [`MuxOkHttpClient`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClient.kt) and [`MuxOkHttpClientAsync`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClientAsync.kt), which             provide a way to construct [`MuxClientImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientImpl.kt) and             [`MuxClientAsyncImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientAsyncImpl.kt), respectively, using OkHttp\n- `mux-kotlin`\n  - Depends on and exposes the APIs of both `mux-kotlin-core` and `mux-kotlin-client-okhttp`\n  - Does not have its own logic\n\nThis structure allows replacing the SDK\'s default HTTP client without pulling in unnecessary dependencies.\n\n#### Customized [`OkHttpClient`](https://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.html)\n\n> [!TIP]\n> Try the available [network options](#network-options) before replacing the default client.\n\nTo use a customized `OkHttpClient`:\n\n1. Replace your [`mux-kotlin` dependency](#installation) with `mux-kotlin-core`\n2. Copy `mux-kotlin-client-okhttp`\'s [`OkHttpClient`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/OkHttpClient.kt) class into your code and        customize it\n3. Construct [`MuxClientImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientImpl.kt) or [`MuxClientAsyncImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientAsyncImpl.kt), similarly to        [`MuxOkHttpClient`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClient.kt) or [`MuxOkHttpClientAsync`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClientAsync.kt), using your        customized client\n\n### Completely custom HTTP client\n\nTo use a completely custom HTTP client:\n\n1. Replace your [`mux-kotlin` dependency](#installation) with `mux-kotlin-core`\n2. Write a class that implements the [`HttpClient`](mux-kotlin-core/src/main/kotlin/com/mux/api/core/http/HttpClient.kt) interface\n3. Construct [`MuxClientImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientImpl.kt) or [`MuxClientAsyncImpl`](mux-kotlin-core/src/main/kotlin/com/mux/api/client/MuxClientAsyncImpl.kt), similarly to        [`MuxOkHttpClient`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClient.kt) or [`MuxOkHttpClientAsync`](mux-kotlin-client-okhttp/src/main/kotlin/com/mux/api/client/okhttp/MuxOkHttpClientAsync.kt), using your new        client class\n\n## Undocumented API functionality\n\nThe SDK is typed for convenient usage of the documented API. However, it also supports working with undocumented or not yet supported parts of the API.\n\n### Parameters\n\nTo set undocumented parameters, call the `putAdditionalHeader`, `putAdditionalQueryParam`, or       `putAdditionalBodyProperty` methods on any `Params` class:\n\n```kotlin\nimport com.mux.api.core.JsonValue\nimport com.mux.api.models.video.assets.AssetCreateParams\n\nval params: AssetCreateParams = AssetCreateParams.builder()\n    .putAdditionalHeader("Secret-Header", "42")\n    .putAdditionalQueryParam("secret_query_param", "42")\n    .putAdditionalBodyProperty("secretProperty", JsonValue.from("42"))\n    .build()\n```\n\nThese can be accessed on the built object later using the `_additionalHeaders()`,       `_additionalQueryParams()`, and `_additionalBodyProperties()` methods.\n\nTo set a documented parameter or property to an undocumented or not yet supported _value_, pass a       [`JsonValue`](mux-kotlin-core/src/main/kotlin/com/mux/api/core/Values.kt) object to its setter:\n\n```kotlin\nimport com.mux.api.models.video.assets.AssetCreateParams\nimport com.mux.api.models.video.assets.AssetOptions\n\nval params: AssetCreateParams = AssetCreateParams.builder()\n    .assetOptions(AssetOptions.builder()\n        .addInput(AssetOptions.Input.builder().build())\n        .build())\n    .build()\n```\n\nThe most straightforward way to create a [`JsonValue`](mux-kotlin-core/src/main/kotlin/com/mux/api/core/Values.kt) is using its       `from(...)` method:\n\n```kotlin\nimport com.mux.api.core.JsonValue\n\n// Create primitive JSON values\nval nullValue: JsonValue = JsonValue.from(null)\nval booleanValue: JsonValue = JsonValue.from(true)\nval numberValue: JsonValue = JsonValue.from(42)\nval stringValue: JsonValue = JsonValue.from("Hello World!")\n\n// Create a JSON array value equivalent to `["Hello", "World"]`\nval arrayValue: JsonValue = JsonValue.from(listOf(\n  "Hello", "World"\n))\n\n// Create a JSON object value equivalent to `{ "a": 1, "b": 2 }`\nval objectValue: JsonValue = JsonValue.from(mapOf(\n  "a" to 1, "b" to 2\n))\n\n// Create an arbitrarily nested JSON equivalent to:\n// {\n//   "a": [1, 2],\n//   "b": [3, 4]\n// }\nval complexValue: JsonValue = JsonValue.from(mapOf(\n  "a" to listOf(\n    1, 2\n  ), "b" to listOf(\n    3, 4\n  )\n))\n```\n\nNormally a `Builder` class\'s `build` method will throw         [`IllegalStateException`](https://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html)         if any required parameter or property is unset.\n\nTo forcibly omit a required parameter or property, pass [`JsonMissing`](mux-kotlin-core/src/main/kotlin/com/mux/api/core/Values.kt):\n\n```kotlin\nimport com.mux.api.core.JsonMissing\nimport com.mux.api.models.video.assets.AssetCreateParams\nimport com.mux.api.models.video.assets.AssetRetrieveParams\n\nval params: AssetCreateParams = AssetRetrieveParams.builder()\n    .assetId(JsonMissing.of())\n    .build()\n```\n\n### Response properties\n\nTo access undocumented response properties, call the `_additionalProperties()` method:\n\n```kotlin\nimport com.mux.api.core.JsonBoolean\nimport com.mux.api.core.JsonNull\nimport com.mux.api.core.JsonNumber\nimport com.mux.api.core.JsonValue\n\nval additionalProperties: Map<String, JsonValue> = client.video().assets().create(params)._additionalProperties()\nval secretPropertyValue: JsonValue = additionalProperties.get("secretProperty")\n\nval result = when (secretPropertyValue) {\n    is JsonNull -> "It\'s null!"\n    is JsonBoolean -> "It\'s a boolean!"\n    is JsonNumber -> "It\'s a number!"\n    // Other types include `JsonMissing`, `JsonString`, `JsonArray`, and `JsonObject`\n    else -> "It\'s something else!"\n}\n```\n\nTo access a property\'s raw JSON value, which may be undocumented, call its `_` prefixed method:\n\n```kotlin\nimport com.mux.api.core.JsonField\n\nval field: JsonField<Any> = client.video().assets().create(params)._field()\n\nif (field.isMissing()) {\n  // The property is absent from the JSON response\n} else if (field.isNull()) {\n  // The property was set to literal null\n} else {\n  // Check if value was provided as a string\n  // Other methods include `asNumber()`, `asBoolean()`, etc.\n  val jsonString: String? = field.asString();\n\n  // Try to deserialize into a custom type\n  val myObject: MyClass = field.asUnknown()!!.convert(MyClass::class.java)\n}\n```\n\n### Response validation\n\nIn rare cases, the API may return a response that doesn\'t match the expected type. For example, the SDK     may expect a property to contain a `String`, but the API could return something else.\n\nBy default, the SDK will not throw an exception in this case. It will throw     [`MuxInvalidDataException`](mux-kotlin-core/src/main/kotlin/com/mux/api/errors/MuxInvalidDataException.kt) only if you directly access the property.\n\nIf you would prefer to check that the response is completely well-typed upfront, then either call     `validate()`:\n\n```kotlin\nimport com.mux.api.models.video.assets.Asset\n\nval asset: Asset = client.video().assets().create(params).validate()\n```\n\nOr configure the method call to validate the response using the `responseValidation` method:\n\n```kotlin\nimport com.mux.api.models.video.assets.Asset\n\nval asset: Asset = client.video().assets().create(\n  params, RequestOptions.builder().responseValidation(true).build()\n)\n```\n\nOr configure the default for all method calls at the client level:\n\n```kotlin\nimport com.mux.api.client.MuxClient\nimport com.mux.api.client.okhttp.MuxOkHttpClient\n\nval client: MuxClient = MuxOkHttpClient.builder()\n    .fromEnv()\n    .responseValidation(true)\n    .build()\n```\n\n## FAQ\n\n### Why don\'t you use plain `enum` classes?\n\nKotlin `enum` classes are not trivially   [forwards compatible](https://www.stainless.com/blog/making-java-enums-forwards-compatible). Using them in   the SDK could cause runtime exceptions if the API is updated to respond with a new enum value.\n\n### Why do you represent fields using `JsonField<T>` instead of just plain `T`?\n\nUsing `JsonField<T>` enables a few features:\n\n- Allowing usage of [undocumented API functionality](#undocumented-api-functionality)\n- Lazily [validating the API response against the expected shape](#response-validation)\n- Representing absent vs explicitly null values\n\n### Why don\'t you use [`data` classes](https://kotlinlang.org/docs/data-classes.html)?\n\nIt is not [backwards compatible to add new fields to a data class](https://kotlinlang.org/docs/api-guidelines-backward-compatibility.html#avoid-using-data-classes-in-your-api)   and we don\'t want to introduce a breaking change every time we add a field to a class.\n\n### Why don\'t you use checked exceptions?\n\nChecked exceptions are widely considered a mistake in the Java programming language. In fact, they were   omitted from Kotlin for this reason.\n\nChecked exceptions:\n\n- Are verbose to handle\n- Encourage error handling at the wrong level of abstraction, where nothing can be done about the error\n- Are tedious to propagate due to the [function coloring problem](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function)\n- Don\'t play well with lambdas (also due to the function coloring problem)\n\n## Semantic versioning\n\nThis package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:\n\n1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals.)_\n2. Changes that we do not expect to impact the vast majority of users in practice.\n\nWe take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.\n\nWe are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/mux-kotlin/issues) with questions, bugs, or suggestions.\n',
+  },
+  {
+    language: 'csharp',
+    content:
+      '# Mux C# API Library\n\nThe Mux C# SDK provides convenient access to the [Mux REST API](https://docs.mux.com) from applications written in   C#.\n\n## Installation\n\n```bash\ngit clone git@github.com:stainless-sdks/mux-csharp.git\ndotnet add reference mux-csharp/src/Mux\n```\n\n## Requirements\n\nThis library requires .NET Standard 2.0 or later.\n\n## Usage\n\nSee the [`examples`](examples) directory for complete and runnable examples.\n\n```csharp\nMuxClient client = new();\n\nAssetCreateParams parameters = new()\n{\n    Inputs =\n    [\n        new()\n        {\n            Url = "https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4",\n        },\n    ],\n    PlaybackPolicies =\n    [\n        PlaybackPolicy.Public\n    ],\n};\n\nvar asset = await client.Video.Assets.Create(parameters);\n\nConsole.WriteLine(asset);\n```',
   },
   {
     language: 'cli',
