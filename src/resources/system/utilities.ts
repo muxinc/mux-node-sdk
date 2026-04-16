@@ -1,8 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * Collection of utility methods for using Mux APIs. There's only one thing in here right now, maybe there will be more later.
+ */
 export class Utilities extends APIResource {
   /**
    * Retrieve information about your current access token, including organization,
@@ -10,12 +14,12 @@ export class Utilities extends APIResource {
    * token, and _all_ access tokens can access this route, regardless of what
    * permissions they have assigned.
    */
-  whoami(options?: Core.RequestOptions): Core.APIPromise<UtilityWhoamiResponse> {
+  whoami(options?: RequestOptions): APIPromise<UtilityWhoamiResponse> {
     return (
       this._client.get('/system/v1/whoami', {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: UtilityWhoamiResponse }>
+      }) as APIPromise<{ data: UtilityWhoamiResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 }

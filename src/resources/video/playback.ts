@@ -1,9 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { type Response } from '../../_shims/index';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Playback extends APIResource {
   /**
@@ -24,28 +25,14 @@ export class Playback extends APIResource {
   animated(
     playbackId: string,
     extension: 'gif' | 'webp',
-    query?: PlaybackAnimatedParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  animated(
-    playbackId: string,
-    extension: 'gif' | 'webp',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  animated(
-    playbackId: string,
-    extension: 'gif' | 'webp',
-    query: PlaybackAnimatedParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response> {
-    if (isRequestOptions(query)) {
-      return this.animated(playbackId, extension, {}, query);
-    }
-    return this._client.get(`/${playbackId}/animated.${extension}`, {
+    query: PlaybackAnimatedParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
+    return this._client.get(path`/${playbackId}/animated.${extension}`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
-      headers: { Accept: 'image/gif', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'image/gif' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -67,23 +54,14 @@ export class Playback extends APIResource {
    */
   hls(
     playbackId: string,
-    query?: PlaybackHlsParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  hls(playbackId: string, options?: Core.RequestOptions): Core.APIPromise<Response>;
-  hls(
-    playbackId: string,
-    query: PlaybackHlsParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response> {
-    if (isRequestOptions(query)) {
-      return this.hls(playbackId, {}, query);
-    }
-    return this._client.get(`/${playbackId}.m3u8`, {
+    query: PlaybackHlsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
+    return this._client.get(path`/${playbackId}.m3u8`, {
       query,
       defaultBaseURL: 'https://stream.mux.com',
       ...options,
-      headers: { Accept: 'application/vnd.apple.mpegurl', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'application/vnd.apple.mpegurl' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -108,28 +86,14 @@ export class Playback extends APIResource {
   staticRendition(
     playbackId: string,
     filename: 'capped-1080p.mp4' | 'audio.m4a' | 'low.mp4' | 'medium.mp4' | 'high.mp4',
-    query?: PlaybackStaticRenditionParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  staticRendition(
-    playbackId: string,
-    filename: 'capped-1080p.mp4' | 'audio.m4a' | 'low.mp4' | 'medium.mp4' | 'high.mp4',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  staticRendition(
-    playbackId: string,
-    filename: 'capped-1080p.mp4' | 'audio.m4a' | 'low.mp4' | 'medium.mp4' | 'high.mp4',
-    query: PlaybackStaticRenditionParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response> {
-    if (isRequestOptions(query)) {
-      return this.staticRendition(playbackId, filename, {}, query);
-    }
-    return this._client.get(`/${playbackId}/${filename}`, {
+    query: PlaybackStaticRenditionParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
+    return this._client.get(path`/${playbackId}/${filename}`, {
       query,
       defaultBaseURL: 'https://stream.mux.com',
       ...options,
-      headers: { Accept: 'video/mp4', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'video/mp4' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -152,28 +116,14 @@ export class Playback extends APIResource {
   storyboard(
     playbackId: string,
     extension: 'jpg' | 'png' | 'webp',
-    query?: PlaybackStoryboardParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  storyboard(
-    playbackId: string,
-    extension: 'jpg' | 'png' | 'webp',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  storyboard(
-    playbackId: string,
-    extension: 'jpg' | 'png' | 'webp',
-    query: PlaybackStoryboardParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response> {
-    if (isRequestOptions(query)) {
-      return this.storyboard(playbackId, extension, {}, query);
-    }
-    return this._client.get(`/${playbackId}/storyboard.${extension}`, {
+    query: PlaybackStoryboardParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
+    return this._client.get(path`/${playbackId}/storyboard.${extension}`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
-      headers: { Accept: 'image/jpeg', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'image/jpeg' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -192,19 +142,10 @@ export class Playback extends APIResource {
    */
   storyboardMeta(
     playbackId: string,
-    query?: PlaybackStoryboardMetaParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string>;
-  storyboardMeta(playbackId: string, options?: Core.RequestOptions): Core.APIPromise<string>;
-  storyboardMeta(
-    playbackId: string,
-    query: PlaybackStoryboardMetaParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.storyboardMeta(playbackId, {}, query);
-    }
-    return this._client.get(`/${playbackId}/storyboard.json`, {
+    query: PlaybackStoryboardMetaParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get(path`/${playbackId}/storyboard.json`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
@@ -225,23 +166,14 @@ export class Playback extends APIResource {
    */
   storyboardVtt(
     playbackId: string,
-    query?: PlaybackStoryboardVttParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string>;
-  storyboardVtt(playbackId: string, options?: Core.RequestOptions): Core.APIPromise<string>;
-  storyboardVtt(
-    playbackId: string,
-    query: PlaybackStoryboardVttParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.storyboardVtt(playbackId, {}, query);
-    }
-    return this._client.get(`/${playbackId}/storyboard.vtt`, {
+    query: PlaybackStoryboardVttParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get(path`/${playbackId}/storyboard.vtt`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
-      headers: { Accept: 'text/vtt', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/vtt' }, options?.headers]),
     });
   }
 
@@ -263,28 +195,14 @@ export class Playback extends APIResource {
   thumbnail(
     playbackId: string,
     extension: 'jpg' | 'png' | 'webp',
-    query?: PlaybackThumbnailParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  thumbnail(
-    playbackId: string,
-    extension: 'jpg' | 'png' | 'webp',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response>;
-  thumbnail(
-    playbackId: string,
-    extension: 'jpg' | 'png' | 'webp',
-    query: PlaybackThumbnailParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<Response> {
-    if (isRequestOptions(query)) {
-      return this.thumbnail(playbackId, extension, {}, query);
-    }
-    return this._client.get(`/${playbackId}/thumbnail.${extension}`, {
+    query: PlaybackThumbnailParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<Response> {
+    return this._client.get(path`/${playbackId}/thumbnail.${extension}`, {
       query,
       defaultBaseURL: 'https://image.mux.com',
       ...options,
-      headers: { Accept: 'image/jpeg', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'image/jpeg' }, options?.headers]),
       __binaryResponse: true,
     });
   }
@@ -303,24 +221,14 @@ export class Playback extends APIResource {
   track(
     playbackId: string,
     trackId: string,
-    query?: PlaybackTrackParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string>;
-  track(playbackId: string, trackId: string, options?: Core.RequestOptions): Core.APIPromise<string>;
-  track(
-    playbackId: string,
-    trackId: string,
-    query: PlaybackTrackParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.track(playbackId, trackId, {}, query);
-    }
-    return this._client.get(`/${playbackId}/text/${trackId}.vtt`, {
+    query: PlaybackTrackParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get(path`/${playbackId}/text/${trackId}.vtt`, {
       query,
       defaultBaseURL: 'https://stream.mux.com',
       ...options,
-      headers: { Accept: 'text/vtt', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/vtt' }, options?.headers]),
     });
   }
 
@@ -341,24 +249,14 @@ export class Playback extends APIResource {
   transcript(
     playbackId: string,
     trackId: string,
-    query?: PlaybackTranscriptParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string>;
-  transcript(playbackId: string, trackId: string, options?: Core.RequestOptions): Core.APIPromise<string>;
-  transcript(
-    playbackId: string,
-    trackId: string,
-    query: PlaybackTranscriptParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<string> {
-    if (isRequestOptions(query)) {
-      return this.transcript(playbackId, trackId, {}, query);
-    }
-    return this._client.get(`/${playbackId}/text/${trackId}.txt`, {
+    query: PlaybackTranscriptParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<string> {
+    return this._client.get(path`/${playbackId}/text/${trackId}.txt`, {
       query,
       defaultBaseURL: 'https://stream.mux.com',
       ...options,
-      headers: { Accept: 'text/plain', ...options?.headers },
+      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
     });
   }
 }

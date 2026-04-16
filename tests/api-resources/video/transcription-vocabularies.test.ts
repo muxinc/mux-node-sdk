@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Mux from '@mux/mux-node';
-import { Response } from 'node-fetch';
 
 const client = new Mux({
   tokenId: 'my token id',
@@ -42,15 +41,6 @@ describe('resource transcriptionVocabularies', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.transcriptionVocabularies.retrieve('TRANSCRIPTION_VOCABULARY_ID', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
   test('update: only required params', async () => {
     const responsePromise = client.video.transcriptionVocabularies.update('TRANSCRIPTION_VOCABULARY_ID', {
       phrases: ['Mux', 'Live Stream', 'RTMP', 'Stream Key'],
@@ -83,13 +73,6 @@ describe('resource transcriptionVocabularies', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.transcriptionVocabularies.list({ path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -109,14 +92,5 @@ describe('resource transcriptionVocabularies', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.transcriptionVocabularies.delete('TRANSCRIPTION_VOCABULARY_ID', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(Mux.NotFoundError);
   });
 });

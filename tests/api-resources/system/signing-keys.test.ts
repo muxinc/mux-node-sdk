@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Mux from '@mux/mux-node';
-import { Response } from 'node-fetch';
 
 const client = new Mux({
   tokenId: 'my token id',
@@ -21,13 +20,6 @@ describe('resource signingKeys', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('create: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.system.signingKeys.create({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Mux.NotFoundError,
-    );
-  });
-
   test('retrieve', async () => {
     const responsePromise = client.system.signingKeys.retrieve('SIGNING_KEY_ID');
     const rawResponse = await responsePromise.asResponse();
@@ -39,13 +31,6 @@ describe('resource signingKeys', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.system.signingKeys.retrieve('SIGNING_KEY_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
   test('list', async () => {
     const responsePromise = client.system.signingKeys.list();
     const rawResponse = await responsePromise.asResponse();
@@ -55,13 +40,6 @@ describe('resource signingKeys', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.system.signingKeys.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      Mux.NotFoundError,
-    );
   });
 
   test('list: request options and params are passed correctly', async () => {
@@ -80,12 +58,5 @@ describe('resource signingKeys', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.system.signingKeys.delete('SIGNING_KEY_ID', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
   });
 });

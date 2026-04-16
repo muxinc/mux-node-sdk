@@ -1,10 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { BasePage, type BasePageParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { BasePage, type BasePageParams, PagePromise } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
+/**
+ * Dimensions are the types of metadata that can be collected for a video view. Some dimensions are collected automatically based on the playback or device, such as the viewer's Country or the device information. Other dimensions are specified by the developer when configuring a Mux Data video view such as the video title. The Dimensions APIs allow you to get a list of the supported dimensions and their values.
+ */
 export class Dimensions extends APIResource {
   /**
    * List all available dimensions.
@@ -17,7 +21,7 @@ export class Dimensions extends APIResource {
    *   await client.data.dimensions.list();
    * ```
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<DimensionsResponse> {
+  list(options?: RequestOptions): APIPromise<DimensionsResponse> {
     return this._client.get('/data/v1/dimensions', { defaultBaseURL: 'https://api.mux.com', ...options });
   }
 
@@ -37,27 +41,15 @@ export class Dimensions extends APIResource {
    * ```
    */
   listTraceElements(
-    dimensionId: string,
-    query?: DimensionListTraceElementsParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<DimensionValuesBasePage, DimensionValue>;
-  listTraceElements(
-    dimensionId: string,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<DimensionValuesBasePage, DimensionValue>;
-  listTraceElements(
-    dimensionId: string,
-    query: DimensionListTraceElementsParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<DimensionValuesBasePage, DimensionValue> {
-    if (isRequestOptions(query)) {
-      return this.listTraceElements(dimensionId, {}, query);
-    }
-    return this._client.getAPIList(`/data/v1/dimensions/${dimensionId}/elements`, DimensionValuesBasePage, {
-      query,
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-    });
+    dimensionID: string,
+    query: DimensionListTraceElementsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<DimensionValuesBasePage, DimensionValue> {
+    return this._client.getAPIList(
+      path`/data/v1/dimensions/${dimensionID}/elements`,
+      BasePage<DimensionValue>,
+      { query, defaultBaseURL: 'https://api.mux.com', ...options },
+    );
   }
 
   /**
@@ -76,23 +68,11 @@ export class Dimensions extends APIResource {
    * ```
    */
   listValues(
-    dimensionId: string,
-    query?: DimensionListValuesParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<DimensionValuesBasePage, DimensionValue>;
-  listValues(
-    dimensionId: string,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<DimensionValuesBasePage, DimensionValue>;
-  listValues(
-    dimensionId: string,
-    query: DimensionListValuesParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<DimensionValuesBasePage, DimensionValue> {
-    if (isRequestOptions(query)) {
-      return this.listValues(dimensionId, {}, query);
-    }
-    return this._client.getAPIList(`/data/v1/dimensions/${dimensionId}`, DimensionValuesBasePage, {
+    dimensionID: string,
+    query: DimensionListValuesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<DimensionValuesBasePage, DimensionValue> {
+    return this._client.getAPIList(path`/data/v1/dimensions/${dimensionID}`, BasePage<DimensionValue>, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -100,7 +80,7 @@ export class Dimensions extends APIResource {
   }
 }
 
-export class DimensionValuesBasePage extends BasePage<DimensionValue> {}
+export type DimensionValuesBasePage = BasePage<DimensionValue>;
 
 export interface DimensionValue {
   total_count: number;
@@ -232,13 +212,11 @@ export interface DimensionListValuesParams extends BasePageParams {
   timeframe?: Array<string>;
 }
 
-Dimensions.DimensionValuesBasePage = DimensionValuesBasePage;
-
 export declare namespace Dimensions {
   export {
     type DimensionValue as DimensionValue,
     type DimensionsResponse as DimensionsResponse,
-    DimensionValuesBasePage as DimensionValuesBasePage,
+    type DimensionValuesBasePage as DimensionValuesBasePage,
     type DimensionListTraceElementsParams as DimensionListTraceElementsParams,
     type DimensionListValuesParams as DimensionListValuesParams,
   };

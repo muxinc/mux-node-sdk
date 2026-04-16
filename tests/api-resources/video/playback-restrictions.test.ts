@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Mux from '@mux/mux-node';
-import { Response } from 'node-fetch';
 
 const client = new Mux({
   tokenId: 'my token id',
@@ -42,15 +41,6 @@ describe('resource playbackRestrictions', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playbackRestrictions.retrieve('PLAYBACK_RESTRICTION_ID', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(Mux.NotFoundError);
-  });
-
   test('list', async () => {
     const responsePromise = client.video.playbackRestrictions.list();
     const rawResponse = await responsePromise.asResponse();
@@ -60,13 +50,6 @@ describe('resource playbackRestrictions', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playbackRestrictions.list({ path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('list: request options and params are passed correctly', async () => {
@@ -85,15 +68,6 @@ describe('resource playbackRestrictions', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  test('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.video.playbackRestrictions.delete('PLAYBACK_RESTRICTION_ID', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('updateReferrer: only required params', async () => {

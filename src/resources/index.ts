@@ -2,6 +2,7 @@
 
 export * from './shared';
 export { Data } from './data/data';
+export { RobotsPreview } from './robots-preview/robots-preview';
 export { Jwt } from './jwt';
 export { System } from './system/system';
 export { Video } from './video/video';

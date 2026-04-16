@@ -1,9 +1,21 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../resource';
-import { isRequestOptions } from '../../../core';
-import * as Core from '../../../core';
+import { APIResource } from '../../../core/resource';
+import { APIPromise } from '../../../core/api-promise';
+import { RequestOptions } from '../../../internal/request-options';
+import { path } from '../../../internal/utils/path';
 
+/**
+ * Monitoring metrics are used for operational monitoring of a video platform.
+ * The metrics are aggregated in five second intervals, across the views that
+ * are currently being watched. The real-time metrics' timeline, breakdown,
+ * and histogram representations are available via the APIs.
+ *
+ * Monitoring metrics are similar but not directly comparable to the historical
+ * metrics in the Metrics APIs. These metrics are aggregated to provide the most
+ * operational detail possible used for resolving operational issues.
+ * Mux Data Monitoring metrics are available to Mux Data customers on a Media plan.
+ */
 export class Metrics extends APIResource {
   /**
    * Lists available monitoring metrics.
@@ -13,7 +25,7 @@ export class Metrics extends APIResource {
    * const metrics = await client.data.monitoring.metrics.list();
    * ```
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<MetricListResponse> {
+  list(options?: RequestOptions): APIPromise<MetricListResponse> {
     return this._client.get('/data/v1/monitoring/metrics', {
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -33,41 +45,17 @@ export class Metrics extends APIResource {
    * ```
    */
   getBreakdown(
-    monitoringMetricId:
+    monitoringMetricID:
       | 'current-concurrent-viewers'
       | 'current-rebuffering-percentage'
       | 'exits-before-video-start'
       | 'playback-failure-percentage'
       | 'current-average-bitrate'
       | 'video-startup-failure-percentage',
-    query?: MetricGetBreakdownParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricGetBreakdownResponse>;
-  getBreakdown(
-    monitoringMetricId:
-      | 'current-concurrent-viewers'
-      | 'current-rebuffering-percentage'
-      | 'exits-before-video-start'
-      | 'playback-failure-percentage'
-      | 'current-average-bitrate'
-      | 'video-startup-failure-percentage',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricGetBreakdownResponse>;
-  getBreakdown(
-    monitoringMetricId:
-      | 'current-concurrent-viewers'
-      | 'current-rebuffering-percentage'
-      | 'exits-before-video-start'
-      | 'playback-failure-percentage'
-      | 'current-average-bitrate'
-      | 'video-startup-failure-percentage',
-    query: MetricGetBreakdownParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricGetBreakdownResponse> {
-    if (isRequestOptions(query)) {
-      return this.getBreakdown(monitoringMetricId, {}, query);
-    }
-    return this._client.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/breakdown`, {
+    query: MetricGetBreakdownParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<MetricGetBreakdownResponse> {
+    return this._client.get(path`/data/v1/monitoring/metrics/${monitoringMetricID}/breakdown`, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -87,41 +75,17 @@ export class Metrics extends APIResource {
    * ```
    */
   getBreakdownTimeseries(
-    monitoringMetricId:
+    monitoringMetricID:
       | 'current-concurrent-viewers'
       | 'current-rebuffering-percentage'
       | 'exits-before-video-start'
       | 'playback-failure-percentage'
       | 'current-average-bitrate'
       | 'video-startup-failure-percentage',
-    query?: MetricGetBreakdownTimeseriesParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricGetBreakdownTimeseriesResponse>;
-  getBreakdownTimeseries(
-    monitoringMetricId:
-      | 'current-concurrent-viewers'
-      | 'current-rebuffering-percentage'
-      | 'exits-before-video-start'
-      | 'playback-failure-percentage'
-      | 'current-average-bitrate'
-      | 'video-startup-failure-percentage',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricGetBreakdownTimeseriesResponse>;
-  getBreakdownTimeseries(
-    monitoringMetricId:
-      | 'current-concurrent-viewers'
-      | 'current-rebuffering-percentage'
-      | 'exits-before-video-start'
-      | 'playback-failure-percentage'
-      | 'current-average-bitrate'
-      | 'video-startup-failure-percentage',
-    query: MetricGetBreakdownTimeseriesParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricGetBreakdownTimeseriesResponse> {
-    if (isRequestOptions(query)) {
-      return this.getBreakdownTimeseries(monitoringMetricId, {}, query);
-    }
-    return this._client.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/breakdown-timeseries`, {
+    query: MetricGetBreakdownTimeseriesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<MetricGetBreakdownTimeseriesResponse> {
+    return this._client.get(path`/data/v1/monitoring/metrics/${monitoringMetricID}/breakdown-timeseries`, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -140,24 +104,12 @@ export class Metrics extends APIResource {
    * ```
    */
   getHistogramTimeseries(
-    monitoringHistogramMetricId: 'video-startup-time',
-    query?: MetricGetHistogramTimeseriesParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricGetHistogramTimeseriesResponse>;
-  getHistogramTimeseries(
-    monitoringHistogramMetricId: 'video-startup-time',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricGetHistogramTimeseriesResponse>;
-  getHistogramTimeseries(
-    monitoringHistogramMetricId: 'video-startup-time',
-    query: MetricGetHistogramTimeseriesParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricGetHistogramTimeseriesResponse> {
-    if (isRequestOptions(query)) {
-      return this.getHistogramTimeseries(monitoringHistogramMetricId, {}, query);
-    }
+    monitoringHistogramMetricID: 'video-startup-time',
+    query: MetricGetHistogramTimeseriesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<MetricGetHistogramTimeseriesResponse> {
     return this._client.get(
-      `/data/v1/monitoring/metrics/${monitoringHistogramMetricId}/histogram-timeseries`,
+      path`/data/v1/monitoring/metrics/${monitoringHistogramMetricID}/histogram-timeseries`,
       { query, defaultBaseURL: 'https://api.mux.com', ...options },
     );
   }
@@ -175,41 +127,17 @@ export class Metrics extends APIResource {
    * ```
    */
   getTimeseries(
-    monitoringMetricId:
+    monitoringMetricID:
       | 'current-concurrent-viewers'
       | 'current-rebuffering-percentage'
       | 'exits-before-video-start'
       | 'playback-failure-percentage'
       | 'current-average-bitrate'
       | 'video-startup-failure-percentage',
-    query?: MetricGetTimeseriesParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricGetTimeseriesResponse>;
-  getTimeseries(
-    monitoringMetricId:
-      | 'current-concurrent-viewers'
-      | 'current-rebuffering-percentage'
-      | 'exits-before-video-start'
-      | 'playback-failure-percentage'
-      | 'current-average-bitrate'
-      | 'video-startup-failure-percentage',
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricGetTimeseriesResponse>;
-  getTimeseries(
-    monitoringMetricId:
-      | 'current-concurrent-viewers'
-      | 'current-rebuffering-percentage'
-      | 'exits-before-video-start'
-      | 'playback-failure-percentage'
-      | 'current-average-bitrate'
-      | 'video-startup-failure-percentage',
-    query: MetricGetTimeseriesParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<MetricGetTimeseriesResponse> {
-    if (isRequestOptions(query)) {
-      return this.getTimeseries(monitoringMetricId, {}, query);
-    }
-    return this._client.get(`/data/v1/monitoring/metrics/${monitoringMetricId}/timeseries`, {
+    query: MetricGetTimeseriesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<MetricGetTimeseriesResponse> {
+    return this._client.get(path`/data/v1/monitoring/metrics/${monitoringMetricID}/timeseries`, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,

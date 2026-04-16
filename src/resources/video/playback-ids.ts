@@ -1,32 +1,37 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as Shared from '../shared';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
-export class PlaybackIDs extends APIResource {
+/**
+ * Operations related to the manipulation of playback IDs, through which users are able to stream videos and live streams from Mux.
+ */
+export class PlaybackIds extends APIResource {
   /**
    * Retrieves the Identifier of the Asset or Live Stream associated with the
    * Playback ID.
    *
    * @example
    * ```ts
-   * const playbackId = await client.video.playbackIds.retrieve(
+   * const playbackIds = await client.video.playbackIds.retrieve(
    *   'PLAYBACK_ID',
    * );
    * ```
    */
-  retrieve(playbackId: string, options?: Core.RequestOptions): Core.APIPromise<PlaybackIDRetrieveResponse> {
+  retrieve(playbackId: string, options?: RequestOptions): APIPromise<PlaybackIdsRetrieveResponse> {
     return (
-      this._client.get(`/video/v1/playback-ids/${playbackId}`, {
+      this._client.get(path`/video/v1/playback-ids/${playbackId}`, {
         defaultBaseURL: 'https://api.mux.com',
         ...options,
-      }) as Core.APIPromise<{ data: PlaybackIDRetrieveResponse }>
+      }) as APIPromise<{ data: PlaybackIdsRetrieveResponse }>
     )._thenUnwrap((obj) => obj.data);
   }
 }
 
-export interface PlaybackIDRetrieveResponse {
+export interface PlaybackIdsRetrieveResponse {
   /**
    * The Playback ID used to retrieve the corresponding asset or the live stream ID
    */
@@ -35,7 +40,7 @@ export interface PlaybackIDRetrieveResponse {
   /**
    * Describes the Asset or LiveStream object associated with the playback ID.
    */
-  object: PlaybackIDRetrieveResponse.Object;
+  object: PlaybackIdsRetrieveResponse.Object;
 
   /**
    * - `public` playback IDs are accessible by constructing an HLS URL like
@@ -52,7 +57,7 @@ export interface PlaybackIDRetrieveResponse {
   policy: Shared.PlaybackPolicy;
 }
 
-export namespace PlaybackIDRetrieveResponse {
+export namespace PlaybackIdsRetrieveResponse {
   /**
    * Describes the Asset or LiveStream object associated with the playback ID.
    */
@@ -69,6 +74,6 @@ export namespace PlaybackIDRetrieveResponse {
   }
 }
 
-export declare namespace PlaybackIDs {
-  export { type PlaybackIDRetrieveResponse as PlaybackIDRetrieveResponse };
+export declare namespace PlaybackIds {
+  export { type PlaybackIdsRetrieveResponse as PlaybackIdsRetrieveResponse };
 }

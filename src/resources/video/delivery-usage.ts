@@ -1,10 +1,14 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import { isRequestOptions } from '../../core';
-import * as Core from '../../core';
-import { PageWithTotal, type PageWithTotalParams } from '../../pagination';
+import { APIResource } from '../../core/resource';
+import { PagePromise, PageWithTotal, type PageWithTotalParams } from '../../core/pagination';
+import { RequestOptions } from '../../internal/request-options';
 
+/**
+ * The Delivery Usage API allows you to get delivery/streaming usage details for each asset and across all assets. Delivery usage details are aggregated every hour at the top of the hour and can be requested for a specified time window within the last 90 days starting at 12 hours prior to when the request is made.
+ *
+ * Assets are ordered by delivery usage starting with the one with the highest usage. Only assets with delivery usage greater than 0 seconds are returned in the response.
+ */
 export class DeliveryUsage extends APIResource {
   /**
    * Returns a list of delivery usage records and their associated Asset IDs or Live
@@ -19,18 +23,10 @@ export class DeliveryUsage extends APIResource {
    * ```
    */
   list(
-    query?: DeliveryUsageListParams,
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<DeliveryReportsPageWithTotal, DeliveryReport>;
-  list(options?: Core.RequestOptions): Core.PagePromise<DeliveryReportsPageWithTotal, DeliveryReport>;
-  list(
-    query: DeliveryUsageListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.PagePromise<DeliveryReportsPageWithTotal, DeliveryReport> {
-    if (isRequestOptions(query)) {
-      return this.list({}, query);
-    }
-    return this._client.getAPIList('/video/v1/delivery-usage', DeliveryReportsPageWithTotal, {
+    query: DeliveryUsageListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<DeliveryReportsPageWithTotal, DeliveryReport> {
+    return this._client.getAPIList('/video/v1/delivery-usage', PageWithTotal<DeliveryReport>, {
       query,
       defaultBaseURL: 'https://api.mux.com',
       ...options,
@@ -38,7 +34,7 @@ export class DeliveryUsage extends APIResource {
   }
 }
 
-export class DeliveryReportsPageWithTotal extends PageWithTotal<DeliveryReport> {}
+export type DeliveryReportsPageWithTotal = PageWithTotal<DeliveryReport>;
 
 export interface DeliveryReport {
   /**
@@ -171,12 +167,10 @@ export interface DeliveryUsageListParams extends PageWithTotalParams {
   timeframe?: Array<string>;
 }
 
-DeliveryUsage.DeliveryReportsPageWithTotal = DeliveryReportsPageWithTotal;
-
 export declare namespace DeliveryUsage {
   export {
     type DeliveryReport as DeliveryReport,
-    DeliveryReportsPageWithTotal as DeliveryReportsPageWithTotal,
+    type DeliveryReportsPageWithTotal as DeliveryReportsPageWithTotal,
     type DeliveryUsageListParams as DeliveryUsageListParams,
   };
 }

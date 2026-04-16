@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export {
-  AssetsBasePage,
   Assets,
   type Asset,
   type AssetOptions,
@@ -14,38 +13,39 @@ export {
   type AssetCreateParams,
   type AssetUpdateParams,
   type AssetListParams,
-  type AssetCreatePlaybackIDParams,
+  type AssetCreatePlaybackIdParams,
   type AssetCreateStaticRenditionParams,
   type AssetCreateTrackParams,
   type AssetGenerateSubtitlesParams,
   type AssetUpdateMasterAccessParams,
   type AssetUpdateMP4SupportParams,
+  type AssetsCursorPage,
 } from './assets';
 export {
-  DRMConfigurationsBasePage,
   DRMConfigurations,
   type DRMConfiguration,
   type DRMConfigurationListParams,
+  type DRMConfigurationsBasePage,
 } from './drm-configurations';
 export {
-  DeliveryReportsPageWithTotal,
   DeliveryUsage,
   type DeliveryReport,
   type DeliveryUsageListParams,
+  type DeliveryReportsPageWithTotal,
 } from './delivery-usage';
 export {
-  LiveStreamsBasePage,
   LiveStreams,
   type LiveStream,
   type SimulcastTarget,
   type LiveStreamCreateParams,
   type LiveStreamUpdateParams,
   type LiveStreamListParams,
-  type LiveStreamCreatePlaybackIDParams,
+  type LiveStreamCreatePlaybackIdParams,
   type LiveStreamCreateSimulcastTargetParams,
   type LiveStreamUpdateEmbeddedSubtitlesParams,
   type LiveStreamUpdateGeneratedSubtitlesParams,
   type LiveStreamUpdateNewAssetSettingsStaticRenditionsParams,
+  type LiveStreamsBasePage,
 } from './live-streams';
 export {
   Playback,
@@ -63,9 +63,8 @@ export {
   type PlaybackTrackParams,
   type PlaybackTranscriptParams,
 } from './playback';
-export { PlaybackIDs, type PlaybackIDRetrieveResponse } from './playback-ids';
+export { PlaybackIds, type PlaybackIdsRetrieveResponse } from './playback-ids';
 export {
-  PlaybackRestrictionsBasePage,
   PlaybackRestrictions,
   type PlaybackRestriction,
   type PlaybackRestrictionResponse,
@@ -73,36 +72,23 @@ export {
   type PlaybackRestrictionListParams,
   type PlaybackRestrictionUpdateReferrerParams,
   type PlaybackRestrictionUpdateUserAgentParams,
+  type PlaybackRestrictionsBasePage,
 } from './playback-restrictions';
 export {
-  TranscriptionVocabulariesBasePage,
   TranscriptionVocabularies,
   type TranscriptionVocabulary,
   type TranscriptionVocabularyResponse,
   type TranscriptionVocabularyCreateParams,
   type TranscriptionVocabularyUpdateParams,
   type TranscriptionVocabularyListParams,
+  type TranscriptionVocabulariesBasePage,
 } from './transcription-vocabularies';
 export {
-  UploadsBasePage,
   Uploads,
   type Upload,
   type UploadResponse,
   type UploadCreateParams,
   type UploadListParams,
+  type UploadsBasePage,
 } from './uploads';
 export { Video } from './video';
-export {
-  WebInputListResponsesBasePage,
-  WebInputs,
-  type WebInputCreateResponse,
-  type WebInputRetrieveResponse,
-  type WebInputListResponse,
-  type WebInputLaunchResponse,
-  type WebInputReloadResponse,
-  type WebInputShutdownResponse,
-  type WebInputUpdateURLResponse,
-  type WebInputCreateParams,
-  type WebInputListParams,
-  type WebInputUpdateURLParams,
-} from './web-inputs';

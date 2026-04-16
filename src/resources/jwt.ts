@@ -1,17 +1,15 @@
-// File generated from our OpenAPI spec by Stainless.
-
-import { APIResource } from '@mux/mux-node/resource';
-import * as jwt from '@mux/mux-node/_shims/auto/jwt';
+import { APIResource } from '../core/resource';
+import * as jwt from '../lib/jwt';
 import {
-  type SignOptions,
-  TypeClaim,
   DataTypeClaim,
-  TypeToken,
-  type MuxJWTSignOptions,
-  type MuxJWTSignOptionsMultiple,
-  type Tokens,
   isMuxJWTSignOptionsMultiple,
-} from '@mux/mux-node/util/jwt-types';
+  MuxJWTSignOptions,
+  MuxJWTSignOptionsMultiple,
+  SignOptions,
+  Tokens,
+  TypeClaim,
+  TypeToken,
+} from '../lib/jwt';
 
 export class Jwt extends APIResource {
   async signPlaybackId(
@@ -114,23 +112,6 @@ export class Jwt extends APIResource {
       keyid: jwt.getSigningKey(this._client, config),
       subject: playbackId,
       audience: claim,
-      expiresIn: config.expiration ?? '7d',
-      noTimestamp: true,
-      algorithm: 'RS256',
-    };
-
-    return jwt.sign(config.params ?? {}, await jwt.getPrivateKey(this._client, config), tokenOptions);
-  }
-
-  /**
-   * Creates a new token to be used with a space
-   * @deprecated Mux Real-Time Video (spaces) has been shut down. This function will be removed in the next major version.
-   */
-  async signSpaceId(spaceId: string, config: MuxJWTSignOptions<never> = {}): Promise<string> {
-    const tokenOptions: SignOptions = {
-      keyid: jwt.getSigningKey(this._client, config),
-      subject: spaceId,
-      audience: 'rt',
       expiresIn: config.expiration ?? '7d',
       noTimestamp: true,
       algorithm: 'RS256',
