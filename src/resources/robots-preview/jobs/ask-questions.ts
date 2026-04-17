@@ -41,7 +41,8 @@ export class AskQuestions extends APIResource {
   }
 
   /**
-   * Retrieves the current status and results of an 'ask-questions' job.
+   * Retrieves the current status and results of an 'ask-questions' job. Jobs are
+   * automatically deleted after 30 days.
    *
    * @example
    * ```ts
