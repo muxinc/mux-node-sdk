@@ -36,7 +36,8 @@ export class Moderate extends APIResource {
   }
 
   /**
-   * Retrieves the current status and results of a 'moderate' job.
+   * Retrieves the current status and results of a 'moderate' job. Jobs are
+   * automatically deleted after 30 days.
    *
    * @example
    * ```ts

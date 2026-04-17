@@ -71,7 +71,7 @@ export class Jobs extends APIResource {
 
   /**
    * Returns a paginated list of Robots jobs, with optional filters for workflow,
-   * status, and asset_id.
+   * status, and asset_id. Jobs are automatically deleted after 30 days.
    *
    * @example
    * ```ts

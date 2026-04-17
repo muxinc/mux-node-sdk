@@ -32,7 +32,8 @@ export class GenerateChapters extends APIResource {
   }
 
   /**
-   * Retrieves the current status and results of a 'generate-chapters' job.
+   * Retrieves the current status and results of a 'generate-chapters' job. Jobs are
+   * automatically deleted after 30 days.
    *
    * @example
    * ```ts

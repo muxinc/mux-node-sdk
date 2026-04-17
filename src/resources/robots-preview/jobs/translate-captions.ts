@@ -38,7 +38,8 @@ export class TranslateCaptions extends APIResource {
   }
 
   /**
-   * Retrieves the current status and results of a 'translate-captions' job.
+   * Retrieves the current status and results of a 'translate-captions' job. Jobs are
+   * automatically deleted after 30 days.
    *
    * @example
    * ```ts
