@@ -4,6 +4,10 @@
 
 Full Changelog: [v14.0.0...v14.0.1](https://github.com/muxinc/mux-node-sdk/compare/v14.0.0...v14.0.1)
 
+### Bug Fixes
+
+* fix issue where node crypto was required for non-node runtimes
+
 ### Chores
 
 * **tests:** bump steady to v0.22.1 ([869f2bc](https://github.com/muxinc/mux-node-sdk/commit/869f2bcf3767abf5cb6adb79e49ca4c038d78056))
