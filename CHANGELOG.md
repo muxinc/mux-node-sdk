@@ -1,5 +1,19 @@
 # Changelog
 
+## 14.0.1 (2026-04-20)
+
+Full Changelog: [v14.0.0...v14.0.1](https://github.com/muxinc/mux-node-sdk/compare/v14.0.0...v14.0.1)
+
+### Bug Fixes
+
+* fix issue where node crypto was required for non-node runtimes
+
+### Chores
+
+* **tests:** bump steady to v0.22.1 ([869f2bc](https://github.com/muxinc/mux-node-sdk/commit/869f2bcf3767abf5cb6adb79e49ca4c038d78056))
+* update robots docs for 30-day job availability ([#411](https://github.com/muxinc/mux-node-sdk/issues/411)) ([786b1e8](https://github.com/muxinc/mux-node-sdk/commit/786b1e8e8db383527fe6e080369f677149b5b14c))
+* use webcrypto rather than node crypto ([#619](https://github.com/muxinc/mux-node-sdk/issues/619)) ([acef073](https://github.com/muxinc/mux-node-sdk/commit/acef07315b4b9590c3b599ff62b519475b250323))
+
 ## 14.0.0 (2026-04-16)
 
 Full Changelog: [v12.2.0...v14.0.0](https://github.com/muxinc/mux-node-sdk/compare/v12.2.0...v14.0.0)

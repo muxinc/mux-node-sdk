@@ -37,7 +37,8 @@ export class Summarize extends APIResource {
   }
 
   /**
-   * Retrieves the current status and results of a 'summarize' job.
+   * Retrieves the current status and results of a 'summarize' job. Jobs are
+   * automatically deleted after 30 days.
    *
    * @example
    * ```ts

@@ -36,7 +36,8 @@ export class FindKeyMoments extends APIResource {
   }
 
   /**
-   * Retrieves the current status and results of a 'find-key-moments' job.
+   * Retrieves the current status and results of a 'find-key-moments' job. Jobs are
+   * automatically deleted after 30 days.
    *
    * @example
    * ```ts

@@ -1,16 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import crypto from 'crypto';
 import { buildHeaders, HeadersLike } from '../../internal/headers';
 
 export class Webhooks extends APIResource {
-  unwrap(
+  async unwrap(
     body: string,
     headers: HeadersLike,
     secret: string | undefined | null = this._client.webhookSecret,
-  ): UnwrapWebhookEvent {
-    this.verifySignature(body, headers, secret);
+  ): Promise<UnwrapWebhookEvent> {
+    await this.verifySignature(body, headers, secret);
     return JSON.parse(body) as UnwrapWebhookEvent;
   }
 
@@ -51,8 +50,19 @@ export class Webhooks extends APIResource {
     }
   }
 
-  private computeSignature(payload: string, secret: string | Buffer) {
-    return crypto.createHmac('sha256', secret).update(payload, 'utf8').digest('hex');
+  private async computeSignature(payload: string, secret: string): Promise<string> {
+    const enc = new TextEncoder();
+    const key = await globalThis.crypto.subtle.importKey(
+      'raw',
+      enc.encode(secret),
+      { name: 'HMAC', hash: 'SHA-256' },
+      false,
+      ['sign'],
+    );
+    const raw = await globalThis.crypto.subtle.sign('HMAC', key, enc.encode(payload));
+    return Array.from(new Uint8Array(raw))
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
   }
 
   /** Compare to array buffers or data views in a way that timing based attacks
@@ -86,11 +96,11 @@ export class Webhooks extends APIResource {
    *
    * If it was not sent by Mux then an error will be raised.
    */
-  verifySignature(
+  async verifySignature(
     body: string,
     headers: HeadersLike,
     secret: string | undefined | null = this._client.webhookSecret,
-  ): void {
+  ): Promise<void> {
     if (!secret) {
       throw new Error(
         "The webhook secret must either be set using the env var, MUX_WEBHOOK_SECRET, on the client class, Mux({ webhookSecret: '123' }), or passed to this function",
@@ -117,7 +127,7 @@ export class Webhooks extends APIResource {
       throw new Error('No v1 signatures found');
     }
 
-    const expectedSignature = this.computeSignature(`${details.timestamp}.${body}`, secret);
+    const expectedSignature = await this.computeSignature(`${details.timestamp}.${body}`, secret);
 
     const encoder = new TextEncoder();
     const signatureFound = !!details.signatures.filter((sig) =>
