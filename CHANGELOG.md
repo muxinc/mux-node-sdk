@@ -4,21 +4,6 @@
 
 Full Changelog: [v14.0.0...v14.0.1](https://github.com/muxinc/mux-node-sdk/compare/v14.0.0...v14.0.1)
 
-### Features
-
-* **api:** manual updates ([8653dc0](https://github.com/muxinc/mux-node-sdk/commit/8653dc054c1181ddab46560af83cc7da02b2609c))
-* **api:** manual updates ([4b5fe62](https://github.com/muxinc/mux-node-sdk/commit/4b5fe6254fa25b961754db7d8cb2b356dceeabb5))
-* **api:** manual updates ([c88746a](https://github.com/muxinc/mux-node-sdk/commit/c88746aecd730528156f38d1ba5fbe14162d4cbb))
-* **api:** manual updates ([2bbbbf8](https://github.com/muxinc/mux-node-sdk/commit/2bbbbf8b1228d53dc0b61bfdb928c8dadedef0ec))
-* **api:** manual updates ([13de63a](https://github.com/muxinc/mux-node-sdk/commit/13de63a38fd26e56fc54feffcb2f41ec190aeb7a))
-* **api:** manual updates ([733dfea](https://github.com/muxinc/mux-node-sdk/commit/733dfeac6c135bbb6a088d31b7254d1b84a6e545))
-* **api:** manual updates ([87270d5](https://github.com/muxinc/mux-node-sdk/commit/87270d5b158a5886e7e036a4a0fc832b33f61f6a))
-* **api:** manual updates ([4fa1a26](https://github.com/muxinc/mux-node-sdk/commit/4fa1a26931895fd99124578ce1854e91da319f01))
-* **api:** manual updates ([4e96958](https://github.com/muxinc/mux-node-sdk/commit/4e969587edf873068560c26f734580ba1cd1533d))
-* **api:** manual updates ([b99d7f7](https://github.com/muxinc/mux-node-sdk/commit/b99d7f7196b6f0133a47942ef4e09f4a590c8eb0))
-* **api:** manual updates ([c84cf15](https://github.com/muxinc/mux-node-sdk/commit/c84cf15a3a3d933e02ad462392f16d4275fdeb19))
-
-
 ### Chores
 
 * **tests:** bump steady to v0.22.1 ([869f2bc](https://github.com/muxinc/mux-node-sdk/commit/869f2bcf3767abf5cb6adb79e49ca4c038d78056))
