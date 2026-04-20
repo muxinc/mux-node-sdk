@@ -85,4 +85,4 @@ Types:
 
 Methods:
 
-- <code>client.webhooks.<a href="./src/resources/webhooks.ts">unwrap</a>(body) -> void</code>
+- <code>client.webhooks.<a href="./src/resources/webhooks.ts">unwrap</a>(body) -> Promise&lt;UnwrapWebhookEvent&gt;</code>
