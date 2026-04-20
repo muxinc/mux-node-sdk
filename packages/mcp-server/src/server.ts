@@ -28,7 +28,7 @@ export const newMcpServer = async ({
   new McpServer(
     {
       name: 'mux_mux_node_api',
-      version: '12.2.0',
+      version: '14.0.1',
     },
     {
       instructions: await getInstructions({ stainlessApiKey, customInstructionsPath }),
