@@ -22,13 +22,7 @@ export class GenerateChapters extends APIResource {
    * ```
    */
   create(body: GenerateChapterCreateParams, options?: RequestOptions): APIPromise<GenerateChaptersJob> {
-    return (
-      this._client.post('/robots/v0/jobs/generate-chapters', {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: GenerateChaptersJob }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.post('/robots/v0/jobs/generate-chapters', { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: GenerateChaptersJob }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -44,12 +38,7 @@ export class GenerateChapters extends APIResource {
    * ```
    */
   retrieve(jobID: string, options?: RequestOptions): APIPromise<GenerateChaptersJob> {
-    return (
-      this._client.get(path`/robots/v0/jobs/generate-chapters/${jobID}`, {
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: GenerateChaptersJob }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.get(path`/robots/v0/jobs/generate-chapters/${jobID}`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: GenerateChaptersJob }>)._thenUnwrap((obj) => obj.data);
   }
 }
 
@@ -268,6 +257,6 @@ export declare namespace GenerateChapters {
     type GenerateChaptersJob as GenerateChaptersJob,
     type GenerateChaptersJobOutputs as GenerateChaptersJobOutputs,
     type GenerateChaptersJobParameters as GenerateChaptersJobParameters,
-    type GenerateChapterCreateParams as GenerateChapterCreateParams,
+    type GenerateChapterCreateParams as GenerateChapterCreateParams
   };
 }

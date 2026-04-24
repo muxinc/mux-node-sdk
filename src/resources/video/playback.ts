@@ -22,19 +22,8 @@ export class Playback extends APIResource {
    * console.log(content);
    * ```
    */
-  animated(
-    playbackId: string,
-    extension: 'gif' | 'webp',
-    query: PlaybackAnimatedParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Response> {
-    return this._client.get(path`/${playbackId}/animated.${extension}`, {
-      query,
-      defaultBaseURL: 'https://image.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: 'image/gif' }, options?.headers]),
-      __binaryResponse: true,
-    });
+  animated(playbackId: string, extension: 'gif' | 'webp', query: PlaybackAnimatedParams | null | undefined = {}, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/${playbackId}/animated.${extension}`, { query, defaultBaseURL: 'https://image.mux.com', ...options, headers: buildHeaders([{Accept: 'image/gif'}, options?.headers]), __binaryResponse: true });
   }
 
   /**
@@ -52,18 +41,8 @@ export class Playback extends APIResource {
    * console.log(content);
    * ```
    */
-  hls(
-    playbackId: string,
-    query: PlaybackHlsParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Response> {
-    return this._client.get(path`/${playbackId}.m3u8`, {
-      query,
-      defaultBaseURL: 'https://stream.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: 'application/vnd.apple.mpegurl' }, options?.headers]),
-      __binaryResponse: true,
-    });
+  hls(playbackId: string, query: PlaybackHlsParams | null | undefined = {}, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/${playbackId}.m3u8`, { query, defaultBaseURL: 'https://stream.mux.com', ...options, headers: buildHeaders([{Accept: 'application/vnd.apple.mpegurl'}, options?.headers]), __binaryResponse: true });
   }
 
   /**
@@ -83,19 +62,8 @@ export class Playback extends APIResource {
    * console.log(content);
    * ```
    */
-  staticRendition(
-    playbackId: string,
-    filename: 'capped-1080p.mp4' | 'audio.m4a' | 'low.mp4' | 'medium.mp4' | 'high.mp4',
-    query: PlaybackStaticRenditionParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Response> {
-    return this._client.get(path`/${playbackId}/${filename}`, {
-      query,
-      defaultBaseURL: 'https://stream.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: 'video/mp4' }, options?.headers]),
-      __binaryResponse: true,
-    });
+  staticRendition(playbackId: string, filename: 'capped-1080p.mp4' | 'audio.m4a' | 'low.mp4' | 'medium.mp4' | 'high.mp4', query: PlaybackStaticRenditionParams | null | undefined = {}, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/${playbackId}/${filename}`, { query, defaultBaseURL: 'https://stream.mux.com', ...options, headers: buildHeaders([{Accept: 'video/mp4'}, options?.headers]), __binaryResponse: true });
   }
 
   /**
@@ -113,19 +81,8 @@ export class Playback extends APIResource {
    * console.log(content);
    * ```
    */
-  storyboard(
-    playbackId: string,
-    extension: 'jpg' | 'png' | 'webp',
-    query: PlaybackStoryboardParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Response> {
-    return this._client.get(path`/${playbackId}/storyboard.${extension}`, {
-      query,
-      defaultBaseURL: 'https://image.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: 'image/jpeg' }, options?.headers]),
-      __binaryResponse: true,
-    });
+  storyboard(playbackId: string, extension: 'jpg' | 'png' | 'webp', query: PlaybackStoryboardParams | null | undefined = {}, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/${playbackId}/storyboard.${extension}`, { query, defaultBaseURL: 'https://image.mux.com', ...options, headers: buildHeaders([{Accept: 'image/jpeg'}, options?.headers]), __binaryResponse: true });
   }
 
   /**
@@ -140,16 +97,8 @@ export class Playback extends APIResource {
    * );
    * ```
    */
-  storyboardMeta(
-    playbackId: string,
-    query: PlaybackStoryboardMetaParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get(path`/${playbackId}/storyboard.json`, {
-      query,
-      defaultBaseURL: 'https://image.mux.com',
-      ...options,
-    });
+  storyboardMeta(playbackId: string, query: PlaybackStoryboardMetaParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get(path`/${playbackId}/storyboard.json`, { query, defaultBaseURL: 'https://image.mux.com', ...options });
   }
 
   /**
@@ -164,17 +113,8 @@ export class Playback extends APIResource {
    * );
    * ```
    */
-  storyboardVtt(
-    playbackId: string,
-    query: PlaybackStoryboardVttParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get(path`/${playbackId}/storyboard.vtt`, {
-      query,
-      defaultBaseURL: 'https://image.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/vtt' }, options?.headers]),
-    });
+  storyboardVtt(playbackId: string, query: PlaybackStoryboardVttParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get(path`/${playbackId}/storyboard.vtt`, { query, defaultBaseURL: 'https://image.mux.com', ...options, headers: buildHeaders([{Accept: 'text/vtt'}, options?.headers]) });
   }
 
   /**
@@ -192,19 +132,8 @@ export class Playback extends APIResource {
    * console.log(content);
    * ```
    */
-  thumbnail(
-    playbackId: string,
-    extension: 'jpg' | 'png' | 'webp',
-    query: PlaybackThumbnailParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<Response> {
-    return this._client.get(path`/${playbackId}/thumbnail.${extension}`, {
-      query,
-      defaultBaseURL: 'https://image.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: 'image/jpeg' }, options?.headers]),
-      __binaryResponse: true,
-    });
+  thumbnail(playbackId: string, extension: 'jpg' | 'png' | 'webp', query: PlaybackThumbnailParams | null | undefined = {}, options?: RequestOptions): APIPromise<Response> {
+    return this._client.get(path`/${playbackId}/thumbnail.${extension}`, { query, defaultBaseURL: 'https://image.mux.com', ...options, headers: buildHeaders([{Accept: 'image/jpeg'}, options?.headers]), __binaryResponse: true });
   }
 
   /**
@@ -218,18 +147,8 @@ export class Playback extends APIResource {
    * );
    * ```
    */
-  track(
-    playbackId: string,
-    trackId: string,
-    query: PlaybackTrackParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get(path`/${playbackId}/text/${trackId}.vtt`, {
-      query,
-      defaultBaseURL: 'https://stream.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/vtt' }, options?.headers]),
-    });
+  track(playbackId: string, trackId: string, query: PlaybackTrackParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get(path`/${playbackId}/text/${trackId}.vtt`, { query, defaultBaseURL: 'https://stream.mux.com', ...options, headers: buildHeaders([{Accept: 'text/vtt'}, options?.headers]) });
   }
 
   /**
@@ -246,28 +165,18 @@ export class Playback extends APIResource {
    * );
    * ```
    */
-  transcript(
-    playbackId: string,
-    trackId: string,
-    query: PlaybackTranscriptParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<string> {
-    return this._client.get(path`/${playbackId}/text/${trackId}.txt`, {
-      query,
-      defaultBaseURL: 'https://stream.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: 'text/plain' }, options?.headers]),
-    });
+  transcript(playbackId: string, trackId: string, query: PlaybackTranscriptParams | null | undefined = {}, options?: RequestOptions): APIPromise<string> {
+    return this._client.get(path`/${playbackId}/text/${trackId}.txt`, { query, defaultBaseURL: 'https://stream.mux.com', ...options, headers: buildHeaders([{Accept: 'text/plain'}, options?.headers]) });
   }
 }
 
-export type PlaybackStoryboardMetaResponse = string;
+export type PlaybackStoryboardMetaResponse = string
 
-export type PlaybackStoryboardVttResponse = string;
+export type PlaybackStoryboardVttResponse = string
 
-export type PlaybackTrackResponse = string;
+export type PlaybackTrackResponse = string
 
-export type PlaybackTranscriptResponse = string;
+export type PlaybackTranscriptResponse = string
 
 export interface PlaybackAnimatedParams {
   /**
@@ -605,6 +514,6 @@ export declare namespace Playback {
     type PlaybackStoryboardVttParams as PlaybackStoryboardVttParams,
     type PlaybackThumbnailParams as PlaybackThumbnailParams,
     type PlaybackTrackParams as PlaybackTrackParams,
-    type PlaybackTranscriptParams as PlaybackTranscriptParams,
+    type PlaybackTranscriptParams as PlaybackTranscriptParams
   };
 }

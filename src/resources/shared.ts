@@ -1,5 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+
 export interface PlaybackId {
   /**
    * Unique identifier for the PlaybackID
@@ -39,4 +40,4 @@ export interface PlaybackId {
  * - `drm` playback IDs are protected with DRM technologies.
  *   [See DRM documentation for more details](https://docs.mux.com/guides/protect-videos-with-drm).
  */
-export type PlaybackPolicy = 'public' | 'signed' | 'drm';
+export type PlaybackPolicy = 'public' | 'signed' | 'drm'

@@ -24,13 +24,7 @@ export class Annotations extends APIResource {
    * ```
    */
   create(body: AnnotationCreateParams, options?: RequestOptions): APIPromise<Annotation> {
-    return (
-      this._client.post('/data/v1/annotations', {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: Annotation }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.post('/data/v1/annotations', { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: Annotation }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -44,12 +38,7 @@ export class Annotations extends APIResource {
    * ```
    */
   retrieve(annotationID: string, options?: RequestOptions): APIPromise<Annotation> {
-    return (
-      this._client.get(path`/data/v1/annotations/${annotationID}`, {
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: Annotation }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.get(path`/data/v1/annotations/${annotationID}`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: Annotation }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -67,18 +56,8 @@ export class Annotations extends APIResource {
    * );
    * ```
    */
-  update(
-    annotationID: string,
-    body: AnnotationUpdateParams,
-    options?: RequestOptions,
-  ): APIPromise<Annotation> {
-    return (
-      this._client.patch(path`/data/v1/annotations/${annotationID}`, {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: Annotation }>
-    )._thenUnwrap((obj) => obj.data);
+  update(annotationID: string, body: AnnotationUpdateParams, options?: RequestOptions): APIPromise<Annotation> {
+    return (this._client.patch(path`/data/v1/annotations/${annotationID}`, { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: Annotation }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -92,15 +71,8 @@ export class Annotations extends APIResource {
    * }
    * ```
    */
-  list(
-    query: AnnotationListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<AnnotationsBasePage, Annotation> {
-    return this._client.getAPIList('/data/v1/annotations', BasePage<Annotation>, {
-      query,
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-    });
+  list(query: AnnotationListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AnnotationsBasePage, Annotation> {
+    return this._client.getAPIList('/data/v1/annotations', BasePage<Annotation>, { query, defaultBaseURL: 'https://api.mux.com', ...options });
   }
 
   /**
@@ -114,15 +86,11 @@ export class Annotations extends APIResource {
    * ```
    */
   delete(annotationID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/data/v1/annotations/${annotationID}`, {
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/data/v1/annotations/${annotationID}`, { defaultBaseURL: 'https://api.mux.com', ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type AnnotationsBasePage = BasePage<Annotation>;
+export type AnnotationsBasePage = BasePage<Annotation>
 
 export interface Annotation {
   /**
@@ -242,6 +210,6 @@ export declare namespace Annotations {
     type AnnotationsBasePage as AnnotationsBasePage,
     type AnnotationCreateParams as AnnotationCreateParams,
     type AnnotationUpdateParams as AnnotationUpdateParams,
-    type AnnotationListParams as AnnotationListParams,
+    type AnnotationListParams as AnnotationListParams
   };
 }

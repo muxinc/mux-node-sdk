@@ -17,12 +17,7 @@ export class SigningKeys extends APIResource {
    * key-id; the public key will be stored at Mux to validate signed tokens.
    */
   create(options?: RequestOptions): APIPromise<SigningKey> {
-    return (
-      this._client.post('/system/v1/signing-keys', {
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: SigningKey }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.post('/system/v1/signing-keys', { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: SigningKey }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -32,26 +27,14 @@ export class SigningKeys extends APIResource {
    * returned in this response.**
    */
   retrieve(signingKeyID: string, options?: RequestOptions): APIPromise<SigningKey> {
-    return (
-      this._client.get(path`/system/v1/signing-keys/${signingKeyID}`, {
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: SigningKey }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.get(path`/system/v1/signing-keys/${signingKeyID}`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: SigningKey }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
    * Returns a list of signing keys.
    */
-  list(
-    query: SigningKeyListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<SigningKeysBasePage, SigningKey> {
-    return this._client.getAPIList('/system/v1/signing-keys', BasePage<SigningKey>, {
-      query,
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-    });
+  list(query: SigningKeyListParams | null | undefined = {}, options?: RequestOptions): PagePromise<SigningKeysBasePage, SigningKey> {
+    return this._client.getAPIList('/system/v1/signing-keys', BasePage<SigningKey>, { query, defaultBaseURL: 'https://api.mux.com', ...options });
   }
 
   /**
@@ -59,15 +42,11 @@ export class SigningKeys extends APIResource {
    * existing signatures and no JWTs can be signed using the key again.
    */
   delete(signingKeyID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/system/v1/signing-keys/${signingKeyID}`, {
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/system/v1/signing-keys/${signingKeyID}`, { defaultBaseURL: 'https://api.mux.com', ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type SigningKeysBasePage = BasePage<SigningKey>;
+export type SigningKeysBasePage = BasePage<SigningKey>
 
 export interface SigningKey {
   /**
@@ -92,13 +71,14 @@ export interface SigningKeyResponse {
   data: SigningKey;
 }
 
-export interface SigningKeyListParams extends BasePageParams {}
+export interface SigningKeyListParams extends BasePageParams {
+}
 
 export declare namespace SigningKeys {
   export {
     type SigningKey as SigningKey,
     type SigningKeyResponse as SigningKeyResponse,
     type SigningKeysBasePage as SigningKeysBasePage,
-    type SigningKeyListParams as SigningKeyListParams,
+    type SigningKeyListParams as SigningKeyListParams
   };
 }

@@ -15,12 +15,7 @@ export class Utilities extends APIResource {
    * permissions they have assigned.
    */
   whoami(options?: RequestOptions): APIPromise<UtilityWhoamiResponse> {
-    return (
-      this._client.get('/system/v1/whoami', {
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: UtilityWhoamiResponse }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.get('/system/v1/whoami', { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: UtilityWhoamiResponse }>)._thenUnwrap((obj) => obj.data);
   }
 }
 
@@ -45,5 +40,8 @@ export interface UtilityWhoamiResponse {
 }
 
 export declare namespace Utilities {
-  export { type WhoamiResponse as WhoamiResponse, type UtilityWhoamiResponse as UtilityWhoamiResponse };
+  export {
+    type WhoamiResponse as WhoamiResponse,
+    type UtilityWhoamiResponse as UtilityWhoamiResponse
+  };
 }

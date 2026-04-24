@@ -22,12 +22,7 @@ export class PlaybackIds extends APIResource {
    * ```
    */
   retrieve(playbackId: string, options?: RequestOptions): APIPromise<PlaybackIdsRetrieveResponse> {
-    return (
-      this._client.get(path`/video/v1/playback-ids/${playbackId}`, {
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: PlaybackIdsRetrieveResponse }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.get(path`/video/v1/playback-ids/${playbackId}`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: PlaybackIdsRetrieveResponse }>)._thenUnwrap((obj) => obj.data);
   }
 }
 
@@ -75,5 +70,7 @@ export namespace PlaybackIdsRetrieveResponse {
 }
 
 export declare namespace PlaybackIds {
-  export { type PlaybackIdsRetrieveResponse as PlaybackIdsRetrieveResponse };
+  export {
+    type PlaybackIdsRetrieveResponse as PlaybackIdsRetrieveResponse
+  };
 }

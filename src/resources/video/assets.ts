@@ -29,13 +29,7 @@ export class Assets extends APIResource {
    * ```
    */
   create(body: AssetCreateParams, options?: RequestOptions): APIPromise<Asset> {
-    return (
-      this._client.post('/video/v1/assets', {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: Asset }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.post('/video/v1/assets', { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: Asset }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -52,12 +46,7 @@ export class Assets extends APIResource {
    * ```
    */
   retrieve(assetId: string, options?: RequestOptions): APIPromise<Asset> {
-    return (
-      this._client.get(path`/video/v1/assets/${assetId}`, {
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: Asset }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.get(path`/video/v1/assets/${assetId}`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: Asset }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -72,13 +61,7 @@ export class Assets extends APIResource {
    * ```
    */
   update(assetId: string, body: AssetUpdateParams, options?: RequestOptions): APIPromise<Asset> {
-    return (
-      this._client.patch(path`/video/v1/assets/${assetId}`, {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: Asset }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.patch(path`/video/v1/assets/${assetId}`, { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: Asset }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -92,15 +75,8 @@ export class Assets extends APIResource {
    * }
    * ```
    */
-  list(
-    query: AssetListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<AssetsCursorPage, Asset> {
-    return this._client.getAPIList('/video/v1/assets', CursorPage<Asset>, {
-      query,
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-    });
+  list(query: AssetListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AssetsCursorPage, Asset> {
+    return this._client.getAPIList('/video/v1/assets', CursorPage<Asset>, { query, defaultBaseURL: 'https://api.mux.com', ...options });
   }
 
   /**
@@ -112,11 +88,7 @@ export class Assets extends APIResource {
    * ```
    */
   delete(assetId: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/video/v1/assets/${assetId}`, {
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/video/v1/assets/${assetId}`, { defaultBaseURL: 'https://api.mux.com', ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -130,18 +102,8 @@ export class Assets extends APIResource {
    *   });
    * ```
    */
-  createPlaybackId(
-    assetId: string,
-    body: AssetCreatePlaybackIdParams,
-    options?: RequestOptions,
-  ): APIPromise<Shared.PlaybackId> {
-    return (
-      this._client.post(path`/video/v1/assets/${assetId}/playback-ids`, {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: Shared.PlaybackId }>
-    )._thenUnwrap((obj) => obj.data);
+  createPlaybackId(assetId: string, body: AssetCreatePlaybackIdParams, options?: RequestOptions): APIPromise<Shared.PlaybackId> {
+    return (this._client.post(path`/video/v1/assets/${assetId}/playback-ids`, { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: Shared.PlaybackId }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -156,18 +118,8 @@ export class Assets extends APIResource {
    *   );
    * ```
    */
-  createStaticRendition(
-    assetId: string,
-    body: AssetCreateStaticRenditionParams,
-    options?: RequestOptions,
-  ): APIPromise<AssetCreateStaticRenditionResponse> {
-    return (
-      this._client.post(path`/video/v1/assets/${assetId}/static-renditions`, {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: AssetCreateStaticRenditionResponse }>
-    )._thenUnwrap((obj) => obj.data);
+  createStaticRendition(assetId: string, body: AssetCreateStaticRenditionParams, options?: RequestOptions): APIPromise<AssetCreateStaticRenditionResponse> {
+    return (this._client.post(path`/video/v1/assets/${assetId}/static-renditions`, { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: AssetCreateStaticRenditionResponse }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -191,13 +143,7 @@ export class Assets extends APIResource {
    * ```
    */
   createTrack(assetId: string, body: AssetCreateTrackParams, options?: RequestOptions): APIPromise<Track> {
-    return (
-      this._client.post(path`/video/v1/assets/${assetId}/tracks`, {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: Track }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.post(path`/video/v1/assets/${assetId}/tracks`, { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: Track }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -215,11 +161,7 @@ export class Assets extends APIResource {
    * ```
    */
   deletePlaybackId(assetId: string, playbackId: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, { defaultBaseURL: 'https://api.mux.com', ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -233,16 +175,8 @@ export class Assets extends APIResource {
    * );
    * ```
    */
-  deleteStaticRendition(
-    assetId: string,
-    staticRenditionId: string,
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    return this._client.delete(path`/video/v1/assets/${assetId}/static-renditions/${staticRenditionId}`, {
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+  deleteStaticRendition(assetId: string, staticRenditionId: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/video/v1/assets/${assetId}/static-renditions/${staticRenditionId}`, { defaultBaseURL: 'https://api.mux.com', ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -258,11 +192,7 @@ export class Assets extends APIResource {
    * ```
    */
   deleteTrack(assetId: string, trackId: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/video/v1/assets/${assetId}/tracks/${trackId}`, {
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/video/v1/assets/${assetId}/tracks/${trackId}`, { defaultBaseURL: 'https://api.mux.com', ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 
   /**
@@ -286,19 +216,8 @@ export class Assets extends APIResource {
    * );
    * ```
    */
-  generateSubtitles(
-    assetId: string,
-    trackId: string,
-    body: AssetGenerateSubtitlesParams,
-    options?: RequestOptions,
-  ): APIPromise<AssetGenerateSubtitlesResponse> {
-    return (
-      this._client.post(path`/video/v1/assets/${assetId}/tracks/${trackId}/generate-subtitles`, {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: AssetGenerateSubtitlesResponse }>
-    )._thenUnwrap((obj) => obj.data);
+  generateSubtitles(assetId: string, trackId: string, body: AssetGenerateSubtitlesParams, options?: RequestOptions): APIPromise<AssetGenerateSubtitlesResponse> {
+    return (this._client.post(path`/video/v1/assets/${assetId}/tracks/${trackId}/generate-subtitles`, { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: AssetGenerateSubtitlesResponse }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -312,12 +231,7 @@ export class Assets extends APIResource {
    * ```
    */
   retrieveInputInfo(assetId: string, options?: RequestOptions): APIPromise<AssetRetrieveInputInfoResponse> {
-    return (
-      this._client.get(path`/video/v1/assets/${assetId}/input-info`, {
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: AssetRetrieveInputInfoResponse }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.get(path`/video/v1/assets/${assetId}/input-info`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: AssetRetrieveInputInfoResponse }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -332,17 +246,8 @@ export class Assets extends APIResource {
    *   );
    * ```
    */
-  retrievePlaybackId(
-    assetId: string,
-    playbackId: string,
-    options?: RequestOptions,
-  ): APIPromise<Shared.PlaybackId> {
-    return (
-      this._client.get(path`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, {
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: Shared.PlaybackId }>
-    )._thenUnwrap((obj) => obj.data);
+  retrievePlaybackId(assetId: string, playbackId: string, options?: RequestOptions): APIPromise<Shared.PlaybackId> {
+    return (this._client.get(path`/video/v1/assets/${assetId}/playback-ids/${playbackId}`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: Shared.PlaybackId }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -360,18 +265,8 @@ export class Assets extends APIResource {
    * );
    * ```
    */
-  updateMasterAccess(
-    assetId: string,
-    body: AssetUpdateMasterAccessParams,
-    options?: RequestOptions,
-  ): APIPromise<Asset> {
-    return (
-      this._client.put(path`/video/v1/assets/${assetId}/master-access`, {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: Asset }>
-    )._thenUnwrap((obj) => obj.data);
+  updateMasterAccess(assetId: string, body: AssetUpdateMasterAccessParams, options?: RequestOptions): APIPromise<Asset> {
+    return (this._client.put(path`/video/v1/assets/${assetId}/master-access`, { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: Asset }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -385,22 +280,12 @@ export class Assets extends APIResource {
    *
    * @deprecated
    */
-  updateMP4Support(
-    assetId: string,
-    body: AssetUpdateMP4SupportParams,
-    options?: RequestOptions,
-  ): APIPromise<Asset> {
-    return (
-      this._client.put(path`/video/v1/assets/${assetId}/mp4-support`, {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: Asset }>
-    )._thenUnwrap((obj) => obj.data);
+  updateMP4Support(assetId: string, body: AssetUpdateMP4SupportParams, options?: RequestOptions): APIPromise<Asset> {
+    return (this._client.put(path`/video/v1/assets/${assetId}/mp4-support`, { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: Asset }>)._thenUnwrap((obj) => obj.data);
   }
 }
 
-export type AssetsCursorPage = CursorPage<Asset>;
+export type AssetsCursorPage = CursorPage<Asset>
 
 export interface Asset {
   /**
@@ -834,21 +719,7 @@ export namespace Asset {
       /**
        * Name of the static rendition file
        */
-      name?:
-        | 'low.mp4'
-        | 'medium.mp4'
-        | 'high.mp4'
-        | 'highest.mp4'
-        | 'audio.m4a'
-        | 'capped-1080p.mp4'
-        | '2160p.mp4'
-        | '1440p.mp4'
-        | '1080p.mp4'
-        | '720p.mp4'
-        | '540p.mp4'
-        | '480p.mp4'
-        | '360p.mp4'
-        | '270p.mp4';
+      name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
 
       /**
        * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -860,17 +731,7 @@ export namespace Asset {
        * Indicates the resolution of this specific MP4 version of this asset. This field
        * is only valid for `static_renditions`, not for `mp4_support`.
        */
-      resolution?:
-        | 'highest'
-        | 'audio-only'
-        | '2160p'
-        | '1440p'
-        | '1080p'
-        | '720p'
-        | '540p'
-        | '480p'
-        | '360p'
-        | '270p';
+      resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
 
       /**
        * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -1200,30 +1061,7 @@ export namespace AssetOptions {
        * language of "auto" will allow language detection to set the language code
        * automatically.
        */
-      language_code?:
-        | 'en'
-        | 'es'
-        | 'it'
-        | 'pt'
-        | 'de'
-        | 'fr'
-        | 'pl'
-        | 'ru'
-        | 'nl'
-        | 'ca'
-        | 'tr'
-        | 'sv'
-        | 'uk'
-        | 'no'
-        | 'fi'
-        | 'sk'
-        | 'el'
-        | 'cs'
-        | 'hr'
-        | 'da'
-        | 'ro'
-        | 'bg'
-        | 'auto';
+      language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
 
       /**
        * A name for this subtitle track.
@@ -1415,30 +1253,7 @@ export namespace AssetOptions {
        * language of "auto" will allow language detection to set the language code
        * automatically.
        */
-      language_code?:
-        | 'en'
-        | 'es'
-        | 'it'
-        | 'pt'
-        | 'de'
-        | 'fr'
-        | 'pl'
-        | 'ru'
-        | 'nl'
-        | 'ca'
-        | 'tr'
-        | 'sv'
-        | 'uk'
-        | 'no'
-        | 'fi'
-        | 'sk'
-        | 'el'
-        | 'cs'
-        | 'hr'
-        | 'da'
-        | 'ro'
-        | 'bg'
-        | 'auto';
+      language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
 
       /**
        * A name for this subtitle track.
@@ -1537,17 +1352,7 @@ export namespace AssetOptions {
   }
 
   export interface StaticRendition {
-    resolution:
-      | 'highest'
-      | 'audio-only'
-      | '2160p'
-      | '1440p'
-      | '1080p'
-      | '720p'
-      | '540p'
-      | '480p'
-      | '360p'
-      | '270p';
+    resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
 
     /**
      * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -1720,30 +1525,7 @@ export namespace InputInfo {
        * language of "auto" will allow language detection to set the language code
        * automatically.
        */
-      language_code?:
-        | 'en'
-        | 'es'
-        | 'it'
-        | 'pt'
-        | 'de'
-        | 'fr'
-        | 'pl'
-        | 'ru'
-        | 'nl'
-        | 'ca'
-        | 'tr'
-        | 'sv'
-        | 'uk'
-        | 'no'
-        | 'fi'
-        | 'sk'
-        | 'el'
-        | 'cs'
-        | 'hr'
-        | 'da'
-        | 'ro'
-        | 'bg'
-        | 'auto';
+      language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
 
       /**
        * A name for this subtitle track.
@@ -1973,21 +1755,7 @@ export interface AssetCreateStaticRenditionResponse {
   /**
    * Name of the static rendition file
    */
-  name?:
-    | 'low.mp4'
-    | 'medium.mp4'
-    | 'high.mp4'
-    | 'highest.mp4'
-    | 'audio.m4a'
-    | 'capped-1080p.mp4'
-    | '2160p.mp4'
-    | '1440p.mp4'
-    | '1080p.mp4'
-    | '720p.mp4'
-    | '540p.mp4'
-    | '480p.mp4'
-    | '360p.mp4'
-    | '270p.mp4';
+  name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
 
   /**
    * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -1999,17 +1767,7 @@ export interface AssetCreateStaticRenditionResponse {
    * Indicates the resolution of this specific MP4 version of this asset. This field
    * is only valid for `static_renditions`, not for `mp4_support`.
    */
-  resolution?:
-    | 'highest'
-    | 'audio-only'
-    | '2160p'
-    | '1440p'
-    | '1080p'
-    | '720p'
-    | '540p'
-    | '480p'
-    | '360p'
-    | '270p';
+  resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
 
   /**
    * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -2044,9 +1802,9 @@ export interface AssetCreateStaticRenditionResponse {
   width?: number;
 }
 
-export type AssetGenerateSubtitlesResponse = Array<Track>;
+export type AssetGenerateSubtitlesResponse = Array<Track>
 
-export type AssetRetrieveInputInfoResponse = Array<InputInfo>;
+export type AssetRetrieveInputInfoResponse = Array<InputInfo>
 
 export interface AssetCreateParams {
   /**
@@ -2319,30 +2077,7 @@ export namespace AssetCreateParams {
        * language of "auto" will allow language detection to set the language code
        * automatically.
        */
-      language_code?:
-        | 'en'
-        | 'es'
-        | 'it'
-        | 'pt'
-        | 'de'
-        | 'fr'
-        | 'pl'
-        | 'ru'
-        | 'nl'
-        | 'ca'
-        | 'tr'
-        | 'sv'
-        | 'uk'
-        | 'no'
-        | 'fi'
-        | 'sk'
-        | 'el'
-        | 'cs'
-        | 'hr'
-        | 'da'
-        | 'ro'
-        | 'bg'
-        | 'auto';
+      language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
 
       /**
        * A name for this subtitle track.
@@ -2556,30 +2291,7 @@ export namespace AssetCreateParams {
        * language of "auto" will allow language detection to set the language code
        * automatically.
        */
-      language_code?:
-        | 'en'
-        | 'es'
-        | 'it'
-        | 'pt'
-        | 'de'
-        | 'fr'
-        | 'pl'
-        | 'ru'
-        | 'nl'
-        | 'ca'
-        | 'tr'
-        | 'sv'
-        | 'uk'
-        | 'no'
-        | 'fi'
-        | 'sk'
-        | 'el'
-        | 'cs'
-        | 'hr'
-        | 'da'
-        | 'ro'
-        | 'bg'
-        | 'auto';
+      language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
 
       /**
        * A name for this subtitle track.
@@ -2678,17 +2390,7 @@ export namespace AssetCreateParams {
   }
 
   export interface StaticRendition {
-    resolution:
-      | 'highest'
-      | 'audio-only'
-      | '2160p'
-      | '1440p'
-      | '1080p'
-      | '720p'
-      | '540p'
-      | '480p'
-      | '360p'
-      | '270p';
+    resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
 
     /**
      * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -2784,17 +2486,7 @@ export interface AssetCreatePlaybackIdParams {
 }
 
 export interface AssetCreateStaticRenditionParams {
-  resolution:
-    | 'highest'
-    | 'audio-only'
-    | '2160p'
-    | '1440p'
-    | '1080p'
-    | '720p'
-    | '540p'
-    | '480p'
-    | '360p'
-    | '270p';
+  resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
 
   /**
    * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -2866,30 +2558,7 @@ export namespace AssetGenerateSubtitlesParams {
      * language of "auto" will allow language detection to set the language code
      * automatically.
      */
-    language_code?:
-      | 'en'
-      | 'es'
-      | 'it'
-      | 'pt'
-      | 'de'
-      | 'fr'
-      | 'pl'
-      | 'ru'
-      | 'nl'
-      | 'ca'
-      | 'tr'
-      | 'sv'
-      | 'uk'
-      | 'no'
-      | 'fi'
-      | 'sk'
-      | 'el'
-      | 'cs'
-      | 'hr'
-      | 'da'
-      | 'ro'
-      | 'bg'
-      | 'auto';
+    language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
 
     /**
      * A name for this subtitle track.
@@ -2953,6 +2622,6 @@ export declare namespace Assets {
     type AssetCreateTrackParams as AssetCreateTrackParams,
     type AssetGenerateSubtitlesParams as AssetGenerateSubtitlesParams,
     type AssetUpdateMasterAccessParams as AssetUpdateMasterAccessParams,
-    type AssetUpdateMP4SupportParams as AssetUpdateMP4SupportParams,
+    type AssetUpdateMP4SupportParams as AssetUpdateMP4SupportParams
   };
 }

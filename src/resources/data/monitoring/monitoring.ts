@@ -2,18 +2,7 @@
 
 import { APIResource } from '../../../core/resource';
 import * as MetricsAPI from './metrics';
-import {
-  MetricGetBreakdownParams,
-  MetricGetBreakdownResponse,
-  MetricGetBreakdownTimeseriesParams,
-  MetricGetBreakdownTimeseriesResponse,
-  MetricGetHistogramTimeseriesParams,
-  MetricGetHistogramTimeseriesResponse,
-  MetricGetTimeseriesParams,
-  MetricGetTimeseriesResponse,
-  MetricListResponse,
-  Metrics,
-} from './metrics';
+import { MetricGetBreakdownParams, MetricGetBreakdownResponse, MetricGetBreakdownTimeseriesParams, MetricGetBreakdownTimeseriesResponse, MetricGetHistogramTimeseriesParams, MetricGetHistogramTimeseriesResponse, MetricGetTimeseriesParams, MetricGetTimeseriesResponse, MetricListResponse, Metrics } from './metrics';
 import { APIPromise } from '../../../core/api-promise';
 import { RequestOptions } from '../../../internal/request-options';
 
@@ -41,10 +30,7 @@ export class Monitoring extends APIResource {
    * ```
    */
   listDimensions(options?: RequestOptions): APIPromise<MonitoringListDimensionsResponse> {
-    return this._client.get('/data/v1/monitoring/dimensions', {
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-    });
+    return this._client.get('/data/v1/monitoring/dimensions', { defaultBaseURL: 'https://api.mux.com', ...options });
   }
 }
 
@@ -67,7 +53,9 @@ export namespace MonitoringListDimensionsResponse {
 Monitoring.Metrics = Metrics;
 
 export declare namespace Monitoring {
-  export { type MonitoringListDimensionsResponse as MonitoringListDimensionsResponse };
+  export {
+    type MonitoringListDimensionsResponse as MonitoringListDimensionsResponse
+  };
 
   export {
     Metrics as Metrics,
@@ -79,6 +67,6 @@ export declare namespace Monitoring {
     type MetricGetBreakdownParams as MetricGetBreakdownParams,
     type MetricGetBreakdownTimeseriesParams as MetricGetBreakdownTimeseriesParams,
     type MetricGetHistogramTimeseriesParams as MetricGetHistogramTimeseriesParams,
-    type MetricGetTimeseriesParams as MetricGetTimeseriesParams,
+    type MetricGetTimeseriesParams as MetricGetTimeseriesParams
   };
 }

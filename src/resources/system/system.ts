@@ -2,13 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as SigningKeysAPI from './signing-keys';
-import {
-  SigningKey,
-  SigningKeyListParams,
-  SigningKeyResponse,
-  SigningKeys,
-  SigningKeysBasePage,
-} from './signing-keys';
+import { SigningKey, SigningKeyListParams, SigningKeyResponse, SigningKeys, SigningKeysBasePage } from './signing-keys';
 import * as UtilitiesAPI from './utilities';
 import { Utilities, UtilityWhoamiResponse, WhoamiResponse } from './utilities';
 
@@ -26,12 +20,12 @@ export declare namespace System {
     type SigningKey as SigningKey,
     type SigningKeyResponse as SigningKeyResponse,
     type SigningKeysBasePage as SigningKeysBasePage,
-    type SigningKeyListParams as SigningKeyListParams,
+    type SigningKeyListParams as SigningKeyListParams
   };
 
   export {
     Utilities as Utilities,
     type WhoamiResponse as WhoamiResponse,
-    type UtilityWhoamiResponse as UtilityWhoamiResponse,
+    type UtilityWhoamiResponse as UtilityWhoamiResponse
   };
 }

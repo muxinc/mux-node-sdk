@@ -2,53 +2,17 @@
 
 import { APIResource } from '../../../core/resource';
 import * as AskQuestionsAPI from './ask-questions';
-import {
-  AskQuestionCreateParams,
-  AskQuestions,
-  AskQuestionsJob,
-  AskQuestionsJobOutputs,
-  AskQuestionsJobParameters,
-} from './ask-questions';
+import { AskQuestionCreateParams, AskQuestions, AskQuestionsJob, AskQuestionsJobOutputs, AskQuestionsJobParameters } from './ask-questions';
 import * as FindKeyMomentsAPI from './find-key-moments';
-import {
-  FindKeyMomentCreateParams,
-  FindKeyMoments,
-  FindKeyMomentsJob,
-  FindKeyMomentsJobOutputs,
-  FindKeyMomentsJobParameters,
-} from './find-key-moments';
+import { FindKeyMomentCreateParams, FindKeyMoments, FindKeyMomentsJob, FindKeyMomentsJobOutputs, FindKeyMomentsJobParameters } from './find-key-moments';
 import * as GenerateChaptersAPI from './generate-chapters';
-import {
-  GenerateChapterCreateParams,
-  GenerateChapters,
-  GenerateChaptersJob,
-  GenerateChaptersJobOutputs,
-  GenerateChaptersJobParameters,
-} from './generate-chapters';
+import { GenerateChapterCreateParams, GenerateChapters, GenerateChaptersJob, GenerateChaptersJobOutputs, GenerateChaptersJobParameters } from './generate-chapters';
 import * as ModerateAPI from './moderate';
-import {
-  Moderate,
-  ModerateCreateParams,
-  ModerateJob,
-  ModerateJobOutputs,
-  ModerateJobParameters,
-} from './moderate';
+import { Moderate, ModerateCreateParams, ModerateJob, ModerateJobOutputs, ModerateJobParameters } from './moderate';
 import * as SummarizeAPI from './summarize';
-import {
-  Summarize,
-  SummarizeCreateParams,
-  SummarizeJob,
-  SummarizeJobOutputs,
-  SummarizeJobParameters,
-} from './summarize';
+import { Summarize, SummarizeCreateParams, SummarizeJob, SummarizeJobOutputs, SummarizeJobParameters } from './summarize';
 import * as TranslateCaptionsAPI from './translate-captions';
-import {
-  TranslateCaptionCreateParams,
-  TranslateCaptions,
-  TranslateCaptionsJob,
-  TranslateCaptionsJobOutputs,
-  TranslateCaptionsJobParameters,
-} from './translate-captions';
+import { TranslateCaptionCreateParams, TranslateCaptions, TranslateCaptionsJob, TranslateCaptionsJobOutputs, TranslateCaptionsJobParameters } from './translate-captions';
 import { APIPromise } from '../../../core/api-promise';
 import { BasePage, type BasePageParams, PagePromise } from '../../../core/pagination';
 import { RequestOptions } from '../../../internal/request-options';
@@ -59,15 +23,11 @@ import { path } from '../../../internal/utils/path';
  */
 export class Jobs extends APIResource {
   askQuestions: AskQuestionsAPI.AskQuestions = new AskQuestionsAPI.AskQuestions(this._client);
-  generateChapters: GenerateChaptersAPI.GenerateChapters = new GenerateChaptersAPI.GenerateChapters(
-    this._client,
-  );
+  generateChapters: GenerateChaptersAPI.GenerateChapters = new GenerateChaptersAPI.GenerateChapters(this._client);
   findKeyMoments: FindKeyMomentsAPI.FindKeyMoments = new FindKeyMomentsAPI.FindKeyMoments(this._client);
   moderate: ModerateAPI.Moderate = new ModerateAPI.Moderate(this._client);
   summarize: SummarizeAPI.Summarize = new SummarizeAPI.Summarize(this._client);
-  translateCaptions: TranslateCaptionsAPI.TranslateCaptions = new TranslateCaptionsAPI.TranslateCaptions(
-    this._client,
-  );
+  translateCaptions: TranslateCaptionsAPI.TranslateCaptions = new TranslateCaptionsAPI.TranslateCaptions(this._client);
 
   /**
    * Returns a paginated list of Robots jobs, with optional filters for workflow,
@@ -81,15 +41,8 @@ export class Jobs extends APIResource {
    * }
    * ```
    */
-  list(
-    query: JobListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<JobSummariesBasePage, JobSummary> {
-    return this._client.getAPIList('/robots/v0/jobs', BasePage<JobSummary>, {
-      query,
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-    });
+  list(query: JobListParams | null | undefined = {}, options?: RequestOptions): PagePromise<JobSummariesBasePage, JobSummary> {
+    return this._client.getAPIList('/robots/v0/jobs', BasePage<JobSummary>, { query, defaultBaseURL: 'https://api.mux.com', ...options });
   }
 
   /**
@@ -103,16 +56,11 @@ export class Jobs extends APIResource {
    * ```
    */
   cancel(jobID: string, options?: RequestOptions): APIPromise<JobSummary> {
-    return (
-      this._client.post(path`/robots/v0/jobs/${jobID}/cancel`, {
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: JobSummary }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.post(path`/robots/v0/jobs/${jobID}/cancel`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: JobSummary }>)._thenUnwrap((obj) => obj.data);
   }
 }
 
-export type JobSummariesBasePage = BasePage<JobSummary>;
+export type JobSummariesBasePage = BasePage<JobSummary>
 
 export interface JobError {
   /**
@@ -134,7 +82,7 @@ export interface JobError {
 /**
  * Current job status.
  */
-export type JobStatus = 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled';
+export type JobStatus = 'pending' | 'processing' | 'completed' | 'errored' | 'cancelled'
 
 export interface JobSummary {
   /**
@@ -165,13 +113,7 @@ export interface JobSummary {
   /**
    * Workflow type that created this job.
    */
-  workflow:
-    | 'summarize'
-    | 'moderate'
-    | 'generate-chapters'
-    | 'translate-captions'
-    | 'ask-questions'
-    | 'find-key-moments';
+  workflow: 'summarize' | 'moderate' | 'generate-chapters' | 'translate-captions' | 'ask-questions' | 'find-key-moments';
 }
 
 export namespace JobSummary {
@@ -206,13 +148,7 @@ export interface JobListParams extends BasePageParams {
   /**
    * Filter by workflow name
    */
-  workflow?:
-    | 'summarize'
-    | 'moderate'
-    | 'generate-chapters'
-    | 'translate-captions'
-    | 'ask-questions'
-    | 'find-key-moments';
+  workflow?: 'summarize' | 'moderate' | 'generate-chapters' | 'translate-captions' | 'ask-questions' | 'find-key-moments';
 }
 
 Jobs.AskQuestions = AskQuestions;
@@ -228,7 +164,7 @@ export declare namespace Jobs {
     type JobStatus as JobStatus,
     type JobSummary as JobSummary,
     type JobSummariesBasePage as JobSummariesBasePage,
-    type JobListParams as JobListParams,
+    type JobListParams as JobListParams
   };
 
   export {
@@ -236,7 +172,7 @@ export declare namespace Jobs {
     type AskQuestionsJob as AskQuestionsJob,
     type AskQuestionsJobOutputs as AskQuestionsJobOutputs,
     type AskQuestionsJobParameters as AskQuestionsJobParameters,
-    type AskQuestionCreateParams as AskQuestionCreateParams,
+    type AskQuestionCreateParams as AskQuestionCreateParams
   };
 
   export {
@@ -244,7 +180,7 @@ export declare namespace Jobs {
     type GenerateChaptersJob as GenerateChaptersJob,
     type GenerateChaptersJobOutputs as GenerateChaptersJobOutputs,
     type GenerateChaptersJobParameters as GenerateChaptersJobParameters,
-    type GenerateChapterCreateParams as GenerateChapterCreateParams,
+    type GenerateChapterCreateParams as GenerateChapterCreateParams
   };
 
   export {
@@ -252,7 +188,7 @@ export declare namespace Jobs {
     type FindKeyMomentsJob as FindKeyMomentsJob,
     type FindKeyMomentsJobOutputs as FindKeyMomentsJobOutputs,
     type FindKeyMomentsJobParameters as FindKeyMomentsJobParameters,
-    type FindKeyMomentCreateParams as FindKeyMomentCreateParams,
+    type FindKeyMomentCreateParams as FindKeyMomentCreateParams
   };
 
   export {
@@ -260,7 +196,7 @@ export declare namespace Jobs {
     type ModerateJob as ModerateJob,
     type ModerateJobOutputs as ModerateJobOutputs,
     type ModerateJobParameters as ModerateJobParameters,
-    type ModerateCreateParams as ModerateCreateParams,
+    type ModerateCreateParams as ModerateCreateParams
   };
 
   export {
@@ -268,7 +204,7 @@ export declare namespace Jobs {
     type SummarizeJob as SummarizeJob,
     type SummarizeJobOutputs as SummarizeJobOutputs,
     type SummarizeJobParameters as SummarizeJobParameters,
-    type SummarizeCreateParams as SummarizeCreateParams,
+    type SummarizeCreateParams as SummarizeCreateParams
   };
 
   export {
@@ -276,6 +212,6 @@ export declare namespace Jobs {
     type TranslateCaptionsJob as TranslateCaptionsJob,
     type TranslateCaptionsJobOutputs as TranslateCaptionsJobOutputs,
     type TranslateCaptionsJobParameters as TranslateCaptionsJobParameters,
-    type TranslateCaptionCreateParams as TranslateCaptionCreateParams,
+    type TranslateCaptionCreateParams as TranslateCaptionCreateParams
   };
 }

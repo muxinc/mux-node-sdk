@@ -22,19 +22,12 @@ export class DeliveryUsage extends APIResource {
    * }
    * ```
    */
-  list(
-    query: DeliveryUsageListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<DeliveryReportsPageWithTotal, DeliveryReport> {
-    return this._client.getAPIList('/video/v1/delivery-usage', PageWithTotal<DeliveryReport>, {
-      query,
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-    });
+  list(query: DeliveryUsageListParams | null | undefined = {}, options?: RequestOptions): PagePromise<DeliveryReportsPageWithTotal, DeliveryReport> {
+    return this._client.getAPIList('/video/v1/delivery-usage', PageWithTotal<DeliveryReport>, { query, defaultBaseURL: 'https://api.mux.com', ...options });
   }
 }
 
-export type DeliveryReportsPageWithTotal = PageWithTotal<DeliveryReport>;
+export type DeliveryReportsPageWithTotal = PageWithTotal<DeliveryReport>
 
 export interface DeliveryReport {
   /**
@@ -171,6 +164,6 @@ export declare namespace DeliveryUsage {
   export {
     type DeliveryReport as DeliveryReport,
     type DeliveryReportsPageWithTotal as DeliveryReportsPageWithTotal,
-    type DeliveryUsageListParams as DeliveryUsageListParams,
+    type DeliveryUsageListParams as DeliveryUsageListParams
   };
 }
