@@ -27,13 +27,7 @@ export class Summarize extends APIResource {
    * ```
    */
   create(body: SummarizeCreateParams, options?: RequestOptions): APIPromise<SummarizeJob> {
-    return (
-      this._client.post('/robots/v0/jobs/summarize', {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: SummarizeJob }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.post('/robots/v0/jobs/summarize', { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: SummarizeJob }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -49,12 +43,7 @@ export class Summarize extends APIResource {
    * ```
    */
   retrieve(jobID: string, options?: RequestOptions): APIPromise<SummarizeJob> {
-    return (
-      this._client.get(path`/robots/v0/jobs/summarize/${jobID}`, {
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: SummarizeJob }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.get(path`/robots/v0/jobs/summarize/${jobID}`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: SummarizeJob }>)._thenUnwrap((obj) => obj.data);
   }
 }
 
@@ -296,6 +285,6 @@ export declare namespace Summarize {
     type SummarizeJob as SummarizeJob,
     type SummarizeJobOutputs as SummarizeJobOutputs,
     type SummarizeJobParameters as SummarizeJobParameters,
-    type SummarizeCreateParams as SummarizeCreateParams,
+    type SummarizeCreateParams as SummarizeCreateParams
   };
 }

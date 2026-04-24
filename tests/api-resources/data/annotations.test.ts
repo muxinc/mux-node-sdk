@@ -5,7 +5,7 @@ import Mux from '@mux/mux-node';
 const client = new Mux({
   tokenId: 'my token id',
   tokenSecret: 'my secret',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource annotations', () => {
@@ -22,10 +22,10 @@ describe('resource annotations', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.data.annotations.create({
-      date: 1745438400,
-      note: 'This is a note',
-      sub_property_id: '123456',
-    });
+    date: 1745438400,
+    note: 'This is a note',
+    sub_property_id: '123456',
+  });
   });
 
   test('retrieve', async () => {
@@ -40,10 +40,7 @@ describe('resource annotations', () => {
   });
 
   test('update: only required params', async () => {
-    const responsePromise = client.data.annotations.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      date: 1745438400,
-      note: 'This is a note',
-    });
+    const responsePromise = client.data.annotations.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { date: 1745438400, note: 'This is a note' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -55,10 +52,10 @@ describe('resource annotations', () => {
 
   test('update: required and optional params', async () => {
     const response = await client.data.annotations.update('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', {
-      date: 1745438400,
-      note: 'This is a note',
-      sub_property_id: '123456',
-    });
+    date: 1745438400,
+    note: 'This is a note',
+    sub_property_id: '123456',
+  });
   });
 
   test('list', async () => {
@@ -74,17 +71,14 @@ describe('resource annotations', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.annotations.list(
-        {
-          limit: 0,
-          order_direction: 'asc',
-          page: 0,
-          timeframe: ['string'],
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+    await expect(client.data.annotations.list({
+    limit: 0,
+    order_direction: 'asc',
+    page: 0,
+    timeframe: ['string'],
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Mux.NotFoundError);
   });
 
   test('delete', async () => {

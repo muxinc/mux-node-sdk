@@ -5,17 +5,12 @@ import Mux from '@mux/mux-node';
 const client = new Mux({
   tokenId: 'my token id',
   tokenSecret: 'my secret',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource askQuestions', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.robotsPreview.jobs.askQuestions.create({
-      parameters: {
-        asset_id: 'mux_asset_123abc',
-        questions: [{ question: 'How many people are speaking on camera?' }],
-      },
-    });
+    const responsePromise = client.robotsPreview.jobs.askQuestions.create({ parameters: { asset_id: 'mux_asset_123abc', questions: [{ question: 'How many people are speaking on camera?' }] } });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -27,18 +22,13 @@ describe('resource askQuestions', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.robotsPreview.jobs.askQuestions.create({
-      parameters: {
-        asset_id: 'mux_asset_123abc',
-        questions: [
-          {
-            question: 'How many people are speaking on camera?',
-            answer_options: ['one', 'two', 'three or more'],
-          },
-        ],
-        language_code: 'x',
-      },
-      passthrough: 'passthrough',
-    });
+    parameters: {
+    asset_id: 'mux_asset_123abc',
+    questions: [{ question: 'How many people are speaking on camera?', answer_options: ['one', 'two', 'three or more'] }],
+    language_code: 'x',
+  },
+    passthrough: 'passthrough',
+  });
   });
 
   test('retrieve', async () => {

@@ -5,7 +5,7 @@ import Mux from '@mux/mux-node';
 const client = new Mux({
   tokenId: 'my token id',
   tokenSecret: 'my secret',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource realTime', () => {
@@ -44,19 +44,15 @@ describe('resource realTime', () => {
 
   test('retrieveBreakdown: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.realTime.retrieveBreakdown(
-        'current-concurrent-viewers',
-        {
-          dimension: 'asn',
-          filters: ['string'],
-          order_by: 'negative_impact',
-          order_direction: 'asc',
-          timestamp: 0,
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+    await expect(client.data.realTime.retrieveBreakdown('current-concurrent-viewers', {
+    dimension: 'asn',
+    filters: ['string'],
+    order_by: 'negative_impact',
+    order_direction: 'asc',
+    timestamp: 0,
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Mux.NotFoundError);
   });
 
   test('retrieveHistogramTimeseries', async () => {
@@ -72,13 +68,9 @@ describe('resource realTime', () => {
 
   test('retrieveHistogramTimeseries: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.realTime.retrieveHistogramTimeseries(
-        'video-startup-time',
-        { filters: ['string'] },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+    await expect(client.data.realTime.retrieveHistogramTimeseries('video-startup-time', { filters: ['string'] }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Mux.NotFoundError);
   });
 
   test('retrieveTimeseries', async () => {
@@ -94,12 +86,8 @@ describe('resource realTime', () => {
 
   test('retrieveTimeseries: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.realTime.retrieveTimeseries(
-        'current-concurrent-viewers',
-        { filters: ['string'], timestamp: 0 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+    await expect(client.data.realTime.retrieveTimeseries('current-concurrent-viewers', { filters: ['string'], timestamp: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Mux.NotFoundError);
   });
 });

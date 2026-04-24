@@ -28,17 +28,8 @@ export class TranscriptionVocabularies extends APIResource {
    *   });
    * ```
    */
-  create(
-    body: TranscriptionVocabularyCreateParams,
-    options?: RequestOptions,
-  ): APIPromise<TranscriptionVocabulary> {
-    return (
-      this._client.post('/video/v1/transcription-vocabularies', {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: TranscriptionVocabulary }>
-    )._thenUnwrap((obj) => obj.data);
+  create(body: TranscriptionVocabularyCreateParams, options?: RequestOptions): APIPromise<TranscriptionVocabulary> {
+    return (this._client.post('/video/v1/transcription-vocabularies', { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: TranscriptionVocabulary }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -56,12 +47,7 @@ export class TranscriptionVocabularies extends APIResource {
    * ```
    */
   retrieve(transcriptionVocabularyID: string, options?: RequestOptions): APIPromise<TranscriptionVocabulary> {
-    return (
-      this._client.get(path`/video/v1/transcription-vocabularies/${transcriptionVocabularyID}`, {
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: TranscriptionVocabulary }>
-    )._thenUnwrap((obj) => obj.data);
+    return (this._client.get(path`/video/v1/transcription-vocabularies/${transcriptionVocabularyID}`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: TranscriptionVocabulary }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -81,18 +67,8 @@ export class TranscriptionVocabularies extends APIResource {
    *   );
    * ```
    */
-  update(
-    transcriptionVocabularyID: string,
-    body: TranscriptionVocabularyUpdateParams,
-    options?: RequestOptions,
-  ): APIPromise<TranscriptionVocabulary> {
-    return (
-      this._client.put(path`/video/v1/transcription-vocabularies/${transcriptionVocabularyID}`, {
-        body,
-        defaultBaseURL: 'https://api.mux.com',
-        ...options,
-      }) as APIPromise<{ data: TranscriptionVocabulary }>
-    )._thenUnwrap((obj) => obj.data);
+  update(transcriptionVocabularyID: string, body: TranscriptionVocabularyUpdateParams, options?: RequestOptions): APIPromise<TranscriptionVocabulary> {
+    return (this._client.put(path`/video/v1/transcription-vocabularies/${transcriptionVocabularyID}`, { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: TranscriptionVocabulary }>)._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -106,15 +82,8 @@ export class TranscriptionVocabularies extends APIResource {
    * }
    * ```
    */
-  list(
-    query: TranscriptionVocabularyListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): PagePromise<TranscriptionVocabulariesBasePage, TranscriptionVocabulary> {
-    return this._client.getAPIList(
-      '/video/v1/transcription-vocabularies',
-      BasePage<TranscriptionVocabulary>,
-      { query, defaultBaseURL: 'https://api.mux.com', ...options },
-    );
+  list(query: TranscriptionVocabularyListParams | null | undefined = {}, options?: RequestOptions): PagePromise<TranscriptionVocabulariesBasePage, TranscriptionVocabulary> {
+    return this._client.getAPIList('/video/v1/transcription-vocabularies', BasePage<TranscriptionVocabulary>, { query, defaultBaseURL: 'https://api.mux.com', ...options });
   }
 
   /**
@@ -132,15 +101,11 @@ export class TranscriptionVocabularies extends APIResource {
    * ```
    */
   delete(transcriptionVocabularyID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/video/v1/transcription-vocabularies/${transcriptionVocabularyID}`, {
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.delete(path`/video/v1/transcription-vocabularies/${transcriptionVocabularyID}`, { defaultBaseURL: 'https://api.mux.com', ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
-export type TranscriptionVocabulariesBasePage = BasePage<TranscriptionVocabulary>;
+export type TranscriptionVocabulariesBasePage = BasePage<TranscriptionVocabulary>
 
 export interface TranscriptionVocabulary {
   /**
@@ -226,7 +191,8 @@ export interface TranscriptionVocabularyUpdateParams {
   passthrough?: string;
 }
 
-export interface TranscriptionVocabularyListParams extends BasePageParams {}
+export interface TranscriptionVocabularyListParams extends BasePageParams {
+}
 
 export declare namespace TranscriptionVocabularies {
   export {
@@ -235,6 +201,6 @@ export declare namespace TranscriptionVocabularies {
     type TranscriptionVocabulariesBasePage as TranscriptionVocabulariesBasePage,
     type TranscriptionVocabularyCreateParams as TranscriptionVocabularyCreateParams,
     type TranscriptionVocabularyUpdateParams as TranscriptionVocabularyUpdateParams,
-    type TranscriptionVocabularyListParams as TranscriptionVocabularyListParams,
+    type TranscriptionVocabularyListParams as TranscriptionVocabularyListParams
   };
 }

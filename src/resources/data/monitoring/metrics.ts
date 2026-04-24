@@ -26,10 +26,7 @@ export class Metrics extends APIResource {
    * ```
    */
   list(options?: RequestOptions): APIPromise<MetricListResponse> {
-    return this._client.get('/data/v1/monitoring/metrics', {
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-    });
+    return this._client.get('/data/v1/monitoring/metrics', { defaultBaseURL: 'https://api.mux.com', ...options });
   }
 
   /**
@@ -44,22 +41,8 @@ export class Metrics extends APIResource {
    *   );
    * ```
    */
-  getBreakdown(
-    monitoringMetricID:
-      | 'current-concurrent-viewers'
-      | 'current-rebuffering-percentage'
-      | 'exits-before-video-start'
-      | 'playback-failure-percentage'
-      | 'current-average-bitrate'
-      | 'video-startup-failure-percentage',
-    query: MetricGetBreakdownParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<MetricGetBreakdownResponse> {
-    return this._client.get(path`/data/v1/monitoring/metrics/${monitoringMetricID}/breakdown`, {
-      query,
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-    });
+  getBreakdown(monitoringMetricID: 'current-concurrent-viewers' | 'current-rebuffering-percentage' | 'exits-before-video-start' | 'playback-failure-percentage' | 'current-average-bitrate' | 'video-startup-failure-percentage', query: MetricGetBreakdownParams | null | undefined = {}, options?: RequestOptions): APIPromise<MetricGetBreakdownResponse> {
+    return this._client.get(path`/data/v1/monitoring/metrics/${monitoringMetricID}/breakdown`, { query, defaultBaseURL: 'https://api.mux.com', ...options });
   }
 
   /**
@@ -74,22 +57,8 @@ export class Metrics extends APIResource {
    *   );
    * ```
    */
-  getBreakdownTimeseries(
-    monitoringMetricID:
-      | 'current-concurrent-viewers'
-      | 'current-rebuffering-percentage'
-      | 'exits-before-video-start'
-      | 'playback-failure-percentage'
-      | 'current-average-bitrate'
-      | 'video-startup-failure-percentage',
-    query: MetricGetBreakdownTimeseriesParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<MetricGetBreakdownTimeseriesResponse> {
-    return this._client.get(path`/data/v1/monitoring/metrics/${monitoringMetricID}/breakdown-timeseries`, {
-      query,
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-    });
+  getBreakdownTimeseries(monitoringMetricID: 'current-concurrent-viewers' | 'current-rebuffering-percentage' | 'exits-before-video-start' | 'playback-failure-percentage' | 'current-average-bitrate' | 'video-startup-failure-percentage', query: MetricGetBreakdownTimeseriesParams | null | undefined = {}, options?: RequestOptions): APIPromise<MetricGetBreakdownTimeseriesResponse> {
+    return this._client.get(path`/data/v1/monitoring/metrics/${monitoringMetricID}/breakdown-timeseries`, { query, defaultBaseURL: 'https://api.mux.com', ...options });
   }
 
   /**
@@ -103,15 +72,8 @@ export class Metrics extends APIResource {
    *   );
    * ```
    */
-  getHistogramTimeseries(
-    monitoringHistogramMetricID: 'video-startup-time',
-    query: MetricGetHistogramTimeseriesParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<MetricGetHistogramTimeseriesResponse> {
-    return this._client.get(
-      path`/data/v1/monitoring/metrics/${monitoringHistogramMetricID}/histogram-timeseries`,
-      { query, defaultBaseURL: 'https://api.mux.com', ...options },
-    );
+  getHistogramTimeseries(monitoringHistogramMetricID: 'video-startup-time', query: MetricGetHistogramTimeseriesParams | null | undefined = {}, options?: RequestOptions): APIPromise<MetricGetHistogramTimeseriesResponse> {
+    return this._client.get(path`/data/v1/monitoring/metrics/${monitoringHistogramMetricID}/histogram-timeseries`, { query, defaultBaseURL: 'https://api.mux.com', ...options });
   }
 
   /**
@@ -126,22 +88,8 @@ export class Metrics extends APIResource {
    *   );
    * ```
    */
-  getTimeseries(
-    monitoringMetricID:
-      | 'current-concurrent-viewers'
-      | 'current-rebuffering-percentage'
-      | 'exits-before-video-start'
-      | 'playback-failure-percentage'
-      | 'current-average-bitrate'
-      | 'video-startup-failure-percentage',
-    query: MetricGetTimeseriesParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<MetricGetTimeseriesResponse> {
-    return this._client.get(path`/data/v1/monitoring/metrics/${monitoringMetricID}/timeseries`, {
-      query,
-      defaultBaseURL: 'https://api.mux.com',
-      ...options,
-    });
+  getTimeseries(monitoringMetricID: 'current-concurrent-viewers' | 'current-rebuffering-percentage' | 'exits-before-video-start' | 'playback-failure-percentage' | 'current-average-bitrate' | 'video-startup-failure-percentage', query: MetricGetTimeseriesParams | null | undefined = {}, options?: RequestOptions): APIPromise<MetricGetTimeseriesResponse> {
+    return this._client.get(path`/data/v1/monitoring/metrics/${monitoringMetricID}/timeseries`, { query, defaultBaseURL: 'https://api.mux.com', ...options });
   }
 }
 
@@ -285,18 +233,7 @@ export interface MetricGetBreakdownParams {
   /**
    * Dimension the specified value belongs to
    */
-  dimension?:
-    | 'asn'
-    | 'cdn'
-    | 'country'
-    | 'operating_system'
-    | 'player_name'
-    | 'region'
-    | 'stream_type'
-    | 'sub_property_id'
-    | 'video_series'
-    | 'video_title'
-    | 'view_has_ad';
+  dimension?: 'asn' | 'cdn' | 'country' | 'operating_system' | 'player_name' | 'region' | 'stream_type' | 'sub_property_id' | 'video_series' | 'video_title' | 'view_has_ad';
 
   /**
    * Limit the results to rows that match conditions from provided key:value pairs.
@@ -335,18 +272,7 @@ export interface MetricGetBreakdownTimeseriesParams {
   /**
    * Dimension the specified value belongs to
    */
-  dimension?:
-    | 'asn'
-    | 'cdn'
-    | 'country'
-    | 'operating_system'
-    | 'player_name'
-    | 'region'
-    | 'stream_type'
-    | 'sub_property_id'
-    | 'video_series'
-    | 'video_title'
-    | 'view_has_ad';
+  dimension?: 'asn' | 'cdn' | 'country' | 'operating_system' | 'player_name' | 'region' | 'stream_type' | 'sub_property_id' | 'video_series' | 'video_title' | 'view_has_ad';
 
   /**
    * Limit the results to rows that match conditions from provided key:value pairs.
@@ -443,6 +369,6 @@ export declare namespace Metrics {
     type MetricGetBreakdownParams as MetricGetBreakdownParams,
     type MetricGetBreakdownTimeseriesParams as MetricGetBreakdownTimeseriesParams,
     type MetricGetHistogramTimeseriesParams as MetricGetHistogramTimeseriesParams,
-    type MetricGetTimeseriesParams as MetricGetTimeseriesParams,
+    type MetricGetTimeseriesParams as MetricGetTimeseriesParams
   };
 }

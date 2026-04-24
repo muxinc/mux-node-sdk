@@ -5,7 +5,7 @@ import Mux from '@mux/mux-node';
 const client = new Mux({
   tokenId: 'my token id',
   tokenSecret: 'my secret',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource metrics', () => {
@@ -22,18 +22,15 @@ describe('resource metrics', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.metrics.list(
-        {
-          dimension: 'asn',
-          filters: ['string'],
-          metric_filters: ['string'],
-          timeframe: ['string'],
-          value: 'value',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+    await expect(client.data.metrics.list({
+    dimension: 'asn',
+    filters: ['string'],
+    metric_filters: ['string'],
+    timeframe: ['string'],
+    value: 'value',
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Mux.NotFoundError);
   });
 
   test('getInsights', async () => {
@@ -49,19 +46,15 @@ describe('resource metrics', () => {
 
   test('getInsights: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.metrics.getInsights(
-        'video_startup_time',
-        {
-          filters: ['string'],
-          measurement: '95th',
-          metric_filters: ['string'],
-          order_direction: 'asc',
-          timeframe: ['string'],
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+    await expect(client.data.metrics.getInsights('video_startup_time', {
+    filters: ['string'],
+    measurement: '95th',
+    metric_filters: ['string'],
+    order_direction: 'asc',
+    timeframe: ['string'],
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Mux.NotFoundError);
   });
 
   test('getOverallValues', async () => {
@@ -77,18 +70,14 @@ describe('resource metrics', () => {
 
   test('getOverallValues: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.metrics.getOverallValues(
-        'video_startup_time',
-        {
-          filters: ['string'],
-          measurement: '95th',
-          metric_filters: ['string'],
-          timeframe: ['string'],
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+    await expect(client.data.metrics.getOverallValues('video_startup_time', {
+    filters: ['string'],
+    measurement: '95th',
+    metric_filters: ['string'],
+    timeframe: ['string'],
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Mux.NotFoundError);
   });
 
   test('getTimeseries', async () => {
@@ -104,20 +93,16 @@ describe('resource metrics', () => {
 
   test('getTimeseries: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.metrics.getTimeseries(
-        'video_startup_time',
-        {
-          filters: ['string'],
-          group_by: 'minute',
-          measurement: '95th',
-          metric_filters: ['string'],
-          order_direction: 'asc',
-          timeframe: ['string'],
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+    await expect(client.data.metrics.getTimeseries('video_startup_time', {
+    filters: ['string'],
+    group_by: 'minute',
+    measurement: '95th',
+    metric_filters: ['string'],
+    order_direction: 'asc',
+    timeframe: ['string'],
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Mux.NotFoundError);
   });
 
   test('listBreakdownValues', async () => {
@@ -133,22 +118,18 @@ describe('resource metrics', () => {
 
   test('listBreakdownValues: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.metrics.listBreakdownValues(
-        'video_startup_time',
-        {
-          filters: ['string'],
-          group_by: 'asn',
-          limit: 0,
-          measurement: '95th',
-          metric_filters: ['string'],
-          order_by: 'negative_impact',
-          order_direction: 'asc',
-          page: 0,
-          timeframe: ['string'],
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+    await expect(client.data.metrics.listBreakdownValues('video_startup_time', {
+    filters: ['string'],
+    group_by: 'asn',
+    limit: 0,
+    measurement: '95th',
+    metric_filters: ['string'],
+    order_by: 'negative_impact',
+    order_direction: 'asc',
+    page: 0,
+    timeframe: ['string'],
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Mux.NotFoundError);
   });
 });
