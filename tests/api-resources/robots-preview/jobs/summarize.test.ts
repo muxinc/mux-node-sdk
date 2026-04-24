@@ -5,14 +5,12 @@ import Mux from '@mux/mux-node';
 const client = new Mux({
   tokenId: 'my token id',
   tokenSecret: 'my secret',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource summarize', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.robotsPreview.jobs.summarize.create({
-      parameters: { asset_id: 'mux_asset_123abc' },
-    });
+    const responsePromise = client.robotsPreview.jobs.summarize.create({ parameters: { asset_id: 'mux_asset_123abc' } });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,24 +22,24 @@ describe('resource summarize', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.robotsPreview.jobs.summarize.create({
-      parameters: {
-        asset_id: 'mux_asset_123abc',
-        description_length: 1,
-        language_code: 'x',
-        output_language_code: 'x',
-        prompt_overrides: {
-          description: 'x',
-          keywords: 'x',
-          quality_guidelines: 'x',
-          task: 'x',
-          title: 'x',
-        },
-        tag_count: 10,
-        title_length: 1,
-        tone: 'neutral',
-      },
-      passthrough: 'passthrough',
-    });
+    parameters: {
+    asset_id: 'mux_asset_123abc',
+    description_length: 1,
+    language_code: 'x',
+    output_language_code: 'x',
+    prompt_overrides: {
+    description: 'x',
+    keywords: 'x',
+    quality_guidelines: 'x',
+    task: 'x',
+    title: 'x',
+  },
+    tag_count: 10,
+    title_length: 1,
+    tone: 'neutral',
+  },
+    passthrough: 'passthrough',
+  });
   });
 
   test('retrieve', async () => {

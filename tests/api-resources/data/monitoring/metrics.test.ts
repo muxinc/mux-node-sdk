@@ -5,7 +5,7 @@ import Mux from '@mux/mux-node';
 const client = new Mux({
   tokenId: 'my token id',
   tokenSecret: 'my secret',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource metrics', () => {
@@ -33,25 +33,19 @@ describe('resource metrics', () => {
 
   test('getBreakdown: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.monitoring.metrics.getBreakdown(
-        'current-concurrent-viewers',
-        {
-          dimension: 'asn',
-          filters: ['string'],
-          order_by: 'negative_impact',
-          order_direction: 'asc',
-          timestamp: 0,
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+    await expect(client.data.monitoring.metrics.getBreakdown('current-concurrent-viewers', {
+    dimension: 'asn',
+    filters: ['string'],
+    order_by: 'negative_impact',
+    order_direction: 'asc',
+    timestamp: 0,
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Mux.NotFoundError);
   });
 
   test('getBreakdownTimeseries', async () => {
-    const responsePromise = client.data.monitoring.metrics.getBreakdownTimeseries(
-      'current-concurrent-viewers',
-    );
+    const responsePromise = client.data.monitoring.metrics.getBreakdownTimeseries('current-concurrent-viewers');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -63,20 +57,16 @@ describe('resource metrics', () => {
 
   test('getBreakdownTimeseries: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.monitoring.metrics.getBreakdownTimeseries(
-        'current-concurrent-viewers',
-        {
-          dimension: 'asn',
-          filters: ['string'],
-          limit: 0,
-          order_by: 'negative_impact',
-          order_direction: 'asc',
-          timeframe: ['string'],
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+    await expect(client.data.monitoring.metrics.getBreakdownTimeseries('current-concurrent-viewers', {
+    dimension: 'asn',
+    filters: ['string'],
+    limit: 0,
+    order_by: 'negative_impact',
+    order_direction: 'asc',
+    timeframe: ['string'],
+  }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Mux.NotFoundError);
   });
 
   test('getHistogramTimeseries', async () => {
@@ -92,13 +82,9 @@ describe('resource metrics', () => {
 
   test('getHistogramTimeseries: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.monitoring.metrics.getHistogramTimeseries(
-        'video-startup-time',
-        { filters: ['string'] },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+    await expect(client.data.monitoring.metrics.getHistogramTimeseries('video-startup-time', { filters: ['string'] }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Mux.NotFoundError);
   });
 
   test('getTimeseries', async () => {
@@ -114,12 +100,8 @@ describe('resource metrics', () => {
 
   test('getTimeseries: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.monitoring.metrics.getTimeseries(
-        'current-concurrent-viewers',
-        { filters: ['string'], timestamp: 0 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Mux.NotFoundError);
+    await expect(client.data.monitoring.metrics.getTimeseries('current-concurrent-viewers', { filters: ['string'], timestamp: 0 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Mux.NotFoundError);
   });
 });
