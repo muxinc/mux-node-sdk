@@ -1,5 +1,15 @@
 # Changelog
 
+## 14.0.2 (2026-04-24)
+
+Full Changelog: [v14.0.1...v14.0.2](https://github.com/muxinc/mux-node-sdk/compare/v14.0.1...v14.0.2)
+
+### Chores
+
+* **internal:** more robust bootstrap script ([6b8de5a](https://github.com/muxinc/mux-node-sdk/commit/6b8de5af6fcda143d3e26dd94aafe11afb355f2a))
+* **internal:** update docs ordering ([53fba06](https://github.com/muxinc/mux-node-sdk/commit/53fba06e3d6e41c704e492319eb2dca9dcf0efb9))
+* restructure docs search code ([4191d7b](https://github.com/muxinc/mux-node-sdk/commit/4191d7bea19dafc1870997fd7e06a262a3a43af9))
+
 ## 14.0.1 (2026-04-20)
 
 Full Changelog: [v14.0.0...v14.0.1](https://github.com/muxinc/mux-node-sdk/compare/v14.0.0...v14.0.1)
