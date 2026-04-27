@@ -5,7 +5,7 @@ import Mux from '@mux/mux-node';
 const client = new Mux({
   tokenId: 'my token id',
   tokenSecret: 'my secret',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource jobs', () => {
@@ -22,15 +22,18 @@ describe('resource jobs', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.robotsPreview.jobs.list({
-    asset_id: 'x',
-    limit: 1,
-    page: 1,
-    status: 'pending',
-    workflow: 'summarize',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Mux.NotFoundError);
+    await expect(
+      client.robotsPreview.jobs.list(
+        {
+          asset_id: 'x',
+          limit: 1,
+          page: 1,
+          status: 'pending',
+          workflow: 'summarize',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('cancel', async () => {

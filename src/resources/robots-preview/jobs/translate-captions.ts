@@ -28,7 +28,13 @@ export class TranslateCaptions extends APIResource {
    * ```
    */
   create(body: TranslateCaptionCreateParams, options?: RequestOptions): APIPromise<TranslateCaptionsJob> {
-    return (this._client.post('/robots/v0/jobs/translate-captions', { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: TranslateCaptionsJob }>)._thenUnwrap((obj) => obj.data);
+    return (
+      this._client.post('/robots/v0/jobs/translate-captions', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: TranslateCaptionsJob }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -44,7 +50,12 @@ export class TranslateCaptions extends APIResource {
    * ```
    */
   retrieve(jobID: string, options?: RequestOptions): APIPromise<TranslateCaptionsJob> {
-    return (this._client.get(path`/robots/v0/jobs/translate-captions/${jobID}`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: TranslateCaptionsJob }>)._thenUnwrap((obj) => obj.data);
+    return (
+      this._client.get(path`/robots/v0/jobs/translate-captions/${jobID}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: TranslateCaptionsJob }>
+    )._thenUnwrap((obj) => obj.data);
   }
 }
 
@@ -235,6 +246,6 @@ export declare namespace TranslateCaptions {
     type TranslateCaptionsJob as TranslateCaptionsJob,
     type TranslateCaptionsJobOutputs as TranslateCaptionsJobOutputs,
     type TranslateCaptionsJobParameters as TranslateCaptionsJobParameters,
-    type TranslateCaptionCreateParams as TranslateCaptionCreateParams
+    type TranslateCaptionCreateParams as TranslateCaptionCreateParams,
   };
 }

@@ -721,7 +721,21 @@ export namespace VideoAssetCreatedWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -733,7 +747,17 @@ export namespace VideoAssetCreatedWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -1388,7 +1412,21 @@ export namespace VideoAssetReadyWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -1400,7 +1438,17 @@ export namespace VideoAssetReadyWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -2055,7 +2103,21 @@ export namespace VideoAssetErroredWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -2067,7 +2129,17 @@ export namespace VideoAssetErroredWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -2722,7 +2794,21 @@ export namespace VideoAssetUpdatedWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -2734,7 +2820,17 @@ export namespace VideoAssetUpdatedWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -3389,7 +3485,21 @@ export namespace VideoAssetDeletedWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -3401,7 +3511,17 @@ export namespace VideoAssetDeletedWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -4056,7 +4176,21 @@ export namespace VideoAssetLiveStreamCompletedWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -4068,7 +4202,17 @@ export namespace VideoAssetLiveStreamCompletedWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -4723,7 +4867,21 @@ export namespace VideoAssetStaticRenditionsReadyWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -4735,7 +4893,17 @@ export namespace VideoAssetStaticRenditionsReadyWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -5390,7 +5558,21 @@ export namespace VideoAssetStaticRenditionsPreparingWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -5402,7 +5584,17 @@ export namespace VideoAssetStaticRenditionsPreparingWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -6057,7 +6249,21 @@ export namespace VideoAssetStaticRenditionsDeletedWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -6069,7 +6275,17 @@ export namespace VideoAssetStaticRenditionsDeletedWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -6724,7 +6940,21 @@ export namespace VideoAssetStaticRenditionsErroredWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -6736,7 +6966,17 @@ export namespace VideoAssetStaticRenditionsErroredWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -7391,7 +7631,21 @@ export namespace VideoAssetMasterReadyWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -7403,7 +7657,17 @@ export namespace VideoAssetMasterReadyWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -8058,7 +8322,21 @@ export namespace VideoAssetMasterPreparingWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -8070,7 +8348,17 @@ export namespace VideoAssetMasterPreparingWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -8725,7 +9013,21 @@ export namespace VideoAssetMasterDeletedWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -8737,7 +9039,17 @@ export namespace VideoAssetMasterDeletedWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -9392,7 +9704,21 @@ export namespace VideoAssetMasterErroredWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -9404,7 +9730,17 @@ export namespace VideoAssetMasterErroredWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -10281,7 +10617,21 @@ export namespace VideoAssetStaticRenditionCreatedWebhookEvent {
     /**
      * Name of the static rendition file
      */
-    name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+    name?:
+      | 'low.mp4'
+      | 'medium.mp4'
+      | 'high.mp4'
+      | 'highest.mp4'
+      | 'audio.m4a'
+      | 'capped-1080p.mp4'
+      | '2160p.mp4'
+      | '1440p.mp4'
+      | '1080p.mp4'
+      | '720p.mp4'
+      | '540p.mp4'
+      | '480p.mp4'
+      | '360p.mp4'
+      | '270p.mp4';
 
     /**
      * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -10293,7 +10643,17 @@ export namespace VideoAssetStaticRenditionCreatedWebhookEvent {
      * Indicates the resolution of this specific MP4 version of this asset. This field
      * is only valid for `static_renditions`, not for `mp4_support`.
      */
-    resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+    resolution?:
+      | 'highest'
+      | 'audio-only'
+      | '2160p'
+      | '1440p'
+      | '1080p'
+      | '720p'
+      | '540p'
+      | '480p'
+      | '360p'
+      | '270p';
 
     /**
      * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -10393,7 +10753,21 @@ export namespace VideoAssetStaticRenditionReadyWebhookEvent {
     /**
      * Name of the static rendition file
      */
-    name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+    name?:
+      | 'low.mp4'
+      | 'medium.mp4'
+      | 'high.mp4'
+      | 'highest.mp4'
+      | 'audio.m4a'
+      | 'capped-1080p.mp4'
+      | '2160p.mp4'
+      | '1440p.mp4'
+      | '1080p.mp4'
+      | '720p.mp4'
+      | '540p.mp4'
+      | '480p.mp4'
+      | '360p.mp4'
+      | '270p.mp4';
 
     /**
      * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -10405,7 +10779,17 @@ export namespace VideoAssetStaticRenditionReadyWebhookEvent {
      * Indicates the resolution of this specific MP4 version of this asset. This field
      * is only valid for `static_renditions`, not for `mp4_support`.
      */
-    resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+    resolution?:
+      | 'highest'
+      | 'audio-only'
+      | '2160p'
+      | '1440p'
+      | '1080p'
+      | '720p'
+      | '540p'
+      | '480p'
+      | '360p'
+      | '270p';
 
     /**
      * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -10505,7 +10889,21 @@ export namespace VideoAssetStaticRenditionErroredWebhookEvent {
     /**
      * Name of the static rendition file
      */
-    name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+    name?:
+      | 'low.mp4'
+      | 'medium.mp4'
+      | 'high.mp4'
+      | 'highest.mp4'
+      | 'audio.m4a'
+      | 'capped-1080p.mp4'
+      | '2160p.mp4'
+      | '1440p.mp4'
+      | '1080p.mp4'
+      | '720p.mp4'
+      | '540p.mp4'
+      | '480p.mp4'
+      | '360p.mp4'
+      | '270p.mp4';
 
     /**
      * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -10517,7 +10915,17 @@ export namespace VideoAssetStaticRenditionErroredWebhookEvent {
      * Indicates the resolution of this specific MP4 version of this asset. This field
      * is only valid for `static_renditions`, not for `mp4_support`.
      */
-    resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+    resolution?:
+      | 'highest'
+      | 'audio-only'
+      | '2160p'
+      | '1440p'
+      | '1080p'
+      | '720p'
+      | '540p'
+      | '480p'
+      | '360p'
+      | '270p';
 
     /**
      * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -10617,7 +11025,21 @@ export namespace VideoAssetStaticRenditionDeletedWebhookEvent {
     /**
      * Name of the static rendition file
      */
-    name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+    name?:
+      | 'low.mp4'
+      | 'medium.mp4'
+      | 'high.mp4'
+      | 'highest.mp4'
+      | 'audio.m4a'
+      | 'capped-1080p.mp4'
+      | '2160p.mp4'
+      | '1440p.mp4'
+      | '1080p.mp4'
+      | '720p.mp4'
+      | '540p.mp4'
+      | '480p.mp4'
+      | '360p.mp4'
+      | '270p.mp4';
 
     /**
      * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -10629,7 +11051,17 @@ export namespace VideoAssetStaticRenditionDeletedWebhookEvent {
      * Indicates the resolution of this specific MP4 version of this asset. This field
      * is only valid for `static_renditions`, not for `mp4_support`.
      */
-    resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+    resolution?:
+      | 'highest'
+      | 'audio-only'
+      | '2160p'
+      | '1440p'
+      | '1080p'
+      | '720p'
+      | '540p'
+      | '480p'
+      | '360p'
+      | '270p';
 
     /**
      * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -10729,7 +11161,21 @@ export namespace VideoAssetStaticRenditionSkippedWebhookEvent {
     /**
      * Name of the static rendition file
      */
-    name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+    name?:
+      | 'low.mp4'
+      | 'medium.mp4'
+      | 'high.mp4'
+      | 'highest.mp4'
+      | 'audio.m4a'
+      | 'capped-1080p.mp4'
+      | '2160p.mp4'
+      | '1440p.mp4'
+      | '1080p.mp4'
+      | '720p.mp4'
+      | '540p.mp4'
+      | '480p.mp4'
+      | '360p.mp4'
+      | '270p.mp4';
 
     /**
      * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -10741,7 +11187,17 @@ export namespace VideoAssetStaticRenditionSkippedWebhookEvent {
      * Indicates the resolution of this specific MP4 version of this asset. This field
      * is only valid for `static_renditions`, not for `mp4_support`.
      */
-    resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+    resolution?:
+      | 'highest'
+      | 'audio-only'
+      | '2160p'
+      | '1440p'
+      | '1080p'
+      | '720p'
+      | '540p'
+      | '480p'
+      | '360p'
+      | '270p';
 
     /**
      * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -11318,7 +11774,21 @@ export namespace VideoAssetNonStandardInputDetectedWebhookEvent {
         /**
          * Name of the static rendition file
          */
-        name?: 'low.mp4' | 'medium.mp4' | 'high.mp4' | 'highest.mp4' | 'audio.m4a' | 'capped-1080p.mp4' | '2160p.mp4' | '1440p.mp4' | '1080p.mp4' | '720p.mp4' | '540p.mp4' | '480p.mp4' | '360p.mp4' | '270p.mp4';
+        name?:
+          | 'low.mp4'
+          | 'medium.mp4'
+          | 'high.mp4'
+          | 'highest.mp4'
+          | 'audio.m4a'
+          | 'capped-1080p.mp4'
+          | '2160p.mp4'
+          | '1440p.mp4'
+          | '1080p.mp4'
+          | '720p.mp4'
+          | '540p.mp4'
+          | '480p.mp4'
+          | '360p.mp4'
+          | '270p.mp4';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -11330,7 +11800,17 @@ export namespace VideoAssetNonStandardInputDetectedWebhookEvent {
          * Indicates the resolution of this specific MP4 version of this asset. This field
          * is only valid for `static_renditions`, not for `mp4_support`.
          */
-        resolution?: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution?:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Indicates the resolution tier of this specific MP4 version of this asset. This
@@ -11846,7 +12326,30 @@ export namespace VideoUploadAssetCreatedWebhookEvent {
            * language of "auto" will allow language detection to set the language code
            * automatically.
            */
-          language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
+          language_code?:
+            | 'en'
+            | 'es'
+            | 'it'
+            | 'pt'
+            | 'de'
+            | 'fr'
+            | 'pl'
+            | 'ru'
+            | 'nl'
+            | 'ca'
+            | 'tr'
+            | 'sv'
+            | 'uk'
+            | 'no'
+            | 'fi'
+            | 'sk'
+            | 'el'
+            | 'cs'
+            | 'hr'
+            | 'da'
+            | 'ro'
+            | 'bg'
+            | 'auto';
 
           /**
            * A name for this subtitle track.
@@ -11945,7 +12448,17 @@ export namespace VideoUploadAssetCreatedWebhookEvent {
       }
 
       export interface StaticRendition {
-        resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -12287,7 +12800,30 @@ export namespace VideoUploadCancelledWebhookEvent {
            * language of "auto" will allow language detection to set the language code
            * automatically.
            */
-          language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
+          language_code?:
+            | 'en'
+            | 'es'
+            | 'it'
+            | 'pt'
+            | 'de'
+            | 'fr'
+            | 'pl'
+            | 'ru'
+            | 'nl'
+            | 'ca'
+            | 'tr'
+            | 'sv'
+            | 'uk'
+            | 'no'
+            | 'fi'
+            | 'sk'
+            | 'el'
+            | 'cs'
+            | 'hr'
+            | 'da'
+            | 'ro'
+            | 'bg'
+            | 'auto';
 
           /**
            * A name for this subtitle track.
@@ -12386,7 +12922,17 @@ export namespace VideoUploadCancelledWebhookEvent {
       }
 
       export interface StaticRendition {
-        resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -12728,7 +13274,30 @@ export namespace VideoUploadCreatedWebhookEvent {
            * language of "auto" will allow language detection to set the language code
            * automatically.
            */
-          language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
+          language_code?:
+            | 'en'
+            | 'es'
+            | 'it'
+            | 'pt'
+            | 'de'
+            | 'fr'
+            | 'pl'
+            | 'ru'
+            | 'nl'
+            | 'ca'
+            | 'tr'
+            | 'sv'
+            | 'uk'
+            | 'no'
+            | 'fi'
+            | 'sk'
+            | 'el'
+            | 'cs'
+            | 'hr'
+            | 'da'
+            | 'ro'
+            | 'bg'
+            | 'auto';
 
           /**
            * A name for this subtitle track.
@@ -12827,7 +13396,17 @@ export namespace VideoUploadCreatedWebhookEvent {
       }
 
       export interface StaticRendition {
-        resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -13169,7 +13748,30 @@ export namespace VideoUploadErroredWebhookEvent {
            * language of "auto" will allow language detection to set the language code
            * automatically.
            */
-          language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
+          language_code?:
+            | 'en'
+            | 'es'
+            | 'it'
+            | 'pt'
+            | 'de'
+            | 'fr'
+            | 'pl'
+            | 'ru'
+            | 'nl'
+            | 'ca'
+            | 'tr'
+            | 'sv'
+            | 'uk'
+            | 'no'
+            | 'fi'
+            | 'sk'
+            | 'el'
+            | 'cs'
+            | 'hr'
+            | 'da'
+            | 'ro'
+            | 'bg'
+            | 'auto';
 
           /**
            * A name for this subtitle track.
@@ -13268,7 +13870,17 @@ export namespace VideoUploadErroredWebhookEvent {
       }
 
       export interface StaticRendition {
-        resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -13811,7 +14423,30 @@ export namespace VideoLiveStreamCreatedWebhookEvent {
            * language of "auto" will allow language detection to set the language code
            * automatically.
            */
-          language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
+          language_code?:
+            | 'en'
+            | 'es'
+            | 'it'
+            | 'pt'
+            | 'de'
+            | 'fr'
+            | 'pl'
+            | 'ru'
+            | 'nl'
+            | 'ca'
+            | 'tr'
+            | 'sv'
+            | 'uk'
+            | 'no'
+            | 'fi'
+            | 'sk'
+            | 'el'
+            | 'cs'
+            | 'hr'
+            | 'da'
+            | 'ro'
+            | 'bg'
+            | 'auto';
 
           /**
            * A name for this subtitle track.
@@ -13910,7 +14545,17 @@ export namespace VideoLiveStreamCreatedWebhookEvent {
       }
 
       export interface StaticRendition {
-        resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -14546,7 +15191,30 @@ export namespace VideoLiveStreamConnectedWebhookEvent {
            * language of "auto" will allow language detection to set the language code
            * automatically.
            */
-          language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
+          language_code?:
+            | 'en'
+            | 'es'
+            | 'it'
+            | 'pt'
+            | 'de'
+            | 'fr'
+            | 'pl'
+            | 'ru'
+            | 'nl'
+            | 'ca'
+            | 'tr'
+            | 'sv'
+            | 'uk'
+            | 'no'
+            | 'fi'
+            | 'sk'
+            | 'el'
+            | 'cs'
+            | 'hr'
+            | 'da'
+            | 'ro'
+            | 'bg'
+            | 'auto';
 
           /**
            * A name for this subtitle track.
@@ -14645,7 +15313,17 @@ export namespace VideoLiveStreamConnectedWebhookEvent {
       }
 
       export interface StaticRendition {
-        resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -15281,7 +15959,30 @@ export namespace VideoLiveStreamRecordingWebhookEvent {
            * language of "auto" will allow language detection to set the language code
            * automatically.
            */
-          language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
+          language_code?:
+            | 'en'
+            | 'es'
+            | 'it'
+            | 'pt'
+            | 'de'
+            | 'fr'
+            | 'pl'
+            | 'ru'
+            | 'nl'
+            | 'ca'
+            | 'tr'
+            | 'sv'
+            | 'uk'
+            | 'no'
+            | 'fi'
+            | 'sk'
+            | 'el'
+            | 'cs'
+            | 'hr'
+            | 'da'
+            | 'ro'
+            | 'bg'
+            | 'auto';
 
           /**
            * A name for this subtitle track.
@@ -15380,7 +16081,17 @@ export namespace VideoLiveStreamRecordingWebhookEvent {
       }
 
       export interface StaticRendition {
-        resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -16016,7 +16727,30 @@ export namespace VideoLiveStreamActiveWebhookEvent {
            * language of "auto" will allow language detection to set the language code
            * automatically.
            */
-          language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
+          language_code?:
+            | 'en'
+            | 'es'
+            | 'it'
+            | 'pt'
+            | 'de'
+            | 'fr'
+            | 'pl'
+            | 'ru'
+            | 'nl'
+            | 'ca'
+            | 'tr'
+            | 'sv'
+            | 'uk'
+            | 'no'
+            | 'fi'
+            | 'sk'
+            | 'el'
+            | 'cs'
+            | 'hr'
+            | 'da'
+            | 'ro'
+            | 'bg'
+            | 'auto';
 
           /**
            * A name for this subtitle track.
@@ -16115,7 +16849,17 @@ export namespace VideoLiveStreamActiveWebhookEvent {
       }
 
       export interface StaticRendition {
-        resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -16751,7 +17495,30 @@ export namespace VideoLiveStreamDisconnectedWebhookEvent {
            * language of "auto" will allow language detection to set the language code
            * automatically.
            */
-          language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
+          language_code?:
+            | 'en'
+            | 'es'
+            | 'it'
+            | 'pt'
+            | 'de'
+            | 'fr'
+            | 'pl'
+            | 'ru'
+            | 'nl'
+            | 'ca'
+            | 'tr'
+            | 'sv'
+            | 'uk'
+            | 'no'
+            | 'fi'
+            | 'sk'
+            | 'el'
+            | 'cs'
+            | 'hr'
+            | 'da'
+            | 'ro'
+            | 'bg'
+            | 'auto';
 
           /**
            * A name for this subtitle track.
@@ -16850,7 +17617,17 @@ export namespace VideoLiveStreamDisconnectedWebhookEvent {
       }
 
       export interface StaticRendition {
-        resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -17486,7 +18263,30 @@ export namespace VideoLiveStreamIdleWebhookEvent {
            * language of "auto" will allow language detection to set the language code
            * automatically.
            */
-          language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
+          language_code?:
+            | 'en'
+            | 'es'
+            | 'it'
+            | 'pt'
+            | 'de'
+            | 'fr'
+            | 'pl'
+            | 'ru'
+            | 'nl'
+            | 'ca'
+            | 'tr'
+            | 'sv'
+            | 'uk'
+            | 'no'
+            | 'fi'
+            | 'sk'
+            | 'el'
+            | 'cs'
+            | 'hr'
+            | 'da'
+            | 'ro'
+            | 'bg'
+            | 'auto';
 
           /**
            * A name for this subtitle track.
@@ -17585,7 +18385,17 @@ export namespace VideoLiveStreamIdleWebhookEvent {
       }
 
       export interface StaticRendition {
-        resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -18221,7 +19031,30 @@ export namespace VideoLiveStreamUpdatedWebhookEvent {
            * language of "auto" will allow language detection to set the language code
            * automatically.
            */
-          language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
+          language_code?:
+            | 'en'
+            | 'es'
+            | 'it'
+            | 'pt'
+            | 'de'
+            | 'fr'
+            | 'pl'
+            | 'ru'
+            | 'nl'
+            | 'ca'
+            | 'tr'
+            | 'sv'
+            | 'uk'
+            | 'no'
+            | 'fi'
+            | 'sk'
+            | 'el'
+            | 'cs'
+            | 'hr'
+            | 'da'
+            | 'ro'
+            | 'bg'
+            | 'auto';
 
           /**
            * A name for this subtitle track.
@@ -18320,7 +19153,17 @@ export namespace VideoLiveStreamUpdatedWebhookEvent {
       }
 
       export interface StaticRendition {
-        resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -18956,7 +19799,30 @@ export namespace VideoLiveStreamEnabledWebhookEvent {
            * language of "auto" will allow language detection to set the language code
            * automatically.
            */
-          language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
+          language_code?:
+            | 'en'
+            | 'es'
+            | 'it'
+            | 'pt'
+            | 'de'
+            | 'fr'
+            | 'pl'
+            | 'ru'
+            | 'nl'
+            | 'ca'
+            | 'tr'
+            | 'sv'
+            | 'uk'
+            | 'no'
+            | 'fi'
+            | 'sk'
+            | 'el'
+            | 'cs'
+            | 'hr'
+            | 'da'
+            | 'ro'
+            | 'bg'
+            | 'auto';
 
           /**
            * A name for this subtitle track.
@@ -19055,7 +19921,17 @@ export namespace VideoLiveStreamEnabledWebhookEvent {
       }
 
       export interface StaticRendition {
-        resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -19691,7 +20567,30 @@ export namespace VideoLiveStreamDisabledWebhookEvent {
            * language of "auto" will allow language detection to set the language code
            * automatically.
            */
-          language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
+          language_code?:
+            | 'en'
+            | 'es'
+            | 'it'
+            | 'pt'
+            | 'de'
+            | 'fr'
+            | 'pl'
+            | 'ru'
+            | 'nl'
+            | 'ca'
+            | 'tr'
+            | 'sv'
+            | 'uk'
+            | 'no'
+            | 'fi'
+            | 'sk'
+            | 'el'
+            | 'cs'
+            | 'hr'
+            | 'da'
+            | 'ro'
+            | 'bg'
+            | 'auto';
 
           /**
            * A name for this subtitle track.
@@ -19790,7 +20689,17 @@ export namespace VideoLiveStreamDisabledWebhookEvent {
       }
 
       export interface StaticRendition {
-        resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -20426,7 +21335,30 @@ export namespace VideoLiveStreamDeletedWebhookEvent {
            * language of "auto" will allow language detection to set the language code
            * automatically.
            */
-          language_code?: 'en' | 'es' | 'it' | 'pt' | 'de' | 'fr' | 'pl' | 'ru' | 'nl' | 'ca' | 'tr' | 'sv' | 'uk' | 'no' | 'fi' | 'sk' | 'el' | 'cs' | 'hr' | 'da' | 'ro' | 'bg' | 'auto';
+          language_code?:
+            | 'en'
+            | 'es'
+            | 'it'
+            | 'pt'
+            | 'de'
+            | 'fr'
+            | 'pl'
+            | 'ru'
+            | 'nl'
+            | 'ca'
+            | 'tr'
+            | 'sv'
+            | 'uk'
+            | 'no'
+            | 'fi'
+            | 'sk'
+            | 'el'
+            | 'cs'
+            | 'hr'
+            | 'da'
+            | 'ro'
+            | 'bg'
+            | 'auto';
 
           /**
            * A name for this subtitle track.
@@ -20525,7 +21457,17 @@ export namespace VideoLiveStreamDeletedWebhookEvent {
       }
 
       export interface StaticRendition {
-        resolution: 'highest' | 'audio-only' | '2160p' | '1440p' | '1080p' | '720p' | '540p' | '480p' | '360p' | '270p';
+        resolution:
+          | 'highest'
+          | 'audio-only'
+          | '2160p'
+          | '1440p'
+          | '1080p'
+          | '720p'
+          | '540p'
+          | '480p'
+          | '360p'
+          | '270p';
 
         /**
          * Arbitrary user-supplied metadata set for the static rendition. Max 255
@@ -28854,7 +29796,85 @@ export namespace RobotsJobTranslateCaptionsProcessingWebhookEvent {
   }
 }
 
-export type UnwrapWebhookEvent = VideoAssetCreatedWebhookEvent | VideoAssetReadyWebhookEvent | VideoAssetErroredWebhookEvent | VideoAssetUpdatedWebhookEvent | VideoAssetDeletedWebhookEvent | VideoAssetLiveStreamCompletedWebhookEvent | VideoAssetStaticRenditionsReadyWebhookEvent | VideoAssetStaticRenditionsPreparingWebhookEvent | VideoAssetStaticRenditionsDeletedWebhookEvent | VideoAssetStaticRenditionsErroredWebhookEvent | VideoAssetMasterReadyWebhookEvent | VideoAssetMasterPreparingWebhookEvent | VideoAssetMasterDeletedWebhookEvent | VideoAssetMasterErroredWebhookEvent | VideoAssetTrackCreatedWebhookEvent | VideoAssetTrackReadyWebhookEvent | VideoAssetTrackErroredWebhookEvent | VideoAssetTrackDeletedWebhookEvent | VideoAssetStaticRenditionCreatedWebhookEvent | VideoAssetStaticRenditionReadyWebhookEvent | VideoAssetStaticRenditionErroredWebhookEvent | VideoAssetStaticRenditionDeletedWebhookEvent | VideoAssetStaticRenditionSkippedWebhookEvent | VideoAssetWarningWebhookEvent | VideoAssetNonStandardInputDetectedWebhookEvent | VideoUploadAssetCreatedWebhookEvent | VideoUploadCancelledWebhookEvent | VideoUploadCreatedWebhookEvent | VideoUploadErroredWebhookEvent | VideoLiveStreamCreatedWebhookEvent | VideoLiveStreamConnectedWebhookEvent | VideoLiveStreamRecordingWebhookEvent | VideoLiveStreamActiveWebhookEvent | VideoLiveStreamDisconnectedWebhookEvent | VideoLiveStreamIdleWebhookEvent | VideoLiveStreamUpdatedWebhookEvent | VideoLiveStreamEnabledWebhookEvent | VideoLiveStreamDisabledWebhookEvent | VideoLiveStreamDeletedWebhookEvent | VideoLiveStreamWarningWebhookEvent | VideoLiveStreamSimulcastTargetCreatedWebhookEvent | VideoLiveStreamSimulcastTargetIdleWebhookEvent | VideoLiveStreamSimulcastTargetStartingWebhookEvent | VideoLiveStreamSimulcastTargetBroadcastingWebhookEvent | VideoLiveStreamSimulcastTargetErroredWebhookEvent | VideoLiveStreamSimulcastTargetDeletedWebhookEvent | VideoLiveStreamSimulcastTargetUpdatedWebhookEvent | VideoDeliveryHighTrafficWebhookEvent | RobotsJobAskQuestionsCancelledWebhookEvent | RobotsJobAskQuestionsCompletedWebhookEvent | RobotsJobAskQuestionsErroredWebhookEvent | RobotsJobAskQuestionsPendingWebhookEvent | RobotsJobAskQuestionsProcessingWebhookEvent | RobotsJobFindKeyMomentsCancelledWebhookEvent | RobotsJobFindKeyMomentsCompletedWebhookEvent | RobotsJobFindKeyMomentsErroredWebhookEvent | RobotsJobFindKeyMomentsPendingWebhookEvent | RobotsJobFindKeyMomentsProcessingWebhookEvent | RobotsJobGenerateChaptersCancelledWebhookEvent | RobotsJobGenerateChaptersCompletedWebhookEvent | RobotsJobGenerateChaptersErroredWebhookEvent | RobotsJobGenerateChaptersPendingWebhookEvent | RobotsJobGenerateChaptersProcessingWebhookEvent | RobotsJobModerateCancelledWebhookEvent | RobotsJobModerateCompletedWebhookEvent | RobotsJobModerateErroredWebhookEvent | RobotsJobModeratePendingWebhookEvent | RobotsJobModerateProcessingWebhookEvent | RobotsJobSummarizeCancelledWebhookEvent | RobotsJobSummarizeCompletedWebhookEvent | RobotsJobSummarizeErroredWebhookEvent | RobotsJobSummarizePendingWebhookEvent | RobotsJobSummarizeProcessingWebhookEvent | RobotsJobTranslateCaptionsCancelledWebhookEvent | RobotsJobTranslateCaptionsCompletedWebhookEvent | RobotsJobTranslateCaptionsErroredWebhookEvent | RobotsJobTranslateCaptionsPendingWebhookEvent | RobotsJobTranslateCaptionsProcessingWebhookEvent
+export type UnwrapWebhookEvent =
+  | VideoAssetCreatedWebhookEvent
+  | VideoAssetReadyWebhookEvent
+  | VideoAssetErroredWebhookEvent
+  | VideoAssetUpdatedWebhookEvent
+  | VideoAssetDeletedWebhookEvent
+  | VideoAssetLiveStreamCompletedWebhookEvent
+  | VideoAssetStaticRenditionsReadyWebhookEvent
+  | VideoAssetStaticRenditionsPreparingWebhookEvent
+  | VideoAssetStaticRenditionsDeletedWebhookEvent
+  | VideoAssetStaticRenditionsErroredWebhookEvent
+  | VideoAssetMasterReadyWebhookEvent
+  | VideoAssetMasterPreparingWebhookEvent
+  | VideoAssetMasterDeletedWebhookEvent
+  | VideoAssetMasterErroredWebhookEvent
+  | VideoAssetTrackCreatedWebhookEvent
+  | VideoAssetTrackReadyWebhookEvent
+  | VideoAssetTrackErroredWebhookEvent
+  | VideoAssetTrackDeletedWebhookEvent
+  | VideoAssetStaticRenditionCreatedWebhookEvent
+  | VideoAssetStaticRenditionReadyWebhookEvent
+  | VideoAssetStaticRenditionErroredWebhookEvent
+  | VideoAssetStaticRenditionDeletedWebhookEvent
+  | VideoAssetStaticRenditionSkippedWebhookEvent
+  | VideoAssetWarningWebhookEvent
+  | VideoAssetNonStandardInputDetectedWebhookEvent
+  | VideoUploadAssetCreatedWebhookEvent
+  | VideoUploadCancelledWebhookEvent
+  | VideoUploadCreatedWebhookEvent
+  | VideoUploadErroredWebhookEvent
+  | VideoLiveStreamCreatedWebhookEvent
+  | VideoLiveStreamConnectedWebhookEvent
+  | VideoLiveStreamRecordingWebhookEvent
+  | VideoLiveStreamActiveWebhookEvent
+  | VideoLiveStreamDisconnectedWebhookEvent
+  | VideoLiveStreamIdleWebhookEvent
+  | VideoLiveStreamUpdatedWebhookEvent
+  | VideoLiveStreamEnabledWebhookEvent
+  | VideoLiveStreamDisabledWebhookEvent
+  | VideoLiveStreamDeletedWebhookEvent
+  | VideoLiveStreamWarningWebhookEvent
+  | VideoLiveStreamSimulcastTargetCreatedWebhookEvent
+  | VideoLiveStreamSimulcastTargetIdleWebhookEvent
+  | VideoLiveStreamSimulcastTargetStartingWebhookEvent
+  | VideoLiveStreamSimulcastTargetBroadcastingWebhookEvent
+  | VideoLiveStreamSimulcastTargetErroredWebhookEvent
+  | VideoLiveStreamSimulcastTargetDeletedWebhookEvent
+  | VideoLiveStreamSimulcastTargetUpdatedWebhookEvent
+  | VideoDeliveryHighTrafficWebhookEvent
+  | RobotsJobAskQuestionsCancelledWebhookEvent
+  | RobotsJobAskQuestionsCompletedWebhookEvent
+  | RobotsJobAskQuestionsErroredWebhookEvent
+  | RobotsJobAskQuestionsPendingWebhookEvent
+  | RobotsJobAskQuestionsProcessingWebhookEvent
+  | RobotsJobFindKeyMomentsCancelledWebhookEvent
+  | RobotsJobFindKeyMomentsCompletedWebhookEvent
+  | RobotsJobFindKeyMomentsErroredWebhookEvent
+  | RobotsJobFindKeyMomentsPendingWebhookEvent
+  | RobotsJobFindKeyMomentsProcessingWebhookEvent
+  | RobotsJobGenerateChaptersCancelledWebhookEvent
+  | RobotsJobGenerateChaptersCompletedWebhookEvent
+  | RobotsJobGenerateChaptersErroredWebhookEvent
+  | RobotsJobGenerateChaptersPendingWebhookEvent
+  | RobotsJobGenerateChaptersProcessingWebhookEvent
+  | RobotsJobModerateCancelledWebhookEvent
+  | RobotsJobModerateCompletedWebhookEvent
+  | RobotsJobModerateErroredWebhookEvent
+  | RobotsJobModeratePendingWebhookEvent
+  | RobotsJobModerateProcessingWebhookEvent
+  | RobotsJobSummarizeCancelledWebhookEvent
+  | RobotsJobSummarizeCompletedWebhookEvent
+  | RobotsJobSummarizeErroredWebhookEvent
+  | RobotsJobSummarizePendingWebhookEvent
+  | RobotsJobSummarizeProcessingWebhookEvent
+  | RobotsJobTranslateCaptionsCancelledWebhookEvent
+  | RobotsJobTranslateCaptionsCompletedWebhookEvent
+  | RobotsJobTranslateCaptionsErroredWebhookEvent
+  | RobotsJobTranslateCaptionsPendingWebhookEvent
+  | RobotsJobTranslateCaptionsProcessingWebhookEvent;
 
 export declare namespace Webhooks {
   export {
@@ -28937,6 +29957,6 @@ export declare namespace Webhooks {
     type RobotsJobTranslateCaptionsErroredWebhookEvent as RobotsJobTranslateCaptionsErroredWebhookEvent,
     type RobotsJobTranslateCaptionsPendingWebhookEvent as RobotsJobTranslateCaptionsPendingWebhookEvent,
     type RobotsJobTranslateCaptionsProcessingWebhookEvent as RobotsJobTranslateCaptionsProcessingWebhookEvent,
-    type UnwrapWebhookEvent as UnwrapWebhookEvent
+    type UnwrapWebhookEvent as UnwrapWebhookEvent,
   };
 }

@@ -26,7 +26,13 @@ export class FindKeyMoments extends APIResource {
    * ```
    */
   create(body: FindKeyMomentCreateParams, options?: RequestOptions): APIPromise<FindKeyMomentsJob> {
-    return (this._client.post('/robots/v0/jobs/find-key-moments', { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: FindKeyMomentsJob }>)._thenUnwrap((obj) => obj.data);
+    return (
+      this._client.post('/robots/v0/jobs/find-key-moments', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: FindKeyMomentsJob }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -42,7 +48,12 @@ export class FindKeyMoments extends APIResource {
    * ```
    */
   retrieve(jobID: string, options?: RequestOptions): APIPromise<FindKeyMomentsJob> {
-    return (this._client.get(path`/robots/v0/jobs/find-key-moments/${jobID}`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: FindKeyMomentsJob }>)._thenUnwrap((obj) => obj.data);
+    return (
+      this._client.get(path`/robots/v0/jobs/find-key-moments/${jobID}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: FindKeyMomentsJob }>
+    )._thenUnwrap((obj) => obj.data);
   }
 }
 
@@ -321,6 +332,6 @@ export declare namespace FindKeyMoments {
     type FindKeyMomentsJob as FindKeyMomentsJob,
     type FindKeyMomentsJobOutputs as FindKeyMomentsJobOutputs,
     type FindKeyMomentsJobParameters as FindKeyMomentsJobParameters,
-    type FindKeyMomentCreateParams as FindKeyMomentCreateParams
+    type FindKeyMomentCreateParams as FindKeyMomentCreateParams,
   };
 }

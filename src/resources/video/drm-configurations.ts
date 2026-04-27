@@ -22,7 +22,12 @@ export class DRMConfigurations extends APIResource {
    * ```
    */
   retrieve(drmConfigurationID: string, options?: RequestOptions): APIPromise<DRMConfiguration> {
-    return (this._client.get(path`/video/v1/drm-configurations/${drmConfigurationID}`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: DRMConfiguration }>)._thenUnwrap((obj) => obj.data);
+    return (
+      this._client.get(path`/video/v1/drm-configurations/${drmConfigurationID}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: DRMConfiguration }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -36,12 +41,19 @@ export class DRMConfigurations extends APIResource {
    * }
    * ```
    */
-  list(query: DRMConfigurationListParams | null | undefined = {}, options?: RequestOptions): PagePromise<DRMConfigurationsBasePage, DRMConfiguration> {
-    return this._client.getAPIList('/video/v1/drm-configurations', BasePage<DRMConfiguration>, { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  list(
+    query: DRMConfigurationListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<DRMConfigurationsBasePage, DRMConfiguration> {
+    return this._client.getAPIList('/video/v1/drm-configurations', BasePage<DRMConfiguration>, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 }
 
-export type DRMConfigurationsBasePage = BasePage<DRMConfiguration>
+export type DRMConfigurationsBasePage = BasePage<DRMConfiguration>;
 
 export interface DRMConfiguration {
   /**
@@ -50,13 +62,12 @@ export interface DRMConfiguration {
   id: string;
 }
 
-export interface DRMConfigurationListParams extends BasePageParams {
-}
+export interface DRMConfigurationListParams extends BasePageParams {}
 
 export declare namespace DRMConfigurations {
   export {
     type DRMConfiguration as DRMConfiguration,
     type DRMConfigurationsBasePage as DRMConfigurationsBasePage,
-    type DRMConfigurationListParams as DRMConfigurationListParams
+    type DRMConfigurationListParams as DRMConfigurationListParams,
   };
 }

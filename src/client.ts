@@ -15,7 +15,15 @@ import { stringifyQuery } from './internal/utils/query';
 import { VERSION } from './version';
 import * as Errors from './core/error';
 import * as Pagination from './core/pagination';
-import { AbstractPage, type BasePageParams, BasePageResponse, type CursorPageParams, CursorPageResponse, type PageWithTotalParams, PageWithTotalResponse } from './core/pagination';
+import {
+  AbstractPage,
+  type BasePageParams,
+  BasePageResponse,
+  type CursorPageParams,
+  CursorPageResponse,
+  type PageWithTotalParams,
+  PageWithTotalResponse,
+} from './core/pagination';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
@@ -29,7 +37,13 @@ import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
 import { toBase64 } from './internal/utils/base64';
 import { readEnv } from './internal/utils/env';
-import { type LogLevel, type Logger, formatRequestDetails, loggerFor, parseLogLevel } from './internal/utils/log';
+import {
+  type LogLevel,
+  type Logger,
+  formatRequestDetails,
+  loggerFor,
+  parseLogLevel,
+} from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
 
 export interface ClientOptions {
@@ -133,7 +147,7 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Mux API. 
+ * API Client for interfacing with the Mux API.
  */
 export class Mux {
   tokenId: string | null;
@@ -182,7 +196,6 @@ export class Mux {
     authorizationToken = readEnv('MUX_AUTHORIZATION_TOKEN') ?? null,
     ...opts
   }: ClientOptions = {}) {
-
     const options: ClientOptions = {
       tokenId,
       tokenSecret,
@@ -200,7 +213,10 @@ export class Mux {
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
-    this.logLevel = parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ?? parseLogLevel(readEnv('MUX_LOG'), 'process.env[\'MUX_LOG\']', this) ?? defaultLogLevel;
+    this.logLevel =
+      parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
+      parseLogLevel(readEnv('MUX_LOG'), "process.env['MUX_LOG']", this) ??
+      defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
     this.fetch = options.fetch ?? Shims.getDefaultFetch();
@@ -235,7 +251,7 @@ export class Mux {
       jwtSigningKey: this.jwtSigningKey,
       jwtPrivateKey: this.jwtPrivateKey,
       authorizationToken: this.authorizationToken,
-      ...options
+      ...options,
     });
     return client;
   }
@@ -248,7 +264,7 @@ export class Mux {
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
-    return this._options.defaultQuery
+    return this._options.defaultQuery;
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
@@ -266,7 +282,9 @@ export class Mux {
       return;
     }
 
-    throw new Error('Could not resolve authentication method. Expected either tokenId, tokenSecret or authorizationToken to be set. Or for one of the "Authorization" or "Authorization" headers to be explicitly omitted')
+    throw new Error(
+      'Could not resolve authentication method. Expected either tokenId, tokenSecret or authorizationToken to be set. Or for one of the "Authorization" or "Authorization" headers to be explicitly omitted',
+    );
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
@@ -282,9 +300,9 @@ export class Mux {
       return undefined;
     }
 
-    const credentials = `${this.tokenId}:${this.tokenSecret}`
-    const Authorization = `Basic ${toBase64(credentials)}`
-    return buildHeaders([{ Authorization }])
+    const credentials = `${this.tokenId}:${this.tokenSecret}`;
+    const Authorization = `Basic ${toBase64(credentials)}`;
+    return buildHeaders([{ Authorization }]);
   }
 
   protected async authorizationTokenAuth(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
@@ -315,7 +333,11 @@ export class Mux {
     return Errors.APIError.generate(status, error, message, headers);
   }
 
-  buildURL(path: string, query: Record<string, unknown> | null | undefined, defaultBaseURL?: string | undefined): string {
+  buildURL(
+    path: string,
+    query: Record<string, unknown> | null | undefined,
+    defaultBaseURL?: string | undefined,
+  ): string {
     const baseURL = (!this.#baseURLOverridden() && defaultBaseURL) || this.baseURL;
     const url =
       isAbsoluteURL(path) ?
@@ -403,7 +425,9 @@ export class Mux {
 
     await this.prepareOptions(options);
 
-    const { req, url, timeout } = await this.buildRequest(options, { retryCount: maxRetries - retriesRemaining });
+    const { req, url, timeout } = await this.buildRequest(options, {
+      retryCount: maxRetries - retriesRemaining,
+    });
 
     await this.prepareRequest(req, { url, options });
 
@@ -412,7 +436,16 @@ export class Mux {
     const retryLogStr = retryOfRequestLogID === undefined ? '' : `, retryOf: ${retryOfRequestLogID}`;
     const startTime = Date.now();
 
-    loggerFor(this).debug(`[${requestLogID}] sending request`, formatRequestDetails({ retryOfRequestLogID, method: options.method, url, options, headers: req.headers }));
+    loggerFor(this).debug(
+      `[${requestLogID}] sending request`,
+      formatRequestDetails({
+        retryOfRequestLogID,
+        method: options.method,
+        url,
+        options,
+        headers: req.headers,
+      }),
+    );
 
     if (options.signal?.aborted) {
       throw new Errors.APIUserAbortError();
@@ -431,21 +464,45 @@ export class Mux {
       // deno throws "TypeError: error sending request for url (https://example/): client error (Connect): tcp connect error: Operation timed out (os error 60): Operation timed out (os error 60)"
       // undici throws "TypeError: fetch failed" with cause "ConnectTimeoutError: Connect Timeout Error (attempted address: example:443, timeout: 1ms)"
       // others do not provide enough information to distinguish timeouts from other connection errors
-      const isTimeout = isAbortError(response) || /timed? ?out/i.test(String(response) + ('cause' in response ? String(response.cause) : ''))
+      const isTimeout =
+        isAbortError(response) ||
+        /timed? ?out/i.test(String(response) + ('cause' in response ? String(response.cause) : ''));
       if (retriesRemaining) {
-        loggerFor(this).info(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - ${retryMessage}`)
-        loggerFor(this).debug(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url, durationMs: headersTime - startTime, message: response.message }));
+        loggerFor(this).info(
+          `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - ${retryMessage}`,
+        );
+        loggerFor(this).debug(
+          `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (${retryMessage})`,
+          formatRequestDetails({
+            retryOfRequestLogID,
+            url,
+            durationMs: headersTime - startTime,
+            message: response.message,
+          }),
+        );
         return this.retryRequest(options, retriesRemaining, retryOfRequestLogID ?? requestLogID);
       }
-      loggerFor(this).info(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - error; no more retries left`)
-      loggerFor(this).debug(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (error; no more retries left)`, formatRequestDetails({ retryOfRequestLogID, url, durationMs: headersTime - startTime, message: response.message }));
+      loggerFor(this).info(
+        `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - error; no more retries left`,
+      );
+      loggerFor(this).debug(
+        `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (error; no more retries left)`,
+        formatRequestDetails({
+          retryOfRequestLogID,
+          url,
+          durationMs: headersTime - startTime,
+          message: response.message,
+        }),
+      );
       if (isTimeout) {
         throw new Errors.APIConnectionTimeoutError();
       }
       throw new Errors.APIConnectionError({ cause: response });
     }
 
-    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url} ${response.ok ? 'succeeded' : 'failed'} with status ${response.status} in ${headersTime - startTime}ms`;
+    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url} ${
+      response.ok ? 'succeeded' : 'failed'
+    } with status ${response.status} in ${headersTime - startTime}ms`;
 
     if (!response.ok) {
       const shouldRetry = await this.shouldRetry(response);
@@ -454,27 +511,60 @@ export class Mux {
 
         // We don't need the body of this response.
         await Shims.CancelReadableStream(response.body);
-        loggerFor(this).info(`${responseInfo} - ${retryMessage}`)
-        loggerFor(this).debug(`[${requestLogID}] response error (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, durationMs: headersTime - startTime }));
-        return this.retryRequest(options, retriesRemaining, retryOfRequestLogID ?? requestLogID, response.headers);
+        loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
+        loggerFor(this).debug(
+          `[${requestLogID}] response error (${retryMessage})`,
+          formatRequestDetails({
+            retryOfRequestLogID,
+            url: response.url,
+            status: response.status,
+            headers: response.headers,
+            durationMs: headersTime - startTime,
+          }),
+        );
+        return this.retryRequest(
+          options,
+          retriesRemaining,
+          retryOfRequestLogID ?? requestLogID,
+          response.headers,
+        );
       }
 
       const retryMessage = shouldRetry ? `error; no more retries left` : `error; not retryable`;
 
-      loggerFor(this).info(`${responseInfo} - ${retryMessage}`)
+      loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
 
       const errText = await response.text().catch((err: any) => castToError(err).message);
       const errJSON = safeJSON(errText) as any;
       const errMessage = errJSON ? undefined : errText;
 
-      loggerFor(this).debug(`[${requestLogID}] response error (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, message: errMessage, durationMs: Date.now() - startTime }));
+      loggerFor(this).debug(
+        `[${requestLogID}] response error (${retryMessage})`,
+        formatRequestDetails({
+          retryOfRequestLogID,
+          url: response.url,
+          status: response.status,
+          headers: response.headers,
+          message: errMessage,
+          durationMs: Date.now() - startTime,
+        }),
+      );
 
       const err = this.makeStatusError(response.status, errJSON, errMessage, response.headers);
       throw err;
     }
 
-    loggerFor(this).info(responseInfo)
-    loggerFor(this).debug(`[${requestLogID}] response start`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, durationMs: headersTime - startTime }));
+    loggerFor(this).info(responseInfo);
+    loggerFor(this).debug(
+      `[${requestLogID}] response start`,
+      formatRequestDetails({
+        retryOfRequestLogID,
+        url: response.url,
+        status: response.status,
+        headers: response.headers,
+        durationMs: headersTime - startTime,
+      }),
+    );
 
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
@@ -492,7 +582,10 @@ export class Mux {
     );
   }
 
-  requestAPIList<Item = unknown, PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>>(
+  requestAPIList<
+    Item = unknown,
+    PageClass extends Pagination.AbstractPage<Item> = Pagination.AbstractPage<Item>,
+  >(
     Page: new (...args: ConstructorParameters<typeof Pagination.AbstractPage>) => PageClass,
     options: PromiseOrValue<FinalRequestOptions>,
   ): Pagination.PagePromise<PageClass, Item> {
@@ -512,7 +605,9 @@ export class Mux {
 
     const timeout = setTimeout(abort, ms);
 
-    const isReadableBody = ((globalThis as any).ReadableStream && options.body instanceof (globalThis as any).ReadableStream) || (typeof options.body === "object" && options.body !== null && Symbol.asyncIterator in options.body);
+    const isReadableBody =
+      ((globalThis as any).ReadableStream && options.body instanceof (globalThis as any).ReadableStream) ||
+      (typeof options.body === 'object' && options.body !== null && Symbol.asyncIterator in options.body);
 
     const fetchOptions: RequestInit = {
       signal: controller.signal as any,
@@ -527,7 +622,6 @@ export class Mux {
     }
 
     try {
-
       // use undefined this binding; fetch errors if bound to something else in browser/cloudflare
       return await this.fetch.call(undefined, url, fetchOptions);
     } finally {
@@ -628,11 +722,12 @@ export class Mux {
     const req: FinalizedRequestInit = {
       method,
       headers: reqHeaders,
-      ...(options.signal && { signal: options.signal}),
-      ...((globalThis as any).ReadableStream && body instanceof (globalThis as any).ReadableStream && { duplex: "half" }),
+      ...(options.signal && { signal: options.signal }),
+      ...((globalThis as any).ReadableStream &&
+        body instanceof (globalThis as any).ReadableStream && { duplex: 'half' }),
       ...(body && { body }),
-      ...(this.fetchOptions as any ?? {}),
-      ...(options.fetchOptions as any ?? {}),
+      ...((this.fetchOptions as any) ?? {}),
+      ...((options.fetchOptions as any) ?? {}),
     };
 
     return { req, url, timeout: options.timeout };
@@ -657,11 +752,13 @@ export class Mux {
 
     const headers = buildHeaders([
       idempotencyHeaders,
-      {Accept: 'application/json',
-      'User-Agent': this.getUserAgent(),
-      'X-Stainless-Retry-Count': String(retryCount),
-      ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
-      ...getPlatformHeaders()},
+      {
+        Accept: 'application/json',
+        'User-Agent': this.getUserAgent(),
+        'X-Stainless-Retry-Count': String(retryCount),
+        ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
+        ...getPlatformHeaders(),
+      },
       await this.authHeaders(options),
       this._options.defaultHeaders,
       bodyHeaders,
@@ -693,11 +790,9 @@ export class Mux {
       ArrayBuffer.isView(body) ||
       body instanceof ArrayBuffer ||
       body instanceof DataView ||
-      (
-        typeof body === 'string' &&
+      (typeof body === 'string' &&
         // Preserve legacy string encoding behavior for now
-        headers.values.has('content-type')
-      ) ||
+        headers.values.has('content-type')) ||
       // `Blob` is superset of `File`
       ((globalThis as any).Blob && body instanceof (globalThis as any).Blob) ||
       // `FormData` -> `multipart/form-data`
@@ -728,7 +823,7 @@ export class Mux {
   }
 
   static Mux = this;
-  static DEFAULT_TIMEOUT = 60000 // 1 minute
+  static DEFAULT_TIMEOUT = 60000; // 1 minute
 
   static MuxError = Errors.MuxError;
   static APIError = Errors.APIError;
@@ -761,48 +856,32 @@ Mux.System = System;
 Mux.Webhooks = Webhooks;
 
 export declare namespace Mux {
-      export type RequestOptions = Opts.RequestOptions;
+  export type RequestOptions = Opts.RequestOptions;
 
-      export import PageWithTotal = Pagination.PageWithTotal;
-export {
-  type PageWithTotalParams as PageWithTotalParams,
-  type PageWithTotalResponse as PageWithTotalResponse
-};
+  export import PageWithTotal = Pagination.PageWithTotal;
+  export {
+    type PageWithTotalParams as PageWithTotalParams,
+    type PageWithTotalResponse as PageWithTotalResponse,
+  };
 
-export import BasePage = Pagination.BasePage;
-export {
-  type BasePageParams as BasePageParams,
-  type BasePageResponse as BasePageResponse
-};
+  export import BasePage = Pagination.BasePage;
+  export { type BasePageParams as BasePageParams, type BasePageResponse as BasePageResponse };
 
-export import CursorPage = Pagination.CursorPage;
-export {
-  type CursorPageParams as CursorPageParams,
-  type CursorPageResponse as CursorPageResponse
-};
+  export import CursorPage = Pagination.CursorPage;
+  export { type CursorPageParams as CursorPageParams, type CursorPageResponse as CursorPageResponse };
 
-export {
-  Video as Video
-};
+  export { Video as Video };
 
-export {
-  RobotsPreview as RobotsPreview
-};
+  export { RobotsPreview as RobotsPreview };
 
-export {
-  Data as Data
-};
+  export { Data as Data };
 
-export {
-  System as System
-};
+  export { System as System };
 
-export {
-  Webhooks as Webhooks
-};
+  export { Webhooks as Webhooks };
 
   export import Jwt = API.Jwt;
 
   export type PlaybackId = API.PlaybackId;
-export type PlaybackPolicy = API.PlaybackPolicy;
-    }
+  export type PlaybackPolicy = API.PlaybackPolicy;
+}

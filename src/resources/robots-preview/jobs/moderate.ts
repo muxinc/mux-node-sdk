@@ -26,7 +26,13 @@ export class Moderate extends APIResource {
    * ```
    */
   create(body: ModerateCreateParams, options?: RequestOptions): APIPromise<ModerateJob> {
-    return (this._client.post('/robots/v0/jobs/moderate', { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: ModerateJob }>)._thenUnwrap((obj) => obj.data);
+    return (
+      this._client.post('/robots/v0/jobs/moderate', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: ModerateJob }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -42,7 +48,12 @@ export class Moderate extends APIResource {
    * ```
    */
   retrieve(jobID: string, options?: RequestOptions): APIPromise<ModerateJob> {
-    return (this._client.get(path`/robots/v0/jobs/moderate/${jobID}`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: ModerateJob }>)._thenUnwrap((obj) => obj.data);
+    return (
+      this._client.get(path`/robots/v0/jobs/moderate/${jobID}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: ModerateJob }>
+    )._thenUnwrap((obj) => obj.data);
   }
 }
 
@@ -293,6 +304,6 @@ export declare namespace Moderate {
     type ModerateJob as ModerateJob,
     type ModerateJobOutputs as ModerateJobOutputs,
     type ModerateJobParameters as ModerateJobParameters,
-    type ModerateCreateParams as ModerateCreateParams
+    type ModerateCreateParams as ModerateCreateParams,
   };
 }

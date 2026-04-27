@@ -18,7 +18,10 @@ export class RealTime extends APIResource {
    * @deprecated
    */
   listDimensions(options?: RequestOptions): APIPromise<RealTimeDimensionsResponse> {
-    return this._client.get('/data/v1/realtime/dimensions', { defaultBaseURL: 'https://api.mux.com', ...options });
+    return this._client.get('/data/v1/realtime/dimensions', {
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -28,7 +31,10 @@ export class RealTime extends APIResource {
    * @deprecated
    */
   listMetrics(options?: RequestOptions): APIPromise<RealTimeMetricsResponse> {
-    return this._client.get('/data/v1/realtime/metrics', { defaultBaseURL: 'https://api.mux.com', ...options });
+    return this._client.get('/data/v1/realtime/metrics', {
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -38,8 +44,21 @@ export class RealTime extends APIResource {
    *
    * @deprecated
    */
-  retrieveBreakdown(realtimeMetricID: 'current-concurrent-viewers' | 'current-rebuffering-percentage' | 'exits-before-video-start' | 'playback-failure-percentage' | 'current-average-bitrate', query: RealTimeRetrieveBreakdownParams | null | undefined = {}, options?: RequestOptions): APIPromise<RealTimeBreakdownResponse> {
-    return this._client.get(path`/data/v1/realtime/metrics/${realtimeMetricID}/breakdown`, { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  retrieveBreakdown(
+    realtimeMetricID:
+      | 'current-concurrent-viewers'
+      | 'current-rebuffering-percentage'
+      | 'exits-before-video-start'
+      | 'playback-failure-percentage'
+      | 'current-average-bitrate',
+    query: RealTimeRetrieveBreakdownParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RealTimeBreakdownResponse> {
+    return this._client.get(path`/data/v1/realtime/metrics/${realtimeMetricID}/breakdown`, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -48,8 +67,15 @@ export class RealTime extends APIResource {
    *
    * @deprecated
    */
-  retrieveHistogramTimeseries(realtimeHistogramMetricID: 'video-startup-time', query: RealTimeRetrieveHistogramTimeseriesParams | null | undefined = {}, options?: RequestOptions): APIPromise<RealTimeHistogramTimeseriesResponse> {
-    return this._client.get(path`/data/v1/realtime/metrics/${realtimeHistogramMetricID}/histogram-timeseries`, { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  retrieveHistogramTimeseries(
+    realtimeHistogramMetricID: 'video-startup-time',
+    query: RealTimeRetrieveHistogramTimeseriesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RealTimeHistogramTimeseriesResponse> {
+    return this._client.get(
+      path`/data/v1/realtime/metrics/${realtimeHistogramMetricID}/histogram-timeseries`,
+      { query, defaultBaseURL: 'https://api.mux.com', ...options },
+    );
   }
 
   /**
@@ -59,8 +85,21 @@ export class RealTime extends APIResource {
    *
    * @deprecated
    */
-  retrieveTimeseries(realtimeMetricID: 'current-concurrent-viewers' | 'current-rebuffering-percentage' | 'exits-before-video-start' | 'playback-failure-percentage' | 'current-average-bitrate', query: RealTimeRetrieveTimeseriesParams | null | undefined = {}, options?: RequestOptions): APIPromise<RealTimeTimeseriesResponse> {
-    return this._client.get(path`/data/v1/realtime/metrics/${realtimeMetricID}/timeseries`, { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  retrieveTimeseries(
+    realtimeMetricID:
+      | 'current-concurrent-viewers'
+      | 'current-rebuffering-percentage'
+      | 'exits-before-video-start'
+      | 'playback-failure-percentage'
+      | 'current-average-bitrate',
+    query: RealTimeRetrieveTimeseriesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RealTimeTimeseriesResponse> {
+    return this._client.get(path`/data/v1/realtime/metrics/${realtimeMetricID}/timeseries`, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 }
 
@@ -192,7 +231,17 @@ export interface RealTimeRetrieveBreakdownParams {
   /**
    * Dimension the specified value belongs to
    */
-  dimension?: 'asn' | 'cdn' | 'country' | 'operating_system' | 'player_name' | 'region' | 'stream_type' | 'sub_property_id' | 'video_series' | 'video_title';
+  dimension?:
+    | 'asn'
+    | 'cdn'
+    | 'country'
+    | 'operating_system'
+    | 'player_name'
+    | 'region'
+    | 'stream_type'
+    | 'sub_property_id'
+    | 'video_series'
+    | 'video_title';
 
   /**
    * Limit the results to rows that match conditions from provided key:value pairs.
@@ -278,6 +327,6 @@ export declare namespace RealTime {
     type RealTimeTimeseriesResponse as RealTimeTimeseriesResponse,
     type RealTimeRetrieveBreakdownParams as RealTimeRetrieveBreakdownParams,
     type RealTimeRetrieveHistogramTimeseriesParams as RealTimeRetrieveHistogramTimeseriesParams,
-    type RealTimeRetrieveTimeseriesParams as RealTimeRetrieveTimeseriesParams
+    type RealTimeRetrieveTimeseriesParams as RealTimeRetrieveTimeseriesParams,
   };
 }

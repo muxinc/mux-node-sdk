@@ -31,8 +31,15 @@ export class Metrics extends APIResource {
    *   await client.data.metrics.list();
    * ```
    */
-  list(query: MetricListParams | null | undefined = {}, options?: RequestOptions): APIPromise<AllMetricValuesResponse> {
-    return this._client.get('/data/v1/metrics/comparison', { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  list(
+    query: MetricListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AllMetricValuesResponse> {
+    return this._client.get('/data/v1/metrics/comparison', {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -48,8 +55,67 @@ export class Metrics extends APIResource {
    *   );
    * ```
    */
-  getInsights(metricID: 'aggregate_startup_time' | 'downscale_percentage' | 'exits_before_video_start' | 'live_stream_latency' | 'max_downscale_percentage' | 'max_request_latency' | 'max_upscale_percentage' | 'page_load_time' | 'playback_failure_percentage' | 'playback_success_score' | 'player_startup_time' | 'playing_time' | 'rebuffer_count' | 'rebuffer_duration' | 'rebuffer_frequency' | 'rebuffer_percentage' | 'request_latency' | 'request_throughput' | 'rebuffer_score' | 'requests_for_first_preroll' | 'seek_latency' | 'startup_time_score' | 'unique_viewers' | 'upscale_percentage' | 'video_quality_score' | 'video_startup_preroll_load_time' | 'video_startup_preroll_request_time' | 'video_startup_time' | 'viewer_experience_score' | 'views' | 'weighted_average_bitrate' | 'video_startup_failure_percentage' | 'ad_attempt_count' | 'ad_break_count' | 'ad_break_error_count' | 'ad_break_error_percentage' | 'ad_error_count' | 'ad_error_percentage' | 'ad_exit_before_start_count' | 'ad_exit_before_start_percentage' | 'ad_impression_count' | 'ad_startup_error_count' | 'ad_startup_error_percentage' | 'playback_business_exception_percentage' | 'video_startup_business_exception_percentage' | 'view_content_startup_time' | 'ad_preroll_startup_time' | 'view_dropped_percentage' | 'rendition_change_count' | 'rendition_upshift_count' | 'rendition_downshift_count', query: MetricGetInsightsParams | null | undefined = {}, options?: RequestOptions): APIPromise<InsightsResponse> {
-    return this._client.get(path`/data/v1/metrics/${metricID}/insights`, { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  getInsights(
+    metricID:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'live_stream_latency'
+      | 'max_downscale_percentage'
+      | 'max_request_latency'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_success_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
+    query: MetricGetInsightsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<InsightsResponse> {
+    return this._client.get(path`/data/v1/metrics/${metricID}/insights`, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -64,8 +130,67 @@ export class Metrics extends APIResource {
    *   );
    * ```
    */
-  getOverallValues(metricID: 'aggregate_startup_time' | 'downscale_percentage' | 'exits_before_video_start' | 'live_stream_latency' | 'max_downscale_percentage' | 'max_request_latency' | 'max_upscale_percentage' | 'page_load_time' | 'playback_failure_percentage' | 'playback_success_score' | 'player_startup_time' | 'playing_time' | 'rebuffer_count' | 'rebuffer_duration' | 'rebuffer_frequency' | 'rebuffer_percentage' | 'request_latency' | 'request_throughput' | 'rebuffer_score' | 'requests_for_first_preroll' | 'seek_latency' | 'startup_time_score' | 'unique_viewers' | 'upscale_percentage' | 'video_quality_score' | 'video_startup_preroll_load_time' | 'video_startup_preroll_request_time' | 'video_startup_time' | 'viewer_experience_score' | 'views' | 'weighted_average_bitrate' | 'video_startup_failure_percentage' | 'ad_attempt_count' | 'ad_break_count' | 'ad_break_error_count' | 'ad_break_error_percentage' | 'ad_error_count' | 'ad_error_percentage' | 'ad_exit_before_start_count' | 'ad_exit_before_start_percentage' | 'ad_impression_count' | 'ad_startup_error_count' | 'ad_startup_error_percentage' | 'playback_business_exception_percentage' | 'video_startup_business_exception_percentage' | 'view_content_startup_time' | 'ad_preroll_startup_time' | 'view_dropped_percentage' | 'rendition_change_count' | 'rendition_upshift_count' | 'rendition_downshift_count', query: MetricGetOverallValuesParams | null | undefined = {}, options?: RequestOptions): APIPromise<OverallValuesResponse> {
-    return this._client.get(path`/data/v1/metrics/${metricID}/overall`, { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  getOverallValues(
+    metricID:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'live_stream_latency'
+      | 'max_downscale_percentage'
+      | 'max_request_latency'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_success_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
+    query: MetricGetOverallValuesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<OverallValuesResponse> {
+    return this._client.get(path`/data/v1/metrics/${metricID}/overall`, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -87,8 +212,67 @@ export class Metrics extends APIResource {
    *   );
    * ```
    */
-  getTimeseries(metricID: 'aggregate_startup_time' | 'downscale_percentage' | 'exits_before_video_start' | 'live_stream_latency' | 'max_downscale_percentage' | 'max_request_latency' | 'max_upscale_percentage' | 'page_load_time' | 'playback_failure_percentage' | 'playback_success_score' | 'player_startup_time' | 'playing_time' | 'rebuffer_count' | 'rebuffer_duration' | 'rebuffer_frequency' | 'rebuffer_percentage' | 'request_latency' | 'request_throughput' | 'rebuffer_score' | 'requests_for_first_preroll' | 'seek_latency' | 'startup_time_score' | 'unique_viewers' | 'upscale_percentage' | 'video_quality_score' | 'video_startup_preroll_load_time' | 'video_startup_preroll_request_time' | 'video_startup_time' | 'viewer_experience_score' | 'views' | 'weighted_average_bitrate' | 'video_startup_failure_percentage' | 'ad_attempt_count' | 'ad_break_count' | 'ad_break_error_count' | 'ad_break_error_percentage' | 'ad_error_count' | 'ad_error_percentage' | 'ad_exit_before_start_count' | 'ad_exit_before_start_percentage' | 'ad_impression_count' | 'ad_startup_error_count' | 'ad_startup_error_percentage' | 'playback_business_exception_percentage' | 'video_startup_business_exception_percentage' | 'view_content_startup_time' | 'ad_preroll_startup_time' | 'view_dropped_percentage' | 'rendition_change_count' | 'rendition_upshift_count' | 'rendition_downshift_count', query: MetricGetTimeseriesParams | null | undefined = {}, options?: RequestOptions): APIPromise<MetricTimeseriesDataResponse> {
-    return this._client.get(path`/data/v1/metrics/${metricID}/timeseries`, { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  getTimeseries(
+    metricID:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'live_stream_latency'
+      | 'max_downscale_percentage'
+      | 'max_request_latency'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_success_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
+    query: MetricGetTimeseriesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<MetricTimeseriesDataResponse> {
+    return this._client.get(path`/data/v1/metrics/${metricID}/timeseries`, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -104,12 +288,71 @@ export class Metrics extends APIResource {
    * }
    * ```
    */
-  listBreakdownValues(metricID: 'aggregate_startup_time' | 'downscale_percentage' | 'exits_before_video_start' | 'live_stream_latency' | 'max_downscale_percentage' | 'max_request_latency' | 'max_upscale_percentage' | 'page_load_time' | 'playback_failure_percentage' | 'playback_success_score' | 'player_startup_time' | 'playing_time' | 'rebuffer_count' | 'rebuffer_duration' | 'rebuffer_frequency' | 'rebuffer_percentage' | 'request_latency' | 'request_throughput' | 'rebuffer_score' | 'requests_for_first_preroll' | 'seek_latency' | 'startup_time_score' | 'unique_viewers' | 'upscale_percentage' | 'video_quality_score' | 'video_startup_preroll_load_time' | 'video_startup_preroll_request_time' | 'video_startup_time' | 'viewer_experience_score' | 'views' | 'weighted_average_bitrate' | 'video_startup_failure_percentage' | 'ad_attempt_count' | 'ad_break_count' | 'ad_break_error_count' | 'ad_break_error_percentage' | 'ad_error_count' | 'ad_error_percentage' | 'ad_exit_before_start_count' | 'ad_exit_before_start_percentage' | 'ad_impression_count' | 'ad_startup_error_count' | 'ad_startup_error_percentage' | 'playback_business_exception_percentage' | 'video_startup_business_exception_percentage' | 'view_content_startup_time' | 'ad_preroll_startup_time' | 'view_dropped_percentage' | 'rendition_change_count' | 'rendition_upshift_count' | 'rendition_downshift_count', query: MetricListBreakdownValuesParams | null | undefined = {}, options?: RequestOptions): PagePromise<BreakdownValuesBasePage, BreakdownValue> {
-    return this._client.getAPIList(path`/data/v1/metrics/${metricID}/breakdown`, BasePage<BreakdownValue>, { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  listBreakdownValues(
+    metricID:
+      | 'aggregate_startup_time'
+      | 'downscale_percentage'
+      | 'exits_before_video_start'
+      | 'live_stream_latency'
+      | 'max_downscale_percentage'
+      | 'max_request_latency'
+      | 'max_upscale_percentage'
+      | 'page_load_time'
+      | 'playback_failure_percentage'
+      | 'playback_success_score'
+      | 'player_startup_time'
+      | 'playing_time'
+      | 'rebuffer_count'
+      | 'rebuffer_duration'
+      | 'rebuffer_frequency'
+      | 'rebuffer_percentage'
+      | 'request_latency'
+      | 'request_throughput'
+      | 'rebuffer_score'
+      | 'requests_for_first_preroll'
+      | 'seek_latency'
+      | 'startup_time_score'
+      | 'unique_viewers'
+      | 'upscale_percentage'
+      | 'video_quality_score'
+      | 'video_startup_preroll_load_time'
+      | 'video_startup_preroll_request_time'
+      | 'video_startup_time'
+      | 'viewer_experience_score'
+      | 'views'
+      | 'weighted_average_bitrate'
+      | 'video_startup_failure_percentage'
+      | 'ad_attempt_count'
+      | 'ad_break_count'
+      | 'ad_break_error_count'
+      | 'ad_break_error_percentage'
+      | 'ad_error_count'
+      | 'ad_error_percentage'
+      | 'ad_exit_before_start_count'
+      | 'ad_exit_before_start_percentage'
+      | 'ad_impression_count'
+      | 'ad_startup_error_count'
+      | 'ad_startup_error_percentage'
+      | 'playback_business_exception_percentage'
+      | 'video_startup_business_exception_percentage'
+      | 'view_content_startup_time'
+      | 'ad_preroll_startup_time'
+      | 'view_dropped_percentage'
+      | 'rendition_change_count'
+      | 'rendition_upshift_count'
+      | 'rendition_downshift_count',
+    query: MetricListBreakdownValuesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<BreakdownValuesBasePage, BreakdownValue> {
+    return this._client.getAPIList(path`/data/v1/metrics/${metricID}/breakdown`, BasePage<BreakdownValue>, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 }
 
-export type BreakdownValuesBasePage = BasePage<BreakdownValue>
+export type BreakdownValuesBasePage = BasePage<BreakdownValue>;
 
 export interface AllMetricValuesResponse {
   data: Array<AllMetricValuesResponse.Data>;
@@ -259,7 +502,90 @@ export interface MetricListParams {
   /**
    * Dimension the specified value belongs to
    */
-  dimension?: 'asn' | 'asset_id' | 'browser' | 'browser_version' | 'cdn' | 'continent_code' | 'country' | 'custom_1' | 'custom_2' | 'custom_3' | 'custom_4' | 'custom_5' | 'custom_6' | 'custom_7' | 'custom_8' | 'custom_9' | 'custom_10' | 'exit_before_video_start' | 'experiment_name' | 'live_stream_id' | 'operating_system' | 'operating_system_version' | 'page_type' | 'page_url' | 'playback_failure' | 'playback_business_exception' | 'playback_id' | 'player_autoplay' | 'player_error_code' | 'player_mux_plugin_name' | 'player_mux_plugin_version' | 'player_name' | 'player_preload' | 'player_remote_played' | 'player_software' | 'player_software_version' | 'player_version' | 'preroll_ad_asset_hostname' | 'preroll_ad_tag_hostname' | 'preroll_played' | 'preroll_requested' | 'region' | 'source_hostname' | 'source_type' | 'stream_type' | 'sub_property_id' | 'video_content_type' | 'video_encoding_variant' | 'video_id' | 'video_series' | 'video_startup_failure' | 'video_startup_business_exception' | 'video_title' | 'view_drm_type' | 'view_has_ad' | 'view_session_id' | 'viewer_connection_type' | 'viewer_device_category' | 'viewer_device_manufacturer' | 'viewer_device_model' | 'viewer_device_name' | 'viewer_user_id' | 'ad_playback_failure' | 'content_playback_failure' | 'view_dropped' | 'client_application_name' | 'client_application_version' | 'video_affiliate' | 'viewer_plan' | 'viewer_plan_status' | 'viewer_plan_category' | 'view_drm_level' | 'video_brand' | 'used_pip' | 'time_shift_enabled' | 'used_captions' | 'video_codec' | 'audio_codec' | 'video_dynamic_range_type' | 'view_cdn_edge_pop' | 'view_cdn_origin' | 'video_creator_id' | 'video_cdn_trace';
+  dimension?:
+    | 'asn'
+    | 'asset_id'
+    | 'browser'
+    | 'browser_version'
+    | 'cdn'
+    | 'continent_code'
+    | 'country'
+    | 'custom_1'
+    | 'custom_2'
+    | 'custom_3'
+    | 'custom_4'
+    | 'custom_5'
+    | 'custom_6'
+    | 'custom_7'
+    | 'custom_8'
+    | 'custom_9'
+    | 'custom_10'
+    | 'exit_before_video_start'
+    | 'experiment_name'
+    | 'live_stream_id'
+    | 'operating_system'
+    | 'operating_system_version'
+    | 'page_type'
+    | 'page_url'
+    | 'playback_failure'
+    | 'playback_business_exception'
+    | 'playback_id'
+    | 'player_autoplay'
+    | 'player_error_code'
+    | 'player_mux_plugin_name'
+    | 'player_mux_plugin_version'
+    | 'player_name'
+    | 'player_preload'
+    | 'player_remote_played'
+    | 'player_software'
+    | 'player_software_version'
+    | 'player_version'
+    | 'preroll_ad_asset_hostname'
+    | 'preroll_ad_tag_hostname'
+    | 'preroll_played'
+    | 'preroll_requested'
+    | 'region'
+    | 'source_hostname'
+    | 'source_type'
+    | 'stream_type'
+    | 'sub_property_id'
+    | 'video_content_type'
+    | 'video_encoding_variant'
+    | 'video_id'
+    | 'video_series'
+    | 'video_startup_failure'
+    | 'video_startup_business_exception'
+    | 'video_title'
+    | 'view_drm_type'
+    | 'view_has_ad'
+    | 'view_session_id'
+    | 'viewer_connection_type'
+    | 'viewer_device_category'
+    | 'viewer_device_manufacturer'
+    | 'viewer_device_model'
+    | 'viewer_device_name'
+    | 'viewer_user_id'
+    | 'ad_playback_failure'
+    | 'content_playback_failure'
+    | 'view_dropped'
+    | 'client_application_name'
+    | 'client_application_version'
+    | 'video_affiliate'
+    | 'viewer_plan'
+    | 'viewer_plan_status'
+    | 'viewer_plan_category'
+    | 'view_drm_level'
+    | 'video_brand'
+    | 'used_pip'
+    | 'time_shift_enabled'
+    | 'used_captions'
+    | 'video_codec'
+    | 'audio_codec'
+    | 'video_dynamic_range_type'
+    | 'view_cdn_edge_pop'
+    | 'view_cdn_origin'
+    | 'video_creator_id'
+    | 'video_cdn_trace';
 
   /**
    * Filter results using key:value pairs. Must be provided as an array query string
@@ -588,7 +914,101 @@ export interface MetricListBreakdownValuesParams extends BasePageParams {
   /**
    * Breakdown value to group the results by
    */
-  group_by?: 'asn' | 'asset_id' | 'browser' | 'browser_version' | 'cdn' | 'continent_code' | 'country' | 'custom_1' | 'custom_2' | 'custom_3' | 'custom_4' | 'custom_5' | 'custom_6' | 'custom_7' | 'custom_8' | 'custom_9' | 'custom_10' | 'exit_before_video_start' | 'experiment_name' | 'live_stream_id' | 'operating_system' | 'operating_system_version' | 'page_type' | 'page_url' | 'playback_failure' | 'playback_business_exception' | 'playback_id' | 'player_autoplay' | 'player_error_code' | 'player_mux_plugin_name' | 'player_mux_plugin_version' | 'player_name' | 'player_preload' | 'player_remote_played' | 'player_software' | 'player_software_version' | 'player_version' | 'preroll_ad_asset_hostname' | 'preroll_ad_tag_hostname' | 'preroll_played' | 'preroll_requested' | 'region' | 'source_hostname' | 'source_type' | 'stream_type' | 'sub_property_id' | 'video_content_type' | 'video_encoding_variant' | 'video_id' | 'video_series' | 'video_startup_business_exception' | 'video_startup_failure' | 'video_title' | 'view_drm_type' | 'view_has_ad' | 'view_session_id' | 'viewer_connection_type' | 'viewer_device_category' | 'viewer_device_manufacturer' | 'viewer_device_model' | 'viewer_device_name' | 'viewer_user_id' | 'ad_playback_failure' | 'content_playback_failure' | 'view_dropped' | 'client_application_name' | 'client_application_version' | 'video_affiliate' | 'viewer_plan' | 'viewer_plan_status' | 'viewer_plan_category' | 'view_drm_level' | 'video_brand' | 'used_pip' | 'time_shift_enabled' | 'used_captions' | 'video_codec' | 'audio_codec' | 'video_dynamic_range_type' | 'view_cdn_edge_pop' | 'view_cdn_origin' | 'video_creator_id' | 'video_cdn_trace' | 'video_source_height_initial' | 'video_source_width_initial' | 'video_source_bitrate_initial' | 'video_codec_initial' | 'audio_codec_initial' | 'video_source_fps_initial' | 'video_dynamic_range_type_initial' | 'video_source_fps' | 'video_source_bitrate' | 'video_source_height' | 'video_source_width';
+  group_by?:
+    | 'asn'
+    | 'asset_id'
+    | 'browser'
+    | 'browser_version'
+    | 'cdn'
+    | 'continent_code'
+    | 'country'
+    | 'custom_1'
+    | 'custom_2'
+    | 'custom_3'
+    | 'custom_4'
+    | 'custom_5'
+    | 'custom_6'
+    | 'custom_7'
+    | 'custom_8'
+    | 'custom_9'
+    | 'custom_10'
+    | 'exit_before_video_start'
+    | 'experiment_name'
+    | 'live_stream_id'
+    | 'operating_system'
+    | 'operating_system_version'
+    | 'page_type'
+    | 'page_url'
+    | 'playback_failure'
+    | 'playback_business_exception'
+    | 'playback_id'
+    | 'player_autoplay'
+    | 'player_error_code'
+    | 'player_mux_plugin_name'
+    | 'player_mux_plugin_version'
+    | 'player_name'
+    | 'player_preload'
+    | 'player_remote_played'
+    | 'player_software'
+    | 'player_software_version'
+    | 'player_version'
+    | 'preroll_ad_asset_hostname'
+    | 'preroll_ad_tag_hostname'
+    | 'preroll_played'
+    | 'preroll_requested'
+    | 'region'
+    | 'source_hostname'
+    | 'source_type'
+    | 'stream_type'
+    | 'sub_property_id'
+    | 'video_content_type'
+    | 'video_encoding_variant'
+    | 'video_id'
+    | 'video_series'
+    | 'video_startup_business_exception'
+    | 'video_startup_failure'
+    | 'video_title'
+    | 'view_drm_type'
+    | 'view_has_ad'
+    | 'view_session_id'
+    | 'viewer_connection_type'
+    | 'viewer_device_category'
+    | 'viewer_device_manufacturer'
+    | 'viewer_device_model'
+    | 'viewer_device_name'
+    | 'viewer_user_id'
+    | 'ad_playback_failure'
+    | 'content_playback_failure'
+    | 'view_dropped'
+    | 'client_application_name'
+    | 'client_application_version'
+    | 'video_affiliate'
+    | 'viewer_plan'
+    | 'viewer_plan_status'
+    | 'viewer_plan_category'
+    | 'view_drm_level'
+    | 'video_brand'
+    | 'used_pip'
+    | 'time_shift_enabled'
+    | 'used_captions'
+    | 'video_codec'
+    | 'audio_codec'
+    | 'video_dynamic_range_type'
+    | 'view_cdn_edge_pop'
+    | 'view_cdn_origin'
+    | 'video_creator_id'
+    | 'video_cdn_trace'
+    | 'video_source_height_initial'
+    | 'video_source_width_initial'
+    | 'video_source_bitrate_initial'
+    | 'video_codec_initial'
+    | 'audio_codec_initial'
+    | 'video_source_fps_initial'
+    | 'video_dynamic_range_type_initial'
+    | 'video_source_fps'
+    | 'video_source_bitrate'
+    | 'video_source_height'
+    | 'video_source_width';
 
   /**
    * Measurement for the provided metric. If omitted, the default for the metric will
@@ -664,6 +1084,6 @@ export declare namespace Metrics {
     type MetricGetInsightsParams as MetricGetInsightsParams,
     type MetricGetOverallValuesParams as MetricGetOverallValuesParams,
     type MetricGetTimeseriesParams as MetricGetTimeseriesParams,
-    type MetricListBreakdownValuesParams as MetricListBreakdownValuesParams
+    type MetricListBreakdownValuesParams as MetricListBreakdownValuesParams,
   };
 }

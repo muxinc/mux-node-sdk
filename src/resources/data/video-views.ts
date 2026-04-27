@@ -20,7 +20,10 @@ export class VideoViews extends APIResource {
    * ```
    */
   retrieve(videoViewID: string, options?: RequestOptions): APIPromise<VideoViewResponse> {
-    return this._client.get(path`/data/v1/video-views/${videoViewID}`, { defaultBaseURL: 'https://api.mux.com', ...options });
+    return this._client.get(path`/data/v1/video-views/${videoViewID}`, {
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -35,12 +38,19 @@ export class VideoViews extends APIResource {
    * }
    * ```
    */
-  list(query: VideoViewListParams | null | undefined = {}, options?: RequestOptions): PagePromise<AbridgedVideoViewsBasePage, AbridgedVideoView> {
-    return this._client.getAPIList('/data/v1/video-views', BasePage<AbridgedVideoView>, { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  list(
+    query: VideoViewListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<AbridgedVideoViewsBasePage, AbridgedVideoView> {
+    return this._client.getAPIList('/data/v1/video-views', BasePage<AbridgedVideoView>, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 }
 
-export type AbridgedVideoViewsBasePage = BasePage<AbridgedVideoView>
+export type AbridgedVideoViewsBasePage = BasePage<AbridgedVideoView>;
 
 export interface AbridgedVideoView {
   id: string;
@@ -558,6 +568,6 @@ export declare namespace VideoViews {
     type AbridgedVideoView as AbridgedVideoView,
     type VideoViewResponse as VideoViewResponse,
     type AbridgedVideoViewsBasePage as AbridgedVideoViewsBasePage,
-    type VideoViewListParams as VideoViewListParams
+    type VideoViewListParams as VideoViewListParams,
   };
 }
