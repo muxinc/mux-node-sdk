@@ -128,8 +128,5 @@ export interface ErrorListParams {
 }
 
 export declare namespace Errors {
-  export {
-    type ErrorsResponse as ErrorsResponse,
-    type ErrorListParams as ErrorListParams
-  };
+  export { type ErrorsResponse as ErrorsResponse, type ErrorListParams as ErrorListParams };
 }

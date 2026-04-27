@@ -17,6 +17,6 @@ export declare namespace RobotsPreview {
     type JobStatus as JobStatus,
     type JobSummary as JobSummary,
     type JobSummariesBasePage as JobSummariesBasePage,
-    type JobListParams as JobListParams
+    type JobListParams as JobListParams,
   };
 }

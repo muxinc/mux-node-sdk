@@ -5,7 +5,7 @@ import Mux from '@mux/mux-node';
 const client = new Mux({
   tokenId: 'my token id',
   tokenSecret: 'my secret',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource errors', () => {
@@ -22,12 +22,15 @@ describe('resource errors', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.data.errors.list({
-    filters: ['string'],
-    metric_filters: ['string'],
-    timeframe: ['string'],
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Mux.NotFoundError);
+    await expect(
+      client.data.errors.list(
+        {
+          filters: ['string'],
+          metric_filters: ['string'],
+          timeframe: ['string'],
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Mux.NotFoundError);
   });
 });

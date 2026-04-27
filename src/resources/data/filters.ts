@@ -16,12 +16,20 @@ export class Filters extends APIResource {
    *
    * @deprecated
    */
-  listValues(filterID: string, query: FilterListValuesParams | null | undefined = {}, options?: RequestOptions): PagePromise<FilterValuesBasePage, FilterValue> {
-    return this._client.getAPIList(path`/data/v1/filters/${filterID}`, BasePage<FilterValue>, { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  listValues(
+    filterID: string,
+    query: FilterListValuesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<FilterValuesBasePage, FilterValue> {
+    return this._client.getAPIList(path`/data/v1/filters/${filterID}`, BasePage<FilterValue>, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 }
 
-export type FilterValuesBasePage = BasePage<FilterValue>
+export type FilterValuesBasePage = BasePage<FilterValue>;
 
 export interface FilterValue {
   total_count: number;
@@ -85,6 +93,6 @@ export declare namespace Filters {
     type FilterValue as FilterValue,
     type FiltersResponse as FiltersResponse,
     type FilterValuesBasePage as FilterValuesBasePage,
-    type FilterListValuesParams as FilterListValuesParams
+    type FilterListValuesParams as FilterListValuesParams,
   };
 }

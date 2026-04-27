@@ -5,7 +5,7 @@ import Mux from '@mux/mux-node';
 const client = new Mux({
   tokenId: 'my token id',
   tokenSecret: 'my secret',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource liveStreams', () => {
@@ -55,14 +55,17 @@ describe('resource liveStreams', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.video.liveStreams.list({
-    limit: 0,
-    page: 0,
-    status: 'active',
-    stream_key: 'stream_key',
-  }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Mux.NotFoundError);
+    await expect(
+      client.video.liveStreams.list(
+        {
+          limit: 0,
+          page: 0,
+          status: 'active',
+          stream_key: 'stream_key',
+        },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('delete', async () => {
@@ -99,7 +102,9 @@ describe('resource liveStreams', () => {
   });
 
   test('createSimulcastTarget: only required params', async () => {
-    const responsePromise = client.video.liveStreams.createSimulcastTarget('LIVE_STREAM_ID', { url: 'rtmp://live.example.com/app' });
+    const responsePromise = client.video.liveStreams.createSimulcastTarget('LIVE_STREAM_ID', {
+      url: 'rtmp://live.example.com/app',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -111,10 +116,10 @@ describe('resource liveStreams', () => {
 
   test('createSimulcastTarget: required and optional params', async () => {
     const response = await client.video.liveStreams.createSimulcastTarget('LIVE_STREAM_ID', {
-    url: 'rtmp://live.example.com/app',
-    passthrough: 'Example',
-    stream_key: 'abcdefgh',
-  });
+      url: 'rtmp://live.example.com/app',
+      passthrough: 'Example',
+      stream_key: 'abcdefgh',
+    });
   });
 
   test('deleteNewAssetSettingsStaticRenditions', async () => {
@@ -140,7 +145,10 @@ describe('resource liveStreams', () => {
   });
 
   test('deleteSimulcastTarget', async () => {
-    const responsePromise = client.video.liveStreams.deleteSimulcastTarget('LIVE_STREAM_ID', 'SIMULCAST_TARGET_ID');
+    const responsePromise = client.video.liveStreams.deleteSimulcastTarget(
+      'LIVE_STREAM_ID',
+      'SIMULCAST_TARGET_ID',
+    );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -195,7 +203,10 @@ describe('resource liveStreams', () => {
   });
 
   test('retrieveSimulcastTarget', async () => {
-    const responsePromise = client.video.liveStreams.retrieveSimulcastTarget('LIVE_STREAM_ID', 'SIMULCAST_TARGET_ID');
+    const responsePromise = client.video.liveStreams.retrieveSimulcastTarget(
+      'LIVE_STREAM_ID',
+      'SIMULCAST_TARGET_ID',
+    );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -228,7 +239,10 @@ describe('resource liveStreams', () => {
   });
 
   test('updateNewAssetSettingsStaticRenditions: only required params', async () => {
-    const responsePromise = client.video.liveStreams.updateNewAssetSettingsStaticRenditions('LIVE_STREAM_ID', { static_renditions: [{ resolution: 'audio-only' }, { resolution: 'highest' }] });
+    const responsePromise = client.video.liveStreams.updateNewAssetSettingsStaticRenditions(
+      'LIVE_STREAM_ID',
+      { static_renditions: [{ resolution: 'audio-only' }, { resolution: 'highest' }] },
+    );
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -239,6 +253,11 @@ describe('resource liveStreams', () => {
   });
 
   test('updateNewAssetSettingsStaticRenditions: required and optional params', async () => {
-    const response = await client.video.liveStreams.updateNewAssetSettingsStaticRenditions('LIVE_STREAM_ID', { static_renditions: [{ resolution: 'audio-only', passthrough: 'passthrough' }, { resolution: 'highest', passthrough: 'passthrough' }] });
+    const response = await client.video.liveStreams.updateNewAssetSettingsStaticRenditions('LIVE_STREAM_ID', {
+      static_renditions: [
+        { resolution: 'audio-only', passthrough: 'passthrough' },
+        { resolution: 'highest', passthrough: 'passthrough' },
+      ],
+    });
   });
 });

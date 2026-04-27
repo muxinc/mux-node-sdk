@@ -40,8 +40,16 @@ export class Dimensions extends APIResource {
    * }
    * ```
    */
-  listTraceElements(dimensionID: string, query: DimensionListTraceElementsParams | null | undefined = {}, options?: RequestOptions): PagePromise<DimensionValuesBasePage, DimensionValue> {
-    return this._client.getAPIList(path`/data/v1/dimensions/${dimensionID}/elements`, BasePage<DimensionValue>, { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  listTraceElements(
+    dimensionID: string,
+    query: DimensionListTraceElementsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<DimensionValuesBasePage, DimensionValue> {
+    return this._client.getAPIList(
+      path`/data/v1/dimensions/${dimensionID}/elements`,
+      BasePage<DimensionValue>,
+      { query, defaultBaseURL: 'https://api.mux.com', ...options },
+    );
   }
 
   /**
@@ -59,12 +67,20 @@ export class Dimensions extends APIResource {
    * }
    * ```
    */
-  listValues(dimensionID: string, query: DimensionListValuesParams | null | undefined = {}, options?: RequestOptions): PagePromise<DimensionValuesBasePage, DimensionValue> {
-    return this._client.getAPIList(path`/data/v1/dimensions/${dimensionID}`, BasePage<DimensionValue>, { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  listValues(
+    dimensionID: string,
+    query: DimensionListValuesParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<DimensionValuesBasePage, DimensionValue> {
+    return this._client.getAPIList(path`/data/v1/dimensions/${dimensionID}`, BasePage<DimensionValue>, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 }
 
-export type DimensionValuesBasePage = BasePage<DimensionValue>
+export type DimensionValuesBasePage = BasePage<DimensionValue>;
 
 export interface DimensionValue {
   total_count: number;
@@ -202,6 +218,6 @@ export declare namespace Dimensions {
     type DimensionsResponse as DimensionsResponse,
     type DimensionValuesBasePage as DimensionValuesBasePage,
     type DimensionListTraceElementsParams as DimensionListTraceElementsParams,
-    type DimensionListValuesParams as DimensionListValuesParams
+    type DimensionListValuesParams as DimensionListValuesParams,
   };
 }

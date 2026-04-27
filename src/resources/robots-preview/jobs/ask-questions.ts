@@ -31,7 +31,13 @@ export class AskQuestions extends APIResource {
    * ```
    */
   create(body: AskQuestionCreateParams, options?: RequestOptions): APIPromise<AskQuestionsJob> {
-    return (this._client.post('/robots/v0/jobs/ask-questions', { body, defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: AskQuestionsJob }>)._thenUnwrap((obj) => obj.data);
+    return (
+      this._client.post('/robots/v0/jobs/ask-questions', {
+        body,
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: AskQuestionsJob }>
+    )._thenUnwrap((obj) => obj.data);
   }
 
   /**
@@ -47,7 +53,12 @@ export class AskQuestions extends APIResource {
    * ```
    */
   retrieve(jobID: string, options?: RequestOptions): APIPromise<AskQuestionsJob> {
-    return (this._client.get(path`/robots/v0/jobs/ask-questions/${jobID}`, { defaultBaseURL: 'https://api.mux.com', ...options }) as APIPromise<{ data: AskQuestionsJob }>)._thenUnwrap((obj) => obj.data);
+    return (
+      this._client.get(path`/robots/v0/jobs/ask-questions/${jobID}`, {
+        defaultBaseURL: 'https://api.mux.com',
+        ...options,
+      }) as APIPromise<{ data: AskQuestionsJob }>
+    )._thenUnwrap((obj) => obj.data);
   }
 }
 
@@ -267,6 +278,6 @@ export declare namespace AskQuestions {
     type AskQuestionsJob as AskQuestionsJob,
     type AskQuestionsJobOutputs as AskQuestionsJobOutputs,
     type AskQuestionsJobParameters as AskQuestionsJobParameters,
-    type AskQuestionCreateParams as AskQuestionCreateParams
+    type AskQuestionCreateParams as AskQuestionCreateParams,
   };
 }

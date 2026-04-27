@@ -28,7 +28,9 @@ export class APIPromise<T> extends Promise<T> {
   }
 
   _thenUnwrap<U>(transform: (data: T, props: APIResponseProps) => U): APIPromise<U> {
-    return new APIPromise(this.#client, this.responsePromise, async (client, props) => transform(await this.parseResponse(client, props), props));
+    return new APIPromise(this.#client, this.responsePromise, async (client, props) =>
+      transform(await this.parseResponse(client, props), props),
+    );
   }
 
   /**
