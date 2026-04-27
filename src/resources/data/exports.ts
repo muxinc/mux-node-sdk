@@ -59,6 +59,6 @@ export namespace VideoViewExportsResponse {
 export declare namespace Exports {
   export {
     type ExportsResponse as ExportsResponse,
-    type VideoViewExportsResponse as VideoViewExportsResponse
+    type VideoViewExportsResponse as VideoViewExportsResponse,
   };
 }

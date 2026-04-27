@@ -5,15 +5,15 @@ import Mux from '@mux/mux-node';
 const client = new Mux({
   tokenId: 'my token id',
   tokenSecret: 'my secret',
-  baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010',
+  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource playbackRestrictions', () => {
   test('create: only required params', async () => {
     const responsePromise = client.video.playbackRestrictions.create({
-    referrer: { allowed_domains: ['*.example.com'] },
-    user_agent: {},
-  });
+      referrer: { allowed_domains: ['*.example.com'] },
+      user_agent: {},
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -25,9 +25,9 @@ describe('resource playbackRestrictions', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.video.playbackRestrictions.create({
-    referrer: { allowed_domains: ['*.example.com'], allow_no_referrer: true },
-    user_agent: { allow_high_risk_user_agent: false, allow_no_user_agent: false },
-  });
+      referrer: { allowed_domains: ['*.example.com'], allow_no_referrer: true },
+      user_agent: { allow_high_risk_user_agent: false, allow_no_user_agent: false },
+    });
   });
 
   test('retrieve', async () => {
@@ -54,9 +54,9 @@ describe('resource playbackRestrictions', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.video.playbackRestrictions.list({ limit: 0, page: 0 }, { path: '/_stainless_unknown_path' }))
-      .rejects
-      .toThrow(Mux.NotFoundError);
+    await expect(
+      client.video.playbackRestrictions.list({ limit: 0, page: 0 }, { path: '/_stainless_unknown_path' }),
+    ).rejects.toThrow(Mux.NotFoundError);
   });
 
   test('delete', async () => {
@@ -71,7 +71,9 @@ describe('resource playbackRestrictions', () => {
   });
 
   test('updateReferrer: only required params', async () => {
-    const responsePromise = client.video.playbackRestrictions.updateReferrer('PLAYBACK_RESTRICTION_ID', { allowed_domains: ['*.example.com'] });
+    const responsePromise = client.video.playbackRestrictions.updateReferrer('PLAYBACK_RESTRICTION_ID', {
+      allowed_domains: ['*.example.com'],
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -82,11 +84,17 @@ describe('resource playbackRestrictions', () => {
   });
 
   test('updateReferrer: required and optional params', async () => {
-    const response = await client.video.playbackRestrictions.updateReferrer('PLAYBACK_RESTRICTION_ID', { allowed_domains: ['*.example.com'], allow_no_referrer: true });
+    const response = await client.video.playbackRestrictions.updateReferrer('PLAYBACK_RESTRICTION_ID', {
+      allowed_domains: ['*.example.com'],
+      allow_no_referrer: true,
+    });
   });
 
   test('updateUserAgent: only required params', async () => {
-    const responsePromise = client.video.playbackRestrictions.updateUserAgent('PLAYBACK_RESTRICTION_ID', { allow_high_risk_user_agent: false, allow_no_user_agent: false });
+    const responsePromise = client.video.playbackRestrictions.updateUserAgent('PLAYBACK_RESTRICTION_ID', {
+      allow_high_risk_user_agent: false,
+      allow_no_user_agent: false,
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -97,6 +105,9 @@ describe('resource playbackRestrictions', () => {
   });
 
   test('updateUserAgent: required and optional params', async () => {
-    const response = await client.video.playbackRestrictions.updateUserAgent('PLAYBACK_RESTRICTION_ID', { allow_high_risk_user_agent: false, allow_no_user_agent: false });
+    const response = await client.video.playbackRestrictions.updateUserAgent('PLAYBACK_RESTRICTION_ID', {
+      allow_high_risk_user_agent: false,
+      allow_no_user_agent: false,
+    });
   });
 });

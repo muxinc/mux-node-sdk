@@ -20,7 +20,10 @@ export class Incidents extends APIResource {
    * ```
    */
   retrieve(incidentID: string, options?: RequestOptions): APIPromise<IncidentResponse> {
-    return this._client.get(path`/data/v1/incidents/${incidentID}`, { defaultBaseURL: 'https://api.mux.com', ...options });
+    return this._client.get(path`/data/v1/incidents/${incidentID}`, {
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -34,8 +37,15 @@ export class Incidents extends APIResource {
    * }
    * ```
    */
-  list(query: IncidentListParams | null | undefined = {}, options?: RequestOptions): PagePromise<IncidentsBasePage, Incident> {
-    return this._client.getAPIList('/data/v1/incidents', BasePage<Incident>, { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  list(
+    query: IncidentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<IncidentsBasePage, Incident> {
+    return this._client.getAPIList('/data/v1/incidents', BasePage<Incident>, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 
   /**
@@ -51,12 +61,20 @@ export class Incidents extends APIResource {
    * }
    * ```
    */
-  listRelated(incidentID: string, query: IncidentListRelatedParams | null | undefined = {}, options?: RequestOptions): PagePromise<IncidentsBasePage, Incident> {
-    return this._client.getAPIList(path`/data/v1/incidents/${incidentID}/related`, BasePage<Incident>, { query, defaultBaseURL: 'https://api.mux.com', ...options });
+  listRelated(
+    incidentID: string,
+    query: IncidentListRelatedParams | null | undefined = {},
+    options?: RequestOptions,
+  ): PagePromise<IncidentsBasePage, Incident> {
+    return this._client.getAPIList(path`/data/v1/incidents/${incidentID}/related`, BasePage<Incident>, {
+      query,
+      defaultBaseURL: 'https://api.mux.com',
+      ...options,
+    });
   }
 }
 
-export type IncidentsBasePage = BasePage<Incident>
+export type IncidentsBasePage = BasePage<Incident>;
 
 export interface Incident {
   id: string;
@@ -190,6 +208,6 @@ export declare namespace Incidents {
     type IncidentResponse as IncidentResponse,
     type IncidentsBasePage as IncidentsBasePage,
     type IncidentListParams as IncidentListParams,
-    type IncidentListRelatedParams as IncidentListRelatedParams
+    type IncidentListRelatedParams as IncidentListRelatedParams,
   };
 }

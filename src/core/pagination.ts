@@ -87,7 +87,8 @@ export class PagePromise<
     super(
       client,
       request,
-      async (client, props) => new Page(client, props.response, await defaultParseResponse(client, props), props.options)
+      async (client, props) =>
+        new Page(client, props.response, await defaultParseResponse(client, props), props.options),
     );
   }
 
@@ -137,7 +138,12 @@ export class PageWithTotal<Item> extends AbstractPage<Item> implements PageWithT
    */
   limit: number;
 
-  constructor(client: Mux, response: Response, body: PageWithTotalResponse<Item>, options: FinalRequestOptions) {
+  constructor(
+    client: Mux,
+    response: Response,
+    body: PageWithTotalResponse<Item>,
+    options: FinalRequestOptions,
+  ) {
     super(client, response, body, options);
 
     this.data = body.data || [];
@@ -230,7 +236,7 @@ export class CursorPage<Item> extends AbstractPage<Item> implements CursorPageRe
   }
 
   nextPageRequestOptions(): PageRequestOptions | null {
-    const cursor = this.next_cursor
+    const cursor = this.next_cursor;
     if (!cursor) {
       return null;
     }
