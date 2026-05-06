@@ -124,7 +124,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.mux.com/video/v1/assets \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "inputs": [\n            {\n              "url": "https://muxed.s3.amazonaws.com/leds.mp4"\n            }\n          ]\n        }\'',
+          'curl https://api.mux.com/video/v1/assets \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "inputs": [\n            {\n              "url": "https://muxed.s3.amazonaws.com/leds.mp4"\n            }\n          ],\n          "playback_policies": [\n            "public"\n          ],\n          "video_quality": "basic"\n        }\'',
       },
     },
   },
@@ -373,7 +373,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.mux.com/video/v1/assets/$ASSET_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -u \"$MUX_TOKEN_ID:MUX_TOKEN_SECRET\" \\\n    -d '{}'",
+          'curl https://api.mux.com/video/v1/assets/$ASSET_ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "passthrough": "Example"\n        }\'',
       },
     },
   },
@@ -491,7 +491,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.mux.com/video/v1/assets/$ASSET_ID/playback-ids \\\n    -H 'Content-Type: application/json' \\\n    -u \"$MUX_TOKEN_ID:MUX_TOKEN_SECRET\" \\\n    -d '{}'",
+          'curl https://api.mux.com/video/v1/assets/$ASSET_ID/playback-ids \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "policy": "public"\n        }\'',
       },
     },
   },
@@ -620,7 +620,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.mux.com/video/v1/assets/$ASSET_ID/tracks \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "language_code": "en-US",\n          "type": "text",\n          "url": "https://example.com/myVideo_en.srt"\n        }\'',
+          'curl https://api.mux.com/video/v1/assets/$ASSET_ID/tracks \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "language_code": "en-US",\n          "type": "text",\n          "url": "https://example.com/myVideo_en.srt",\n          "closed_captions": true,\n          "name": "English",\n          "passthrough": "English",\n          "text_type": "subtitles"\n        }\'',
       },
     },
   },
@@ -1199,7 +1199,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.mux.com/video/v1/live-streams \\\n    -H 'Content-Type: application/json' \\\n    -u \"$MUX_TOKEN_ID:MUX_TOKEN_SECRET\" \\\n    -d '{}'",
+          'curl https://api.mux.com/video/v1/live-streams \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "new_asset_settings": {\n            "playback_policies": [\n              "public"\n            ]\n          },\n          "playback_policies": [\n            "public"\n          ]\n        }\'',
       },
     },
   },
@@ -1454,7 +1454,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID \\\n    -X PATCH \\\n    -H 'Content-Type: application/json' \\\n    -u \"$MUX_TOKEN_ID:MUX_TOKEN_SECRET\" \\\n    -d '{}'",
+          'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "latency_mode": "standard",\n          "max_continuous_duration": 1200,\n          "reconnect_window": 30\n        }\'',
       },
     },
   },
@@ -1518,7 +1518,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/playback-ids \\\n    -H 'Content-Type: application/json' \\\n    -u \"$MUX_TOKEN_ID:MUX_TOKEN_SECRET\" \\\n    -d '{}'",
+          'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/playback-ids \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "policy": "signed"\n        }\'',
       },
     },
   },
@@ -1938,7 +1938,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/embedded-subtitles \\\n    -X PUT \\\n    -H 'Content-Type: application/json' \\\n    -u \"$MUX_TOKEN_ID:MUX_TOKEN_SECRET\" \\\n    -d '{}'",
+          'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/embedded-subtitles \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "embedded_subtitles": [\n            {\n              "passthrough": "Example"\n            }\n          ]\n        }\'',
       },
     },
   },
@@ -2002,7 +2002,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          "curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/generated-subtitles \\\n    -X PUT \\\n    -H 'Content-Type: application/json' \\\n    -u \"$MUX_TOKEN_ID:MUX_TOKEN_SECRET\" \\\n    -d '{}'",
+          'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/generated-subtitles \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "generated_subtitles": [\n            {\n              "language_code": "en",\n              "name": "English CC (ASR)",\n              "passthrough": "Example"\n            }\n          ]\n        }\'',
       },
     },
   },
@@ -2063,7 +2063,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/simulcast-targets \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "url": "rtmp://live.example.com/app"\n        }\'',
+          'curl https://api.mux.com/video/v1/live-streams/$LIVE_STREAM_ID/simulcast-targets \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "url": "rtmp://live.example.com/app",\n          "passthrough": "Example",\n          "stream_key": "abcdefgh"\n        }\'',
       },
     },
   },
@@ -2672,7 +2672,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.mux.com/video/v1/playback-restrictions/$PLAYBACK_RESTRICTION_ID/referrer \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "allowed_domains": [\n            "*.example.com"\n          ]\n        }\'',
+          'curl https://api.mux.com/video/v1/playback-restrictions/$PLAYBACK_RESTRICTION_ID/referrer \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "allowed_domains": [\n            "*.example.com"\n          ],\n          "allow_no_referrer": true\n        }\'',
       },
     },
   },
@@ -2858,7 +2858,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.mux.com/video/v1/transcription-vocabularies \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "phrases": [\n            "Mux",\n            "Live Stream",\n            "Playback ID",\n            "video encoding"\n          ]\n        }\'',
+          'curl https://api.mux.com/video/v1/transcription-vocabularies \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "phrases": [\n            "Mux",\n            "Live Stream",\n            "Playback ID",\n            "video encoding"\n          ],\n          "name": "Mux API Vocabulary"\n        }\'',
       },
     },
   },
@@ -2983,7 +2983,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.mux.com/video/v1/transcription-vocabularies/$TRANSCRIPTION_VOCABULARY_ID \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "phrases": [\n            "Mux",\n            "Live Stream",\n            "RTMP",\n            "Stream Key"\n          ]\n        }\'',
+          'curl https://api.mux.com/video/v1/transcription-vocabularies/$TRANSCRIPTION_VOCABULARY_ID \\\n    -X PUT \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "phrases": [\n            "Mux",\n            "Live Stream",\n            "RTMP",\n            "Stream Key"\n          ],\n          "name": "Mux API Vocabulary - Updated"\n        }\'',
       },
     },
   },
@@ -3109,7 +3109,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.mux.com/video/v1/uploads \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "cors_origin": "https://example.com/"\n        }\'',
+          'curl https://api.mux.com/video/v1/uploads \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "cors_origin": "https://example.com/",\n          "new_asset_settings": {\n            "playback_policies": [\n              "public"\n            ]\n          }\n        }\'',
       },
     },
   },
@@ -6785,7 +6785,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.mux.com/data/v1/annotations \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "date": 1745438400,\n          "note": "This is a note"\n        }\'',
+          'curl https://api.mux.com/data/v1/annotations \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "date": 1745438400,\n          "note": "This is a note",\n          "sub_property_id": "123456"\n        }\'',
       },
     },
   },
@@ -6902,7 +6902,7 @@ const EMBEDDED_METHODS: MethodEntry[] = [
       },
       http: {
         example:
-          'curl https://api.mux.com/data/v1/annotations/$ANNOTATION_ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "date": 1745438400,\n          "note": "This is a note"\n        }\'',
+          'curl https://api.mux.com/data/v1/annotations/$ANNOTATION_ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "date": 1745438400,\n          "note": "This is a note",\n          "sub_property_id": "123456"\n        }\'',
       },
     },
   },
