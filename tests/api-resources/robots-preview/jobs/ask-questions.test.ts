@@ -13,7 +13,11 @@ describe('resource askQuestions', () => {
     const responsePromise = client.robotsPreview.jobs.askQuestions.create({
       parameters: {
         asset_id: 'mux_asset_123abc',
-        questions: [{ question: 'How many people are speaking on camera?' }],
+        questions: [
+          { question: 'Is this video about glasses?' },
+          { question: 'What is the primary subject?' },
+          { question: 'Describe the primary subject in one sentence.' },
+        ],
       },
     });
     const rawResponse = await responsePromise.asResponse();
@@ -31,11 +35,23 @@ describe('resource askQuestions', () => {
         asset_id: 'mux_asset_123abc',
         questions: [
           {
-            question: 'How many people are speaking on camera?',
-            answer_options: ['one', 'two', 'three or more'],
+            question: 'Is this video about glasses?',
+            answer_options: ['x'],
+            free_form_reply: true,
+          },
+          {
+            question: 'What is the primary subject?',
+            answer_options: ['glasses', 'watches', 'shoes', 'hats'],
+            free_form_reply: true,
+          },
+          {
+            question: 'Describe the primary subject in one sentence.',
+            answer_options: ['x'],
+            free_form_reply: true,
           },
         ],
         language_code: 'x',
+        max_free_form_answer_length: 300,
       },
       passthrough: 'passthrough',
     });
