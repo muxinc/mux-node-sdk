@@ -43,9 +43,9 @@ jobs:
         env:
           INPUT_PATH: ${{ github.event.inputs.path }}
 
-      - name: Upload MCP Server DXT GitHub release asset
+      - name: Upload MCP Server .mcpb GitHub release asset
         run: |
           gh release upload ${{ github.event.release.tag_name }} \
-            packages/mcp-server/mux_mux_node_api.mcpb
+            packages/mcp-server/mux.mcpb
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
