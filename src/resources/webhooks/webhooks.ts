@@ -22382,8 +22382,9 @@ export namespace RobotsJobAskQuestionsCancelledWebhookEvent {
       asset_id: string;
 
       /**
-       * One or more questions to ask about the video. Each question can specify its own
-       * answer_options.
+       * One or more questions to ask about the video. Each question can either select
+       * from answer_options (defaults to yes/no) or, by setting free_form_reply: true,
+       * receive a free-form prose answer.
        */
       questions: Array<Parameters.Question>;
 
@@ -22392,6 +22393,12 @@ export namespace RobotsJobAskQuestionsCancelledWebhookEvent {
        * omitted, the SDK uses the default track.
        */
       language_code?: string;
+
+      /**
+       * Experimental. Max character length for free-form answers. Ignored unless at
+       * least one question sets free_form_reply: true.
+       */
+      max_free_form_answer_length?: number;
     }
 
     export namespace Parameters {
@@ -22402,9 +22409,17 @@ export namespace RobotsJobAskQuestionsCancelledWebhookEvent {
         question: string;
 
         /**
-         * Allowed answer values for this question. Defaults to ["yes", "no"].
+         * Allowed answer values for this question. Defaults to ["yes", "no"] when omitted
+         * and free_form_reply is not true. Mutually exclusive with free_form_reply.
          */
         answer_options?: Array<string>;
+
+        /**
+         * Experimental. When true, the model replies with free-form prose instead of
+         * selecting from answer_options. Mutually exclusive with answer_options. Treat the
+         * answer as untrusted model output.
+         */
+        free_form_reply?: boolean;
       }
     }
 
@@ -22438,8 +22453,10 @@ export namespace RobotsJobAskQuestionsCancelledWebhookEvent {
     export namespace Outputs {
       export interface Answer {
         /**
-         * The answer, constrained to one of the provided answer_options. Null when the
-         * question was skipped.
+         * For enum questions, constrained to one of the provided answer_options. For
+         * free-form questions, responds with prose up to max_free_form_answer_length
+         * characters - treat as untrusted model output. Null when the question was
+         * skipped.
          */
         answer: string | null;
 
@@ -22618,8 +22635,9 @@ export namespace RobotsJobAskQuestionsCompletedWebhookEvent {
       asset_id: string;
 
       /**
-       * One or more questions to ask about the video. Each question can specify its own
-       * answer_options.
+       * One or more questions to ask about the video. Each question can either select
+       * from answer_options (defaults to yes/no) or, by setting free_form_reply: true,
+       * receive a free-form prose answer.
        */
       questions: Array<Parameters.Question>;
 
@@ -22628,6 +22646,12 @@ export namespace RobotsJobAskQuestionsCompletedWebhookEvent {
        * omitted, the SDK uses the default track.
        */
       language_code?: string;
+
+      /**
+       * Experimental. Max character length for free-form answers. Ignored unless at
+       * least one question sets free_form_reply: true.
+       */
+      max_free_form_answer_length?: number;
     }
 
     export namespace Parameters {
@@ -22638,9 +22662,17 @@ export namespace RobotsJobAskQuestionsCompletedWebhookEvent {
         question: string;
 
         /**
-         * Allowed answer values for this question. Defaults to ["yes", "no"].
+         * Allowed answer values for this question. Defaults to ["yes", "no"] when omitted
+         * and free_form_reply is not true. Mutually exclusive with free_form_reply.
          */
         answer_options?: Array<string>;
+
+        /**
+         * Experimental. When true, the model replies with free-form prose instead of
+         * selecting from answer_options. Mutually exclusive with answer_options. Treat the
+         * answer as untrusted model output.
+         */
+        free_form_reply?: boolean;
       }
     }
 
@@ -22674,8 +22706,10 @@ export namespace RobotsJobAskQuestionsCompletedWebhookEvent {
     export namespace Outputs {
       export interface Answer {
         /**
-         * The answer, constrained to one of the provided answer_options. Null when the
-         * question was skipped.
+         * For enum questions, constrained to one of the provided answer_options. For
+         * free-form questions, responds with prose up to max_free_form_answer_length
+         * characters - treat as untrusted model output. Null when the question was
+         * skipped.
          */
         answer: string | null;
 
@@ -22854,8 +22888,9 @@ export namespace RobotsJobAskQuestionsErroredWebhookEvent {
       asset_id: string;
 
       /**
-       * One or more questions to ask about the video. Each question can specify its own
-       * answer_options.
+       * One or more questions to ask about the video. Each question can either select
+       * from answer_options (defaults to yes/no) or, by setting free_form_reply: true,
+       * receive a free-form prose answer.
        */
       questions: Array<Parameters.Question>;
 
@@ -22864,6 +22899,12 @@ export namespace RobotsJobAskQuestionsErroredWebhookEvent {
        * omitted, the SDK uses the default track.
        */
       language_code?: string;
+
+      /**
+       * Experimental. Max character length for free-form answers. Ignored unless at
+       * least one question sets free_form_reply: true.
+       */
+      max_free_form_answer_length?: number;
     }
 
     export namespace Parameters {
@@ -22874,9 +22915,17 @@ export namespace RobotsJobAskQuestionsErroredWebhookEvent {
         question: string;
 
         /**
-         * Allowed answer values for this question. Defaults to ["yes", "no"].
+         * Allowed answer values for this question. Defaults to ["yes", "no"] when omitted
+         * and free_form_reply is not true. Mutually exclusive with free_form_reply.
          */
         answer_options?: Array<string>;
+
+        /**
+         * Experimental. When true, the model replies with free-form prose instead of
+         * selecting from answer_options. Mutually exclusive with answer_options. Treat the
+         * answer as untrusted model output.
+         */
+        free_form_reply?: boolean;
       }
     }
 
@@ -22910,8 +22959,10 @@ export namespace RobotsJobAskQuestionsErroredWebhookEvent {
     export namespace Outputs {
       export interface Answer {
         /**
-         * The answer, constrained to one of the provided answer_options. Null when the
-         * question was skipped.
+         * For enum questions, constrained to one of the provided answer_options. For
+         * free-form questions, responds with prose up to max_free_form_answer_length
+         * characters - treat as untrusted model output. Null when the question was
+         * skipped.
          */
         answer: string | null;
 
@@ -23090,8 +23141,9 @@ export namespace RobotsJobAskQuestionsPendingWebhookEvent {
       asset_id: string;
 
       /**
-       * One or more questions to ask about the video. Each question can specify its own
-       * answer_options.
+       * One or more questions to ask about the video. Each question can either select
+       * from answer_options (defaults to yes/no) or, by setting free_form_reply: true,
+       * receive a free-form prose answer.
        */
       questions: Array<Parameters.Question>;
 
@@ -23100,6 +23152,12 @@ export namespace RobotsJobAskQuestionsPendingWebhookEvent {
        * omitted, the SDK uses the default track.
        */
       language_code?: string;
+
+      /**
+       * Experimental. Max character length for free-form answers. Ignored unless at
+       * least one question sets free_form_reply: true.
+       */
+      max_free_form_answer_length?: number;
     }
 
     export namespace Parameters {
@@ -23110,9 +23168,17 @@ export namespace RobotsJobAskQuestionsPendingWebhookEvent {
         question: string;
 
         /**
-         * Allowed answer values for this question. Defaults to ["yes", "no"].
+         * Allowed answer values for this question. Defaults to ["yes", "no"] when omitted
+         * and free_form_reply is not true. Mutually exclusive with free_form_reply.
          */
         answer_options?: Array<string>;
+
+        /**
+         * Experimental. When true, the model replies with free-form prose instead of
+         * selecting from answer_options. Mutually exclusive with answer_options. Treat the
+         * answer as untrusted model output.
+         */
+        free_form_reply?: boolean;
       }
     }
 
@@ -23146,8 +23212,10 @@ export namespace RobotsJobAskQuestionsPendingWebhookEvent {
     export namespace Outputs {
       export interface Answer {
         /**
-         * The answer, constrained to one of the provided answer_options. Null when the
-         * question was skipped.
+         * For enum questions, constrained to one of the provided answer_options. For
+         * free-form questions, responds with prose up to max_free_form_answer_length
+         * characters - treat as untrusted model output. Null when the question was
+         * skipped.
          */
         answer: string | null;
 
@@ -23326,8 +23394,9 @@ export namespace RobotsJobAskQuestionsProcessingWebhookEvent {
       asset_id: string;
 
       /**
-       * One or more questions to ask about the video. Each question can specify its own
-       * answer_options.
+       * One or more questions to ask about the video. Each question can either select
+       * from answer_options (defaults to yes/no) or, by setting free_form_reply: true,
+       * receive a free-form prose answer.
        */
       questions: Array<Parameters.Question>;
 
@@ -23336,6 +23405,12 @@ export namespace RobotsJobAskQuestionsProcessingWebhookEvent {
        * omitted, the SDK uses the default track.
        */
       language_code?: string;
+
+      /**
+       * Experimental. Max character length for free-form answers. Ignored unless at
+       * least one question sets free_form_reply: true.
+       */
+      max_free_form_answer_length?: number;
     }
 
     export namespace Parameters {
@@ -23346,9 +23421,17 @@ export namespace RobotsJobAskQuestionsProcessingWebhookEvent {
         question: string;
 
         /**
-         * Allowed answer values for this question. Defaults to ["yes", "no"].
+         * Allowed answer values for this question. Defaults to ["yes", "no"] when omitted
+         * and free_form_reply is not true. Mutually exclusive with free_form_reply.
          */
         answer_options?: Array<string>;
+
+        /**
+         * Experimental. When true, the model replies with free-form prose instead of
+         * selecting from answer_options. Mutually exclusive with answer_options. Treat the
+         * answer as untrusted model output.
+         */
+        free_form_reply?: boolean;
       }
     }
 
@@ -23382,8 +23465,10 @@ export namespace RobotsJobAskQuestionsProcessingWebhookEvent {
     export namespace Outputs {
       export interface Answer {
         /**
-         * The answer, constrained to one of the provided answer_options. Null when the
-         * question was skipped.
+         * For enum questions, constrained to one of the provided answer_options. For
+         * free-form questions, responds with prose up to max_free_form_answer_length
+         * characters - treat as untrusted model output. Null when the question was
+         * skipped.
          */
         answer: string | null;
 
