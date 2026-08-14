@@ -16,6 +16,7 @@ describe('resource playback', () => {
         'PLAYBACK_ID',
         'jpg',
         {
+          token: 'token',
           fit_mode: 'preserve',
           flip_h: true,
           flip_v: true,
@@ -24,7 +25,6 @@ describe('resource playback', () => {
           program_time: 0,
           rotate: 90,
           time: 0,
-          TOKEN: 'TOKEN',
           width: 0,
         },
         { path: '/_stainless_unknown_path' },
@@ -39,11 +39,11 @@ describe('resource playback', () => {
         'PLAYBACK_ID',
         'gif',
         {
+          token: 'token',
           end: 0,
           fps: 0,
           height: 0,
           start: 0,
-          TOKEN: 'TOKEN',
           width: 0,
         },
         { path: '/_stainless_unknown_path' },
@@ -58,11 +58,11 @@ describe('resource playback', () => {
         'PLAYBACK_ID',
         'jpg',
         {
+          token: 'token',
           asset_end_time: 0,
           asset_start_time: 0,
           program_end_time: 0,
           program_start_time: 0,
-          TOKEN: 'TOKEN',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -88,11 +88,11 @@ describe('resource playback', () => {
       client.video.playback.storyboardVtt(
         'PLAYBACK_ID',
         {
+          token: 'token',
           asset_end_time: 0,
           asset_start_time: 0,
           program_end_time: 0,
           program_start_time: 0,
-          TOKEN: 'TOKEN',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -118,12 +118,12 @@ describe('resource playback', () => {
       client.video.playback.storyboardMeta(
         'PLAYBACK_ID',
         {
+          token: 'token',
           asset_end_time: 0,
           asset_start_time: 0,
           format: 'jpg',
           program_end_time: 0,
           program_start_time: 0,
-          TOKEN: 'TOKEN',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -136,6 +136,7 @@ describe('resource playback', () => {
       client.video.playback.hls(
         'PLAYBACK_ID',
         {
+          token: 'token',
           asset_end_time: 0,
           asset_start_time: 0,
           default_subtitles_lang: 'default_subtitles_lang',
@@ -147,7 +148,6 @@ describe('resource playback', () => {
           redundant_streams: true,
           rendition_order: 'desc',
           roku_trick_play: true,
-          TOKEN: 'TOKEN',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -160,7 +160,7 @@ describe('resource playback', () => {
       client.video.playback.staticRendition(
         'PLAYBACK_ID',
         'capped-1080p.mp4',
-        { TOKEN: 'TOKEN' },
+        { token: 'token' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
@@ -183,7 +183,7 @@ describe('resource playback', () => {
       client.video.playback.track(
         'PLAYBACK_ID',
         'TRACK_ID',
-        { TOKEN: 'TOKEN' },
+        { token: 'token' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
@@ -206,7 +206,7 @@ describe('resource playback', () => {
       client.video.playback.transcript(
         'PLAYBACK_ID',
         'TRACK_ID',
-        { TOKEN: 'TOKEN' },
+        { token: 'token' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Mux.NotFoundError);
