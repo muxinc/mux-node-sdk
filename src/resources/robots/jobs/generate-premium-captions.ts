@@ -134,6 +134,20 @@ export interface GeneratePremiumCaptionsJobOutputs {
   language_code: string;
 
   /**
+   * The transcription model's confidence in its automatic language detection, from 0
+   * to 1. Always 1 when language_code was supplied in the request, since detection
+   * is skipped.
+   */
+  auto_language_confidence?: number;
+
+  /**
+   * Language code reported by the transcription model. Only a genuine detection when
+   * language_code was omitted from the request; when a language_code hint was
+   * supplied, detection is skipped and this echoes the requested language.
+   */
+  detected_language?: string;
+
+  /**
    * Mux track ID of the deleted track when replace_existing was true.
    */
   replaced_track_id?: string;
@@ -178,7 +192,10 @@ export interface GeneratePremiumCaptionsJobParameters {
   include_words?: boolean;
 
   /**
-   * BCP 47 language code of the audio (e.g. "en", "es"). The language will be
+   * BCP 47 language code of the audio (e.g. "en", "es"). A best-effort hint that
+   * biases transcription toward this language — it is not verified against the audio
+   * and does not guarantee the output language. When supplied, language detection is
+   * skipped and the captions are labeled with this code. The language will be
    * auto-detected when omitted.
    */
   language_code?: string;
@@ -186,7 +203,9 @@ export interface GeneratePremiumCaptionsJobParameters {
   /**
    * Best-effort list of words or short phrases (proper nouns, product names, jargon)
    * likely to appear in the audio, used to bias recognition toward correct
-   * spellings. Does not guarantee exact output.
+   * spellings. Does not guarantee exact output. Each phrase may contain at most 49
+   * characters and 5 words, and must not contain the characters <, >, {, }, [, ], or
+   * \.
    */
   phrases?: Array<string>;
 

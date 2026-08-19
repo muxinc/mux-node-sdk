@@ -32,6 +32,7 @@ describe('resource translateCaptions', () => {
         asset_id: 'mux_asset_123abc',
         to_language_code: 'es',
         track_id: 'track_en_abc123',
+        never_translate: ['Mux'],
         upload_to_mux: true,
       },
       passthrough: 'passthrough',

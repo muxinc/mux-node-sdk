@@ -4769,6 +4769,14 @@ export namespace WebhookTranslateCaptionsJob {
     track_id: string;
 
     /**
+     * Best-effort list of terms (brand names, proper nouns) to preserve verbatim in
+     * the translated captions. Does not guarantee exact output. Terms must not contain
+     * '<' or '>', invisible characters, or characters altered by Unicode
+     * normalization.
+     */
+    never_translate?: Array<string>;
+
+    /**
      * Whether to upload the translated VTT and attach it as a text track on the Mux
      * asset. Defaults to true.
      */
@@ -4812,6 +4820,13 @@ export namespace WebhookTranslateCaptionsJob {
    * Workflow results. Present when status is 'completed'.
    */
   export interface Outputs {
+    /**
+     * Present when never_translate terms were supplied. False when at least one term
+     * was not preserved verbatim in the translated captions. Preservation is
+     * best-effort: verified, not guaranteed.
+     */
+    never_translate_terms_preserved?: boolean;
+
     /**
      * Temporary pre-signed URL to download the translated VTT file. Present when
      * upload_to_mux is true. Expires 7 days after the job completes.
@@ -11998,7 +12013,10 @@ export namespace RobotsJobGeneratePremiumCaptionsCancelledWebhookEvent {
       include_words?: boolean;
 
       /**
-       * BCP 47 language code of the audio (e.g. "en", "es"). The language will be
+       * BCP 47 language code of the audio (e.g. "en", "es"). A best-effort hint that
+       * biases transcription toward this language — it is not verified against the audio
+       * and does not guarantee the output language. When supplied, language detection is
+       * skipped and the captions are labeled with this code. The language will be
        * auto-detected when omitted.
        */
       language_code?: string;
@@ -12006,7 +12024,9 @@ export namespace RobotsJobGeneratePremiumCaptionsCancelledWebhookEvent {
       /**
        * Best-effort list of words or short phrases (proper nouns, product names, jargon)
        * likely to appear in the audio, used to bias recognition toward correct
-       * spellings. Does not guarantee exact output.
+       * spellings. Does not guarantee exact output. Each phrase may contain at most 49
+       * characters and 5 words, and must not contain the characters <, >, {, }, [, ], or
+       * \.
        */
       phrases?: Array<string>;
 
@@ -12073,6 +12093,20 @@ export namespace RobotsJobGeneratePremiumCaptionsCancelledWebhookEvent {
        * code when auto-detected).
        */
       language_code: string;
+
+      /**
+       * The transcription model's confidence in its automatic language detection, from 0
+       * to 1. Always 1 when language_code was supplied in the request, since detection
+       * is skipped.
+       */
+      auto_language_confidence?: number;
+
+      /**
+       * Language code reported by the transcription model. Only a genuine detection when
+       * language_code was omitted from the request; when a language_code hint was
+       * supplied, detection is skipped and this echoes the requested language.
+       */
+      detected_language?: string;
 
       /**
        * Mux track ID of the deleted track when replace_existing was true.
@@ -12270,7 +12304,10 @@ export namespace RobotsJobGeneratePremiumCaptionsCompletedWebhookEvent {
       include_words?: boolean;
 
       /**
-       * BCP 47 language code of the audio (e.g. "en", "es"). The language will be
+       * BCP 47 language code of the audio (e.g. "en", "es"). A best-effort hint that
+       * biases transcription toward this language — it is not verified against the audio
+       * and does not guarantee the output language. When supplied, language detection is
+       * skipped and the captions are labeled with this code. The language will be
        * auto-detected when omitted.
        */
       language_code?: string;
@@ -12278,7 +12315,9 @@ export namespace RobotsJobGeneratePremiumCaptionsCompletedWebhookEvent {
       /**
        * Best-effort list of words or short phrases (proper nouns, product names, jargon)
        * likely to appear in the audio, used to bias recognition toward correct
-       * spellings. Does not guarantee exact output.
+       * spellings. Does not guarantee exact output. Each phrase may contain at most 49
+       * characters and 5 words, and must not contain the characters <, >, {, }, [, ], or
+       * \.
        */
       phrases?: Array<string>;
 
@@ -12345,6 +12384,20 @@ export namespace RobotsJobGeneratePremiumCaptionsCompletedWebhookEvent {
        * code when auto-detected).
        */
       language_code: string;
+
+      /**
+       * The transcription model's confidence in its automatic language detection, from 0
+       * to 1. Always 1 when language_code was supplied in the request, since detection
+       * is skipped.
+       */
+      auto_language_confidence?: number;
+
+      /**
+       * Language code reported by the transcription model. Only a genuine detection when
+       * language_code was omitted from the request; when a language_code hint was
+       * supplied, detection is skipped and this echoes the requested language.
+       */
+      detected_language?: string;
 
       /**
        * Mux track ID of the deleted track when replace_existing was true.
@@ -12541,7 +12594,10 @@ export namespace RobotsJobGeneratePremiumCaptionsErroredWebhookEvent {
       include_words?: boolean;
 
       /**
-       * BCP 47 language code of the audio (e.g. "en", "es"). The language will be
+       * BCP 47 language code of the audio (e.g. "en", "es"). A best-effort hint that
+       * biases transcription toward this language — it is not verified against the audio
+       * and does not guarantee the output language. When supplied, language detection is
+       * skipped and the captions are labeled with this code. The language will be
        * auto-detected when omitted.
        */
       language_code?: string;
@@ -12549,7 +12605,9 @@ export namespace RobotsJobGeneratePremiumCaptionsErroredWebhookEvent {
       /**
        * Best-effort list of words or short phrases (proper nouns, product names, jargon)
        * likely to appear in the audio, used to bias recognition toward correct
-       * spellings. Does not guarantee exact output.
+       * spellings. Does not guarantee exact output. Each phrase may contain at most 49
+       * characters and 5 words, and must not contain the characters <, >, {, }, [, ], or
+       * \.
        */
       phrases?: Array<string>;
 
@@ -12616,6 +12674,20 @@ export namespace RobotsJobGeneratePremiumCaptionsErroredWebhookEvent {
        * code when auto-detected).
        */
       language_code: string;
+
+      /**
+       * The transcription model's confidence in its automatic language detection, from 0
+       * to 1. Always 1 when language_code was supplied in the request, since detection
+       * is skipped.
+       */
+      auto_language_confidence?: number;
+
+      /**
+       * Language code reported by the transcription model. Only a genuine detection when
+       * language_code was omitted from the request; when a language_code hint was
+       * supplied, detection is skipped and this echoes the requested language.
+       */
+      detected_language?: string;
 
       /**
        * Mux track ID of the deleted track when replace_existing was true.
@@ -12812,7 +12884,10 @@ export namespace RobotsJobGeneratePremiumCaptionsPendingWebhookEvent {
       include_words?: boolean;
 
       /**
-       * BCP 47 language code of the audio (e.g. "en", "es"). The language will be
+       * BCP 47 language code of the audio (e.g. "en", "es"). A best-effort hint that
+       * biases transcription toward this language — it is not verified against the audio
+       * and does not guarantee the output language. When supplied, language detection is
+       * skipped and the captions are labeled with this code. The language will be
        * auto-detected when omitted.
        */
       language_code?: string;
@@ -12820,7 +12895,9 @@ export namespace RobotsJobGeneratePremiumCaptionsPendingWebhookEvent {
       /**
        * Best-effort list of words or short phrases (proper nouns, product names, jargon)
        * likely to appear in the audio, used to bias recognition toward correct
-       * spellings. Does not guarantee exact output.
+       * spellings. Does not guarantee exact output. Each phrase may contain at most 49
+       * characters and 5 words, and must not contain the characters <, >, {, }, [, ], or
+       * \.
        */
       phrases?: Array<string>;
 
@@ -12887,6 +12964,20 @@ export namespace RobotsJobGeneratePremiumCaptionsPendingWebhookEvent {
        * code when auto-detected).
        */
       language_code: string;
+
+      /**
+       * The transcription model's confidence in its automatic language detection, from 0
+       * to 1. Always 1 when language_code was supplied in the request, since detection
+       * is skipped.
+       */
+      auto_language_confidence?: number;
+
+      /**
+       * Language code reported by the transcription model. Only a genuine detection when
+       * language_code was omitted from the request; when a language_code hint was
+       * supplied, detection is skipped and this echoes the requested language.
+       */
+      detected_language?: string;
 
       /**
        * Mux track ID of the deleted track when replace_existing was true.
@@ -13084,7 +13175,10 @@ export namespace RobotsJobGeneratePremiumCaptionsProcessingWebhookEvent {
       include_words?: boolean;
 
       /**
-       * BCP 47 language code of the audio (e.g. "en", "es"). The language will be
+       * BCP 47 language code of the audio (e.g. "en", "es"). A best-effort hint that
+       * biases transcription toward this language — it is not verified against the audio
+       * and does not guarantee the output language. When supplied, language detection is
+       * skipped and the captions are labeled with this code. The language will be
        * auto-detected when omitted.
        */
       language_code?: string;
@@ -13092,7 +13186,9 @@ export namespace RobotsJobGeneratePremiumCaptionsProcessingWebhookEvent {
       /**
        * Best-effort list of words or short phrases (proper nouns, product names, jargon)
        * likely to appear in the audio, used to bias recognition toward correct
-       * spellings. Does not guarantee exact output.
+       * spellings. Does not guarantee exact output. Each phrase may contain at most 49
+       * characters and 5 words, and must not contain the characters <, >, {, }, [, ], or
+       * \.
        */
       phrases?: Array<string>;
 
@@ -13159,6 +13255,20 @@ export namespace RobotsJobGeneratePremiumCaptionsProcessingWebhookEvent {
        * code when auto-detected).
        */
       language_code: string;
+
+      /**
+       * The transcription model's confidence in its automatic language detection, from 0
+       * to 1. Always 1 when language_code was supplied in the request, since detection
+       * is skipped.
+       */
+      auto_language_confidence?: number;
+
+      /**
+       * Language code reported by the transcription model. Only a genuine detection when
+       * language_code was omitted from the request; when a language_code hint was
+       * supplied, detection is skipped and this echoes the requested language.
+       */
+      detected_language?: string;
 
       /**
        * Mux track ID of the deleted track when replace_existing was true.

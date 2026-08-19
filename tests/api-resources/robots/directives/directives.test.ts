@@ -51,7 +51,11 @@ describe('resource directives', () => {
           },
         },
         {
-          params: { to_language_code: 'es', upload_to_mux: true },
+          params: {
+            to_language_code: 'es',
+            never_translate: ['Mux', 'Springfield'],
+            upload_to_mux: true,
+          },
           reference_id: 'translate_es',
           workflow: 'translate-captions',
           inputs: ['captions_en'],

@@ -1040,6 +1040,14 @@ export namespace WorkflowBinding {
       to_language_code: string;
 
       /**
+       * Best-effort list of terms (brand names, proper nouns) to preserve verbatim in
+       * the translated captions. Does not guarantee exact output. Terms must not contain
+       * '<' or '>', invisible characters, or characters altered by Unicode
+       * normalization.
+       */
+      never_translate?: Array<string>;
+
+      /**
        * Whether to upload the translated VTT and attach it as a text track on the Mux
        * asset. Defaults to true.
        */
@@ -1329,7 +1337,10 @@ export namespace WorkflowBinding {
       include_words?: boolean;
 
       /**
-       * BCP 47 language code of the audio (e.g. "en", "es"). The language will be
+       * BCP 47 language code of the audio (e.g. "en", "es"). A best-effort hint that
+       * biases transcription toward this language — it is not verified against the audio
+       * and does not guarantee the output language. When supplied, language detection is
+       * skipped and the captions are labeled with this code. The language will be
        * auto-detected when omitted.
        */
       language_code?: string;
@@ -1337,7 +1348,9 @@ export namespace WorkflowBinding {
       /**
        * Best-effort list of words or short phrases (proper nouns, product names, jargon)
        * likely to appear in the audio, used to bias recognition toward correct
-       * spellings. Does not guarantee exact output.
+       * spellings. Does not guarantee exact output. Each phrase may contain at most 49
+       * characters and 5 words, and must not contain the characters <, >, {, }, [, ], or
+       * \.
        */
       phrases?: Array<string>;
 

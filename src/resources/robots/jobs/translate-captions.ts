@@ -23,6 +23,7 @@ export class TranslateCaptions extends APIResource {
    *       track_id: 'track_en_abc123',
    *       to_language_code: 'es',
    *       upload_to_mux: true,
+   *       never_translate: ['Mux'],
    *     },
    *   });
    * ```
@@ -120,6 +121,13 @@ export interface TranslateCaptionsJob {
  */
 export interface TranslateCaptionsJobOutputs {
   /**
+   * Present when never_translate terms were supplied. False when at least one term
+   * was not preserved verbatim in the translated captions. Preservation is
+   * best-effort: verified, not guaranteed.
+   */
+  never_translate_terms_preserved?: boolean;
+
+  /**
    * Temporary pre-signed URL to download the translated VTT file. Present when
    * upload_to_mux is true. Expires 7 days after the job completes.
    */
@@ -149,6 +157,14 @@ export interface TranslateCaptionsJobParameters {
    * have a ready text track matching this ID or the request will be rejected.
    */
   track_id: string;
+
+  /**
+   * Best-effort list of terms (brand names, proper nouns) to preserve verbatim in
+   * the translated captions. Does not guarantee exact output. Terms must not contain
+   * '<' or '>', invisible characters, or characters altered by Unicode
+   * normalization.
+   */
+  never_translate?: Array<string>;
 
   /**
    * Whether to upload the translated VTT and attach it as a text track on the Mux
