@@ -24,10 +24,12 @@ export type McpOptions = {
   codeAllowedMethods?: string[] | undefined;
   codeBlockedMethods?: string[] | undefined;
   codeExecutionMode: McpCodeExecutionMode;
+  codeSandboxUrl?: string | undefined;
+  codeSandboxApiKey?: string | undefined;
   customInstructionsPath?: string | undefined;
 };
 
-export type McpCodeExecutionMode = 'local';
+export type McpCodeExecutionMode = 'local' | 'remote';
 
 export function parseCLIOptions(): CLIOptions {
   const opts = yargs(hideBin(process.argv))
@@ -50,10 +52,21 @@ export function parseCLIOptions(): CLIOptions {
     })
     .option('code-execution-mode', {
       type: 'string',
-      choices: ['local'],
+      choices: ['local', 'remote'],
       default: 'local',
       description:
-        'The server was generated without access to the Stainless API, so code execution can only run locally on the MCP server machine.',
+        "Where to run code from the code tool; 'local' executes on the MCP server machine via Deno, 'remote' sends code to a remote sandbox service (requires code-sandbox-url).",
+    })
+    .option('code-sandbox-api-key', {
+      type: 'string',
+      default: readEnv('CODE_SANDBOX_API_KEY'),
+      description:
+        "API key sent as a Bearer token to authenticate requests to the remote code sandbox service; required when code-execution-mode is 'remote'.",
+    })
+    .option('code-sandbox-url', {
+      type: 'string',
+      default: readEnv('CODE_SANDBOX_URL'),
+      description: "URL of the remote code sandbox service; required when code-execution-mode is 'remote'.",
     })
     .option('custom-instructions-path', {
       type: 'string',
@@ -89,12 +102,6 @@ export function parseCLIOptions(): CLIOptions {
       description: 'Port to serve on if using http transport',
     })
     .option('socket', { type: 'string', description: 'Unix socket to serve on if using http transport' })
-    .option('stainless-api-key', {
-      type: 'string',
-      default: readEnv('STAINLESS_API_KEY'),
-      description:
-        'API key for Stainless. Used to authenticate requests to Stainless-hosted tools endpoints.',
-    })
     .option('tools', {
       type: 'string',
       array: true,
@@ -112,6 +119,13 @@ export function parseCLIOptions(): CLIOptions {
     .help();
 
   const argv = opts.parseSync();
+
+  if (argv.codeExecutionMode === 'remote' && (!argv.codeSandboxUrl || !argv.codeSandboxApiKey)) {
+    console.error(
+      "code-execution-mode 'remote' requires both --code-sandbox-url (CODE_SANDBOX_URL) and --code-sandbox-api-key (CODE_SANDBOX_API_KEY).",
+    );
+    process.exit(1);
+  }
 
   const shouldIncludeToolType = (toolType: 'code' | 'docs') =>
     argv.noTools?.includes(toolType) ? false
@@ -131,13 +145,15 @@ export function parseCLIOptions(): CLIOptions {
     ...(includeCodeTool !== undefined && { includeCodeTool }),
     ...(includeDocsTools !== undefined && { includeDocsTools }),
     debug: !!argv.debug,
-    stainlessApiKey: argv.stainlessApiKey,
+
     docsSearchMode: argv.docsSearchMode as 'local' | undefined,
     docsDir: argv.docsDir,
     codeAllowHttpGets: argv.codeAllowHttpGets,
     codeAllowedMethods: argv.codeAllowedMethods,
     codeBlockedMethods: argv.codeBlockedMethods,
     codeExecutionMode: argv.codeExecutionMode as McpCodeExecutionMode,
+    codeSandboxUrl: argv.codeSandboxUrl,
+    codeSandboxApiKey: argv.codeSandboxApiKey,
     customInstructionsPath: argv.customInstructionsPath,
     transport,
     logFormat,
@@ -179,6 +195,8 @@ export function parseQueryOptions(defaultOptions: McpOptions, query: unknown): M
     ...(codeTool !== undefined && { includeCodeTool: codeTool }),
     ...(docsTools !== undefined && { includeDocsTools: docsTools }),
     codeExecutionMode: defaultOptions.codeExecutionMode,
+    codeSandboxUrl: defaultOptions.codeSandboxUrl,
+    codeSandboxApiKey: defaultOptions.codeSandboxApiKey,
     docsSearchMode: defaultOptions.docsSearchMode,
     docsDir: defaultOptions.docsDir,
   };

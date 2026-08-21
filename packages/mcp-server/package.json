@@ -33,9 +33,9 @@
     "@mux/ts": "link:../../dist/",
     "ajv": "^8.18.0",
     "@cloudflare/cabidela": "^0.2.4",
-    "@hono/node-server": "^1.19.10",
+    "@hono/node-server": "^1.19.15",
     "@modelcontextprotocol/sdk": "^1.27.1",
-    "hono": "^4.12.4",
+    "hono": "^4.12.34",
     "@valtown/deno-http-worker": "^0.0.21",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -74,11 +74,14 @@
     "ts-jest": "^29.1.0",
     "ts-morph": "^19.0.0",
     "ts-node": "^10.5.0",
-    "tsc-multi": "https://github.com/stainless-api/tsc-multi/releases/download/v1.1.11/tsc-multi.tgz",
+    "tsc-multi": "npm:@stainless-api/tsc-multi@^1.1.11",
     "tsconfig-paths": "^4.0.0"
   },
   "optionalDependencies": {
     "deno": "^2.6.8"
+  },
+  "resolutions": {
+    "tmp": "^0.2.6"
   },
   "imports": {
     "@mux/mcp": ".",

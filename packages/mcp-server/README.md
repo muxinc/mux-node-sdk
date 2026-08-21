@@ -82,6 +82,18 @@ isolated sandbox. To accomplish this, the server will expose two tools to your a
 Using this scheme, agents are capable of performing very complex tasks deterministically
 and repeatably.
 
+### Execution modes
+
+By default (`--code-execution-mode=local`), code runs on the MCP server machine in an
+isolated Deno sandbox. Setting `--code-execution-mode=remote` (or the
+`MCP_SERVER_CODE_EXECUTION_MODE` environment variable) sends code to a remote code
+sandbox service instead, configured with:
+
+- `--code-sandbox-url` / `CODE_SANDBOX_URL`: URL of the sandbox service. Required in
+  remote mode.
+- `--code-sandbox-api-key` / `CODE_SANDBOX_API_KEY`: API key for the sandbox service,
+  sent as a `Bearer` token. Required in remote mode.
+
 ## Running remotely
 
 Launching the client with `--transport=http` launches the server as a remote server using Streamable HTTP transport. The `--port` setting can choose the port it will run on, and the `--socket` setting allows it to run on a Unix socket.

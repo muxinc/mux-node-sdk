@@ -1,8 +1,17 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { ContentBlock, McpRequestContext, McpTool, Metadata, ToolCallResult, asErrorResult } from './types';
+import {
+  ContentBlock,
+  McpRequestContext,
+  McpTool,
+  Metadata,
+  ToolCallResult,
+  asErrorResult,
+  asTextContentResult,
+} from './types';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
-import { WorkerOutput } from './code-tool-types';
+import { readEnv } from './util';
+import { WorkerInput, WorkerOutput } from './code-tool-types';
 import { getLogger } from './logger';
 import { SdkMethod } from './methods';
 import { McpCodeExecutionMode } from './options';
@@ -41,15 +50,31 @@ Always type dynamic key-value stores explicitly as Record<string, YourValueType>
  * matching, so it is not secure against obfuscation. For stronger security, block in the downstream API
  * with limited API keys.
  * @param codeExecutionMode - Whether to execute code in a local Deno environment or in a remote
- * sandbox environment hosted by Stainless.
+ * sandbox environment.
  */
 export function codeTool({
   blockedMethods,
   codeExecutionMode,
+  codeSandboxUrl,
+  codeSandboxApiKey,
 }: {
   blockedMethods: SdkMethod[] | undefined;
   codeExecutionMode: McpCodeExecutionMode;
+  codeSandboxUrl: string | undefined;
+  codeSandboxApiKey: string | undefined;
 }): McpTool {
+  if (codeExecutionMode === 'remote') {
+    if (!codeSandboxUrl) {
+      throw new Error(
+        "code-execution-mode 'remote' requires a sandbox URL; set the CODE_SANDBOX_URL environment variable or pass the --code-sandbox-url flag.",
+      );
+    }
+    if (!codeSandboxApiKey) {
+      throw new Error(
+        "code-execution-mode 'remote' requires a sandbox API key; set the CODE_SANDBOX_API_KEY environment variable or pass the --code-sandbox-api-key flag.",
+      );
+    }
+  }
   const metadata: Metadata = { resource: 'all', operation: 'write', tags: [] };
   const tool: Tool = {
     name: 'execute',
@@ -99,8 +124,13 @@ export function codeTool({
     let result: ToolCallResult;
     const startTime = Date.now();
 
-    logger.debug('Executing code in local Deno environment');
-    result = await localDenoHandler({ reqContext, args });
+    if (codeExecutionMode === 'remote') {
+      logger.debug('Executing code in remote sandbox');
+      result = await remoteSandboxHandler({ reqContext, args, codeSandboxUrl, codeSandboxApiKey });
+    } else {
+      logger.debug('Executing code in local Deno environment');
+      result = await localDenoHandler({ reqContext, args });
+    }
 
     logger.info(
       {
@@ -116,6 +146,86 @@ export function codeTool({
 
   return { metadata, tool, handler };
 }
+
+const remoteSandboxHandler = async ({
+  reqContext,
+  args,
+  codeSandboxUrl,
+  codeSandboxApiKey,
+}: {
+  reqContext: McpRequestContext;
+  args: any;
+  codeSandboxUrl: string | undefined;
+  codeSandboxApiKey: string | undefined;
+}): Promise<ToolCallResult> => {
+  const code = args.code as string;
+  const intent = args.intent as string | undefined;
+  const client = reqContext.client;
+
+  if (!codeSandboxUrl) {
+    return asErrorResult(
+      'Remote code execution requires a sandbox URL; set the CODE_SANDBOX_URL environment variable or pass the --code-sandbox-url flag.',
+    );
+  }
+
+  const localClientEnvs = {
+    MUX_TOKEN_ID: client.tokenId ?? readEnv('MUX_TOKEN_ID') ?? undefined,
+    MUX_TOKEN_SECRET: client.tokenSecret ?? readEnv('MUX_TOKEN_SECRET') ?? undefined,
+    MUX_WEBHOOK_SECRET: client.webhookSecret ?? readEnv('MUX_WEBHOOK_SECRET') ?? undefined,
+    MUX_SIGNING_KEY: client.jwtSigningKey ?? readEnv('MUX_SIGNING_KEY') ?? undefined,
+    MUX_PRIVATE_KEY: client.jwtPrivateKey ?? readEnv('MUX_PRIVATE_KEY') ?? undefined,
+    MUX_AUTHORIZATION_TOKEN: client.authorizationToken ?? readEnv('MUX_AUTHORIZATION_TOKEN') ?? undefined,
+    MUX_BASE_URL: readEnv('MUX_BASE_URL') ?? client.baseURL ?? undefined,
+  };
+  // Merge any upstream client envs from the request header, with upstream values taking precedence.
+  const mergedClientEnvs = { ...localClientEnvs, ...reqContext.upstreamClientEnvs };
+
+  // Cap the round trip; the executor enforces its own execution limit.
+  const timeoutMs = 300_000;
+  let res: Response;
+  try {
+    res = await fetch(codeSandboxUrl, {
+      method: 'POST',
+      headers: {
+        ...(codeSandboxApiKey && { Authorization: `Bearer ${codeSandboxApiKey}` }),
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        project_name: 'mux',
+        code,
+        intent,
+        client_opts: {},
+        client_envs: mergedClientEnvs,
+      } satisfies WorkerInput),
+      signal: AbortSignal.timeout(timeoutMs),
+    });
+  } catch (err) {
+    if (err instanceof DOMException && err.name === 'TimeoutError') {
+      return asErrorResult(`Code sandbox request timed out after ${timeoutMs / 1000}s`);
+    }
+    throw err;
+  }
+
+  if (!res.ok) {
+    throw new Error(
+      `${res.status}: ${
+        res.statusText
+      } error when trying to contact the code sandbox service. Details: ${await res.text()}`,
+    );
+  }
+
+  const { is_error, result, log_lines, err_lines } = (await res.json()) as WorkerOutput;
+  const hasLogs = log_lines.length > 0 || err_lines.length > 0;
+  const output = {
+    result,
+    ...(log_lines.length > 0 && { log_lines }),
+    ...(err_lines.length > 0 && { err_lines }),
+  };
+  if (is_error) {
+    return asErrorResult(typeof result === 'string' && !hasLogs ? result : JSON.stringify(output, null, 2));
+  }
+  return asTextContentResult(output);
+};
 
 const localDenoHandler = async ({
   reqContext,

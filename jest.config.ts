@@ -10,7 +10,6 @@ const config: JestConfigWithTsJest = {
     '^@mux/ts$': '<rootDir>/src/index.ts',
     '^@mux/ts/(.*)$': '<rootDir>/src/$1',
   },
-  transformIgnorePatterns: ['/node_modules/(?!jose/)'],
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',
     '<rootDir>/dist/',

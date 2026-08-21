@@ -7,6 +7,8 @@ export type WorkerInput = {
   code: string;
   client_opts: ClientOptions;
   intent?: string | undefined;
+  // Self-hosted sandbox protocol only.
+  client_envs?: Record<string, string | undefined> | undefined;
 };
 
 export type WorkerOutput = {

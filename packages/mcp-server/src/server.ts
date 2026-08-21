@@ -28,7 +28,7 @@ export const newMcpServer = async ({
   new McpServer(
     {
       name: 'mux',
-      version: '15.0.0',
+      version: '15.0.0', // x-release-please-version
     },
     {
       instructions: await getInstructions({ stainlessApiKey, customInstructionsPath }),
@@ -36,21 +36,26 @@ export const newMcpServer = async ({
     },
   );
 
-// The index is deterministic per docsDir and expensive to build; share one
-// instance per process so HTTP mode (which runs initMcpServer per request)
-// doesn't re-index the embedded corpus on every call.
-const localSearchCache = new Map<string, Promise<LocalDocsSearch>>();
+// The embedded-corpus index (no docsDir) is deterministic pure compute;
+// share one instance per process so HTTP mode (which runs initMcpServer
+// per request) doesn't re-index it on every call. A custom docsDir is
+// created fresh per call: directory read failures resolve as a degraded,
+// docs-less instance (see loadDocsDirectory), so caching one would pin
+// the degradation for the process lifetime instead of self-healing on
+// the next request.
+let embeddedSearch: Promise<LocalDocsSearch> | undefined;
 function getOrCreateLocalSearch(docsDir: string | undefined): Promise<LocalDocsSearch> {
-  const key = docsDir ?? '';
-  let search = localSearchCache.get(key);
-  if (!search) {
-    search = LocalDocsSearch.create(docsDir ? { docsDir } : undefined);
+  if (docsDir) return LocalDocsSearch.create({ docsDir });
+  if (!embeddedSearch) {
+    const created = LocalDocsSearch.create();
     // Evict on failure so a transient error can't wedge the process — the
     // next request retries instead of replaying a cached rejection.
-    search.catch(() => localSearchCache.delete(key));
-    localSearchCache.set(key, search);
+    created.catch(() => {
+      if (embeddedSearch === created) embeddedSearch = undefined;
+    });
+    embeddedSearch = created;
   }
-  return search;
+  return embeddedSearch;
 }
 
 /**
@@ -83,9 +88,8 @@ export async function initMcpServer(params: {
     error: logAtLevel('error'),
   };
 
-  // Local is the only mode, so default it like codeExecutionMode; programmatic
-  // consumers who omit the option would otherwise get a search_docs tool that
-  // throws on every call.
+  // Default like codeExecutionMode; programmatic consumers who omit the
+  // option should get the same behavior as the CLI default.
   if ((params.mcpOptions?.docsSearchMode ?? 'local') === 'local') {
     const docsDir = params.mcpOptions?.docsDir;
     setLocalSearch(await getOrCreateLocalSearch(docsDir));
@@ -202,6 +206,8 @@ export function selectTools(options?: McpOptions): McpTool[] {
       codeTool({
         blockedMethods: blockedMethodsForCodeTool(options),
         codeExecutionMode: options?.codeExecutionMode ?? 'local',
+        codeSandboxUrl: options?.codeSandboxUrl,
+        codeSandboxApiKey: options?.codeSandboxApiKey,
       }),
     );
   }
