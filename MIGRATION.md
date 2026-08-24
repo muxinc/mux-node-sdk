@@ -149,6 +149,7 @@ client.example.list(undefined, { headers: { ... } });
 - `client.data.engagement.videos.hotspots()`
 - `client.system.signingKeys.list()`
 - `client.system.usageExports.list()`
+- `client.system.webhooks.list()`
 
 </details>
 

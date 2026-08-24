@@ -19,16 +19,28 @@ import {
 } from './usage-exports';
 import * as UtilitiesAPI from './utilities';
 import { Utilities, UtilityWhoamiResponse, WhoamiResponse } from './utilities';
+import * as WebhooksAPI from './webhooks';
+import {
+  Webhook,
+  WebhookCreateParams,
+  WebhookListParams,
+  WebhookResponse,
+  WebhookUpdateParams,
+  Webhooks,
+  WebhooksBasePage,
+} from './webhooks';
 
 export class System extends APIResource {
   signingKeys: SigningKeysAPI.SigningKeys = new SigningKeysAPI.SigningKeys(this._client);
   utilities: UtilitiesAPI.Utilities = new UtilitiesAPI.Utilities(this._client);
   usageExports: UsageExportsAPI.UsageExports = new UsageExportsAPI.UsageExports(this._client);
+  webhooks: WebhooksAPI.Webhooks = new WebhooksAPI.Webhooks(this._client);
 }
 
 System.SigningKeys = SigningKeys;
 System.Utilities = Utilities;
 System.UsageExports = UsageExports;
+System.Webhooks = Webhooks;
 
 export declare namespace System {
   export {
@@ -51,5 +63,15 @@ export declare namespace System {
     type UsageExportsMeta as UsageExportsMeta,
     type UsageExportsResponse as UsageExportsResponse,
     type UsageExportListParams as UsageExportListParams,
+  };
+
+  export {
+    Webhooks as Webhooks,
+    type Webhook as Webhook,
+    type WebhookResponse as WebhookResponse,
+    type WebhooksBasePage as WebhooksBasePage,
+    type WebhookCreateParams as WebhookCreateParams,
+    type WebhookListParams as WebhookListParams,
+    type WebhookUpdateParams as WebhookUpdateParams,
   };
 }

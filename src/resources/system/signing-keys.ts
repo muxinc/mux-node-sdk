@@ -15,6 +15,11 @@ export class SigningKeys extends APIResource {
    * Creates a new signing key pair. When creating a new signing key, the API will
    * generate a 2048-bit RSA key-pair and return the private key and a generated
    * key-id; the public key will be stored at Mux to validate signed tokens.
+   *
+   * @example
+   * ```ts
+   * const signingKey = await client.system.signingKeys.create();
+   * ```
    */
   create(options?: RequestOptions): APIPromise<SigningKey> {
     return (
@@ -27,6 +32,14 @@ export class SigningKeys extends APIResource {
 
   /**
    * Returns a list of signing keys.
+   *
+   * @example
+   * ```ts
+   * // Automatically fetches more pages as needed.
+   * for await (const signingKey of client.system.signingKeys.list()) {
+   *   // ...
+   * }
+   * ```
    */
   list(
     query: SigningKeyListParams | null | undefined = {},
@@ -44,6 +57,13 @@ export class SigningKeys extends APIResource {
    * the unique signing key ID that was returned from your previous request, and Mux
    * will return the corresponding signing key information. **The private key is not
    * returned in this response.**
+   *
+   * @example
+   * ```ts
+   * const signingKey = await client.system.signingKeys.retrieve(
+   *   'SIGNING_KEY_ID',
+   * );
+   * ```
    */
   retrieve(signingKeyID: string, options?: RequestOptions): APIPromise<SigningKey> {
     return (
@@ -57,6 +77,11 @@ export class SigningKeys extends APIResource {
   /**
    * Deletes an existing signing key. Use with caution, as this will invalidate any
    * existing signatures and no JWTs can be signed using the key again.
+   *
+   * @example
+   * ```ts
+   * await client.system.signingKeys.delete('SIGNING_KEY_ID');
+   * ```
    */
   delete(signingKeyID: string, options?: RequestOptions): APIPromise<void> {
     return this._client.delete(path`/system/v1/signing-keys/${signingKeyID}`, {

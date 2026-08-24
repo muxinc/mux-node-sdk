@@ -13,6 +13,11 @@ export class Utilities extends APIResource {
    * environment, and permissions. Note that this can only be access with an access
    * token, and _all_ access tokens can access this route, regardless of what
    * permissions they have assigned.
+   *
+   * @example
+   * ```ts
+   * const response = await client.system.utilities.whoami();
+   * ```
    */
   whoami(options?: RequestOptions): APIPromise<UtilityWhoamiResponse> {
     return (

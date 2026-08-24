@@ -9059,6 +9059,308 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     },
   },
   {
+    name: 'create',
+    endpoint: '/system/v1/webhooks',
+    httpMethod: 'post',
+    summary: 'Create a webhook',
+    description:
+      "Creates a new webhook for the current environment. New webhooks start out enabled. The `address` must be unique among the environment's webhooks. **The `signing_secret` is only returned in this response and cannot be retrieved again.** Store it securely and use it to verify that webhook payloads were sent by Mux.",
+    stainlessPath: '(resource) system.webhooks > (method) create',
+    qualified: 'client.system.webhooks.create',
+    params: ['address: string;'],
+    response:
+      '{ id: string; address: string; created_at: string; enabled: boolean; signing_secret?: string; }',
+    markdown:
+      "## create\n\n`client.system.webhooks.create(address: string): { id: string; address: string; created_at: string; enabled: boolean; signing_secret?: string; }`\n\n**post** `/system/v1/webhooks`\n\nCreates a new webhook for the current environment. New webhooks start out enabled. The `address` must be unique among the environment's webhooks. **The `signing_secret` is only returned in this response and cannot be retrieved again.** Store it securely and use it to verify that webhook payloads were sent by Mux.\n\n### Parameters\n\n- `address: string`\n  The URL where Mux should send webhook notifications. Must be unique among the environment's webhooks.\n\n### Returns\n\n- `{ id: string; address: string; created_at: string; enabled: boolean; signing_secret?: string; }`\n\n  - `id: string`\n  - `address: string`\n  - `created_at: string`\n  - `enabled: boolean`\n  - `signing_secret?: string`\n\n### Example\n\n```typescript\nimport Mux from '@mux/ts';\n\nconst client = new Mux();\n\nconst webhook = await client.system.webhooks.create({ address: 'https://example.com/webhook' });\n\nconsole.log(webhook);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.system.webhooks.create',
+        example:
+          "import Mux from '@mux/ts';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst webhook = await client.system.webhooks.create({ address: 'https://example.com/webhook' });\n\nconsole.log(webhook.id);",
+      },
+      http: {
+        example:
+          'curl https://api.mux.com/system/v1/webhooks \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "address": "https://example.com/webhook"\n        }\'',
+      },
+      python: {
+        method: 'system.webhooks.create',
+        example:
+          'import os\nfrom mux_python import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nwebhook = client.system.webhooks.create(\n    address="https://example.com/webhook",\n)\nprint(webhook.id)',
+      },
+      java: {
+        method: 'system().webhooks().create',
+        example:
+          'package com.mux.example;\n\nimport com.mux.client.MuxClient;\nimport com.mux.client.okhttp.MuxOkHttpClient;\nimport com.mux.models.system.webhooks.Webhook;\nimport com.mux.models.system.webhooks.WebhookCreateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        WebhookCreateParams params = WebhookCreateParams.builder()\n            .address("https://example.com/webhook")\n            .build();\n        Webhook webhook = client.system().webhooks().create(params);\n    }\n}',
+      },
+      kotlin: {
+        method: 'system().webhooks().create',
+        example:
+          'package com.mux.example\n\nimport com.mux.client.MuxClient\nimport com.mux.client.okhttp.MuxOkHttpClient\nimport com.mux.models.system.webhooks.Webhook\nimport com.mux.models.system.webhooks.WebhookCreateParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val params: WebhookCreateParams = WebhookCreateParams.builder()\n        .address("https://example.com/webhook")\n        .build()\n    val webhook: Webhook = client.system().webhooks().create(params)\n}',
+      },
+      go: {
+        method: 'client.System.Webhooks.New',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/muxinc/mux-go"\n\t"github.com/muxinc/mux-go/option"\n)\n\nfunc main() {\n\tclient := muxgo.NewClient(\n\t\toption.WithTokenId("my token id"),\n\t\toption.WithTokenSecret("my secret"),\n\t)\n\twebhook, err := client.System.Webhooks.New(context.TODO(), muxgo.SystemWebhookNewParams{\n\t\tAddress: "https://example.com/webhook",\n\t})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", webhook.ID)\n}\n',
+      },
+      ruby: {
+        method: 'system_.webhooks.create',
+        example:
+          'require "mux_ruby"\n\nmux = MuxRuby::Client.new(token_id: "my token id", token_secret: "my secret")\n\nwebhook = mux.system_.webhooks.create(address: "https://example.com/webhook")\n\nputs(webhook)',
+      },
+      php: {
+        method: 'system->webhooks->create',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$webhook = $client->system->webhooks->create(\n  address: 'https://example.com/webhook'\n);\n\nvar_dump($webhook);",
+      },
+      csharp: {
+        method: 'System.Webhooks.Create',
+        example:
+          'WebhookCreateParams parameters = new()\n{\n    Address = "https://example.com/webhook"\n};\n\nvar webhook = await client.System.Webhooks.Create(parameters);\n\nConsole.WriteLine(webhook);',
+      },
+    },
+  },
+  {
+    name: 'list',
+    endpoint: '/system/v1/webhooks',
+    httpMethod: 'get',
+    summary: 'List webhooks',
+    description:
+      'Returns a list of webhooks configured for the current environment, sorted by creation time with the most recently created first. The `signing_secret` is not included; it is only returned once, when a webhook is created.',
+    stainlessPath: '(resource) system.webhooks > (method) list',
+    qualified: 'client.system.webhooks.list',
+    params: ['limit?: number;', 'page?: number;'],
+    response:
+      '{ id: string; address: string; created_at: string; enabled: boolean; signing_secret?: string; }',
+    markdown:
+      "## list\n\n`client.system.webhooks.list(limit?: number, page?: number): { id: string; address: string; created_at: string; enabled: boolean; signing_secret?: string; }`\n\n**get** `/system/v1/webhooks`\n\nReturns a list of webhooks configured for the current environment, sorted by creation time with the most recently created first. The `signing_secret` is not included; it is only returned once, when a webhook is created.\n\n### Parameters\n\n- `limit?: number`\n  Number of items to include in the response\n\n- `page?: number`\n  Offset by this many pages, of the size of `limit`\n\n### Returns\n\n- `{ id: string; address: string; created_at: string; enabled: boolean; signing_secret?: string; }`\n\n  - `id: string`\n  - `address: string`\n  - `created_at: string`\n  - `enabled: boolean`\n  - `signing_secret?: string`\n\n### Example\n\n```typescript\nimport Mux from '@mux/ts';\n\nconst client = new Mux();\n\n// Automatically fetches more pages as needed.\nfor await (const webhook of client.system.webhooks.list()) {\n  console.log(webhook);\n}\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.system.webhooks.list',
+        example:
+          "import Mux from '@mux/ts';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\n// Automatically fetches more pages as needed.\nfor await (const webhook of client.system.webhooks.list()) {\n  console.log(webhook.id);\n}",
+      },
+      http: {
+        example: 'curl https://api.mux.com/system/v1/webhooks \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      python: {
+        method: 'system.webhooks.list',
+        example:
+          'import os\nfrom mux_python import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\npage = client.system.webhooks.list()\npage = page.data[0]\nprint(page.id)',
+      },
+      java: {
+        method: 'system().webhooks().list',
+        example:
+          'package com.mux.example;\n\nimport com.mux.client.MuxClient;\nimport com.mux.client.okhttp.MuxOkHttpClient;\nimport com.mux.models.system.webhooks.WebhookListPage;\nimport com.mux.models.system.webhooks.WebhookListParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        WebhookListPage page = client.system().webhooks().list();\n    }\n}',
+      },
+      kotlin: {
+        method: 'system().webhooks().list',
+        example:
+          'package com.mux.example\n\nimport com.mux.client.MuxClient\nimport com.mux.client.okhttp.MuxOkHttpClient\nimport com.mux.models.system.webhooks.WebhookListPage\nimport com.mux.models.system.webhooks.WebhookListParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val page: WebhookListPage = client.system().webhooks().list()\n}',
+      },
+      go: {
+        method: 'client.System.Webhooks.List',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/muxinc/mux-go"\n\t"github.com/muxinc/mux-go/option"\n)\n\nfunc main() {\n\tclient := muxgo.NewClient(\n\t\toption.WithTokenId("my token id"),\n\t\toption.WithTokenSecret("my secret"),\n\t)\n\tpage, err := client.System.Webhooks.List(context.TODO(), muxgo.SystemWebhookListParams{})\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", page)\n}\n',
+      },
+      ruby: {
+        method: 'system_.webhooks.list',
+        example:
+          'require "mux_ruby"\n\nmux = MuxRuby::Client.new(token_id: "my token id", token_secret: "my secret")\n\npage = mux.system_.webhooks.list\n\nputs(page)',
+      },
+      php: {
+        method: 'system->webhooks->list',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$page = $client->system->webhooks->list(limit: 0, page: 0);\n\nvar_dump($page);",
+      },
+      csharp: {
+        method: 'System.Webhooks.List',
+        example:
+          'WebhookListParams parameters = new();\n\nvar page = await client.System.Webhooks.List(parameters);\nawait foreach (var item in page.Paginate())\n{\n    Console.WriteLine(item);\n}',
+      },
+    },
+  },
+  {
+    name: 'retrieve',
+    endpoint: '/system/v1/webhooks/{WEBHOOK_ID}',
+    httpMethod: 'get',
+    summary: 'Retrieve a webhook',
+    description:
+      'Retrieves the details of a webhook that has previously been created. The `signing_secret` is not included; it is only returned once, when the webhook is created.',
+    stainlessPath: '(resource) system.webhooks > (method) retrieve',
+    qualified: 'client.system.webhooks.retrieve',
+    params: ['WEBHOOK_ID: string;'],
+    response:
+      '{ id: string; address: string; created_at: string; enabled: boolean; signing_secret?: string; }',
+    markdown:
+      "## retrieve\n\n`client.system.webhooks.retrieve(WEBHOOK_ID: string): { id: string; address: string; created_at: string; enabled: boolean; signing_secret?: string; }`\n\n**get** `/system/v1/webhooks/{WEBHOOK_ID}`\n\nRetrieves the details of a webhook that has previously been created. The `signing_secret` is not included; it is only returned once, when the webhook is created.\n\n### Parameters\n\n- `WEBHOOK_ID: string`\n\n### Returns\n\n- `{ id: string; address: string; created_at: string; enabled: boolean; signing_secret?: string; }`\n\n  - `id: string`\n  - `address: string`\n  - `created_at: string`\n  - `enabled: boolean`\n  - `signing_secret?: string`\n\n### Example\n\n```typescript\nimport Mux from '@mux/ts';\n\nconst client = new Mux();\n\nconst webhook = await client.system.webhooks.retrieve('WEBHOOK_ID');\n\nconsole.log(webhook);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.system.webhooks.retrieve',
+        example:
+          "import Mux from '@mux/ts';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst webhook = await client.system.webhooks.retrieve('WEBHOOK_ID');\n\nconsole.log(webhook.id);",
+      },
+      http: {
+        example:
+          'curl https://api.mux.com/system/v1/webhooks/$WEBHOOK_ID \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      python: {
+        method: 'system.webhooks.retrieve',
+        example:
+          'import os\nfrom mux_python import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nwebhook = client.system.webhooks.retrieve(\n    "WEBHOOK_ID",\n)\nprint(webhook.id)',
+      },
+      java: {
+        method: 'system().webhooks().retrieve',
+        example:
+          'package com.mux.example;\n\nimport com.mux.client.MuxClient;\nimport com.mux.client.okhttp.MuxOkHttpClient;\nimport com.mux.models.system.webhooks.Webhook;\nimport com.mux.models.system.webhooks.WebhookRetrieveParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        Webhook webhook = client.system().webhooks().retrieve("WEBHOOK_ID");\n    }\n}',
+      },
+      kotlin: {
+        method: 'system().webhooks().retrieve',
+        example:
+          'package com.mux.example\n\nimport com.mux.client.MuxClient\nimport com.mux.client.okhttp.MuxOkHttpClient\nimport com.mux.models.system.webhooks.Webhook\nimport com.mux.models.system.webhooks.WebhookRetrieveParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val webhook: Webhook = client.system().webhooks().retrieve("WEBHOOK_ID")\n}',
+      },
+      go: {
+        method: 'client.System.Webhooks.Get',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/muxinc/mux-go"\n\t"github.com/muxinc/mux-go/option"\n)\n\nfunc main() {\n\tclient := muxgo.NewClient(\n\t\toption.WithTokenId("my token id"),\n\t\toption.WithTokenSecret("my secret"),\n\t)\n\twebhook, err := client.System.Webhooks.Get(context.TODO(), "WEBHOOK_ID")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", webhook.ID)\n}\n',
+      },
+      ruby: {
+        method: 'system_.webhooks.retrieve',
+        example:
+          'require "mux_ruby"\n\nmux = MuxRuby::Client.new(token_id: "my token id", token_secret: "my secret")\n\nwebhook = mux.system_.webhooks.retrieve("WEBHOOK_ID")\n\nputs(webhook)',
+      },
+      php: {
+        method: 'system->webhooks->retrieve',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$webhook = $client->system->webhooks->retrieve('WEBHOOK_ID');\n\nvar_dump($webhook);",
+      },
+      csharp: {
+        method: 'System.Webhooks.Retrieve',
+        example:
+          'WebhookRetrieveParams parameters = new() { WebhookID = "WEBHOOK_ID" };\n\nvar webhook = await client.System.Webhooks.Retrieve(parameters);\n\nConsole.WriteLine(webhook);',
+      },
+    },
+  },
+  {
+    name: 'update',
+    endpoint: '/system/v1/webhooks/{WEBHOOK_ID}',
+    httpMethod: 'patch',
+    summary: 'Update a webhook',
+    description:
+      "Updates the address and/or enabled status of an existing webhook. Omitted fields are left unchanged; at least one of `address` or `enabled` must be provided. The new `address` must be unique among the environment's webhooks.",
+    stainlessPath: '(resource) system.webhooks > (method) update',
+    qualified: 'client.system.webhooks.update',
+    params: ['WEBHOOK_ID: string;', 'address?: string;', 'enabled?: boolean;'],
+    response:
+      '{ id: string; address: string; created_at: string; enabled: boolean; signing_secret?: string; }',
+    markdown:
+      "## update\n\n`client.system.webhooks.update(WEBHOOK_ID: string, address?: string, enabled?: boolean): { id: string; address: string; created_at: string; enabled: boolean; signing_secret?: string; }`\n\n**patch** `/system/v1/webhooks/{WEBHOOK_ID}`\n\nUpdates the address and/or enabled status of an existing webhook. Omitted fields are left unchanged; at least one of `address` or `enabled` must be provided. The new `address` must be unique among the environment's webhooks.\n\n### Parameters\n\n- `WEBHOOK_ID: string`\n\n- `address?: string`\n  The URL where Mux should send webhook notifications. Must be unique among the environment's webhooks.\n\n- `enabled?: boolean`\n  Whether Mux attempts to deliver notifications to this webhook.\n\n### Returns\n\n- `{ id: string; address: string; created_at: string; enabled: boolean; signing_secret?: string; }`\n\n  - `id: string`\n  - `address: string`\n  - `created_at: string`\n  - `enabled: boolean`\n  - `signing_secret?: string`\n\n### Example\n\n```typescript\nimport Mux from '@mux/ts';\n\nconst client = new Mux();\n\nconst webhook = await client.system.webhooks.update('WEBHOOK_ID');\n\nconsole.log(webhook);\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.system.webhooks.update',
+        example:
+          "import Mux from '@mux/ts';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nconst webhook = await client.system.webhooks.update('WEBHOOK_ID', {\n  address: 'https://example.com/new-webhook',\n});\n\nconsole.log(webhook.id);",
+      },
+      http: {
+        example:
+          'curl https://api.mux.com/system/v1/webhooks/$WEBHOOK_ID \\\n    -X PATCH \\\n    -H \'Content-Type: application/json\' \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET" \\\n    -d \'{\n          "address": "https://example.com/new-webhook",\n          "enabled": false\n        }\'',
+      },
+      python: {
+        method: 'system.webhooks.update',
+        example:
+          'import os\nfrom mux_python import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nwebhook = client.system.webhooks.update(\n    webhook_id="WEBHOOK_ID",\n    address="https://example.com/new-webhook",\n    enabled=False,\n)\nprint(webhook.id)',
+      },
+      java: {
+        method: 'system().webhooks().update',
+        example:
+          'package com.mux.example;\n\nimport com.mux.client.MuxClient;\nimport com.mux.client.okhttp.MuxOkHttpClient;\nimport com.mux.models.system.webhooks.Webhook;\nimport com.mux.models.system.webhooks.WebhookUpdateParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        Webhook webhook = client.system().webhooks().update("WEBHOOK_ID");\n    }\n}',
+      },
+      kotlin: {
+        method: 'system().webhooks().update',
+        example:
+          'package com.mux.example\n\nimport com.mux.client.MuxClient\nimport com.mux.client.okhttp.MuxOkHttpClient\nimport com.mux.models.system.webhooks.Webhook\nimport com.mux.models.system.webhooks.WebhookUpdateParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    val webhook: Webhook = client.system().webhooks().update("WEBHOOK_ID")\n}',
+      },
+      go: {
+        method: 'client.System.Webhooks.Update',
+        example:
+          'package main\n\nimport (\n\t"context"\n\t"fmt"\n\n\t"github.com/muxinc/mux-go"\n\t"github.com/muxinc/mux-go/option"\n)\n\nfunc main() {\n\tclient := muxgo.NewClient(\n\t\toption.WithTokenId("my token id"),\n\t\toption.WithTokenSecret("my secret"),\n\t)\n\twebhook, err := client.System.Webhooks.Update(\n\t\tcontext.TODO(),\n\t\t"WEBHOOK_ID",\n\t\tmuxgo.SystemWebhookUpdateParams{\n\t\t\tAddress: muxgo.String("https://example.com/new-webhook"),\n\t\t},\n\t)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\tfmt.Printf("%+v\\n", webhook.ID)\n}\n',
+      },
+      ruby: {
+        method: 'system_.webhooks.update',
+        example:
+          'require "mux_ruby"\n\nmux = MuxRuby::Client.new(token_id: "my token id", token_secret: "my secret")\n\nwebhook = mux.system_.webhooks.update("WEBHOOK_ID")\n\nputs(webhook)',
+      },
+      php: {
+        method: 'system->webhooks->update',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$webhook = $client->system->webhooks->update(\n  'WEBHOOK_ID', address: 'https://example.com/new-webhook', enabled: false\n);\n\nvar_dump($webhook);",
+      },
+      csharp: {
+        method: 'System.Webhooks.Update',
+        example:
+          'WebhookUpdateParams parameters = new() { WebhookID = "WEBHOOK_ID" };\n\nvar webhook = await client.System.Webhooks.Update(parameters);\n\nConsole.WriteLine(webhook);',
+      },
+    },
+  },
+  {
+    name: 'delete',
+    endpoint: '/system/v1/webhooks/{WEBHOOK_ID}',
+    httpMethod: 'delete',
+    summary: 'Delete a webhook',
+    description:
+      'Deletes an existing webhook. Mux will no longer send event notifications to the configured address, the webhook no longer appears in list or retrieve responses, and its address becomes available for use by a new webhook (which will have a new ID and signing secret).',
+    stainlessPath: '(resource) system.webhooks > (method) delete',
+    qualified: 'client.system.webhooks.delete',
+    params: ['WEBHOOK_ID: string;'],
+    markdown:
+      "## delete\n\n`client.system.webhooks.delete(WEBHOOK_ID: string): void`\n\n**delete** `/system/v1/webhooks/{WEBHOOK_ID}`\n\nDeletes an existing webhook. Mux will no longer send event notifications to the configured address, the webhook no longer appears in list or retrieve responses, and its address becomes available for use by a new webhook (which will have a new ID and signing secret).\n\n### Parameters\n\n- `WEBHOOK_ID: string`\n\n### Example\n\n```typescript\nimport Mux from '@mux/ts';\n\nconst client = new Mux();\n\nawait client.system.webhooks.delete('WEBHOOK_ID')\n```",
+    perLanguage: {
+      typescript: {
+        method: 'client.system.webhooks.delete',
+        example:
+          "import Mux from '@mux/ts';\n\nconst client = new Mux({\n  tokenId: process.env['MUX_TOKEN_ID'], // This is the default and can be omitted\n  tokenSecret: process.env['MUX_TOKEN_SECRET'], // This is the default and can be omitted\n});\n\nawait client.system.webhooks.delete('WEBHOOK_ID');",
+      },
+      http: {
+        example:
+          'curl https://api.mux.com/system/v1/webhooks/$WEBHOOK_ID \\\n    -X DELETE \\\n    -u "$MUX_TOKEN_ID:MUX_TOKEN_SECRET"',
+      },
+      python: {
+        method: 'system.webhooks.delete',
+        example:
+          'import os\nfrom mux_python import Mux\n\nclient = Mux(\n    token_id=os.environ.get("MUX_TOKEN_ID"),  # This is the default and can be omitted\n    token_secret=os.environ.get("MUX_TOKEN_SECRET"),  # This is the default and can be omitted\n)\nclient.system.webhooks.delete(\n    "WEBHOOK_ID",\n)',
+      },
+      java: {
+        method: 'system().webhooks().delete',
+        example:
+          'package com.mux.example;\n\nimport com.mux.client.MuxClient;\nimport com.mux.client.okhttp.MuxOkHttpClient;\nimport com.mux.models.system.webhooks.WebhookDeleteParams;\n\npublic final class Main {\n    private Main() {}\n\n    public static void main(String[] args) {\n        MuxClient client = MuxOkHttpClient.fromEnv();\n\n        client.system().webhooks().delete("WEBHOOK_ID");\n    }\n}',
+      },
+      kotlin: {
+        method: 'system().webhooks().delete',
+        example:
+          'package com.mux.example\n\nimport com.mux.client.MuxClient\nimport com.mux.client.okhttp.MuxOkHttpClient\nimport com.mux.models.system.webhooks.WebhookDeleteParams\n\nfun main() {\n    val client: MuxClient = MuxOkHttpClient.fromEnv()\n\n    client.system().webhooks().delete("WEBHOOK_ID")\n}',
+      },
+      go: {
+        method: 'client.System.Webhooks.Delete',
+        example:
+          'package main\n\nimport (\n\t"context"\n\n\t"github.com/muxinc/mux-go"\n\t"github.com/muxinc/mux-go/option"\n)\n\nfunc main() {\n\tclient := muxgo.NewClient(\n\t\toption.WithTokenId("my token id"),\n\t\toption.WithTokenSecret("my secret"),\n\t)\n\terr := client.System.Webhooks.Delete(context.TODO(), "WEBHOOK_ID")\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n}\n',
+      },
+      ruby: {
+        method: 'system_.webhooks.delete',
+        example:
+          'require "mux_ruby"\n\nmux = MuxRuby::Client.new(token_id: "my token id", token_secret: "my secret")\n\nresult = mux.system_.webhooks.delete("WEBHOOK_ID")\n\nputs(result)',
+      },
+      php: {
+        method: 'system->webhooks->delete',
+        example:
+          "<?php\n\nrequire_once dirname(__DIR__) . '/vendor/autoload.php';\n\n$client = new Client(tokenId: 'my token id', tokenSecret: 'my secret');\n\n$result = $client->system->webhooks->delete('WEBHOOK_ID');\n\nvar_dump($result);",
+      },
+      csharp: {
+        method: 'System.Webhooks.Delete',
+        example:
+          'WebhookDeleteParams parameters = new() { WebhookID = "WEBHOOK_ID" };\n\nawait client.System.Webhooks.Delete(parameters);',
+      },
+    },
+  },
+  {
     name: 'unwrap',
     endpoint: '',
     httpMethod: '',

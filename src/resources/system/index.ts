@@ -16,3 +16,12 @@ export {
   type UsageExportListParams,
 } from './usage-exports';
 export { Utilities, type WhoamiResponse, type UtilityWhoamiResponse } from './utilities';
+export {
+  Webhooks,
+  type Webhook,
+  type WebhookResponse,
+  type WebhookCreateParams,
+  type WebhookListParams,
+  type WebhookUpdateParams,
+  type WebhooksBasePage,
+} from './webhooks';

@@ -12,6 +12,12 @@ export class UsageExports extends APIResource {
    * Lists available billing usage exports for your organization along with
    * pre-signed download URLs, sorted newest first. CSVs are available for dates
    * between 400 days ago and yesterday.
+   *
+   * @example
+   * ```ts
+   * const usageExportsResponse =
+   *   await client.system.usageExports.list();
+   * ```
    */
   list(
     query: UsageExportListParams | null | undefined = {},

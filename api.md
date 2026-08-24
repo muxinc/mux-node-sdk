@@ -51,6 +51,21 @@ Methods:
 
 - <code title="get /system/v1/usage/exports">client.system.usageExports.<a href="./src/resources/system/usage-exports.ts">list</a>({ ...params }) -> UsageExportsResponse</code>
 
+## Webhooks
+
+Types:
+
+- <code><a href="./src/resources/system/webhooks.ts">Webhook</a></code>
+- <code><a href="./src/resources/system/webhooks.ts">WebhookResponse</a></code>
+
+Methods:
+
+- <code title="post /system/v1/webhooks">client.system.webhooks.<a href="./src/resources/system/webhooks.ts">create</a>({ ...params }) -> Webhook</code>
+- <code title="get /system/v1/webhooks">client.system.webhooks.<a href="./src/resources/system/webhooks.ts">list</a>({ ...params }) -> WebhooksBasePage</code>
+- <code title="get /system/v1/webhooks/{WEBHOOK_ID}">client.system.webhooks.<a href="./src/resources/system/webhooks.ts">retrieve</a>(webhookID) -> Webhook</code>
+- <code title="patch /system/v1/webhooks/{WEBHOOK_ID}">client.system.webhooks.<a href="./src/resources/system/webhooks.ts">update</a>(webhookID, { ...params }) -> Webhook</code>
+- <code title="delete /system/v1/webhooks/{WEBHOOK_ID}">client.system.webhooks.<a href="./src/resources/system/webhooks.ts">delete</a>(webhookID) -> void</code>
+
 # [Webhooks](src/resources/webhooks/api.md)
 
 # JWT

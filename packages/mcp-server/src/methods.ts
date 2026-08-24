@@ -874,6 +874,36 @@ export const sdkMethods: SdkMethod[] = [
     httpMethod: 'get',
     httpPath: '/system/v1/usage/exports',
   },
+  {
+    clientCallName: 'client.system.webhooks.create',
+    fullyQualifiedName: 'system.webhooks.create',
+    httpMethod: 'post',
+    httpPath: '/system/v1/webhooks',
+  },
+  {
+    clientCallName: 'client.system.webhooks.list',
+    fullyQualifiedName: 'system.webhooks.list',
+    httpMethod: 'get',
+    httpPath: '/system/v1/webhooks',
+  },
+  {
+    clientCallName: 'client.system.webhooks.retrieve',
+    fullyQualifiedName: 'system.webhooks.retrieve',
+    httpMethod: 'get',
+    httpPath: '/system/v1/webhooks/{WEBHOOK_ID}',
+  },
+  {
+    clientCallName: 'client.system.webhooks.update',
+    fullyQualifiedName: 'system.webhooks.update',
+    httpMethod: 'patch',
+    httpPath: '/system/v1/webhooks/{WEBHOOK_ID}',
+  },
+  {
+    clientCallName: 'client.system.webhooks.delete',
+    fullyQualifiedName: 'system.webhooks.delete',
+    httpMethod: 'delete',
+    httpPath: '/system/v1/webhooks/{WEBHOOK_ID}',
+  },
   { clientCallName: 'client.webhooks.unwrap', fullyQualifiedName: 'webhooks.unwrap' },
 ];
 
