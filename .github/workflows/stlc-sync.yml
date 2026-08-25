@@ -1,8 +1,9 @@
 name: Sync SDK repos
 
-# Keeps the staging and production trunks in sync and the config repo's
-# tracking files fresh. Each job self-routes by repo + event, so this one file
-# can live in both repos and only the right job runs.
+# Keeps the staging and production trunks in sync, the config repo's tracking
+# files fresh, and the standing promote-preview PR current. Each job
+# self-routes by repo + event, so this one file can live in both repos and
+# only the right job runs.
 #
 on:
   schedule:
@@ -31,7 +32,8 @@ jobs:
       github.repository == 'muxinc/mux-ts-staging' &&
       (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'repository_dispatch')
     permissions:
-      contents: read
+      # write: the production-mirror push below uses GITHUB_TOKEN on purpose.
+      contents: write
     concurrency:
       group: stlc-back-sync
       cancel-in-progress: true
@@ -61,6 +63,16 @@ jobs:
           # actions/checkout persists this repo's token as an auth header, which
           # outranks the remote URL credential; blank it for this fetch only.
           git -c "http.https://github.com/.extraheader=" fetch production main
+
+      - name: Publish production mirror (promote-preview base)
+        run: |
+          # Bot-owned branch; force is the healing mechanism — an accidental
+          # merge of the preview PR lands here and gets reset every cycle, so
+          # production is unreachable from the preview surface. Deliberately
+          # the checkout's GITHUB_TOKEN, not the App token: GITHUB_TOKEN
+          # pushes create no workflow runs, so mirror updates don't rerun CI
+          # on commits that already ran on main.
+          git push --force origin production/main:refs/heads/production-mirror
 
       - name: Check whether production has content staging lacks
         id: diff
@@ -102,6 +114,111 @@ jobs:
         run: |
           run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           msg="stlc back-sync (sync from production) failed in ${{ github.repository }}. A stalled back-sync lets custom-code tracking drift, which later builds refuse on — investigate before the next build. Run: $run_url"
+          echo "::error title=stlc workflow failed::$msg"
+          { echo "### ⚠️ stlc workflow failed"; echo ""; echo "$msg"; } >> "$GITHUB_STEP_SUMMARY"
+          if [ -n "${ALERT_WEBHOOK_URL:-}" ]; then
+            curl -sS -X POST -H 'Content-Type: application/json' \
+              -d "$(jq -n --arg text "$msg" '{text:$text}')" "$ALERT_WEBHOOK_URL" \
+              || echo "::warning::Alert webhook POST failed"
+          fi
+
+  promote-preview:
+    # Maintains a standing draft PR (base production-mirror ← head main) whose
+    # diff is exactly what the next promote ships. GitHub refreshes the diff on
+    # every push; this job keeps the body current (commit manifest + api.md
+    # delta) and closes the PR when staging has nothing production lacks, so it
+    # self-collapses after each promote and re-arms on the next push. Also
+    # runs on dispatch, after back-sync, so one dispatch both creates the
+    # mirror and arms the PR — and doubles as a manual refresh lever.
+    runs-on: ubuntu-latest
+    needs: [back-sync]
+    if: >-
+      always() &&
+      github.repository == 'muxinc/mux-ts-staging' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: read
+    concurrency:
+      group: promote-preview
+      cancel-in-progress: true
+    steps:
+      - name: Mint mux-sdks-ci App token (preview PR writes)
+        id: mint
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ vars.STLC_APP_ID }}
+          private-key: ${{ secrets.STLC_APP_PRIVATE_KEY }}
+          owner: muxinc
+          repositories: mux-ts-staging
+
+      - name: Check out staging
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Refresh preview PR
+        env:
+          GH_TOKEN: ${{ steps.mint.outputs.token }}
+        run: |
+          set -euo pipefail
+
+          if ! git rev-parse --verify --quiet origin/production-mirror >/dev/null; then
+            echo "::notice::production-mirror not published yet (first back-sync pending) — skipping preview refresh."
+            exit 0
+          fi
+
+          pr_number=$(gh pr list --repo "$GITHUB_REPOSITORY" \
+            --base production-mirror --head main --state open \
+            --json number --jq '.[0].number // empty')
+
+          count=$(git rev-list --count origin/production-mirror..origin/main)
+          if [ "$count" = "0" ]; then
+            if [ -n "$pr_number" ]; then
+              gh pr close "$pr_number" --repo "$GITHUB_REPOSITORY" \
+                --comment "Staging has nothing production lacks — collapsed until the next build. A new preview PR opens on the next staging push."
+              echo "Closed preview PR #$pr_number (nothing to promote)."
+            else
+              echo "Nothing to promote and no open preview PR."
+            fi
+            exit 0
+          fi
+
+          # PR bodies cap at 65,536 chars; keep generous room for both sections.
+          manifest=$(git log --no-decorate --format='- %h %s' origin/production-mirror..origin/main | head -c 20000)
+          # Root api.md is an index; the per-resource surface lives in
+          # src/resources/*/api.md — the glob covers both.
+          api_diff=$(git diff origin/production-mirror origin/main -- ':(glob)**/api.md' | head -c 30000)
+          if [ -z "$api_diff" ]; then
+            api_section="_No \`api.md\` changes (root or per-resource) — no user-facing API surface delta._"
+          else
+            api_section=$(printf '```diff\n%s\n```' "$api_diff")
+          fi
+
+          body=$(printf '%s\n%s\n\n## Commits pending promote (%s)\n\n%s\n\n## `api.md` deltas (user-facing surface)\n\n%s\n' \
+            "> [!NOTE]" \
+            "> Standing preview of what the next promote ships. Auto-maintained by the promote-preview job — **do not merge**; an accidental merge only touches the bot-owned \`production-mirror\` branch and heals on the next back-sync cycle. Full diff: [\`production-mirror...main\`](https://github.com/${GITHUB_REPOSITORY}/compare/production-mirror...main)." \
+            "$count" \
+            "$manifest" \
+            "$api_section")
+
+          if [ -n "$pr_number" ]; then
+            gh pr edit "$pr_number" --repo "$GITHUB_REPOSITORY" --body "$body"
+            echo "Refreshed preview PR #$pr_number ($count commits pending)."
+          else
+            gh pr create --repo "$GITHUB_REPOSITORY" --draft \
+              --base production-mirror --head main \
+              --title "Promote preview: pending release contents" \
+              --body "$body"
+            echo "Opened preview PR ($count commits pending)."
+          fi
+
+      - name: Alert on failure
+        if: failure()
+        env:
+          ALERT_WEBHOOK_URL: ${{ secrets.STLC_ALERT_WEBHOOK_URL }}
+        run: |
+          run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          msg="stlc promote-preview refresh failed in ${{ github.repository }} — the standing preview PR may be stale or missing. Promote safety is unaffected; fix before relying on the preview. Run: $run_url"
           echo "::error title=stlc workflow failed::$msg"
           { echo "### ⚠️ stlc workflow failed"; echo ""; echo "$msg"; } >> "$GITHUB_STEP_SUMMARY"
           if [ -n "${ALERT_WEBHOOK_URL:-}" ]; then
