@@ -1,0 +1,4 @@
+# Merges to main require a code-owner review. Generated builds land through
+# the CI App's ruleset bypass, so this gates human changes only.
+
+* @muxinc/techops
