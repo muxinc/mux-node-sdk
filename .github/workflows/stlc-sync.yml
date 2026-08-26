@@ -37,6 +37,9 @@ jobs:
     concurrency:
       group: stlc-back-sync
       cancel-in-progress: true
+    # The App key is an environment secret; stlc-ci deploys only from main, so
+    # a workflow pushed on any other branch cannot read it.
+    environment: stlc-ci
     env:
       PRODUCTION_REPO: muxinc/mux-ts
     steps:
@@ -141,6 +144,7 @@ jobs:
     concurrency:
       group: promote-preview
       cancel-in-progress: true
+    environment: stlc-ci
     steps:
       - name: Mint mux-sdks-ci App token (preview PR writes)
         id: mint
@@ -298,6 +302,7 @@ jobs:
     concurrency:
       group: seal-dispatch-${{ github.ref }}
       cancel-in-progress: false
+    environment: stlc-ci
     env:
       CONFIG_REPO: muxinc/openapi-specification
     steps:
