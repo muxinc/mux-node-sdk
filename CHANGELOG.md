@@ -7,7 +7,7 @@
 
 * add webhooks CRUD endpoints to System API ([5013428](https://github.com/muxinc/mux-ts/commit/50134289b9b4e4c3598a7956a769badd038a4b20))
 * **mcp:** remote code execution mode, docs-search fixes, dependency bumps ([80a4aec](https://github.com/muxinc/mux-ts/commit/80a4aecaf7a77775160c34ffc30164804090b4af))
-* Pull in latest Robots spec ([8457e90](https://github.com/muxinc/mux-ts/commit/8457e904c14a0e2fd1a93b65c2bdaa2d3d6128d3))
+* **robots:** add support for detected_language in generate-premium-captions and never_translate in translate-captions ([8457e90](https://github.com/muxinc/mux-ts/commit/8457e904c14a0e2fd1a93b65c2bdaa2d3d6128d3))
 
 
 ### Bug Fixes
