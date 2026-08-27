@@ -1,5 +1,27 @@
 # Changelog
 
+## [15.1.0](https://github.com/muxinc/mux-ts/compare/v15.0.0...v15.1.0) (2026-08-27)
+
+
+### Features
+
+* add webhooks CRUD endpoints to System API ([5013428](https://github.com/muxinc/mux-ts/commit/50134289b9b4e4c3598a7956a769badd038a4b20))
+* **mcp:** remote code execution mode, docs-search fixes, dependency bumps ([80a4aec](https://github.com/muxinc/mux-ts/commit/80a4aecaf7a77775160c34ffc30164804090b4af))
+* **robots:** add support for detected_language in generate-premium-captions and never_translate in translate-captions ([8457e90](https://github.com/muxinc/mux-ts/commit/8457e904c14a0e2fd1a93b65c2bdaa2d3d6128d3))
+
+
+### Bug Fixes
+
+* signed-playback token query param is lowercase token not TOKEN ([32c730a](https://github.com/muxinc/mux-ts/commit/32c730a3a908f842103fc250e27aaaf29c8550f5))
+
+
+### Chores
+
+* absorb out-of-band staging changes ([fac202e](https://github.com/muxinc/mux-ts/commit/fac202e65f1c0d3e142e1e7d75aace50ee2a421c))
+* code ownership moves to the api-sdk team ([#5](https://github.com/muxinc/mux-ts/issues/5)) ([ce281fa](https://github.com/muxinc/mux-ts/commit/ce281fa3a44af35569fd0b622991a2c2cabc051d))
+* CODEOWNERS — techops review required for human merges ([#4](https://github.com/muxinc/mux-ts/issues/4)) ([76eb925](https://github.com/muxinc/mux-ts/commit/76eb925717e40aa4f005b2c8d70266da89a42218))
+* reseal after v15.0.0 release ([8d7674e](https://github.com/muxinc/mux-ts/commit/8d7674edbb819f274ca69c7e48a84590004df742))
+
 ## [15.0.0](https://github.com/muxinc/mux-ts/compare/v14.1.1...v15.0.0) (2026-08-12)
 
 
