@@ -32,7 +32,7 @@ jobs:
       github.repository == 'muxinc/mux-ts-staging' &&
       (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'repository_dispatch')
     permissions:
-      # write: the production-mirror push below uses GITHUB_TOKEN on purpose.
+      # contents: write — the production-mirror push uses GITHUB_TOKEN.
       contents: write
     concurrency:
       group: stlc-back-sync
@@ -71,8 +71,7 @@ jobs:
         run: |
           # Bot-owned branch; force is the healing mechanism — an accidental
           # merge of the preview PR lands here and gets reset every cycle, so
-          # production is unreachable from the preview surface. Deliberately
-          # the checkout's GITHUB_TOKEN, not the App token: GITHUB_TOKEN
+          # production is unreachable from the preview surface. GITHUB_TOKEN
           # pushes create no workflow runs, so mirror updates don't rerun CI
           # on commits that already ran on main.
           git push --force origin production/main:refs/heads/production-mirror
@@ -187,8 +186,22 @@ jobs:
             exit 0
           fi
 
-          # PR bodies cap at 65,536 chars; keep generous room for both sections.
+          # PR bodies cap at 65,536 chars; keep generous room for all sections.
           manifest=$(git log --no-decorate --format='- %h %s' origin/production-mirror..origin/main | head -c 20000)
+
+          # Approximate the release-please grouping: feat/fix subjects are
+          # user-facing; everything else is excluded from the changelog. The
+          # release PR is the changelog of record.
+          subjects=$(git log --no-decorate --format='%s' origin/production-mirror..origin/main)
+          feats=$(grep -E '^feat(\([^)]*\))?!?:' <<<"$subjects" | sed 's/^/- /' | head -c 5000 || true)
+          fixes=$(grep -E '^fix(\([^)]*\))?!?:' <<<"$subjects" | sed 's/^/- /' | head -c 5000 || true)
+          other_count=$(grep -vcE '^(feat|fix)(\([^)]*\))?!?:' <<<"$subjects" || true)
+          changelog_section=$(
+            if [ -n "$feats" ]; then printf '### Features\n\n%s\n\n' "$feats"; fi
+            if [ -n "$fixes" ]; then printf '### Bug Fixes\n\n%s\n\n' "$fixes"; fi
+            if [ -z "$feats$fixes" ]; then printf '_No user-facing commits pending._\n\n'; fi
+            printf '_%s infrastructure commit(s) excluded. Approximate (subjects only) — the release-please release PR is the changelog of record._' "$other_count"
+          )
           # Root api.md is an index; the per-resource surface lives in
           # src/resources/*/api.md — the glob covers both.
           api_diff=$(git diff origin/production-mirror origin/main -- ':(glob)**/api.md' | head -c 30000)
@@ -198,9 +211,10 @@ jobs:
             api_section=$(printf '```diff\n%s\n```' "$api_diff")
           fi
 
-          body=$(printf '%s\n%s\n\n## Commits pending promote (%s)\n\n%s\n\n## `api.md` deltas (user-facing surface)\n\n%s\n' \
+          body=$(printf '%s\n%s\n\n## Changelog preview\n\n%s\n\n## Commits pending promote (%s)\n\n%s\n\n## `api.md` deltas (user-facing surface)\n\n%s\n' \
             "> [!NOTE]" \
             "> Standing preview of what the next promote ships. Auto-maintained by the promote-preview job — **do not merge**; an accidental merge only touches the bot-owned \`production-mirror\` branch and heals on the next back-sync cycle. Full diff: [\`production-mirror...main\`](https://github.com/${GITHUB_REPOSITORY}/compare/production-mirror...main)." \
+            "$changelog_section" \
             "$count" \
             "$manifest" \
             "$api_section")

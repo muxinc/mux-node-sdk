@@ -17,8 +17,8 @@ jobs:
   promote:
     runs-on: ubuntu-latest
     if: github.repository == 'muxinc/mux-ts-staging'
-    # Optional gate: required reviewers on this environment approve each
-    # promote. With none configured it only scopes secrets and adds no gate.
+    # Required reviewers on this environment approve each promote; the
+    # environment only deploys from main.
     environment: production
     env:
       PRODUCTION_REPO: muxinc/mux-ts
